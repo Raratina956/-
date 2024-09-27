@@ -1,0 +1,22 @@
+name: Deploy to WebDAV
+
+on:
+  push:
+    branches:
+      - main 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: チェックアウトリポジトリ
+      uses: actions/checkout@v3
+
+    - name: Sync to WebDAV
+      uses: arthurhenri/gha-webdav@v1.0.0
+      with:
+        url: ${{ secrets.WEBDAV_URL }}
+        username: ${{ secrets.WEBDAV_USERNAME }}
+        password: ${{ secrets.WEBDAV_PASSWORD }}
+        local_dir: 'SpotLink'  
+        remote_dir: '/SpotLink' 
