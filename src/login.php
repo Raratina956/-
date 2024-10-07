@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'parts/db-connect.php';
+require 'parts/auto-login.php';
 
 $error = '';
 if (isset($_POST['mail'], $_POST['pass'])) {
