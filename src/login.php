@@ -61,6 +61,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <input type="submit" value="ログイン">
     </form>
+    <a href="Sign-up-input.php">新規会員登録</a>
 </body>
 
 </html>
