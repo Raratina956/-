@@ -14,7 +14,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
     } else {
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user'] = [
-                'user_id' => $row['user_id '],
+                'user_id' => $row['user_id'],
                 'user_name' => $row['user_name']
             ];
             $now_time = date("Y/m/d H:i:s");
