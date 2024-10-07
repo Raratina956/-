@@ -1,8 +1,8 @@
 <?php
 session_start();
 require 'parts/db-connect.php';
-if (isset($SESSION['login'])) {
-    unset($SESSION['login']);
+if (isset($_SESSION['login'])) {
+    unset($_SESSION['login']);
 }
 if (!(isset($_SESSION['user']))) {
     $SESSION['login']['error'] = 'ログインをしてください';
