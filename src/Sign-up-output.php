@@ -1,0 +1,51 @@
+<?php 
+    require "db-connect.php";
+    try {
+        $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+    } catch(PDOException $e){
+        echo "接続エラー: " . $e->getMessage();
+        exit();  
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+        $username = $_POST['name'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+        $mail_address = $_POST['mail_address'];
+        $type = $_POST['type'];
+
+        if ($password !== $confirm_password) {
+            echo "パスワードが一致しません。もう一度確認してください。";
+            exit();
+        }
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "SELECT COUNT(*) FROM Users WHERE mail_address = :mail_address";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':mail_address', $mail_address);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        if ($count > 0) {
+            echo "このメールアドレスは既に登録されています。別のメールアドレスを使ってください。";
+        } else {
+            $sql = "INSERT INTO Users (mail_address, s_or_t, user_name, password) VALUES (:mail_address, :s_or_t, :user_name, :password)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':mail_address', $mail_address);
+            $stmt->bindParam(':s_or_t', $type);
+            $stmt->bindParam(':user_name', $username);
+            $stmt->bindParam(':password', $hashed_password);
+
+            if ($stmt->execute()) {
+                echo 'success';
+            } else {
+                $error_info = $stmt->errorInfo(); 
+                echo "登録に失敗しました: " . $error_info[2]; 
+            }
+        }
+
+    }
+?>
