@@ -18,4 +18,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: uptest/
-          local-dir: public/
+          local-dir: Nomodon/
