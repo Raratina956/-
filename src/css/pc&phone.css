@@ -1,0 +1,15 @@
+/* スマホ用 */
+p {
+    font-size: 16px;
+    color: red;
+    text-align: center;
+  }
+  
+  /* pc用 */
+  @media (max-width: 768px) {
+    p {
+      font-size: 20px;
+      color: blue;
+    }
+  }
+  
