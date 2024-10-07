@@ -14,7 +14,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
     } else {
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user'] = [
-                'user_id' => $row['user_id '],
+                'user_id' => $row['user_id'],
                 'user_name' => $row['user_name']
             ];
             $now_time = date("Y/m/d H:i:s");
@@ -26,6 +26,8 @@ if (isset($_POST['mail'], $_POST['pass'])) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
+        }else{
+            $error = 'メールアドレス又はパスワードが間違っています';
         }
     }
 }
