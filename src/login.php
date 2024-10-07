@@ -26,7 +26,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
-        }else{
+        } else {
             $error = 'メールアドレス又はパスワードが間違っています';
         }
     }
@@ -48,6 +48,11 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <span>パスワード</span><input type="password" name="pass" required>
         <br>
+        <?php
+        if (isset($_SESSION['login']['error'])) {
+            $error = $_SESSION['login']['error'];
+        }
+        ?>
         <span><?php echo $error ?></span>
         <br>
         <span>次回からログインを省略する</span>
