@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db-connect.php';
+require 'parts/db-connect.php';
 
 $error = '';
 if (isset($_POST['mail'], $_POST['pass'])) {
