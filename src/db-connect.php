@@ -5,4 +5,5 @@
     const PASS = 'nomodon';
 
     $connect = 'mysql:host='. SERVER . ';dbname='. DBNAME . ';charset=utf8';
+    $pdo = new PDO($connect, USER, PASS);
 ?>
