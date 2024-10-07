@@ -26,6 +26,8 @@ if (isset($_POST['mail'], $_POST['pass'])) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
+        }else{
+            $error = 'メールアドレス又はパスワードが間違っています';
         }
     }
 }
