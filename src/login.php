@@ -1,6 +1,15 @@
 <?php
 session_start();
 require 'db-connect.php';
+
+$error = '';
+if(isset($_POST['mail'],$_POST['pass'])){
+    $mail = $_POST['mail'];
+    $pass=$_POST['pass'];
+    $sql = $pdo->prepare('SELECT * FROM user WHERE id=?');
+    $sql->execute([$id]);
+    $row = $sql->fetch();
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +21,7 @@ require 'db-connect.php';
 </head>
 <body>
 <form action="login.php" method="post">
-        <span>ID</span><input type="text" name="id" required>
+        <span>メールアドレス</span><input type="mail" name="mail" required>
         <br>
         <span>パスワード</span><input type="password" name="pass" required>
         <br>
