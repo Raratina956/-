@@ -1,6 +1,7 @@
 body{
     background-image: url(../img/SpotLinkbg.png);
     text-align: center;
+    align-items: center;
 }
 form {
     width: 400px;
