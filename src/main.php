@@ -33,4 +33,5 @@ require 'parts/auto-login.php';
     }
     ?>
     <li><a href="tag_create.php">タグ作成</a></li>
+    <li><a href="tag_list.php">タグ一覧</a></li>
 </ul>
