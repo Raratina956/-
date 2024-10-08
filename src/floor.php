@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-require 'header.php';
+// require 'header.php';
 
 $floor = $_POST['floor'];
 echo '<h1>', $floor, '階</h1>';
