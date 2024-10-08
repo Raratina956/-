@@ -48,7 +48,7 @@ body {
   }
   
   .slide-menu {
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(46, 149, 222, 0.8);
     position: fixed;
     top: 65px;
     width: 250px;
