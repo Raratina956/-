@@ -89,6 +89,6 @@ body {
     transform: translateX(0);
   }
 
-  .logout{
-    color: red;
+  .slide-menu li.logout {
+    color: red; /* ログアウトのみ赤色 */
   }
