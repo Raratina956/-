@@ -30,41 +30,44 @@ a:hover {
 
 /* Form Styles */
 form {
-    width: 400px; /* フォーム全体の幅を広げる */
+    width: 400px; /* フォーム全体の幅 */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Fields: 横並びにする */
+/* Form Fields: ラベルとテキストボックスの高さを揃える */
 .form-group {
-    display: flex; /* ラベルとテキストボックスを横並びに */
-    align-items: center;
+    display: flex;
+    align-items: center; /* ラベルとテキストボックスを中央に揃える */
     margin-bottom: 10px;
 }
 
 .form-group label {
-    width: 120px; /* ラベルの幅を固定 */
+    width: 120px;
     margin-right: 10px;
-    text-align: right; /* テキストを右寄せして ":" を揃える */
-    white-space: nowrap; /* テキストの改行を防ぐ */
+    text-align: right;
+    white-space: nowrap;
+    line-height: 1.5; /* ラベルの高さをテキストボックスに合わせる */
 }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="email"],
 .form-group select {
-    flex: 1; /* テキストボックスの幅を自動で調整 */
+    flex: 1; /* テキストボックスの幅を調整 */
     padding: 8px;
+    margin: 0; /* 余計な上下のマージンを削除 */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    height: 36px; /* テキストボックスの高さを固定 */
 }
 
 /* Submit Button */
 input[type="submit"] {
-    width: 100px; /* 幅を固定で100pxに設定 */
+    width: 100px;
     background-color: #5f666a;
     color: rgb(0, 0, 0);
     padding: 10px;
@@ -72,7 +75,7 @@ input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    margin-top: 10px; /* 上にスペースを追加 */
+    margin-top: 10px;
 }
 
 input[type="submit"]:hover {
