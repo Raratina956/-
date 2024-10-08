@@ -5,11 +5,11 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* 要素を縦に並べる */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     height: 100vh;
-    background-size: cover; /* 背景画像を画面いっぱいに表示 */
+    background-size: cover;
     background-position: center;
 }
 
@@ -17,7 +17,7 @@ h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
-    text-align: center; /* 中央揃え */
+    text-align: center;
 }
 
 a {
@@ -35,29 +35,26 @@ a[href="login.php"] {
     top: 20px;   /* 画面上部からの距離 */
     left: 20px;  /* 画面左からの距離 */
     font-size: 16px;
-    color: #3498db;
-}
-
-a[href="login.php"]:hover {
-    text-decoration: underline;
 }
 
 /* Form Styles */
 form {
-    width: 600px; /* フォーム全体の幅を広げる */
-    padding: 30px; /* パディングを広げて余白を作る */
+    width: 600px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Form Fields */
 .form-group {
     display: flex;
-    align-items: center; /* ラベルとテキストボックスを中央に揃える */
-    margin-bottom: 15px; /* マージンを広げて間隔を作る */
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .form-group label {
-    width: 150px; /* ラベルの幅を広げる */
+    width: 150px;
     margin-right: 10px;
     text-align: right;
     white-space: nowrap;
@@ -74,12 +71,12 @@ form {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    height: 40px; /* テキストボックスの高さを大きく */
+    height: 40px;
 }
 
 /* Submit Button */
 input[type="submit"] {
-    width: 150px; /* 幅を少し広げる */
+    width: 150px; /* ボタンの幅 */
     background-color: #5f666a;
     color: #fff;
     padding: 10px;
@@ -87,7 +84,10 @@ input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: 20px; /* 上の要素との間隔 */
+    display: block; /* ブロック要素として表示 */
+    margin-left: auto; /* 左のマージンを自動 */
+    margin-right: auto; /* 右のマージンを自動 */
 }
 
 input[type="submit"]:hover {
