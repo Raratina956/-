@@ -35,9 +35,7 @@ a:hover {
 form {
     width: 600px; /* フォーム全体の幅を広げる */
     padding: 30px; /* パディングを広げて余白を作る */
-    background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明にしてボディと同化 */
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* 少し影をつけて立体感 */
 }
 
 /* Form Fields */
