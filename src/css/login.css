@@ -1,6 +1,6 @@
 body{
     background-image: url(../img/SpotLinkbg.png);
-    display: flex;
-    justify-content: center;
+}
+div{
     align-items: center;
 }
