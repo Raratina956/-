@@ -1,6 +1,19 @@
 <?php
 require 'parts/auto-login.php';
-
+if (isset($_POST['tag_id'])) {
+    $regi_tag_id = $_POST['tag_id'];
+    $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id');
+    $sql->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    if (!$row) {
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (user_id,classroom_id,logtime) VALUES (?,?,?)');
+        $sql_insert->execute([
+            $_SESSION['user']['user_id'],
+            $room_id,
+            $now_time
+        ]);
+    }
+}
 ?>
 
 <?php
@@ -26,8 +39,12 @@ if ($results) {
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row['user_id']]);
             $row_user = $sql_user->fetch();
-            echo $row['user_id'];
-            // echo '<td>',$row_user['user_name'],'</td>';
+            echo '<td>', $row_user['user_name'], '</td>';
+            echo '<form action="tag_list.php" method="post">';
+            echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
+            echo '<input type="submit" value="参加">';
+            echo '</form>';
+
             echo '<td></td>';
             echo '</tr>';
 

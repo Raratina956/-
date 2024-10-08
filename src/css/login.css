@@ -2,23 +2,12 @@ body{
     background-image: url(../img/SpotLinkbg.png);
     text-align: center;
 }
-form {
-    width: 400px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 .form-group label {
     width: 40%;
     margin-right: 10px;
     white-space: nowrap;
 }
+
 .form-group input[type="password"],
 .form-group input[type="email"],
 .form-group select {
