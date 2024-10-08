@@ -35,7 +35,7 @@
 
         //タグ一覧
         foreach($tagStmt as $tag){
-            echo $tag;
+            echo $tag['tag_name'];
         }
     }
 ?>
