@@ -21,13 +21,24 @@ h2 {
 }
 
 a {
-    display: inline-block;
-    margin-bottom: 10px;
     color: #3498db;
     text-decoration: none;
 }
 
 a:hover {
+    text-decoration: underline;
+}
+
+/* "戻る"ボタンを左上に配置 */
+a[href="login.php"] {
+    position: absolute;
+    top: 20px;   /* 画面上部からの距離 */
+    left: 20px;  /* 画面左からの距離 */
+    font-size: 16px;
+    color: #3498db;
+}
+
+a[href="login.php"]:hover {
     text-decoration: underline;
 }
 
