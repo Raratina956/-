@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <a href="login.php">戻る</a>
+    <a class="back-link"href="login.php">戻る</a>
     <h2>新規会員登録</h2>
     <form action="Sign-up-output.php" method="post">
         <div class="form-group">
