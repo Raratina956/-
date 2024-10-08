@@ -20,25 +20,18 @@ h2 {
     text-align: center;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-/* "戻る"ボタンを左上に配置 */
-a[href="login.php"] {
+.back-link {
     position: absolute;
-    top: 70px;   /* h2に近づけるために位置を調整 */
-    left: 20px;  /* 画面左からの距離 */
-    font-size: 20px; /* フォントサイズを大きくする */
-    padding: 10px 15px; /* ボタンの内側の余白を追加 */
-    border: 1px solid #3498db; /* ボーダーを追加 */
-    border-radius: 4px; /* ボタンの角を丸くする */
-    background-color: rgba(255, 255, 255, 0.8); /* 背景色を追加 */
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #a0eefc;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
-
-a[href="login.php"]:hover {
-    text-decoration: underline;
+.back-link:hover {
+    background-color: #ffffff;
 }
 
 /* Form Styles */
