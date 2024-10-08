@@ -11,7 +11,6 @@
 <body>
     <header>
         <div class="header-area">
-            <h1>ロゴ</h1>
             <div class="hamburger">
                 <!-- ハンバーガーメニューの線 -->
                 <span></span>
