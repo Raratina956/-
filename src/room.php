@@ -9,7 +9,7 @@ $row = $sql->fetch();
 $room_name = $row['classroom_name'];
 $floor = $row['classroom_floor'];
 if (isset($_POST['judge'])) {
-    $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE user_id=?');
+    $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
     $sql_room->execute([$_SESSION['user']['user_id']]);
     $row_room = $sql_romm->fetch();
     if (!$row_romm) {
