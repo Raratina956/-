@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/sign-up-input.css">
-    <title>ログイン</title>
+    <title>新規会員登録</title>
+    <link rel="stylesheet" href="sign-up-input.css">
 </head>
 
 <body>
-    <center>
     <a href="login.php">戻る</a>
     <h2>新規会員登録</h2>
-    <br>
     <form action="Sign-up-output.php" method="post">
         <div class="form-group">
             <label for="mail_address">メールアドレス：</label>
