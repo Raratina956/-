@@ -44,10 +44,8 @@ if ($results) {
             echo '<td>', $row_user['user_name'], '</td>';
             echo '<form action="tag_list.php" method="post">';
             echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
-            echo '<input type="submit" value="参加">';
+            echo '<td><input type="submit" value="参加"></td>';
             echo '</form>';
-
-            echo '<td></td>';
             echo '</tr>';
 
         }
