@@ -3,16 +3,20 @@ session_start();
 require 'parts/db-connect.php';
 
 $error = '';
+echo 'A';
 if (isset($_POST['mail'], $_POST['pass'])) {
     $mail = $_POST['mail'];
     $pass = $_POST['pass'];
     $sql = $pdo->prepare('SELECT * FROM Users WHERE mail_address=?');
     $sql->execute([$mail]);
     $row = $sql->fetch();
+    echo 'B';
     if (!$row) {
         $error = 'メールアドレス又はパスワードが間違っています';
+        echo 'C';
     } else {
         if (password_verify($pass, $row['password'])) {
+            echo 'D';
             $_SESSION['user'] = [
                 'user_id' => $row['user_id'],
                 'user_name' => $row['user_name']
@@ -23,10 +27,12 @@ if (isset($_POST['mail'], $_POST['pass'])) {
                 $now_time,
                 $row['user_id']
             ]);
-            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
-            header("Location: $redirect_url");
-            exit();
+            echo 'E';
+            // $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
+            // header("Location: $redirect_url");
+            // exit();
         } else {
+            echo 'F';
             $error = 'メールアドレス又はパスワードが間違っています';
         }
     }
