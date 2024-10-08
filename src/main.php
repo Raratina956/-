@@ -18,7 +18,7 @@ require 'parts/auto-login.php';
         $row_room = $sql_room->fetch();
         $current_name = $row_room['classroom_name'];
     }
-    echo '現在位置：', $current;
+    echo '現在位置：', $current_name;
     ?>
 </p>
 <ul>
