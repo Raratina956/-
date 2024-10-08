@@ -44,7 +44,6 @@ if (isset($_POST['mail'], $_POST['pass'])) {
 </head>
 
 <body>
-<img src="img/icon2.png" class="icon" width="300" height="80">
     <form action="login.php" method="post">
         <span>メールアドレス</span><input type="mail" name="mail" required>
         <br>
