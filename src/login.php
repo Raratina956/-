@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db-connect.php';
+require 'parts/db-connect.php';
 
 $error = '';
 if (isset($_POST['mail'], $_POST['pass'])) {
@@ -26,6 +26,8 @@ if (isset($_POST['mail'], $_POST['pass'])) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
+        } else {
+            $error = 'メールアドレス又はパスワードが間違っています';
         }
     }
 }
@@ -46,6 +48,11 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <span>パスワード</span><input type="password" name="pass" required>
         <br>
+        <?php
+        if (isset($_SESSION['login']['error'])) {
+            $error = $_SESSION['login']['error'];
+        }
+        ?>
         <span><?php echo $error ?></span>
         <br>
         <span>次回からログインを省略する</span>
@@ -54,6 +61,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <input type="submit" value="ログイン">
     </form>
+    <a href="Sign-up-input.php">新規会員登録</a>
 </body>
 
 </html>

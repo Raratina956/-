@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <a href="">戻る</a>
+    <a href="login.php">戻る</a>
     <h2>新規会員登録</h2>
     <form action="Sign-up-output.php" method="post">
         メールアドレス：<input type="text" name="mail_address" required>
