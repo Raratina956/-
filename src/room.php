@@ -12,7 +12,7 @@ if (isset($_POST['judge'])) {
     $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
     $sql_room->execute([$_SESSION['user']['user_id']]);
     $row_room = $sql_room->fetch();
-    if (!$row_romm) {
+    if (!$row_room) {
         $now_time = date("Y/m/d H:i:s");
         $sql_insert = $pdo->prepare('INSERT INTO Current_location (user_id,classroom_id,logtime) VALUES (?,?,?)');
         $sql_insert->execute([
