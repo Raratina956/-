@@ -1,4 +1,4 @@
-<?php require 'parts/autologin.php'; ?>
+<?php require 'parts/auto-login.php'; ?>
 <?php require 'header.php'; ?>
 <?php
     echo '<img src="">';
