@@ -16,7 +16,7 @@
         $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
         $tagStmt->execute([$tag_attribute['tag_id']]);
 
-            //DBから持ってきたユーザー情報を「$user」に入れる
+        //DBから持ってきたユーザー情報を「$user」に入れる
         foreach($users as $user){
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '">';
@@ -30,11 +30,10 @@
                 //先生
                 echo $user['user_name'], "先生";
             }
-
-            //タグ一覧
-            foreach($tagStmt as $tag){
-                echo $tag;
-            }
+        }
+        //タグ一覧
+        foreach($tagStmt as $tag){
+            echo $tag;
         }
     }
 ?>
