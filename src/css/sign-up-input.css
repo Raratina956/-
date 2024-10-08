@@ -39,8 +39,7 @@ h2 {
 form {
     width: 400px; /* フォームの幅 */
     padding: 30px; /* フォームの内側の余白 */
-    border-radius: 8px; /* 角を丸く */
-    display: flex; /* フォームをフレックスボックスにする */
+    display: flex; 
     flex-direction: column; /* 縦に並べる */
     align-items: stretch; /* フォーム内の要素を幅いっぱいに */
 }
