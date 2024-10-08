@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-image: url(../img/SpotLinkbg.png);
+    background-image: url(../img/SpotLinkbg.png); /* 背景画像 */
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,12 +9,15 @@ body {
     justify-content: center;
     align-items: center; 
     height: 100vh;
+    background-size: cover; /* 背景画像を画面いっぱいに表示 */
+    background-position: center;
 }
 
 h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
+    text-align: center; /* 中央揃え */
 }
 
 a {
@@ -30,49 +33,52 @@ a:hover {
 
 /* Form Styles */
 form {
-    width: 400px; /* フォーム全体の幅を広げる */
-    background-color: #fff;
-    padding: 20px;
+    width: 600px; /* フォーム全体の幅を広げる */
+    padding: 30px; /* パディングを広げて余白を作る */
+    background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明にしてボディと同化 */
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* 少し影をつけて立体感 */
 }
 
-/* Form Fields: 横並びにする */
+/* Form Fields */
 .form-group {
-    display: flex; /* ラベルとテキストボックスを横並びに */
-    align-items: center;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center; /* ラベルとテキストボックスを中央に揃える */
+    margin-bottom: 15px; /* マージンを広げて間隔を作る */
 }
 
 .form-group label {
-    width: 120px; /* ラベルの幅を固定 */
+    width: 150px; /* ラベルの幅を広げる */
     margin-right: 10px;
-    text-align: right; /* テキストを右寄せして ":" を揃える */
-    white-space: nowrap; /* テキストの改行を防ぐ */
+    text-align: right;
+    white-space: nowrap;
+    line-height: 1.5;
 }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="email"],
 .form-group select {
-    flex: 1; /* テキストボックスの幅を自動で調整 */
-    padding: 8px;
+    flex: 1;
+    padding: 10px;
+    margin: 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    height: 40px; /* テキストボックスの高さを大きく */
 }
 
 /* Submit Button */
 input[type="submit"] {
-    width: 100px; /* 幅を固定で100pxに設定 */
+    width: 150px; /* 幅を少し広げる */
     background-color: #5f666a;
-    color: rgb(0, 0, 0);
+    color: #fff;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px; /* 上にスペースを追加 */
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 input[type="submit"]:hover {
