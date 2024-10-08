@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Hamburger Menu</title>
 </head>
 <body>
   <header>
     <div class="header-area">
-      <h1>ロゴ</h1>
       <div class="hamburger">
-        <!-- ハンバーガーメニューの線 -->
         <span></span>
         <span></span>
         <span></span>
@@ -25,9 +23,14 @@
   <!-- スライドメニュー -->
   <div class="slide-menu">
     <ul>
-      <li>メニュー</li>
-      <li>メニュー2</li>
-      <li>メニュー3</li>
+      <li>MAP</li>
+      <li>ユーザー情報</li>
+      <li>お気に入り</li>
+      <li>QRカメラ</li>
+      <li>チャット</li>
+      <li>みんなのタグ</li>
+      <li>MYタグ</li>
+      <li>アナウンス</li>
       <li class="logout">ログアウト</li>
     </ul>
   </div>
@@ -40,8 +43,8 @@
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       slideMenu.classList.toggle('active');
-      overlay.classList.toggle('active'); // 背景オーバーレイの表示・非表示を切り替える
+      overlay.classList.toggle('active');
     });
   </script>
 </body>
-</html>
+</html>>
