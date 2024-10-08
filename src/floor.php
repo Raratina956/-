@@ -1,9 +1,8 @@
 <?php
 require 'parts/auto-login.php';
-require 'header.php';
-
+// require 'header.php';
 $floor = $_POST['floor'];
-echo '<h1>', $floor, '階</h1>';
+echo '<h1>', htmlspecialchars($floor), '階</h1>'; // htmlspecialcharsでXSS対策
 
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
 $sql->execute([$floor]);
@@ -27,7 +26,10 @@ foreach ($rows as $row) {
     }
 
     echo '<li>';
-    echo '<a href="room.php?id=', $classroom_id, '">', $classroom_name, '　', $user_count, '人</a>';
+    echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
 echo '</ul>';
+?>
+
+
