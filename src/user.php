@@ -13,7 +13,7 @@
     //DBから持ってきたユーザー情報を「$user」に入れる
     foreach($users as $user){
         //アイコン表示
-        echo '<img src="', $icon['icon_name'], '">';
+        echo '<img src="', $icon['icon_name'], '"><br>';
 
         //ユーザー名
         if($user['s_or_t'] == 0){
