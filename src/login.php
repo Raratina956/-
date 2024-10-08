@@ -47,9 +47,15 @@ if (isset($_POST['mail'], $_POST['pass'])) {
     <img src="img/icon2.png" alt="ロゴ" title="SpotLink">
     <form action="login.php" method="post">
         <br>
-        <span>メールアドレス：</span><input type="mail" name="mail" required>
+        <div class="form-group">
+        <label for="mail_address">メールアドレス：</label>
+            <input type="email" name="mail" id="mail" required>
+        </div>
         <br>
-        <span>パスワード：</span><input type="password" name="pass" required>
+        <div class="form-group">
+            <label for="password">パスワード：</label>
+            <input type="password" name="pass" id="password" required>
+        </div>
         <br>
         <?php
         if (isset($_SESSION['login']['error'])) {
