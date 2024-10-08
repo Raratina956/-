@@ -1,83 +1,93 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-image: url(../img/SpotLinkbg.png);
+    background-image: url(../img/SpotLinkbg.png); /* 背景画像 */
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* 要素を縦に並べる */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
 h2 {
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* フォームとの間隔を狭める */
     font-size: 24px;
+    text-align: center;
 }
 
-a {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #3498db;
+.back-link {
+    position: absolute; /* 左上に配置 */
+    top: 20px; /* 上からの距離を少し増やす */
+    left: 20px; /* 左からの距離を少し増やす */
+    font-size: 16px; /* フォントサイズ */
     text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
 }
 
-a:hover {
-    text-decoration: underline;
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
 }
 
 /* Form Styles */
 form {
-    width: 400px; /* フォーム全体の幅 */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 400px; /* フォームの幅を少し狭める */
+    padding: 30px; /* フォームの内側の余白 */
+    border-radius: 8px; /* 角を丸く */
+    background-color: rgba(255, 255, 255, 0.9); /* 背景色を少し透過させる */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* フォームに影を追加 */
 }
 
-/* Form Fields: ラベルとテキストボックスの高さを揃える */
+/* Form Fields */
 .form-group {
-    display: flex;
-    align-items: center; /* ラベルとテキストボックスを中央に揃える */
-    margin-bottom: 10px;
+    display: flex; /* 横に並べる */
+    align-items: center; /* 中央に揃える */
+    margin-bottom: 15px; /* 各グループの間隔 */
 }
 
 .form-group label {
-    width: 120px;
-    margin-right: 10px;
-    text-align: right;
-    white-space: nowrap;
-    line-height: 1.5; /* ラベルの高さをテキストボックスに合わせる */
+    width: 150px; /* ラベルの幅 */
+    margin-right: 10px; /* ラベルと入力欄の間隔 */
+    text-align: right; /* ラベルを右寄せ */
+    white-space: nowrap; /* 改行しない */
+    line-height: 1.5; /* 行間 */
 }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="email"],
 .form-group select {
-    flex: 1; /* テキストボックスの幅を調整 */
-    padding: 8px;
-    margin: 0; /* 余計な上下のマージンを削除 */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    height: 36px; /* テキストボックスの高さを固定 */
+    flex: 1; /* 残りのスペースを占める */
+    padding: 10px; /* 内側の余白 */
+    margin: 0; /* 外側の余白を0に */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角を丸く */
+    box-sizing: border-box; /* 幅と高さをパディングとボーダーに含める */
+    height: 40px; /* 高さを固定 */
 }
 
 /* Submit Button */
 input[type="submit"] {
-    width: 100px;
-    background-color: #5f666a;
-    color: rgb(0, 0, 0);
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+    width: 150px; /* ボタンの幅 */
+    background-color: #5f666a; /* ボタンの背景色 */
+    color: #fff; /* ボタンの文字色 */
+    padding: 10px; /* 内側の余白 */
+    border: none; /* 枠線なし */
+    border-radius: 4px; /* 角を丸く */
+    cursor: pointer; /* カーソルをポインタに */
+    font-size: 16px; /* フォントサイズ */
+    margin-top: 20px; /* 上の要素との間隔 */
+    display: block; /* ブロック要素として表示 */
+    margin-left: auto; /* 左のマージンを自動 */
+    margin-right: auto; /* 右のマージンを自動 */
 }
 
 input[type="submit"]:hover {
-    background-color: #2980b9;
+    background-color: #2980b9; /* ホバー時の背景色 */
 }

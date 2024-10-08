@@ -49,7 +49,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <div class="form-group">
         <label for="mail_address">メールアドレス：</label>
-            <input type="email" name="mail_address" id="mail_address" required>
+            <input type="email" name="mail" id="mail" required>
         </div>
         <br>
         <div class="form-group">
