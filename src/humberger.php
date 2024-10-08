@@ -10,26 +10,28 @@
 
 <body>
     <header>
-        <div class="header-area">
-            <div class="hamburger">
-                <!-- ハンバーガーメニューの線 -->
-                <span></span>
-                <span></span>
-                <span></span>
-                <!-- /ハンバーガーメニューの線 -->
+        <div class="menu">
+            <div class="header-area">
+                <div class="hamburger">
+                    <!-- ハンバーガーメニューの線 -->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <!-- /ハンバーガーメニューの線 -->
+                </div>
             </div>
+            <ul class="slide-menu">
+                <li>MAP</li>
+                <li>ユーザー情報</li>
+                <li>お気に入り</li>
+                <li>QRカメラ</li>
+                <li>チャット</li>
+                <li>みんなのタグ</li>
+                <li>MYタグ</li>
+                <li>アナウンス</li>
+                <li class="logout">ログアウト</li> <!-- ここにクラスを追加 -->
+            </ul>
         </div>
-        <ul class="slide-menu">
-            <li>MAP</li>
-            <li>ユーザー情報</li>
-            <li>お気に入り</li>
-            <li>QRカメラ</li>
-            <li>チャット</li>
-            <li>みんなのタグ</li>
-            <li>MYタグ</li>
-            <li>アナウンス</li>
-            <li class="logout">ログアウト</li> <!-- ここにクラスを追加 -->
-        </ul>
     </header>
 
     <script>
