@@ -8,13 +8,17 @@ body {
     height: 65px;
     padding: 0 20px;
     align-items: center;
+    position: relative;
   }
   
   /* ハンバーガーメニューの全体（円） */
   .hamburger {
     width: 60px;
     height: 60px;
-    position: relative;
+    position: absolute; /* 位置を絶対指定 */
+    right: 20px; /* 画面右から20pxの位置に固定 */
+    top: 50%; /* 縦方向の中央に配置 */
+    transform: translateY(-50%); /* 完全な中央揃え */
     cursor: pointer;
     border: 2px solid #00CFFF; /* 円の外側を青で表示 */
     border-radius: 50%; /* 円形にする */
@@ -48,7 +52,7 @@ body {
   
   /* メニュー（スライドして出てくる） */
   .slide-menu {
-    background-color: rgba(50, 119, 223, 0.8);
+    background-color: rgba(0, 0, 0, .8);
     position: fixed;
     top: 65px;
     width: 250px;
