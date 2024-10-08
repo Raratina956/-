@@ -1,7 +1,6 @@
 body{
     background-image: url(../img/SpotLinkbg.png);
-    
-}
-span{
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
