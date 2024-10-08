@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="css/test.css">
     <title>Document</title>
 </head>
 <body>
@@ -25,5 +25,11 @@
       <li>メニュー4</li>
     </ul>
   </header>
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', function(){
+      this.classList.toggle('active');
+      document.querySelector('.slide-menu').classList.toggle('active');
+    })
+  </script>
 </body>
 </html>
