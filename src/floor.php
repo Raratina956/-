@@ -13,9 +13,9 @@ $sql->execute([$floor]);
 $rows = $sql->fetchAll();
 echo '<ul>';
 foreach ($rows as $row) {
-    echo '<a herf="room.php?id=',$row['classroom_id'],'>';
-    echo '<li>',$row['classroom_name'],'</li>';
-    echo '</a>';
+    echo '<li>';
+    echo '<a href="room.php?id=',$row['classroom_id'],'>',$row['classroom_name'],'</a>';
+    echo '</li>';
 }
 echo '</ul>';
 
