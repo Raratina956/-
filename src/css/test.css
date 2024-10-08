@@ -1,5 +1,5 @@
 body{
-    overflow-x: hidden;/* 追記 */
+    overflow-x: hidden;
   }
   .header-area{
     display: flex;
@@ -34,10 +34,26 @@ body{
     top: 65px;
     width: 100%;
     left: 0;
-    transform: translateX(100%); /* 追記 */
+    transform: translateX(100%);
   }
   .slide-menu li{
     color: #fff;
     line-height: 400%;
     text-align: center;
+  }
+  
+  /* ここから下を追記 */
+  .hamburger.active span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  .hamburger.active span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+    opacity: 0;/* 透明にする */
+  }
+  .hamburger.active span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+  .slide-menu.active{
+    transform: translateX(0); 
   }
