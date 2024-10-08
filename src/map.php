@@ -8,7 +8,13 @@
    
 </head>
 <body>
+<<<<<<<< HEAD:src/header.php
+    <img src="img/icon.png" alt="ロゴ" title="SpotLink">
+    <a href="info.php"><img src="" alt="通知"></a>
+    <!-- ここにハンバーガーメニュー -->
+========
     <?php require 'header.php'; ?>
     
+>>>>>>>> 4b2b2ce7e80459fef8be098b03e375793328f05a:src/map.php
 </body>
 </html>
