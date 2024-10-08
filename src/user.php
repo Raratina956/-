@@ -6,8 +6,9 @@
     $users->execute([$_SESSION['user']['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
-    $iconStmt=$pdo->prepare('select * from Icon where user_id=?');
+    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
     $iconStmt->execute([$_SESSION['user']['user_id']]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
     
     //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
