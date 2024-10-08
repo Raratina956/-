@@ -34,6 +34,7 @@
         $tagStmt->execute([$tag_attribute['tag_id']]);
 
         //タグ一覧
+        echo 'タグ一覧<br>';
         foreach($tagStmt as $tag){
             echo $tag['tag_name'];
         }
