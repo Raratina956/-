@@ -1,6 +1,7 @@
 <?php require 'parts/auto-login.php'; ?>
 <?php require 'header.php'; ?>
 <?php
+    echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     $users->execute([$_SESSION['user']['user_id']]);
@@ -16,7 +17,7 @@
     foreach($users as $user){
 
         //自分か相手側かで表示する内容を変更
-        if($_SESSION['user']['user_id'].equals($user['user_id'])){
+        if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '"><br>';
