@@ -32,4 +32,5 @@ require 'parts/auto-login.php';
         echo '</li>';
     }
     ?>
+    <li><a href="tag_create.php">タグ作成</a></li>
 </ul>
