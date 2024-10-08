@@ -26,7 +26,9 @@ if ($results) {
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row['user_id']]);
             $row_user = $sql_user->fetch();
-            echo '<td>',$row_user['user_name'],'</td>';
+            echo $row['user_id'];
+            // echo '<td>',$row_user['user_name'],'</td>';
+            echo '<td></td>';
             echo '</tr>';
 
         }
