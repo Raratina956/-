@@ -30,14 +30,14 @@
     $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
     $attribute->execute([$_SESSION['user']['user_id']]);
     $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
-    foreach($attribute as $tag_attribute){
+    foreach($attributes as $tag_attribute){
         $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
         $tagStmt->execute([$tag_attribute['tag_id']]);
         $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
         //タグ一覧
         echo 'タグ一覧<br>';
-        foreach($tagStmt as $tag){
+        foreach($tags as $tag){
             echo $tag['tag_name'];
         }
     }
