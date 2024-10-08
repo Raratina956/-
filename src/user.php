@@ -13,16 +13,18 @@
     //DBから持ってきたユーザー情報を「$user」に入れる
     foreach($users as $user){
         //アイコン表示
-        echo '<img src="', $icon['icon_name'], '">';
+        echo '<img src="', $icon['icon_name'], '"><br>';
 
         //ユーザー名
         if($user['s_or_t'] == 0){
             //生徒(名前、クラス、メールアドレス)
-            echo $user['user_name'];
-            echo 'クラス：';
+            echo $user['user_name'], '<br>';
+            echo 'クラス：<br>';
+            echo $user['mail_address'], '<br>';
         }else{
-            //先生
-            echo $user['user_name'], "先生";
+            //先生(名前、メールアドレス)
+            echo $user['user_name'], "先生<br>";
+            echo $user['mail_address'], '<br>';
         }
     }
 

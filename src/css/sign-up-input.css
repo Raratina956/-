@@ -4,7 +4,7 @@ body {
     background-image: url(../img/SpotLinkbg.png);
     margin: 0;
     padding: 0;
-    /* display: flex; display: flexを追加 */
+    display: flex;
     flex-direction: column; /* 要素を縦に並べる */
     justify-content: center;
     align-items: center; 
@@ -13,6 +13,7 @@ body {
 
 h2 {
     color: #333;
+    margin-bottom: 20px;
     font-size: 24px;
 }
 
@@ -29,25 +30,32 @@ a:hover {
 
 /* Form Styles */
 form {
-    width: 300px; /* フォーム全体の幅を小さく設定 */
+    width: 400px; /* フォーム全体の幅を広げる */
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Form Fields: 横並びにする */
 .form-group {
     display: flex; /* ラベルとテキストボックスを横並びに */
     align-items: center;
     margin-bottom: 10px;
 }
 
-/* Form Fields */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-select {
-    width: 100%;
+.form-group label {
+    width: 30%; /* ラベルの幅を30%に設定 */
+    margin-right: 10px;
+    white-space: nowrap; /* テキストの改行を防ぐ */
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select {
+    width: 70%; /* テキストボックスの幅を70%に設定 */
     padding: 8px;
-    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -63,6 +71,7 @@ input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    margin-top: 10px; /* 上にスペースを追加 */
 }
 
 input[type="submit"]:hover {
