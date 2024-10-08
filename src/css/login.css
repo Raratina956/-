@@ -1,18 +1,3 @@
-/* body全体の設定 */
-body {
-    display: flex;
-    flex-direction: column;   /* 要素を縦に並べる */
-    justify-content: center;  /* 垂直方向に中央揃え */
-    align-items: center;      /* 水平方向に中央揃え */
-    height: 100vh;            /* 画面全体の高さ */
-    margin: 0;
-    background-image: url('../img/SpotLinkbg.png'); /* 背景画像 */
-    background-size: cover;   /* 背景画像を画面いっぱいに表示 */
-}
-
-/* 画像を中央に配置するためのスタイル */
-div img {
-    display: block;
-    margin: 0 auto; /* ブロック要素にして、左右のマージンを自動で設定 */
-    max-width: 100%; /* 画像が画面幅を超えないようにする */
+body{
+    background-image: url(../img/SpotLinkbg.png);
 }
