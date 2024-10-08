@@ -31,8 +31,8 @@
     $attribute->execute([$_SESSION['user']['user_id']]);
     foreach($attribute as $tag_attribute){
         $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
-        $tagStmt->execute([$tag_attribute['tag_id']]);
         echo 'a';
+        $tagStmt->execute([$tag_attribute['tag_id']]);
 
         //タグ一覧
         echo 'タグ一覧<br>';
