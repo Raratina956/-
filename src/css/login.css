@@ -1,9 +1,7 @@
-body {
-    display: flex;
-    justify-content: center;
+body{
+    background-image: url(../img/SpotLinkbg.png);
+    
+}
+span{
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url('../img/SpotLinkbg.png');
-    background-size: cover;
 }
