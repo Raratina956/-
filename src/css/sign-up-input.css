@@ -21,6 +21,8 @@ body {
 h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px; /* フォームとの間にスペースを追加 */
+    font-size: 24px; /* 見やすくするためにフォントサイズを調整 */
 }
 
 a {
