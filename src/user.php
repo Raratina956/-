@@ -29,10 +29,10 @@
     //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
     $attribute->execute([$_SESSION['user']['user_id']]);
-    echo 'a';
     foreach($attribute as $tag_attribute){
         $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
         $tagStmt->execute([$tag_attribute['tag_id']]);
+        echo 'a';
 
         //タグ一覧
         echo 'タグ一覧<br>';
