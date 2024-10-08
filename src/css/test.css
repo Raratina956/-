@@ -1,5 +1,7 @@
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
   
   .header-area {
@@ -11,32 +13,29 @@ body {
     position: relative;
   }
   
-  /* ハンバーガーメニューの全体（円） */
   .hamburger {
     width: 60px;
     height: 60px;
-    position: absolute; /* 位置を絶対指定 */
-    right: 20px; /* 画面右から20pxの位置に固定 */
-    top: 50%; /* 縦方向の中央に配置 */
-    transform: translateY(-50%); /* 完全な中央揃え */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
-    border: 2px solid #00CFFF; /* 円の外側を青で表示 */
-    border-radius: 50%; /* 円形にする */
+    border: 2px solid #00CFFF;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* ハンバーガーの線 */
   .hamburger span {
     position: absolute;
-    width: 70%; /* ハンバーガーの線の幅 */
-    height: 4px; /* 線の太さ */
-    background-color: #00CFFF; /* 線の色を青に */
-    transition: .5s ease-in-out; /* アニメーションをスムーズに */
+    width: 70%;
+    height: 4px;
+    background-color: #00CFFF;
+    transition: .5s ease-in-out;
   }
   
-  /* 各線の位置 */
   .hamburger span:first-of-type {
     top: 25%;
   }
@@ -50,16 +49,20 @@ body {
     top: 75%;
   }
   
-  /* メニュー（スライドして出てくる） */
+  /* 画面右側にスライドさせる設定 */
   .slide-menu {
-    background-color: rgba(46, 149, 222, 0.8);
+    background-color: rgba(46, 149, 222, 0.8); 
     position: fixed;
-    top: 65px;
-    width: 250px;
-    height: 100%;
+    top: 0;
     right: 0;
+    width: 300px; /* 右側の幅を300pxに設定 */
+    height: 100%;
     transform: translateX(100%);
     transition: transform 0.5s ease;
+  }
+  
+  .slide-menu ul {
+    margin-top: 65px;
   }
   
   .slide-menu li {
@@ -69,7 +72,10 @@ body {
     list-style: none;
   }
   
-  /* ハンバーガーメニューの線が交差するアニメーション */
+  .slide-menu li.logout {
+    color: red; 
+  }
+  
   .hamburger.active span:first-of-type {
     top: 50%;
     transform: rotate(45deg);
@@ -84,11 +90,6 @@ body {
     transform: rotate(-45deg);
   }
   
-  /* スライドメニューが表示される際のアニメーション */
   .slide-menu.active {
     transform: translateX(0);
-  }
-
-  .slide-menu li.logout {
-    color: red; /* ログアウトのみ赤色 */
   }
