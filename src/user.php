@@ -1,7 +1,7 @@
 <?php require 'parts/auto-login.php'; ?>
 <?php require 'header.php'; ?>
 <?php
-    echo '<script type="text/javascript" src="js/user.js"></script>';
+    // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     $users->execute([$_SESSION['user']['user_id']]);
@@ -59,9 +59,9 @@
             $followStmt->execute([$_SESSION['user']['user_id']]);
             foreach($followStmt as $follow){
                 if($follow['follower_id'].equals($_POST['user_id'])){
-                    echo '<img src="img\star.png" id="favoriteImage"><br>';
+                    echo '<img src="img\star.png"><br>';
                 }else{
-                    echo '<img src="img\notstar.png" id="favoriteImage"><br>';
+                    echo '<img src="img\notstar.png"><br>';
                 }
             }
             //アイコン表示
