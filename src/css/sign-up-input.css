@@ -31,7 +31,6 @@ a:hover {
 /* Form Styles */
 form {
     width: 300px; /* フォーム全体の幅を小さく設定 */
-    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
