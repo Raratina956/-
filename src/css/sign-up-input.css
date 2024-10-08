@@ -73,7 +73,7 @@ form {
 
 /* Submit Button */
 input[type="submit"] {
-    width: 100%; /* 幅を100%にすることでバランスを取る */
+    width: 20%; /* 幅を100%にすることでバランスを取る */
     background-color: #5f666a; /* ボタンの背景色 */
     color: #fff; /* ボタンの文字色 */
     padding: 10px; /* 内側の余白 */
