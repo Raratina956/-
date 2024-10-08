@@ -1,0 +1,46 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif; /* フォント */
+    margin: 0; /* デフォルトのマージンをリセット */
+    padding: 0; /* デフォルトのパディングをリセット */
+}
+
+/* Header Styles */
+header {
+    background-color: #5f666a; /* ヘッダーの背景色 */
+    color: #fff; /* ヘッダーの文字色 */
+    padding: 15px; /* ヘッダーの内側の余白 */
+    text-align: center; /* 中央揃え */
+}
+
+/* Main Content Styles */
+h1 {
+    margin-top: 60px; /* ヘッダーとh1の間にスペースを追加 */
+    text-align: center; /* h1を中央揃え */
+    font-size: 24px; /* フォントサイズ */
+    color: #333; /* フォント色 */
+}
+
+ul {
+    list-style: none; /* リストのマーカーを削除 */
+    padding: 0; /* パディングをリセット */
+    margin: 20px; /* リスト全体のマージン */
+}
+
+li {
+    margin-bottom: 10px; /* 各リスト項目の下にスペースを追加 */
+    background-color: #f9f9f9; /* リスト項目の背景色 */
+    border: 1px solid #ccc; /* リスト項目の枠線 */
+    border-radius: 4px; /* 角を丸く */
+}
+
+li a {
+    display: block; /* リンクをブロック要素にする */
+    padding: 10px; /* リンク内の余白 */
+    text-decoration: none; /* 下線を削除 */
+    color: #333; /* リンクの文字色 */
+}
+
+li a:hover {
+    background-color: #e0e0e0; /* ホバー時の背景色 */
+}
