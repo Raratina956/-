@@ -49,7 +49,7 @@ select {
 
 /* Submit Button */
 input[type="submit"] {
-    width: 100%;
+    width: 10%;
     background-color: #5f666a;
     color: rgb(0, 0, 0);
     padding: 10px;
