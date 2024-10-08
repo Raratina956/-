@@ -4,7 +4,7 @@ body {
     background-image: url(../img/SpotLinkbg.png);
     margin: 0;
     padding: 0;
-    /* display: flex; display: flexを追加 */
+    display: flex; display: flexを追加
     flex-direction: column; /* 要素を縦に並べる */
     justify-content: center;
     align-items: center; 
@@ -36,8 +36,6 @@ form {
 
 .form-group {
     display: flex; /* ラベルとテキストボックスを横並びに */
-    align-items: center;
-    margin-bottom: 10px;
 }
 
 /* Form Fields */
