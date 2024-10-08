@@ -1,38 +1,76 @@
 <?php
-require 'parts/auto-login.php';
-?>
-<?php
-$room_id = $_GET['id'];
-$sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
-$sql->execute([$room_id]);
-$row = $sql->fetch();
-$room_name = $row['classroom_name'];
-$floor = $row['classroom_floor'];
-if (isset($_POST['judge'])) {
-    $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-    $sql_room->execute([$_SESSION['user']['user_id']]);
-    $row_room = $sql_room->fetch();
-    if (!$row_room) {
-        $now_time = date("Y/m/d H:i:s");
-        
+session_start();
+require 'parts/db-connect.php';
+
+$error = '';
+if (isset($_POST['mail'], $_POST['pass'])) {
+    $mail = $_POST['mail'];
+    $pass = $_POST['pass'];
+    $sql = $pdo->prepare('SELECT * FROM Users WHERE mail_address=?');
+    $sql->execute([$mail]);
+    $row = $sql->fetch();
+    if (!$row) {
+        $error = 'メールアドレス又はパスワードが間違っています';
     } else {
-        $now_time = date("Y/m/d H:i:s");
-        $sql_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ? , logtime = ? WHERE user_id = ?');
-        $sql_update->execute([
-            $room_id,
-            $now_time,
-            $_SESSION['user']['user_id']
-        ]);
+        if (password_verify($pass, $row['password'])) {
+            $_SESSION['user'] = [
+                'user_id' => $row['user_id'],
+                'user_name' => $row['user_name']
+            ];
+            $now_time = date("Y/m/d H:i:s");
+            $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
+            $sql_update->execute([
+                $now_time,
+                $row['user_id']
+            ]);
+            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
+            header("Location: $redirect_url");
+            exit();
+        } else {
+            $error = 'メールアドレス又はパスワードが間違っています';
+        }
     }
 }
 ?>
-<?php
-require 'header.php';
-?>
-<h1><?php echo $floor ?>階</h1>
-<span><?php echo $room_name ?></span>
-<form action="room.php?id=<?php echo $room_id ?>" method="post">
-    <input type="hidden" name="judge" value="0">
-    <input type="submit" value="位置登録">
-</form>
-<a href="main.php">メインへ</a>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="img/icon2.png" alt="ロゴ" title="SpotLink">
+    <form action="login.php" method="post">
+        <br>
+        <div class="form-group">
+        <label for="mail_address">メールアドレス：</label>
+            <input type="email" name="mail" id="mail_address" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">パスワード：</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <br>
+        <?php
+        if (isset($_SESSION['login']['error'])) {
+            $error = $_SESSION['login']['error'];
+        }
+        ?>
+        <span><?php echo $error ?></span>
+        <br>
+        <span>次回からログインを省略する</span>
+        <br>
+        <input type="checkbox" name="remember_me" value="1">
+        <br>
+        <input type="submit" value="ログイン">
+    </form>
+    <a href="Sign-up-input.php">新規会員登録</a>
+</body>
+
+</html>
