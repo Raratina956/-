@@ -9,13 +9,26 @@ $row = $sql->fetch();
 $room_name = $row['classroom_name'];
 $floor = $row['classroom_floor'];
 if (isset($_POST['judge'])) {
-    $now_time = date("Y/m/d H:i:s");
-    $sql_update = $pdo->prepare('INSERT INTO Current_location (user_id,classroom_id,logtime) VALUES (?,?,?)');
-    $sql_update->execute([
-        $_SESSION['user']['user_id'],
-        $room_id,
-        $now_time
-    ]);
+    $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE user_id=?');
+    $sql_room->execute([$_SESSION['user']['user_id']]);
+    $row_room = $sql_romm->fetch();
+    if (!$row_romm) {
+        $now_time = date("Y/m/d H:i:s");
+        $sql_insert = $pdo->prepare('INSERT INTO Current_location (user_id,classroom_id,logtime) VALUES (?,?,?)');
+        $sql_insert->execute([
+            $_SESSION['user']['user_id'],
+            $room_id,
+            $now_time
+        ]);
+    } else {
+        $now_time = date("Y/m/d H:i:s");
+        $sql_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ? , logtime = ? WHERE user_id = ?');
+        $sql_update->execute([
+            $room_id,
+            $now_time,
+            $_SESSION['user']['user_id']
+        ]);
+    }
 }
 ?>
 <?php
