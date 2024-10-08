@@ -20,13 +20,13 @@
            		<option value="0">学生</option>
            		<option value="1">教師</option>
            	</select>
-        <br>
+        <p>
         名前：<input type="text" name="name" required>
-        <br>
+        <p>
         パスワード：<input type="text" name="password" required>
-        <br>
+        <p>
         パスワード(確認用)：<input type="text" name="confirm_password" required> <!-- フィールド名を変更 -->
-        <br>
+        <p>
         <input type="submit" value="登録">
     </form>
 </body>

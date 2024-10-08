@@ -13,7 +13,6 @@ body {
 
 h2 {
     color: #333;
-    margin-bottom: 20px; /* h2とフォームの間にスペースを追加 */
     font-size: 24px;
 }
 
@@ -33,6 +32,12 @@ form {
     width: 300px; /* フォーム全体の幅を小さく設定 */
     padding: 20px;
     border-radius: 8px;
+}
+
+.form-group {
+    display: flex; /* ラベルとテキストボックスを横並びに */
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 /* Form Fields */
