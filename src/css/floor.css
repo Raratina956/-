@@ -1,3 +1,14 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif; /* フォント */
+    margin: 0; /* デフォルトのマージンをリセット */
+    padding: 0; /* デフォルトのパディングをリセット */
+}
+
+/* Header Styles */
+
+
 /* Main Content Styles */
 h1 {
     margin-top: 60px; /* ヘッダーとh1の間にスペースを追加 */
