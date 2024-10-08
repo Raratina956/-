@@ -11,7 +11,7 @@ if (isset($_POST['tag_name'])) {
 require 'header.php';
 ?>
 <h1>タグ作成</h1>
-<form action="tag_create.php">
+<form action="tag_create.php" method="post">
     タグ名
     <input type="name" name="tag_name">
     <input type="submit" value="作成">
