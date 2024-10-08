@@ -7,14 +7,24 @@
     <title>Document</title>
    
 </head>
-<body>
-<<<<<<<< HEAD:src/header.php
-    <img src="img/icon.png" alt="ロゴ" title="SpotLink">
-    <a href="info.php"><img src="" alt="通知"></a>
-    <!-- ここにハンバーガーメニュー -->
-========
-    <?php require 'header.php'; ?>
+<?php require 'header.php'; ?>
+    <body>
+        <div class="map">
+            <h2>MAP</h2>
+        <?php
     
->>>>>>>> 4b2b2ce7e80459fef8be098b03e375793328f05a:src/map.php
-</body>
+            for($i = 7;$i>0; $i--){
+            
+                echo '<div class="number">',$i,'</div>';
+                echo '<div class="block">ここに文字を入力する。</div>';
+            
+
+            }
+    
+
+        ?>
+
+        </div>
+    
+    </body>
 </html>
