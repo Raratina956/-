@@ -14,3 +14,6 @@ require 'header.php';
 ?>
 <h1><?php echo $floor ?>階</h1>
 <span><?php echo $room_name ?></span>
+<form action="room.php?id=<?php echo $room_id ?>" method="post">
+<input type="submit" value="位置登録">
+</form>
