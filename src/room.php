@@ -1,14 +1,16 @@
 <?php
 require 'parts/auto-login.php';
 ?>
-
+<?php
+$room_id = $_GET['id'];
+$sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+$sql->execute([$room_id]);
+$row = $sql->fetch();
+$room_name = $row['classroom_name'];
+$floor = $row['classroom_floor'];
+?>
 <?php
 require 'header.php';
 ?>
-<?php
-if(isset($_GET['id'])){
-    echo $_GET['id'];
-}else{
-    echo 'なし';
-}
-?>
+<h1><?php echo $floor ?>階</h1>
+<span><?php echo $room_name ?></span>
