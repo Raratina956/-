@@ -25,5 +25,11 @@
       <li>メニュー4</li>
     </ul>
   </header>
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', function(){
+      this.classList.toggle('active');
+      document.querySelector('.slide-menu').classList.toggle('active');
+    })
+  </script>
 </body>
 </html>
