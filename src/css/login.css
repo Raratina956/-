@@ -1,9 +1,6 @@
-body {
+body{
+    background-image: url(../img/SpotLinkbg.png);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url('../img/SpotLinkbg.png');
-    background-size: cover;
 }

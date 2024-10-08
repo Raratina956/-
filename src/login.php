@@ -44,7 +44,9 @@ if (isset($_POST['mail'], $_POST['pass'])) {
 </head>
 
 <body>
+<div>
     <img src="img/icon2.png" alt="ロゴ" title="SpotLink">
+</div>
     <form action="login.php" method="post">
         <span>メールアドレス</span><input type="mail" name="mail" required>
         <br>

@@ -21,6 +21,8 @@ body {
 h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px; /* フォームとの間にスペースを追加 */
+    font-size: 24px; /* 見やすくするためにフォントサイズを調整 */
 }
 
 a {
@@ -49,14 +51,16 @@ select {
 
 /* Submit Button */
 input[type="submit"] {
-    width: 10%;
+    width: 100px; /* 幅を固定で100pxに設定 */
     background-color: #5f666a;
     color: rgb(0, 0, 0);
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
 }
+
 
 input[type="submit"]:hover {
     background-color: #2980b9;
