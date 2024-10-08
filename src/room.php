@@ -40,3 +40,4 @@ require 'header.php';
     <input type="hidden" name="judge" value="0">
     <input type="submit" value="位置登録">
 </form>
+<a href="main.php">メインへ</a>
