@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <a href="login.php">戻る</a>
+    <center>
+    <a href="login.php" class="back-link">戻る</a>
     <h2>新規会員登録</h2>
     <br>
     <form action="Sign-up-output.php" method="post">
@@ -19,13 +20,13 @@
            		<option value="0">学生</option>
            		<option value="1">教師</option>
            	</select>
-        <br>
+        <p>
         名前：<input type="text" name="name" required>
-        <br>
+        <p>
         パスワード：<input type="text" name="password" required>
-        <br>
+        <p>
         パスワード(確認用)：<input type="text" name="confirm_password" required> <!-- フィールド名を変更 -->
-        <br>
+        <p>
         <input type="submit" value="登録">
     </form>
 </body>

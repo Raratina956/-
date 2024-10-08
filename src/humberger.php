@@ -28,7 +28,7 @@
             <li>みんなのタグ</li>
             <li>MYタグ</li>
             <li>アナウンス</li>
-            <li class="logout">ログアウト</li>
+            <li class="logout">ログアウト</li> <!-- ここにクラスを追加 -->
         </ul>
     </header>
 
