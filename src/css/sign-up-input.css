@@ -82,6 +82,8 @@ input[type="submit"] {
     cursor: pointer; /* カーソルをポインタに */
     font-size: 16px; /* フォントサイズ */
     margin-top: 20px; /* 上の要素との間隔 */
+    margin: 20px auto 0; /* 上の要素との間隔を20px、左右のマージンを自動で中央に配置 */
+    display: block; /* ブロック要素として表示 */
 }
 
 input[type="submit"]:hover {
