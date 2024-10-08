@@ -10,7 +10,7 @@ require 'parts/auto-login.php';
     $sql_room->execute([$_SESSION['user']['user_id']]);
     $row_room = $sql_room->fetch();
     if (!$row_room) {
-        $current = '未登録';
+        $current_name = '未登録';
     } else {
         $current_id = $row_room['classroom_id'];
         $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
