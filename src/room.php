@@ -9,10 +9,10 @@ $row = $sql->fetch();
 $room_name = $row['classroom_name'];
 $floor = $row['classroom_floor'];
 if (isset($_POST['judge'])) {
-    $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE user_id=?');
+    $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
     $sql_room->execute([$_SESSION['user']['user_id']]);
-    $row_room = $sql_romm->fetch();
-    if (!$row_romm) {
+    $row_room = $sql_room->fetch();
+    if (!$row_room) {
         $now_time = date("Y/m/d H:i:s");
         $sql_insert = $pdo->prepare('INSERT INTO Current_location (user_id,classroom_id,logtime) VALUES (?,?,?)');
         $sql_insert->execute([
@@ -40,3 +40,4 @@ require 'header.php';
     <input type="hidden" name="judge" value="0">
     <input type="submit" value="位置登録">
 </form>
+<a href="main.php">メインへ</a>
