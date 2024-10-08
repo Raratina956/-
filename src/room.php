@@ -14,12 +14,7 @@ if (isset($_POST['judge'])) {
     $row_room = $sql_room->fetch();
     if (!$row_room) {
         $now_time = date("Y/m/d H:i:s");
-        $sql_insert = $pdo->prepare('INSERT INTO Current_location (user_id,classroom_id,logtime) VALUES (?,?,?)');
-        $sql_insert->execute([
-            $_SESSION['user']['user_id'],
-            $room_id,
-            $now_time
-        ]);
+        
     } else {
         $now_time = date("Y/m/d H:i:s");
         $sql_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ? , logtime = ? WHERE user_id = ?');
