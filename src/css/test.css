@@ -1,5 +1,7 @@
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
   
   .header-area {
@@ -11,32 +13,29 @@ body {
     position: relative;
   }
   
-  /* ハンバーガーメニューの全体（円） */
   .hamburger {
     width: 60px;
     height: 60px;
-    position: absolute; /* 位置を絶対指定 */
-    right: 20px; /* 画面右から20pxの位置に固定 */
-    top: 50%; /* 縦方向の中央に配置 */
-    transform: translateY(-50%); /* 完全な中央揃え */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
-    border: 2px solid #00CFFF; /* 円の外側を青で表示 */
-    border-radius: 50%; /* 円形にする */
+    border: 2px solid #00CFFF;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* ハンバーガーの線 */
   .hamburger span {
     position: absolute;
-    width: 70%; /* ハンバーガーの線の幅 */
-    height: 4px; /* 線の太さ */
-    background-color: #00CFFF; /* 線の色を青に */
-    transition: .5s ease-in-out; /* アニメーションをスムーズに */
+    width: 70%;
+    height: 4px;
+    background-color: #00CFFF;
+    transition: .5s ease-in-out;
   }
   
-  /* 各線の位置 */
   .hamburger span:first-of-type {
     top: 25%;
   }
@@ -50,16 +49,21 @@ body {
     top: 75%;
   }
   
-  /* メニュー（スライドして出てくる） */
+  /* 右側にスライドインするメニュー領域 */
   .slide-menu {
-    background-color: rgba(46, 149, 222, 0.8);
+    background-color: rgba(46, 149, 222, 0.8); /* 指定された背景色 */
     position: fixed;
-    top: 65px;
-    width: 250px;
-    height: 100%;
-    right: 0;
-    transform: translateX(100%);
+    top: 0;
+    right: 0; /* メニューが右側に表示されるようにrightを0に設定 */
+    width: 300px; /* 右側に表示されるメニューの幅 */
+    height: 100%; /* メニューの高さを100%に設定 */
+    transform: translateX(100%); /* 初期状態ではメニューが画面外に隠れる */
     transition: transform 0.5s ease;
+    z-index: 10; /* ハンバーガーメニューの前面に表示 */
+  }
+  
+  .slide-menu ul {
+    margin-top: 65px; /* ヘッダー部分を避けるためにマージンを設定 */
   }
   
   .slide-menu li {
@@ -69,7 +73,12 @@ body {
     list-style: none;
   }
   
-  /* ハンバーガーメニューの線が交差するアニメーション */
+  /* ログアウトの赤文字 */
+  .slide-menu li.logout {
+    color: red; /* ログアウトのみ赤色 */
+  }
+  
+  /* ハンバーガーメニューのアニメーション */
   .hamburger.active span:first-of-type {
     top: 50%;
     transform: rotate(45deg);
@@ -84,11 +93,7 @@ body {
     transform: rotate(-45deg);
   }
   
-  /* スライドメニューが表示される際のアニメーション */
+  /* メニューが表示された際のスタイル */
   .slide-menu.active {
-    transform: translateX(0);
-  }
-
-  .slide-menu li.logout {
-    color: red; /* ログアウトのみ赤色 */
+    transform: translateX(0); /* 右側からメニューをスライドイン */
   }
