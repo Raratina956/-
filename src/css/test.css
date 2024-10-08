@@ -1,110 +1,105 @@
 body {
-    overflow-x: hidden;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
   
-  /* ハンバーガーメニューを配置するためのヘッダー */
+  /* ヘッダー */
   .header-area {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 65px;
     padding: 0 20px;
-    align-items: center;
+    background-color: #fff;
     position: relative;
-    z-index: 1000; /* ハンバーガーメニューを前面に表示 */
   }
   
   /* ハンバーガーメニューのデザイン */
   .hamburger {
     width: 60px;
     height: 60px;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
     border: 2px solid #00CFFF;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* ハンバーガーメニューを前面に */
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* メニューの前に配置 */
   }
   
-  /* ハンバーガーメニュー内の3本線 */
+  /* ハンバーガーアイコンの線 */
   .hamburger span {
     position: absolute;
-    width: 70%;
-    height: 4px;
+    width: 30px;
+    height: 3px;
     background-color: #00CFFF;
-    transition: .5s ease-in-out;
+    transition: transform 0.5s ease, top 0.5s ease, opacity 0.5s ease;
   }
   
   .hamburger span:first-of-type {
-    top: 25%;
+    top: 15px;
   }
   
   .hamburger span:nth-of-type(2) {
-    top: 50%;
-    transform: translateY(-50%);
+    top: 27px;
   }
   
   .hamburger span:last-of-type {
-    top: 75%;
+    top: 39px;
   }
   
-  /* メニューを右側に配置し、背景色を追加 */
+  /* メニュークリック時のアニメーション */
+  .hamburger.active span:first-of-type {
+    transform: rotate(45deg);
+    top: 27px; /* 真ん中の線の位置に移動 */
+  }
+  
+  .hamburger.active span:nth-of-type(2) {
+    opacity: 0; /* 透明にする */
+  }
+  
+  .hamburger.active span:last-of-type {
+    transform: rotate(-45deg);
+    top: 27px; /* 真ん中の線の位置に移動 */
+  }
+  
+  /* メニュー全体 */
   .slide-menu {
-    background-color: rgba(46, 149, 222, 0.8); /* 背景色の設定 */
+    background-color: rgba(46, 149, 222, 0.8);
     position: fixed;
     top: 0;
-    right: 0; /* メニューを右側に固定 */
+    right: 0;
     width: 300px;
     height: 100%;
     transform: translateX(100%); /* 初期状態では画面外 */
     transition: transform 0.5s ease;
-    z-index: 500; /* ハンバーガーメニューの背後に配置 */
+    z-index: 500; /* ハンバーガーメニューの背後 */
   }
   
   /* メニューリスト */
   .slide-menu ul {
-    margin-top: 65px; /* ヘッダー部分を避けるためのマージン */
+    padding-top: 80px; /* メニューを下にずらす */
   }
   
   .slide-menu li {
     color: #fff;
-    line-height: 3;
     text-align: center;
+    padding: 15px 0;
     list-style: none;
+    font-size: 18px;
+    border-bottom: 1px solid #fff;
   }
   
-  /* ログアウト項目だけ赤文字に */
   .slide-menu li.logout {
-    color: red;
+    color: red; /* ログアウトを赤く表示 */
   }
   
-  /* ハンバーガーメニュークリック時の線の変形 */
-  .hamburger.active span:first-of-type {
-    top: 50%;
-    transform: rotate(45deg);
-  }
-  
-  .hamburger.active span:nth-of-type(2) {
-    opacity: 0; /* 真ん中の線を消す */
-  }
-  
-  .hamburger.active span:last-of-type {
-    top: 50%;
-    transform: rotate(-45deg);
-  }
-  
-  /* メニューが表示される時のスタイル */
-  .slide-menu.active {
-    transform: translateX(0); /* メニューが右からスライドイン */
-  }
-  
-  /* 背景を全体ではなく右側の領域だけに反映 */
+  /* 背景のオーバーレイ */
   .background-overlay {
     position: fixed;
     top: 0;
@@ -114,9 +109,14 @@ body {
     background-color: rgba(46, 149, 222, 0.8); /* 背景色 */
     transform: translateX(100%); /* 初期状態では画面外 */
     transition: transform 0.5s ease;
-    z-index: 300; /* ハンバーガーメニューの背後に設定 */
+    z-index: 300; /* ハンバーガーメニューとメニューの背後に配置 */
+  }
+  
+  /* アクティブ状態（メニューが表示される時） */
+  .slide-menu.active {
+    transform: translateX(0);
   }
   
   .background-overlay.active {
-    transform: translateX(0); /* 背景を表示 */
+    transform: translateX(0); /* 背景が表示される */
   }
