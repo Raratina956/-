@@ -14,7 +14,7 @@ $rows = $sql->fetchAll();
 echo '<ul>';
 foreach ($rows as $row) {
     echo '<li>';
-    echo '<a herf="room.php?id=',$row['floor_id'],'>',$row['floor_name'],'</a>';
+    echo '<a herf="room.php?id=',$row['classroom_id'],'>',$row['classroom_name'],'</a>';
     echo '</li>';
 }
 echo '</ul>';
