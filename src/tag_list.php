@@ -25,7 +25,7 @@ if (isset($_POST['tag_id'])) {
 <a href=""><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
     <input type="text" name="tag_search">
-    <input type="sumit" value="検索"> 
+    <input type="submit" value="検索"> 
 </form>
 <?php
 if (isset($_POST['tag_search'])) {
