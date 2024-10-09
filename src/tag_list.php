@@ -13,7 +13,7 @@ if (isset($_POST['tag_id'])) {
         ]);
     }else{
         $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-        $sql->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+        $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
     }
 }
 ?>
