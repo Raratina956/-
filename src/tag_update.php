@@ -9,8 +9,8 @@ if (isset($_POST['up_tag_name'])) {
     $up_tag_name = $_POST['up_tag_name'];
     $sql_update = $pdo->prepare('UPDATE Tag_list SET tag_name = ? WHERE tag_id = ?');
     $sql_update->execute([
-        $tag_id,
-        $_SESSION['user']['user_id']
+        $tag_name,
+        $tag_id
     ]);
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
     header("Location: $redirect_url");
