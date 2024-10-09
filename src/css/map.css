@@ -21,6 +21,13 @@ body{
 }
 .map{
     margin: 55px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+}
+
+a{
+    display: block;
 }
 
 
@@ -28,7 +35,7 @@ body{
     border: 2px solid #333333;
     padding: 0px;
     height: 120px;
-    width: 57%;
+    width: 800px;
     margin-inline-start: 21%;
 }
 
@@ -36,4 +43,34 @@ body{
     display: flex;
     flex-wrap: wrap;
     margin-left: 85%;
+}
+
+/* .gakugai{
+    background-color: #464646;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    position:fixed;
+} */
+
+/* 学外 Section */
+.gakugai-container {
+    background-color: #b3b3b3;
+    padding: 15px; /* Reduce padding to bring the section closer to the map */
+    border-radius: 10px;
+    margin-top: 0; /* Remove any additional margin */
+}
+
+table{
+    margin: auto;
+    table-layout: fixed;
+}
+
+.box {
+    width: 800%;
+    height: 100px;
 }
