@@ -8,6 +8,20 @@ table{
     margin: auto;
 }
 
+.button_in{
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(164, 226, 243);
+    background-color: white;
+    color:rgb(164, 226, 243);
+    border-radius: 5px;
+}
+
 .button_up{
     min-width: 120px;
     height: 36px;
