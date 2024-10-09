@@ -33,6 +33,7 @@ if (isset($_POST['tag_search'])) {
     $search_sql = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_name=?");
     $search_sql->execute([$tag_search]);
     $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
+    echo $tag_search;
 } else {
     $query = "SELECT * FROM Tag_list";
     $stmt = $pdo->query($query);
