@@ -33,6 +33,7 @@ if ($list_raw) {
         <th></th>
         <?php
         foreach ($list_raw as $row) {
+            echo '<tr>';
             echo '<td>', $row['tag_id'], '</td>';
             echo '<td>', $row['tag_name'], '</td>';
             ?>
@@ -45,6 +46,7 @@ if ($list_raw) {
                 <td><input type="submit" value="削除"></td>
             </form>
             <?php
+            echo '</tr>';
         }
         ?>
     </table>
