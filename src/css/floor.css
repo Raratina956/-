@@ -1,42 +1,54 @@
 /* General Styles */
 body {
     background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif; /* フォント */
-    margin: 0; /* デフォルトのマージンをリセット */
-    padding: 0; /* デフォルトのパディングをリセット */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header Styles */
-
+/* ここでヘッダーが固定されていると仮定 */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff; /* ヘッダーの背景色 */
+    z-index: 1000; /* ヘッダーを最前面に */
+}
 
 /* Main Content Styles */
+main {
+    margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
+    padding: 20px; /* 全体にパディングを追加 */
+    text-align: center; /* 中央揃え */
+}
+
 h1 {
-    margin-top: 150px; /* ヘッダーとh1の間に余白を追加 */
-    text-align: left;
-    font-size: 24px;
-    color: #333;
+    font-size: 24px; /* フォントサイズ */
+    color: #333; /* フォント色 */
 }
 
 ul {
-    list-style: none; /* リストのマーカーを削除 */
-    padding: 0; /* パディングをリセット */
-    margin: 20px; /* リスト全体のマージン */
+    list-style: none;
+    padding: 0;
+    margin: 20px;
 }
 
 li {
-    margin-bottom: 10px; /* 各リスト項目の下にスペースを追加 */
-    background-color: #f9f9f9; /* リスト項目の背景色 */
-    border: 1px solid #ccc; /* リスト項目の枠線 */
-    border-radius: 4px; /* 角を丸く */
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 li a {
-    display: block; /* リンクをブロック要素にする */
-    padding: 10px; /* リンク内の余白 */
-    text-decoration: none; /* 下線を削除 */
-    color: #333; /* リンクの文字色 */
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
 }
 
 li a:hover {
-    background-color: #e0e0e0; /* ホバー時の背景色 */
+    background-color: #e0e0e0;
 }

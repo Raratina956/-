@@ -16,5 +16,24 @@ body{
     /* 背景画像が読み込まれる前に表示される背景のカラー */
     background-color: #464646;
     height: 100%;
-    margin: 0;
+    padding-top: 75px;
+  
+}
+.map{
+    margin: 55px;
+}
+
+
+.block{
+    border: 2px solid #333333;
+    padding: 0px;
+    height: 120px;
+    width: 57%;
+    margin-inline-start: 21%;
+}
+
+.number{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 85%;
 }
