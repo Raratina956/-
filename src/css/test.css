@@ -1,9 +1,3 @@
-body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 /* ヘッダー */
 .header-area {
   display: flex;

@@ -8,6 +8,7 @@ header {
   padding: 0;
   width: 100%;
   height: 100px;
+  display: flex; /* フレックスボックスを適用 */
 }
 *{
   margin: 0 ;
