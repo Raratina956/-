@@ -10,8 +10,11 @@ body {
 
 
 /* Main Content Styles */
+main{
+    margin-top: 20%;
+}
 h1 {
-    margin-top: 150px; /* ヘッダーとh1の間に余白を追加 */
+     /* ヘッダーとh1の間に余白を追加 */
     text-align: left;
     font-size: 24px;
     color: #333;
