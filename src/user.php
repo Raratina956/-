@@ -93,7 +93,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
-                            <img src="img\star.png" width="10%" height="10%">
+                            <img src="img\notstar.png" width="10%" height="10%">
                         </button>
                       </form><br>';
             }
