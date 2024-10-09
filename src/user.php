@@ -80,9 +80,10 @@
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
             $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
-            if($followStmt){
+            $follow = $followStmt->fetch();
+            if($follow){
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value="', $_POST['user_id'], '">
+                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit">
                             <img src="img\star.png" width="10%" height="10%">
@@ -90,7 +91,7 @@
                       </form><br>';
             }else{
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value="', $_POST['user_id'], '">
+                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
                             <img src="img\notstar.png" width="10%" height="10%">
