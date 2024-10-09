@@ -10,23 +10,23 @@
 <?php require 'header.php'; ?>
     <body>
 
-    <!-- <?php
-    echo 'ユーザーID：', $_SESSION['user']['user_id'];
-    echo 'ユーザー名：', $_SESSION['user']['user_name'];
-    $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-    $sql_room->execute([$_SESSION['user']['user_id']]);
-    $row_room = $sql_room->fetch();
-    if (!$row_room) {
-        $current_name = '未登録';
-    } else {
-        $current_id = $row_room['classroom_id'];
-        $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
-        $sql_room->execute([$current_id]);
-        $row_room = $sql_room->fetch();
-        $current_name = $row_room['classroom_name'];
-    }
-    echo '現在位置：', $current_name;
-    ?> -->
+    <?php
+    // echo 'ユーザーID：', $_SESSION['user']['user_id'];
+    // echo 'ユーザー名：', $_SESSION['user']['user_name'];
+    // $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+    // $sql_room->execute([$_SESSION['user']['user_id']]);
+    // $row_room = $sql_room->fetch();
+    // if (!$row_room) {
+    //     $current_name = '未登録';
+    // } else {
+    //     $current_id = $row_room['classroom_id'];
+    //     $sql_room = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+    //     $sql_room->execute([$current_id]);
+    //     $row_room = $sql_room->fetch();
+    //     $current_name = $row_room['classroom_name'];
+    // }
+    // echo '現在位置：', $current_name;
+    ?> 
         <div class="map">
             <h1>MAP</h1>
           
