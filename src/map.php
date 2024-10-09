@@ -43,7 +43,7 @@
                     // echo '<a href="./floor.php" onclick="document.floor.submit();>';
                     echo '<tr>';
                     echo '<form name="floor" action="floor.php" method="post">';
-                    echo '<td class="block"> <div class="box">aaaaa</div></a></td>';
+                    echo '<td class="block"><div class="box">aaaaa</div></a></td>';
                     echo '<input type="hidden" name="floor" value="', $i, '">';
                     echo '<td class="number"><button type="submit" value="',$i,' name="floor"">',$i,'</td>';
                     echo '</tr>';
