@@ -1,11 +1,12 @@
 <?php require 'parts/auto-login.php'; ?>
 <?php require 'header.php'; ?>
 <?php
-    echo '<script type="text/javascript" src="js/user.js"></script>';
+    // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
-    $users->execute([$_SESSION['user']['user_id']]);
-    //$users->execute([$_POST['user_id']);  あとで変更予定
+    // $users->execute([$_SESSION['user']['user_id']]);
+    $_POST['user_id'] = 2;
+    $users->execute([$_POST['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
@@ -20,7 +21,7 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
@@ -52,20 +53,25 @@
         }else{
             //相手のプロフィール
             //チャットボタン表示
-            echo '<img src="img\chat.png"><br>';
+            echo '<img src="img\chat.png" width="10%" height="10%"><br>';
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=?');
             $followStmt->execute([$_SESSION['user']['user_id']]);
-            foreach($followStmt as $follow){
-                if($follow['follower_id'].equals($_POST['user_id'])){
-                    echo '<img src="img\star.png" id="favoriteImage"><br>';
-                }else{
-                    echo '<img src="img\notstar.png" id="favoriteImage"><br>';
+            if(empty($followStmt)){
+                foreach($followStmt as $follow){
+                    if($follow['follower_id'].equals($_POST['user_id'])){
+                        echo '<img src="img\star.png" width="10%" height="10%"><br>';
+                    }else{
+                        echo '<img src="img\notstar.png" width="10%" height="10%"><br>';
+                    }
                 }
+            }else{
+                echo '<img src="img\notstar.png" width="10%" height="10%"><br>';
             }
+
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
