@@ -1,6 +1,29 @@
-<?php require 'parts/auto-login.php'; ?>
-<?php require 'header.php'; ?>
 <?php
+    require 'parts/auto-login.php';
+
+    //フォロー・フォロワー機能
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $pdo = new PDO($connect, USER, PASS);
+        $follower_id = $_SESSION['user']['user_id'];
+        $follow_id = $_POST['user_id'];
+
+        if (isset($_POST['action']) && $_POST['action'] == 'follow') {
+            // フォローを追加
+            $sql = $pdo->prepare('insert into favorite (follow_id, follower_id) values (?, ?)');
+            $sql->execute([$follow_id, $follower_id]);
+        } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
+            // フォローを解除
+            $sql = $pdo->prepare('delete from favorite where follow_id = ? and follower_id = ?');
+            $sql->execute([$follow_id, $follower_id]);
+        }
+
+        // リダイレクトして同じページを再読み込み
+        header('Location: user.php', true, 307);
+        exit();
+    }
+
+    require 'header.php';
+    
     // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
@@ -59,9 +82,19 @@
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
             $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
             if($followStmt){
-                echo '<img src="img\star.png" width="10%" height="10%"><br>';
+                echo '<form action="user.php" method="post">
+                        <input type="hidden" name="user_id" value="', $_POST['user_id'], '">
+                        <button type="submit">
+                            <img src="img\star.png" width="10%" height="10%">
+                        </button>
+                      </form><br>';
             }else{
-                echo '<img src="img\notstar.png" width="10%" height="10%"><br>';
+                echo '<form action="user.php" method="post">
+                        <input type="hidden" name="user_id" value="', $_POST['user_id'], '">
+                        <button type="submit">
+                            <img src="img\notstar.png" width="10%" height="10%">
+                        </button>
+                      </form><br>';
             }
 
             //アイコン表示
