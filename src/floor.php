@@ -15,7 +15,7 @@ require 'header.php';
 
 <?php
 $floor = $_POST['floor'];
-echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
+echo '<h1>', htmlspecialchars($floor), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
 $sql->execute([$floor]);
 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ foreach ($rows as $row) {
     echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
-echo '</ul></main>';
+echo '</ul>';
 ?>
 
 </body>
