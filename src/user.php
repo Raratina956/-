@@ -2,7 +2,7 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
         $follower_id = $_SESSION['user']['user_id'];
         $follow_id = $_POST['user_id'];
 
