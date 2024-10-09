@@ -5,12 +5,12 @@ require 'header.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">mainをヘッダーの下に配置して 
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $floor; ?>階</title>
-    <link rel="stylesheet" href="css/floor.css"> <!-- floor.cssをリンク -->
+    <link rel="stylesheet" href="css/floor.css">
 </head>
 <body>
 
