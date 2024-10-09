@@ -2,23 +2,29 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    if (!empty($_POST['action'])) {
-        $follower_id = $_SESSION['user']['user_id'];
-        $follow_id = $_POST['user_id'];
+    try{
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (!empty($_POST['action'])) {
+            $follower_id = $_SESSION['user']['user_id'];
+            $follow_id = $_POST['user_id'];
 
-        if (isset($_POST['action']) && $_POST['action'] == 'follow') {
-            // フォローを追加
-            $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
-            $sql->execute([$follow_id, $follower_id]);
-        } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
-            // フォローを解除
-            $sql = $pdo->prepare('delete from Favorite where follow_id=? and follower_id=?');
-            $sql->execute([$follow_id, $follower_id]);
+            if (isset($_POST['action']) && $_POST['action'] == 'follow') {
+                // フォローを追加
+                $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
+                $sql->execute([$follow_id, $follower_id]);
+            } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
+                // フォローを解除
+                $sql = $pdo->prepare('delete from Favorite where follow_id=? and follower_id=?');
+                $sql->execute([$follow_id, $follower_id]);
+            }
+
+            // リダイレクトして同じページを再読み込み
+            header('Location: user.php');
+            exit();
         }
-
-        // リダイレクトして同じページを再読み込み
-        header('Location: user.php');
-        exit();
+    }catch(PDOException $e) {
+        echo 'エラーが発生しました: ' . $e->getMessage();
     }
 
     require 'header.php';
@@ -26,9 +32,9 @@
     // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
-    $users->execute([$_SESSION['user']['user_id']]);
-    // $_POST['user_id'] = 2;
-    // $users->execute([$_POST['user_id']]);
+    // $users->execute([$_SESSION['user']['user_id']]);
+    $_POST['user_id'] = 2;
+    $users->execute([$_POST['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
