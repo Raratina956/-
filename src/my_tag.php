@@ -18,7 +18,7 @@ if (isset($_POST['tag_name'])) {
 <form action="my_tag.php" method="post">
     タグ名：
     <input type="name" name="tag_name">
-    <input type="submit" value="追加">
+    <input type="submit" value="作成">
 </form>
 <?php
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
