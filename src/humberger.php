@@ -1,4 +1,4 @@
-<?php  require 'header.php';>
+<?php  require 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
