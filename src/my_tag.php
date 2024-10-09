@@ -11,7 +11,7 @@ if (isset($_POST['tag_name'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
