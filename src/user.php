@@ -81,7 +81,7 @@
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
             $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
             $follow = $followStmt->fetch();
-            if(!empty($follow)){
+            if($follow){
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
