@@ -11,8 +11,9 @@ if (isset($_POST['tag_name'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -22,6 +23,8 @@ if (isset($_POST['tag_name'])) {
     <link rel="stylesheet" href="css/my_tag.css">
     <title>Document</title>
 </head>
+=======
+>>>>>>> be2459ad116c048e3d46c6ca32d71f780a7a7ee8
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
