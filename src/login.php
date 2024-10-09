@@ -54,7 +54,7 @@ if (isset($_POST['mail'], $_POST['pass'])) {
         <br>
         <div class="form-group">
             <label for="password">パスワード：</label>
-            <input type="password" name="password" id="pass" required>
+            <input type="password" name="pass" id="password" required>
         </div>
         <br>
         <?php
