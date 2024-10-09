@@ -30,8 +30,10 @@ if (isset($_POST['up_tag_name'])) {
     </tr>
     <tr>
         <form action="tag_update.php" method="post">
+            <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
             <td><input type="text" name="up_tag_name" value="<?php echo $tag_name; ?>"></td>
             <td><input type="submit" value="更新"></td>
         </form>
     </tr>
 </table>
+<a href="my_tag.php">戻る</a>
