@@ -18,7 +18,7 @@ require 'header.php';
 <form action="my_tag.php" method="post">
     タグ名：
     <input type="name" name="tag_name">
-    <input type="submit" value="作成">
+    <input type="submit" value="作成" class="button_in">
 </form>
 <?php
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
