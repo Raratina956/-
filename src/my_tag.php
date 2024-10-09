@@ -18,7 +18,7 @@ if (isset($_POST['delete_tag_id'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
