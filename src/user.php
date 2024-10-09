@@ -2,7 +2,7 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action'])) {
         $follower_id = $_SESSION['user']['user_id'];
         $follow_id = $_POST['user_id'];
 
@@ -81,7 +81,7 @@
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
             $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
             $follow = $followStmt->fetch();
-            if(isset($follow)){
+            if(!empty($follow)){
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
