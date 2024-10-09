@@ -18,7 +18,7 @@
         }
 
         // リダイレクトして同じページを再読み込み
-        header('Location: user.php', true, 307);
+        header('Location: user.php');
         exit();
     }
 
