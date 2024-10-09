@@ -21,11 +21,23 @@ if (isset($_POST['tag_id'])) {
 <?php
 // require 'header.php';
 ?>
-<h1>タグ一覧</h1>
+<h1>みんなのタグ</h1>
+<a href=""><span>参加しているタグはこちら</span></a>
+<form action="tag_list" method="post">
+    <input type="text" name="tag_search">
+    <input type="sumit" value="検索"> 
+</form>
 <?php
-$query = "SELECT * FROM Tag_list";
-$stmt = $pdo->query($query);
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_POST['tag_search'])) {
+    $tag_search = $_POST['tag_search'];
+    $search_sql = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_name=?");
+    $search_sql->execute([$tag_search]);
+    $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $query = "SELECT * FROM Tag_list";
+    $stmt = $pdo->query($query);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 if ($results) {
     ?>
     <table>
