@@ -3,8 +3,8 @@
 
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $follower_id = $_SESSION['user']['user_id'];
-        $follow_id = $_POST['user_id'];
+        $follower_id = $_POST['user_id'];
+        $follow_id = $_SESSION['user']['user_id'];
 
         if (isset($_POST['action']) && $_POST['action'] == 'follow') {
             // フォローを追加
