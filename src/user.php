@@ -9,11 +9,11 @@
 
         if (isset($_POST['action']) && $_POST['action'] == 'follow') {
             // フォローを追加
-            $sql = $pdo->prepare('insert into favorite (follow_id, follower_id) values (?, ?)');
+            $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
             $sql->execute([$follow_id, $follower_id]);
         } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
             // フォローを解除
-            $sql = $pdo->prepare('delete from favorite where follow_id = ? and follower_id = ?');
+            $sql = $pdo->prepare('delete from Favorite where follow_id = ? and follower_id = ?');
             $sql->execute([$follow_id, $follower_id]);
         }
 
