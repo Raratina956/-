@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 
-<body>
     <header>
         <div class="header-area">
             <div class="hamburger">
@@ -43,6 +42,5 @@
             document.querySelector('.slide-menu').classList.toggle('active');
         });
     </script>
-</body>
 
 </html>

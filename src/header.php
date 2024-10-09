@@ -1,4 +1,4 @@
-<?php  require 'humberger.php'; ?>
+<?php require 'humberger.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
