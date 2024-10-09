@@ -11,7 +11,7 @@ if (isset($_POST['tag_id'])) {
             $regi_tag_id,
             $_SESSION['user']['user_id']
         ]);
-    }else{
+    } else {
         $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
         $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
     }
@@ -44,7 +44,14 @@ if ($results) {
             echo '<td>', $row_user['user_name'], '</td>';
             echo '<form action="tag_list.php" method="post">';
             echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
-            echo '<td><input type="submit" value="参加"></td>';
+            $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+            $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            if (!$row) {
+                echo '<td><input type="submit" value="参加"></td>';
+            }else{
+                echo '<td><input type="submit" value="参加済"></td>';
+            }
             echo '</form>';
             echo '</tr>';
 
