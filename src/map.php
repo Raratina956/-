@@ -42,8 +42,8 @@
                 for($i = 7;$i>0; $i--){
                     echo '';
                     echo '<tr>';
-                    echo '<form action="floor.php" method="post">';
-                    echo '<td class="block"><a href="./floor.php" onclick="document.a_form.submit();> <div class="box">aaaaa</div></a></td>';
+                    echo '<form name="floor" action="floor.php" method="post">';
+                    echo '<td class="block"><a href="./floor.php" onclick="document.floor.submit();> <div class="box">aaaaa</div></a></td>';
                     echo '<input type="hidden" name="floor" value="', $i, '">';
                     echo '<td class="number"><button type="submit" value="',$i,' name="floor"">',$i,'</td>';
                     echo '</tr>';
