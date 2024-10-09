@@ -7,3 +7,25 @@ body{
 table{
     margin: auto;
 }
+
+.button_up{
+    min-width: 120px;
+    height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.button_del{
+    min-width: 120px;
+    height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}  
