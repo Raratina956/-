@@ -2,29 +2,23 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    try{
-        $pdo = new PDO($connect, USER, PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        if (!empty($_POST['action'])) {
-            $follower_id = $_SESSION['user']['user_id'];
-            $follow_id = $_POST['user_id'];
+    if (!empty($_POST['action'])) {
+        $follower_id = $_SESSION['user']['user_id'];
+        $follow_id = $_POST['user_id'];
 
-            if (isset($_POST['action']) && $_POST['action'] == 'follow') {
-                // フォローを追加
-                $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
-                $sql->execute([$follow_id, $follower_id]);
-            } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
-                // フォローを解除
-                $sql = $pdo->prepare('delete from Favorite where follow_id=? and follower_id=?');
-                $sql->execute([$follow_id, $follower_id]);
-            }
-
-            // リダイレクトして同じページを再読み込み
-            header('Location: user.php');
-            exit();
+        if (isset($_POST['action']) && $_POST['action'] == 'follow') {
+            // フォローを追加
+            $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
+            $sql->execute([$follow_id, $follower_id]);
+        } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
+            // フォローを解除
+            $sql = $pdo->prepare('delete from Favorite where follow_id=? and follower_id=?');
+            $sql->execute([$follow_id, $follower_id]);
         }
-    }catch(PDOException $e) {
-        echo 'エラーが発生しました: ' . $e->getMessage();
+
+        // リダイレクトして同じページを再読み込み
+        header('Location: user.php&user_id=' .$_POST['user_id']);
+        exit();
     }
 
     require 'header.php';
@@ -33,8 +27,7 @@
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     // $users->execute([$_SESSION['user']['user_id']]);
-    $_POST['user_id'] = 2;
-    $users->execute([$_POST['user_id']]);
+    $users->execute([$_GET['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
@@ -85,11 +78,11 @@
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
-            $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
+            $followStmt->execute([$_SESSION['user']['user_id'], $_GET['user_id']]);
             $follow = $followStmt->fetch();
-            if(!empty($follow)){
+            if($follow){
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit">
                             <img id="favoriteImage" src="img\star.png" width="10%" height="10%">
@@ -97,7 +90,7 @@
                       </form><br>';
             }else{
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
                             <img id="favoriteImage" src="img\notstar.png" width="10%" height="10%">
