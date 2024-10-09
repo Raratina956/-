@@ -7,7 +7,7 @@ $row = $sql->fetch(PDO::FETCH_ASSOC);
 $tag_name = $row['tag_name'];
 if (isset($_POST['up_tag_name'])) {
     $up_tag_name = $_POST['up_tag_name'];
-    $sql_update = $pdo->prepare('UPDATE tag_list SET tag_name = ? WHERE tag_id = ?');
+    $sql_update = $pdo->prepare('UPDATE Tag_list SET tag_name = ? WHERE tag_id = ?');
     $sql_update->execute([
         $tag_id,
         $_SESSION['user']['user_id']
@@ -30,8 +30,10 @@ if (isset($_POST['up_tag_name'])) {
     </tr>
     <tr>
         <form action="tag_update.php" method="post">
+            <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
             <td><input type="text" name="up_tag_name" value="<?php echo $tag_name; ?>"></td>
             <td><input type="submit" value="更新"></td>
         </form>
     </tr>
 </table>
+<a href="my_tag.php">戻る</a>
