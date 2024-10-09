@@ -56,16 +56,10 @@
             echo '<img src="img\chat.png" width="10%" height="10%"><br>';
 
             //お気に入りボタン表示
-            $followStmt=$pdo->prepare('select * from Favorite where follow_id=?');
-            $followStmt->execute([$_SESSION['user']['user_id']]);
-            if(empty($followStmt)){
-                foreach($followStmt as $follow){
-                    if($follow['follower_id'].equals($_POST['user_id'])){
-                        echo '<img src="img\star.png" width="10%" height="10%"><br>';
-                    }else{
-                        echo '<img src="img\notstar.png" width="10%" height="10%"><br>';
-                    }
-                }
+            $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
+            $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
+            if($followStmt){
+                echo '<img src="img\star.png" width="10%" height="10%"><br>';
             }else{
                 echo '<img src="img\notstar.png" width="10%" height="10%"><br>';
             }
