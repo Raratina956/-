@@ -15,7 +15,7 @@ if (isset($_POST['tag_name'])) {
 ?>
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
-<form action="tag_create.php" method="post">
+<form action="my_tag.php" method="post">
     タグ名：
     <input type="name" name="tag_name">
     <input type="submit" value="追加">
