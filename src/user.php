@@ -17,7 +17,7 @@
         }
 
         // リダイレクトして同じページを再読み込み
-        header('Location: user.php&user_id=' .$_POST['user_id']);
+        header('Location: user.php?user_id=' .$_POST['user_id']);
         exit();
     }
 
