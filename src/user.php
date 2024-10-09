@@ -26,9 +26,9 @@
     // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
-    // $users->execute([$_SESSION['user']['user_id']]);
-    $_POST['user_id'] = 2;
-    $users->execute([$_POST['user_id']]);
+    $users->execute([$_SESSION['user']['user_id']]);
+    // $_POST['user_id'] = 2;
+    // $users->execute([$_POST['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
