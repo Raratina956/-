@@ -1,3 +1,6 @@
+<?php 
+    require 'parts/auto-login.php';
+    require 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,9 +10,7 @@
     <title>Document</title>
    
 </head>
-    <?php 
-    require 'parts/auto-login.php';
-    require 'header.php'; ?>
+   
     <body>
 
     <?php
@@ -59,6 +60,7 @@
         </div>
         <li><a href="my_tag.php">タグ作成</a></li>
         <li><a href="tag_list.php">タグ一覧</a></li>
+        <li><a href="map.php">map</a></li>
      
     </body>
 </html>
