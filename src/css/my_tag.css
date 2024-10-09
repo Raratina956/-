@@ -9,7 +9,7 @@ table{
 }
 
 .button_up{
-    min-width: 200px;
+    min-width: 120px;
     height: 36px;
     font-size: 18px;
     font-weight: bold;
@@ -20,7 +20,7 @@ table{
 }
 
 .button_del{
-    min-width: 200px;
+    min-width: 120px;
     height: 36px;
     font-size: 18px;
     font-weight: bold;
