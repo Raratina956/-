@@ -3,8 +3,8 @@
 
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $follower_id = $_SESSION['user']['user_id'];
-        $follow_id = $_POST['user_id'];
+        $follower_id = $_POST['user_id'];
+        $follow_id = $_SESSION['user']['user_id'];
 
         if (isset($_POST['action']) && $_POST['action'] == 'follow') {
             // フォローを追加
@@ -80,7 +80,7 @@
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
             $followStmt->execute([$_SESSION['user']['user_id'], $_GET['user_id']]);
             $follow = $followStmt->fetch();
-            if(!$follow){
+            if($follow){
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
