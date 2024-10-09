@@ -7,7 +7,9 @@
     <title>Document</title>
    
 </head>
-<?php require 'header.php'; ?>
+    <?php 
+    require 'parts/auto-login.php';
+    require 'header.php'; ?>
     <body>
 
     <?php
@@ -40,7 +42,7 @@
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value="', $i, '">';
                     echo '<td class="block"><a href="./floor.php"> <div class="box">aaaaa</div></a></td>';
-                    echo '<td class="number"><button type="submit" value="',$i,'">',$i,'</td>';
+                    echo '<td class="number"><button type="submit" value="',$i,' name="floor"">',$i,'</td>';
                     echo '</tr>';
                 }
             echo '<table>';
