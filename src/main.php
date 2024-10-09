@@ -34,4 +34,5 @@ require 'parts/auto-login.php';
     ?>
     <li><a href="my_tag.php">タグ作成</a></li>
     <li><a href="tag_list.php">タグ一覧</a></li>
+    <li><a href="map.php">map</a></li>
 </ul>
