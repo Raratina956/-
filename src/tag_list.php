@@ -21,11 +21,24 @@ if (isset($_POST['tag_id'])) {
 <?php
 // require 'header.php';
 ?>
-<h1>タグ一覧</h1>
+<h1>みんなのタグ</h1>
+<a href=""><span>参加しているタグはこちら</span></a>
+<form action="tag_list" method="post">
+    <input type="text" name="tag_search">
+    <input type="submit" value="検索"> 
+</form>
 <?php
-$query = "SELECT * FROM Tag_list";
-$stmt = $pdo->query($query);
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_POST['tag_search'])) {
+    $tag_search = $_POST['tag_search'];
+    $search_sql = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_name=?");
+    $search_sql->execute([$tag_search]);
+    $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
+    echo $tag_search;
+} else {
+    $query = "SELECT * FROM Tag_list";
+    $stmt = $pdo->query($query);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 if ($results) {
     ?>
     <table>
@@ -44,6 +57,9 @@ if ($results) {
             echo '<td>', $row_user['user_name'], '</td>';
             echo '<form action="tag_list.php" method="post">';
             echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
+            if(isset($_POST['tag_search'])){
+                echo '<input type="hidden" name="tag_search" value="',$tag_search,'">';
+            }
             $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
             $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);

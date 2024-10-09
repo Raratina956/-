@@ -9,7 +9,7 @@ if (isset($_POST['tag_name'])) {
     ]);
 }
 ?>
-
+<link rel="stylesheet" href="css/my_tag.css">
 <?php
 require 'header.php';
 ?>
