@@ -57,13 +57,18 @@
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=?');
             $followStmt->execute([$_SESSION['user']['user_id']]);
-            foreach($followStmt as $follow){
-                if($follow['follower_id'].equals($_POST['user_id'])){
-                    echo '<img src="img\star.png"><br>';
-                }else{
-                    echo '<img src="img\notstar.png"><br>';
+            if(!empty($followStmt)){
+                foreach($followStmt as $follow){
+                    if($follow['follower_id'].equals($_POST['user_id'])){
+                        echo '<img src="img\star.png"><br>';
+                    }else{
+                        echo '<img src="img\notstar.png"><br>';
+                    }
                 }
+            }else{
+                echo '<img src="img\notstar.png"><br>';
             }
+            
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '"><br>';
 
