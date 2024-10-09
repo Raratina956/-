@@ -2,7 +2,7 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    if (!empty($_POST['action'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $follower_id = $_SESSION['user']['user_id'];
         $follow_id = $_POST['user_id'];
 
@@ -17,7 +17,7 @@
         }
 
         // リダイレクトして同じページを再読み込み
-        header('Location: user.php&user_id=' .$_POST['user_id']);
+        header('Location: user.php?user_id=' .$_POST['user_id']);
         exit();
     }
 
