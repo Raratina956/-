@@ -7,7 +7,7 @@ $row = $sql->fetch(PDO::FETCH_ASSOC);
 $tag_name = $row['tag_name'];
 if (isset($_POST['up_tag_name'])) {
     $up_tag_name = $_POST['up_tag_name'];
-    $sql_update = $pdo->prepare('UPDATE tag_list SET tag_name = ? WHERE tag_id = ?');
+    $sql_update = $pdo->prepare('UPDATE Tag_list SET tag_name = ? WHERE tag_id = ?');
     $sql_update->execute([
         $tag_id,
         $_SESSION['user']['user_id']
