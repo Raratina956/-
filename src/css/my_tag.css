@@ -3,3 +3,7 @@ body{
     padding-top: 110px;
     background-color: #a0eefc;
 }
+
+table{
+    margin: auto;
+}
