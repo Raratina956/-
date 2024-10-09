@@ -22,11 +22,6 @@
 
         <!-- スライドメニュー -->
         <div class="slide-menu">
-            <!-- ユーザー情報の表示（アイコンは省略） -->
-            <div class="user-info">
-                <p>鈴研 イチロー</p>
-                <input type="text" class="search-box" placeholder="先生or生徒を検索">
-            </div>
             <!-- メニューリスト -->
             <ul>
                 <li>MAP</li>
