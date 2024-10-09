@@ -7,3 +7,27 @@ body{
 table{
     margin: auto;
 }
+
+.button_up{
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(107, 224, 185);
+    background-color: white;
+    color:rgb(107, 224, 185) ;
+}
+
+.button_del{
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgb(248, 88, 88);
+    background-color: white;
+    color: rgb(248, 88, 88);
+}  

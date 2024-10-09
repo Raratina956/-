@@ -1,3 +1,8 @@
+<?php 
+    require 'parts/auto-login.php';
+    require 'header.php'; 
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,9 +12,7 @@
     <title>Document</title>
    
 </head>
-    <?php 
-    require 'parts/auto-login.php';
-    require 'header.php'; ?>
+   
     <body>
 
     <?php
@@ -40,8 +43,8 @@
                     echo '';
                     echo '<tr>';
                     echo '<form action="floor.php" method="post">';
+                    echo '<td class="block"><a href="./floor.php" onclick="document.a_form.submit();> <div class="box">aaaaa</div></a></td>';
                     echo '<input type="hidden" name="floor" value="', $i, '">';
-                    echo '<td class="block"><a href="./floor.php"> <div class="box">aaaaa</div></a></td>';
                     echo '<td class="number"><button type="submit" value="',$i,' name="floor"">',$i,'</td>';
                     echo '</tr>';
                 }
@@ -59,6 +62,7 @@
         </div>
         <li><a href="my_tag.php">タグ作成</a></li>
         <li><a href="tag_list.php">タグ一覧</a></li>
+        <li><a href="map.php">map</a></li>
      
     </body>
 </html>
