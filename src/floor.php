@@ -1,10 +1,11 @@
+
 <?php
 require 'parts/auto-login.php';
 require 'header.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja">mainをヘッダーの下に配置して 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@ require 'header.php';
 
 <?php
 $floor = $_POST['floor'];
-echo '<h1>', htmlspecialchars($floor), '階</h1>';
+echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
 $sql->execute([$floor]);
 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +42,7 @@ foreach ($rows as $row) {
     echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
-echo '</ul>';
+echo '</ul></main>';
 ?>
 
 </body>
