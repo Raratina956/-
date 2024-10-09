@@ -10,7 +10,7 @@
 <?php require 'header.php'; ?>
     <body>
 
-    <?php
+    <!-- <?php
     echo 'ユーザーID：', $_SESSION['user']['user_id'];
     echo 'ユーザー名：', $_SESSION['user']['user_name'];
     $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -26,7 +26,7 @@
         $current_name = $row_room['classroom_name'];
     }
     echo '現在位置：', $current_name;
-    ?>
+    ?> -->
         <div class="map">
             <h1>MAP</h1>
           
