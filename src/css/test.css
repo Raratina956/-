@@ -1,33 +1,23 @@
-body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 /* ヘッダー */
 .header-area {
-  display: flex;
-  justify-content: space-between;
+  display: flex; /* フレックスボックスで横並びにする */
+  justify-content: flex-end; /* 右寄せにする */
+  align-items: center;
   height: 65px;
   padding: 0 20px;
-  align-items: center;
-  position: relative;
 }
 
 /* ハンバーガーメニューのデザイン */
 .hamburger {
   width: 60px;
   height: 60px;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
   border: 2px solid #00CFFF;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 20px; /* ハンバーガーメニューの位置調整 */
 }
 
 .hamburger span {
@@ -51,7 +41,7 @@ body {
   top: 75%;
 }
 
-/* スライドメニュー */
+/* スライドメニューのスタイルはそのまま */
 .slide-menu {
   background-color: rgba(46, 149, 222, 0.8);
   position: fixed;
