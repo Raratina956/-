@@ -43,6 +43,9 @@
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
 
+            //編集ボタン
+            echo '<button onclick="location.href=useredit>編集</button>';
+
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
