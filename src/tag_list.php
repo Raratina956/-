@@ -23,11 +23,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
-<<<<<<< HEAD
-<a href="" class="join_tag"><span>参加しているタグはこちら</span></a>
-=======
-<a href="join_tag.php"><span>参加しているタグはこちら</span></a><br>
->>>>>>> d1f4df4af737b86f53150e0c3cea9a860d4ffb66
+<a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a><br>
 <form action="tag_list" method="post">
     <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
     <input type="submit" value="検索" class="search"> 
