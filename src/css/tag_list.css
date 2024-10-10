@@ -13,9 +13,6 @@ table{
 }
 
 .join_tag{
-    position: fixed;
-    bottom: 20px;
-    left: 10px;
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
     background-color: #a0eefc; /* 背景色 */
