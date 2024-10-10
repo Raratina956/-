@@ -13,8 +13,9 @@ table{
 }
 
 .textbox{
-    width: 240px;
+    width: 30%;
     font-size: 20px;
+    text-align: center;
     cursor: pointer;
     line-height: 33px; /*ここの数値を変更*/
     border: none;
