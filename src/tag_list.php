@@ -26,7 +26,7 @@ require 'header.php';
 <a href=""><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
     <input type="text" name="tag_search">
-    <input type="submit" value="検索"> 
+    <input type="submit" value="検索" class="search"> 
 </form>
 <?php
 if (isset($_POST['tag_search'])) {
