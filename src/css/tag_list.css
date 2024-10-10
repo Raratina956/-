@@ -11,6 +11,25 @@ h1{
 table{
     margin: auto;
 }
+
+.search{
+    width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    background-color: rgb(192, 191, 191);
+    color:black;
+    border-radius: 5px;
+}
+
+.search:hover{
+    background-color: black;
+    color: white;
+}
+
 .back-link {
     position: fixed;
     bottom: 20px;
@@ -28,7 +47,7 @@ table{
 }
 
 .join{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -47,16 +66,15 @@ table{
 }
 
 .joined{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;  
-    border-color: rgb(179, 247, 91);
-    background-color: black;
-    color:rgb(179, 247, 91);
+    background-color: rgb(179, 247, 91);
+    color:black;
     border-radius: 5px;
 }
 
