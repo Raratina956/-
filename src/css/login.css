@@ -44,3 +44,15 @@ form {
     box-sizing: border-box;
     height: 40px;
 }
+
+input[type="submit"] {
+    width: 20%;
+    background-color: #d8dcdf;
+    color: #3a3838;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px; 
+    margin-top: 20px;
+    margin: 20px auto 0;
+}
