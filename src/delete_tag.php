@@ -10,8 +10,8 @@ if (isset($_POST['tag_id'])) {
     $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
     $sql_delete->execute([$tag_id]);
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
-            header("Location: $redirect_url");
-            exit();
+    header("Location: $redirect_url");
+    exit();
 }
 ?>
 
@@ -27,28 +27,34 @@ require 'header.php';
 </head>
 <body>
     <main>
-<h1>タグ削除</h1><br>
-<span>削除するタグ内容を確認してください</span><br>
-<table>
-    <th>タグ名</th>
-    <th></th>
-    <tr>
-        <td>
-            <?Php
-            $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
-            $sql_tag->execute([$delete_tag_id]);
-            $row_tag = $sql_tag->fetch();
-            echo $row_tag['tag_name'];
-            ?>
-        </td>
-        <td>
-            <form action="delete_tag.php" method="post">
-                <input type="hidden" name="tag_id"value=<?php echo $delete_tag_id;?>>
-                <input type="submit" value="削除">
-            </form>
-        </td>
-    </tr>
-</table>
-</main>
+        <h1>タグ削除</h1><br>
+        <span>削除するタグ内容を確認してください</span><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>タグ名</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <?php
+                        $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
+                        $sql_tag->execute([$delete_tag_id]);
+                        $row_tag = $sql_tag->fetch();
+                        echo htmlspecialchars($row_tag['tag_name']);
+                        ?>
+                    </td>
+                    <td>
+                        <form action="delete_tag.php" method="post">
+                            <input type="hidden" name="tag_id" value="<?php echo htmlspecialchars($delete_tag_id); ?>">
+                            <input type="submit" value="削除">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>
