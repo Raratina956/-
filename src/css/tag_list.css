@@ -11,3 +11,16 @@ h1{
 table{
     margin: auto;
 }
+.back-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+}
+
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
