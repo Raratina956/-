@@ -3,8 +3,8 @@ session_start();
 require 'parts/db-connect.php';
 
 $error = '';
-if (isset($_POST['mail'], $_POST['pass'])) {
-    $mail = $_POST['mail'];
+if (isset($_POST['mail_address'], $_POST['pass'])) {
+    $mail = $_POST['mail_address'];
     $pass = $_POST['pass'];
     $sql = $pdo->prepare('SELECT * FROM Users WHERE mail_address=?');
     $sql->execute([$mail]);
@@ -48,8 +48,8 @@ if (isset($_POST['mail'], $_POST['pass'])) {
     <form action="login.php" method="post">
         <br>
         <div class="form-group">
-        <label for="mail_address">メールアドレス：</label>
-            <input type="email" name="mail" id="mail" required>
+            <label for="mail_address">メールアドレス：</label>
+            <input type="email" name="mail_address" id="mail_address" required>
         </div>
         <br>
         <div class="form-group">

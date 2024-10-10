@@ -36,20 +36,30 @@
             <h1>MAP</h1>
           
         <?php
+         $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
+         $sql->execute([$_SESSION['user']['user_id']]);
+         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
-            // echo '<div class="linkbox">';
+         //tagで表示するMAP変えるプルダウン
+         echo '<select name="list">';
+            foreach ($sql as $tag_list) {    
+                $data .= "<option value='". $tag_list['tag_name'];
+                $data .= "'>". $tag_list['tag_name']. "</option>";
+            echo  $data;
+            }
+         echo '</select>';
+         
             echo '<table width=700>';
                 for($i = 7;$i>0; $i--){
-                    echo '';
                     echo '<tr>';
                     echo '<form name="floor" action="floor.php" method="post">';
-                    echo '<td class="block"><a href="./floor.php" onclick="document.floor.submit();> <div class="box">aaaaa</div></a></td>';
-                    echo '<input type="hidden" name="floor" value="', $i, '">';
-                    echo '<td class="number"><button type="submit" value="',$i,' name="floor"">',$i,'</td>';
+                    echo '<td class="block"><div class="box">aaaaa</div></td>';
+                    echo '<input type="hidden" name="floor" value=', $i, '>';
+                    echo '<td class="number"><button type="submit" value="',$i,'階" name="floor"">',$i,'階</td>';
                     echo '</tr>';
+                    echo '</form>';
                 }
             echo '<table>';
-            echo '</form>';
 
         ?>
 

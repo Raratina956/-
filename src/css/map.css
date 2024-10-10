@@ -60,9 +60,9 @@ a{
 /* 学外 Section */
 .gakugai-container {
     background-color: #b3b3b3;
-    padding: 15px; /* Reduce padding to bring the section closer to the map */
+    padding: 15px; 
     border-radius: 10px;
-    margin-top: 0; /* Remove any additional margin */
+    margin-top: 0; 
 }
 
 table{
@@ -71,6 +71,19 @@ table{
 }
 
 .box {
-    width: 800%;
-    height: 100px;
+      height: 100px;
 }
+
+button {
+    display: inline-block; /* ボタンを横並びにする */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角丸をつける */
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    margin: 5px; /* ボタン同士の余白 */
+    background-color: #17A7E9; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+  }
