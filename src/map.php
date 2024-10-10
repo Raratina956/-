@@ -43,7 +43,7 @@
                     echo '<tr>';
                     echo '<form name="floor" action="floor.php" method="post">';
                     echo '<td class="block"><div class="box">aaaaa</div></td>';
-                    echo '<input type="hidden" name="floor" value="', $i, '">';
+                    echo '<input type="hidden" name="floor" value=', $i, '>';
                     echo '<td class="number"><button type="submit" value="',$i,'階" name="floor"">',$i,'</td>';
                     echo '</tr>';
                 }
