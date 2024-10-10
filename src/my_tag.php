@@ -24,7 +24,7 @@ require 'header.php';
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
     タグ名：
-    <input type="name" name="tag_name">
+    <input type="name" class="tag_name" name="tag_name">
     <input type="submit" value="作成" class="button_in">
 </form>
 <?php
