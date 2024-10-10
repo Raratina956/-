@@ -4,6 +4,10 @@ body{
     background-color: #a0eefc;
 }
 
+h1{
+    margin-top: 20px;
+}
+
 table{
     margin: auto;
 }
