@@ -48,7 +48,7 @@ if ($list_raw) {
                 <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="更新" class="button_up"></td>
             </form>
-            <form action="my_tag.php" method="post">
+            <form action="delete_tag.php" method="post">
                 <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="削除" class="button_del"></td>
             </form>
@@ -62,4 +62,4 @@ if ($list_raw) {
     echo '作成されたタグがありません';
 }
 ?>
-<a href="main.php" class="back-link">メインへ</a>
+<a href="main.php">メインへ</a>
