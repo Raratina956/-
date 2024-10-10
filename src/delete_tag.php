@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-if (isset($delete_tag_id)) {
+if (isset($_POST['delete_tag_id'])) {
     $delete_tag_id = $_POST['delete_tag_id'];
 }
 if (isset($_POST['tag_id'])) {
