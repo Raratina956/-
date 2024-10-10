@@ -38,6 +38,7 @@ foreach ($rows as $row) {
     }
 
     echo '<li>';
+    echo '<font class="sankaku">‣</font>';
     echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
