@@ -26,7 +26,7 @@ $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
-    <table id="table" border="0" style="font-size: 18pt;">
+    <br><br><table id="table" border="0" style="font-size: 18pt;">
         <th>タグID</th>
         <th>タグ名</th>
         <th></th>
