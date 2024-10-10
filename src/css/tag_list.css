@@ -13,7 +13,7 @@ table{
 }
 
 .textbox{
-    width: 60%;
+    width: 30%;
     font-size: 20px;
     cursor: pointer;
     line-height: 33px; /*ここの数値を変更*/
