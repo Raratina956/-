@@ -43,7 +43,7 @@
          foreach ($sql as $tag_list) {
                echo '<select name="list">';
                echo "<option value='",$tag_list['tag_id'],"'>'",$tag_list['tag_name'],"'</option>";
-                echo '</select>'
+               echo '</select>';
 
             // $data .= "<option value='". $tag_list['tag_name'];
             // $data .= "'>". $tag_list['tag_name']. "</option>";
