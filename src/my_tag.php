@@ -49,7 +49,7 @@ if ($list_raw) {
                 <td><input type="submit" value="更新" class="button_up"></td>
             </form>
             <form action="my_tag.php" method="post">
-                <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
+                <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="削除" class="button_del"></td>
             </form>
             <?php
