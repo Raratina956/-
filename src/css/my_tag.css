@@ -8,6 +8,15 @@ table{
     margin: auto;
 }
 
+span{
+    font-size: 20px;
+}
+
+.tag_name{
+    width: 240px;
+    height: 30px;
+}
+
 .button_in{
     min-width: 120px;
     height: 36px;

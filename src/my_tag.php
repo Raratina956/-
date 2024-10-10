@@ -8,13 +8,6 @@ if (isset($_POST['tag_name'])) {
         $_SESSION['user']['user_id']
     ]);
 }
-if (isset($_POST['delete_tag_id'])) {
-    $delete_tag_id = $_POST['delete_tag_id'];
-    $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=?');
-    $sql_delete->execute([$delete_tag_id]);
-    $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
-    $sql_delete->execute([$delete_tag_id]);
-}
 ?>
 <link rel="stylesheet" href="css/my_tag.css">
 <?php
@@ -23,8 +16,8 @@ require 'header.php';
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
-    タグ名：
-    <input type="name" name="tag_name">
+    <span>タグ名：</span>
+    <input type="name" name="tag_name" class="tag_name">
     <input type="submit" value="作成" class="button_in">
 </form>
 <?php
@@ -48,7 +41,7 @@ if ($list_raw) {
                 <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="更新" class="button_up"></td>
             </form>
-            <form action="my_tag.php" method="post">
+            <form action="delete_tag.php" method="post">
                 <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="削除" class="button_del"></td>
             </form>

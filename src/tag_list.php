@@ -24,9 +24,9 @@ require 'header.php';
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
 <a href=""><span>参加しているタグはこちら</span></a>
-<form action="tag_list" method="post">
-    <input type="text" name="tag_search">
-    <input type="submit" value="検索"> 
+<br><form action="tag_list" method="post">
+    <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
+    <input type="submit" value="検索" class="search"> 
 </form>
 <?php
 if (isset($_POST['tag_search'])) {
@@ -65,9 +65,9 @@ if ($results) {
             $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             if (!$row) {
-                echo '<td><input type="submit" value="参加"></td>';
+                echo '<td><input type="submit" value="参加" class="join"></td>';
             }else{
-                echo '<td><input type="submit" value="参加済"></td>';
+                echo '<td><input type="submit" value="参加済" class="joined"></td>';
             }
             echo '</form>';
             echo '</tr>';

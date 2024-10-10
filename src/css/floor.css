@@ -8,24 +8,24 @@ body {
 
 /* Header Styles */
 /* ここでヘッダーが固定されていると仮定 */
-header {
+/* header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #fff; /* ヘッダーの背景色 */
-    z-index: 1000; /* ヘッダーを最前面に */
-}
+    background-color: #fff;
+    z-index: 1000; 
+} */
 
 /* Main Content Styles */
 main {
-    margin-top: 90px; /* ヘッダーの高さを考慮して調整 */
+    margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
     padding: 20px; /* 全体にパディングを追加 */
-    text-align: left; 
+    text-align: center; /* 中央揃え */
 }
 
 h1 {
-    font-size: 24px; /* フォントサイズ */
+    font-size: 60px; /* フォントサイズ */
     color: #333; /* フォント色 */
 }
 
@@ -36,16 +36,19 @@ ul {
 }
 
 li {
-    margin-bottom: 10px;
-    /* background-color: #f9f9f9;
-    border: 1px solid #ccc; */
-    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size:40px;
+    border-radius: 45px;
 }
 
 li a {
     display: block;
     padding: 10px;
+    color:black;
     text-decoration: none;
-    /* color: #333; */
+}
+.san{
+    size: 120px;
+    color:blue;
 }
 
