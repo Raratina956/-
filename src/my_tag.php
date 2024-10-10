@@ -62,4 +62,4 @@ if ($list_raw) {
     echo '作成されたタグがありません';
 }
 ?>
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>
