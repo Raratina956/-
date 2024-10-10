@@ -38,7 +38,7 @@ foreach ($rows as $row) {
     }
 
     echo '<li>';
-    echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
+    echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '">', '<font class="san">‣</font>',htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
 echo '</ul></main>';
