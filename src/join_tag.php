@@ -3,7 +3,7 @@ require 'parts/auto-login.php';
 ?>
 
 <?php
-require 'header.php';
+// require 'header.php';
 ?>
 <h1>参加タグ一覧</h1>
 <?php
@@ -23,7 +23,7 @@ if ($results) {
             $row_tag = $sql_tag->fetch();
             echo '<tr>';
             echo '<td>',$row_tag['tag_name'],'</td>';
-            $sql_user = $pdo->prepare('SELECT * FROM User WHERE user_id=?');
+            $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row_tag['user_id']]);
             $row_user = $sql_user->fetch();
             echo '<td>',$row_user['user_name'],'</td>';
