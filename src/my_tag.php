@@ -8,13 +8,6 @@ if (isset($_POST['tag_name'])) {
         $_SESSION['user']['user_id']
     ]);
 }
-if (isset($_POST['delete_tag_id'])) {
-    $delete_tag_id = $_POST['delete_tag_id'];
-    $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=?');
-    $sql_delete->execute([$delete_tag_id]);
-    $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
-    $sql_delete->execute([$delete_tag_id]);
-}
 ?>
 <link rel="stylesheet" href="css/my_tag.css">
 <?php
@@ -23,7 +16,7 @@ require 'header.php';
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
-    タグ名：
+    <span>タグ名：</span>
     <input type="name" class="tag_name">
     <input type="submit" value="作成" class="button_in">
 </form>
