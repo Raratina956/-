@@ -15,6 +15,15 @@ if (isset($_POST['tag_id'])) {
 <?php
 require 'header.php';
 ?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/delete_tag.css">
+</head>
+<body>
+    <main>
 <h1>タグ削除</h1><br>
 <span>削除するタグ内容を確認してください</span><br>
 <table>
@@ -37,3 +46,6 @@ require 'header.php';
         </td>
     </tr>
 </table>
+</main>
+</body>
+</html>

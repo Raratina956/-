@@ -1,0 +1,11 @@
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+main {
+    margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
+    padding: 20px; /* 全体にパディングを追加 */
+    text-align: center; /* 中央揃え */
+}
