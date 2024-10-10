@@ -19,7 +19,7 @@ if (isset($_POST['tag_id'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
