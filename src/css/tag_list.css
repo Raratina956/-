@@ -13,14 +13,21 @@ table{
 }
 
 
-<<<<<<< HEAD
-=======
+.join_tag{
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
 .join_tag:hover{
     background-color: rgb(54, 98, 216);
     color: white;
 }
 
 .textbox{
+    margin-top: 25px;
     width: 30%;
     font-size: 20px;
     text-align: center;
@@ -29,7 +36,6 @@ table{
     border: none;
     border-radius: 5px; /* 角を丸く */
 }
->>>>>>> 13980cc99984788d8eb14630df64bbcf0bfea56f
 
 .search{
     width: 100px;
