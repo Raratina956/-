@@ -8,14 +8,14 @@ body {
 
 /* Header Styles */
 /* ここでヘッダーが固定されていると仮定 */
-header {
+/* header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #fff; /* ヘッダーの背景色 */
-    z-index: 1000; /* ヘッダーを最前面に */
-}
+    background-color: #fff;
+    z-index: 1000; 
+} */
 
 /* Main Content Styles */
 main {
