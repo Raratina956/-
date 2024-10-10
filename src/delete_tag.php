@@ -9,6 +9,9 @@ if (isset($_POST['tag_id'])) {
     $sql_delete->execute([$tag_id]);
     $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
     $sql_delete->execute([$tag_id]);
+    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
+            header("Location: $redirect_url");
+            exit();
 }
 ?>
 
