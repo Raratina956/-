@@ -23,7 +23,7 @@ require 'header.php';
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
-    タグ名：
+    <span>タグ名：</span>
     <input type="name" class="tag_name">
     <input type="submit" value="作成" class="button_in">
 </form>
