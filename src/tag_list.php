@@ -51,7 +51,11 @@ if ($results) {
         foreach ($results as $row) {
             echo '<tr>';
             echo '<td>', $row['tag_name'], '</td>';
-            echo '<td></td>';
+            $sql_count = $pdo->prepare('SELECT COUNT(DISTINCT user_id) AS user_count FROM Tag_attribute WHERE tag_id = ?');
+            $sql_count->execute([$row['tag_id']]);
+            $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
+            $user_count = $count_result['user_count'];
+            echo '<td>',$user_count,'</td>';
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row['user_id']]);
             $row_user = $sql_user->fetch();
