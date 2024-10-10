@@ -12,6 +12,14 @@ table{
     margin: auto;
 }
 
+.textbox{
+    width: 30%;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 33px; /*ここの数値を変更*/
+    border: none;
+}
+
 .search{
     width: 100px;
     height: 36px;

@@ -25,7 +25,7 @@ require 'header.php';
 <h1>みんなのタグ</h1>
 <a href=""><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
-    <input type="text" name="tag_search">
+    <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
     <input type="submit" value="検索" class="search"> 
 </form>
 <?php
