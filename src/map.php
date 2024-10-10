@@ -41,13 +41,13 @@
          $row = $sql->fetch(PDO::FETCH_ASSOC);
 
          //tagで表示するMAP変えるプルダウン
-        //  echo '<select name="list">';
-        //     foreach ($sql as $tag_list) {    
-        //         $data .= "<option value='". $tag_list['tag_name'];
-        //         $data .= "'>". $tag_list['tag_name']. "</option>";
-        //     echo  $data .= "<option value='". $tag_list['tag_name'];
-        //     }
-        //  echo '</select>';
+         echo '<select name="list">';
+            foreach ($sql as $tag_list) {    
+                $data .= "<option value='". $tag_list['tag_name'];
+                $data .= "'>". $tag_list['tag_name']. "</option>";
+            echo  $data;
+            }
+         echo '</select>';
          
             echo '<table width=700>';
                 for($i = 7;$i>0; $i--){
