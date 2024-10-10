@@ -25,7 +25,7 @@ require 'header.php';
             <?Php
             $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
             $sql_tag->execute([$delete_tag_id]);
-            $row_tag = $sql_user->fetch();
+            $row_tag = $sql_tag->fetch();
             echo $row_tag['tag_name'];
             ?>
         </td>
