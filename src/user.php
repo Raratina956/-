@@ -44,7 +44,8 @@
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
 
             //編集ボタン
-            echo '<button onclick="location.href=useredit.php">編集</button>';
+            echo '<button onclick="location.href=\'useredit.php\'">編集</button>';
+
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
