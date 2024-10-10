@@ -8,6 +8,13 @@ if (isset($_POST['tag_name'])) {
         $_SESSION['user']['user_id']
     ]);
 }
+if (isset($_POST['delete_tag_id'])) {
+    $delete_tag_id = $_POST['delete_tag_id'];
+    $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=?');
+    $sql_delete->execute([$delete_tag_id]);
+    $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
+    $sql_delete->execute([$delete_tag_id]);
+}
 ?>
 <link rel="stylesheet" href="css/my_tag.css">
 <?php
@@ -26,7 +33,7 @@ $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
-    <table id="table" border="0" style="font-size: 18pt;">
+    <br><br><table id="table" border="0" style="font-size: 18pt;">
         <th>タグID</th>
         <th>タグ名</th>
         <th></th>
@@ -42,7 +49,7 @@ if ($list_raw) {
                 <td><input type="submit" value="更新" class="button_up"></td>
             </form>
             <form action="my_tag.php" method="post">
-                <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
+                <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="削除" class="button_del"></td>
             </form>
             <?php
@@ -55,4 +62,4 @@ if ($list_raw) {
     echo '作成されたタグがありません';
 }
 ?>
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>
