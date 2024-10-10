@@ -8,6 +8,11 @@ table{
     margin: auto;
 }
 
+.tag_name{
+    width: 240px;
+    height: 40px;
+}
+
 .button_in{
     min-width: 120px;
     height: 36px;

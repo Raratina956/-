@@ -1,7 +1,6 @@
 <?php
 require 'parts/auto-login.php';
 $floor = $_POST['floor'];
-echo $floor;
 require 'header.php';
 ?>
 
