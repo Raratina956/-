@@ -3,8 +3,8 @@ session_start();
 require 'parts/db-connect.php';
 
 $error = '';
-if (isset($_POST['mail'], $_POST['pass'])) {
-    $mail = $_POST['mail'];
+if (isset($_POST['mail_address'], $_POST['pass'])) {
+    $mail = $_POST['mail_address'];
     $pass = $_POST['pass'];
     $sql = $pdo->prepare('SELECT * FROM Users WHERE mail_address=?');
     $sql->execute([$mail]);
