@@ -65,9 +65,9 @@ if ($results) {
             $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             if (!$row) {
-                echo '<td><input type="submit" value="参加"></td>';
+                echo '<td><input type="submit" value="参加" class="join"></td>';
             }else{
-                echo '<td><input type="submit" value="参加済"></td>';
+                echo '<td><input type="submit" value="参加済" class="joined"></td>';
             }
             echo '</form>';
             echo '</tr>';
