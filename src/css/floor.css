@@ -25,7 +25,7 @@ main {
 }
 
 h1 {
-    font-size: 30px; /* フォントサイズ */
+    font-size: 60px; /* フォントサイズ */
     color: #333; /* フォント色 */
 }
 
@@ -37,7 +37,7 @@ ul {
 
 li {
     margin-bottom: 15px;
-    font-size:20px;
+    font-size:40px;
     border-radius: 45px;
 }
 
@@ -47,9 +47,4 @@ li a {
     color:black;
     text-decoration: none;
 }
-/* sankaku クラスで ‣ のデザインを調整 */
-.sankaku {
-    font-size: 3px; /* シンボルのサイズを設定 */
-    margin-right: 8px; /* テキストとシンボルの間にスペース */
-    color: #0c58f0; /* シンボルの色を設定（必要に応じて変更） */
-}
+
