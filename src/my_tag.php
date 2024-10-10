@@ -9,16 +9,16 @@ if (isset($_POST['tag_name'])) {
     ]);
 }
 ?>
-
+<link rel="stylesheet" href="css/my_tag.css">
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
     タグ名：
     <input type="name" name="tag_name">
-    <input type="submit" value="作成">
+    <input type="submit" value="作成" class="button_in">
 </form>
 <?php
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
@@ -26,7 +26,7 @@ $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
-    <table>
+    <table id="table" border="0" style="font-size: 18pt;">
         <th>タグID</th>
         <th>タグ名</th>
         <th></th>
@@ -39,11 +39,11 @@ if ($list_raw) {
             ?>
             <form action="tag_update.php" method="post">
                 <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
-                <td><input type="submit" value="更新"></td>
+                <td><input type="submit" value="更新" class="button_up"></td>
             </form>
             <form action="my_tag.php" method="post">
                 <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
-                <td><input type="submit" value="削除"></td>
+                <td><input type="submit" value="削除" class="button_del"></td>
             </form>
             <?php
             echo '</tr>';

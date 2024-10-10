@@ -2,9 +2,9 @@
     require 'parts/auto-login.php';
 
     //フォロー・フォロワー機能
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action'])) {
-        $follower_id = $_SESSION['user']['user_id'];
-        $follow_id = $_POST['user_id'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $follower_id = $_POST['user_id'];
+        $follow_id = $_SESSION['user']['user_id'];
 
         if (isset($_POST['action']) && $_POST['action'] == 'follow') {
             // フォローを追加
@@ -17,18 +17,16 @@
         }
 
         // リダイレクトして同じページを再読み込み
-        header('Location: user.php');
+        header('Location: user.php?user_id=' .$_POST['user_id']);
         exit();
     }
 
     require 'header.php';
     
-    // echo '<script type="text/javascript" src="js/user.js"></script>';
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     // $users->execute([$_SESSION['user']['user_id']]);
-    $_POST['user_id'] = 2;
-    $users->execute([$_POST['user_id']]);
+    $users->execute([$_GET['user_id']]);
     
     //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
@@ -44,6 +42,10 @@
             //自分のプロフィール
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
+
+            //編集ボタン
+            echo '<button onclick="location.href=\'useredit.php\'">編集</button>';
+
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
@@ -79,11 +81,11 @@
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
-            $followStmt->execute([$_SESSION['user']['user_id'], $_POST['user_id']]);
+            $followStmt->execute([$_SESSION['user']['user_id'], $_GET['user_id']]);
             $follow = $followStmt->fetch();
-            if(!empty($follow)){
+            if($follow){
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit">
                             <img src="img\star.png" width="10%" height="10%">
@@ -91,7 +93,7 @@
                       </form><br>';
             }else{
                 echo '<form action="user.php" method="post">
-                        <input type="hidden" name="user_id" value=', $_POST['user_id'], '>
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
                             <img src="img\notstar.png" width="10%" height="10%">

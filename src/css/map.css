@@ -21,6 +21,13 @@ body{
 }
 .map{
     margin: 55px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+}
+
+a{
+    display: block;
 }
 
 
@@ -28,7 +35,7 @@ body{
     border: 2px solid #333333;
     padding: 0px;
     height: 120px;
-    width: 57%;
+    width: 800px;
     margin-inline-start: 21%;
 }
 
@@ -37,3 +44,47 @@ body{
     flex-wrap: wrap;
     margin-left: 85%;
 }
+
+/* .gakugai{
+    background-color: #464646;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    position:fixed;
+} */
+
+/* 学外 Section */
+.gakugai-container {
+    background-color: #b3b3b3;
+    padding: 15px; 
+    border-radius: 10px;
+    margin-top: 0; 
+}
+
+table{
+    margin: auto;
+    table-layout: fixed;
+}
+
+.box {
+    width: 700%;
+    height: 100px;
+}
+
+button {
+    display: inline-block; /* ボタンを横並びにする */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角丸をつける */
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    margin: 5px; /* ボタン同士の余白 */
+    background-color: #96b97d; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+  }
