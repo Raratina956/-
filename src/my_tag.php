@@ -8,6 +8,13 @@ if (isset($_POST['tag_name'])) {
         $_SESSION['user']['user_id']
     ]);
 }
+if (isset($_POST['delete_tag_id'])) {
+    $delete_tag_id = $_POST['delete_tag_id'];
+    $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=?');
+    $sql_delete->execute([$delete_tag_id]);
+    $sql_delete = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id=?');
+    $sql_delete->execute([$delete_tag_id]);
+}
 ?>
 <link rel="stylesheet" href="css/my_tag.css">
 <?php
