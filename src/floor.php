@@ -15,6 +15,7 @@ require 'header.php';
 
 <?php
 $floor = $_POST['floor'];
+echo $floor;
 echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
 $sql->execute([$floor]);
