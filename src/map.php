@@ -36,8 +36,19 @@
             <h1>MAP</h1>
           
         <?php
+         $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
+         $sql->execute([$_SESSION['user']['user_id']]);
+         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
-            // echo '<div class="linkbox">';
+         foreach ($sql as $tag_list) {
+               echo '<select name="list">';
+               echo "<option value='",$tag_list['tag_id'],"'>'",$tag_list['tag_name'],"'</option>";
+                echo '</select>'
+
+            // $data .= "<option value='". $tag_list['tag_name'];
+            // $data .= "'>". $tag_list['tag_name']. "</option>";
+          }
+         
             echo '<table width=700>';
                 for($i = 7;$i>0; $i--){
                     echo '<tr>';
