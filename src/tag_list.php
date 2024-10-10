@@ -21,6 +21,7 @@ if (isset($_POST['tag_id'])) {
 <?php
 // require 'header.php';
 ?>
+<link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
 <a href=""><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
@@ -41,7 +42,7 @@ if (isset($_POST['tag_search'])) {
 }
 if ($results) {
     ?>
-    <table>
+    <table id="table" border="0">
         <th>タグ名</th>
         <th>参加人数</th>
         <th>作成者</th>
