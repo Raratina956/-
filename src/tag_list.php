@@ -19,7 +19,7 @@ if (isset($_POST['tag_id'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
@@ -80,4 +80,4 @@ if ($results) {
     echo 'タグがありません';
 }
 ?>
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>
