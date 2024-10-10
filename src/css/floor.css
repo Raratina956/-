@@ -47,9 +47,4 @@ li a {
     color:black;
     text-decoration: none;
 }
-/* sankaku クラスで ‣ のデザインを調整 */
-.sankaku {
-    font-size: 3px; /* シンボルのサイズを設定 */
-    margin-right: 8px; /* テキストとシンボルの間にスペース */
-    color: #0c58f0; /* シンボルの色を設定（必要に応じて変更） */
-}
+
