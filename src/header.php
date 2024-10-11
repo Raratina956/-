@@ -26,7 +26,7 @@
             <ul>
                 <li>MAP</li>
                 <li>ユーザー情報</li>
-                <li>お気に入り</li>
+                <li><a href="favorite.php">お気に入り</a></li>
                 <li>QRカメラ</li>
                 <li>チャット</li>
                 <li><a href="tag_list.php">みんなのタグ</a></li>
