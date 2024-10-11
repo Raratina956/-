@@ -18,7 +18,7 @@ $search_sql->execute([$_SESSION['user']['user_id']]);
 $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($results) {
     ?>
-    <table>
+    <table id="table" border="0" style="font-size: 18pt;">
         <th>タグ名</th>
         <th>作成者</th>
         <th></th>
@@ -37,7 +37,7 @@ if ($results) {
             ?>
             <form action="join_tag.php" method="post">
                 <input type="hidden" name="delete_tag" value=<?php echo $row['tag_id']; ?>>
-                <input type="submit" value="退会">
+                <input type="submit" value="退会" class="button_quit">
             </form>
             <?php
             echo '</td>';
