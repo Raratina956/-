@@ -45,8 +45,8 @@ try {
                 }
             ?>
         </div>
-            <input type="file" id="fileInput" accept="image/*">
-            <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+        <input type="file" id="fileInput" accept="image/*"><br>
+        <img id="preview" src="#" alt="Preview" style="display:none;"><br>
 
             <script>
                 document.getElementById('fileInput').onchange = function (event) {
