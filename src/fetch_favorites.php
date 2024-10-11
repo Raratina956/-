@@ -2,7 +2,7 @@
 require 'parts/auto-login.php';
 
 // POSTで送られてきたデータを取得
-$type = $_POST['type'];
+$type = isset($_POST['type']) ? $_POST['type'] : 'all'; // デフォルトを 'all' に設定
 $list_raw = []; // 初期化
 
 switch ($type) {
