@@ -28,6 +28,7 @@ require 'header.php';
 
 <div id="favorite-list">
     <!-- ここに取得したデータが表示される -->
+    <!-- fetch_favoritesにあるよ！ -->
 </div>
 <a href="main.php">メインへ</a>
 <script>
