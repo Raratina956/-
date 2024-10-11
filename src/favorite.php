@@ -3,9 +3,9 @@ require 'parts/auto-login.php';
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
-
+<link rel="stylesheet" href="css/join_tag.css">
 <h1>お気に入り</h1>
 <table>
     <th>全て</th>
