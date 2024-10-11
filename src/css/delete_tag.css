@@ -46,8 +46,8 @@ th, td {
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: right;
+    justify-content: right;
     border-color: rgb(248, 88, 88);
     background-color: white;
     color: rgb(248, 88, 88);
