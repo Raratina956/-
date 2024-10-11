@@ -41,7 +41,7 @@
          $row = $sql->fetch(PDO::FETCH_ASSOC);
 
          echo '<select name="list">';
-         foreach ($sql as $tag_list) {
+         foreach ($row as $tag_list) {
               
                echo "<option value=",$tag_list['tag_id'],">",$tag_list['tag_name'],"</option>";
              
