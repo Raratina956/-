@@ -38,12 +38,11 @@
         <?php
          $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
-         $row = $sql->fetch(PDO::FETCH_ASSOC);
+         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
          echo '<select name="list">';
          foreach ($row as $tag_list) {
             echo "<option value='",$tag_list['tag_id'],"'>",$tag_list['tag_name'],"</option>"; 
-
             // $data .= "<option value='". $tag_list['tag_id'];
             // $data .= "'>". $tag_list['tag_name']. "</option>";
 
