@@ -11,7 +11,7 @@ h1{
 table{
     margin: auto;
     margin-top: 20px;
-    width: 33%;
+    min-width: 33%;
 }
 
 .back-link {
