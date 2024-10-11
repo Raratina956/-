@@ -49,7 +49,7 @@ if ($list_raw) {
     echo '<td>アイコン（仮）</td>';
     echo '<td>', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</td>';
     ?>
-    <link rel="stylesheet" href="css/fetch_favorites.css">
+    
     <td>
         <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)" class="button_del">削除</button>
     </td>
