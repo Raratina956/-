@@ -30,7 +30,7 @@ require 'header.php';
     <!-- ここに取得したデータが表示される -->
     <!-- fetch_favoritesにあるよ！ -->
 </div>
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>>メインへ</a>
 <script>
 function fetchData(type) {
     console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
