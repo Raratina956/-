@@ -26,6 +26,7 @@ require 'header.php';
     <link rel="stylesheet" href="css/delete_tag.css">
 </head>
 <body>
+<a class="back-link" href="javascript:history.back()">戻る</a>
     <main>
         <h1>タグ削除</h1><br>
         <span>削除するタグ内容を確認してください</span><br>
