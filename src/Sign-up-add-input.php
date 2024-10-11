@@ -49,28 +49,34 @@ try {
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <button type="button" id="uploadButton">登録</button>
-
-        <script>
-        document.getElementById('fileInput').onchange = function (event) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var existingIcon = document.getElementById('existingIcon');
-                var preview = document.getElementById('preview');
-                
-                if (existingIcon) {
-                    existingIcon.src = reader.result;  // 既存のアイコンを置き換える
-                } else {
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                }
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        };
-
-        document.getElementById('uploadButton').onclick = function () {
-            document.getElementById('uploadForm').submit();
-        };
-    </script>
     </form>
+
+<script>
+    document.getElementById('fileInput').onchange = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            
+            if (existingIcon) {
+                existingIcon.src = reader.result;  // 既存のアイコンを置き換える
+            } else {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+
+    document.getElementById('uploadButton').onclick = function () {
+        var form = document.getElementById('uploadForm');
+        if (form) {
+            form.submit();
+        } else {
+            console.error('uploadForm not found');
+        }
+    };
+</script>
+
 </body>
 </html>
