@@ -51,7 +51,7 @@ if ($list_raw) {
         ?>
         <form action="favorite.php" method="post">
             <input type="hidden" name="delete" value=<?php $favorite['favorite_id'] ?>>
-            <input type="submit" value="削除">
+            <td><input type="submit" value="削除"></td>
         </form>
         <?php
         echo '</tr>';
