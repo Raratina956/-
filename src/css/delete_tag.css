@@ -58,3 +58,18 @@ th, td {
     background-color: rgb(207, 40, 40);
     color: white;
 }
+
+.back-link {
+    position: absolute; /* 左上に配置 */
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
+}

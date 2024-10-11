@@ -29,8 +29,8 @@
                 <li>お気に入り</li>
                 <li>QRカメラ</li>
                 <li>チャット</li>
-                <li>みんなのタグ</li>
-                <li>MYタグ</li>
+                <li><a href="tag_list.php">みんなのタグ</a></li>
+                <li><a href="my_tag.php">MYタグ</a></li>
                 <li>アナウンス</li>
                 <li class="logout">ログアウト</li> <!-- ログアウトにクラスを追加 -->
             </ul>
