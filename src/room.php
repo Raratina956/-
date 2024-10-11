@@ -43,7 +43,7 @@ require 'header.php'; // ヘッダー読み込み
     
     <form action="room.php?id=<?php echo htmlspecialchars($room_id); ?>" method="post">
         <input type="hidden" name="judge" value="0">
-        <input type="submit" value="位置登録">
+        <input class="room"type="submit" value="位置登録">
     </form>
     
     <a href="main.php" class="back-link">メインへ</a>
