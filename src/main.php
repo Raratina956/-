@@ -37,6 +37,7 @@ require 'parts/auto-login.php';
     <li><a href="map.php">map</a></li>
     <li><a href="join_tag.php">参加タグ</a></li>
     <li><a href="favorite.php">お気に入り</a></li>
+    <li><a href="announce.php">アナウンス</a></li>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
 
     <!-- まだリンクがないので仮で作っときます -->
