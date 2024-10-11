@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/user.css">
-    <title>Document</title>
-   
-</head>
-   
-    <body>
-
 <?php
     require 'parts/auto-login.php';
+?>
 
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/user.css">
+        <title>Document</title>
+       
+    </head>
+       
+        <body>
+<?php
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $follower_id = $_POST['user_id'];
@@ -53,7 +54,7 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
 
             //編集ボタン
             echo '<button onclick="location.href=\'useredit.php\'">編集</button>';
