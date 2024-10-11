@@ -50,7 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             if($type == 0){
-                echo '< >';
+                echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
+                        <input type="hidden" name="user_id" value="', $user_id, '">
+                      </form>';
+                echo '<script>
+                        document.getElementById("redirectForm").submit();
+                      </script>';
             }else{
                 $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
                 header("Location: $redirect_url");
