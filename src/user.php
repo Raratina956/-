@@ -53,7 +53,7 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
 
             //編集ボタン
             echo '<button onclick="location.href=\'useredit.php\'">編集</button>';
