@@ -49,9 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
         if ($stmt->execute()) {
-            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
-            header("Location: $redirect_url");
-            exit();
+            if($type == 0){
+                echo '< >';
+            }else{
+                $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
+                header("Location: $redirect_url");
+                exit();
+            }
         } else {
             $error_info = $stmt->errorInfo();
             echo "登録に失敗しました: " . $error_info[2];
