@@ -8,7 +8,7 @@ require 'header.php'; // ヘッダー読み込み
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/room.css"> <!-- room.cssをリンク -->
+    <link rel="stylesheet" href="css/room.css"> 
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
 <body>
