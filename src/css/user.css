@@ -12,14 +12,12 @@ body {
     background-size: cover;
     background-color: #464646;
     height: 100%;
-    display: flex;
     justify-content: center; /* コンテンツ全体を中央に */
     align-items: flex-start; /* 左側のコンテンツを上寄せ */
     flex-direction: column;
 }
  
 .profile-container {
-    display: flex; /* アイコンとプロフィール情報を横並びに */
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
     width: 80%; /* コンテナの幅を調整（必要に応じて変更） */
