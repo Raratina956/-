@@ -36,18 +36,16 @@ try {
                 ?>
             </select>
         </div>
-        <div class="form-group">
             <?php
                 $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
                 $iconStmt->execute([$_POST['user_id']]);
                 $icon = $iconStmt->fetch();
                 if ($icon) {
-                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
+                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon" width="10%" height="10%"><br>';
                 }
             ?>
-        </div>
         <input type="file" id="fileInput" accept="image/*"><br>
-        <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+        <img id="preview" src="#" alt="Preview" style="display:none; width=10%; height=10%"><br>
 
         <script>
             document.getElementById('fileInput').onchange = function (event) {
