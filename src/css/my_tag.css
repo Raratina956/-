@@ -12,9 +12,15 @@ span{
     font-size: 20px;
 }
 
-.tag_name{
-    width: 240px;
-    height: 30px;
+.textbox{
+    margin-top: 25px;
+    width: 30%;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 36px;
+    border: none;
+    border-radius: 5px;
 }
 
 .button_in{
