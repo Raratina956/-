@@ -51,7 +51,7 @@ if ($list_raw) {
     ?>
     <link rel="stylesheet" href="css/fetch_favorites.css">
     <td>
-        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)">削除</button>
+        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)" class="button_del">削除</button>
     </td>
     <?php
     echo '</tr>';
