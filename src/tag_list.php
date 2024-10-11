@@ -23,7 +23,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
-<a href="" class="join_tag"><span>参加しているタグはこちら</span></a>
+<a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
     <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
     <input type="submit" value="検索" class="search"> 
@@ -42,7 +42,7 @@ if (isset($_POST['tag_search'])) {
 }
 if ($results) {
     ?>
-    <br><br><table id="table" border="0">
+    <br><br><table id="table" border="0" style="font-size: 18pt;">
         <th>タグ名</th>
         <th>参加人数</th>
         <th>作成者</th>
