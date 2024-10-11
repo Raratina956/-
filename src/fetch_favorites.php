@@ -43,7 +43,7 @@ switch ($type) {
 
 // 取得したデータを表示
 if ($list_raw) {
-    echo '<table border="0" style="font-size: 18pt;">';
+    echo '<table border="0" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
     echo '<td>アイコン（仮）</td>';
