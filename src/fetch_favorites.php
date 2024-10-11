@@ -1,6 +1,5 @@
 <?php
 session_start(); // 必要であればセッション開始
-require 'db_connection.php'; // データベース接続 (仮)
 
 // POSTで送られてきたデータを取得
 $type = $_POST['type'];
