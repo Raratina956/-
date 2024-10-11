@@ -16,7 +16,6 @@
         if($user['s_or_t'] == 0){
             //生徒情報編集
             echo '名前：<input type="text" name="user_name" value="', $user['user_name'], '">';
-
             
             echo 'クラス：<input type="text" name="class" value="', $user['user_name'], '">';
         }
