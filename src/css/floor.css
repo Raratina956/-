@@ -53,9 +53,9 @@ li a {
 }
 
 .back-link {
-    /* margin: 100px auto; */
+    margin: 100px auto;
     position: absolute; /* 左上に配置 */
-    top: 100px; /* 上からの距離 */
+    top: 20px; /* 上からの距離 */
     left: 20px; /* 左からの距離 */
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
