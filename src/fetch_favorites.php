@@ -59,6 +59,6 @@ if ($list_raw) {
 
     echo '</table>';
 } else {
-    echo '<td class="non">お気に入りのユーザーがいません</td>';
+    echo '<div class="non">お気に入りのユーザーがいません</div>';
 }
 ?>
