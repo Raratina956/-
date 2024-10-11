@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     background-image: url(../img/SpotLinkbg.png);
     font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@ main {
     max-width: 600px;
     padding: 20px;
     border-radius: 8px;
-    background-color: #fff; /* 背景色を設定 */
+ 
 }
 
 h1 {
