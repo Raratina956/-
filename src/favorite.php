@@ -29,7 +29,7 @@ require 'header.php';
 <div id="favorite-list">
     <!-- ここに取得したデータが表示される -->
 </div>
-
+<a href="main.php">メインへ</a>
 <script>
 function fetchData(type) {
     console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
