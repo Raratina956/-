@@ -36,7 +36,7 @@ if (isset($_POST['content'])) {
 // require 'header.php';
 ?>
 <?php
-if (isset($_POST['content'])) {
+if (!isset($_POST['content'])) {
     // 下記アナウンス発信前
     ?>
     <h1>アナウンス</h1>
