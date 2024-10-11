@@ -50,7 +50,7 @@ if ($list_raw) {
         echo '<td>', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</td>';
         ?>
         <form action="favorite.php" method="post">
-            <input type="hidden" name="delete" value=<?php $favorite['favorite_id'] ?>>
+            <input type="hidden" name="delete" value="<?php echo $favorite['favorite_id']; ?>">
             <td><input type="submit" value="削除"></td>
         </form>
         <?php
