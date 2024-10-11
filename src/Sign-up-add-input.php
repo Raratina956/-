@@ -45,7 +45,6 @@ try {
                 }
             ?>
         </div>
-        <div class="form-group">
             <input type="file" id="fileInput" accept="image/*">
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
 
@@ -60,7 +59,6 @@ try {
                     reader.readAsDataURL(event.target.files[0]);
                 };
             </script>
-        <div class="form-group">
         <input type="submit" value="登録">
     </form>
 </body>
