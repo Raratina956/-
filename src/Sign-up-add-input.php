@@ -49,9 +49,8 @@ try {
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <button type="button" id="uploadButton">登録</button>
-    </form>
 
-    <script>
+        <script>
         document.getElementById('fileInput').onchange = function (event) {
             var reader = new FileReader();
             reader.onload = function () {
@@ -72,6 +71,6 @@ try {
             document.getElementById('uploadForm').submit();
         };
     </script>
-
+    </form>
 </body>
 </html>
