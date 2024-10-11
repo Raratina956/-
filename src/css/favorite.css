@@ -29,3 +29,14 @@ table{
     background-color: rgb(54, 98, 216);
     color: white;
 }
+
+th {
+    color: gray;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* クリックされた項目の色 */
+.active {
+    color: darkblue; /* 濃い青色 */
+}

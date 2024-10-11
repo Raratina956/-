@@ -12,6 +12,7 @@
        
     </head>
        
+        <body>
 <?php
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -54,7 +55,7 @@
             //自分のプロフィール
             //アイコン表示
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
-            echo '<body>';
+
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
 
