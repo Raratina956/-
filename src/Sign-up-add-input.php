@@ -41,9 +41,24 @@ try {
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$_POST['user_id']]);
                 foreach($iconStmt as $icon){
-                    echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
-                }     
+                    echo '<img src="', $icon['icon_name'], '" class="icon"><br>';
+                }
             ?>
+            <input type="file" id="fileInput" accept="image/*">
+            <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+
+            <script>
+                document.getElementById('fileInput').onchange = function (event) {
+                var reader = new FileReader();
+                    reader.onload = function () {
+                        var preview = document.getElementById('preview');
+                        preview.src = reader.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                };
+            </script>
+
             <input type="text" name="name" id="name" required>
         </div>
         <input type="submit" value="登録">

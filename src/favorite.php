@@ -18,7 +18,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="css/join_tag.css">
 <h1>お気に入り</h1>
-<table>
+<table border="0" style="font-size: 15pt;">
     <tr>
         <th onclick="fetchData('all')">全て</th>
         <th onclick="fetchData('teacher')">先生</th>
