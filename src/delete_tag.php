@@ -49,7 +49,7 @@ require 'header.php';
                     <td>
                         <form action="delete_tag.php" method="post">
                             <input type="hidden" name="tag_id" value="<?php echo htmlspecialchars($delete_tag_id); ?>">
-                            <input type="submit" value="削除">
+                            <input type="submit"class="button_del" value="削除">
                         </form>
                     </td>
                 </tr>

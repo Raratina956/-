@@ -39,6 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':user_name', $username);
         $stmt->bindParam(':password', $hashed_password);
 
+        $icon_name = "img/icon/default.png";
+        $user_id = $pdo->lastInsertId();
+        $sql = "INSERT INTO Icon (user_id, icon_name) VALUES (:user_id, :icon_name)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':icon_name', $icon_name);
+
         if ($stmt->execute()) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
             header("Location: $redirect_url");
