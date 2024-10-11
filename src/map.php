@@ -40,22 +40,24 @@
          $sql->execute([$_SESSION['user']['user_id']]);
          $row = $sql->fetch(PDO::FETCH_ASSOC);
 
-         foreach ($sql as $tag_list) {
-               echo '<select name="list">';
-               echo "<option value='",$tag_list['tag_id'],"'>'",$tag_list['tag_name'],"'</option>";
-               echo '</select>';
+         echo '<select name="list">';
+         foreach ($row as $tag_list) {
+              
+               echo "<option value=",$tag_list['tag_id'],">",$tag_list['tag_name'],"</option>";
+             
 
             // $data .= "<option value='". $tag_list['tag_name'];
             // $data .= "'>". $tag_list['tag_name']. "</option>";
           }
-         
+         echo '</select>';
+
             echo '<table width=700>';
                 for($i = 7;$i>0; $i--){
                     echo '<tr>';
                     echo '<form name="floor" action="floor.php" method="post">';
                     echo '<td class="block"><div class="box">aaaaa</div></td>';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
-                    echo '<td class="number"><button type="submit" value="',$i,'階" name="floor"">',$i,'階</td>';
+                    echo '<td class="number"><button type="submit" value="',$i,'階" name="floor">',$i,'階</td>';
                     echo '</tr>';
                     echo '</form>';
                 }
