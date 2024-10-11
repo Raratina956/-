@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 require 'parts/db-connect.php';
 if (isset($_SESSION['login'])) {
