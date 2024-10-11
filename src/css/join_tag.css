@@ -11,3 +11,19 @@ h1{
 table{
     margin: auto;
 }
+
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
