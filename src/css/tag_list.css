@@ -35,6 +35,7 @@ table{
     line-height: 36px; /*ここの数値を変更*/
     border: none;
     border-radius: 5px; /* 角を丸く */
+    border-color: white;
 }
 
 .search{
