@@ -6,13 +6,12 @@ if (isset($_POST['delete'])) {
     $sql_delete = $pdo->prepare('DELETE FROM Favorite WHERE favorite_id = ?');
     $result = $sql_delete->execute([$delete]);
 
-    // 成功した場合は成功メッセージを返す
     if ($result) {
         echo json_encode(['status' => 'success']);
     } else {
         echo json_encode(['status' => 'error', 'message' => '削除に失敗しました。']);
     }
-    exit; // 処理が完了したら終了
+    exit;
 }
 
 require 'header.php';
@@ -32,7 +31,23 @@ require 'header.php';
 </div>
 
 <script>
+function fetchData(type) {
+    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_favorites.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('favorite-list').innerHTML = xhr.responseText;
+        }
+    };
+
+    xhr.send('type=' + type);
+}
+
 function deleteFavorite(favoriteId) {
+    console.log('削除するID:', favoriteId); // 削除するIDのログ
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'favorite.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -43,12 +58,12 @@ function deleteFavorite(favoriteId) {
             if (response.status === 'success') {
                 fetchData('all'); // 削除後に全てのデータを再取得
             } else {
-                console.error(response.message); // エラーメッセージをコンソールに表示
-                alert(response.message); // アラートでエラーメッセージを表示
+                console.error(response.message);
+                alert(response.message);
             }
         } else {
-            console.error(`リクエストエラー: ステータスコード ${xhr.status}`); // ステータスコードのログ
-            alert(`リクエストに失敗しました。ステータスコード: ${xhr.status}`); // アラート表示
+            console.error(`リクエストエラー: ステータスコード ${xhr.status}`);
+            alert(`リクエストに失敗しました。ステータスコード: ${xhr.status}`);
         }
     };
 
@@ -60,7 +75,7 @@ function deleteFavorite(favoriteId) {
     xhr.send('delete=' + favoriteId);
 }
 
-
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
 </script>
+
