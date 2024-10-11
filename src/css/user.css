@@ -1,4 +1,10 @@
 body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 70vh;
+    margin: 0;
+    text-align: center;
     background-image: url(../img/SpotLinkbg.png);
     background-position: center center;
     background-repeat: no-repeat;
@@ -7,6 +13,7 @@ body {
     background-color: #464646;
     height: 100%;
 }
+
 
 .star{
 
@@ -21,12 +28,7 @@ margin-left: 1300px
 }
 
 .profile{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 70vh;
-    margin: 0;
-    text-align: center;
+align-items:center
 }
 
 .tag{
