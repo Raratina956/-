@@ -23,14 +23,14 @@
 
     require 'header.php';
     
-    //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
+    //ユーザー情報を持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     // $users->execute([$_SESSION['user']['user_id']]);
     $users->execute([$_GET['user_id']]);
     
-    //アイコン情報を「$_SESSION['user']['user_id']」を使って持ってくる
+    //アイコン情報を持ってくる
     $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-    $iconStmt->execute([$_SESSION['user']['user_id']]);
+    $iconStmt->execute([$_GET['user_id']]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 

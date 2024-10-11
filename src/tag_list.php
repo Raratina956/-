@@ -23,7 +23,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="css/tag_list.css">
 <h1>みんなのタグ</h1>
-<a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a><br>
+<a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
     <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
     <input type="submit" value="検索" class="search"> 
@@ -42,7 +42,7 @@ if (isset($_POST['tag_search'])) {
 }
 if ($results) {
     ?>
-    <br><br><table id="table" border="0">
+    <br><br><table id="table" border="0" style="font-size: 18pt;">
         <th>タグ名</th>
         <th>参加人数</th>
         <th>作成者</th>
@@ -51,7 +51,11 @@ if ($results) {
         foreach ($results as $row) {
             echo '<tr>';
             echo '<td>', $row['tag_name'], '</td>';
-            echo '<td></td>';
+            $sql_count = $pdo->prepare('SELECT COUNT(DISTINCT user_id) AS user_count FROM Tag_attribute WHERE tag_id = ?');
+            $sql_count->execute([$row['tag_id']]);
+            $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
+            $user_count = $count_result['user_count'];
+            echo '<td>',$user_count,'</td>';
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row['user_id']]);
             $row_user = $sql_user->fetch();
