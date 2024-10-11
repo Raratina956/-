@@ -25,7 +25,7 @@
             <!-- メニューリスト -->
             <ul>
                 <li>MAP</li>
-                <li>ユーザー情報</li>
+                <li><a href="user.php">ユーザー情報</a></li>
                 <li><a href="favorite.php">お気に入り</a></li>
                 <li>QRカメラ</li>
                 <li>チャット</li>
