@@ -42,7 +42,7 @@ try {
                 $iconStmt->execute([$_POST['user_id']]);
                 $icon = $iconStmt->fetch();
                 if ($icon) {
-                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
+                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon" width="10%" height="10%">';
                 }
             ?>
         </div>
