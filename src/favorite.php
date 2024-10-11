@@ -1,5 +1,10 @@
 <?php
 require 'parts/auto-login.php';
+if(isset($_POST['delete'])){
+    $delete = $_POST['delete'];
+    $sql_delete = $pdo->prepare('DELETE FROM Favorite WHERE favorite_id=?');
+    $sql_delete->execute([$delete]);
+}
 require 'header.php';
 ?>
 <link rel="stylesheet" href="css/join_tag.css">
