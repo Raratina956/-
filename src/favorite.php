@@ -8,31 +8,32 @@ require 'header.php';
 <link rel="stylesheet" href="css/join_tag.css">
 <h1>お気に入り</h1>
 <table>
-    <th>全て</th>
-    <th>先生</th>
-    <th>生徒</th>
+    <tr>
+        <th onclick="fetchData('all')">全て</th>
+        <th onclick="fetchData('teacher')">先生</th>
+        <th onclick="fetchData('student')">生徒</th>
+    </tr>
 </table>
-<?php
-$all_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=?');
-$all_sql->execute([$_SESSION['user']['user_id']]);
-$list_raw = $all_sql->fetchAll(PDO::FETCH_ASSOC);
-if ($list_raw) {
-    echo '<table>';
-    foreach ($list_raw as $favorite) {
-        echo '<tr>';
-        echo '<td>アイコン（仮）</td>';
-        $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-        $sql_user->execute([$favorite['follower_id']]);
-        $row_user = $sql_user->fetch();
-        if($row_user['s_or_t']===0){
-            echo '<td>', $row_user['user_name'], '</td>';
-        }else{
-            echo '<td>', $row_user['user_name'], '　先生</td>';
+
+<div id="favorite-list">
+    <!-- ここに取得したデータが表示される -->
+</div>
+
+<script>
+function fetchData(type) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_favorites.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // サーバーにデータを送信 (type: all, teacher, student)
+    xhr.send('type=' + type);
+
+    // 非同期通信が成功した場合
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('favorite-list').innerHTML = xhr.responseText;
         }
-        echo '</tr>';
-    }
-    echo '</table>';
-} else {
-    echo 'お気に入りのユーザーがいません';
+    };
 }
-?>
+</script>
+
