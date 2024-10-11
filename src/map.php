@@ -43,7 +43,7 @@
          echo '<select name="list">';
          foreach ($sql as $tag_list) {
               
-               echo "<option value='",$tag_list['tag_id'],"'>'",$tag_list['tag_name'],"'</option>";
+               echo "<option value=",$tag_list['tag_id'],">",$tag_list['tag_name'],"</option>";
              
 
             // $data .= "<option value='". $tag_list['tag_name'];
@@ -57,7 +57,7 @@
                     echo '<form name="floor" action="floor.php" method="post">';
                     echo '<td class="block"><div class="box">aaaaa</div></td>';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
-                    echo '<td class="number"><button type="submit" value="',$i,'階" name="floor"">',$i,'階</td>';
+                    echo '<td class="number"><button type="submit" value="',$i,'階" name="floor">',$i,'階</td>';
                     echo '</tr>';
                     echo '</form>';
                 }
