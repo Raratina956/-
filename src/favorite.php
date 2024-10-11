@@ -18,7 +18,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="css/join_tag.css">
 <h1>お気に入り</h1>
-<table>
+<table border="0" style="font-size: 15pt;">
     <tr>
         <th onclick="fetchData('all')">全て</th>
         <th onclick="fetchData('teacher')">先生</th>
@@ -28,8 +28,9 @@ require 'header.php';
 
 <div id="favorite-list">
     <!-- ここに取得したデータが表示される -->
+    <!-- fetch_favoritesにあるよ！ -->
 </div>
-
+<a href="main.php" class="back-link">メインへ</a>
 <script>
 function fetchData(type) {
     console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
@@ -74,6 +75,7 @@ function deleteFavorite(favoriteId) {
 
     xhr.send('delete=' + favoriteId);
 }
+
 
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');

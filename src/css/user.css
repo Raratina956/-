@@ -1,5 +1,5 @@
 body{
-    padding-top: 80px;
+    padding-top: 90px;
 }
 .star{
 
@@ -10,11 +10,11 @@ body{
 }
 
 .confirmbutton{
-
+margin-left: 1300px
 }
 
-.profirm{
-
+.profile{
+align-items:center
 }
 
 .tag{

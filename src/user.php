@@ -121,12 +121,12 @@
             }
 
             //アイコン表示
+            echo '<div class="profile">';
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
-                echo '<div class="profile">';
                 echo $user['user_name'], '<br>';
                 echo 'クラス：<br>';
                 echo $user['mail_address'], '<br>';
