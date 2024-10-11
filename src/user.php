@@ -57,19 +57,23 @@
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
 
             //編集ボタン
-            echo '<button onclick="location.href=\'useredit.php\'">編集</button>';
+            echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
 
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
+                echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
                 echo $user['user_name'], '<br>';
                 echo 'クラス：<br>';
                 echo $user['mail_address'], '<br>';
+                echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
+                echo '<div class="profile">';
                 echo $user['user_name'], "先生<br>";
                 echo $user['mail_address'], '<br>';
+                echo '</div>';
             }
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
@@ -84,13 +88,15 @@
                 //タグ一覧
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
+                    echo '<div class="tag">';
                     echo $tag['tag_name'];
+                    echo '</div>';
                 }
             }
         }else{
             //相手のプロフィール
             //チャットボタン表示
-            echo '<img src="img\chat.png" width="10%" height="10%"><br>';
+            echo '<img src="img\chat.png" width="10%" height="10%" class=""><br>';
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
@@ -101,7 +107,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit">
-                            <img src="img\star.png" width="10%" height="10%">
+                            <img src="img\star.png" width="10%" height="10%" class="star">
                         </button>
                       </form><br>';
             }else{
@@ -109,24 +115,28 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
-                            <img src="img\notstar.png" width="10%" height="10%">
+                            <img src="img\notstar.png" width="10%" height="10%" class="star">
                         </button>
                       </form><br>';
             }
 
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
+                echo '<div class="profile">';
                 echo $user['user_name'], '<br>';
                 echo 'クラス：<br>';
                 echo $user['mail_address'], '<br>';
+                echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
+                echo '<div class="profile">';
                 echo $user['user_name'], "先生<br>";
                 echo $user['mail_address'], '<br>';
+                echo '</div>';
             }
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
@@ -141,7 +151,9 @@
                 //タグ一覧
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
+                    echo '<div class="tag">';
                     echo $tag['tag_name'];
+                    echo '</div>';
                 }
             }
         }

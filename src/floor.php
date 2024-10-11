@@ -15,7 +15,7 @@ require 'header.php';
 <body>
 
 <?php
-echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
+echo '<main><a class="back-link" href="javascript:history.back()">戻る</a><h1>', htmlspecialchars($floor), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
 $sql->execute([$floor]);
 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);

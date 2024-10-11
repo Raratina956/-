@@ -6,16 +6,6 @@ body {
     padding: 0;
 }
 
-/* Header Styles */
-/* ここでヘッダーが固定されていると仮定 */
-/* header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    z-index: 1000; 
-} */
 
 /* Main Content Styles */
 main {
@@ -50,5 +40,20 @@ li a {
 .san{
     size: 120px;
     color:blue;
+}
+
+.back-link {
+    position: absolute; /* 左上に配置 */
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
 }
 
