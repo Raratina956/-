@@ -129,7 +129,7 @@
                 //生徒(名前、クラス、メールアドレス)
                 echo $user['user_name'];
                 echo 'クラス：<br>';
-                echo $user['mail_address'],;
+                echo $user['mail_address'];
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
