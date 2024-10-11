@@ -3,6 +3,7 @@ require 'parts/auto-login.php';
 if(isset($_POST['content'])){
     $tag_id = $_POST['tag_id'];
     $content = $_POST['content'];
+    
 }
 ?>
 <?php
