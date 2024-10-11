@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':s_or_t', $type);
         $stmt->bindParam(':user_name', $username);
         $stmt->bindParam(':password', $hashed_password);
+        $stmt->execute();
 
         $icon_name = "img/icon/default.png";
         $user_id = $pdo->lastInsertId();
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':icon_name', $icon_name);
+        $stmt->execute();
 
         if ($stmt->execute()) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
