@@ -22,7 +22,9 @@ require 'header.php';
 <table border="0" style="font-size: 15pt;">
     <tr>
         <th onclick="fetchData('all')">全て</th>
+        <th></th>
         <th onclick="fetchData('teacher')">先生</th>
+        <th></th>
         <th onclick="fetchData('student')">生徒</th>
     </tr>
 </table>

@@ -38,27 +38,35 @@ try {
         </div>
         <div class="form-group">
             <?php
-                $iconStmt=$pdo->prepare('select * from Icon where user_id=?');
+                $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
                 $iconStmt->execute([$_POST['user_id']]);
-                foreach($iconStmt as $icon){
-                    echo '<img src="', $icon['icon_name'], '" class="icon"><br>';
+                $icon = $iconStmt->fetch();
+                if ($icon) {
+                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon" width="10%" height="10%">';
                 }
             ?>
-            <input type="file" id="fileInput" accept="image/*">
-            <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+        </div>
+        <input type="file" id="fileInput" accept="image/*"><br>
+        <img id="preview" src="#" alt="Preview" style="display:none; width=10%; height=10%"><br>
 
-            <script>
-                document.getElementById('fileInput').onchange = function (event) {
+        <script>
+            document.getElementById('fileInput').onchange = function (event) {
                 var reader = new FileReader();
-                    reader.onload = function () {
-                        var preview = document.getElementById('preview');
+                reader.onload = function () {
+                    var existingIcon = document.getElementById('existingIcon');
+                    var preview = document.getElementById('preview');
+                    
+                    if (existingIcon) {
+                        existingIcon.src = reader.result;  // 既存のアイコンを置き換える
+                    } else {
                         preview.src = reader.result;
                         preview.style.display = 'block';
-                    };
-                    reader.readAsDataURL(event.target.files[0]);
+                    }
                 };
-            </script>
-        </div>
+                reader.readAsDataURL(event.target.files[0]);
+            };
+        </script>
+
         <input type="submit" value="登録">
     </form>
 </body>
