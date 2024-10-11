@@ -54,25 +54,25 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon">';
 
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
-
+            echo '<div class="profile-container">';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
-                echo $user['user_name'], '<br>';
+                echo $user['user_name'],"<br>";
                 echo 'クラス：<br>';
-                echo $user['mail_address'], '<br>';
+                echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生<br>";
-                echo $user['mail_address'], '<br>';
+                echo $user['user_name'], "先生";
+                echo $user['mail_address'];
                 echo '</div>';
             }
 
@@ -127,17 +127,19 @@
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
-                echo $user['user_name'], '<br>';
+                echo $user['user_name'],"<br>";
                 echo 'クラス：<br>';
-                echo $user['mail_address'], '<br>';
+                echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生<br>";
-                echo $user['mail_address'], '<br>';
+                echo $user['user_name'], "先生";
+                echo $user['mail_address'],"<br>";
                 echo '</div>';
             }
+
+            echo '</div>';
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
