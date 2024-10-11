@@ -14,6 +14,7 @@ require 'header.php';
 
 <div id="favorite-list">
     <!-- ここに取得したデータが表示される -->
+    <!-- fetch_favorites.phpにあるよ -->
 </div>
 
 <script>
