@@ -47,7 +47,7 @@
             // $data .= "<option value='". $tag_list['tag_id'];
             // $data .= "'>". $tag_list['tag_name']. "</option>";
 
-            echo $data;
+           // echo $data;
           }
          echo '</select>';
 
