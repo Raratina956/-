@@ -1,8 +1,10 @@
 <?php
 if (isset($_POST['logout'])) {
+    ob_start();
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
     header("Location: $redirect_url");
     exit();
+    ob_end_flush();
 }
 ?>
 <!DOCTYPE html>
