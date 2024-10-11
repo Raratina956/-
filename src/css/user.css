@@ -1,20 +1,35 @@
-body{
-    padding-top: 80px;
+body {
+    padding-top: 95px;
+    /* display: flex; */
+    justify-content: center;
+    flex-direction: column;
+    min-height: 70vh;
+    margin: 0;
+    text-align: center;
+    background-image: url(../img/SpotLinkbg.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    height: 100%;
 }
+
+
 .star{
 
 }
 
-.icon{
-
+.usericon{
+    margin: 55px 166px 0px -500px;
 }
 
 .confirmbutton{
-
+margin-left: 1300px
 }
 
-.profirm{
-
+.profile{
+align-items:center
 }
 
 .tag{

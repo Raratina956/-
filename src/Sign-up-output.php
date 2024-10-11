@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':icon_name', $icon_name);
-        $stmt->execute();
 
         if ($stmt->execute()) {
             if($type == 0){

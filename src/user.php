@@ -54,7 +54,7 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon">';
 
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
@@ -64,15 +64,15 @@
             if($user['s_or_t'] == 0){
                 echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
-                echo $user['user_name'], '<br>';
+                echo $user['user_name'];
                 echo 'クラス：<br>';
-                echo $user['mail_address'], '<br>';
+                echo $user['mail_address'];
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生<br>";
-                echo $user['mail_address'], '<br>';
+                echo $user['user_name'], "先生";
+                echo $user['mail_address'];
                 echo '</div>';
             }
 
@@ -121,21 +121,21 @@
             }
 
             //アイコン表示
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="icon"><br>';
+            echo '<div class="profile">';
+            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
-                echo '<div class="profile">';
-                echo $user['user_name'], '<br>';
+                echo $user['user_name'];
                 echo 'クラス：<br>';
-                echo $user['mail_address'], '<br>';
+                echo $user['mail_address'];
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生<br>";
-                echo $user['mail_address'], '<br>';
+                echo $user['user_name'], "先生";
+                echo $user['mail_address'];
                 echo '</div>';
             }
 

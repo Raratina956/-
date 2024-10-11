@@ -11,6 +11,7 @@ h1{
 table{
     margin: auto;
     margin-top: 20px;
+    min-width: 33%;
 }
 
 .back-link {
@@ -27,4 +28,15 @@ table{
 .back-link:hover{
     background-color: rgb(54, 98, 216);
     color: white;
+}
+
+th {
+    color: gray;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* クリックされた項目の色 */
+.active {
+    color: darkblue; /* 濃い青色 */
 }
