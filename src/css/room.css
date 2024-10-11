@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     background-image: url(../img/SpotLinkbg.png);
     font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@ main {
     max-width: 600px;
     padding: 20px;
     border-radius: 8px;
-    background-color: #fff; /* 背景色を設定 */
+ 
 }
 
 h1 {
@@ -36,8 +36,8 @@ input[type="submit"] {
     min-width: 150px;
     height: 40px;
     font-size: 18px;
-    color: white;
-    background-color: #4CAF50; /* 緑色 */
+    color: black;
+    background-color: #a0eefc; /* 緑色 */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -45,7 +45,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049; /* ホバー時の色変更 */
+    background-color: #ffffff; /* ホバー時の色変更 */
 }
 
 .button_del {
