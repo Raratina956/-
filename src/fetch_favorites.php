@@ -45,17 +45,17 @@ switch ($type) {
 if ($list_raw) {
     echo '<table>';
     foreach ($list_raw as $favorite) {
-        echo '<tr>';
-        echo '<td>アイコン（仮）</td>';
-        echo '<td>', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</td>';
-        ?>
-        <form action="favorite.php" method="post">
-            <input type="hidden" name="delete" value="<?php echo $favorite['favorite_id']; ?>">
-            <td><input type="submit" value="削除"></td>
-        </form>
-        <?php
-        echo '</tr>';
-    }
+    echo '<tr>';
+    echo '<td>アイコン（仮）</td>';
+    echo '<td>', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</td>';
+    ?>
+    <td>
+        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)">削除</button>
+    </td>
+    <?php
+    echo '</tr>';
+}
+
     echo '</table>';
 } else {
     echo 'お気に入りのユーザーがいません';

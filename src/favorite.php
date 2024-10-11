@@ -75,6 +75,7 @@ function deleteFavorite(favoriteId) {
     xhr.send('delete=' + favoriteId);
 }
 
+
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
 </script>
