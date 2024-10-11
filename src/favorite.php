@@ -24,7 +24,7 @@ if ($list_raw) {
         $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
         $sql_user->execute([$favorite['follower_id']]);
         $row_user = $sql_user->fetch();
-        echo '<td>', $row_user, '</td>';
+        echo '<td>', $row_user['user_name'], '</td>';
         echo '</tr>';
     }
     echo '</table>';
