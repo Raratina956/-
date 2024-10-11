@@ -48,7 +48,7 @@ input[type="submit"]:hover {
     background-color: #ffffff; /* ホバー時の色変更 */
 }
 
-.button_del {
+.back-link {
     display: block;
     text-align: center;
     margin-top: 20px;
@@ -60,6 +60,6 @@ input[type="submit"]:hover {
     border-radius: 5px;
 }
 
-.button_del:hover {
+.back-link:hover {
     background-color: #ffffff;
 }
