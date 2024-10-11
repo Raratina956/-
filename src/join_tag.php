@@ -37,7 +37,7 @@ if ($results) {
             ?>
             <form action="join_tag.php" method="post">
                 <input type="hidden" name="delete_tag" value=<?php echo $row['tag_id']; ?>>
-                <input type="submit" value="退会">
+                <input type="submit" value="退会" class="button_quit">
             </form>
             <?php
             echo '</td>';
