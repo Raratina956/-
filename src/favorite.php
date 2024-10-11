@@ -1,8 +1,5 @@
 <?php
 require 'parts/auto-login.php';
-?>
-
-<?php
 require 'header.php';
 ?>
 <link rel="stylesheet" href="css/join_tag.css">
@@ -35,5 +32,7 @@ function fetchData(type) {
         }
     };
 }
-</script>
 
+// ページが読み込まれたときに全てのデータを表示
+fetchData('all');
+</script>
