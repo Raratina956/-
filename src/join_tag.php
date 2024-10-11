@@ -45,7 +45,7 @@ if ($results) {
         }
         ?>
     </table>
-    <a href="main.php">メインへ</a>
+    <a href="main.php" class="back-link">メインへ</a>
     <?php
 } else {
     echo '参加済みのタグがありません';
