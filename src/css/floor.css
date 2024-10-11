@@ -6,16 +6,6 @@ body {
     padding: 0;
 }
 
-/* Header Styles */
-/* ここでヘッダーが固定されていると仮定 */
-/* header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    z-index: 1000; 
-} */
 
 /* Main Content Styles */
 main {
