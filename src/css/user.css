@@ -13,7 +13,7 @@ body {
     background-color: #464646;
     height: 100%;
     justify-content: center; /* コンテンツ全体を中央に */
-    align-items: flex-start; /* 左側のコンテンツを上寄せ */
+    align-items: center; /* 左側のコンテンツを上寄せ */
     flex-direction: column;
 }
  
