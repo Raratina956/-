@@ -16,13 +16,13 @@ $results = $join_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($results) {
     ?>
     <form action="announce.php" method="post">
-        <select name="tag">
+        <select name="tag_id">
             <?php
             foreach ($results as $join_row) {
                 $tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
                 $tag_sql->execute([$join_row['tag_id']]);
                 $tag_row = $tag_sql->fetch(PDO::FETCH_ASSOC);
-                echo '<option name="tag_id" value=',$join_row['tag_id'],'>',$tag_row['tag_name'],'</option>';             
+                echo '<option value=',$join_row['tag_id'],'>',$tag_row['tag_name'],'</option>';             
             }
             ?>
         </select>
