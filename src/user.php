@@ -90,7 +90,7 @@
                 foreach($tags as $tag){
                     echo '<div class="tag">';
                     echo $tag['tag_name'];
-                    echo '</div>'
+                    echo '</div>';
                 }
             }
         }else{
