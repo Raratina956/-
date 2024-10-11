@@ -42,12 +42,12 @@
 
          echo '<select name="list">';
          foreach ($row as $tag_list) {
-              
-               echo "<option value=",$tag_list['tag_id'],">",$tag_list['tag_name'],"</option>";
-             
+            //    echo "<option value="',$tag_list['tag_id'],'">"',$tag_list['tag_name'],'"</option>"; 
 
-            // $data .= "<option value='". $tag_list['tag_name'];
-            // $data .= "'>". $tag_list['tag_name']. "</option>";
+            $data .= "<option value='". $tag_list['tag_id'];
+            $data .= "'>". $tag_list['tag_name']. "</option>";
+
+            echo $data;
           }
          echo '</select>';
 
