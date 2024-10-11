@@ -25,12 +25,12 @@
             <!-- メニューリスト -->
             <ul>
                 <li>MAP</li>
-                <li>ユーザー情報</li>
-                <li>お気に入り</li>
+                <li><a href="user.php">ユーザー情報</a></li>
+                <li><a href="favorite.php">お気に入り</a></li>
                 <li>QRカメラ</li>
                 <li>チャット</li>
-                <li>みんなのタグ</li>
-                <li>MYタグ</li>
+                <li><a href="tag_list.php">みんなのタグ</a></li>
+                <li><a href="my_tag.php">MYタグ</a></li>
                 <li>アナウンス</li>
                 <li class="logout">ログアウト</li> <!-- ログアウトにクラスを追加 -->
             </ul>

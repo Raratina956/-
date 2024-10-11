@@ -18,7 +18,7 @@ $search_sql->execute([$_SESSION['user']['user_id']]);
 $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($results) {
     ?>
-    <table>
+    <table id="table" border="0" style="font-size: 18pt;">
         <th>タグ名</th>
         <th>作成者</th>
         <th></th>
@@ -45,9 +45,9 @@ if ($results) {
         }
         ?>
     </table>
-    <a href="main.php" class="back-link">メインへ</a>
     <?php
 } else {
     echo '参加済みのタグがありません';
 }
 ?>
+<a href="main.php" class="back-link">メインへ</a>
