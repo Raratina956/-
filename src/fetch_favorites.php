@@ -43,7 +43,7 @@ switch ($type) {
 
 // 取得したデータを表示
 if ($list_raw) {
-    echo '<table border="0" style="font-size: 18pt;">';
+    echo '<table border="0" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
     echo '<td>アイコン（仮）</td>';
@@ -51,7 +51,7 @@ if ($list_raw) {
     ?>
     <link rel="stylesheet" href="css/fetch_favorites.css">
     <td>
-        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)">削除</button>
+        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)" class="button_del">削除</button>
     </td>
     <?php
     echo '</tr>';
