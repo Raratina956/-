@@ -32,20 +32,6 @@ require 'header.php';
 </div>
 
 <script>
-function fetchData(type) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'fetch_favorites.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('favorite-list').innerHTML = xhr.responseText;
-        }
-    };
-
-    xhr.send('type=' + type);
-}
-
 function deleteFavorite(favoriteId) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'favorite.php', true);
@@ -61,13 +47,19 @@ function deleteFavorite(favoriteId) {
                 alert(response.message); // アラートでエラーメッセージを表示
             }
         } else {
-            console.error('リクエストに失敗しました。');
-            alert('リクエストに失敗しました。');
+            console.error(`リクエストエラー: ステータスコード ${xhr.status}`); // ステータスコードのログ
+            alert(`リクエストに失敗しました。ステータスコード: ${xhr.status}`); // アラート表示
         }
+    };
+
+    xhr.onerror = function() {
+        console.error('ネットワークエラーが発生しました。');
+        alert('ネットワークエラーが発生しました。');
     };
 
     xhr.send('delete=' + favoriteId);
 }
+
 
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
