@@ -18,7 +18,7 @@ if ($results) {
             foreach ($results as $join_row) {
                 $tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
                 $tag_sql->execute([$join_row['tag_id']]);
-                $tag_row = $sql->fetch(PDO::FETCH_ASSOC);
+                $tag_row = $tag_sql->fetch(PDO::FETCH_ASSOC);
                 echo '<option name=',$join_row['tag_id'],'>',$tag_row['tag_name'],'</option>';             
             }
             ?>
