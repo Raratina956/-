@@ -36,3 +36,4 @@ if ($list_raw) {
     echo 'お気に入りのユーザーがいません';
 }
 ?>
+<a href="main.php" class="back-link">メインへ</a>
