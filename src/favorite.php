@@ -18,11 +18,15 @@ $all_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $all_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     echo '<table>';
-    echo '<td>アイコン（仮）</td>';
-    $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-    $sql_user->execute([$list_raw['follower_id']]);
-    $row_user = $sql_user->fetch();
-    echo '<td>',$row_user,'</td>';
+    foreach ($list_raw as $favorite) {
+        echo '<tr>';
+        echo '<td>アイコン（仮）</td>';
+        $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+        $sql_user->execute([$list_raw['follower_id']]);
+        $row_user = $sql_user->fetch();
+        echo '<td>', $row_user, '</td>';
+        echo '</tr>';
+    }
     echo '</table>';
 } else {
     echo 'お気に入りのユーザーがいません';
