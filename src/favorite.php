@@ -39,6 +39,19 @@ function fetchData(type) {
     };
 }
 
+function deleteFavorite(favoriteId) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'favorite.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            fetchData('all'); // 削除後に全てのデータを再取得
+        }
+    };
+    xhr.send('delete=' + favoriteId);
+}
+
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
 </script>
+
