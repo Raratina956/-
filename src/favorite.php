@@ -32,6 +32,7 @@ require 'header.php';
 
 <script>
 function fetchData(type) {
+    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'fetch_favorites.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -46,6 +47,7 @@ function fetchData(type) {
 }
 
 function deleteFavorite(favoriteId) {
+    console.log('削除するID:', favoriteId); // 削除するIDのログ
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'favorite.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -76,3 +78,4 @@ function deleteFavorite(favoriteId) {
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
 </script>
+
