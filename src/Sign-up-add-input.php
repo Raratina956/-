@@ -44,7 +44,7 @@ try {
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
             }
         ?>
-    <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
