@@ -38,7 +38,7 @@ try {
         </div>
         <div class="form-group">
             <?php
-                $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                $iconStmt=$pdo->prepare('select * from Icon where user_id=?');
                 $iconStmt->execute([$_POST['user_id']]);
                 foreach($iconStmt as $icon){
                     echo '<img src="', $icon['icon_name'], '" class="icon"><br>';
@@ -58,8 +58,6 @@ try {
                     reader.readAsDataURL(event.target.files[0]);
                 };
             </script>
-
-            <input type="text" name="name" id="name" required>
         </div>
         <input type="submit" value="登録">
     </form>
