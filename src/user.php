@@ -13,7 +13,6 @@
     </head>
        
         <body>
-            <div class="profile">
 <?php
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -122,7 +121,7 @@
             }
 
             //アイコン表示
-            // echo '<div class="profile">';
+            echo '<div class="profile">';
             echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
 
             //ユーザー情報
@@ -131,13 +130,13 @@
                 echo $user['user_name'], '<br>';
                 echo 'クラス：<br>';
                 echo $user['mail_address'], '<br>';
-                // echo '</div>';
+                echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
-                // echo '<div class="profile">';
+                echo '<div class="profile">';
                 echo $user['user_name'], "先生<br>";
                 echo $user['mail_address'], '<br>';
-                // echo '</div>';
+                echo '</div>';
             }
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
@@ -160,6 +159,5 @@
         }
     }
 ?>
-</div>
 </body>
 </html>
