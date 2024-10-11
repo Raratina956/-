@@ -23,7 +23,7 @@ try {
     <form action="Sign-up-add-output.php" method="post">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="email" name="student_number" id="student_number" required>
+            <input type="number" name="student_number" id="student_number" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
@@ -41,7 +41,7 @@ try {
                 $iconStmt->execute([$_POST['user_id']]);
                 $icon = $iconStmt->fetch();
                 if ($icon) {
-                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon" width="10%" height="10%"><br>';
+                    echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon"><br>';
                 }
             ?>
         <input type="file" id="fileInput" accept="image/*"><br>
