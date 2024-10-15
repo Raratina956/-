@@ -51,7 +51,7 @@ if ($list_raw) {
         if($row['read_check']==0){
             echo '<td>未読</td>';
         }
-        echo '</tr>';
+        // echo '</tr>';
         echo '<tr class="announcement-row">'; // クラスを追加
         $datetime = $info_row['sending_time'];
         echo '<td>', timeAgo($datetime), '</td>';
