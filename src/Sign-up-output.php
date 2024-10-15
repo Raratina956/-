@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':password', $hashed_password);
         $stmt->execute();
 
-        $icon_name = "img/icon/default.png";
+        $icon_name = "img/icon/default.jpg";
         $user_id = $pdo->lastInsertId();
         $sql = "INSERT INTO Icon (user_id, icon_name) VALUES (:user_id, :icon_name)";
         $stmt = $pdo->prepare($sql);
