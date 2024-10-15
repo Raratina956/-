@@ -157,6 +157,7 @@
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
                     echo '</div>';
+                    echo '<br>';
                     echo '<div class="tag">';
                     echo $tag['tag_name'];
                     echo '</div>';
