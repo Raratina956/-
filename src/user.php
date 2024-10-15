@@ -58,7 +58,7 @@
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
             echo '<div class="profile-container">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon">';
+            echo '<img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon">';
 
          
       
@@ -125,7 +125,7 @@
 
             //アイコン表示
             echo '<div class="profile-container">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
