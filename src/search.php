@@ -43,7 +43,7 @@ if ($judge == 1) {
             ?>
             <tr>
                 <td>アイコン</td>
-                <td><?php $row['user_name']; ?></td>
+                <td><?php echo $row['user_name']; ?></td>
             </tr>
             <?php
         }
@@ -53,33 +53,37 @@ if ($judge == 1) {
             ?>
             <tr>
                 <td>タグ</td>
-                <td><?php $row['tag_name']; ?></td>
+                <td><?php echo $row['tag_name']; ?></td>
             </tr>
             <?php
         }
     }
     if ($se_user_raw) {
         foreach ($se_user_raw as $row) {
-            ?>
-            <tr>
-                <td>アイコン</td>
-                <td><?php $row['user_name']; ?></td>
-            </tr>
-            <?php
+            if (!$search_text == $row['user_naem']) {
+                ?>
+                <tr>
+                    <td>アイコン</td>
+                    <td><?php echo $row['user_name']; ?></td>
+                </tr>
+                <?php
+            }
         }
     }
     if ($se_tag_raw) {
         foreach ($se_tag_raw as $row) {
-            ?>
-            <tr>
-                <td>タグ</td>
-                <td><?php $row['tag_name']; ?></td>
-            </tr>
-            <?php
+            if (!$search_text == $row['tag_naem']) {
+                ?>
+                <tr>
+                    <td>タグ</td>
+                    <td><?php echo $row['tag_name']; ?></td>
+                </tr>
+                <?php
+            }
         }
     }
     echo '</table>';
-}else{
+} else {
     echo '一致するものがありません';
 }
 ?>

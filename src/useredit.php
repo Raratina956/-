@@ -23,7 +23,7 @@
 ?>
             <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
-            <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
+            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
             <button type="button" id="uploadButton">登録</button>
 
             <script>
