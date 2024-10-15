@@ -21,9 +21,11 @@ require 'header.php';
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
-        <th id="all" class="active" onclick="filterFavorites('all')">全て</th>
-        <th id="student" onclick="filterFavorites('student')">生徒</th>
-        <th id="teacher" onclick="filterFavorites('teacher')">先生</th>
+        <th class="active" onclick="fetchData('all')">全て</th>
+        <th></th>
+        <th class="active" onclick="filterFavorites('teacher')">先生</th>
+        <th></th>
+        <th class="active" onclick="filterFavorites('student')">生徒</th>
     </tr>
 </table>
 
@@ -80,31 +82,31 @@ function deleteFavorite(favoriteId) {
 
 // クリックとフィルタリングを処理する関数
 function filterFavorites(type) {
-            const thElements = document.querySelectorAll('th');
-            thElements.forEach(th => th.classList.remove('active'));
+    // クリックできる全ての要素を取得
+    const studentElement = document.getElementById('student');
+    const teacherElement = document.getElementById('teacher');
+    
+    // すべての要素から「active」クラスを削除し、クリックされた要素に追加
+    studentElement.classList.remove('active');
+    teacherElement.classList.remove('active');
 
-            // クリックされた項目にactiveクラスを追加
-            if (type === 'all') {
-                document.getElementById('all').classList.add('active');
-            } else if (type === 'student') {
-                document.getElementById('student').classList.add('active');
-            } else if (type === 'teacher') {
-                document.getElementById('teacher').classList.add('active');
-            }
+    // クリックされた要素に「active」クラスを追加
+    if (type === 'student') {
+        studentElement.classList.add('active');
+        fetchFavorites('student');
+    } else if (type === 'teacher') {
+        teacherElement.classList.add('active');
+        fetchFavorites('teacher');
+    } else {
+        // 「全て」フィルタ用のロジックを追加する場合はこちらに記述
+        fetchFavorites('all');
+    }
+}
 
-            // データ取得処理 (Ajax でサーバーにリクエストを送る)
-            var formData = new FormData();
-            formData.append('type', type);
-
-            fetch('favorites_fetch.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('favorites-content').innerHTML = data;
-            })
-            .catch(error => console.error('Error:', error));
-        }
+// タイプに基づいてお気に入りを取得するモック関数
+function fetchFavorites(type) {
+    // タイプに基づいたフェッチ処理
+    console.log('Fetching favorites for:', type);
+}
 </script>
 
