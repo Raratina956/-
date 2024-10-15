@@ -1,4 +1,8 @@
 body {
-    padding-top: 90px;
+    padding-top: 120px;
     background-image: url(../img/SpotLinkbg.png);
+}
+
+.announcement-row {
+    background-color: #f0f0f0; /* 灰色の背景色 */
 }
