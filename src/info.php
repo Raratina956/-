@@ -1,9 +1,9 @@
 <?php
 require 'parts/auto-login.php';
 ?>
-
+<link rel="stylesheet" href="css/info.css">
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <h1>お知らせ</h1>
 

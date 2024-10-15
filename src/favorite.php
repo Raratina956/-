@@ -23,9 +23,9 @@ require 'header.php';
     <tr>
         <th onclick="fetchData('all')">全て</th>
         <th></th>
-        <th onclick="fetchData('teacher')">先生</th>
+        <span id="teacher" class="clickable" onclick="filterFavorites('teacher')">先生</span>
         <th></th>
-        <th onclick="fetchData('student')">生徒</th>
+        <span id="student" class="clickable active" onclick="filterFavorites('student')">生徒</span>
     </tr>
 </table>
 
@@ -79,7 +79,7 @@ function deleteFavorite(favoriteId) {
     xhr.send('delete=' + favoriteId);
 }
 
-<script>
+
 // クリックとフィルタリングを処理する関数
 function filterFavorites(type) {
     // クリックできる全ての要素を取得
@@ -108,9 +108,5 @@ function fetchFavorites(type) {
     // タイプに基づいたフェッチ処理
     console.log('Fetching favorites for:', type);
 }
-</script>
-
-// ページが読み込まれたときに全てのデータを表示
-fetchData('all');
 </script>
 
