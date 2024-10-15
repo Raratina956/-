@@ -29,11 +29,12 @@ span {
 }
 
 form {
-    text-align: center; /* Center the form */
+    text-align: center;
+    position: relative; /* This ensures the submit button is positioned within the form */
 }
 
 select {
-    width: 80%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 20px;
     font-size: 16px;
@@ -42,8 +43,8 @@ select {
 }
 
 textarea {
-    width: 80%;
-    height: 100px;
+    width: 60%;
+    height: 150px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -52,33 +53,33 @@ textarea {
 }
 
 input[type="submit"] {
-    min-width: 150px;
-    height: 40px;
-    font-size: 18px;
-    color: white;
-    background-color: #4CAF50; /* Green */
-    border: none;
+    position: absolute;
+    bottom: 20px;
+    right: 10px; /* Adjust this value to position the button further from the right edge if needed */
+    font-size: 16px;
+    background-color: #a0eefc;
+    padding: 8px 15px;
     border-radius: 5px;
-    cursor: pointer;
-    padding: 10px 20px;
+    border: none;
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049; /* Hover color */
+    background-color: rgb(54, 98, 216);
+    color: white; 
 }
 
-a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px; /* フォントサイズ */
     text-decoration: none;
-    color: #333;
-    background-color: #a0eefc;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
 }
 
-a:hover {
-    background-color: #ffffff;
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
 }
