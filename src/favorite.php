@@ -21,11 +21,11 @@ require 'header.php';
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
-        <th onclick="fetchData('all')">全て</th>
+        <th class="active" onclick="fetchData('all')">全て</th>
         <th></th>
-        <span id="teacher" class="clickable" onclick="filterFavorites('teacher')">先生</span>
+        <th class="active" onclick="filterFavorites('teacher')">先生</th>
         <th></th>
-        <span id="student" class="clickable active" onclick="filterFavorites('student')">生徒</span>
+        <th class="active" onclick="filterFavorites('student')">生徒</th>
     </tr>
 </table>
 
@@ -82,31 +82,27 @@ function deleteFavorite(favoriteId) {
 
 // クリックとフィルタリングを処理する関数
 function filterFavorites(type) {
-    // クリックできる全ての要素を取得
-    const studentElement = document.getElementById('student');
-    const teacherElement = document.getElementById('teacher');
-    
-    // すべての要素から「active」クラスを削除し、クリックされた要素に追加
-    studentElement.classList.remove('active');
-    teacherElement.classList.remove('active');
+    // すべての<th>要素を取得
+    const thElements = document.querySelectorAll('th');
 
-    // クリックされた要素に「active」クラスを追加
+    // すべての<th>からactiveクラスを削除
+    thElements.forEach(th => th.classList.remove('active'));
+
+    // クリックされた<th>にactiveクラスを追加
     if (type === 'student') {
-        studentElement.classList.add('active');
+        thElements[0].classList.add('active'); // 生徒
         fetchFavorites('student');
     } else if (type === 'teacher') {
-        teacherElement.classList.add('active');
+        thElements[1].classList.add('active'); // 先生
         fetchFavorites('teacher');
     } else {
-        // 「全て」フィルタ用のロジックを追加する場合はこちらに記述
         fetchFavorites('all');
     }
 }
 
-// タイプに基づいてお気に入りを取得するモック関数
+// フェッチ処理をモックとして定義
 function fetchFavorites(type) {
-    // タイプに基づいたフェッチ処理
-    console.log('Fetching favorites for:', type);
+    console.log(type + 'がクリックされました');
 }
 </script>
 
