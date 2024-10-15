@@ -49,7 +49,7 @@ if ($list_raw) {
         $user_row = $user_sql->fetch();
         echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
         if($row['read_check']==0){
-            echo '未読';
+            echo '<td>未読</td>';
         }
         echo '</tr>';
         echo '<tr>';
@@ -59,7 +59,7 @@ if ($list_raw) {
         ?>
         <form action="info_detail.php" method="post">
             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-            <input type="submit" value="詳細">
+            <td><input type="submit" value="詳細"></td>
         </form>
         <?php
         echo '</tr>';
