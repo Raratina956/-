@@ -67,7 +67,7 @@ if (!isset($_POST['content'])) {
     } else {
         echo 'タグを追加してください';
     }
-    echo '<a href="main.php">メインへ</a>';
+    echo '<a  class="back-link" href="main.php">メインへ</a>';
     // 上記アナウンス発信前
 } else {
     // 下記アナウンス発信後
