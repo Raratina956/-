@@ -4,7 +4,6 @@ body {
     flex-direction: column;
     min-height: 70vh;
     margin: 0;
-    text-align: center;
     background-image: url(../img/SpotLinkbg.png);
     background-position: center center;
     background-repeat: no-repeat;
@@ -18,7 +17,7 @@ body {
 }
  
 .profile-container {
-    padding-left: 570px;
+    padding-left: 320px;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
@@ -37,9 +36,12 @@ margin-left: 1300px
 }
 
 .profile{
-align-items:center
+align-items:center;
+padding-left: 150px;
+
 }
 
 .tag{
-
+    display: flex;
+    text-align: center;
 }

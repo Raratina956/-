@@ -40,3 +40,14 @@ table{
 .active {
     color: blue;
 }
+
+th {
+    color: gray;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* クリックされた項目の色 */
+.active {
+    color: blue;
+}

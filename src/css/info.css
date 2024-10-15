@@ -1,0 +1,10 @@
+body {
+    padding-top: 120px;
+    background-image: url(../img/SpotLinkbg.png);
+    text-align:center;
+}
+table{
+    margin: 0 auto;
+    font-size:20px;
+    padding-top:10px;
+}
