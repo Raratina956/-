@@ -8,6 +8,7 @@ body {
 
 /* Main Content */
 main {
+    margin-top: 80px;
     margin: 150px auto 100px auto; /* Adds space from the top for the header */
     width: 80%;
     max-width: 600px;
