@@ -36,7 +36,7 @@ if ($se_user_raw) {
     $judge = 1;
 }
 
-if ($judge == 0) {
+if ($judge == 1) {
     echo '<table>';
     if ($pe_user_raw) {
         foreach ($pe_user_raw as $row) {
