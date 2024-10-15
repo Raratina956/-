@@ -8,7 +8,8 @@ body {
 
 /* Main Content */
 main {
-    margin-top: 80px;
+    margin-top: 80px; /* Add enough margin to push content below the header */
+    margin-bottom: 100px;
     width: 80%;
     max-width: 600px;
     padding: 20px;
