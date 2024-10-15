@@ -42,7 +42,7 @@ if ($list_raw) {
         $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
         $info_sql->execute([$announcement_id]);
         $info_row = $info_sql->fetch();
-        echo '<tr class="announcement-row">'; // クラスを追加
+        echo '<tr>';
         echo '<td>アイコン</td>';
         $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
         $user_sql->execute([$info_row['send_person']]);
@@ -51,8 +51,8 @@ if ($list_raw) {
         if($row['read_check']==0){
             echo '<td>未読</td>';
         }
-        // echo '</tr>';
-        echo '<tr class="announcement-row">'; // クラスを追加
+        echo '</tr>';
+        echo '<tr>';
         $datetime = $info_row['sending_time'];
         echo '<td>', timeAgo($datetime), '</td>';
         echo '<td>', $info_row['content'], '</td>';
@@ -64,7 +64,6 @@ if ($list_raw) {
         <?php
         echo '</tr>';
     }
-    
     echo '<table>';
 } else {
     echo 'お知らせがありません';
