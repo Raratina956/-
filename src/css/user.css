@@ -18,7 +18,7 @@ body {
 }
  
 .profile-container {
-    padding-left: 570px;
+    padding-left: 320px;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
@@ -37,7 +37,9 @@ margin-left: 1300px
 }
 
 .profile{
-align-items:center
+align-items:center;
+padding-left: 150px;
+
 }
 
 .tag{
