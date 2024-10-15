@@ -92,11 +92,11 @@
                 $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
                 //タグ一覧
+                echo '<div class="tag">';
                 foreach($tags as $tag){
-                    echo '<div class="tag">';
                     echo $tag['tag_name'];
-                    echo '</div>';
                 }
+                echo '</div>';
             }
         }else{
             //相手のプロフィール
@@ -159,13 +159,11 @@
 
                 //タグ一覧
                 echo 'タグ一覧<br>';
+                echo '<div class="tag">';
                 foreach($tags as $tag){
-                    echo '</div>';
-                    echo '<br>';
-                    echo '<div class="tag">';
                     echo $tag['tag_name'];
-                    echo '</div>';
                 }
+                echo '</div>';
             }
         }
     }
