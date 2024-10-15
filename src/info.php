@@ -1,10 +1,10 @@
 <?php
 require 'parts/auto-login.php';
 ?>
-<link rel="stylesheet" href="css/info.css">
 <?php
 require 'header.php';
 ?>
+<link rel="stylesheet" href="css/info.css">
 <h1>お知らせ</h1>
 
 <?php
