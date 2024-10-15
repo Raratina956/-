@@ -18,6 +18,7 @@ body {
 }
  
 .profile-container {
+    display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
     margin: 0 auto; /* コンテナ全体を中央に配置 */
