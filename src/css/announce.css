@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin: 100px auto;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff; /* Background color */
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+    color: #333;
+}
+
+span {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+form {
+    text-align: center;
+    position: relative; /* This ensures the submit button is positioned within the form */
+}
+
+select {
+    width: 50%; /* Adjusted to match textarea width */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 70%; /* Matches the width of the select box */
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    font-size: 16px;
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(54, 98, 216);
+    color: white; 
+}
+
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}

@@ -39,6 +39,10 @@ require 'parts/auto-login.php';
     <li><a href="favorite.php">お気に入り</a></li>
     <li><a href="announce.php">アナウンス</a></li>
     <li><a href="info.php">インフォ</a></li>
+    <form action="search.php"method="post">
+        <input type="text" name="search">
+        <input type="submit" value="検索"> 
+    </form>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
 
     <!-- まだリンクがないので仮で作っときます -->

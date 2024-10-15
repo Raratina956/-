@@ -58,14 +58,14 @@
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
             echo '<div class="profile-container">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
 
          
       
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
-                // echo '<div class="profile">';
+                echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
                 echo $user['user_name'],"<br>";
                 echo 'クラス：<br>';
@@ -73,11 +73,13 @@
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
-                // echo '<div class="profile">';
+                echo '<div class="profile">';
                 echo $user['user_name'], "先生";
                 echo $user['mail_address'];
                 echo '</div>';
             }
+
+            echo '</div>';
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
@@ -90,11 +92,11 @@
                 $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
                 //タグ一覧
+                echo '<div class="tag">';
                 foreach($tags as $tag){
-                    echo '<div class="tag">';
                     echo $tag['tag_name'];
-                    echo '</div>';
                 }
+                echo '</div>';
             }
         }else{
             //相手のプロフィール
@@ -125,7 +127,7 @@
 
             //アイコン表示
             echo '<div class="profile-container">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
@@ -144,6 +146,7 @@
             }
 
             echo '</div>';
+            echo '</div>';
 
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
@@ -156,14 +159,11 @@
 
                 //タグ一覧
                 echo 'タグ一覧<br>';
+                echo '<div class="tag">';
                 foreach($tags as $tag){
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<br>';
-                    echo '<div class="tag">';
                     echo $tag['tag_name'];
-                    echo '</div>';
                 }
+                echo '</div>';
             }
         }
     }

@@ -1,10 +1,10 @@
 <?php
 require 'parts/auto-login.php';
 ?>
-
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
+<link rel="stylesheet" href="css/info.css">
 <h1>お知らせ</h1>
 
 <?php
@@ -71,3 +71,4 @@ if ($list_raw) {
 ?>
 
 </table>
+<a href="main.php">メインへ</a>
