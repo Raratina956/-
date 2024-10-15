@@ -60,7 +60,7 @@ if ($judge == 1) {
     }
     if ($se_user_raw) {
         foreach ($se_user_raw as $row) {
-            if (!$search_text == $row['user_name']) {
+            if ($search_text != $row['user_name']) {
                 ?>
                 <tr>
                     <td>アイコン</td>
@@ -72,7 +72,7 @@ if ($judge == 1) {
     }
     if ($se_tag_raw) {
         foreach ($se_tag_raw as $row) {
-            if (!$search_text == $row['tag_naem']) {
+            if ($search_text != $row['tag_name']) {
                 ?>
                 <tr>
                     <td>タグ</td>
