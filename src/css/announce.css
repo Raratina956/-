@@ -34,7 +34,7 @@ form {
 }
 
 select {
-    width: 20%;
+    width: 50%; /* Adjusted to match textarea width */
     padding: 10px;
     margin-bottom: 20px;
     font-size: 16px;
@@ -43,7 +43,7 @@ select {
 }
 
 textarea {
-    width: 60%;
+    width: 70%; /* Matches the width of the select box */
     height: 150px;
     padding: 10px;
     font-size: 16px;
@@ -55,7 +55,7 @@ textarea {
 input[type="submit"] {
     position: absolute;
     bottom: 20px;
-    right: 10px; /* Adjust this value to position the button further from the right edge if needed */
+    right: 10px;
     font-size: 16px;
     background-color: #a0eefc;
     padding: 8px 15px;
@@ -72,11 +72,11 @@ input[type="submit"]:hover {
     position: fixed;
     bottom: 20px;
     left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
 .back-link:hover{
