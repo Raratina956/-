@@ -23,8 +23,7 @@
 ?>
             <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
-            <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
-            <button type="button" id="uploadButton">登録</button>
+            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
 
             <script>
                 document.getElementById('fileInput').onchange = function (event) {
@@ -80,6 +79,6 @@
   <?php          
         }
     }
-    echo '<button type="submit">保存</button>';
+    echo '<button type="button" id="uploadButton">保存</button>';
     echo '</form>';
 ?>
