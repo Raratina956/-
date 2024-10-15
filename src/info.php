@@ -48,11 +48,20 @@ if ($list_raw) {
         $user_sql->execute([$info_row['send_person']]);
         $user_row = $user_sql->fetch();
         echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
+        if($row['read_check']==0){
+            echo '未読';
+        }
         echo '</tr>';
         echo '<tr>';
         $datetime = $info_row['sending_time'];
         echo '<td>', timeAgo($datetime), '</td>';
         echo '<td>', $info_row['content'], '</td>';
+        ?>
+        <form action="info_detail.php" method="post">
+            <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+            <input type="submit" value="詳細">
+        </form>
+        <?php
         echo '</tr>';
     }
     echo '<table>';
