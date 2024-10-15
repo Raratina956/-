@@ -21,7 +21,7 @@ if ($list_raw) {
         echo '<tr>';
         echo '<td rowspan="2">アイコン</td>';
         $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-        $user_sql->execute([$row['send_person']]);
+        $user_sql->execute([$info_row['send_person']]);
         $user_row = $user_sql->fetch();
         echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
         echo '</tr>';
