@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+echo '<link rel="stylesheet" href="css/announce.css">';
 if (isset($_POST['content'])) {
     $tag_id = $_POST['tag_id'];
     $content = $_POST['content'];
