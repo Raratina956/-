@@ -33,7 +33,7 @@ if (isset($_POST['content'])) {
 }
 ?>
 <?php
-require 'header.php';
+// require 'header.php';
 ?>
 <?php
 if (!isset($_POST['content'])) {
