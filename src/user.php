@@ -79,6 +79,8 @@
                 echo '</div>';
             }
 
+            echo '</div>';
+
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
             $attribute->execute([$_SESSION['user']['user_id']]);
