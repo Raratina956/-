@@ -43,7 +43,7 @@ select {
 }
 
 textarea {
-    width: 60%; /* Matches the width of the select box */
+    width: 70%; /* Matches the width of the select box */
     height: 150px;
     padding: 10px;
     font-size: 16px;
