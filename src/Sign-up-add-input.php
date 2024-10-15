@@ -20,10 +20,10 @@ try {
 
 <body>
     <h2>新規会員登録</h2>
-    <form action="Sign-up-add-output.php" method="post">
+    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="text" name="student_number" id="student_number" required>
+            <input type="text" name="student_number" id="student_number" maxlength="7" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
@@ -44,34 +44,38 @@ try {
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
             }
         ?>
-    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <button type="button" id="uploadButton">登録</button>
     </form>
 
-    <script>
-        document.getElementById('fileInput').onchange = function (event) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var existingIcon = document.getElementById('existingIcon');
-                var preview = document.getElementById('preview');
-                
-                if (existingIcon) {
-                    existingIcon.src = reader.result;  // 既存のアイコンを置き換える
-                } else {
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                }
-            };
-            reader.readAsDataURL(event.target.files[0]);
+<script>
+    document.getElementById('fileInput').onchange = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            
+            if (existingIcon) {
+                existingIcon.src = reader.result;  // 既存のアイコンを置き換える
+            } else {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
         };
+        reader.readAsDataURL(event.target.files[0]);
+    };
 
-        document.getElementById('uploadButton').onclick = function () {
-            document.getElementById('uploadForm').submit();
-        };
-    </script>
+    document.getElementById('uploadButton').onclick = function () {
+        var form = document.getElementById('uploadForm');
+        if (form) {
+            form.submit();
+        } else {
+            console.error('uploadForm not found');
+        }
+    };
+</script>
 
 </body>
 </html>

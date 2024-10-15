@@ -30,13 +30,13 @@ table{
     color: white;
 }
 
-th {
+.clickable {
     color: gray;
     cursor: pointer;
-    padding: 10px;
+    font-size: 18px;
+    margin-right: 15px;
 }
 
-/* クリックされた項目の色 */
 .active {
-    color: darkblue; /* 濃い青色 */
+    color: blue;
 }

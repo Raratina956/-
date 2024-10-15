@@ -1,5 +1,5 @@
 body {
-    padding-top: 95px;
+    padding-top: 150px;
     justify-content: center;
     flex-direction: column;
     min-height: 70vh;
@@ -18,14 +18,15 @@ body {
 }
  
 .profile-container {
+    padding-left: 570px;
+    display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
-    width: 80%; /* コンテナの幅を調整（必要に応じて変更） */
     margin: 0 auto; /* コンテナ全体を中央に配置 */
 }
 
 .star{
-    width: 40%;
+    /* width: 40%; */
 }
 
 .usericon{

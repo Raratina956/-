@@ -23,9 +23,9 @@ require 'header.php';
     <tr>
         <th onclick="fetchData('all')">全て</th>
         <th></th>
-        <th onclick="fetchData('teacher')">先生</th>
+        <span id="teacher" class="clickable" onclick="filterFavorites('teacher')">先生</span>
         <th></th>
-        <th onclick="fetchData('student')">生徒</th>
+        <span id="student" class="clickable active" onclick="filterFavorites('student')">生徒</span>
     </tr>
 </table>
 
@@ -79,37 +79,34 @@ function deleteFavorite(favoriteId) {
     xhr.send('delete=' + favoriteId);
 }
 
-function fetchData(type) {
-    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'fetch_favorites.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('favorite-list').innerHTML = xhr.responseText;
-        }
-    };
+// クリックとフィルタリングを処理する関数
+function filterFavorites(type) {
+    // クリックできる全ての要素を取得
+    const studentElement = document.getElementById('student');
+    const teacherElement = document.getElementById('teacher');
+    
+    // すべての要素から「active」クラスを削除し、クリックされた要素に追加
+    studentElement.classList.remove('active');
+    teacherElement.classList.remove('active');
 
-    xhr.send('type=' + type);
-
-    // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
-    const headers = document.querySelectorAll('th');
-    headers.forEach(function(header) {
-        header.classList.remove('active');
-    });
-
-    // クリックされた項目にのみ 'active' クラスを追加
-    if (type === 'all') {
-        document.querySelector('th[onclick="fetchData(\'all\')"]').classList.add('active');
+    // クリックされた要素に「active」クラスを追加
+    if (type === 'student') {
+        studentElement.classList.add('active');
+        fetchFavorites('student');
     } else if (type === 'teacher') {
-        document.querySelector('th[onclick="fetchData(\'teacher\')"]').classList.add('active');
-    } else if (type === 'student') {
-        document.querySelector('th[onclick="fetchData(\'student\')"]').classList.add('active');
+        teacherElement.classList.add('active');
+        fetchFavorites('teacher');
+    } else {
+        // 「全て」フィルタ用のロジックを追加する場合はこちらに記述
+        fetchFavorites('all');
     }
 }
 
-// ページが読み込まれたときに全てのデータを表示
-fetchData('all');
+// タイプに基づいてお気に入りを取得するモック関数
+function fetchFavorites(type) {
+    // タイプに基づいたフェッチ処理
+    console.log('Fetching favorites for:', type);
+}
 </script>
 

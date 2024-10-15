@@ -53,12 +53,14 @@
         //自分か相手側かで表示する内容を変更
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
-            //アイコン表示
-            echo '<div class="profile-container">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon">';
 
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
+            //アイコン表示
+            echo '<div class="profile-container">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+
+         
       
 
             //ユーザー情報
@@ -81,13 +83,13 @@
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
             $attribute->execute([$_SESSION['user']['user_id']]);
             $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
+            echo 'タグ一覧<br>';
             foreach($attributes as $tag_attribute){
                 $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
                 $tagStmt->execute([$tag_attribute['tag_id']]);
                 $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
                 //タグ一覧
-                echo 'タグ一覧<br>';
                 foreach($tags as $tag){
                     echo '<div class="tag">';
                     echo $tag['tag_name'];
@@ -122,12 +124,13 @@
             }
 
             //アイコン表示
-            echo '<div class="profile">';
-            echo '<img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"><br>';
+            echo '<div class="profile-container">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"><br>';
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
                 //生徒(名前、クラス、メールアドレス)
+                echo '<div class="profile">';
                 echo $user['user_name'],"<br>";
                 echo 'クラス：<br>';
                 echo $user['mail_address'],"<br>";
@@ -154,6 +157,9 @@
                 //タグ一覧
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<br>';
                     echo '<div class="tag">';
                     echo $tag['tag_name'];
                     echo '</div>';
