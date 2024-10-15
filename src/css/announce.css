@@ -6,8 +6,9 @@ body {
     padding: 0;
 }
 
+/* Main Content */
 main {
-    margin: 100px auto;
+    margin: 150px auto 100px auto; /* Adds space from the top for the header */
     width: 80%;
     max-width: 600px;
     padding: 20px;
@@ -30,7 +31,7 @@ span {
 
 form {
     text-align: center;
-    position: relative; /* This ensures the submit button is positioned within the form */
+    position: relative; /* Ensures the submit button is positioned within the form */
 }
 
 select {
@@ -79,7 +80,7 @@ input[type="submit"]:hover {
     border-radius: 5px;
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: rgb(54, 98, 216);
     color: white;
 }
