@@ -21,9 +21,11 @@ require 'header.php';
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
-        <th id="all" class="active" onclick="filterFavorites('all')">全て</th>
-        <th id="student" onclick="filterFavorites('student')">生徒</th>
-        <th id="teacher" onclick="filterFavorites('teacher')">先生</th>
+        <th onclick="fetchData('all')">全て</th>
+        <th></th>
+        <th onclick="fetchData('teacher')">先生</th>
+        <th></th>
+        <th onclick="fetchData('student')">生徒</th>
     </tr>
 </table>
 
@@ -77,34 +79,37 @@ function deleteFavorite(favoriteId) {
     xhr.send('delete=' + favoriteId);
 }
 
+function fetchData(type) {
+    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_favorites.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-// クリックとフィルタリングを処理する関数
-function filterFavorites(type) {
-            const thElements = document.querySelectorAll('th');
-            thElements.forEach(th => th.classList.remove('active'));
-
-            // クリックされた項目にactiveクラスを追加
-            if (type === 'all') {
-                document.getElementById('all').classList.add('active');
-            } else if (type === 'student') {
-                document.getElementById('student').classList.add('active');
-            } else if (type === 'teacher') {
-                document.getElementById('teacher').classList.add('active');
-            }
-
-            // データ取得処理 (Ajax でサーバーにリクエストを送る)
-            var formData = new FormData();
-            formData.append('type', type);
-
-            fetch('favorites_fetch.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('favorites-content').innerHTML = data;
-            })
-            .catch(error => console.error('Error:', error));
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('favorite-list').innerHTML = xhr.responseText;
         }
+    };
+
+    xhr.send('type=' + type);
+
+    // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
+    const headers = document.querySelectorAll('th');
+    headers.forEach(function(header) {
+        header.classList.remove('active');
+    });
+
+    // クリックされた項目にのみ 'active' クラスを追加
+    if (type === 'all') {
+        document.querySelector('th[onclick="fetchData(\'all\')"]').classList.add('active');
+    } else if (type === 'teacher') {
+        document.querySelector('th[onclick="fetchData(\'teacher\')"]').classList.add('active');
+    } else if (type === 'student') {
+        document.querySelector('th[onclick="fetchData(\'student\')"]').classList.add('active');
+    }
+}
+
+// ページが読み込まれたときに全てのデータを表示
+fetchData('all');
 </script>
 
