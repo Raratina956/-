@@ -20,7 +20,7 @@ try {
 
 <body>
     <h2>新規会員登録</h2>
-    <form action="Sign-up-add-output.php" method="post">
+    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
             <input type="text" name="student_number" id="student_number" required>
@@ -44,7 +44,6 @@ try {
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
             }
         ?>
-    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
