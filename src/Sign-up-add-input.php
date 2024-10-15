@@ -23,7 +23,7 @@ try {
     <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="text" name="student_number" id="student_number" required>
+            <input type="text" name="student_number" id="student_number" maxlength="7" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
