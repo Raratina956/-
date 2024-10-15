@@ -71,3 +71,4 @@ if ($list_raw) {
 ?>
 
 </table>
+<a href="main.php">メインへ</a>
