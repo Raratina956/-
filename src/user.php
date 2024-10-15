@@ -65,7 +65,7 @@
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
-                // echo '<div class="profile">';
+                echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
                 echo $user['user_name'],"<br>";
                 echo 'クラス：<br>';
@@ -73,7 +73,7 @@
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
-                // echo '<div class="profile">';
+                echo '<div class="profile">';
                 echo $user['user_name'], "先生";
                 echo $user['mail_address'];
                 echo '</div>';

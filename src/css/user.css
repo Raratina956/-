@@ -18,15 +18,11 @@ body {
 }
  
 .profile-container {
-    padding-left: 570px;
+    padding-left: 320px;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-start; /* 左揃え */
     margin: 0 auto; /* コンテナ全体を中央に配置 */
-}
-
-.profile{
-    
 }
 
 .star{
@@ -41,7 +37,9 @@ margin-left: 1300px
 }
 
 .profile{
-align-items:center
+align-items:center;
+padding-left: 320px;
+
 }
 
 .tag{

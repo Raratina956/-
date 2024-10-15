@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin: 100px auto;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff; /* Background color */
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+span {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+form {
+    text-align: center; /* Center the form */
+}
+
+select {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    min-width: 150px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* Hover color */
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    background-color: #a0eefc;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #ffffff;
+}
