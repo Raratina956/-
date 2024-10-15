@@ -15,7 +15,7 @@ if (isset($_POST['read'])) {
         $_SESSION['user']['user_id']
     ]);
 }
-if(isset($_POST['delete'])){
+if (isset($_POST['delete'])) {
     $sql_delete = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id = ? AND user_id=?');
     $sql_delete->execute([
         $announcement_id,
@@ -50,7 +50,10 @@ $user_row = $user_sql->fetch();
 </p>
 <p>
     <span>削除</span>
+<form action="info_detail.php" method="post">
     <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
     <input type="hidden" name="delete" value="0">
     <input type="submit" value="削除">
+</form>
 </p>
+<a href="info.php">戻る</a>
