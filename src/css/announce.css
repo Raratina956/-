@@ -29,11 +29,12 @@ span {
 }
 
 form {
-    text-align: center; /* Center the form */
+    text-align: center;
+    position: relative; /* This ensures the submit button is positioned within the form */
 }
 
 select {
-    width: 80%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 20px;
     font-size: 16px;
@@ -42,8 +43,8 @@ select {
 }
 
 textarea {
-    width: 80%;
-    height: 100px;
+    width: 60%;
+    height: 150px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -52,14 +53,14 @@ textarea {
 }
 
 input[type="submit"] {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
-    left: 10px;
-    font-size: 16px; /* フォントサイズ */
-    text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    right: 10px; /* Adjust this value to position the button further from the right edge if needed */
+    font-size: 16px;
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
 }
 
 input[type="submit"]:hover {
