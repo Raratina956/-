@@ -60,7 +60,7 @@ if ($judge == 1) {
     }
     if ($se_user_raw) {
         foreach ($se_user_raw as $row) {
-            if (!$search_text == $row['user_naem']) {
+            if (!$search_text == $row['user_name']) {
                 ?>
                 <tr>
                     <td>アイコン</td>
