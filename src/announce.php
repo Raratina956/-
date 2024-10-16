@@ -74,9 +74,9 @@ if (!isset($_POST['content'])) {
     // 下記アナウンス発信後
     ?>
     <h1>アナウンス発信しました。</h1>
-    <br>
+    <p>
     <h2>宛先：<?php echo $tag_name; ?></h2>
-    <br>
+    <p>
     <h3><?php echo $content; ?></h3>
     <a class="back-link" href="main.php">メインへ</a>
 </main>

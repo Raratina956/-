@@ -42,9 +42,12 @@ padding-left: 150px;
 }
 
 .tag{
+    background-color: azure;
+    border: 2px solid #17A7E9;
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 720px;
+    padding-left: 550px;
+    margin: 0px 170px 0px 170px;
 }
