@@ -55,7 +55,7 @@ if ($list_raw) {
         echo '<tr>';
         $datetime = $info_row['sending_time'];
         echo '<td>', timeAgo($datetime), '</td>';
-        echo '<td>', $info_row['content'], '</td>';
+        echo '<td class="large-text">', $info_row['content'], '</td>';
         ?>
         <form action="info_detail.php" method="post">
             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
