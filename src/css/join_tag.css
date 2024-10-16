@@ -51,7 +51,9 @@ table{
 .selected {
     color: blue;
 }
-
 .unselected {
     color: gray;
+}
+.active {
+    color: blue;
 }
