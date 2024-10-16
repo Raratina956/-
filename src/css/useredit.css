@@ -20,13 +20,15 @@ body {
     text-align: center; /* コンテンツを中央寄せ */
 }
 
-/* アイコンの表示を大きくする */
+/* アイコンの表示を大きくし、中央に揃える */
 #existingIcon, #preview {
     width: 180px; /* 幅を大きく設定 */
     height: 180px; /* 高さを大きく設定 */
     object-fit: cover; /* 画像が歪まないように調整 */
     border-radius: 50%; /* アイコンを丸く表示 */
     margin-bottom: 20px; /* 下に余白を追加 */
+    display: block; /* 画像をブロック要素に */
+    margin: 0 auto; /* 画像を中央に揃える */
 }
 
 /* ラベルとテキストボックスのスタイルを大きく */
@@ -72,4 +74,6 @@ input[type="text"], select {
     margin-top: 10px;
     max-width: 180px; /* プレビューも大きめに */
     max-height: 180px;
+    display: block;
+    margin: 0 auto; /* プレビュー画像も中央に揃える */
 }
