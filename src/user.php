@@ -65,10 +65,19 @@
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
+                //クラスを持ってくる
+                $classtagStmt=$pdo->prepare('select * from Classtag_attribute where user_id=?');
+                $classtagStmt->execute([$_SESSION['user']['user_id']]);
+                $classtag = $classtagStmt->fetch();
+    
+                $classtagnameStmt=$pdo->prepare('select * from Classtag_list where classtag_id=?');
+                $classtagnameStmt->execute([$classtag['classtag_id']]);
+                $classtagname = $classtagnameStmt->fetch();
+
                 echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
                 echo $user['user_name'],"<br>";
-                echo 'クラス：<br>';
+                echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
@@ -131,10 +140,19 @@
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
+                //クラスを持ってくる
+                $classtagStmt=$pdo->prepare('select * from Classtag_attribute where user_id=?');
+                $classtagStmt->execute([$_GET['user_id']]);
+                $classtag = $classtagStmt->fetch();
+    
+                $classtagnameStmt=$pdo->prepare('select * from Classtag_list where classtag_id=?');
+                $classtagnameStmt->execute([$classtag['classtag_id']]);
+                $classtagname = $classtagnameStmt->fetch();
+
                 //生徒(名前、クラス、メールアドレス)
                 echo '<div class="profile">';
                 echo $user['user_name'],"<br>";
-                echo 'クラス：<br>';
+                echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
@@ -160,6 +178,7 @@
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
                     echo $tag['tag_name'];
+                    echo '&emsp'; 
                 }
               
             }
