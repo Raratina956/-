@@ -7,7 +7,7 @@ $search_text = $_POST['search'];
 // require 'header.php';
 ?>
 <h1>検索結果</h1>
-<h2><?php echo  $search_text; ?></h2>
+<h2><?php echo $search_text; ?></h2>
 <p>
     <span>詳細検索</span><br>
 <form action="search.php" method="post">
@@ -53,39 +53,10 @@ if ($se_user_raw) {
 
 if ($judge == 1) {
     echo '<table>';
-    if ($pe_user_raw) {
-        foreach ($pe_user_raw as $row) {
-            ?>
-            <tr>
-                <td>アイコン</td>
-                <td><?php echo $row['user_name']; ?></td>
-            </tr>
-            <?php
-        }
-    }
-    if (isset($_POST['a_p'])) {
-        if (!($_POST['a_p'] == "a")) {
-        }
-        if ($pe_tag_raw) {
-            foreach ($pe_tag_raw as $row) {
-                ?>
-                <tr>
-                    <td>タグ</td>
-                    <td><?php echo $row['tag_name']; ?></td>
-                </tr>
-                <?php
-            }
-        }
-        if (isset($_POST['a_p'])) {
-        }
-    }
-
     if (isset($_POST['a_u_t'])) {
-        if (!($_POST['a_u_t'] == "t")) {
-        }
-        if ($se_user_raw) {
-            foreach ($se_user_raw as $row) {
-                if ($search_text != $row['user_name']) {
+        if ($_POST['a_u_t'] != "t") {
+            if ($pe_user_raw) {
+                foreach ($pe_user_raw as $row) {
                     ?>
                     <tr>
                         <td>アイコン</td>
@@ -95,21 +66,59 @@ if ($judge == 1) {
                 }
             }
         }
-        if (isset($_POST['a_u_t'])) {
-        }
+
     }
+
     if (isset($_POST['a_u_t'])) {
-        if (!($_POST['a_u_t'] == "u")) {
-        }
-        if ($se_tag_raw) {
-            foreach ($se_tag_raw as $row) {
-                if ($search_text != $row['tag_name']) {
+        if ($_POST['a_u_t'] != "u") {
+            if ($pe_tag_raw) {
+                foreach ($pe_tag_raw as $row) {
                     ?>
                     <tr>
                         <td>タグ</td>
                         <td><?php echo $row['tag_name']; ?></td>
                     </tr>
                     <?php
+                }
+            }
+        }
+    }
+    if (isset($_POST['a_u_t'])) {
+
+
+        if (isset($_POST['a_u_t'])) {
+            if ($_POST['a_u_t'] != "t") {
+
+                if ($se_user_raw) {
+                    foreach ($se_user_raw as $row) {
+                        if ($search_text != $row['user_name']) {
+                            ?>
+                            <tr>
+                                <td>アイコン</td>
+                                <td><?php echo $row['user_name']; ?></td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                }
+            }
+        }
+        if (isset($_POST['a_u_t'])) {
+
+            if (isset($_POST['a_u_t'])) {
+                if ($_POST['a_u_t'] == "u") {
+                }
+                if ($se_tag_raw) {
+                    foreach ($se_tag_raw as $row) {
+                        if ($search_text != $row['tag_name']) {
+                            ?>
+                            <tr>
+                                <td>タグ</td>
+                                <td><?php echo $row['tag_name']; ?></td>
+                            </tr>
+                            <?php
+                        }
+                    }
                 }
             }
         }
