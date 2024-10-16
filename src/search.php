@@ -61,7 +61,9 @@ if ($judge == 1) {
             <?php
         }
     }
-    if (!($_POST["a_p"] == "a")) {
+    if (isset($_POST['a_p'])) {
+        if (!($_POST['a_p'] == "a")) {
+        }
         if ($pe_tag_raw) {
             foreach ($pe_tag_raw as $row) {
                 ?>
@@ -72,8 +74,13 @@ if ($judge == 1) {
                 <?php
             }
         }
+        if (isset($_POST['a_p'])) {
+        }
     }
-    if (!($_POST['a_u_t'] == "t")) {
+
+    if (isset($_POST['a_u_t'])) {
+        if (!($_POST['a_u_t'] == "t")) {
+        }
         if ($se_user_raw) {
             foreach ($se_user_raw as $row) {
                 if ($search_text != $row['user_name']) {
@@ -86,8 +93,12 @@ if ($judge == 1) {
                 }
             }
         }
+        if (isset($_POST['a_u_t'])) {
+        }
     }
-    if (!($_POST['a_u_t'] == "u")) {
+    if (isset($_POST['a_u_t'])) {
+        if (!($_POST['a_u_t'] == "u")) {
+        }
         if ($se_tag_raw) {
             foreach ($se_tag_raw as $row) {
                 if ($search_text != $row['tag_name']) {
@@ -99,6 +110,8 @@ if ($judge == 1) {
                     <?php
                 }
             }
+        }
+        if (isset($_POST['a_u_t'])) {
         }
     }
     echo '</table>';
