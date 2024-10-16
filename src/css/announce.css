@@ -89,13 +89,13 @@ input[type="submit"] {
 }
 h2 {
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 30px;
     color: #333;
 }
 
 h3 {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 25px;
     color: #444;
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
