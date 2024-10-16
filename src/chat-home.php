@@ -66,8 +66,8 @@ function getUserName($pdo, $user_id) {
 
 <!-- 戻るボタン -->
 <div class="back-button">
-    <form action="home.php" method="GET">
-        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+    <form action="main.php" method="GET">
+        
         <button type="submit">戻る</button>
     </form>
 </div>
