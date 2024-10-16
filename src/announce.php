@@ -40,6 +40,7 @@ require 'header.php';
 if (!isset($_POST['content'])) {
     // 下記アナウンス発信前
     ?>
+    <main>
     <h1>アナウンス</h1>
     <?php
     $join_sql = $pdo->prepare("SELECT * FROM Tag_attribute WHERE user_id=?");
@@ -67,7 +68,7 @@ if (!isset($_POST['content'])) {
     } else {
         echo 'タグを追加してください';
     }
-    echo '<a  class="back-link" href="main.php">メインへ</a>';
+    echo '<a class="back-link"  href="main.php">メインへ</a>';
     // 上記アナウンス発信前
 } else {
     // 下記アナウンス発信後
@@ -78,6 +79,7 @@ if (!isset($_POST['content'])) {
     <br>
     <h3><?php echo $content; ?></h3>
     <a class="back-link" href="main.php">メインへ</a>
+</main>
     <?php
     // 上記アナウンス発信後
 }
