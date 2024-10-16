@@ -140,16 +140,19 @@ input[type="submit"]:hover {
 }
 
 .ad-banner {
+    position: fixed; /* 固定位置に設定 */
+    bottom: -100px; /* 画面の下に隠す（高さはバナーの高さに応じて調整） */
+    left: 0; /* 左端に揃える */
     width: 100%; /* バナーを横幅いっぱいに */
-    margin: 10px 0; /* 上下に余白 */
+    margin: 0; /* マージンなし */
     text-align: center; /* 中央揃え */
     opacity: 0; /* 初期状態を透明に */
-    transform: translateY(-20px); /* 上に少し移動 */
-    transition: opacity 1s ease, transform 1s ease; /* フェードインのアニメーション */
+    transition: opacity 1s ease, bottom 1s ease; /* フェードインのアニメーション */
 }
 
 .ad-banner.show {
     opacity: 1; /* フェードイン後の不透明度 */
-    transform: translateY(0); /* 元の位置に戻す */
+    bottom: 0; /* 画面の下まで移動 */
 }
+
 

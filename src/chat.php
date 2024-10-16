@@ -125,9 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>
     window.addEventListener('load', function() {
         const adBanner = document.getElementById('ad-banner');
-        adBanner.classList.add('show'); // バナーにshowクラスを追加してフェードインさせる
+        setTimeout(() => {
+            adBanner.classList.add('show'); // 3秒後にバナーにshowクラスを追加してフェードインさせる
+        }, 3000); // 3000ミリ秒 = 3秒
     });
 </script>
+
 
 </body>
 </html>
