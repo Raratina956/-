@@ -23,7 +23,7 @@ main {
 
 h1 {
     text-align: center;
-    font-size: 60px;
+    font-size: 45px;
     color: #333;
 }
 
@@ -49,29 +49,27 @@ select {
 }
 
 textarea {
-    width: 70%; /* Matches the width of the select box */
+    width: 70%;
     height: 150px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
+    position: relative; /* Necessary for the submit button to be positioned correctly */
 }
 
 input[type="submit"] {
     position: absolute;
-    bottom: 20px;
-    right: 10px;
+    bottom: 10px; /* Adjust the vertical position of the button */
+    right: 10px;  /* Adjust the horizontal position */
     font-size: 16px;
     background-color: #a0eefc;
     padding: 8px 15px;
     border-radius: 5px;
     border: none;
-}
-
-input[type="submit"]:hover {
-    background-color: rgb(54, 98, 216);
-    color: white; 
+    cursor: pointer;
+    z-index: 1; /* Ensures the button appears above the text area */
 }
 
 .back-link {
