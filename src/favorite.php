@@ -33,40 +33,39 @@ require 'header.php';
 
 <script>
     function fetchData(type) {
-    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'fetch_favorites.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('favorite-list').innerHTML = xhr.responseText;
+        console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'fetch_favorites.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.getElementById('favorite-list').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send('type=' + type);
+
+        // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
+        const headers = document.querySelectorAll('th');
+        headers.forEach(function(header) {
+            header.classList.remove('active', 'selected');  // ここで 'active' と 'selected' クラスを削除
+        });
+
+        // クリックされた項目にのみ 'active' と 'selected' クラスを追加
+        let selectedHeader;
+        if (type === 'all') {
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'all\')"]');
+        } else if (type === 'teacher') {
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'teacher\')"]');
+        } else if (type === 'student') {
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'student\')"]');
         }
-    };
-    xhr.send('type=' + type);
 
-    // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
-    const headers = document.querySelectorAll('th');
-    headers.forEach(function(header) {
-        header.classList.remove('active');
-    });
-
-    // クリックされた項目にのみ 'active' クラスを追加
-    let selectedHeader;
-    if (type === 'all') {
-        selectedHeader = document.querySelector('th[onclick*="fetchData(\'all\')"]');
-    } else if (type === 'teacher') {
-        selectedHeader = document.querySelector('th[onclick*="fetchData(\'teacher\')"]');
-    } else if (type === 'student') {
-        selectedHeader = document.querySelector('th[onclick*="fetchData(\'student\')"]');
+        if (selectedHeader) {
+            selectedHeader.classList.add('active', 'selected');
+        } else {
+            console.error('選択された要素が見つかりません');
+        }
     }
-
-    if (selectedHeader) {
-        selectedHeader.classList.add('active');
-    } else {
-        console.error('選択された要素が見つかりません');
-    }
-}
-
 
     function deleteFavorite(favoriteId) {
         console.log('削除するID:', favoriteId); // 削除するIDのログ
@@ -115,5 +114,6 @@ require 'header.php';
         studentTab.className = 'unselected';
     };
 </script>
+
 
 
