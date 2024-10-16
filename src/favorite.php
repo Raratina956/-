@@ -21,13 +21,25 @@ require 'header.php';
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
-        <th onclick="fetchData('all')">全て</th>
+        <th onclick="fetchData('all'); selectTab(this)">全て</th>
         <th></th>
-        <th onclick="fetchData('teacher')">先生</th>
+        <th onclick="fetchData('teacher'); selectTab(this)">先生</th>
         <th></th>
-        <th onclick="fetchData('student')">生徒</th>
+        <th onclick="fetchData('student'); selectTab(this)">生徒</th>
     </tr>
 </table>
+
+<script>
+    function selectTab(element) {
+        // 全ての<th>要素のクラスを"unselected"に
+        var ths = document.querySelectorAll('th');
+        ths.forEach(th => th.className = 'unselected');
+        
+        // 選択された<th>要素のクラスを"selected"に
+        element.className = 'selected';
+    }
+</script>
+
 
 <div id="favorite-list">
     <!-- ここに取得したデータが表示される -->

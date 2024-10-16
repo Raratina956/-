@@ -51,3 +51,11 @@ th {
 .active {
     color: blue;
 }
+
+.selected {
+    color: blue;
+}
+
+.unselected {
+    color: gray;
+}
