@@ -7,7 +7,7 @@ $search_text = $_POST['search'];
 // require 'header.php';
 ?>
 <h1>検索結果</h1>
-<h2><?php echo  $search_text; ?></h2>
+<h2><?php echo $search_text; ?></h2>
 <p>
     <span>詳細検索</span><br>
 <form action="search.php" method="post">
@@ -53,6 +53,10 @@ if ($se_user_raw) {
 
 if ($judge == 1) {
     echo '<table>';
+    if (isset($_POST['a_u_t'])) {
+        if ($_POST['a_u_t'] != "t") {
+        }
+    }
     if ($pe_user_raw) {
         foreach ($pe_user_raw as $row) {
             ?>
@@ -62,9 +66,12 @@ if ($judge == 1) {
             </tr>
             <?php
         }
+        if (isset($_POST['a_u_t'])) {
+        }
     }
-    if (isset($_POST['a_p'])) {
-        if (!($_POST['a_p'] == "a")) {
+
+    if (isset($_POST['a_u_t'])) {
+        if ($_POST['a_u_t'] != "u") {
         }
         if ($pe_tag_raw) {
             foreach ($pe_tag_raw as $row) {
@@ -76,12 +83,12 @@ if ($judge == 1) {
                 <?php
             }
         }
-        if (isset($_POST['a_p'])) {
+        if (isset($_POST['a_u_t'])) {
         }
     }
 
     if (isset($_POST['a_u_t'])) {
-        if (!($_POST['a_u_t'] == "t")) {
+        if ($_POST['a_u_t'] != "t") {
         }
         if ($se_user_raw) {
             foreach ($se_user_raw as $row) {
@@ -99,7 +106,7 @@ if ($judge == 1) {
         }
     }
     if (isset($_POST['a_u_t'])) {
-        if (!($_POST['a_u_t'] == "u")) {
+        if ($_POST['a_u_t'] == "u") {
         }
         if ($se_tag_raw) {
             foreach ($se_tag_raw as $row) {
