@@ -19,9 +19,24 @@ if ($user_id === null) {
     exit();
 }
 
-// メッセージを取得する関数
-function getMessages($pdo, $user_id) {
-    $sql = "SELECT send_id, sent_id FROM Message WHERE send_id = :user_id OR sent_id = :user_id ORDER BY message_time ASC";
+// 最後のメッセージを取得する関数
+function getLastMessages($pdo, $user_id) {
+    $sql = "
+    SELECT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
+    FROM Message m1
+    INNER JOIN (
+        SELECT 
+            LEAST(send_id, sent_id) AS user1,
+            GREATEST(send_id, sent_id) AS user2,
+            MAX(message_time) AS last_message_time
+        FROM Message
+        WHERE send_id = :user_id OR sent_id = :user_id
+        GROUP BY user1, user2
+    ) m2 ON (LEAST(m1.send_id, m1.sent_id) = m2.user1
+            AND GREATEST(m1.send_id, m1.sent_id) = m2.user2
+            AND m1.message_time = m2.last_message_time)
+    ORDER BY m1.message_time DESC";
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
@@ -57,29 +72,24 @@ function getUserName($pdo, $user_id) {
 
 <div class="chat-container">
     <?php 
-        $messages = getMessages($pdo, $user_id);
-        $partner_ids = []; // 相手のIDを保存する配列
-
-        foreach ($messages as $message) {
-            // 相手のIDを取得（自分以外のIDを選択）
-            if ($message['send_id'] != $user_id) {
-                $partner_ids[] = $message['send_id']; 
-            } elseif ($message['sent_id'] != $user_id) {
-                $partner_ids[] = $message['sent_id']; 
-            }
-        }
-
-        // トーク相手の名前とIDをリンクとして表示
-        foreach (array_unique($partner_ids) as $partner_id): ?>
-            <div class="chat-item">
-                <img src="image/<?php echo htmlspecialchars($partner_id); ?>.png" alt="User Image" class="avatar">
-                <div class="chat-info">
-                    <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
-                        <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
-                    </a>
-                    <p>ID: <?php echo htmlspecialchars($partner_id); ?></p>
-                </div>
+        // 最後のメッセージを取得
+        $messages = getLastMessages($pdo, $user_id);
+        foreach ($messages as $message): 
+            // 相手のIDを特定（自分以外のID）
+            $partner_id = ($message['send_id'] == $user_id) ? $message['sent_id'] : $message['send_id']; 
+    ?>
+        <div class="chat-item">
+            <img src="image/<?php echo htmlspecialchars($partner_id); ?>.png" alt="User Image" class="avatar">
+            <div class="chat-info">
+                <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
+                    <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
+                </a>
+                <p>ID: <?php echo htmlspecialchars($partner_id); ?></p>
+                <!-- 最後のメッセージを表示 -->
+                <p><?php echo htmlspecialchars($message['message_detail']); ?></p>
+                <small><?php echo htmlspecialchars($message['message_time']); ?></small>
             </div>
+        </div>
     <?php endforeach; ?>
 </div>
 
