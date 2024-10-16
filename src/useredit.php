@@ -25,37 +25,11 @@
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
 
-            <script>
-                document.getElementById('fileInput').onchange = function (event) {
-                    var reader = new FileReader();
-                    reader.onload = function () {
-                        var existingIcon = document.getElementById('existingIcon');
-                        var preview = document.getElementById('preview');
-                        
-                        if (existingIcon) {
-                            existingIcon.src = reader.result;  // 既存のアイコンを置き換える
-                        } else {
-                            preview.src = reader.result;
-                            preview.style.display = 'block';
-                        }
-                    };
-                    reader.readAsDataURL(event.target.files[0]);
-                };
-
-                document.getElementById('uploadButton').onclick = function () {
-                    var form = document.getElementById('uploadForm');
-                    if (form) {
-                        form.submit();
-                    } else {
-                        console.error('uploadForm not found');
-                    }
-                };
-            </script>
-
 <?php
+            //名前変更
             echo '名前：<input type="text" name="user_name" value="', $user['user_name'], '"><br>';
 ?>
-
+            <!-- クラス変更 -->
             <label for="class">クラス：</label>
             <select name="class" id="class">
                 <?php
@@ -79,6 +53,34 @@
   <?php          
         }
     }
-    echo '<button type="button" id="uploadButton">保存</button>';
-    echo '</form>';
 ?>
+    <button type="button" id="uploadButton">保存</button>
+    <script>
+    document.getElementById('fileInput').onchange = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            
+            if (existingIcon) {
+                existingIcon.src = reader.result;  // 既存のアイコンを置き換える
+            } else {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+
+    document.getElementById('uploadButton').onclick = function () {
+        var form = document.getElementById('uploadForm');
+        if (form) {
+            form.submit();
+        } else {
+            console.error('uploadForm not found');
+        }
+    };
+    </script>
+    </form>
+
+

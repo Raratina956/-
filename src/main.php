@@ -1,7 +1,8 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 ?>
-ログイン後のページ
+<br><br><br><br>ログイン後のページ
 <p>
     <?php
     echo 'ユーザーID：', $_SESSION['user']['user_id'];
