@@ -3,8 +3,25 @@ body {
     background-image: url(../img/SpotLinkbg.png);
     text-align:center;
 }
-table{
-    margin: 0 auto;
-    font-size:20px;
-    padding-top:10px;
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px; /* 行間を広げる */
+    width: 80%; /* テーブルの幅を調整 */
+    /* background-color: #f0f0f0; /* 背景色を変更 */
+}
+
+td:nth-child(2) {
+    padding-left: 15px; /* テキストに余白を追加 */
+    text-align: left; /* 左寄せに設定 */
+}
+
+/* 詳細ボタンのスタイル */
+input[type="submit"] {
+    background-color: #4CAF50; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    padding: 8px 16px; /* ボタンのパディング */
+    margin: 4px 2px;
+    border: none; /* ボーダーを削除 */
+    border-radius: 8px; /* ボタンを丸くする */
+    cursor: pointer; /* ポインターを表示 */
 }
