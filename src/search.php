@@ -2,7 +2,7 @@
 require 'parts/auto-login.php';
 $search_text = $_POST['search'];
 if (empty($_POST['a_p'])) {
-    $_POST['a_p'] = 'a';
+    $_POST['a_p'] = 'p';
 }
 if (empty($_POST['a_u_t'])) {
     $_POST['a_u_t'] = 'a';
