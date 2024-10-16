@@ -1,5 +1,5 @@
 <?php
-    require "parts/db-connect.php";
+    require 'parts/auto-login.php';
     try {
         $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
