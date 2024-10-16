@@ -21,7 +21,7 @@
         <?php
          $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
-         $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
+         $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
          //プルダウン
          echo '<select name="list">';
