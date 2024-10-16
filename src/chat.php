@@ -2,25 +2,29 @@
 session_start(); // セッションを開始
 
 require "db-connect.php";
+
+// PDOによるデータベース接続
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch(PDOException $e){
+} catch(PDOException $e) {
     echo "接続エラー: " . $e->getMessage();
     exit();  
 }
 
-echo $_SESSION['user']['user_id'];
-echo $_GET['user_id'];
+// ログイン中のユーザーIDをセッションから取得
+if (!isset($_SESSION['user']['user_id'])) {
+    echo "ログインしていません。";
+    exit();
+}
+
+$logged_in_user_id = $_SESSION['user']['user_id'];
 
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
-// ログイン中のユーザーIDをセッションから取得
-$logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
-
 // user_idが取得できない場合の処理
-if ($partner_id === null || $logged_in_user_id === null) {
+if ($partner_id === null) {
     echo "ユーザーIDが指定されていません。";
     exit();
 }
@@ -79,7 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // 指定した相手とのチャット履歴を取得して表示
             $messages = getMessages($pdo, $logged_in_user_id, $partner_id);
             foreach ($messages as $message): ?>
-                <?php $class = ($message['send_id'] == $logged_in_user_id) ? 'person1' : 'person2'; ?>
+                <?php 
+                $class = ($message['send_id'] == $logged_in_user_id) ? 'person1' : 'person2'; 
+                ?>
                 <div class="<?php echo $class; ?>">
                     <div class="chat">
                         <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
@@ -99,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- トップページに戻るボタン -->
         <form action="chat-home.php" method="GET">
-            <!-- user_id をクエリに含める -->
             <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
             <input class="btn back-btn" type="submit" value="Topページに戻る">
         </form>
