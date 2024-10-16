@@ -20,6 +20,7 @@ $search_text = $_POST['search'];
         <option value="u">ユーザー</option>
         <option value="t">タグ</option>
     </select>
+    <input type="submit" value="絞込">
 </form>
 </p>
 <?php
