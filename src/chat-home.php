@@ -64,6 +64,14 @@ function getUserName($pdo, $user_id) {
 </head>
 <body>
 
+<!-- 戻るボタン -->
+<div class="back-button">
+    <form action="home.php" method="GET">
+        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+        <button type="submit">戻る</button>
+    </form>
+</div>
+
 <!-- 検索フォーム -->
 <form action="chat-idCheck.php" method="post">
     <input type="text" name="search_keyword" placeholder="ユーザーIDまたは名前を入力">
