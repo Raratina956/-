@@ -18,7 +18,7 @@
             $iconStmt->execute([$_SESSION['user']['user_id']]);
             $icon = $iconStmt->fetch();
             if ($icon) {
-                echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
+                echo '<img id="existingIcon" src="', $icon['icon_name'], '" width="20%" height="50%" class="icon">';
             }
 ?>
             <link rel="stylesheet" type="text/css" href="css/useredit.css">
