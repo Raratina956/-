@@ -29,68 +29,19 @@ require 'header.php';
     </tr>
 </table>
 
-<div id="favorite-list">
-    <!-- ここに取得したデータが表示される -->
-    <!-- fetch_favoritesにあるよ！ -->
-</div>
-<a href="main.php" class="back-link">メインへ</a>
+<div id="favorite-list"></div>
+
 <script>
 function fetchData(type) {
     console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'fetch_favorites.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
     xhr.onload = function() {
         if (xhr.status === 200) {
             document.getElementById('favorite-list').innerHTML = xhr.responseText;
         }
     };
-
-    xhr.send('type=' + type);
-}
-
-function deleteFavorite(favoriteId) {
-    console.log('削除するID:', favoriteId); // 削除するIDのログ
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'favorite.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            if (response.status === 'success') {
-                fetchData('all'); // 削除後に全てのデータを再取得
-            } else {
-                console.error(response.message);
-                alert(response.message);
-            }
-        } else {
-            console.error(`リクエストエラー: ステータスコード ${xhr.status}`);
-            alert(`リクエストに失敗しました。ステータスコード: ${xhr.status}`);
-        }
-    };
-
-    xhr.onerror = function() {
-        console.error('ネットワークエラーが発生しました。');
-        alert('ネットワークエラーが発生しました。');
-    };
-
-    xhr.send('delete=' + favoriteId);
-}
-
-function fetchData(type) {
-    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'fetch_favorites.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('favorite-list').innerHTML = xhr.responseText;
-        }
-    };
-
     xhr.send('type=' + type);
 
     // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
@@ -100,36 +51,34 @@ function fetchData(type) {
     });
 
     // クリックされた項目にのみ 'active' クラスを追加
+    let selectedHeader;
     if (type === 'all') {
-        document.querySelector('th[onclick="fetchData(\'all\')"]').classList.add('active');
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'all\')"]');
     } else if (type === 'teacher') {
-        document.querySelector('th[onclick="fetchData(\'teacher\')"]').classList.add('active');
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'teacher\')"]');
     } else if (type === 'student') {
-        document.querySelector('th[onclick="fetchData(\'student\')"]').classList.add('active');
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'student\')"]');
+    }
+
+    if (selectedHeader) {
+        selectedHeader.classList.add('active');
+    } else {
+        console.error('選択された要素が見つかりません');
     }
 }
 
 // ページが読み込まれたときに全てのデータを表示
-fetchData('all');
+window.onload = function() {
+    fetchData('all');
+    var allTab = document.getElementById('allTab');
+    var teacherTab = document.getElementById('teacherTab');
+    var studentTab = document.getElementById('studentTab');
 
-function selectTab(element) {
-        // 全ての<th>要素のクラスを"unselected"に
-        var ths = document.querySelectorAll('th');
-        ths.forEach(th => th.className = 'unselected');
-        
-        // 選択された<th>要素のクラスを"selected"に
-        element.className = 'selected';
-    }
+    allTab.className = 'selected';
+    teacherTab.className = 'unselected';
+    studentTab.className = 'unselected';
+};
 
-    // ページが読み込まれたときにクラスを設定
-    window.onload = function() {
-        var allTab = document.getElementById('allTab');
-        var teacherTab = document.getElementById('teacherTab');
-        var studentTab = document.getElementById('studentTab');
-        
-        allTab.className = 'selected';
-        teacherTab.className = 'unselected';
-        studentTab.className = 'unselected';
-    };
 </script>
+
 
