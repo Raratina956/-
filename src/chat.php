@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="<?php echo $class; ?>">
                     <div class="chat">
                         <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
-                        <?php echo "<img src='image/{$message['send_id']}.png' class='avatar'>"; ?>
+                        <?php echo "<img src='image/{$message['send_id']}.png'>"; ?>
                         <span><?php echo htmlspecialchars($message['message_detail']); ?></span>
                     </div>
                 </div>
@@ -99,12 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- トップページに戻るボタン -->
         <form action="chat-home.php" method="GET">
-            <!-- user_id をクエリに含める -->
-            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-            <input class="btn back-btn" type="submit" value="Topページに戻る">
-        </form>
-    </div>
-</div>
+    <!-- user_id をクエリに含める -->
+    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
+    <input class="btn back-btn" type="submit" value="Topページに戻る">
+</form>
 
+
+
+</div>
 </body>
 </html>
