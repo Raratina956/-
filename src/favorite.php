@@ -32,80 +32,52 @@ require 'header.php';
 <div id="favorite-list"></div>
 
 <script>
-    function fetchData(type) {
-        console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'fetch_favorites.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                document.getElementById('favorite-list').innerHTML = xhr.responseText;
-            }
-        };
-        xhr.send('type=' + type);
-
-        // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
-        const headers = document.querySelectorAll('th');
-        headers.forEach(function(header) {
-            header.classList.remove('active');
-        });
-
-        // クリックされた項目にのみ 'active' クラスを追加
-        if (type === 'all') {
-            document.querySelector('th[onclick="fetchData(\'all\')"]').classList.add('active');
-        } else if (type === 'teacher') {
-            document.querySelector('th[onclick="fetchData(\'teacher\')"]').classList.add('active');
-        } else if (type === 'student') {
-            document.querySelector('th[onclick="fetchData(\'student\')"]').classList.add('active');
+function fetchData(type) {
+    console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_favorites.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('favorite-list').innerHTML = xhr.responseText;
         }
-    }
-
-    function deleteFavorite(favoriteId) {
-        console.log('削除するID:', favoriteId); // 削除するIDのログ
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'favorite.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.status === 'success') {
-                    fetchData('all'); // 削除後に全てのデータを再取得
-                } else {
-                    console.error(response.message);
-                    alert(response.message);
-                }
-            } else {
-                console.error(`リクエストエラー: ステータスコード ${xhr.status}`);
-                alert(`リクエストに失敗しました。ステータスコード: ${xhr.status}`);
-            }
-        };
-        xhr.onerror = function() {
-            console.error('ネットワークエラーが発生しました。');
-            alert('ネットワークエラーが発生しました。');
-        };
-        xhr.send('delete=' + favoriteId);
-    }
-
-    function selectTab(element) {
-        // 全ての<th>要素のクラスを"unselected"に
-        var ths = document.querySelectorAll('th');
-        ths.forEach(th => th.className = 'unselected');
-
-        // 選択された<th>要素のクラスを"selected"に
-        element.className = 'selected';
-    }
-
-    // ページが読み込まれたときに全てのデータを表示
-    window.onload = function() {
-        fetchData('all');
-        var allTab = document.getElementById('allTab');
-        var teacherTab = document.getElementById('teacherTab');
-        var studentTab = document.getElementById('studentTab');
-
-        allTab.className = 'selected';
-        teacherTab.className = 'unselected';
-        studentTab.className = 'unselected';
     };
+    xhr.send('type=' + type);
+
+    // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
+    const headers = document.querySelectorAll('th');
+    headers.forEach(function(header) {
+        header.classList.remove('active');
+    });
+
+    // クリックされた項目にのみ 'active' クラスを追加
+    let selectedHeader;
+    if (type === 'all') {
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'all\')"]');
+    } else if (type === 'teacher') {
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'teacher\')"]');
+    } else if (type === 'student') {
+        selectedHeader = document.querySelector('th[onclick="fetchData(\'student\')"]');
+    }
+
+    if (selectedHeader) {
+        selectedHeader.classList.add('active');
+    } else {
+        console.error('選択された要素が見つかりません');
+    }
+}
+
+// ページが読み込まれたときに全てのデータを表示
+window.onload = function() {
+    fetchData('all');
+    var allTab = document.getElementById('allTab');
+    var teacherTab = document.getElementById('teacherTab');
+    var studentTab = document.getElementById('studentTab');
+
+    allTab.className = 'selected';
+    teacherTab.className = 'unselected';
+    studentTab.className = 'unselected';
+};
 </script>
 
 
