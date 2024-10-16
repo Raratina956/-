@@ -39,9 +39,10 @@
     }
 
     if ($stmt->execute()) {
-        $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/user.php';
+        $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/user.php?user_id=' . $_SESSION['user']['user_id'];
         header("Location: $redirect_url");
         exit();
+        
     } else {
         $error_info = $stmt->errorInfo();
         echo "登録に失敗しました: " . $error_info[2];
