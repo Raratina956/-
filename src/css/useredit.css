@@ -3,3 +3,52 @@ body{
     padding-top: 110px;
     background-color: #a0eefc;
 }
+
+#iconContainer {
+    float: left;
+    text-align: center; /* アイコンと「現在のアイコン」のラベルを中央揃え */
+    width: 30%; /* 左側のコンテナの幅 */
+    padding-top: 20px; /* 上部の余白 */
+}
+
+/* 名前・クラス・保存ボタンを右寄せ */
+#formContainer {
+    float: right;
+    width: 70%; /* 右側のコンテナの幅 */
+    text-align: left; /* テキストを左揃え */
+    padding-left: 20px; /* 左側の余白 */
+}
+
+/* 全体レイアウトのクリア */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* ファイル選択ボタンのスタイル */
+#fileInput {
+    margin-top: 10px;
+}
+
+/* 保存ボタンのスタイル */
+#uploadButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#uploadButton:hover {
+    background-color: #45a049;
+}
+
+/* プレビュー画像のスタイル */
+#preview {
+    margin-top: 10px;
+    max-width: 100px;
+    max-height: 100px;
+}
