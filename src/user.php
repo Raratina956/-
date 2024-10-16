@@ -178,8 +178,8 @@
                 //タグ一覧
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
-                    echo '<a>',$tag['tag_name'],'</a>';
-                    echo '<a>¥s</a>'; 
+                    echo $tag['tag_name'];
+                    echo '&emsp;';
                 }
               
             }

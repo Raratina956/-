@@ -31,7 +31,7 @@
             <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
-            </div>;
+            </div>
 
 <?php
             echo '<div id="formContainer">';
@@ -64,7 +64,7 @@
     }
 ?>
     <button type="button" id="uploadButton">保存</button>
-    </div>;
+    </div>
     <script>
     document.getElementById('fileInput').onchange = function (event) {
         var reader = new FileReader();
