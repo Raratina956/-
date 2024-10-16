@@ -143,9 +143,10 @@ input[type="submit"]:hover {
     width: 100%; /* バナーを横幅いっぱいに */
     margin: 10px 0; /* 上下に余白 */
     text-align: center; /* 中央揃え */
+    opacity: 0; /* 初期状態を透明に */
+    transition: opacity 1s ease; /* フェードインのアニメーション */
 }
 
-.ad-image {
-    max-width: 100%; /* 画面サイズに応じてリサイズ */
-    height: auto; /* アスペクト比を保つ */
+.ad-banner.show {
+    opacity: 1; /* フェードイン後の不透明度 */
 }

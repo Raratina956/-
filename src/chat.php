@@ -76,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="chat-box">
 
         <!-- 広告バナー -->
-        <div class="ad-banner">
+        <div class="ad-banner" id="ad-banner">
             <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
-                <img src="広告画像のパス" alt="広告バナー" class="ad-image">
+                <img src="image/banner.png" alt="広告バナー" class="ad-image">
             </a>
         </div>
 
@@ -114,5 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
+<!-- フェードインのスクリプト -->
+<script>
+    window.addEventListener('load', function() {
+        const adBanner = document.getElementById('ad-banner');
+        adBanner.classList.add('show'); // バナーにshowクラスを追加してフェードインさせる
+    });
+</script>
 </body>
 </html>
