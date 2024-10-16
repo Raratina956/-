@@ -45,7 +45,7 @@ function getUserName($pdo, $user_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
 
@@ -55,30 +55,33 @@ function getUserName($pdo, $user_id) {
     <button type="submit">検索</button>
 </form>
 
-<?php 
-    $messages = getMessages($pdo, $user_id);
-    $partner_ids = []; // 相手のIDを保存する配列
+<div class="chat-container">
+    <?php 
+        $messages = getMessages($pdo, $user_id);
+        $partner_ids = []; // 相手のIDを保存する配列
 
-    foreach ($messages as $message) {
-        // 相手のIDを取得（自分以外のIDを選択）
-        if ($message['send_id'] != $user_id) {
-            $partner_ids[] = $message['send_id']; 
-        } elseif ($message['sent_id'] != $user_id) {
-            $partner_ids[] = $message['sent_id']; 
+        foreach ($messages as $message) {
+            // 相手のIDを取得（自分以外のIDを選択）
+            if ($message['send_id'] != $user_id) {
+                $partner_ids[] = $message['send_id']; 
+            } elseif ($message['sent_id'] != $user_id) {
+                $partner_ids[] = $message['sent_id']; 
+            }
         }
-    }
 
-    // トーク相手の名前とIDをリンクとして表示
-    foreach (array_unique($partner_ids) as $partner_id): ?>
-        <div>
-            <h3>
-                <?php echo "<img src=\"image/{$partner_id}.png\">"; ?>
-                <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
-                    <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
-                </a>
-                (ID: <?php echo htmlspecialchars($partner_id); ?>) <!-- user_idを表示 -->
-            </h3>
-        </div>
+        // トーク相手の名前とIDをリンクとして表示
+        foreach (array_unique($partner_ids) as $partner_id): ?>
+            <div class="chat-item">
+                <img src="image/<?php echo htmlspecialchars($partner_id); ?>.png" alt="User Image" class="avatar">
+                <div class="chat-info">
+                    <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
+                        <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
+                    </a>
+                    <p>ID: <?php echo htmlspecialchars($partner_id); ?></p>
+                </div>
+            </div>
     <?php endforeach; ?>
+</div>
+
 </body>
 </html>
