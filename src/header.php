@@ -17,7 +17,7 @@ if (isset($_POST['logout'])) {
 </head>
 <header>
 
-    <img src="img/icon.png" class="icon" width="300" height="80">
+    <a href="main.php"><img src="img/icon.png" class="icon" width="300" height="80"></a>
     <img src="img/bell.png" class="bell" width="50" height="50">
     <div class="header-area">
         <div class="hamburger">
