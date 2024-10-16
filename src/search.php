@@ -53,6 +53,8 @@ if ($se_user_raw) {
 
 if ($judge == 1) {
     echo '<table>';
+
+
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "t") {
             if ($pe_user_raw) {
@@ -66,8 +68,8 @@ if ($judge == 1) {
                 }
             }
         }
-
     }
+
 
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "u") {
@@ -83,47 +85,41 @@ if ($judge == 1) {
             }
         }
     }
+
     if (isset($_POST['a_u_t'])) {
-
-
-        if (isset($_POST['a_u_t'])) {
-            if ($_POST['a_u_t'] != "t") {
-
-                if ($se_user_raw) {
-                    foreach ($se_user_raw as $row) {
-                        if ($search_text != $row['user_name']) {
-                            ?>
-                            <tr>
-                                <td>アイコン</td>
-                                <td><?php echo $row['user_name']; ?></td>
-                            </tr>
-                            <?php
-                        }
+        if ($_POST['a_u_t'] != "t") {
+            if ($se_user_raw) {
+                foreach ($se_user_raw as $row) {
+                    if ($search_text != $row['user_name']) {
+                        ?>
+                        <tr>
+                            <td>アイコン</td>
+                            <td><?php echo $row['user_name']; ?></td>
+                        </tr>
+                        <?php
                     }
                 }
             }
         }
-        if (isset($_POST['a_u_t'])) {
+    }
 
-            if (isset($_POST['a_u_t'])) {
-                if ($_POST['a_u_t'] == "u") {
-                }
-                if ($se_tag_raw) {
-                    foreach ($se_tag_raw as $row) {
-                        if ($search_text != $row['tag_name']) {
-                            ?>
-                            <tr>
-                                <td>タグ</td>
-                                <td><?php echo $row['tag_name']; ?></td>
-                            </tr>
-                            <?php
-                        }
+    if (isset($_POST['a_u_t'])) {
+        if ($_POST['a_u_t'] == "u") {
+
+            if ($se_tag_raw) {
+                foreach ($se_tag_raw as $row) {
+                    if ($search_text != $row['tag_name']) {
+                        ?>
+                        <tr>
+                            <td>タグ</td>
+                            <td><?php echo $row['tag_name']; ?></td>
+                        </tr>
+                        <?php
                     }
                 }
             }
         }
-        if (isset($_POST['a_u_t'])) {
-        }
+
     }
     echo '</table>';
 } else {

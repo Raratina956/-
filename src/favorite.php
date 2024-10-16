@@ -47,21 +47,21 @@ require 'header.php';
         // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
         const headers = document.querySelectorAll('th');
         headers.forEach(function(header) {
-            header.classList.remove('active');
+            header.classList.remove('active', 'selected');  // ここで 'active' と 'selected' クラスを削除
         });
 
-        // クリックされた項目にのみ 'active' クラスを追加
+        // クリックされた項目にのみ 'active' と 'selected' クラスを追加
         let selectedHeader;
         if (type === 'all') {
-            selectedHeader = document.querySelector('th[onclick="fetchData(\'all\')"]');
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'all\')"]');
         } else if (type === 'teacher') {
-            selectedHeader = document.querySelector('th[onclick="fetchData(\'teacher\')"]');
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'teacher\')"]');
         } else if (type === 'student') {
-            selectedHeader = document.querySelector('th[onclick="fetchData(\'student\')"]');
+            selectedHeader = document.querySelector('th[onclick*="fetchData(\'student\')"]');
         }
 
         if (selectedHeader) {
-            selectedHeader.classList.add('active');
+            selectedHeader.classList.add('active', 'selected');
         } else {
             console.error('選択された要素が見つかりません');
         }
@@ -114,5 +114,6 @@ require 'header.php';
         studentTab.className = 'unselected';
     };
 </script>
+
 
 
