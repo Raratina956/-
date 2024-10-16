@@ -98,9 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <!-- トップページに戻るボタン -->
-        <form action="chat.php" method="GET">
+        <form action="chat-home.php" method="GET">
             <input class="btn back-btn" type="submit" name="back" value="Topページに戻る">
-            <input class="btn back-btn" type="submit" name="reset" value="チャット履歴をリセット">
         </form>
     </div>
 </div>

@@ -1,6 +1,12 @@
 <?php
 require 'parts/auto-login.php';
 $search_text = $_POST['search'];
+if (empty($_POST['a_p'])) {
+    $_POST['a_p'] = 'a';
+}
+if (empty($_POST['a_u_t'])) {
+    $_POST['a_u_t'] = 'a';
+}
 ?>
 
 <?php
@@ -38,23 +44,23 @@ $pe_tag_raw = $pe_tag_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($pe_tag_raw) {
     $judge = 1;
 }
-$se_user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_name LIKE ?');
-$se_user_sql->execute(['%' . $search_text . '%']);
-$se_user_raw = $se_user_sql->fetchAll(PDO::FETCH_ASSOC);
-if ($se_user_raw) {
-    $judge = 1;
-}
-$se_tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name LIKE ?');
-$se_tag_sql->execute(['%' . $search_text . '%']);
-$se_tag_raw = $se_tag_sql->fetchAll(PDO::FETCH_ASSOC);
-if ($se_user_raw) {
-    $judge = 1;
+if ($_POST['a_p'] != "a") {
+    $se_user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_name LIKE ?');
+    $se_user_sql->execute(['%' . $search_text . '%']);
+    $se_user_raw = $se_user_sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($se_user_raw) {
+        $judge = 1;
+    }
+    $se_tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name LIKE ?');
+    $se_tag_sql->execute(['%' . $search_text . '%']);
+    $se_tag_raw = $se_tag_sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($se_user_raw) {
+        $judge = 1;
+    }
 }
 
 if ($judge == 1) {
     echo '<table>';
-
-
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "t") {
             if ($pe_user_raw) {
@@ -86,40 +92,42 @@ if ($judge == 1) {
         }
     }
 
-    if (isset($_POST['a_u_t'])) {
-        if ($_POST['a_u_t'] != "t") {
-            if ($se_user_raw) {
-                foreach ($se_user_raw as $row) {
-                    if ($search_text != $row['user_name']) {
-                        ?>
-                        <tr>
-                            <td>アイコン</td>
-                            <td><?php echo $row['user_name']; ?></td>
-                        </tr>
-                        <?php
-                    }
-                }
-            }
-        }
-    }
-
-    if (isset($_POST['a_u_t'])) {
-        if ($_POST['a_u_t'] == "u") {
-
-            if ($se_tag_raw) {
-                foreach ($se_tag_raw as $row) {
-                    if ($search_text != $row['tag_name']) {
-                        ?>
-                        <tr>
-                            <td>タグ</td>
-                            <td><?php echo $row['tag_name']; ?></td>
-                        </tr>
-                        <?php
+    if ($_POST['a_p'] != "a") {
+        if (isset($_POST['a_u_t'])) {
+            if ($_POST['a_u_t'] != "t") {
+                if ($se_user_raw) {
+                    foreach ($se_user_raw as $row) {
+                        if ($search_text != $row['user_name']) {
+                            ?>
+                            <tr>
+                                <td>アイコン</td>
+                                <td><?php echo $row['user_name']; ?></td>
+                            </tr>
+                            <?php
+                        }
                     }
                 }
             }
         }
 
+
+        if (isset($_POST['a_u_t'])) {
+            if ($_POST['a_u_t'] == "u") {
+
+                if ($se_tag_raw) {
+                    foreach ($se_tag_raw as $row) {
+                        if ($search_text != $row['tag_name']) {
+                            ?>
+                            <tr>
+                                <td>タグ</td>
+                                <td><?php echo $row['tag_name']; ?></td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                }
+            }
+        }
     }
     echo '</table>';
 } else {

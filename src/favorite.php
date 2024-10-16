@@ -16,7 +16,7 @@ if (isset($_POST['delete'])) {
 
 require 'header.php';
 ?>
-<link rel="stylesheet" href="css/join_tag.css">
+<!-- <link rel="stylesheet" href="css/join_tag.css"> -->
 <link rel="stylesheet" href="css/fetch_favorites.css">
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
