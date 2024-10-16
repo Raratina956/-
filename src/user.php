@@ -177,7 +177,7 @@
                 //タグ一覧
                 echo 'タグ一覧<br>';
                 foreach($tags as $tag){
-                    echo $tag['tag_name'],'　　';
+                    echo $tag['tag_name'],'<a>　　</a>';
                 }
               
             }
