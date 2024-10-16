@@ -114,7 +114,7 @@ if ($judge == 1) {
 
 
     if (isset($_POST['a_u_t'])) {
-        if ($_POST['a_u_t'] == "u") {
+        if ($_POST['a_u_t'] != "u") {
 
             if ($se_tag_raw) {
                 foreach ($se_tag_raw as $row) {
