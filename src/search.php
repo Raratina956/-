@@ -52,6 +52,9 @@ if ($se_user_raw) {
 }
 
 if ($judge == 1) {
+    $a_p = $_POST['a_p'] ?? 'a';
+    $a_u_t = $_POST['a_u_t'] ?? 'a';
+
     echo '<table>';
 
 
@@ -86,6 +89,7 @@ if ($judge == 1) {
         }
     }
 
+
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "t") {
             if ($se_user_raw) {
@@ -103,6 +107,7 @@ if ($judge == 1) {
         }
     }
 
+
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] == "u") {
 
@@ -119,7 +124,6 @@ if ($judge == 1) {
                 }
             }
         }
-
     }
     echo '</table>';
 } else {
