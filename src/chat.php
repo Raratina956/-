@@ -74,6 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="chat-system">
     <div class="chat-box">
+
+        <!-- 広告バナー -->
+        <div class="ad-banner">
+            <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
+                <img src="広告画像のパス" alt="広告バナー" class="ad-image">
+            </a>
+        </div>
+
         <div class="chat-area" id="chat-area">
             <?php 
             // 指定した相手とのチャット履歴を取得して表示
@@ -99,13 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- トップページに戻るボタン -->
         <form action="chat-home.php" method="GET">
-    <!-- user_id をクエリに含める -->
-    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-    <input class="btn back-btn" type="submit" value="Topページに戻る">
-</form>
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
+            <input class="btn back-btn" type="submit" value="Topページに戻る">
+        </form>
 
-
-
+    </div>
 </div>
+
 </body>
 </html>

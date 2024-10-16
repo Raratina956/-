@@ -138,3 +138,14 @@ input[type="submit"]:hover {
 .back-btn:hover {
     background-color: #d32f2f;
 }
+
+.ad-banner {
+    width: 100%; /* バナーを横幅いっぱいに */
+    margin: 10px 0; /* 上下に余白 */
+    text-align: center; /* 中央揃え */
+}
+
+.ad-image {
+    max-width: 100%; /* 画面サイズに応じてリサイズ */
+    height: auto; /* アスペクト比を保つ */
+}
