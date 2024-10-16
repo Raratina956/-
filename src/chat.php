@@ -99,9 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- トップページに戻るボタン -->
         <form action="chat-home.php" method="GET">
-            <input class="btn back-btn" type="submit" name="back" value="Topページに戻る">
-        </form>
-    </div>
+    <!-- user_id をクエリに含める -->
+    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
+    <input class="btn back-btn" type="submit" value="Topページに戻る">
+</form>
+
+
+
 </div>
 </body>
 </html>

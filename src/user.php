@@ -167,6 +167,7 @@
             echo '</div>';
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             echo '<div class="tag">';
+            echo 'タグ一覧<br>';
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
             $attribute->execute([$_SESSION['user']['user_id']]);
             $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
@@ -176,10 +177,9 @@
                 $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
                 //タグ一覧
-                echo 'タグ一覧<br>';
                 foreach($tags as $tag){
-                    echo '<a>',$tag['tag_name'],'</a>';
-                    echo '<a>¥s</a>'; 
+                    echo $tag['tag_name'];
+                    echo '&emsp;';
                 }
               
             }

@@ -1,40 +1,61 @@
-body{
+body {
     text-align: center;
     padding-top: 110px;
     background-color: #a0eefc;
+    display: flex; /* Flexboxを使用して垂直方向も中央寄せ */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面全体の高さに対応 */
+    margin: 0;
 }
 
-#iconContainer {
-    float: left;
-    text-align: center; /* アイコンと「現在のアイコン」のラベルを中央揃え */
-    width: 30%; /* 左側のコンテナの幅 */
-    padding-top: 20px; /* 上部の余白 */
+/* 全体を中央寄せするためのレイアウト */
+#uploadForm {
+    max-width: 600px; /* フォームの最大幅を設定 */
+    margin: 0 auto; /* 全体を中央に寄せる */
+    padding: 40px; /* フォーム全体に余白を追加 */
+    background-color: #fff; /* 背景色を白に設定 */
+    border-radius: 10px; /* 角を丸く */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+    text-align: center; /* コンテンツを中央寄せ */
 }
 
-/* 名前・クラス・保存ボタンを右寄せ */
-#formContainer {
-    float: right;
-    width: 70%; /* 右側のコンテナの幅 */
-    text-align: left; /* テキストを左揃え */
-    padding-left: 20px; /* 左側の余白 */
+/* アイコンの表示を大きくする */
+#existingIcon, #preview {
+    width: 180px; /* 幅を大きく設定 */
+    height: 180px; /* 高さを大きく設定 */
+    object-fit: cover; /* 画像が歪まないように調整 */
+    border-radius: 50%; /* アイコンを丸く表示 */
+    margin-bottom: 20px; /* 下に余白を追加 */
 }
 
-/* 全体レイアウトのクリア */
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+/* ラベルとテキストボックスのスタイルを大きく */
+label {
+    font-size: 1.4em; /* ラベルの文字サイズを大きく */
+    margin-right: 10px;
+}
+
+input[type="text"], select {
+    font-size: 1.2em; /* テキストボックスとセレクトボックスの文字サイズを大きく */
+    padding: 12px;
+    width: 85%; /* 幅を広く設定 */
+    margin-bottom: 20px; /* 下に余白を追加 */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 角を丸くする */
+    box-sizing: border-box; /* パディングを含む幅 */
 }
 
 /* ファイル選択ボタンのスタイル */
 #fileInput {
-    margin-top: 10px;
+    font-size: 1.2em;
+    margin-bottom: 20px; /* 下に余白を追加 */
+    padding: 10px; /* ファイル選択ボタンにパディングを追加 */
 }
 
 /* 保存ボタンのスタイル */
 #uploadButton {
-    margin-top: 20px;
-    padding: 10px 20px;
+    font-size: 1.3em; /* ボタンの文字サイズを大きく */
+    padding: 12px 24px; /* ボタンに余白を追加 */
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -49,6 +70,6 @@ body{
 /* プレビュー画像のスタイル */
 #preview {
     margin-top: 10px;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 180px; /* プレビューも大きめに */
+    max-height: 180px;
 }

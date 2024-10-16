@@ -32,7 +32,21 @@ body {
 }
 
 .confirmbutton{
-margin-left: 1300px
+margin-left: 1300px;
+background-color: azure;
+border:#17A7E9;
+color: black;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+border-radius: 50px; /* 50pxの角丸 */
+}
+
+button:hover {
+    background-color:#17A7E9;
 }
 
 .profile{
