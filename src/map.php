@@ -21,12 +21,17 @@
         <?php
          $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
-         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+         $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
 
          //プルダウン
          echo '<select name="list">';
-         foreach ($row as $tag_list) {
-            echo "<option value='",$tag_list['tag_id'],"'>",$tag_list['tag_name'],"</option>"; 
+         foreach ($results as $tag_list) {
+            // echo "<option value='",$tag_list['tag_id'],"'>",$tag_list['tag_name'],"</option>"; 
+
+            $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
+            $sql_tag->execute([$tag_list['tag_id']]);
+            $row_tag = $sql_tag->fetch();
+            echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>"; 
 
           }
          echo '</select>';
