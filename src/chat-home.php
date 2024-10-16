@@ -84,7 +84,7 @@ function getUserName($pdo, $user_id) {
                 <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
                     <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
                 </a>
-                <p>ID: <?php echo htmlspecialchars($partner_id); ?></p>
+              
                 <!-- 最後のメッセージを表示 -->
                 <p><?php echo htmlspecialchars($message['message_detail']); ?></p>
                 <small><?php echo htmlspecialchars($message['message_time']); ?></small>
