@@ -102,7 +102,8 @@
 
                 //タグ一覧
                 foreach($tags as $tag){
-                    echo $tag['tag_name'];
+                    echo '<a>',$tag['tag_name'],'</a>';
+                    echo '<a>¥s</a>'; 
                 }
                 
             }
