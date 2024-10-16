@@ -35,6 +35,10 @@ function timeAgo($datetime)
 $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
 $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+
+$iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+    $iconStmt->execute([$_GET['user_id']]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 if ($list_raw) {
     echo '<table>';
     foreach ($list_raw as $row) {
@@ -43,7 +47,7 @@ if ($list_raw) {
         $info_sql->execute([$announcement_id]);
         $info_row = $info_sql->fetch();
         echo '<tr>';
-        echo '<td>アイコン</td>';
+        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"><br>';
         $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
         $user_sql->execute([$info_row['send_person']]);
         $user_row = $user_sql->fetch();
