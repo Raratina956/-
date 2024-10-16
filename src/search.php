@@ -1,6 +1,12 @@
 <?php
 require 'parts/auto-login.php';
 $search_text = $_POST['search'];
+if (empty($_POST['a_p'])) {
+    $_POST['a_p'] = 'a';
+}
+if (empty($_POST['a_u_t'])) {
+    $_POST['a_u_t'] = 'a';
+}
 ?>
 
 <?php
@@ -53,8 +59,6 @@ if ($se_user_raw) {
 
 if ($judge == 1) {
     echo '<table>';
-
-
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "t") {
             if ($pe_user_raw) {
@@ -86,6 +90,7 @@ if ($judge == 1) {
         }
     }
 
+
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] != "t") {
             if ($se_user_raw) {
@@ -103,6 +108,7 @@ if ($judge == 1) {
         }
     }
 
+
     if (isset($_POST['a_u_t'])) {
         if ($_POST['a_u_t'] == "u") {
 
@@ -119,7 +125,6 @@ if ($judge == 1) {
                 }
             }
         }
-
     }
     echo '</table>';
 } else {
