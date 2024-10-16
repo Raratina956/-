@@ -21,11 +21,11 @@ require 'header.php';
 <h1>お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
-        <th onclick="fetchData('all')">全て</th>
+        <th id="allTab" class="selected" onclick="fetchData('all'); selectTab(this)">全て</th>
         <th></th>
-        <th onclick="fetchData('teacher')">先生</th>
+        <th id="teacherTab" class="unselected" onclick="fetchData('teacher'); selectTab(this)">先生</th>
         <th></th>
-        <th onclick="fetchData('student')">生徒</th>
+        <th id="studentTab" class="unselected" onclick="fetchData('student'); selectTab(this)">生徒</th>
     </tr>
 </table>
 
@@ -111,5 +111,25 @@ function fetchData(type) {
 
 // ページが読み込まれたときに全てのデータを表示
 fetchData('all');
+
+function selectTab(element) {
+        // 全ての<th>要素のクラスを"unselected"に
+        var ths = document.querySelectorAll('th');
+        ths.forEach(th => th.className = 'unselected');
+        
+        // 選択された<th>要素のクラスを"selected"に
+        element.className = 'selected';
+    }
+
+    // ページが読み込まれたときにクラスを設定
+    window.onload = function() {
+        var allTab = document.getElementById('allTab');
+        var teacherTab = document.getElementById('teacherTab');
+        var studentTab = document.getElementById('studentTab');
+        
+        allTab.className = 'selected';
+        teacherTab.className = 'unselected';
+        studentTab.className = 'unselected';
+    };
 </script>
 

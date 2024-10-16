@@ -1,7 +1,8 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 ?>
-ログイン後のページ
+<br><br><br><br>ログイン後のページ
 <p>
     <?php
     echo 'ユーザーID：', $_SESSION['user']['user_id'];
@@ -44,6 +45,7 @@ require 'parts/auto-login.php';
         <input type="submit" value="検索"> 
     </form>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
+    <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">メッセージ</a></li>'; ?>
 
     <!-- まだリンクがないので仮で作っときます -->
     <?php echo '<li><a href="user.php?user_id=4">公式生徒のプロフィール</a></li>'; ?>
