@@ -21,7 +21,7 @@ $search_text = $_POST['search'];
         <option value="t">タグ</option>
     </select>
     <input type="submit" value="絞込">
-    <input type="hidden" name="search" value="<?php echo $search_text ?>"
+    <input type="hidden" name="search" value="<?php echo $search_text ?>">
 </form>
 </p>
 <?php
