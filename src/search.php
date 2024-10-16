@@ -7,7 +7,7 @@ $search_text = $_POST['search'];
 // require 'header.php';
 ?>
 <h1>検索結果</h1>
-<h2><?php $search_text ?></h2>
+<h2><?php echo  $search_text; ?></h2>
 <p>
     <span>詳細検索</span><br>
 <form action="search.php" method="post">
@@ -20,6 +20,8 @@ $search_text = $_POST['search'];
         <option value="u">ユーザー</option>
         <option value="t">タグ</option>
     </select>
+    <input type="submit" value="絞込">
+    <input type="hidden" name="search" value="<?php echo $search_text ?>">
 </form>
 </p>
 <?php
