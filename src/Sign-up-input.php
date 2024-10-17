@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="name">名前：</label>
-            <input type="text" name="name" id="name" required>
+            <input type="text" name="name" id="name" required placeholder="名前は60文字以内で入力してください">
         </div>
         <div class="form-group">
             <label for="password">パスワード：</label>
