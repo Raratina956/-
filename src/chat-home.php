@@ -64,6 +64,14 @@ function getUserName($pdo, $user_id) {
 </head>
 <body>
 
+<!-- 戻るボタン -->
+<div class="back-button">
+    <form action="main.php" method="GET">
+        
+        <button type="submit">戻る</button>
+    </form>
+</div>
+
 <!-- 検索フォーム -->
 <form action="chat-idCheck.php" method="post">
     <input type="text" name="search_keyword" placeholder="ユーザーIDまたは名前を入力">
@@ -84,9 +92,9 @@ function getUserName($pdo, $user_id) {
                 <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
                     <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
                 </a>
-                <p>ID: <?php echo htmlspecialchars($partner_id); ?></p>
+              
                 <!-- 最後のメッセージを表示 -->
-                <p>Last message: <?php echo htmlspecialchars($message['message_detail']); ?></p>
+                <p><?php echo htmlspecialchars($message['message_detail']); ?></p>
                 <small><?php echo htmlspecialchars($message['message_time']); ?></small>
             </div>
         </div>

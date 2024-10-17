@@ -69,11 +69,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat2.css">
 </head>
 <body>
 <div class="chat-system">
     <div class="chat-box">
+
+        <!-- 広告バナー -->
+        <!-- <div class="ad-banner" id="ad-banner">
+            <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
+                <img src="image/banner.png" alt="広告バナー" class="ad-image">
+            </a>
+        </div> -->
+        <!-- 広告バナー -->
+<div class="ad-banner" id="ad-banner">
+    <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
+        <img src="image/banner.png" alt="広告バナー" class="ad-image">
+    </a>
+</div>
+
+
         <div class="chat-area" id="chat-area">
             <?php 
             // 指定した相手とのチャット履歴を取得して表示
@@ -99,13 +114,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- トップページに戻るボタン -->
         <form action="chat-home.php" method="GET">
-    <!-- user_id をクエリに含める -->
-    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-    <input class="btn back-btn" type="submit" value="Topページに戻る">
-</form>
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
+            <input class="btn back-btn" type="submit" value="Topページに戻る">
+        </form>
 
-
-
+    </div>
 </div>
+
+<!-- フェードインのスクリプト -->
+<script>
+    window.addEventListener('load', function() {
+        const adBanner = document.getElementById('ad-banner');
+        setTimeout(() => {
+            adBanner.classList.add('show'); // 3秒後にバナーにshowクラスを追加してフェードインさせる
+        }, 3000); // 3000ミリ秒 = 3秒
+    });
+</script>
+
+
 </body>
 </html>

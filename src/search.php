@@ -18,13 +18,41 @@ if (empty($_POST['a_u_t'])) {
     <span>詳細検索</span><br>
 <form action="search.php" method="post">
     <select name="a_p">
-        <option value="a">全件一致</option>
-        <option value="p">部分一致</option>
+        <?php
+        if(isset($_POST['a_p'])){
+            if ($_POST['a_p'] == "a") {
+                echo '<option value="a" selected>全件一致</option>';
+                echo '<option value="p">部分一致</option>';
+            }else{
+                echo '<option value="a">全件一致</option>';
+                echo '<option value="p" selected>部分一致</option>';
+            }
+        }else{
+            echo '<option value="a">全件一致</option>';
+            echo '<option value="p">部分一致</option>';
+        }
+        ?>
     </select>
     <select name="a_u_t">
         <option value="a">全て</option>
-        <option value="u">ユーザー</option>
-        <option value="t">タグ</option>
+        <?Php
+        if (isset($_POST['a_u_t'])) {
+            if ($_POST['a_u_t'] == "u") {
+                echo '<option value="u" selected>ユーザー</option>';
+                echo '<option value="t">タグ</option>';
+            } else if ($_POST['a_u_t'] == "t") {
+                echo '<option value="u">ユーザー</option>';
+                echo '<option value="t" selected>タグ</option>';
+            } else {
+                echo '<option value="u">ユーザー</option>';
+                echo '<option value="t">タグ</option>';
+            }
+        } else {
+            echo '<option value="u">ユーザー</option>';
+            echo '<option value="t">タグ</option>';
+        }
+        ?>
+
     </select>
     <input type="submit" value="絞込">
     <input type="hidden" name="search" value="<?php echo $search_text ?>">
