@@ -53,7 +53,7 @@ const checkImage = () => {
         
         // URLを新規タブで開く
         const url = code.data; // QRコードから取得したURL
-        window.open(url, '_blank'); // 新しいタブで開く
+        window.open(url);
         
     } else {
         console.log("QRcodeが見つかりません…", code);
