@@ -7,7 +7,7 @@
     <title>QR表示</title>
 </head>
 <body>
-    <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />
+    <input id="text" type="text" style="width:80%" /><br />
     <div id="qrcode"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
@@ -21,7 +21,6 @@
             var elText = document.getElementById("text");
 
             if (!elText.value) {
-                alert("Input a text");
                 elText.focus();
                 return;
             }
