@@ -40,9 +40,14 @@ $floor = $row['classroom_floor'];
             $list_sql->execute([$_SESSION['user']['user_id']]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             if ($list_raw) {
-                $info_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE type=?');
-                $info_sql->execute([$_SESSION['user']['user_id']]);
-                $info_raw = $info_sql->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($list_raw as $row) {
+                    $info_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE type=? AND user_id=?');
+                    $info_sql->execute([
+                        $_SESSION['user']['user_id'],
+                        $row['follow_id']
+                    ]);
+                    $info_raw = $info_sql->fetchAll(PDO::FETCH_ASSOC);
+                }
             }
         }
         ?>
