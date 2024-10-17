@@ -28,8 +28,9 @@ if (isset($_POST['delete'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
+<link rel="stylesheet" href="css/info_detail.css">
 <?php
 $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
 $info_sql->execute([$announcement_id]);
