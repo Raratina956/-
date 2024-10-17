@@ -60,7 +60,7 @@ $floor = $row['classroom_floor'];
                         $sql_insert = $pdo->prepare('INSERT INTO Announce_check (current_location_id,user_id,type) VALUES (?,?,?)');
                         $sql_insert->execute([
                             $current_location_id,
-                            $sent_user_id,
+                            $list_row['follow_id'],
                             1
                         ]);
                     }
