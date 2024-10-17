@@ -112,7 +112,8 @@
             //相手のプロフィール
             //チャットボタン表示
 
-            echo '<img src="img\chat.png" width="10%" height="10%" class="">';
+            echo '<div class="favorite-container">';
+            echo '<img src="img\chat.png" width="10%" height="10%" class="chat">';
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
@@ -135,6 +136,7 @@
                         </button>
                       </form><br>';
             }
+            echo '</div>';
 
             //アイコン表示
             echo '<div class="profile-container">';
