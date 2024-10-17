@@ -17,33 +17,33 @@ try {
     exit();
 }
 
-// アカウント停止処理
-// if (isset($_POST['ban_user_id'])) {
-//     $ban_user_id = intval($_POST['ban_user_id']);
+アカウント停止処理
+if (isset($_POST['ban_user_id'])) {
+    $ban_user_id = intval($_POST['ban_user_id']);
 
-//     try {
-//         // user テーブルの icon を ban.png に変更
-//         $ban_user_query = $pdo->prepare('UPDATE Users SET icon = "ban.png" WHERE user_id = ?');
-//         $ban_user_query->execute([$ban_user_id]);
-//         echo 'ユーザーが停止されました。';
-//     } catch (PDOException $e) {
-//         echo 'アカウント停止に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-//     }
-// }
+    try {
+        // user テーブルの icon を ban.png に変更
+        $ban_user_query = $pdo->prepare('UPDATE Users SET s_or_t = 7 WHERE user_id = ?');
+        $ban_user_query->execute([$ban_user_id]);
+        echo 'ユーザーが停止されました。';
+    } catch (PDOException $e) {
+        echo 'アカウント停止に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    }
+}
 
-// アカウント復帰処理
-// if (isset($_POST['restore_user_id'])) {
-//     $restore_user_id = intval($_POST['restore_user_id']);
+アカウント復帰処理
+if (isset($_POST['restore_user_id'])) {
+    $restore_user_id = intval($_POST['restore_user_id']);
 
-//     try {
-//         // user テーブルの icon を user_id.jpg に変更
-//         $restore_user_query = $pdo->prepare('UPDATE Users SET icon = CONCAT(user_id, ".jpg") WHERE user_id = ?');
-//         $restore_user_query->execute([$restore_user_id]);
-//         echo 'ユーザーが復帰されました。';
-//     } catch (PDOException $e) {
-//         echo 'アカウント復帰に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-//     }
-// }
+    try {
+        // user テーブルの icon を user_id.jpg に変更
+        $restore_user_query = $pdo->prepare('UPDATE Users SET s_or_t = 0 WHERE user_id = ?');
+        $restore_user_query->execute([$restore_user_id]);
+        echo 'ユーザーが復帰されました。';
+    } catch (PDOException $e) {
+        echo 'アカウント復帰に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    }
+}
 
 // ユーザーデータを取得するクエリ
 $query = $pdo->query('SELECT * FROM Users ORDER BY user_id ASC');
