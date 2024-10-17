@@ -17,16 +17,56 @@ if (empty($_POST['a_u_t'])) {
 <h1>検索結果</h1>
 <h2><?php echo $search_text; ?></h2>
 <p>
-    <span>詳細検索</span><br>
+<form action="search.php" method="post">
+    <input type="text" name="search" value="<?php echo $search_text; ?>">
+    <?php
+    if (isset($_POST['a_p'])) {
+        echo '<input type="hidden" name="a_p" value="', $_POST['a_p'], '">';
+    }
+    if (isset($_POST['a_u_t'])) {
+        echo '<input type="hidden" name="a_u_t" value="', $_POST['a_u_t'], '">';
+    }
+    ?>
+    <input type="submit" value="再検索">
+</form>
+<span>詳細検索</span><br>
 <form action="search.php" method="post">
     <select name="a_p">
-        <option value="a">全件一致</option>
-        <option value="p">部分一致</option>
+        <?php
+        if (isset($_POST['a_p'])) {
+            if ($_POST['a_p'] == "a") {
+                echo '<option value="a" selected>全件一致</option>';
+                echo '<option value="p">部分一致</option>';
+            } else {
+                echo '<option value="a">全件一致</option>';
+                echo '<option value="p" selected>部分一致</option>';
+            }
+        } else {
+            echo '<option value="a">全件一致</option>';
+            echo '<option value="p">部分一致</option>';
+        }
+        ?>
     </select>
     <select name="a_u_t">
         <option value="a">全て</option>
-        <option value="u">ユーザー</option>
-        <option value="t">タグ</option>
+        <?Php
+        if (isset($_POST['a_u_t'])) {
+            if ($_POST['a_u_t'] == "u") {
+                echo '<option value="u" selected>ユーザー</option>';
+                echo '<option value="t">タグ</option>';
+            } else if ($_POST['a_u_t'] == "t") {
+                echo '<option value="u">ユーザー</option>';
+                echo '<option value="t" selected>タグ</option>';
+            } else {
+                echo '<option value="u">ユーザー</option>';
+                echo '<option value="t">タグ</option>';
+            }
+        } else {
+            echo '<option value="u">ユーザー</option>';
+            echo '<option value="t">タグ</option>';
+        }
+        ?>
+
     </select>
     <input type="submit" value="絞込">
     <input type="hidden" name="search" value="<?php echo $search_text ?>">
