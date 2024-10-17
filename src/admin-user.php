@@ -4,10 +4,7 @@ ob_start();
 // セッションの開始
 session_start();
 
-
 require 'db-connect.php';
-
-
 
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -18,32 +15,32 @@ try {
 }
 
 // アカウント停止処理
-// if (isset($_POST['ban_user_id'])) {
-//     $ban_user_id = intval($_POST['ban_user_id']);
+if (isset($_POST['ban_user_id'])) {
+    $ban_user_id = intval($_POST['ban_user_id']);
 
-//     try {
-//         // user テーブルの icon を ban.png に変更
-//         $ban_user_query = $pdo->prepare('UPDATE Users SET icon = "ban.png" WHERE user_id = ?');
-//         $ban_user_query->execute([$ban_user_id]);
-//         echo 'ユーザーが停止されました。';
-//     } catch (PDOException $e) {
-//         echo 'アカウント停止に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-//     }
-// }
+    try {
+        // user テーブルの icon を ban.png に変更
+        $ban_user_query = $pdo->prepare('UPDATE Users SET s_or_t = 7 WHERE user_id = ?');
+        $ban_user_query->execute([$ban_user_id]);
+        echo 'ユーザーが停止されました。';
+    } catch (PDOException $e) {
+        echo 'アカウント停止に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    }
+}
 
 // アカウント復帰処理
-// if (isset($_POST['restore_user_id'])) {
-//     $restore_user_id = intval($_POST['restore_user_id']);
+if (isset($_POST['restore_user_id'])) {
+    $restore_user_id = intval($_POST['restore_user_id']);
 
-//     try {
-//         // user テーブルの icon を user_id.jpg に変更
-//         $restore_user_query = $pdo->prepare('UPDATE Users SET icon = CONCAT(user_id, ".jpg") WHERE user_id = ?');
-//         $restore_user_query->execute([$restore_user_id]);
-//         echo 'ユーザーが復帰されました。';
-//     } catch (PDOException $e) {
-//         echo 'アカウント復帰に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-//     }
-// }
+    try {
+        // user テーブルの icon を user_id.jpg に変更
+        $restore_user_query = $pdo->prepare('UPDATE Users SET s_or_t = 0 WHERE user_id = ?');
+        $restore_user_query->execute([$restore_user_id]);
+        echo 'ユーザーが復帰されました。';
+    } catch (PDOException $e) {
+        echo 'アカウント復帰に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    }
+}
 
 // ユーザーデータを取得するクエリ
 $query = $pdo->query('SELECT * FROM Users ORDER BY user_id ASC');
@@ -77,11 +74,11 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['mail_address'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($message['message_time'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['s_or_t'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['last_login'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
             <td>
-                <!-- <?php if ($user['icon'] === 'ban.png'): ?>
+                <!-- アカウント停止・復帰ボタン -->
+                <?php if ($user['s_or_t'] === 7): ?>
                     <form method="post" action="">
                         <input type="hidden" name="restore_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
                         <button type="submit">アカウント復帰</button>
@@ -91,7 +88,7 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="ban_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
                         <button type="submit">アカウント停止</button>
                     </form>
-                <?php endif; ?> -->
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>
