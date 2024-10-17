@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/qr_show.css">
-    <script src="js/qr_show.js"></script>
+    <!-- <script src="js/qr_show.js"></script> -->
     <title>QR表示</title>
 </head>
 <body>
