@@ -12,7 +12,7 @@ if (empty($_POST['a_u_t'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
 <h1>検索結果</h1>
 <h2><?php echo $search_text; ?></h2>
