@@ -74,6 +74,7 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['mail_address'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($message['message_number'] ?? '', ENT_QUOTES, 'UTF-8');?></td>
             <td><?php echo htmlspecialchars($user['s_or_t'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['last_login'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
             <td>
