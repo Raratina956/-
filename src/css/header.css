@@ -1,4 +1,4 @@
-@media screen and(max-width: 480px){
+@media screen{
   header {
     background-color: rgb(27, 25, 25);
     position: fixed; /*** ← fixedで固定 ***/
