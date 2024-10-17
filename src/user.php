@@ -121,16 +121,16 @@
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
-                        <button type="submit" class="star">
-                            <img src="img\star.png" width="10%" height="10%">
-                        </button>
+                        <input type="submit" class="star">
+                            <img src="img\star.png" width="5%" height="5%">
+                        </input>
                       </form><br>';
             }else{
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <input type="submit" class="nostar">
-                            <img src="img\notstar.png" width="10%" height="10%" class="star">
+                            <img src="img\notstar.png" width="5%" height="5%" class="star">
                         </input>
                       </form><br>';
             }
