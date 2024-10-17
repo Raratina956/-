@@ -47,7 +47,10 @@
   
    
   .icon {
-    margin-left: 42%;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 250px;
+    height: 80px;
   }
   
   .bell{
