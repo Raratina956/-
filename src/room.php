@@ -1,6 +1,12 @@
 <?php
 require 'parts/auto-login.php';
 require 'header.php'; // ヘッダー読み込み
+$room_id = $_GET['id'];
+    $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+    $sql->execute([$room_id]);
+    $row = $sql->fetch();
+    $room_name = $row['classroom_name'];
+    $floor = $row['classroom_floor'];
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +20,6 @@ require 'header.php'; // ヘッダー読み込み
 <body>
 <main>
     <?php
-    $room_id = $_GET['id'];
-    $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
-    $sql->execute([$room_id]);
-    $row = $sql->fetch();
-    $room_name = $row['classroom_name'];
-    $floor = $row['classroom_floor'];
-
     if (isset($_POST['judge'])) {
         $sql_room = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
         $sql_room->execute([$_SESSION['user']['user_id']]);
