@@ -111,7 +111,9 @@
         }else{
             //相手のプロフィール
             //チャットボタン表示
-            echo '<img src="img\chat.png" width="10%" height="10%" class=""><br>';
+
+            echo '<div class="favorite-container">';
+            echo '<img src="img\chat.png" width="10%" height="10%" class="">';
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
@@ -122,18 +124,19 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit" class="star">
-                            <img src="img\star.png" width="10%" height="10%">
+                            <img src="img\star.png" width="55%" height="100%">
                         </button>
                       </form><br>';
             }else{
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
-                        <button type="submit" class="nostar">
-                            <img src="img\notstar.png" width="10%" height="10%" class="star">
+                        <button type="submit">
+                            <img src="img\notstar.png" width="55%" height="100%" class="star">
                         </button>
                       </form><br>';
             }
+            echo '</div>';
 
             //アイコン表示
             echo '<div class="profile-container">';

@@ -9,10 +9,10 @@ if (isset($_POST['tag_name'])) {
     ]);
 }
 ?>
-<link rel="stylesheet" href="css/my_tag.css">
 <?php
 require 'header.php';
 ?>
+<link rel="stylesheet" href="css/my_tag.css">
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
