@@ -64,12 +64,17 @@ input[type="submit"] {
     bottom: 10px; /* Adjust the vertical position of the button */
     right: 10px;  /* Adjust the horizontal position */
     font-size: 16px;
-    background-color: #a0eefc;
+    background-color: #3e58ac;
+    color: white;
     padding: 8px 15px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     z-index: 1; /* Ensures the button appears above the text area */
+}
+input[type="submit"]:hover{
+    background-color:  #a0eefc;
+    color: #333;
 }
 
 .back-link {
@@ -89,13 +94,13 @@ input[type="submit"] {
 }
 h2 {
     margin-top: 20px;
-    font-size: 24px;
-    color: #555;
+    font-size: 30px;
+    color: #333;
 }
 
 h3 {
     margin-top: 10px;
-    font-size: 20px;
-    color: #666;
+    font-size: 25px;
+    color: #444;
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
