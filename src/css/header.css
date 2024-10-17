@@ -1,6 +1,6 @@
 @media screen and(max-width: 480px){
   header {
-    background-color: white;
+    background-color: rgb(27, 25, 25);
     position: fixed; /*** ← fixedで固定 ***/
     /* position: sticky; */
     top: 0;
