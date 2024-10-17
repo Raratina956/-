@@ -30,12 +30,20 @@ require 'header.php';
 </form>
 <?php
 if (isset($_POST['tag_search'])) {
-    $tag_search = $_POST['tag_search'];
-    $search_sql = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_name=?");
-    $search_sql->execute([$tag_search]);
-    $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
-    $judge = 0;
-    echo $tag_search;
+    if (empty($_POST['tag_search'])) {
+        $query = "SELECT * FROM Tag_list";
+        $stmt = $pdo->query($query);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $judge = 0;
+    } else {
+        $tag_search = $_POST['tag_search'];
+        $search_sql = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_name=?");
+        $search_sql->execute([$tag_search]);
+        $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
+        $judge = 0;
+        echo $tag_search;
+    }
+
 } else {
     $query = "SELECT * FROM Tag_list";
     $stmt = $pdo->query($query);
@@ -56,7 +64,7 @@ if ($results) {
             $sql_count->execute([$row['tag_id']]);
             $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
             $user_count = $count_result['user_count'];
-            if ($user_count != 0 || $judge ==0) {
+            if ($user_count != 0 || $judge == 0) {
                 echo '<tr>';
                 echo '<td>', $row['tag_name'], '</td>';
                 echo '<td>', $user_count, '</td>';
