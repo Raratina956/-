@@ -39,6 +39,7 @@ $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
 $user_sql->execute([$info_row['send_person']]);
 $user_row = $user_sql->fetch();
 ?>
+<div class="content">
 <h1><?php echo $user_row['user_name']; ?>さんから、アナウンスが来ました</h1>
 <h2><?php echo $info_row['content'] ?></h2>
 <p>
@@ -58,3 +59,4 @@ $user_row = $user_sql->fetch();
 </form>
 </p>
 <a href="info.php">戻る</a>
+</div>
