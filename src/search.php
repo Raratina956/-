@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-echo '<link rel="stylesheet" href="css/search-results.css">';
+echo '<link rel="stylesheet" href="css/search.css">';
 
 $search_text = $_POST['search'];
 if (empty($_POST['a_p'])) {
@@ -14,6 +14,7 @@ if (empty($_POST['a_u_t'])) {
 <?php
 require 'header.php';
 ?>
+<main>
 <h1>検索結果</h1>
 <h2><?php echo $search_text; ?></h2>
 <p>
@@ -180,6 +181,6 @@ if ($judge == 1) {
 } else {
     echo '一致するものがありません';
 }
-?>
+?></main>
 
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>

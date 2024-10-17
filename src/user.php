@@ -76,14 +76,14 @@
 
                 echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
-                echo $user['user_name'],"<br>";
+                echo '名前：',$user['user_name'],"<br>";
                 echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生";
+                echo '名前：',$user['user_name'], "先生";
                 echo $user['mail_address'];
                 echo '</div>';
             }
@@ -124,7 +124,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit" class="star">
-                            <img src="img\star.png" width="55%" height="100%">
+                            <img src="img\star.png" width="100%" height="100%">
                         </button>
                       </form><br>';
             }else{
@@ -132,7 +132,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
-                            <img src="img\notstar.png" width="55%" height="100%" class="star">
+                            <img src="img\notstar.png" width="100%" height="100%" class="star">
                         </button>
                       </form><br>';
             }
@@ -155,14 +155,14 @@
 
                 //生徒(名前、クラス、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'],"<br>";
+                echo '名前：',$user['user_name'],"<br>";
                 echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生";
+                echo '名前：',$user['user_name'], "先生";
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }

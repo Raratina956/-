@@ -28,6 +28,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-right: 100px;
 }
 
 form{
@@ -36,8 +37,8 @@ form{
 }
 
 button {
-    width: 10em;
-    height:5em;
+    width: 8em;
+    height: 6em;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
     justify-content: flex-end; /* 左揃え */
