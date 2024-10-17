@@ -8,7 +8,7 @@
 </head>
 <body>
     <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />
-    <div id="qrcode"></div>
+    <div id="qrcode"><button type="button">QR表示</button></div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
