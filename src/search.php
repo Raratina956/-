@@ -15,19 +15,30 @@ if (empty($_POST['a_u_t'])) {
 <h1>検索結果</h1>
 <h2><?php echo $search_text; ?></h2>
 <p>
-    <span>詳細検索</span><br>
+<form action="search.php" method="post">
+    <input type="text" name="search" value="<?php echo $search_text; ?>">
+    <?php
+    if (isset($_POST['a_p'])) {
+        echo '<input type="hidden" name="a_p" value="', $_POST['a_p'], '">';
+    }
+    if (isset($_POST['a_u_t'])) {
+        echo '<input type="hidden" name="a_u_t" value="', $_POST['a_u_t'], '">';
+    }
+    ?>
+</form>
+<span>詳細検索</span><br>
 <form action="search.php" method="post">
     <select name="a_p">
         <?php
-        if(isset($_POST['a_p'])){
+        if (isset($_POST['a_p'])) {
             if ($_POST['a_p'] == "a") {
                 echo '<option value="a" selected>全件一致</option>';
                 echo '<option value="p">部分一致</option>';
-            }else{
+            } else {
                 echo '<option value="a">全件一致</option>';
                 echo '<option value="p" selected>部分一致</option>';
             }
-        }else{
+        } else {
             echo '<option value="a">全件一致</option>';
             echo '<option value="p">部分一致</option>';
         }
