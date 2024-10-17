@@ -1,14 +1,16 @@
-body{
+body {
     text-align: center;
     padding-top: 110px;
     background-color: #a0eefc;
-}
-
-table{
+  }
+  
+  table {
     margin: auto;
-}
+    width: 80%; /* PCでは80%幅に */
+    font-size: 18pt;
+  }
 
-span{
+  span{
     font-size: 20px;
 }
 
@@ -95,3 +97,45 @@ span{
     background-color: rgb(54, 98, 216);
     color: white;
 }
+  
+  /* スマートフォン用レイアウト */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 50px;
+    }
+  
+    table {
+      width: 100%; /* スマホでは幅100%に */
+      font-size: 14pt;
+    }
+  
+    input.textbox {
+      width: 90%; /* フォームの幅を調整 */
+      margin-top: 15px;
+    }
+  
+    .button_in, .button_up, .button_del {
+      min-width: 100%; /* ボタンも100%幅 */
+      height: 40px;
+    }
+  
+    .back-link {
+      position: static; /* 固定位置を解除 */
+      margin: 10px 0;
+      display: block; /* ブロック要素として配置 */
+    }
+  
+    header {
+      height: auto;
+      flex-wrap: wrap;
+    }
+  
+    .icon, .bell {
+      margin: auto;
+      padding-left: 0;
+    }
+  
+    .slide-menu ul {
+      padding: 0;
+    }
+  }
