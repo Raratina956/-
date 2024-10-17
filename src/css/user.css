@@ -1,27 +1,36 @@
 body {
     padding-top: 150px;
+    display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     min-height: 70vh;
     margin: 0;
     background-image: url(../img/SpotLinkbg.png);
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: #464646;
-    height: 100%;
-    justify-content: center; /* コンテンツ全体を中央に */
-    align-items: center; /* 左側のコンテンツを上寄せ */
-    flex-direction: column;
 }
  
 .profile-container {
-    padding-left: 320px;
+    /* padding-left: 320px;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
-    justify-content: flex-start; /* 左揃え */
-    margin: 0 auto; /* コンテナ全体を中央に配置 */
+    /* justify-content: flex-start; /* 左揃え */
+    /* margin: 0 auto; コンテナ全体を中央に配置 */ 
+
+    display: flex;
+    align-items: center; /* アイコンとテキストを縦方向に中央揃え */
+    justify-content: space-between; /* 左と右の要素の間にスペースを均等に配置 */
+    padding: 20px;
+    margin: 0 auto; /* 横方向で中央に配置 */
+    max-width: 1200px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
+    width: 100%; /* 幅を常に100%にする */
+    background-color: #f9f9f9; /* 背景色を淡い色にして視認性を向上 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 立体感を出すためのシャドウ効果 */
+    border-radius: 15px; /* 角を丸めて柔らかい印象を演出 */
 }
 
 .favorite-container{
@@ -37,12 +46,22 @@ form{
 }
 
 button {
-    width: 8em;
-    height: 6em;
+    width: 7em;
+    height: 3em;
     display: flex;
-    align-items: center; /* アイコンとテキストを中央揃え */
-    justify-content: flex-end; /* 左揃え */
-  }
+    align-items: center;
+    justify-content: center;
+    background-color: #17A7E9;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0d78a0;
+}
 
 
 .confirmbutton{
@@ -59,9 +78,9 @@ cursor: pointer;
 border-radius: 50px; /* 50pxの角丸 */
 }
 
-button:hover {
+/* button:hover {
     background-color:#17A7E9;
-}
+} */
 
 .profile{
 align-items:center;
