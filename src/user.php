@@ -76,14 +76,14 @@
 
                 echo '<div class="profile">';
                 //生徒(名前、クラス、メールアドレス)
-                echo $user['user_name'],"<br>";
+                echo '名前：',$user['user_name'],"<br>";
                 echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生";
+                echo '名前：',$user['user_name'], "先生";
                 echo $user['mail_address'];
                 echo '</div>';
             }
@@ -155,14 +155,14 @@
 
                 //生徒(名前、クラス、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'],"<br>";
+                echo '名前：',$user['user_name'],"<br>";
                 echo 'クラス：', $classtagname['classtag_name'], '<br>';
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo $user['user_name'], "先生";
+                echo '名前：',$user['user_name'], "先生";
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }
