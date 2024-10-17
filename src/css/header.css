@@ -1,4 +1,4 @@
-@media screen and(max-width: 1280px) {
+@media screen and(max-width: 1280px){
   header {
     background-color: white;
     position: fixed; /*** ← fixedで固定 ***/
@@ -27,7 +27,7 @@
   }
 }
 
-@media screen and(max-width: 480px) {
+@media screen and(max-width: 480px){
   header {
     background-color: white;
     position: fixed; /*** ← fixedで固定 ***/
