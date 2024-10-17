@@ -46,12 +46,12 @@ form {
 }
 
 
-.serch {
+.search {
     background-color: #3e58ac;
     color: white;
  
 }
-.serch:hover{
+.search:hover{
     background-color:  #a0eefc;
     color: #333;
 }
