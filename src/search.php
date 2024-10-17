@@ -25,6 +25,7 @@ if (empty($_POST['a_u_t'])) {
         echo '<input type="hidden" name="a_u_t" value="', $_POST['a_u_t'], '">';
     }
     ?>
+    <input type="submit" value="再検索">
 </form>
 <span>詳細検索</span><br>
 <form action="search.php" method="post">
