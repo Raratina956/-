@@ -25,10 +25,9 @@ body {
 }
 
 .favorite-container{
-    padding-left: 320px;
     display: flex;
-    align-items: center; /* アイコンとテキストを中央揃え */
-    justify-content: flex-start; /* 左揃え */
+    align-items: center;
+    justify-content: flex-end;
 }
 
 form{
