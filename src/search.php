@@ -183,4 +183,4 @@ if ($judge == 1) {
 }
 ?></main>
 
-<a href="main.php">メインへ</a>
+<a href="main.php" class="back-link">メインへ</a>

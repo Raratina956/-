@@ -54,14 +54,37 @@ select, input[type="submit"] {
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
+    position: absolute;
+    bottom: 10px; /* Adjust the vertical position of the button */
+    right: 10px;  /* Adjust the horizontal position */
+    font-size: 16px;
+    background-color: #3e58ac;
     color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
+    z-index: 1; /* Ensures the button appears above the text area */
+}
+input[type="submit"]:hover{
+    background-color:  #a0eefc;
+    color: #333;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: rgb(54, 98, 216);
+    color: white;
 }
 
 /* Table Styles */
@@ -71,37 +94,5 @@ table {
     margin-top: 20px;
 }
 
-table th, table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
 
-table th {
-    background-color: #f2f2f2;
-}
 
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Back Link */
-a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #4CAF50;
-    padding: 10px 20px;
-    border: 1px solid #4CAF50;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-a:hover {
-    background-color: #4CAF50;
-    color: white;
-}
