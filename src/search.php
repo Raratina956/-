@@ -28,7 +28,7 @@ require 'header.php';
         echo '<input type="hidden" name="a_u_t" value="', $_POST['a_u_t'], '">';
     }
     ?>
-    <input type="submit" value="再検索">
+    <input type="submit" value="再検索"class="search">
 </form>
 <span>詳細検索</span><br>
 <form action="search.php" method="post">
@@ -69,7 +69,7 @@ require 'header.php';
         ?>
 
     </select>
-    <input type="submit" value="絞込">
+    <input class="sort"type="submit" value="絞込">
     <input type="hidden" name="search" value="<?php echo $search_text ?>">
 </form>
 </p>
