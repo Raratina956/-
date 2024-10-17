@@ -1,10 +1,26 @@
 /* General Styles */
 body {
-    background-color: #f4f4f4;
+    background-image: url(../img/SpotLinkbg.png);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
+
+/* Main Content */
+main {
+    margin-top: 120px; /* Adjust to account for header height */
+    margin-bottom: 100px;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center; /* Center the text inside the main container */
+}
+
 
 h1, h2 {
     text-align: center;
@@ -21,15 +37,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-main {
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Form Styles */
 form {
