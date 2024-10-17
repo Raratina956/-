@@ -24,12 +24,21 @@ body {
     margin: 0 auto; /* コンテナ全体を中央に配置 */
 }
 
+button {
+    width: 10em;
+    height:5em;
+    margin-left: 1300px;
+    display: flex;
+    align-items: center; /* アイコンとテキストを中央揃え */
+    justify-content: flex-start; /* 左揃え */
+  }
+
 .star{
     /* width: 40%; */
 }
 
 .nostar{
-    
+
 }
 
 .usericon{
