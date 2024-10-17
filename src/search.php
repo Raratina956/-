@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-echo '<link rel="stylesheet" href="css/search-results.css">';
+echo '<link rel="stylesheet" href="css/search.css">';
 
 $search_text = $_POST['search'];
 if (empty($_POST['a_p'])) {
