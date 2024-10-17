@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QRコードのテスト</title>
+    <title>QRコード読み取り</title>
     <link rel="stylesheet" href="css/qr_read.css">
 </head>
 
@@ -20,7 +20,7 @@
         <span id="qr-msg">QRコード: 見つかりません</span>
     </div>
     <script src="js/jsQR.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/qr_read.js"></script>
 </body>
 
 </html>
