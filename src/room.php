@@ -61,7 +61,7 @@ $floor = $row['classroom_floor'];
                         $sql_insert->execute([
                             $current_location_id,
                             $list_row['follow_id'],
-                            1
+                            2
                         ]);
                     }
                 }
