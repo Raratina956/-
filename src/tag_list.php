@@ -56,7 +56,7 @@ if ($results) {
             $sql_count->execute([$row['tag_id']]);
             $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
             $user_count = $count_result['user_count'];
-            if ($user_count != 0 || $judge =0) {
+            if ($user_count != 0 || $judge ==0) {
                 echo '<tr>';
                 echo '<td>', $row['tag_name'], '</td>';
                 echo '<td>', $user_count, '</td>';
