@@ -30,6 +30,7 @@ if (isset($_POST['delete'])) {
 <?php
 require 'header.php';
 ?>
+<link rel="stylesheet" href="css/info_detail.css">
 <?php
 $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
 $info_sql->execute([$announcement_id]);
@@ -38,7 +39,6 @@ $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
 $user_sql->execute([$info_row['send_person']]);
 $user_row = $user_sql->fetch();
 ?>
-<link rel="stylesheet" href="css/info_datail.css">
 <h1><?php echo $user_row['user_name']; ?>さんから、アナウンスが来ました</h1>
 <h2><?php echo $info_row['content'] ?></h2>
 <p>
