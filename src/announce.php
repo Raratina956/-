@@ -20,10 +20,11 @@ if (isset($_POST['content'])) {
     foreach ($results as $row_user) {
         $sent_user_id = $row_user['user_id'];
         if ($send_user_id != $sent_user_id) {
-            $sql_insert = $pdo->prepare('INSERT INTO Announce_check (announcement_id,user_id) VALUES (?,?)');
+            $sql_insert = $pdo->prepare('INSERT INTO Announce_check (announcement_id,user_id,type) VALUES (?,?,?)');
             $sql_insert->execute([
                 $announcement_id,
-                $sent_user_id
+                $sent_user_id,
+                1
             ]);
         }
     }
