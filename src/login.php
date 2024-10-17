@@ -12,6 +12,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
     if (!$row) {
         $error = 'メールアドレス又はパスワードが間違っています';
     } else {
+        if($row['s_or_t']==7){
+            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/ban.php';
+            header("Location: $redirect_url");
+            exit();
+        }
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user'] = [
                 'user_id' => $row['user_id'],
