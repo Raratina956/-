@@ -129,9 +129,9 @@
                 echo '<form action="user.php" method="post">
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
-                        <button type="submit">
+                        <input type="submit" class="nostar">
                             <img src="img\notstar.png" width="10%" height="10%" class="star">
-                        </button>
+                        </input>
                       </form><br>';
             }
 
