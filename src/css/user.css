@@ -26,9 +26,14 @@ body {
 
 button {
     width: 10em;
-    height:3em;
+    height:5em;
+    margin-left: 1300px;
+    display: flex;
+    align-items: center; /* アイコンとテキストを中央揃え */
+    justify-content: flex-start; /* 左揃え */
+    margin: 0 auto; /* コンテナ全体を中央に配置 */
   }
-  
+
 .star{
     /* width: 40%; */
 }
