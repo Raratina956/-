@@ -38,10 +38,9 @@ form{
 button {
     width: 10em;
     height:5em;
-    margin-left: 1300px;
     display: flex;
     align-items: center; /* アイコンとテキストを中央揃え */
-    justify-content: flex-start; /* 左揃え */
+    justify-content: flex-end; /* 左揃え */
   }
 
 
