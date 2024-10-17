@@ -12,8 +12,8 @@ if (isset($_POST['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css" media="screen and (min-width: 480px)">
+    <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 480px)">
 </head>
 <header>
 
