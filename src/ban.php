@@ -25,6 +25,6 @@
 </head>
 <body>
     <!-- ban.png を画面全体に表示 -->
-    <img src="image/ban.png" alt="アカウント停止" class="fullscreen-image">
+    <img src="image/soredemo.png" alt="アカウント停止" class="fullscreen-image">
 </body>
 </html>

@@ -124,7 +124,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="unfollow">
                         <button type="submit" class="star">
-                            <img src="img\star.png" width="100%" height="100%">
+                            <img src="img\star.png" width="85%" height="100%">
                         </button>
                       </form><br>';
             }else{
@@ -132,7 +132,7 @@
                         <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
                         <input type="hidden" name="action" value="follow">
                         <button type="submit">
-                            <img src="img\notstar.png" width="100%" height="100%" class="star">
+                            <img src="img\notstar.png" width="85%" height="100%" class="star">
                         </button>
                       </form><br>';
             }

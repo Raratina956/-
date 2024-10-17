@@ -32,21 +32,38 @@ $floor = $row['classroom_floor'];
             if (!$row_room) {
                 $sql_insert = $pdo->prepare('INSERT INTO Current_location (user_id, classroom_id, logtime) VALUES (?, ?, ?)');
                 $sql_insert->execute([$_SESSION['user']['user_id'], $room_id, $now_time]);
+                $current_location_id = $pdo->lastInsertId();
             } else {
                 $sql_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, logtime = ? WHERE user_id = ?');
                 $sql_update->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
+                $sql_current = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?,user_id=?');
+                $sql_current->execute([$room_id,$_SESSION['user']['user_id']]);
+                $row_current = $sql_current->fetch();
+                $current_location_id = $row_current['current_location_id'];
             }
             $list_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
             $list_sql->execute([$_SESSION['user']['user_id']]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             if ($list_raw) {
-                foreach ($list_raw as $row) {
+                foreach ($list_raw as $list_row) {
                     $info_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE type=? AND user_id=?');
                     $info_sql->execute([
                         $_SESSION['user']['user_id'],
-                        $row['follow_id']
+                        $list_row['follow_id']
                     ]);
                     $info_raw = $info_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($info_raw) {
+                        foreach ($info_raw as $info_row) {
+
+                        }
+                    } else {
+                        $sql_insert = $pdo->prepare('INSERT INTO Announce_check (current_location_id,user_id,type) VALUES (?,?,?)');
+                        $sql_insert->execute([
+                            $current_location_id,
+                            $sent_user_id,
+                            1
+                        ]);
+                    }
                 }
             }
         }
