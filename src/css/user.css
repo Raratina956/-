@@ -31,6 +31,11 @@ body {
     justify-content: flex-start; /* 左揃え */
 }
 
+form{
+    display: flex;
+
+}
+
 button {
     width: 10em;
     height:5em;
