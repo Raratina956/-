@@ -28,8 +28,9 @@ if (isset($_POST['delete'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
+<link rel="stylesheet" href="css/info_detail.css">
 <?php
 $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
 $info_sql->execute([$announcement_id]);
@@ -45,15 +46,15 @@ $user_row = $user_sql->fetch();
 <form action="info_detail.php" method="post">
     <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
     <input type="hidden" name="read" value="0">
-    <input type="submit" value="変更">
+    <input type="submit" value="変更" class="change-btn">
 </form>
 </p>
 <p>
-    <span>削除</span>
+    <!-- <span>削除</span> -->
 <form action="info_detail.php" method="post">
     <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
     <input type="hidden" name="delete" value="0">
-    <input type="submit" value="削除">
+    <input type="submit" value="削除" class="delete-btn">
 </form>
 </p>
 <a href="info.php">戻る</a>
