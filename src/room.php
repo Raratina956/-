@@ -7,6 +7,15 @@ $sql->execute([$room_id]);
 $row = $sql->fetch();
 $room_name = $row['classroom_name'];
 $floor = $row['classroom_floor'];
+
+// 位置情報を登録してるかどうか確認
+$point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+$point->execute([$_SESSION['user']['user_id']]);
+if(isset($point)){
+    echo '値なし';
+}else{
+    echo '値あり';
+}
 ?>
 
 <!DOCTYPE html>
