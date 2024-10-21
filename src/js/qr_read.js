@@ -3,7 +3,7 @@ const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
 let urlOpened = false; // フラグを追加
-let consecutiveMisses = 0; // QRコードが見つからなかった連続回数
+let consecutiveMisses = 0; //  QRコードが見つからなかった連続回数
 
 // 背面カメラを指定するためのconstraints
 const constraints = {
