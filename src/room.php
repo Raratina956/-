@@ -4,6 +4,12 @@ require 'header.php'; // ヘッダー読み込み
 
 $room_id = $_GET['id'];
 $update_id = $_GET['update'];
+$judge = isset($_POST['judge']) ? $_POST['judge'] : (isset($_GET['judge']) ? $_GET['judge'] : null);
+
+// デバッグ用ログ
+error_log("Room ID: " . $room_id);
+error_log("Update ID: " . $update_id);
+error_log("Judge: " . $judge);
 
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
 $sql->execute([$room_id]);
@@ -17,14 +23,24 @@ if ($update_id == 1) {
     $now_time = date("Y/m/d H:i:s");
     $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
     $point->execute([$_SESSION['user']['user_id']]);
+    
+    // デバッグ用ログ
+    error_log("Point Row Count: " . $point->rowCount());
+    
     if ($point->rowCount() == 0) {
         // 位置情報が未登録の場合の処理　→　新規登録
         $newpoint = $pdo->prepare('INSERT INTO Current_location(user_id, classroom_id, logtime) VALUES (?, ?, ?)');
         $newpoint->execute([$_SESSION['user']['user_id'], $room_id, $now_time]);
+        
+        // デバッグ用ログ
+        error_log("New Point Inserted: " . $newpoint->rowCount());
     } else {
         // 位置情報が登録済の場合の処理　→　更新
         $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=? WHERE user_id=?');
         $updatepoint->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
+        
+        // デバッグ用ログ
+        error_log("Point Updated: " . $updatepoint->rowCount());
     }
 }
 ?>
@@ -65,7 +81,7 @@ if ($update_id == 1) {
         ?>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1">
+            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1&judge=1">
             <button type="submit">QR表示</button>
         </form>
         <a href="main.php" class="back-link">メインへ</a>
