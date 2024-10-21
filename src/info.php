@@ -56,18 +56,20 @@ if ($list_raw) {
             $user_sql->execute([$info_row['send_person']]);
             $user_row = $user_sql->fetch();
             echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
+            $datetime = $info_row['sending_time'];
         } elseif ($row['type'] == 2) {
             $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $user_sql->execute([$info_row['user_id']]);
             $user_row = $user_sql->fetch();
             echo '<td>', $user_row['user_name'], 'さんが、位置情報を更新しました</td>';
+            $datetime = $info_row['logtime'];
         }
         if ($row['read_check'] == 0) {
             echo '<td>未読</td>';
         }
         echo '</tr>';
         echo '<tr>';
-        $datetime = $info_row['sending_time'];
+        
         echo '<td>', timeAgo($datetime), '</td>';
         echo '<td class="large-text">', $info_row['content'], '</td>';
 
