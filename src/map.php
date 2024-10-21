@@ -35,7 +35,7 @@
 
           }
          echo '</select>';
-         echo '<br>';
+         echo '<br><br>';
 
         //  map
         echo '<table width=700>';
