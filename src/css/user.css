@@ -50,7 +50,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #17A7E9;
+    background-color:  azure;;
     color: white;
     border: none;
     border-radius: 25px;
@@ -59,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: #0d78a0;
+    background-color:azure;
 }
 
 
