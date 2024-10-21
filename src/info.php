@@ -10,6 +10,9 @@ require 'header.php';
 <?php
 function timeAgo($datetime)
 {
+    if (empty($datetime)) {
+        return '日時が設定されていません。'; // 空の日時に対する処理
+    }
     $now = new DateTime(); // 現在時刻
     $ago = new DateTime($datetime); // 保存された日時
     $diff = $now->diff($ago); // 差分を取得
