@@ -169,7 +169,7 @@
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo '名前：',$user['user_name'], "先生";
+                echo '名前：',$user['user_name'], "先生<br>";
                 echo $user['mail_address'],"<br>";
                 echo '</div>';
             }
