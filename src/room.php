@@ -127,7 +127,7 @@ if($update_id == 1){
 
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="text" name="custom_url" placeholder="room.php?id=<?php echo $room_id; ?>&update=1" style="width:80%">
+            <input type="hidden" name="custom_url" placeholder="room.php?id=<?php echo $room_id; ?>&update=1">
             <button type="submit">QR表示</button>
         </form>
 

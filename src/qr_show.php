@@ -7,46 +7,43 @@
     <title>QR表示</title>
 </head>
 <body>
-    <input id="text" type="text" style="width:80%" /><br />
-    <div id="qrcode"></div>
     <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
-            $customUrl = htmlspecialchars($_POST['custom_url']);
-            echo "送信されたURL: " . $customUrl;
-            // QRコード生成ロジックなどをここに追加する
-        ?>
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
+        $customUrl = htmlspecialchars($_POST['custom_url']);
+        echo '<input id="text" type="text" value="' . $customUrl . '" style="width:80%" /><br />';
+        echo '<div id="qrcode"></div>';
+        echo '送信されたURL: ' . $customUrl;
+        // QRコード生成ロジックをここに追加する
+    ?>
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
         <script>
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 width: 128,
                 height: 128
             });
-    
+
             function makeCode() {
                 var elText = document.getElementById("text");
-    
+
                 if (!elText.value) {
                     elText.focus();
                     return;
                 }
-    
+
                 // 既存のQRコードをクリア
                 document.getElementById("qrcode").innerHTML = "";
-    
+
                 // 新しいQRコードを生成
-                qrcode = new QRCode(document.getElementById("qrcode"), {
-                    text: elText.value,
-                    width: 128,
-                    height: 128
-                });
+                qrcode.makeCode(elText.value);
             }
+
             makeCode();
-    
+
             document.getElementById("text").addEventListener("input", makeCode);
         </script>
     <?php
     } else {
-        echo "URLが送信されていません。";
+        echo 'URLが送信されていません。';
     }
     ?>
 </body>
