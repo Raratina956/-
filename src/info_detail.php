@@ -78,7 +78,25 @@ switch ($type) {
         </div>
         <?php
         break;
-
+    case 2:
+        $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+        $info_sql->execute([$current_location_id]);
+        $info_row = $info_sql->fetch();
+        $send_id = $info_row['user_id'];
+        $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+        $user_sql->execute([$send_id]);
+        $user_row = $user_sql->fetch();
+        $send_name = $user_row['user_name'];
+        $logtime = $info_row['logtime'];
+        ?>
+        <div class="content">
+            <p>
+                <span>お気に入りに登録している<?php echo $send_name; ?>さんが位置情報を更新しました</span>
+            </p>
+            
+        </div>
+        <?php
+        break;
     default:
         # code...
         break;
