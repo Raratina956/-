@@ -51,7 +51,7 @@
                                          LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
                                          where classroom_id=?');
                 $iconStmt->execute([$i]);
-                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($icon as $ic){
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                     }
