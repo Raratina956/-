@@ -1,5 +1,5 @@
 header {
-      background-color: rgb(27, 25, 25);
+      background-color: white;
       position: fixed; /*** ← fixedで固定 ***/
       /* position: sticky; */
       top: 0;
