@@ -54,10 +54,11 @@
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
 
-            echo '<div class="profile-container">';
+            
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
+            echo '<div class="profile-container">';
             echo '<div class="user-container">';
             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
 
@@ -83,22 +84,22 @@
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
-                echo '<div class="profile">';
-                echo '名前：',$user['user_name'], "先生";
+                echo '<div class="profile"><br>';
+                echo '名前：',$user['user_name'], "先生<br>";
                 echo $user['mail_address'];
                 echo '</div>';
             }
 
             echo '</div>';
             echo '</div>';
-            
+            echo '<br>';
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             echo '<div class="tag">';
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
             $attribute->execute([$_SESSION['user']['user_id']]);
             $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
-            echo '<br>';
-            echo '<br>タグ一覧<br><br>';
+
+            echo 'タグ一覧<br><br>';
             foreach($attributes as $tag_attribute){
                 $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
                 $tagStmt->execute([$tag_attribute['tag_id']]);
