@@ -2,6 +2,7 @@
 const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
+let urlOpened = false; // フラグを追加
 
 // 背面カメラを指定するためのconstraints
 const constraints = {
@@ -50,17 +51,20 @@ const checkImage = () => {
         console.log("QRcodeが見つかりました", code);
         drawRect(code.location);
         document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
-        
-        // URLを新規タブで開く
-        const url = code.data; // QRコードから取得したURL
-        window.open(url);
-        
+
+        // URLを一度だけ新規タブで開く
+        if (!urlOpened) {
+            const url = code.data;
+            window.open(url, '_blank');
+            urlOpened = true; // フラグをセット
+        }
     } else {
         console.log("QRcodeが見つかりません…", code);
         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
         document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
+        urlOpened = false; // フラグをリセット
     }
-    
+
     setTimeout(() => { checkImage() }, 500);
 }
 
