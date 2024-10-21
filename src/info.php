@@ -71,10 +71,34 @@ if ($list_raw) {
                 </form>
                 <?php
                 break;
-
             case 2:
                 // 位置情報
-                echo '位置情報';
+                $current_location_id = $row['current_location_id'];
+                $read_check = $row['read_check'];
+                $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                $info_sql->execute([$current_location_id]);
+                $info_row = $info_sql->fetch();
+                $send_id = $info_row['user_id'];
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$send_id]);
+                $user_row = $user_sql->fetch();
+                $send_name = $user_row['user_name'];
+                $logtime = $info_row['logtime'];
+                echo '<tr>';
+                echo '<td>アイコン</td>';
+                echo '<td rowspan="2">お気に入りに登録している',$send_name,'さんが位置情報を更新しました</td>';
+                if ($read_check == 0) {
+                    echo '<td>未読</td>';
+                }
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td>', timeAgo($logtime), '</td>';
+                ?>
+                <form action="info_detail.php" method="post">
+                    <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                    <td><input type="submit" value="詳細"></td>
+                </form>
+                <?php
                 break;
             default:
                 echo 'その他';
