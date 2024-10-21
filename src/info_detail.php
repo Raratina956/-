@@ -7,30 +7,37 @@ if (isset($_POST['announcement_id'])) {
     $current_location_id = $_POST['current_location_id'];
     $type = 2;
 }
+switch ($type) {
+    case 1:
+        $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
+        $sql_update->execute([
+            1,
+            $announcement_id,
+            $_SESSION['user']['user_id']
+        ]);
+        if (isset($_POST['read'])) {
+            $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
+            $sql_update->execute([
+                0,
+                $announcement_id,
+                $_SESSION['user']['user_id']
+            ]);
+        }
+        if (isset($_POST['delete'])) {
+            $sql_delete = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id = ? AND user_id=?');
+            $sql_delete->execute([
+                $announcement_id,
+                $_SESSION['user']['user_id']
+            ]);
+            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
+            header("Location: $redirect_url");
+            exit();
+        }
+        break;
 
-$sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
-$sql_update->execute([
-    1,
-    $announcement_id,
-    $_SESSION['user']['user_id']
-]);
-if (isset($_POST['read'])) {
-    $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
-    $sql_update->execute([
-        0,
-        $announcement_id,
-        $_SESSION['user']['user_id']
-    ]);
-}
-if (isset($_POST['delete'])) {
-    $sql_delete = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id = ? AND user_id=?');
-    $sql_delete->execute([
-        $announcement_id,
-        $_SESSION['user']['user_id']
-    ]);
-    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
-    header("Location: $redirect_url");
-    exit();
+    default:
+        # code...
+        break;
 }
 ?>
 
