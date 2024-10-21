@@ -83,9 +83,7 @@ if ($list_raw) {
                 $user_sql->execute([$send_id]);
                 $user_row = $user_sql->fetch();
                 $send_name = $user_row['user_name'];
-                $content = $info_row['content'];
                 $logtime = $info_row['logtime'];
-                echo $send_name;
                 echo '<tr>';
                 echo '<td>アイコン</td>';
                 echo '<td rowspan="2">お気に入りに登録している',$send_name,'さんが位置情報を更新しました</td>';
