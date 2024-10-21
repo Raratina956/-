@@ -27,6 +27,13 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
+?>
+<?php
+require 'header.php';
+?>
+<link rel="stylesheet" href="css/info.css">
+<h1>お知らせ</h1>
+<?php
 // Announce_check参照
 $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
 $list_sql->execute([$_SESSION['user']['user_id']]);
@@ -52,7 +59,7 @@ if ($list_raw) {
                 echo '<td>アイコン（仮）</td>';
                 echo '<td rowspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                 if ($read_check == 0) {
-                    echo '未読';
+                    echo '<td>未読</td>';
                 }
                 echo '</tr>';
                 echo '<tr>';
@@ -79,13 +86,3 @@ if ($list_raw) {
     echo 'お知らせがありません';
 }
 ?>
-
-
-
-
-
-<?php
-require 'header.php';
-?>
-<link rel="stylesheet" href="css/info.css">
-<h1>お知らせ</h1>
