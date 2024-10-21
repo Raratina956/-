@@ -52,9 +52,9 @@
                                          where classroom_id=?');
                 $iconStmt->execute([$i]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-               
-                echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
-
+                    foreach($icon as $ic){
+                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                    }
                 echo '</div>';
                 echo '</td>';
                 echo '<input type="hidden" name="floor" value=', $i, '>';
