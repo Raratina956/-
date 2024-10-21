@@ -84,8 +84,8 @@
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
-                echo '<div class="profile">';
-                echo '名前：',$user['user_name'], "先生";
+                echo '<div class="profile"><br>';
+                echo '名前：',$user['user_name'], "先生<br>";
                 echo $user['mail_address'];
                 echo '</div>';
             }
@@ -99,7 +99,7 @@
             $attribute->execute([$_SESSION['user']['user_id']]);
             $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
 
-            echo '<br>タグ一覧<br><br>';
+            echo 'タグ一覧<br><br>';
             foreach($attributes as $tag_attribute){
                 $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
                 $tagStmt->execute([$tag_attribute['tag_id']]);
