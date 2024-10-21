@@ -3,20 +3,17 @@
       display: flex;
       justify-content: flex-end; /* 右端に寄せる */
       align-items: center; /* 高さを中央揃え */
-      height: 100%; /* ヘッダー全体に合わせる */
-      gap: 8px; /* ベルとハンバーガーメニューの間の余白 */
-      padding-right: 20px; /* ヘッダー右端の余白 */
+      height: 100%; /* ヘッダー全体をカバー */
+      gap: 10px; /* ベルとハンバーガーメニューの間の余白 */
+      padding-right: 20px; /* 右端の余白 */
   }
 
   /* ハンバーガーメニューのデザイン */
   .hamburger {
-    width: 60px;
-    height: 60px;
-    position: relative; /* absolute から relative に変更 */
-    margin-left: auto; /* 右寄せ */
-    cursor: pointer;
+    width: 50px;
+    height: 50px;
     border: 2px solid #00CFFF;
-    border-radius: 50%;
+    border-radius: 50%; /* 円形 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +50,6 @@
     right: 0;
     transform: translateX(100%);
     transition: transform 0.5s ease;
-    margin-top: 35px;
   }
 
   /* ユーザー情報セクション */
@@ -112,5 +108,4 @@
   /* スライドメニューアクティブ時 */
   .slide-menu.active {
     transform: translateX(0);
-    margin-top: 35px;
   }
