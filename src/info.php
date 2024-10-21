@@ -35,33 +35,60 @@ function timeAgo($datetime)
 $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
 $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+
 if ($list_raw) {
     echo '<table>';
     foreach ($list_raw as $row) {
         $announcement_id = $row['announcement_id'];
-        $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+        if ($row['type'] == 1) {
+            $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+        } else {
+            $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+        }
         $info_sql->execute([$announcement_id]);
         $info_row = $info_sql->fetch();
+
         if ($info_row) {
             echo '<tr>';
             echo '<td>アイコン</td>';
-            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-            $user_sql->execute([$info_row['send_person']]);
-            $user_row = $user_sql->fetch();
+
             if ($row['type'] == 1) {
-                echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
-            } elseif ($row['type'] == 2) {
-                echo '<td>', $user_row['user_name'], 'さんが、位置情報を更新しました</td>';
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$info_row['send_person']]);
+            } else {
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$info_row['user_id']]);
             }
+            $user_row = $user_sql->fetch();
+
+            if ($user_row) {
+                if ($row['type'] == 1) {
+                    echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
+                } elseif ($row['type'] == 2) {
+                    echo '<td>', $user_row['user_name'], 'さんが、位置情報を更新しました</td>';
+                }
+            } else {
+                echo '<td>ユーザーが見つかりませんでした</td>';
+            }
+
             if ($row['read_check'] == 0) {
                 echo '<td>未読</td>';
             }
             echo '</tr>';
             echo '<tr>';
-            $datetime = $info_row['sending_time'];
-            echo '<td>', timeAgo($datetime), '</td>';
-            echo '<td class="large-text">', $info_row['content'], '</td>';
+
+            if (isset($info_row['sending_time'])) {
+                $datetime = $info_row['sending_time'];
+                echo '<td>', timeAgo($datetime), '</td>';
+            } else {
+                echo '<td>日時不明</td>';
+            }
+
+            echo '<td class="large-text">', isset($info_row['content']) ? $info_row['content'] : '内容なし', '</td>';
+        } else {
+            echo '<tr><td colspan="3">通知が見つかりませんでした</td></tr>';
         }
+
         ?>
         <form action="info_detail.php" method="post">
             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
