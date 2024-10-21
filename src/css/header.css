@@ -1,15 +1,15 @@
-  header {
-    background-color: white;
-    position: fixed; /*** ← fixedで固定 ***/
-    /* position: sticky; */
-    top: 0;
-    z-index: 999;
-    margin: 0 ;
-    padding: 0;
-    width: 100%;
-    height: 100px;
-    display: flex; /* フレックスボックスを適用 */
-  }
+header {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 子要素間にスペースを配置 */
+  padding: 0 20px; /* 左右の余白を設定 */
+}
   *{
     margin: 0 ;
     padding: 0;
@@ -22,11 +22,8 @@
   }
   
   .bell {
-    width: 50px; /* ハンバーガーメニューと同じ高さ */
-    height: 50px;
-    display: flex;
-    justify-content: center; /* 中央揃え */
-    align-items: center;
+    margin-left: auto;
+    margin-right: 20px; /* ロゴとのスペースを調整 */
 }
 
 .bell img {
