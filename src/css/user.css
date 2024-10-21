@@ -90,6 +90,7 @@ border-radius: 50px; /* 50pxの角丸 */
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 550px;
+    /* padding-left: 550px; */
+    padding: 0px 40px 0px 40px;
     margin: 0px 170px 0px 170px;
 }
