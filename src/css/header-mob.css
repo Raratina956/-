@@ -32,4 +32,6 @@ header {
 .bell{
       padding-left: 0%;
       margin-top: 15px;
+      width: 45px;
+      height: 45px;
 }
