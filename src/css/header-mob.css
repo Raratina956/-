@@ -20,7 +20,7 @@ header {
 .icon {
       margin-left: auto;
       margin-top: 20px;
-      width: 250px;
+      width: 200px;
       height: 80px;
 }
     
@@ -30,7 +30,7 @@ header {
 }
 
 .bell{
-      padding-left: 0%;
+      padding-left: 10%;
       margin-top: 15px;
       width: 45px;
       height: 45px;
