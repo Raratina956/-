@@ -21,6 +21,15 @@
     margin-left: 38%;
   }
   
-  .bell{
-    padding-left: 20%;
-  }
+  .bell {
+    width: 50px; /* ハンバーガーメニューと同じ高さ */
+    height: 50px;
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    align-items: center;
+}
+
+.bell img {
+  width: 30px; /* アイコン自体のサイズ */
+  height: 30px;
+}
