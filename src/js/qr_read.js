@@ -58,6 +58,9 @@ const checkImage = () => {
             const url = code.data;
             window.open(url, '_blank');
             lastScannedUrl = url; // 最後にスキャンされたURLを更新
+
+            // カメラの停止
+            stream.getTracks().forEach(track => track.stop());
         }
     } else {
         console.log("QRcodeが見つかりません…", code);
