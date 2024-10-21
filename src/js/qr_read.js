@@ -3,7 +3,7 @@ const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
 let urlOpened = false; // フラグを追加
-let consecutiveMisses = 0; //  QRコードが見つからなかった連続回数
+let lastScannedUrl = ''; // 最後にスキャンされたURLを追跡
 
 // 背面カメラを指定するためのconstraints
 const constraints = {
@@ -47,29 +47,22 @@ const rectCtx = rectCvs.getContext('2d');
 const checkImage = () => {
     const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
     const code = jsQR(imageData.data, contentWidth, contentHeight);
-    
+
     if (code) {
         console.log("QRcodeが見つかりました", code);
         drawRect(code.location);
         document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
 
         // URLを一度だけ新規タブで開く
-        if (!urlOpened) {
+        if (code.data !== lastScannedUrl) {
             const url = code.data;
-            window.open(url);
-            urlOpened = true; // フラグをセット
-            consecutiveMisses = 0; // リセット
+            window.open(url, '_blank');
+            lastScannedUrl = url; // 最後にスキャンされたURLを更新
         }
     } else {
         console.log("QRcodeが見つかりません…", code);
         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
         document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
-        
-        // QRコードが連続で見つからなかった場合にフラグをリセット
-        consecutiveMisses++;
-        if (consecutiveMisses >= 3) {
-            urlOpened = false; // フラグをリセット
-        }
     }
 
     setTimeout(() => { checkImage() }, 500);
