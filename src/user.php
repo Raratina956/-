@@ -120,7 +120,7 @@
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
             echo '<img src="img\chat.png" width="10%" height="10%" class="chat">';
-            echo '</button>'
+            echo '</button>';
 
             //お気に入りボタン表示
             $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
