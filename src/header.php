@@ -20,7 +20,26 @@ if (isset($_POST['logout'])) {
 <header>
 
     <a href="main.php" class="icon"><img src="img/icon.png" width="460" height="80" class="spot"></a>
-    <img src="img/bell.png" class="bell" width="50" height="50">
+    <?php
+    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
+    $list_sql->execute([
+        $_SESSION['user']['user_id'],
+        1
+    ]);
+    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($list_raw) {
+        ?>
+        <!-- 未読がある場合 -->
+        <img src="img/newinfo.png" class="bell" width="50" height="50">
+        <?php
+    } else {
+        ?>
+        <!-- 未読がない場合 -->
+        <img src="img/bell.png" class="bell" width="50" height="50">
+        <?php
+    }
+    ?>
+
     <div class="header-area">
         <div class="hamburger">
             <!-- ハンバーガーメニューの線 -->
