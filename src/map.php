@@ -35,14 +35,14 @@
 
           }
          echo '</select>';
-         echo '<br>';
+         echo '<br><br>';
 
         //  map
         echo '<table width=700>';
            for($i = 7;$i>0; $i--){
                 echo '<tr>';
                 echo '<form name="floor" action="floor.php" method="post">';
-                echo '<td class="block"><div class="box">';
+                echo '<td class="block">';
                 // 位置情報アイコン
 
                //アイコン情報を持ってくる
@@ -56,7 +56,6 @@
                     foreach($icon as $ic){
                         echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                     }
-                echo '</div>';
                 echo '</td>';
                 echo '<input type="hidden" name="floor" value=', $i, '>';
                 echo '<td class="number"><button type="submit" value="',$i,'" name="floor">',$i,'階</td>';
