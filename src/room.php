@@ -2,6 +2,11 @@
 require 'parts/auto-login.php';
 require 'header.php'; // ヘッダー読み込み
 
+// updateパラメータが存在するか確認
+if (!isset($_GET['update'])) {
+    die("Error: updateパラメータが見つかりません。");
+}
+
 $room_id = $_GET['id'];
 $update_id = $_GET['update'];
 $judge = isset($_POST['judge']) ? $_POST['judge'] : (isset($_GET['judge']) ? $_GET['judge'] : null);
