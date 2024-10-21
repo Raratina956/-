@@ -76,7 +76,7 @@ if ($list_raw) {
                 $announcement_id = $row['announcement_id'];
                 $read_check = $row['read_check'];
                 $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                $info_sql->execute([$current_location_id]);
+                $info_sql->execute([$announcement_id]);
                 $info_row = $info_sql->fetch();
                 $send_id = $info_row['user_id'];
                 $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
