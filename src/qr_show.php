@@ -10,10 +10,10 @@
     <input id="text" type="text" style="width:80%" /><br />
     <div id="qrcode"></div>
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['current_url'])) {
-        $currentUrl = htmlspecialchars($_POST['current_url']);
-        echo "現在のURL: " . $currentUrl;
-        // QRコード生成ロジックなどをここに追加する
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
+            $customUrl = htmlspecialchars($_POST['custom_url']);
+            echo "送信されたURL: " . $customUrl;
+            // QRコード生成ロジックなどをここに追加する
         ?>
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
         <script>
