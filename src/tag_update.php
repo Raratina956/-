@@ -46,7 +46,7 @@ require 'header.php';
                 </form>
             </tr>
         </table>
-        <a href="my_tag.php">戻る</a>
+        <a href="my_tag.php"class="back-link">戻る</a>
     </main>
 </body>
 </html>
