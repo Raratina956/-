@@ -1,10 +1,11 @@
     /* ヘッダー */
     .header-area {
       display: flex;
-      justify-content: flex-end; /* 右端に要素を寄せる */
-      align-items: center;
-      height: 100%; /* ヘッダー全体をカバー */
-      padding-right: 20px; /* ハンバーガーの余白を調整 */
+      justify-content: flex-end; /* 右端に寄せる */
+      align-items: center; /* 高さを中央揃え */
+      height: 100%; /* ヘッダー全体に合わせる */
+      gap: 8px; /* ベルとハンバーガーメニューの間の余白 */
+      padding-right: 20px; /* ヘッダー右端の余白 */
   }
 
   /* ハンバーガーメニューのデザイン */

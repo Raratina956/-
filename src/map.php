@@ -46,14 +46,15 @@
                 // 位置情報アイコン
 
                //アイコン情報を持ってくる
-                $iconStmt=$pdo->prepare('select icon_name 
+                $iconStmt=$pdo->prepare('select * 
                                          from Icon
                                          LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
                                          where classroom_id=?');
                 $iconStmt->execute([$i]);
                 $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
+                // アイコン表示
                     foreach($icon as $ic){
-                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '<img src="', $ic['icon_name'], '" width="70%" height=70%" class="usericon">';
                     }
                 echo '</div>';
                 echo '</td>';
