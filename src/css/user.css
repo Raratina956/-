@@ -13,13 +13,22 @@ body {
     background-size: cover;
     background-color: #464646;
 }
+
+.profile-container{
+    
+    align-items: center; /* アイコンとテキストを縦方向に中央揃え */
+    /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */
+    padding: 20px;
+    margin: 0 auto; /* 横方向で中央に配置 */
+    max-width: 1139px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
+    width: 100%; /* 幅を常に100%にする */
+    background-color: #f9f9f9; /* 背景色を淡い色にして視認性を向上 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 立体感を出すためのシャドウ効果 */
+    border-radius: 27px; /* 角を丸めて柔らかい印象を演出 */
+
+}
  
-.profile-container {
-    /* padding-left: 320px;
-    display: flex;
-    align-items: center; /* アイコンとテキストを中央揃え */
-    /* justify-content: flex-start; /* 左揃え */
-    /* margin: 0 auto; コンテナ全体を中央に配置 */
+.user-container {
     display: flex;
     align-items: center; /* アイコンとテキストを縦方向に中央揃え */
     /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */

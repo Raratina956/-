@@ -58,6 +58,7 @@
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
+            echo '<div class="user-container">';
             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
 
          
@@ -112,7 +113,7 @@
         }else{
             //相手のプロフィール
             //チャットボタン表示
-
+            
             echo '<div class="profile-container">';
             echo '<div class="favorite-container">';
             echo '<img src="img\chat.png" width="10%" height="10%" class="chat">';
@@ -141,7 +142,7 @@
             echo '</div>';
 
             //アイコン表示
-            // echo '<div class="profile-container">';
+            echo '<div class="user-container">';
             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"><br>';
 
             //ユーザー情報
