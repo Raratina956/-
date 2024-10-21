@@ -22,5 +22,9 @@
   }
   
   .bell{
-    padding-left: 20%;
+    /* padding-left: 20%; */
+    width: 40px; /* ベルのサイズを調整 */
+    height: 40px;
+    cursor: pointer; /* ポインタ表示 */
+    display: block;
   }
