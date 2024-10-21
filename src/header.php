@@ -24,7 +24,7 @@ if (isset($_POST['logout'])) {
     $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
     $list_sql->execute([
         $_SESSION['user']['user_id'],
-        1
+        0
     ]);
     $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
     if ($list_raw) {
