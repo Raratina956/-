@@ -37,7 +37,7 @@ $floor = $row['classroom_floor'];
                 $sql_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, logtime = ? WHERE user_id = ?');
                 $sql_update->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
                 $sql_current = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                $sql_current->execute([$room_id,$_SESSION['user']['user_id']]);
+                $sql_current->execute([$room_id, $_SESSION['user']['user_id']]);
                 $row_current = $sql_current->fetch();
                 $current_location_id = $row_current['current_location_id'];
             }
@@ -54,7 +54,12 @@ $floor = $row['classroom_floor'];
                     $info_raw = $info_sql->fetchAll(PDO::FETCH_ASSOC);
                     if ($info_raw) {
                         foreach ($info_raw as $info_row) {
-
+                            $sql_update = $pdo->prepare('UPDATE Announce_check SET current_location_id = ?, WHERE user_id = ? AND type=?');
+                            $sql_update->execute([
+                                $current_location_id,
+                                $list_row['follow_id'],
+                                2
+                            ]);
                         }
                     } else {
                         $sql_insert = $pdo->prepare('INSERT INTO Announce_check (current_location_id,user_id,type) VALUES (?,?,?)');

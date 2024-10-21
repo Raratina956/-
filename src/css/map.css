@@ -87,3 +87,8 @@ button {
     font-size: 15px; /* テキストのフォントサイズ */
     cursor: pointer; /* マウスポインタを変更する */
   }
+
+.list{
+    margin-left: 100px;
+
+}

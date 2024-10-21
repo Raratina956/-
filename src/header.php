@@ -12,12 +12,14 @@ if (isset($_POST['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" type="text/css" href="css/header-mob.css" media="screen and (min-width: 480px)">
+    <link rel="stylesheet" type="text/css" href="css/header.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" href="css/humberger-mob.css" media="screen and (min-width: 480px)">
+    <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
 </head>
 <header>
 
-    <a href="main.php" class="icon"><img src="img/icon.png" width="300" height="80"></a>
+    <a href="main.php" class="icon"><img src="img/icon.png" width="460" height="80" class="spot"></a>
     <img src="img/bell.png" class="bell" width="50" height="50">
     <div class="header-area">
         <div class="hamburger">
