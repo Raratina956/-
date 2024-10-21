@@ -47,9 +47,9 @@ if ($list_raw) {
         $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
         $user_sql->execute([$info_row['send_person']]);
         $user_row = $user_sql->fetch();
-        if($info_raw['type']==1){
+        if($row['type']==1){
             echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
-        }elseif ($info_raw['type']==2) {
+        }elseif ($row['type']==2) {
             echo '<td>', $user_row['user_name'], 'さんが、位置情報を更新しました</td>';
         }
         if($row['read_check']==0){
