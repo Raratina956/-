@@ -125,6 +125,20 @@ if($update_id == 1){
             }
         ?>
 
+        <!-- QR表示 -->
+        <form id="qr-form" action="qr_show.php" method="post" target="_blank">
+            <input type="hidden" name="current_url" value="">
+            <button type="button" onclick="openQrShow()">QR表示</button>
+        </form>
+
+        <script>
+            function openQrShow() {
+                var currentUrl = window.location.href;
+                document.querySelector('input[name="current_url"]').value = currentUrl;
+                document.getElementById('qr-form').submit();
+            }
+        </script>
+
 
         <a href="main.php" class="back-link">メインへ</a>
     </main>
