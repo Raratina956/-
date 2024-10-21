@@ -23,7 +23,7 @@
 
   .hamburger span {
     position: absolute;
-    width: 70%;
+    width: 55px;
     height: 4px;
     background-color: #00CFFF;
     transition: .5s ease-in-out;
