@@ -52,8 +52,9 @@
                                          where classroom_id=?');
                 $iconStmt->execute([$i]);
                 $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
+                // アイコン表示
                     foreach($icon as $ic){
-                        echo '<img src="', $ic['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '<img src="', $ic['icon_name'], '" width="70%" height=70%" class="usericon">';
                     }
                 echo '</div>';
                 echo '</td>';
