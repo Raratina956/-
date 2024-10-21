@@ -55,7 +55,7 @@ const checkImage = () => {
         // URLを一度だけ新規タブで開く
         if (!urlOpened) {
             const url = code.data;
-            window.open(url);
+            window.open(url, '_blank');
             urlOpened = true; // フラグをセット
         }
     } else {

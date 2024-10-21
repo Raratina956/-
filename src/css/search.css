@@ -45,15 +45,45 @@ form {
     margin-bottom: 20px;
 }
 
-
-.search {
-    background-color: #3e58ac;
-    color: white;
- 
+.search-text{
+    margin-top: 25px;
+    width: 30%;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 36px; /*ここの数値を変更*/
+    border: none;
+    border-radius: 5px; /* 角を丸く */
+    border-color: white;
 }
+
+.search{
+    width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    background-color: rgb(192, 191, 191);
+    color:black;
+    border-radius: 5px;
+}
+
 .search:hover{
     background-color:  #a0eefc;
     color: #333;
+}
+.sort-tag{
+    margin-top: 25px;
+    width: 30%;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 36px; /*ここの数値を変更*/
+    border: none;
+    border-radius: 5px; /* 角を丸く */
+    border-color: white;
 }
 .sort {
     background-color: #3e58ac;

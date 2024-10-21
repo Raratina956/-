@@ -19,7 +19,7 @@ require 'header.php';
 <h2><?php echo $search_text; ?></h2>
 <p>
 <form action="search.php" method="post">
-    <input type="text" name="search" value="<?php echo $search_text; ?>">
+    <input type="text" class="search-text"name="search" value="<?php echo $search_text; ?>">
     <?php
     if (isset($_POST['a_p'])) {
         echo '<input type="hidden" name="a_p" value="', $_POST['a_p'], '">';
@@ -28,11 +28,11 @@ require 'header.php';
         echo '<input type="hidden" name="a_u_t" value="', $_POST['a_u_t'], '">';
     }
     ?>
-    <input type="submit" value="再検索"class="search">
+    <input type="submit" value="再検索" class="search">
 </form>
 <span>詳細検索</span><br>
 <form action="search.php" method="post">
-    <select name="a_p">
+    <select class="sort-tag"name="a_p">
         <?php
         if (isset($_POST['a_p'])) {
             if ($_POST['a_p'] == "a") {
@@ -48,7 +48,7 @@ require 'header.php';
         }
         ?>
     </select>
-    <select name="a_u_t">
+    <select name="a_u_t" class="sort-tag">
         <option value="a">全て</option>
         <?Php
         if (isset($_POST['a_u_t'])) {
