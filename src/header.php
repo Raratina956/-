@@ -38,7 +38,7 @@ if (isset($_POST['logout'])) {
             <li><a href="map.php">MAP</a></li>
             <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
             <li><a href="favorite.php">お気に入り</a></li>
-            <li>QRカメラ</li>
+            <li><a href="qr_read.php">QRカメラ</a></li>
             <li>チャット</li>
             <li><a href="tag_list.php">みんなのタグ</a></li>
             <li><a href="my_tag.php">MYタグ</a></li>
@@ -47,7 +47,7 @@ if (isset($_POST['logout'])) {
             <form id="myForm" action="" method="post">
                 <input type="hidden" name="logout" value="1">
             </form>
-            <a href="#" id="submitLink">ログアウト</a>
+            <li><a href="#" id="submitLink">ログアウト</a></li>
             <script>
                 document.getElementById('submitLink').addEventListener('click', function (event) {
                     event.preventDefault(); // リンクのデフォルトの動作を防止

@@ -35,27 +35,43 @@
 
           }
          echo '</select>';
+         echo '<br>';
 
         //  map
-            echo '<table width=700>';
-                for($i = 7;$i>0; $i--){
-                    echo '<tr>';
-                    echo '<form name="floor" action="floor.php" method="post">';
-                    echo '<td class="block"><div class="box">aaaaa</div></td>';
-                    echo '<input type="hidden" name="floor" value=', $i, '>';
-                    echo '<td class="number"><button type="submit" value="',$i,'" name="floor">',$i,'階</td>';
-                    echo '</tr>';
-                    echo '</form>';
-                }
-            echo '<table>';
+        echo '<table width=700>';
+           for($i = 7;$i>0; $i--){
+                echo '<tr>';
+                echo '<form name="floor" action="floor.php" method="post">';
+                echo '<td class="block"><div class="box">';
+                // 位置情報アイコン
+
+               //アイコン情報を持ってくる
+                $iconStmt=$pdo->prepare('select * 
+                                         from Icon
+                                         LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
+                                         where classroom_id=?');
+                $iconStmt->execute([$i]);
+                $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($icon as $ic){
+                        echo '<img src="', $ic['icon_name'], '" width="20%" height="50%" class="usericon">';
+                    }
+                echo '</div>';
+                echo '</td>';
+                echo '<input type="hidden" name="floor" value=', $i, '>';
+                echo '<td class="number"><button type="submit" value="',$i,'" name="floor">',$i,'階</td>';
+                echo '</tr>';
+                echo '</form>';
+            }
+        echo '<table>';
 
         ?>
 
         </div>
-        <br>
-        <hr>
-        <br>
+    <br>
+    <hr>
+    <br>
         <div class="gakugai-container">
         <h2>学外</h2>
+        </div>
     </body>
 </html>
