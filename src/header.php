@@ -30,12 +30,16 @@ if (isset($_POST['logout'])) {
     if ($list_raw) {
         ?>
         <!-- 未読がある場合 -->
+        <a href="info.php">
         <img src="img/newinfo.png" class="bell" width="50" height="50">
-        <?php
+        </a>
+<?php
     } else {
         ?>
         <!-- 未読がない場合 -->
+        <a href="info.php">
         <img src="img/bell.png" class="bell" width="50" height="50">
+        </a>
         <?php
     }
     ?>
