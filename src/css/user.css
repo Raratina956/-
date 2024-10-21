@@ -59,13 +59,13 @@ button {
 }
 
 button:hover {
-    background-color:azure;
+    background-color:#bcf1ff;
 }
 
 
 .confirmbutton{
 margin-left: 1300px;
-background-color: azure;
+background-color: #bcf1ff;
 border:#17A7E9;
 color: black;
 padding: 15px 32px;
