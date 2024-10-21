@@ -1,12 +1,11 @@
-    /* ヘッダー */
-  .header-area {
+.header-area {
     display: flex;
     justify-content: space-between;
     height: 65px;
     padding: 0 20px;
     align-items: center;
     position: relative;
-    padding-right: 10%;
+    padding-left: 10%;
   }
 
   /* ハンバーガーメニューのデザイン */
