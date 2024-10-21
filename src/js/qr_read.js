@@ -3,7 +3,6 @@ const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
 let urlOpened = false; // フラグを追加
-let consecutiveMisses = 0; //  QRコードが見つからなかった連続回数
 
 // 背面カメラを指定するためのconstraints
 const constraints = {
@@ -56,20 +55,14 @@ const checkImage = () => {
         // URLを一度だけ新規タブで開く
         if (!urlOpened) {
             const url = code.data;
-            window.open(url);
+            window.open(url, '_blank');
             urlOpened = true; // フラグをセット
-            consecutiveMisses = 0; // リセット
         }
     } else {
         console.log("QRcodeが見つかりません…", code);
         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
         document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
-        
-        // QRコードが連続で見つからなかった場合にフラグをリセット
-        consecutiveMisses++;
-        if (consecutiveMisses >= 3) {
-            urlOpened = false; // フラグをリセット
-        }
+        urlOpened = false; // フラグをリセット
     }
 
     setTimeout(() => { checkImage() }, 500);
