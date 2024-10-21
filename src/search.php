@@ -114,7 +114,7 @@ if ($judge == 1) {
                     foreach ($pe_user_raw as $row) {
                         ?>
                         <tr>
-                            <td>アイコン</td>
+                            <td><img src="img/icon/default.jpg"></td>
                             <td><?php echo $row['user_name']; ?></td>
                         </tr>
                         <?php
