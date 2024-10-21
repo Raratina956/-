@@ -16,7 +16,7 @@ if($update_id == 1){
     $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
     $point->execute([$_SESSION['user']['user_id']]);
 
-    if(!isset($point)){
+    if(isset($point)){
 
         // 位置情報が未登録の場合の処理　→　新規登録
         $newpoint=$pdo->prepare('INSERT INTO Current_location(user_id, classroom_id, logtime) VALUES (?, ?, ?)');
