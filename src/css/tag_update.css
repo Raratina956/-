@@ -1,0 +1,76 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    margin: 100px auto; /* 上部に余白を持たせる */
+    width: 80%;
+    max-width: 600px; /* 最大幅を制限 */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+span {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.button_up{
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(107, 224, 185);
+    background-color: white;
+    color:rgb(107, 224, 185) ;
+    border-radius: 5px;
+}
+
+.button_up:hover{
+    background-color:rgb(26, 203, 144) ;
+    color: white;
+}
+
+.back-link {
+    margin: 100px auto;
+    position: absolute; /* 左上に配置 */
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
+}
