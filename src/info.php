@@ -49,7 +49,7 @@ if ($list_raw) {
                 $content = $info_row['content'];
                 $logtime = $info_row['sending_time'];
                 echo '<tr>';
-                echo '<td><img src="img/icon/default.jpg"></td>';
+                echo '<td>アイコン（仮）</td>';
                 echo '<td rowspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                 if ($read_check == 0) {
                     echo '未読';
