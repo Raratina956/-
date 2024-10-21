@@ -19,21 +19,34 @@ if (isset($_POST['up_tag_name'])) {
 ?>
 
 <?php
-// require 'header.php';
+require 'header.php';
 ?>
-<h1>タグ更新</h1>
-<span>更新内容を入力してください</span>
-<table>
-    <tr>
-        <th>タグ名</th>
-        <th></th>
-    </tr>
-    <tr>
-        <form action="tag_update.php" method="post">
-            <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
-            <td><input type="text" name="up_tag_name" value="<?php echo $tag_name; ?>"></td>
-            <td><input type="submit" value="更新"></td>
-        </form>
-    </tr>
-</table>
-<a href="my_tag.php">戻る</a>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タグ更新</title>
+    <link rel="stylesheet" href="css/tag_update.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <main>
+        <h1>タグ更新</h1>
+        <span>更新内容を入力してください</span>
+        <table>
+            <tr>
+                <th>タグ名</th>
+                <th></th>
+            </tr>
+            <tr>
+                <form action="tag_update.php" method="post">
+                    <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
+                    <td><input type="text" name="up_tag_name" value="<?php echo $tag_name; ?>"></td>
+                    <td><input type="submit" class="button_up" value="更新"></td>
+                </form>
+            </tr>
+        </table>
+        <a href="my_tag.php"class="back-link">戻る</a>
+    </main>
+</body>
+</html>

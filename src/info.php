@@ -38,24 +38,41 @@ $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     echo '<table>';
     foreach ($list_raw as $row) {
-        $announcement_id = $row['announcement_id'];
-        $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-        $info_sql->execute([$announcement_id]);
-        $info_row = $info_sql->fetch();
+        if ($row['type'] == 1) {
+            $announcement_id = $row['announcement_id'];
+            $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+            $info_sql->execute([$announcement_id]);
+            $info_row = $info_sql->fetch();
+        } else {
+            $announcement_id = $row['announcement_id'];
+            $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+            $info_sql->execute([$announcement_id]);
+            $info_row = $info_sql->fetch();
+        }
         echo '<tr>';
         echo '<td>アイコン</td>';
-        $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-        $user_sql->execute([$info_row['send_person']]);
-        $user_row = $user_sql->fetch();
-        echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
-        if($row['read_check']==0){
+        if ($row['type'] == 1) {
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+            $user_sql->execute([$info_row['send_person']]);
+            $user_row = $user_sql->fetch();
+            echo '<td>', $user_row['user_name'], 'さんが、アナウンスをしました</td>';
+            $datetime = $info_row['sending_time'];
+        } elseif ($row['type'] == 2) {
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+            $user_sql->execute([$info_row['user_id']]);
+            $user_row = $user_sql->fetch();
+            echo '<td>', $user_row['user_name'], 'さんが、位置情報を更新しました</td>';
+            $datetime = $info_row['logtime'];
+        }
+        if ($row['read_check'] == 0) {
             echo '<td>未読</td>';
         }
         echo '</tr>';
         echo '<tr>';
-        $datetime = $info_row['sending_time'];
+        
         echo '<td>', timeAgo($datetime), '</td>';
         echo '<td class="large-text">', $info_row['content'], '</td>';
+
         ?>
         <form action="info_detail.php" method="post">
             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>

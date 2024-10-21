@@ -2,6 +2,9 @@
 const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
+let urlOpened = false; // フラグを追加
+let lastScannedUrl = ''; // 最後にスキャンされたURLを追跡
+let stream; // グローバルにストリームを保持
 
 // 背面カメラを指定するためのconstraints
 const constraints = {
@@ -13,8 +16,9 @@ const constraints = {
     }
 };
 
-const media = navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
+navigator.mediaDevices.getUserMedia(constraints)
+    .then((mediaStream) => {
+        stream = mediaStream; // ストリームを保持
         video.srcObject = stream;
         video.onloadeddata = () => {
             video.play();
@@ -45,24 +49,32 @@ const rectCtx = rectCvs.getContext('2d');
 const checkImage = () => {
     const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
     const code = jsQR(imageData.data, contentWidth, contentHeight);
-    
+
     if (code) {
         console.log("QRcodeが見つかりました", code);
         drawRect(code.location);
         document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
-        
-        // URLを新規タブで開く
-        const url = code.data; // QRコードから取得したURL
-        window.open(url);
-        
+
+        // URLを一度だけ新規タブで開く
+        if (code.data !== lastScannedUrl) {
+            const url = code.data;
+            window.open(url, '_blank');
+            lastScannedUrl = url; // 最後にスキャンされたURLを更新
+
+            // カメラの停止
+            stream.getTracks().forEach(track => track.stop());
+        }
     } else {
         console.log("QRcodeが見つかりません…", code);
         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
         document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
     }
-    
-    setTimeout(() => { checkImage() }, 500);
+
+    if (!stream.getTracks().every(track => track.readyState === 'ended')) {
+        setTimeout(() => { checkImage() }, 500);
+    }
 }
+    
 
 // 四辺形の描画
 const drawRect = (location) => {
