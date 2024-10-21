@@ -19,7 +19,7 @@ require 'header.php';
 <h2><?php echo $search_text; ?></h2>
 <p>
 <form action="search.php" method="post">
-    <input type="text" name="search" value="<?php echo $search_text; ?>">
+    <input type="text" class="search-text"name="search" value="<?php echo $search_text; ?>">
     <?php
     if (isset($_POST['a_p'])) {
         echo '<input type="hidden" name="a_p" value="', $_POST['a_p'], '">';
