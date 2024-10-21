@@ -37,7 +37,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 form{
@@ -46,7 +46,7 @@ form{
 }
 
 button {
-    width: 7em;
+    width: 6em;
     height: 4em;
     display: flex;
     align-items: center;
