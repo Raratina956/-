@@ -9,12 +9,21 @@ $room_name = $row['classroom_name'];
 $floor = $row['classroom_floor'];
 
 // 位置情報を登録してるかどうか確認
+$now_time = date("Y/m/d H:i:s");
 $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
 $point->execute([$_SESSION['user']['user_id']]);
 if(isset($point)){
-    echo '値なし';
+
+    // 位置情報が未登録の場合の処理　→　新規登録
+    $newpoint=$pdo->prepare('INSERT INTO Current_location(user_id, classroom_id, logtime) VALUES (?, ?, ?)');
+    $newpoint->execute([$_SESSION['user']['user_id'], $room_id, $now_time]);
+
 }else{
-    echo '値あり';
+
+    // 位置情報が登録済の場合の処理　→　更新
+    $updatepoint=$pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=? WHERE user_id=?');
+    $updatepoint->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
+
 }
 ?>
 
