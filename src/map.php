@@ -24,7 +24,7 @@
          $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
          //プルダウン
-         echo '<select name="list">';
+         echo '<select name="list" class="list">';
          foreach ($results as $tag_list) {
             // echo "<option value='",$tag_list['tag_id'],"'>",$tag_list['tag_name'],"</option>"; 
 

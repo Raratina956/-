@@ -21,10 +21,29 @@
             height: 100%;
             object-fit: cover; /* 画像を全体に拡大して表示 */
         }
+
+        #soredemo {
+            display: none; /* 初期状態で非表示 */
+        }
     </style>
 </head>
 <body>
+
     <!-- ban.png を画面全体に表示 -->
-    <img src="image/ban.png" alt="アカウント停止" class="fullscreen-image">
+    <img id="ban-image" src="image/ban.png" alt="アカウント停止" class="fullscreen-image">
+
+    <!-- soredemo.gif を3秒後に表示 -->
+    <img id="soredemo" src="image/soredemo.gif" alt="それでも" class="fullscreen-image">
+
+    <script>
+        // 3秒後に ban.png を非表示にし、soredemo.gif を表示する
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('ban-image').style.display = 'none'; // ban.png を非表示
+                document.getElementById('soredemo').style.display = 'block'; // soredemo.gif を表示
+            }, 3000); // 3000ミリ秒 = 3秒
+        });
+    </script>
+
 </body>
 </html>
