@@ -4,6 +4,7 @@ require 'header.php'; // ヘッダー読み込み
 
 $room_id = $_GET['id'];
 $update_id = $_GET['update'];
+$judge = isset($_POST['judge']) ? $_POST['judge'] : (isset($_GET['judge']) ? $_GET['judge'] : null);
 
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
 $sql->execute([$room_id]);
@@ -65,7 +66,7 @@ if ($update_id == 1) {
         ?>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1">
+            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1&judge=1">
             <button type="submit">QR表示</button>
         </form>
         <a href="main.php" class="back-link">メインへ</a>
