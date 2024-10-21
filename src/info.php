@@ -95,7 +95,7 @@ if ($list_raw) {
                 echo '<td>', timeAgo($logtime), '</td>';
                 ?>
                 <form action="info_detail.php" method="post">
-                    <input type="hidden" name="announcement_id" value=<?php echo $current_location_id; ?>>
+                    <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
                     <td><input type="submit" value="詳細"></td>
                 </form>
                 <?php
