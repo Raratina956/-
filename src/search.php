@@ -114,7 +114,7 @@ if ($judge == 1) {
                     foreach ($pe_user_raw as $row) {
                         ?>
                         <tr>
-                            <td><img src="img/icon/default.jpg"size="20px"></td>
+                            <td><img src="img/icon/default.jpg" width="20%" height="50%"></td>
                             <td><?php echo $row['user_name']; ?></td>
                         </tr>
                         <?php
@@ -147,7 +147,7 @@ if ($judge == 1) {
                         if ($search_text != $row['user_name']) {
                             ?>
                             <tr>
-                                <td><img  src="img/icon/default.jpg" size="20px"></td>
+                                <td><img  src="img/icon/default.jpg" width="20%" height="50%"></td>
                                 <td><?php echo $row['user_name']; ?></td>
                             </tr>
                             <?php
