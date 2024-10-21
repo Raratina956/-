@@ -90,6 +90,8 @@
             }
 
             echo '</div>';
+            echo '</div>';
+            
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             echo '<div class="tag">';
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
@@ -171,6 +173,8 @@
             }
 
             echo '</div>';
+            echo '</div>';
+            
             echo '<br>';
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             echo '<div class="tag">';
