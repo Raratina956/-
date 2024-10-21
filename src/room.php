@@ -54,7 +54,7 @@ $floor = $row['classroom_floor'];
                     $info_raw = $info_sql->fetchAll(PDO::FETCH_ASSOC);
                     if ($info_raw) {
                         foreach ($info_raw as $info_row) {
-                            $sql_update = $pdo->prepare('UPDATE Announce_check SET current_location_id = ?, WHERE user_id = ? AND type=?');
+                            $sql_update = $pdo->prepare('UPDATE Announce_check SET current_location_id = ? WHERE user_id = ? AND type=?');
                             $sql_update->execute([
                                 $current_location_id,
                                 $list_row['follow_id'],
