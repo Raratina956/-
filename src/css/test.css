@@ -53,6 +53,7 @@
     right: 0;
     transform: translateX(100%);
     transition: transform 0.5s ease;
+    margin-top: 35px;
   }
 
   /* ユーザー情報セクション */
@@ -111,4 +112,5 @@
   /* スライドメニューアクティブ時 */
   .slide-menu.active {
     transform: translateX(0);
+    margin-top: 35px;
   }
