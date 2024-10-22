@@ -47,6 +47,12 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['tag_name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?></td>
          
+            <td>
+                <form method="post" action="">
+                    <input type="hidden" name="ban_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <button type="submit">アカウント停止</button>
+                </form>
+            </td>
             
         </tr>
     <?php endforeach; ?>
