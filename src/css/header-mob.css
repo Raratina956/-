@@ -6,10 +6,19 @@ header {
       z-index: 999;
       margin: 0 ;
       padding: 0;
-      width: 120%;
-      height: 100px;
+      width: 100%;  /* 画面幅に合わせる */
+      height: 80px;
       display: flex; /* フレックスボックスを適用 */
 }
+
+.header-container {
+      display: flex;
+      justify-content: space-between; /* 左右に要素を分ける */
+      align-items: center;
+      width: 100%;
+      padding: 0 10px;
+  }
+
 *{
       margin: 0 ;
       padding: 0;
@@ -18,10 +27,8 @@ header {
     
      
 .icon {
-      margin-left: auto;
-      margin-top: 20px;
-      width: 200px;
-      height: 80px;
+      width: 30%;  /* アイコンの横幅を30%に調整 */
+      height: auto;
 }
     
 .spot{
@@ -29,9 +36,13 @@ header {
     height: 80px;
 }
 
+.right-elements {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* 要素間の隙間を調整 */
+  }
+
 .bell{
-      padding-left: 17%;
-      margin-top: 15px;
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
 }
