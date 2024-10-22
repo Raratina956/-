@@ -18,39 +18,28 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
 </head>
 <header>
-
-    <a href="main.php" class="icon"><img src="img/icon.png" width="460" height="80" class="spot"></a>
-    <?php
-    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
-    $list_sql->execute([
-        $_SESSION['user']['user_id'],
-        0
-    ]);
-    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
-    if ($list_raw) {
-        ?>
-        <!-- 未読がある場合 -->
-        <a href="info.php">
-        <img src="img/newinfo.png" class="bell" width="50" height="50">
+    <div class="header-container">
+        <a href="main.php" class="icon">
+            <img src="img/icon.png" width="460" height="80" class="spot">
         </a>
-<?php
-    } else {
-        ?>
-        <!-- 未読がない場合 -->
-        <a href="info.php">
-        <img src="img/bell.png" class="bell" width="50" height="50">
-        </a>
-        <?php
-    }
-    ?>
 
-    <div class="header-area">
-        <div class="hamburger">
-            <!-- ハンバーガーメニューの線 -->
-            <span></span>
-            <span></span>
-            <span></span>
-            <!-- /ハンバーガーメニューの線 -->
+        <div class="right-elements">
+            <?php
+            $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
+            $list_sql->execute([$_SESSION['user']['user_id'], 0]);
+            $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <a href="info.php">
+                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell" width="50" height="50">
+            </a>
+
+            <div class="header-area">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </div>
 
