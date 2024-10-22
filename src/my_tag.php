@@ -15,7 +15,7 @@ require 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/my_tag-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" type="text/css" href="mob_css/my_tag-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/my_tag.css" media="screen and (min-width: 1280px)">
 </head>
 <h1>ｍｙタグ一覧</h1>
