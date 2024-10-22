@@ -34,6 +34,8 @@ table {
     margin-right: auto; /* Automatically adjust the right margin */
 }
 .tag{
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 8px;
 font-size: 20px;
 }
 /* .icon{
@@ -41,6 +43,8 @@ font-size: 20px;
 
 } */
 .name{
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 8px;
 font-size: 20px;
 }
 
