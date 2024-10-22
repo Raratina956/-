@@ -1,48 +1,50 @@
-header {
-      background-color: white;
-      position: fixed; /*** ← fixedで固定 ***/
-      /* position: sticky; */
-      top: 0;
-      z-index: 999;
-      margin: 0 ;
-      padding: 0;
-      width: 100%;  /* 画面幅に合わせる */
-      height: 80px;
-      display: flex; /* フレックスボックスを適用 */
-}
-
-.header-container {
-      display: flex;
-      justify-content: space-between; /* 左右に要素を分ける */
-      align-items: center;
-      width: 100%;
-      padding: 0 10px;
-  }
-
-*{
-      margin: 0 ;
-      padding: 0;
-    
-}
-    
-     
-.icon {
-      width: 30%;  /* アイコンの横幅を30%に調整 */
-      height: auto;
-}
-    
-.spot{
-    width: 300px;
-    height: 80px;
-}
-
-.right-elements {
-      display: flex;
-      align-items: center;
-      gap: 10px; /* 要素間の隙間を調整 */
-  }
-
-.bell{
-      width: 40px;
-      height: 40px;
+@media screen and (max-width: 480px){
+      header {
+            background-color: white;
+            position: fixed; /*** ← fixedで固定 ***/
+            /* position: sticky; */
+            top: 0;
+            z-index: 999;
+            margin: 0 ;
+            padding: 0;
+            width: 100%;  /* 画面幅に合わせる */
+            height: 80px;
+            display: flex; /* フレックスボックスを適用 */
+      }
+      
+      .header-container {
+            display: flex;
+            justify-content: space-between; /* 左右に要素を分ける */
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+        }
+      
+      *{
+            margin: 0 ;
+            padding: 0;
+          
+      }
+          
+           
+      .icon {
+            width: 30%;  /* アイコンの横幅を30%に調整 */
+            height: auto;
+      }
+          
+      .spot{
+          width: 300px;
+          height: 80px;
+      }
+      
+      .right-elements {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* 要素間の隙間を調整 */
+        }
+      
+      .bell{
+            width: 40px;
+            height: 40px;
+      }
 }
