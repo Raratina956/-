@@ -17,7 +17,7 @@ main {
     padding: 20px;
     border-radius: 8px;
     text-align: center; /* Center the text inside the main container */
-    display: flex; /* Add flexbox for centering */
+    /* display: flex; Add flexbox for centering */
     flex-direction: column; /* Ensure vertical stacking of elements */
     align-items: center; /* Center align the content horizontally */
 }
