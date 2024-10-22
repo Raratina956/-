@@ -54,7 +54,7 @@ if ($update_id == 1) {
                     2
                 ]);
             } else {
-                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id,read_check WHERE user_id=? AND type = ?');
+                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id=?,read_check=? WHERE user_id=? AND type = ?');
                 $update_announce->execute([
                     $current_location_id,
                     0,
