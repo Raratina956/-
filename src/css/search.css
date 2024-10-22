@@ -11,6 +11,7 @@ body {
 }
 
 /* Main Content */
+/* Main Content */
 main {
     margin-top: 120px; /* Adjust to account for header height */
     margin-bottom: 100px;
@@ -19,7 +20,20 @@ main {
     padding: 20px;
     border-radius: 8px;
     text-align: center; /* Center the text inside the main container */
+    display: flex; /* Add flexbox for centering */
+    flex-direction: column; /* Ensure vertical stacking of elements */
+    align-items: center; /* Center align the content horizontally */
 }
+
+/* Table Styles */
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: auto; /* Automatically adjust the left margin */
+    margin-right: auto; /* Automatically adjust the right margin */
+}
+
 
 
 h1, h2 {
@@ -118,12 +132,7 @@ form {
     color: white;
 }
 
-/* Table Styles */
-table {
-    width: 50%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+
 
 
 
