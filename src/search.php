@@ -148,7 +148,7 @@ if ($judge == 1) {
                             ?>
                             <tr>
                                 <td><img  src="img/icon/default.jpg" width="20%" height="30%"></td>
-                                <td><?php echo $row['user_name']; ?></td>
+                                <td class="name"><?php echo $row['user_name']; ?></td>
                             </tr>
                             <?php
                         }

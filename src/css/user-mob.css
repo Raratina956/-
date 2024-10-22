@@ -15,17 +15,14 @@ body {
 }
 
 .profile-container{
-
-    align-items: center; /* アイコンとテキストを縦方向に中央揃え */
-    /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */
-    padding: 20px;
-    margin: 20px auto; /* 横方向で中央に配置 */
-    max-width: 352px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
-    width: 100%; /* 幅を常に100%にする */
-    background-color: #f9f9f9; /* 背景色を淡い色にして視認性を向上 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 立体感を出すためのシャドウ効果 */
-    border-radius: 27px; /* 角を丸めて柔らかい印象を演出 */
-
+    align-items: center;
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 352px;
+    width: 100%;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 27px;
 }
  
 .user-container {
@@ -65,7 +62,7 @@ button:hover {
 
 
 .confirmbutton{
-margin-left: 340px;
+margin-left: 290px;
 background-color: #f9f9f9;
 border:#17A7E9;
 color: black;
@@ -102,8 +99,8 @@ transition: background-color 0.3s ease;
 
 
 .usericon{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-  }
+}
