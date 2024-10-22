@@ -43,9 +43,32 @@ if ($list_raw) {
     <form action="info.php" method="post">
         <label>種別</label>
         <select name="narrow">
-            <option value=0>全て</option>
+            <option value=0 selected>全て</option>
             <option value=1>アナウンス</option>
             <option value=2>位置情報</option>
+        </select>
+        <label>ユーザー別</label>
+        <select name="n_user">
+            <option value="0" selected>全て</option>
+            <?php
+            $n_users = [];
+            foreach ($list_raw as $row) {
+                // アナウンス
+                $n_announcement_id = $list_raw['announcement_id'];
+                $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+                $n_send_person_id = $list_raw['send_person'];
+                $n_users = $n_send_person_id;
+
+                // 位置情報
+                $n_current_location_id = $list_raw['current_location_id'];
+                
+                $list_sql->execute([$_SESSION['user']['user_id']]);
+                $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+            }
+            ?>
         </select>
         <input type="submit" value="検索">
     </form>
