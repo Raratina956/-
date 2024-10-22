@@ -8,8 +8,8 @@
 
     /* ハンバーガーメニューのデザイン */
   .hamburger {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border: 2px solid #00CFFF;
     border-radius: 50%;
@@ -43,7 +43,7 @@
   .slide-menu {
     background-color: rgba(46, 149, 222, 0.8);
     position: fixed;
-    top: 80px;  /* ヘッダーの下に配置 */
+    top: 65px;  /* ヘッダーの下に配置 */
     width: 250px;
     height: 100%;
     right: 0;

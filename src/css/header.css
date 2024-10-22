@@ -16,6 +16,27 @@
       padding: 0;
     
     }
+
+    .hamburger {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      margin-left: auto;
+      cursor: pointer;
+      border: 2px solid #00CFFF;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 240%;
+      top: -66px;
+  }
+
+    .spot{
+      position: relative;
+      left: 83%;
+      top: 60px;
+    }
     
     
     .icon {
@@ -24,7 +45,7 @@
     
     .bell {
       margin-top:10px;
-      margin-left: 130%;
+      margin-left: 250%;
       margin-right: 20px; /* ロゴとのスペースを調整 */
   }
 
