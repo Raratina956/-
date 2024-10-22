@@ -49,6 +49,7 @@
                 $iconStmt=$pdo->prepare('select * 
                                          from Icon
                                          LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
+                                         LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
                                          where classroom_id=?');
                 $iconStmt->execute([$i]);
                 $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);

@@ -2,7 +2,8 @@
 require 'parts/auto-login.php';
 require 'header.php'; // ヘッダー読み込み
 
-function fix_url($url) {
+function fix_url($url)
+{
     return str_replace('&amp;', '&', $url);
 }
 
@@ -67,12 +68,14 @@ if ($update_id == 1) {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css">
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
+
 <body>
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
@@ -105,7 +108,11 @@ if ($update_id == 1) {
             <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">'; ?>
             <button type="submit">QR表示</button>
         </form>
+        <table>
+
+        </table>
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
+
 </html>
