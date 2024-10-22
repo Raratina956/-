@@ -34,14 +34,14 @@ table {
     margin-right: auto; /* Automatically adjust the right margin */
 }
 .tag{
-font-size: 30px;
+font-size: 36px;
 }
-.icon{
+/* .icon{
     
 
-}
+} */
 .name{
-font-size: 30px;
+font-size: 36px;
 }
 
 h1, h2 {
@@ -98,7 +98,7 @@ form {
 }
 .sort-tag{
     margin-top: 40px;
-    width: 15%;
+    width: 50px;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
