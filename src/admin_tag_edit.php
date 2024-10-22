@@ -29,6 +29,8 @@ if (isset($_POST['edit'])) {
 
 <h1>タグ編集ページ</h1>
 
+<?php echo $tag_id ?>
+
 <?php if ($tag): ?>
     <form method="post" action="admin_tag_edit.php">
         <input type="hidden" name="tag_id" value="<?php echo htmlspecialchars($tag['tag_id'], ENT_QUOTES, 'UTF-8'); ?>">
