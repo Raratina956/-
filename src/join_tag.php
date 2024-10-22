@@ -10,7 +10,8 @@ if (isset($_POST['delete_tag'])) {
 <?php
 require 'header.php';
 ?>
-<link rel="stylesheet" href="css/join_tag.css">
+<link rel="stylesheet" href="mob_css/j-tag.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/join_tag.css" media="screen and (min-width: 1280px)">
 <h1>参加タグ一覧</h1>
 <?php
 $search_sql = $pdo->prepare("SELECT * FROM Tag_attribute WHERE user_id=?");

@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="admin-post.php">投稿機能</a>
-    <a href="admin-room.php">教室管理</a>
-    <a href="admin-user.php">ユーザー機能</a>
+    <a href="admin_tag.php">タグ管理</a>
+    <a href="admin_room.php">教室管理</a>
+    <a href="admin_user.php">ユーザー管理</a>
 </body>
 </html>

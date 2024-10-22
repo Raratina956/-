@@ -86,9 +86,9 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($post['category_id'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($post['post_day'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td>
-                <form method="post" action="">
-                    <input type="hidden" name="delete_post_id" value="<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <button type="submit">削除</button>
+                <form method="post" action="admin_tag_edit.php">
+                    <input type="hidden" name="edit" value="<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <button type="submit">編集</button>
                 </form>
             </td>
         </tr>

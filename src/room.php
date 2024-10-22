@@ -108,9 +108,34 @@ if ($update_id == 1) {
             <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">'; ?>
             <button type="submit">QR表示</button>
         </form>
-        <table>
 
-        </table>
+        <!-- 教室にいるメンバーを表示 -->
+        <?php
+            // 教室にいるメンバーを持ってくる
+            $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+            $users->execute([$room_id]);
+
+            echo '<ul>';
+            foreach($users as $user){
+
+                //ユーザー情報を持ってくる
+                $members=$pdo->prepare('select * from Users where user_id=?');
+                $members->execute([$user['user_id']]);
+                $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                //アイコン情報を持ってくる
+                $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                $iconStmt->execute([$user['user_id']]);
+                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                echo '<li style="list-style: none; padding-left: 0;">
+                        <div class="profile-container"><div class="user-container">
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                      </li>';
+            }
+            echo '</ul>';
+        ?>
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
