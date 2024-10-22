@@ -70,7 +70,7 @@ form {
 
 .search-text{
     margin-top: 25px;
-    width: 30%;
+    width: 120px;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
@@ -81,7 +81,7 @@ form {
 }
 
 .search{
-    width: 100px;
+    width: 60px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -99,7 +99,7 @@ form {
 }
 .sort-tag{
     margin-top: 40px;
-    width: 50px;
+    width: 120px;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
@@ -109,7 +109,7 @@ form {
     border-color: white;
 }
 .sort {
-    width: 100px;
+    width: 60px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
