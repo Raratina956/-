@@ -112,6 +112,14 @@ if ($list_raw) {
                     $title = $info_row['title'];
                     $content = $info_row['content'];
                     $logtime = $info_row['sending_time'];
+                    if (isset($_POST['n_user'])) {
+                        if ($_POST['n_user'] != 0) {
+                            foreach ($uni_n_users as $n_user_r) {
+                                if ($send_id == $n_user_r['user_id']);
+                                break;
+                            }
+                        }
+                    }
                     echo '<tr>';
                     echo '<td>アイコン（仮）</td>';
                     echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
