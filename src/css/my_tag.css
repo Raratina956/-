@@ -95,18 +95,3 @@ span{
     background-color: rgb(54, 98, 216);
     color: white;
 }
-
-@media (max-width: 480px) {
-    /* 各フォームを行ごとに表示 */
-    table tr {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* ボタンの余白と幅を調整 */
-    .button_up, .button_del {
-        margin-top: 10px;
-        width: 80%; /* ボタンを横幅に応じて広げる */
-    }
-}
