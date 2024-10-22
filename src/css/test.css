@@ -4,7 +4,7 @@
       justify-content: flex-end; /* 右端に要素を寄せる */
       align-items: center;
       height: 100%; /* ヘッダー全体をカバー */
-      padding-right: 20px; /* ハンバーガーの余白を調整 */
+      padding-right: 45px; /* ハンバーガーの余白を調整 */
   }
 
   /* ハンバーガーメニューのデザイン */
