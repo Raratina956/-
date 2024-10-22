@@ -14,7 +14,7 @@ body {
     background-color: #464646;
 }
 
-.profile-container{
+.profile-container-mob{
 
     align-items: center; /* アイコンとテキストを縦方向に中央揃え */
     /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */
@@ -28,12 +28,12 @@ body {
 
 }
  
-.user-container {
+.user-container-mob {
    display: flex;
     align-items: center;
 }
 
-.favorite-container{
+.favorite-container-mob{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -64,7 +64,7 @@ button:hover {
 }
 
 
-.confirmbutton{
+.confirmbutton-mob{
 margin-left: 1300px;
 background-color: #f9f9f9;
 border:#17A7E9;
@@ -83,9 +83,9 @@ transition: background-color 0.3s ease;
     background-color:#17A7E9;
 } */
 
-.profile{align-items:center;padding-left: 270px;}
+.profile-mob{align-items:center;padding-left: 270px;}
 
-.tag{
+.tag-mob{
     background-color: azure;
     border: 2px solid #17A7E9;
     display: flex;
@@ -97,7 +97,7 @@ transition: background-color 0.3s ease;
     margin: 0px 170px 0px 170px;
 }
 
-.usericon{
+.usericon-mob{
     width: 210px;
     height: 210px;
     border-radius: 50%;
