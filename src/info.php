@@ -66,6 +66,11 @@ if ($list_raw) {
                     case 2:
                         // 位置情報
                         $n_current_location_id = $row['current_location_id'];
+                        $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                        $n_current_s->execute([$n_current_location_id]);
+                        $n_current_r = $n_current_s->fetch();
+                        $n_send_person_id = $n_current_r['user_id'];
+                        $n_users[] = $n_send_person_id;
                     default:
                         # code...
                         break;
