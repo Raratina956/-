@@ -46,16 +46,8 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['classroom_id'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['class_floor'], ENT_QUOTES, 'UTF-8'); ?></td>
-           
-            <!-- <td>
-                アカウント停止・復帰ボタン
-                <?php if ($user['s_or_t'] === 7): ?>
-                    <form method="post" action="">
-                        <input type="hidden" name="restore_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <button type="submit">アカウント復帰</button>
-                    </form>
-                
-            </td> -->
+         
+            
         </tr>
     <?php endforeach; ?>
 </table>
