@@ -49,7 +49,7 @@ if ($update_id == 1) {
                 $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id,user_id,read_check,type) VALUES(?,?,?,?)');
                 $new_announce->execute([
                     $current_location_id,
-                    $favorite_row['follower_id'],
+                    $favorite_row['follow_id'],
                     0,
                     2
                 ]);
@@ -58,7 +58,7 @@ if ($update_id == 1) {
                 $update_announce->execute([
                     $current_location_id,
                     0,
-                    $favorite_row['follower_id'],
+                    $favorite_row['follow_id'],
                     2
                 ]);
             }
@@ -103,18 +103,11 @@ if ($update_id == 1) {
             }
         }
         ?>
-
-        <?php
-        $room_id = htmlspecialchars($room_id);
-        $custom_url = "https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=" . urlencode($room_id) . "&update=1";
-        ?>
-
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="hidden" name="custom_url" value="<?php echo htmlspecialchars($custom_url); ?>">
+            <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . $room_id . '&update=1">'; ?>
             <button type="submit">QR表示</button>
         </form>
-
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
