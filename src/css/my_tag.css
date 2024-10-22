@@ -24,7 +24,7 @@ span{
 }
 
 .button_in{
-    min-width: 120px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -43,7 +43,7 @@ span{
 }
 
 .button_up{
-    min-width: 120px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -62,7 +62,7 @@ span{
 }
 
 .button_del{
-    min-width: 120px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -94,19 +94,4 @@ span{
 .back-link:hover{
     background-color: rgb(54, 98, 216);
     color: white;
-}
-
-@media (max-width: 480px) {
-    /* 各フォームを行ごとに表示 */
-    table tr {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* ボタンの余白と幅を調整 */
-    .button_up, .button_del {
-        margin-top: 10px;
-        width: 80%; /* ボタンを横幅に応じて広げる */
-    }
 }
