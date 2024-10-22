@@ -1,4 +1,6 @@
 <?php
+
+require 'db-connect.php';
 // 編集フォームのデータを取得
 if (isset($_POST['edit'])) {
     $tag_id = htmlspecialchars($_POST['edit'], ENT_QUOTES, 'UTF-8');
