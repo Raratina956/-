@@ -24,7 +24,7 @@ body {
 }
 
 .chat-area {
-    height: 500px;
+    height: 600px;
     overflow-y: auto;
     padding: 20px;
     background-color: #fafafa;

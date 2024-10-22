@@ -8,7 +8,7 @@
             margin: 0 ;
             padding: 0;
             width: 100%;  /* 画面幅に合わせる */
-            height: 80px;
+            height: 70px;
             display: flex; /* フレックスボックスを適用 */
       }
       
@@ -28,13 +28,13 @@
           
            
       .icon {
-            width: 30%;  /* アイコンの横幅を30%に調整 */
+            width: 25%;  /* アイコンの横幅を30%に調整 */
             height: auto;
       }
           
       .spot{
-          width: 300px;
-          height: 80px;
+          width: 230px;
+          height: 70px;
       }
       
       .right-elements {
@@ -44,7 +44,7 @@
         }
       
       .bell{
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
       }
 }
