@@ -86,7 +86,7 @@ if ($list_raw) {
                 $logtime = $info_row['logtime'];
                 echo '<tr>';
                 echo '<td>アイコン</td>';
-                echo '<td rowspan="2">お気に入りに登録している',$send_name,'さんが位置情報を更新しました</td>';
+                echo '<td rowspan="2">',$send_name,'さんが位置情報を更新しました</td>';
                 if ($read_check == 0) {
                     echo '<td>未読</td>';
                 }

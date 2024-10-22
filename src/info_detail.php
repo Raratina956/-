@@ -65,7 +65,7 @@ switch ($type) {
         <div class="content">
             <h1><?php echo $user_row['user_name']; ?>さんから、アナウンスが来ました</h1>
             <h2><?php echo $info_row['content'] ?></h2>
-            <p>
+            <!-- <p>
                 <span>未読にする</span>
             <form action="info_detail.php" method="post">
                 <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
@@ -73,14 +73,14 @@ switch ($type) {
                 <input type="submit" value="変更" class="change-btn">
             </form>
             </p>
-            <p>
+            <p> -->
                 <!-- <span>削除</span> -->
-            <form action="info_detail.php" method="post">
+            <!-- <form action="info_detail.php" method="post">
                 <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                 <input type="hidden" name="delete" value="0">
                 <input type="submit" value="削除" class="delete-btn">
             </form>
-            </p>
+            </p> -->
             <a href="info.php">戻る</a>
         </div>
         <?php
@@ -90,15 +90,21 @@ switch ($type) {
         $info_sql->execute([$current_location_id]);
         $info_row = $info_sql->fetch();
         $send_id = $info_row['user_id'];
+        $classroom_id = $info_row['classroom_id'];
         $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
         $user_sql->execute([$send_id]);
         $user_row = $user_sql->fetch();
         $send_name = $user_row['user_name'];
         $logtime = $info_row['logtime'];
+        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+        $room_sql->execute([$classroom_id]);
+        $room_row = $room_sql->fetch();
+        $room_name = $room_row['classroom_name'];
         ?>
         <div class="content">
             <p>
-                <span>お気に入りに登録している<?php echo $send_name; ?>さんが位置情報を更新しました</span>
+                <span><?php echo $send_name; ?>さんが位置情報を更新しました</span><br>
+                <span><?php echo $room_name; ?></span>
             </p>
             <a href="info.php">戻る</a>
         </div>
