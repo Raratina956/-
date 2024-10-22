@@ -1,6 +1,5 @@
 <?php 
     require 'parts/auto-login.php';
-    require 'header.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +20,7 @@
             <h1>MAP</h1>
           
         <?php
+        require 'header.php'; 
          $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
          $results = $sql->fetchAll(PDO::FETCH_ASSOC);
