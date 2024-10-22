@@ -2,8 +2,20 @@
 require 'parts/auto-login.php';
 require 'header.php'; // ヘッダー読み込み
 
-$room_id = $_GET['id'];
-$update_id = $_GET['update'];
+function fix_url($url) {
+    return str_replace('&amp;', '&', $url);
+}
+
+// QRコードから読み取ったURLを修正
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $fixed_url = fix_url($_SERVER['REQUEST_URI']);
+    parse_str(parse_url($fixed_url, PHP_URL_QUERY), $queryParams);
+    $room_id = htmlspecialchars($queryParams['id']);
+    $update_id = htmlspecialchars($queryParams['update']);
+} else {
+    $room_id = $_GET['id'];
+    $update_id = $_GET['update'];
+}
 
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
 $sql->execute([$room_id]);
@@ -27,10 +39,7 @@ if ($update_id == 1) {
         $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=? WHERE user_id=?');
         $updatepoint->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
         $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-        $current_sql->execute(([
-            $room_id,
-            $_SESSION['user']['user_id']
-        ]));
+        $current_sql->execute([$room_id, $_SESSION['user']['user_id']]);
         $current_row = $current_sql->fetch();
         $current_location_id = $current_row['current_location_id'];
     }
@@ -42,25 +51,15 @@ if ($update_id == 1) {
         foreach ($favorite_results as $favorite_row) {
             $announce_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
             $announce_sql->execute([
-                $favorite_row['follower_id'],
+                $favorite_row['follow_id'],
                 2
             ]);
             if ($announce_sql->rowCount() == 0) {
-                $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id,user_id,read_check,type) VALUES(?,?,?,?)');
-                $new_announce->execute([
-                    $current_location_id,
-                    $favorite_row['follow_id'],
-                    0,
-                    2
-                ]);
+                $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
+                $new_announce->execute([$current_location_id, $favorite_row['follow_id'], 0, 2]);
             } else {
-                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id=?,read_check=? WHERE user_id=? AND type = ?');
-                $update_announce->execute([
-                    $current_location_id,
-                    0,
-                    $favorite_row['follow_id'],
-                    2
-                ]);
+                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id=?, read_check=? WHERE user_id=? AND type=?');
+                $update_announce->execute([$current_location_id, 0, $favorite_row['follow_id'], 2]);
             }
         }
     }
@@ -68,14 +67,12 @@ if ($update_id == 1) {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css">
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
-
 <body>
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
@@ -90,13 +87,13 @@ if ($update_id == 1) {
         } else {
             // 登録されているが、room_idが異なる場合
             if ($current_location) {
-                echo '<form action="room.php?id=' . $room_id . '&update=1" method="post">
+                echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
                         <input class="room" type="submit" value="位置情報を更新">
                       </form>';
             } else {
                 // 登録されていない場合
-                echo '<form action="room.php?id=' . $room_id . '&update=1" method="post">
+                echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
                         <input class="room" type="submit" value="位置登録">
                       </form>';
@@ -105,11 +102,10 @@ if ($update_id == 1) {
         ?>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . $room_id . '&update=1">'; ?>
+            <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">'; ?>
             <button type="submit">QR表示</button>
         </form>
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
-
 </html>
