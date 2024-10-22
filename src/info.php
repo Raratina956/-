@@ -78,7 +78,10 @@ if ($list_raw) {
             }
             $uni_n_users = array_unique($n_users);
             foreach ($uni_n_users as $n_user_r) {
-                echo '<option value=', $n_user_r, '>', $n_user_r, '</option>';
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$n_user_r]);
+                $user_row = $user_sql->fetch();
+                echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
                 echo $n_user_r;
             }
             ?>
