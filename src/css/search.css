@@ -9,9 +9,6 @@ body {
     align-items: center;
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
-
-/* Main Content */
-/* Main Content */
 main {
     margin-top: 120px; /* Adjust to account for header height */
     margin-bottom: 100px;
