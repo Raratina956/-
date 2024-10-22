@@ -93,7 +93,7 @@ switch ($type) {
             <p>
                 <span>お気に入りに登録している<?php echo $send_name; ?>さんが位置情報を更新しました</span>
             </p>
-            
+            <a href="info.php">戻る</a>
         </div>
         <?php
         break;
