@@ -1,15 +1,17 @@
 <?php
 require 'parts/auto-login.php';
 echo '<link rel="stylesheet" href="css/announce.css">';
-if (isset($_POST['content'])) {
+if (isset($_POST['title'])) {
     $tag_id = $_POST['tag_id'];
+    $title = $_POST['title'];
     $content = $_POST['content'];
     $now_time = date("Y/m/d H:i:s");
     $send_user_id = $_SESSION['user']['user_id'];
-    $sql_insert = $pdo->prepare('INSERT INTO Notification (send_person,sent_tag,content,sending_time) VALUES (?,?,?,?)');
+    $sql_insert = $pdo->prepare('INSERT INTO Notification (send_person,sent_tag,title,content,sending_time) VALUES (?,?,?,?,?)');
     $sql_insert->execute([
         $send_user_id,
         $tag_id,
+        $title,
         $content,
         $now_time
     ]);
@@ -38,7 +40,7 @@ if (isset($_POST['content'])) {
 require 'header.php';
 ?>
 <?php
-if (!isset($_POST['content'])) {
+if (!isset($_POST['title'])) {
     // 下記アナウンス発信前
     ?>
     <main>
@@ -60,6 +62,9 @@ if (!isset($_POST['content'])) {
                 }
                 ?>
             </select>
+            <br>
+            <input type="text" name="title">
+            <br>
             <textarea name="content"></textarea>
             <br>
             <input type="submit" value="送信">
@@ -79,6 +84,7 @@ if (!isset($_POST['content'])) {
     <p>
     <h2>宛先：<?php echo $tag_name; ?></h2>
     <p>
+    <h2><?php echo $title; ?></h2>
     <h3><?php echo $content; ?></h3>
     <a class="back-link" href="main.php">メインへ</a>
 </main>
