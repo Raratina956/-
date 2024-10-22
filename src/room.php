@@ -49,7 +49,7 @@ if ($update_id == 1) {
                 $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id,user_id,read_check,type) VALUES(?,?,?,?)');
                 $new_announce->execute([
                     $current_location_id,
-                    $favorite_row['follower_id'],
+                    $_SESSION['user']['user_id'],
                     0,
                     2
                 ]);
@@ -58,7 +58,7 @@ if ($update_id == 1) {
                 $update_announce->execute([
                     $current_location_id,
                     0,
-                    $favorite_row['follower_id'],
+                    $_SESSION['user']['user_id'],
                     2
                 ]);
             }
