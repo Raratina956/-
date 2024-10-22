@@ -42,7 +42,7 @@ if ($update_id == 1) {
         foreach ($favorite_results as $favorite_row) {
             $announce_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
             $announce_sql->execute([
-                $favorite_row['follower_id'],
+                $favorite_row['follow_id'],
                 2
             ]);
             if ($announce_sql->rowCount() == 0) {
