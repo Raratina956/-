@@ -53,24 +53,36 @@ if ($list_raw) {
             <?php
             $n_users = [];
             foreach ($list_raw as $row) {
-                switch ($list_raw['type']) {
+                switch ($row['type']) {
                     case 1:
                         // アナウンス
-                        $n_announcement_id = $list_raw['announcement_id'];
+                        $n_announcement_id = $row['announcement_id'];
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                        $n_send_person_id = $list_raw['send_person'];
-                        $n_users = $n_send_person_id;
+                        $n_announce_s->execute([$n_announcement_id]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $n_send_person_id = $n_announce_r['send_person'];
+                        $n_users[] = $n_send_person_id;
                         break;
                     case 2:
                         // 位置情報
-                        $n_current_location_id = $list_raw['current_location_id'];
+                        $n_current_location_id = $row['current_location_id'];
+                        $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                        $n_current_s->execute([$n_current_location_id]);
+                        $n_current_r = $n_current_s->fetch();
+                        $n_send_person_id = $n_current_r['user_id'];
+                        $n_users[] = $n_send_person_id;
                     default:
                         # code...
                         break;
                 }
             }
-            foreach ($n_users as $n_user_r) { 
-                echo '<option value=',$n_user_r,'>',$n_user_r,'</option>'; 
+            $uni_n_users = array_unique($n_users);
+            foreach ($uni_n_users as $n_user_r) {
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$n_user_r]);
+                $user_row = $user_sql->fetch();
+                echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
+                echo $n_user_r;
             }
             ?>
         </select>
