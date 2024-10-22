@@ -53,24 +53,26 @@ if ($list_raw) {
             <?php
             $n_users = [];
             foreach ($list_raw as $row) {
-                switch ($list_raw['type']) {
+                switch ($row['type']) {
                     case 1:
                         // アナウンス
-                        $n_announcement_id = $list_raw['announcement_id'];
+                        $n_announcement_id = $row['announcement_id'];
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                        $n_send_person_id = $list_raw['send_person'];
-                        $n_users = $n_send_person_id;
+                        $n_announce_s->execute([$n_announcement_id]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $n_send_person_id = $n_announce_r['send_person'];
+                        $n_users[] = $n_send_person_id;
                         break;
                     case 2:
                         // 位置情報
-                        $n_current_location_id = $list_raw['current_location_id'];
+                        $n_current_location_id = $row['current_location_id'];
                     default:
                         # code...
                         break;
                 }
             }
-            foreach ($n_users as $n_user_r) { 
-                echo '<option value=',$n_user_r,'>',$n_user_r,'</option>'; 
+            foreach ($n_users as $n_user_r) {
+                echo '<option value=', $n_user_r, '>', $n_user_r, '</option>';
                 echo $n_user_r;
             }
             ?>
