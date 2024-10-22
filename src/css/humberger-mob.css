@@ -20,23 +20,23 @@
 
   .hamburger span {
     position: absolute;
-    width: 60%;
+    width: 5%;
     height: 3px;
     background-color: #00CFFF;
     transition: 0.5s ease-in-out;
   }
 
   .hamburger span:first-of-type {
-    top: 25%;
+    top: 35%;
   }
 
   .hamburger span:nth-of-type(2) {
-    top: 50%;
+    top: 52%;
     transform: translateY(-50%);
   }
 
   .hamburger span:last-of-type {
-    top: 70%;
+    top: 65%;
   }
 
   /* スライドメニュー */
