@@ -53,17 +53,19 @@ if ($list_raw) {
                 $user_sql->execute([$send_id]);
                 $user_row = $user_sql->fetch();
                 $send_name = $user_row['user_name'];
+                $title = $info_row['title'];
                 $content = $info_row['content'];
                 $logtime = $info_row['sending_time'];
                 echo '<tr>';
                 echo '<td>アイコン（仮）</td>';
-                echo '<td rowspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
+                echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
                 if ($read_check == 0) {
                     echo '<td>未読</td>';
                 }
                 echo '</tr>';
                 echo '<tr>';
                 echo '<td>', timeAgo($logtime), '</td>';
+                echo '<td>',$title,'</td>';
                 ?>
                 <form action="info_detail.php" method="post">
                     <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>

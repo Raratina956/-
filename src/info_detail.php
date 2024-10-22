@@ -64,6 +64,7 @@ switch ($type) {
         ?>
         <div class="content">
             <h1><?php echo $user_row['user_name']; ?>さんから、アナウンスが来ました</h1>
+            <h2><?php echo $info_row['title'] ?></h2>
             <h2><?php echo $info_row['content'] ?></h2>
             <!-- <p>
                 <span>未読にする</span>
