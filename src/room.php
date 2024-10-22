@@ -114,7 +114,6 @@ if ($update_id == 1) {
             <input type="hidden" name="custom_url" value="<?php echo htmlspecialchars($custom_url, ENT_NOQUOTES); ?>">
             <button type="submit">QR表示</button>
         </form>
-
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
