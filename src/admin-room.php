@@ -44,8 +44,8 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($data as $user): ?>
         <tr>
             <td><?php echo htmlspecialchars($user['classroom_id'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($user['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($user['class_floor'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($user['classroom_name'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($user['classroom_floor'], ENT_QUOTES, 'UTF-8'); ?></td>
          
             
         </tr>
