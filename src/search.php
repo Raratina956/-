@@ -114,8 +114,8 @@ if ($judge == 1) {
                     foreach ($pe_user_raw as $row) {
                         ?>
                         <tr>
-                            <td><img src="img/icon/default.jpg" width="20%" height="30%"></td>
-                            <td><?php echo $row['user_name']; ?></td>
+                            <td ="icon"><img src="img/icon/default.jpg" width="20%" height="30%"></td>
+                            <td ="name"><?php echo $row['user_name']; ?></td>
                         </tr>
                         <?php
                     }
@@ -129,9 +129,9 @@ if ($judge == 1) {
                 if ($pe_tag_raw) {
                     foreach ($pe_tag_raw as $row) {
                         ?>
-                        <tr>
-                            <td>タグ</td>
-                            <td><?php echo $row['tag_name']; ?></td>
+                        <tr >
+                            <td class="tag">タグ</td>
+                            <td class="name"><?php echo $row['tag_name']; ?></td>
                         </tr>
                         <?php
                     }
@@ -148,7 +148,7 @@ if ($judge == 1) {
                             ?>
                             <tr>
                                 <td><img  src="img/icon/default.jpg" width="20%" height="30%"></td>
-                                <td><?php echo $row['user_name']; ?></td>
+                                <td class="name"><?php echo $row['user_name']; ?></td>
                             </tr>
                             <?php
                         }
@@ -166,8 +166,8 @@ if ($judge == 1) {
                         if ($search_text != $row['tag_name']) {
                             ?>
                             <tr>
-                                <td>タグ</td>
-                                <td><?php echo $row['tag_name']; ?></td>
+                                <td class="tag">タグ</td>
+                                <td class="name"><?php echo $row['tag_name']; ?></td>
                             </tr>
                             <?php
                         }

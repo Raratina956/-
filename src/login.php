@@ -28,11 +28,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 $now_time,
                 $row['user_id']
             ]);
-            if($row['user_id']==7){
-                $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/admin.php';
-                header("Location: $redirect_url");
-                exit();
-            }
+            
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
