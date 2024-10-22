@@ -34,7 +34,14 @@ switch ($type) {
             exit();
         }
         break;
-
+    case 2:
+        $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE current_location_id = ? AND user_id = ?');
+        $sql_update->execute([
+            1,
+            $current_location_id,
+            $_SESSION['user']['user_id']
+        ]);
+        break;
     default:
         # code...
         break;
