@@ -109,8 +109,23 @@ if ($update_id == 1) {
             <button type="submit">QR表示</button>
         </form>
 
-        <!-- 教室にいるメンバーを表示 -->
+        <!-- 教室にいるユーザーを表示 -->
         <?php
+            // 表示するユーザーの絞り込み
+            echo '<form action="room.php?id=' . $room_id . '&update=0" method="post">
+                    <select name="target">
+                        <option value="all">すべて</option>
+                        <option value="teacher">教師</option>
+                        <option value="student">生徒</option>
+                    </select>
+                    <select name="favorite">
+                        <option value=0></option>
+                        <option value=1>お気に入り登録中</option>
+                    </select>
+                    <button type="submit">検索</button>
+                  </form>';
+        
+
             // 教室にいるメンバーを持ってくる
             $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
             $users->execute([$room_id]);
