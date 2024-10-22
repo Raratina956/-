@@ -19,8 +19,8 @@ body {
     align-items: center; /* アイコンとテキストを縦方向に中央揃え */
     /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */
     padding: 20px;
-    margin: 0 auto; /* 横方向で中央に配置 */
-    max-width: 1139px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
+    margin: 20px auto; /* 横方向で中央に配置 */
+    max-width: 352px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
     width: 100%; /* 幅を常に100%にする */
     background-color: #f9f9f9; /* 背景色を淡い色にして視認性を向上 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 立体感を出すためのシャドウ効果 */
@@ -65,15 +65,15 @@ button:hover {
 
 
 .confirmbutton{
-margin-left: 1300px;
+margin-left: 340px;
 background-color: #f9f9f9;
 border:#17A7E9;
 color: black;
-padding: 15px 32px;
+padding: -10px 37px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 10px;
 cursor: pointer;
 border-radius: 50px; /* 50pxの角丸 */
 transition: background-color 0.3s ease;
@@ -92,14 +92,14 @@ transition: background-color 0.3s ease;
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    /* padding-left: 550px; */
-    padding: 0px 40px 0px 40px;
-    margin: 0px 170px 0px 170px;
+    /* padding-left: 40px; */
+    padding: 0px 0px 0px 225px;
+    margin: 0px 70px 0px 75px;
 }
 
 .usericon{
-    width: 210px;
-    height: 210px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
   }
