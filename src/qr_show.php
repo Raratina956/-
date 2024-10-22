@@ -7,9 +7,9 @@
     <title>QR表示</title>
 </head>
 <body>
-    <?php
+<?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
-        $customUrl = htmlspecialchars($_POST['custom_url']);
+        $customUrl = htmlspecialchars($_POST['custom_url'], ENT_NOQUOTES);
         echo '<div id="qrcode"></div>';
         echo '送信されたURL: ' . $customUrl;
     ?>
@@ -26,6 +26,7 @@
     } else {
         echo 'URLが送信されていません。';
     }
-    ?>
+?>
+
 </body>
 </html>
