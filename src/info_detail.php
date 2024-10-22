@@ -97,7 +97,7 @@ switch ($type) {
         $send_name = $user_row['user_name'];
         $logtime = $info_row['logtime'];
         $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
-        $room_sql->execute($classroom_id);
+        $room_sql->execute([$classroom_id]);
         $room_row = $room_sql->fetch();
         $room_name = $room_row['classroom_name'];
         ?>
