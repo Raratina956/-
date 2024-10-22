@@ -65,7 +65,7 @@ if ($update_id == 1) {
         ?>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1">
+            <?php echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . $room_id . '&update=1">'; ?>
             <button type="submit">QR表示</button>
         </form>
         <a href="main.php" class="back-link">メインへ</a>

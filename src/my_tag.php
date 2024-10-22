@@ -12,7 +12,12 @@ if (isset($_POST['tag_name'])) {
 <?php
 require 'header.php';
 ?>
-<link rel="stylesheet" href="css/my_tag.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/my_tag-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" type="text/css" href="css/my_tag.css" media="screen and (min-width: 1280px)">
+</head>
 <h1>ｍｙタグ一覧</h1>
 <h2>タグ作成</h2>
 <form action="my_tag.php" method="post">
