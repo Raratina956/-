@@ -43,8 +43,8 @@ form{
 }
 
 button {
-    width: 6em;
-    height: 4em;
+    width: 3em;
+    height: 2em;
     display: flex;
     align-items: center;
     justify-content: center;
