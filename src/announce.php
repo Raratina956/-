@@ -60,6 +60,7 @@ if (!isset($_POST['content'])) {
                 }
                 ?>
             </select>
+            <input type="text" name="title">
             <textarea name="content"></textarea>
             <br>
             <input type="submit" value="送信">
