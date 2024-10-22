@@ -30,7 +30,7 @@ require 'header.php';
     ?>
     <input type="submit" value="再検索" class="search">
 </form>
-<span>詳細検索</span><br>
+<h2>詳細検索</h2>
 <form action="search.php" method="post">
     <select class="sort-tag"name="a_p">
         <?php
