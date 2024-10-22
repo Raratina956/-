@@ -48,9 +48,9 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?></td>
          
             <td>
-                <form method="post" action="">
-                    <input type="hidden" name="ban_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <button type="submit">アカウント停止</button>
+                <form method="post" action="admin_tag_edit.php">
+                    <input type="hidden" name="edit" value="<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <button type="submit">編集</button>
                 </form>
             </td>
             
