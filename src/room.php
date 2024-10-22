@@ -21,21 +21,61 @@ if ($update_id == 1) {
         // 位置情報が未登録の場合の処理　→　新規登録
         $newpoint = $pdo->prepare('INSERT INTO Current_location(user_id, classroom_id, logtime) VALUES (?, ?, ?)');
         $newpoint->execute([$_SESSION['user']['user_id'], $room_id, $now_time]);
+        $current_location_id = $pdo->lastInsertId();
     } else {
         // 位置情報が登録済の場合の処理　→　更新
         $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=? WHERE user_id=?');
         $updatepoint->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
+        $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
+        $current_sql->execute(([
+            $room_id,
+            $_SESSION['user']['user_id']
+        ]));
+        $current_row = $current_sql->fetch();
+        $current_location_id = $current_row['current_location_id'];
+    }
+
+    $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
+    $favorite_user->execute([$_SESSION['user']['user_id']]);
+    $favorite_results = $favorite_user->fetchAll(PDO::FETCH_ASSOC);
+    if ($favorite_results) {
+        foreach ($favorite_results as $favorite_row) {
+            $announce_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
+            $announce_sql->execute([
+                $favorite_row['follower_id'],
+                2
+            ]);
+            if ($announce_sql->rowCount() == 0) {
+                $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id,user_id,read_check,type) VALUES(?,?,?,?)');
+                $new_announce->execute([
+                    $current_location_id,
+                    $_SESSION['user']['user_id'],
+                    0,
+                    2
+                ]);
+            } else {
+                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id=?,read_check=? WHERE user_id=? AND type = ?');
+                $update_announce->execute([
+                    $current_location_id,
+                    0,
+                    $_SESSION['user']['user_id'],
+                    2
+                ]);
+            }
+        }
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css">
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
+
 <body>
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
@@ -63,12 +103,20 @@ if ($update_id == 1) {
             }
         }
         ?>
+
+        <?php
+        $room_id = htmlspecialchars($room_id);
+        $custom_url = "https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=" . urlencode($room_id) . "&update=1";
+        ?>
+
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=<?php echo $room_id; ?>&update=1">
+            <input type="hidden" name="custom_url" value="<?php echo htmlspecialchars($custom_url, ENT_NOQUOTES); ?>">
             <button type="submit">QR表示</button>
         </form>
+
         <a href="main.php" class="back-link">メインへ</a>
     </main>
 </body>
+
 </html>
