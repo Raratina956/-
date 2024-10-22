@@ -30,12 +30,11 @@
       .icon {
             width: 25%;  /* アイコンの横幅を30%に調整 */
             height: auto;
-            max-height: 60px;
       }
           
       .spot{
-          width: 300px;
-          height: 80px;
+          width: 230px;
+          height: 70px;
       }
       
       .right-elements {
