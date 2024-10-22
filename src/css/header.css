@@ -16,6 +16,11 @@
       padding: 0;
     
     }
+
+    .spot{
+      position: relative;
+      left: 30%;
+    }
     
     
     .icon {
