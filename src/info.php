@@ -61,7 +61,7 @@ if ($list_raw) {
                         $n_announce_s->execute([$n_announcement_id]);
                         $n_announce_r = $n_announce_s->fetch();
                         $n_send_person_id = $n_announce_r['send_person'];
-                        $n_users = $n_send_person_id;
+                        $n_users[] = $n_send_person_id;
                         break;
                     case 2:
                         // 位置情報
