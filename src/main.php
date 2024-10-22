@@ -46,11 +46,13 @@ require 'header.php';
     </form>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
     <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">メッセージ</a></li>'; ?>
+    <?php if($_SESSION['user']['user_id']==7){
+                echo '<li><a href="admin.php">管理画面</a></li>';
+            } ?>
 
+    
     <!-- まだリンクがないので仮で作っときます -->
     <?php echo '<li><a href="user.php?user_id=4">公式生徒のプロフィール</a></li>'; ?>
     <?php echo '<li><a href="user.php?user_id=5">公式先生のプロフィール</a></li>'; ?>
-
-    <li><a href="qr_read.php">QRコード読み取り</a></li>
 
 </ul>
