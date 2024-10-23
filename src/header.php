@@ -1,11 +1,27 @@
 <?php
 if (isset($_POST['logout'])) {
+    // ユーザー情報をセッションから削除
     unset($_SESSION['user']);
+
+    // データベースからトークンを削除
+    if (isset($_COOKIE['remember_me_token'])) {
+        $token = $_COOKIE['remember_me_token'];
+
+        // トークンをデータベースから削除
+        $sql_delete_token = $pdo->prepare('DELETE FROM Login_tokens WHERE token = ?');
+        $sql_delete_token->execute([$token]);
+    }
+
+    // クッキーを削除
+    setcookie('remember_me_token', '', time() - 3600, "/"); // 過去の時間に設定
+
+    // ログイン画面にリダイレクト
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
     header("Location: $redirect_url");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 

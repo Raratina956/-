@@ -2,6 +2,34 @@
 ob_start();
 session_start();
 require 'parts/db-connect.php';
+
+// 自動ログイン処理開始
+// クッキーのチェック
+if (isset($_COOKIE['remember_me_token'])) {
+    $token = $_COOKIE['remember_me_token'];
+
+    // トークンを使ってユーザー情報を取得
+    $sql = $pdo->prepare('SELECT * FROM Login_tokens WHERE token = ? AND expires_at > NOW()');
+    $sql->execute([$token]);
+    $login_token_row = $sql->fetch();
+
+    if ($login_token_row) {
+        // ユーザー情報を取得
+        $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
+        $sql_user->execute([$login_token_row['user_id']]);
+        $user_row = $sql_user->fetch();
+
+        if ($user_row) {
+            $_SESSION['user'] = [
+                'user_id' => $user_row['user_id'],
+                'user_name' => $user_row['user_name']
+            ];
+        }
+    }
+}
+
+// 自動ログイン処理終了
+
 if (isset($_SESSION['login'])) {
     unset($_SESSION['login']);
 }
