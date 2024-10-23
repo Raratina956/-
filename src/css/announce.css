@@ -59,7 +59,7 @@ textarea {
     position: relative; /* Necessary for the submit button to be positioned correctly */
 }
 
-input[type="submit"] {
+.throw {
     position: absolute;
     bottom: 10px; /* Adjust the vertical position of the button */
     right: 10px;  /* Adjust the horizontal position */
@@ -72,7 +72,7 @@ input[type="submit"] {
     cursor: pointer;
     z-index: 1; /* Ensures the button appears above the text area */
 }
-input[type="submit"]:hover{
+.throw:hover{
     background-color:  #a0eefc;
     color: #333;
 }
