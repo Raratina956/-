@@ -165,7 +165,7 @@ if ($update_id == 1) {
                     foreach($favorites as $favorite){
                         // 教室にいるメンバーを持ってくる(全件表示)
                         $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                        $users->execute([$room_id, $favorite['follow_id']]);
+                        $users->execute([$room_id, $favorite['follower_id']]);
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
