@@ -1,22 +1,25 @@
 body{
-    background-image: url(../img/SpotLinkbg.png);
+    /* background-image: url(../img/SpotLinkbg.png); */
     
     /* 画像を常に天地左右の中央に配置 */
-    background-position: center center;
+    /* background-position: center center; */
               
     /* 画像をタイル状に繰り返し表示しない */
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
               
     /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
               
     /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
-    background-size: cover;
+    /* background-size: cover; */
               
     /* 背景画像が読み込まれる前に表示される背景のカラー */
-    background-color: #464646;
-    height: 100%;
-    padding-top: 125px;
+    /* background-color: #464646; */
+    /* height: 100%; */
+    /* padding-top: 125px; */
+    text-align: center;
+    padding-top: 110px;
+    background-color: #a0eefc;
   
 }
 .map{
