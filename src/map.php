@@ -20,21 +20,21 @@
           
         <?php
 
-         $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
-         $sql->execute([$_SESSION['user']['user_id']]);
-         $results = $sql->fetchAll(PDO::FETCH_ASSOC);
+        //  $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
+        //  $sql->execute([$_SESSION['user']['user_id']]);
+        //  $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-         //プルダウン
-         echo '<select name="list" class="list">';
-         foreach ($results as $tag_list) {
+        //  //プルダウン
+        //  echo '<select name="list" class="list">';
+        //  foreach ($results as $tag_list) {
 
-            $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
-            $sql_tag->execute([$tag_list['tag_id']]);
-            $row_tag = $sql_tag->fetch();
-            echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>"; 
+        //     $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
+        //     $sql_tag->execute([$tag_list['tag_id']]);
+        //     $row_tag = $sql_tag->fetch();
+        //     echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>"; 
 
-          }
-         echo '</select><br><br>';
+        //   }
+        //  echo '</select><br><br>';
 
         //  map
         echo '<table width=700>';
