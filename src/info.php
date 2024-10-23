@@ -88,6 +88,15 @@ if ($list_raw) {
         </select>
         <input type="submit" value="検索">
     </form>
+    <br>
+    <form action="info.php" method="post">
+        <input type="hidden" name="all_read">
+        <input type="submit" value="一括既読">
+    </form>
+    <form action="info.php" method="post">
+        <input type="hidden" name="all_delete">
+        <input type="submit" value="一括削除">
+    </form>
     <?php
     echo '<table>';
     if (isset($_POST['narrow'])) {
