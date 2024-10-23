@@ -220,7 +220,7 @@ if ($update_id == 1) {
                     $users = $pdo->prepare('
                         SELECT Users.* FROM Users
                         JOIN Current_location ON Users.user_id = Current_location.user_id
-                        JOIN Favorite ON Users.user_id = Favorite.follow_id
+                        JOIN Favorite ON Users.user_id = Favorite.follower_id
                         WHERE Current_location.classroom_id = ? AND Users.s_or_t = 1 AND Favorite.follow_id = ?
                     ');
                     $users->execute([$room_id, $_SESSION['user']['user_id']]);
