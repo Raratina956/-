@@ -137,33 +137,30 @@ if ($update_id == 1) {
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
 
                     // 教室にいるメンバーを持ってくる(全件表示)
-                    $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+                    $users = $pdo->prepare('
+                        SELECT Users.*, Icon.icon_name 
+                        FROM Current_location 
+                        JOIN Users ON Current_location.user_id = Users.user_id 
+                        LEFT JOIN Icon ON Users.user_id = Icon.user_id 
+                        WHERE Current_location.classroom_id = ?
+                    ');
                     $users->execute([$room_id]);
+                    $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
 
                     // ユーザーがいるかどうか
-                    if(isset($users)){
+                    if ($usersList) {
                         // 初期表示、全件表示
-                        foreach($users as $user){
-
-                            //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
-            
-                            //アイコン情報を持ってくる
-                            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-            
+                        foreach($usersList as $user) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                    <img src="' . htmlspecialchars($user['icon_name']) . '" width="20%" height="50%" class="usericon">
+                                    <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">' . htmlspecialchars($user['user_name']) . '</a>
                                 </li>';
                         }
-                    }else{
+                    } else {
                         echo '<p>ユーザーが見つかりません</p>';
                     }
+
 
 
 
