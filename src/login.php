@@ -12,7 +12,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
     if (!$row) {
         $error = 'メールアドレス又はパスワードが間違っています';
     } else {
-        if($row['s_or_t']==7){
+        if ($row['s_or_t'] == 7) {
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/ban.php';
             header("Location: $redirect_url");
             exit();
@@ -22,13 +22,30 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 'user_id' => $row['user_id'],
                 'user_name' => $row['user_name']
             ];
+
+            // 自動ログイン処理開始
+            // 自動ログインのためのクッキー設定
+            if (isset($_POST['remember_me']) && $_POST['remember_me'] == 1) {
+                // ランダムなトークン生成
+                $token = bin2hex(random_bytes(16));
+                $expires_at = date("Y-m-d H:i:s", strtotime('+30 days'));  // 30日後の日時
+
+                // トークンをデータベースに保存
+                $sql_insert_token = $pdo->prepare('INSERT INTO Login_tokens (user_id, token, expires_at) VALUES (?, ?, ?)');
+                $sql_insert_token->execute([$row['user_id'], $token, $expires_at]);
+
+                // クッキーを設定
+                setcookie('remember_me_token', $token, time() + (86400 * 30), "/");  // 30日間有効
+            }
+            // 自動ログイン処理終了
+
             $now_time = date("Y/m/d H:i:s");
             $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
             $sql_update->execute([
                 $now_time,
                 $row['user_id']
             ]);
-            
+
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
             header("Location: $redirect_url");
             exit();
