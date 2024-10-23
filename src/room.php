@@ -188,8 +188,124 @@ if ($update_id == 1) {
                 }
 
             // 教師選択時
-            }else{
+            }else if($_POST['target'] == "techer"){
 
+                // 初期分岐と未選択時
+                if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
+
+                    // 教室にいるメンバーを持ってくる(全件表示)
+                    $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+                    $users->execute([$room_id]);
+
+                    // 初期表示、全件表示
+                    foreach($users as $user){
+
+                        //ユーザー情報を持ってくる
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+        
+                        //アイコン情報を持ってくる
+                        $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+        
+                        echo '<li style="list-style: none; padding-left: 0;">
+                                <div class="profile-container"><div class="user-container">
+                                <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                            </li>';
+                    }
+
+                // お気に入り選択時
+                }else if($_POST['favorite'] == 1){
+                    // お気に入り登録しているユーザーのidを持ってくる
+                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follow_id=?');
+                    $favorites->execute([$_SESSION['user']['user_id']]);
+                    foreach($favorites as $favorite){
+                        // 教室にいるメンバーを持ってくる(全件表示)
+                        $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
+                        $users->execute([$room_id, $favorite['follower_id']]);
+
+                        foreach($users as $user){
+                            //ユーザー情報を持ってくる
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                                
+                            //アイコン情報を持ってくる
+                            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                            $iconStmt->execute([$user['user_id']]);
+                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                                
+                            echo '<li style="list-style: none; padding-left: 0;">
+                                    <div class="profile-container"><div class="user-container">
+                                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                    <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                  </li>';
+                        }
+                    }
+                }
+
+            // 生徒選択時
+            }else if($_POST['target'] == "student"){
+                // 初期分岐と未選択時
+                if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
+
+                    // 教室にいるメンバーを持ってくる(全件表示)
+                    $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+                    $users->execute([$room_id]);
+
+                    // 初期表示、全件表示
+                    foreach($users as $user){
+
+                        //ユーザー情報を持ってくる
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+        
+                        //アイコン情報を持ってくる
+                        $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+        
+                        echo '<li style="list-style: none; padding-left: 0;">
+                                <div class="profile-container"><div class="user-container">
+                                <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                            </li>';
+                    }
+
+                // お気に入り選択時
+                }else if($_POST['favorite'] == 1){
+
+                    // お気に入り登録しているユーザーのidを持ってくる
+                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follow_id=?');
+                    $favorites->execute([$_SESSION['user']['user_id']]);
+                    foreach($favorites as $favorite){
+                        // 教室にいるメンバーを持ってくる(全件表示)
+                        $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
+                        $users->execute([$room_id, $favorite['follower_id']]);
+
+                        foreach($users as $user){
+                            //ユーザー情報を持ってくる
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                                
+                            //アイコン情報を持ってくる
+                            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                            $iconStmt->execute([$user['user_id']]);
+                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                                
+                            echo '<li style="list-style: none; padding-left: 0;">
+                                    <div class="profile-container"><div class="user-container">
+                                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                    <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                  </li>';
+                        }
+                    }
+                }
             }
 
             echo '</ul>';
