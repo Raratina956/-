@@ -7,9 +7,6 @@
 <link rel="stylesheet" href="mob_css/map-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)">
 
-<?php require 'header.php'; 
-?>
-
     <title></title>
    
    
@@ -19,6 +16,7 @@
             <h1>MAP</h1>
           
         <?php
+        require 'header.php'; 
 
          $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
