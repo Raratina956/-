@@ -160,7 +160,7 @@ if ($update_id == 1) {
                 // お気に入り選択時
                 }else if($_POST['favorite'] == 1){
                     // お気に入り登録しているユーザーのidを持ってくる
-                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follower_id=?');
+                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follow_id=?');
                     $favorites->execute([$_SESSION['user']['user_id']]);
                     foreach($favorites as $favorite){
                         // 教室にいるメンバーを持ってくる(全件表示)
