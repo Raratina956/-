@@ -23,7 +23,6 @@ require 'header.php';
     // クッキーが設定されているかチェック
     if (isset($_COOKIE['remember_me_token'])) {
         $token = $_COOKIE['remember_me_token'];
-
         // トークンをデータベースで確認
         $sql = $pdo->prepare('SELECT * FROM Login_tokens WHERE token = ? AND expires_at > NOW()');
         $sql->execute([$token]);
@@ -32,22 +31,11 @@ require 'header.php';
         if ($login_token_row) {
             // 自動ログインしている場合
             $is_auto_logged_in = true;
-
-            // ユーザー情報を取得することも可能
-            $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
-            $sql_user->execute([$login_token_row['user_id']]);
-            $user_row = $sql_user->fetch();
-
-            // 必要に応じてセッションにユーザー情報を格納
-            $_SESSION['user'] = [
-                'user_id' => $user_row['user_id'],
-                'user_name' => $user_row['user_name']
-            ];
         }
     }
     // 自動ログインの状態に応じた表示
     if ($is_auto_logged_in) {
-        echo '自動ログイン中です。';
+        echo '自動ログイン中です';
     } else {
         echo '自動ログインしていません';
     }
