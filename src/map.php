@@ -78,11 +78,11 @@
         ?>
 
         </div>
-<!--   
+  
         <div class="gakugai-container">
         <h2>学外</h2>
         </div>
         <br>
-        <br> -->
+        <br>
     </body>
 </html>
