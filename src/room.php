@@ -188,7 +188,7 @@ if ($update_id == 1) {
                 }
 
             // 教師選択時
-            }else if($_POST['target'] == "techer"){
+            }else if($_POST['target'] == "teacher"){
 
                 // 初期分岐と未選択時
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
