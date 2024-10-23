@@ -88,6 +88,27 @@ if ($list_raw) {
         </select>
         <input type="submit" value="検索">
     </form>
+    <br>
+    <form action="info.php" method="post">
+        <?php
+            if(isset($_POST['narrow'])){
+                echo '<input type="hidden" name="narrow" value=',$_POST['narrow'],'>';
+            }else{
+                echo '<input type="hidden" name="narrow" value=0>';
+            }
+            if(isset($_POST['n_user'])){
+                echo '<input type="hidden" name="narrow" value=',$_POST['n_user'],'>';
+            }else{
+                echo '<input type="hidden" name="narrow" value=0>';
+            }
+        ?>
+        <input type="hidden" name="all_read">
+        <input type="submit" value="一括既読">
+    </form>
+    <form action="info.php" method="post">
+        <input type="hidden" name="all_delete">
+        <input type="submit" value="一括削除">
+    </form>
     <?php
     echo '<table>';
     if (isset($_POST['narrow'])) {
