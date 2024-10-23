@@ -27,6 +27,11 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
+
+// 一括既読
+if(isset($_POST['all_read'])){
+    
+}
 ?>
 <?php
 require 'header.php';
