@@ -20,6 +20,25 @@ require 'header.php';
         $current_name = $row_room['classroom_name'];
     }
     echo '現在位置：', $current_name;
+    // クッキーが設定されているかチェック
+    if (isset($_COOKIE['remember_me_token'])) {
+        $token = $_COOKIE['remember_me_token'];
+        // トークンをデータベースで確認
+        $sql = $pdo->prepare('SELECT * FROM Login_tokens WHERE token = ? AND expires_at > NOW()');
+        $sql->execute([$token]);
+        $login_token_row = $sql->fetch();
+
+        if ($login_token_row) {
+            // 自動ログインしている場合
+            $is_auto_logged_in = true;
+        }
+    }
+    // 自動ログインの状態に応じた表示
+    if ($is_auto_logged_in) {
+        echo '自動ログイン中です';
+    } else {
+        echo '自動ログインしていません';
+    }
     ?>
 </p>
 <ul>
@@ -40,17 +59,17 @@ require 'header.php';
     <li><a href="favorite.php">お気に入り</a></li>
     <li><a href="announce.php">アナウンス</a></li>
     <li><a href="info.php">インフォ</a></li>
-    <form action="search.php"method="post">
+    <form action="search.php" method="post">
         <input type="text" name="search">
-        <input type="submit" value="検索"> 
+        <input type="submit" value="検索">
     </form>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
     <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">メッセージ</a></li>'; ?>
-    <?php if($_SESSION['user']['user_id']==7){
-                echo '<li><a href="admin.php">管理画面</a></li>';
-            } ?>
+    <?php if ($_SESSION['user']['user_id'] == 7) {
+        echo '<li><a href="admin.php">管理画面</a></li>';
+    } ?>
 
-    
+
     <!-- まだリンクがないので仮で作っときます -->
     <?php echo '<li><a href="user.php?user_id=4">公式生徒のプロフィール</a></li>'; ?>
     <?php echo '<li><a href="user.php?user_id=5">公式先生のプロフィール</a></li>'; ?>
