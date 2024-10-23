@@ -16,7 +16,7 @@ body{
     /* 背景画像が読み込まれる前に表示される背景のカラー */
     background-color: #464646;
     height: 100%;
-    padding-top: 75px;
+    padding-top: 125px;
   
 }
 .map{
