@@ -133,54 +133,27 @@ if ($update_id == 1) {
             // 初期分岐と「すべて」選択時
             if(empty($_POST['target']) || $_POST['target'] == "all"){
 
-                // 初期分岐と未選択時
-                if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
-
+                if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
                     // 教室にいるメンバーを持ってくる(全件表示)
-                    $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+                    $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
                     $users->execute([$room_id]);
-
+                    $found = false; // ユーザーが見つかったかどうかを示すフラグ
+                
                     // 初期表示、全件表示
-                    foreach($users as $user){
-
-                        //ユーザー情報を持ってくる
-                        $members=$pdo->prepare('select * from Users where user_id=?');
+                    foreach($users as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
                         $members->execute([$user['user_id']]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
-        
-                        //アイコン情報を持ってくる
-                        $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-                        $iconStmt->execute([$user['user_id']]);
-                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-        
-                        echo '<li style="list-style: none; padding-left: 0;">
-                                <div class="profile-container"><div class="user-container">
-                                <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                                <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
-                            </li>';
-                    }
-
-                // お気に入り選択時
-                }else if($_POST['favorite'] == 1){
-                    // お気に入り登録しているユーザーのidを持ってくる
-                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follow_id=?');
-                    $favorites->execute([$_SESSION['user']['user_id']]);
-                    foreach($favorites as $favorite){
-                        // 教室にいるメンバーを持ってくる(全件表示)
-                        $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                        $users->execute([$room_id, $favorite['follower_id']]);
-
-                        foreach($users as $user){
-                            //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
-                                
-                            //アイコン情報を持ってくる
-                            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                
+                        if ($member) {
+                            $found = true; // ユーザーが見つかった場合にフラグを設定
+                            
+                            // アイコン情報を持ってくる
+                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
                             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                                
+                
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
@@ -188,7 +161,51 @@ if ($update_id == 1) {
                                   </li>';
                         }
                     }
+                
+                    if (!$found) {
+                        // 条件に合うユーザーが見つからなかった場合のメッセージ
+                        echo "ユーザーが見つかりませんでした。";
+                    }
                 }
+                
+
+                // お気に入り選択時
+                }else if($_POST['favorite'] == 1) {
+                    // お気に入り登録しているユーザーのidを持ってくる
+                    $favorites = $pdo->prepare('SELECT * FROM Favorite where follow_id=?');
+                    $favorites->execute([$_SESSION['user']['user_id']]);
+                    $found = false; // ユーザーが見つかったかどうかを示すフラグ
+                
+                    foreach($favorites as $favorite) {
+                        // 教室にいるメンバーを持ってくる(全件表示)
+                        $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
+                        $users->execute([$room_id, $favorite['follower_id']]);
+                        
+                        foreach($users as $user) {
+                            $found = true; // ユーザーが見つかった場合にフラグを設定
+                
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                
+                            // アイコン情報を持ってくる
+                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                            $iconStmt->execute([$user['user_id']]);
+                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                
+                            echo '<li style="list-style: none; padding-left: 0;">
+                                    <div class="profile-container"><div class="user-container">
+                                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                    <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                  </li>';
+                        }
+                    }
+                    
+                    if (!$found) {
+                        // 条件に合うユーザーが見つからなかった場合のメッセージ
+                        echo "ユーザーが見つかりませんでした。";
+                    }              
 
             // 教師選択時
             }else if($_POST['target'] == "teacher"){
