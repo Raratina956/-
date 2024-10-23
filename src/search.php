@@ -76,33 +76,45 @@ require 'header.php';
 <?php
 $judge = 0;
 if ($_POST['a_p'] == "a") {
-    $pe_user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_name=?');
-    $pe_user_sql->execute([$search_text]);
-    $pe_user_raw = $pe_user_sql->fetchAll(PDO::FETCH_ASSOC);
-    if ($pe_user_raw) {
-        $judge = 1;
+    // 完全一致の検索
+    if (isset($_POST['a_u_t'])) {
+        if ($_POST['a_u_t'] != "t") {  // ユーザーのみ
+            $pe_user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_name = ?');
+            $pe_user_sql->execute([$search_text]);
+            $pe_user_raw = $pe_user_sql->fetchAll(PDO::FETCH_ASSOC);
+            if ($pe_user_raw) {
+                $judge = 1;
+            }
+        }
     }
-    $pe_tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=?');
-    $pe_tag_sql->execute([$search_text]);
-    $pe_tag_raw = $pe_tag_sql->fetchAll(PDO::FETCH_ASSOC);
-    if ($pe_tag_raw) {
-        $judge = 1;
+
+    if (isset($_POST['a_u_t'])) {
+        if ($_POST['a_u_t'] != "u") {  // タグのみ
+            $pe_tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name = ?');
+            $pe_tag_sql->execute([$search_text]);
+            $pe_tag_raw = $pe_tag_sql->fetchAll(PDO::FETCH_ASSOC);
+            if ($pe_tag_raw) {
+                $judge = 1;
+            }
+        }
     }
-}
-if (!($_POST['a_p'] == "a")) {
+} else {
+    // 部分一致の検索
     $se_user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_name LIKE ?');
     $se_user_sql->execute(['%' . $search_text . '%']);
     $se_user_raw = $se_user_sql->fetchAll(PDO::FETCH_ASSOC);
     if ($se_user_raw) {
         $judge = 1;
     }
+
     $se_tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name LIKE ?');
     $se_tag_sql->execute(['%' . $search_text . '%']);
     $se_tag_raw = $se_tag_sql->fetchAll(PDO::FETCH_ASSOC);
-    if ($se_user_raw) {
+    if ($se_tag_raw) {
         $judge = 1;
     }
 }
+
 
 
 if ($judge == 1) {
@@ -114,8 +126,8 @@ if ($judge == 1) {
                     foreach ($pe_user_raw as $row) {
                         ?>
                         <tr>
-                            <td ="icon"><img src="img/icon/default.jpg" width="50%" height="50%"></td>
-                            <td ="name"><?php echo $row['user_name']; ?></td>
+                            <td><img src="img/icon/default.jpg" width="50%" height="50%"></td>
+                            <td><?php echo $row['user_name']; ?></td>
                         </tr>
                         <?php
                     }
