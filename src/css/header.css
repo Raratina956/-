@@ -59,6 +59,8 @@
     background-color: white;
     color: black(248, 88, 88);
     border-radius: 5px;
+    bottom: -8px;
+    right: 1px;
   }
 
   .submit:hover{
