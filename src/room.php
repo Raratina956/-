@@ -193,15 +193,14 @@ if ($update_id == 1) {
                 // 初期分岐と未選択時
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
 
-                    // 教師情報を持ってくる
-                    $members=$pdo->prepare('select * from Users where s_or_t=?');
-                    $members->execute([1]);
+                    $users = $pdo->prepare('
+                        SELECT Users.* FROM Users
+                        JOIN Current_location ON Users.user_id = Current_location.user_id
+                        WHERE Current_location.classroom_id = ? AND Users.s_or_t = 1
+                    ');
+                    $users->execute([$room_id]);
 
-                    foreach($members as $member){
-                        // 教室にいるメンバーを持ってくる(教師)
-                        $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                        $users->execute([$room_id, $member['user_id']]);
-                        $user = $users->fetch(PDO::FETCH_ASSOC);
+                    foreach($users as $user){
 
                         //アイコン情報を持ってくる
                         $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
@@ -211,7 +210,7 @@ if ($update_id == 1) {
                         echo '<li style="list-style: none; padding-left: 0;">
                                 <div class="profile-container"><div class="user-container">
                                 <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                                <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                <a href="user.php?user_id=' . $user['user_id'] . '">', $user['user_name'] ,'</a>
                             </li>';
 
                     }
