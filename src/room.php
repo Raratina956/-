@@ -128,7 +128,7 @@ if ($update_id == 1) {
             echo '<ul>';
 
             // 初期分岐と「すべて」選択時
-            if(empty($_POST['target']) || $_POST['target'].equals('all')){
+            if(empty($_POST['target']) || $_POST['target'] == "all"){
 
                 // 初期分岐と未選択時
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
