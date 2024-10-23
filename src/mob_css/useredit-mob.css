@@ -11,7 +11,7 @@ body {
 
 /* 全体を中央寄せするためのレイアウト */
 #uploadForm {
-    max-width: 600px; /* フォームの最大幅を設定 */
+    max-width: 200px; /* フォームの最大幅を設定 */
     margin: 0 auto; /* 全体を中央に寄せる */
     padding: 40px; /* フォーム全体に余白を追加 */
     background-color: #fff; /* 背景色を白に設定 */
@@ -33,12 +33,12 @@ body {
 
 /* ラベルとテキストボックスのスタイルを大きく */
 label {
-    font-size: 1.4em; /* ラベルの文字サイズを大きく */
-    margin-right: 10px;
+    font-size: 1em; /* ラベルの文字サイズを大きく */
+    margin-right: 85px;
 }
 
 input[type="text"], select {
-    font-size: 1.2em; /* テキストボックスとセレクトボックスの文字サイズを大きく */
+    font-size: 1em; /* テキストボックスとセレクトボックスの文字サイズを大きく */
     padding: 12px;
     width: 85%; /* 幅を広く設定 */
     margin-bottom: 20px; /* 下に余白を追加 */
@@ -49,15 +49,15 @@ input[type="text"], select {
 
 /* ファイル選択ボタンのスタイル */
 #fileInput {
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     margin-bottom: 20px; /* 下に余白を追加 */
-    padding: 10px; /* ファイル選択ボタンにパディングを追加 */
+    /* padding: 10px; ファイル選択ボタンにパディングを追加 */
 }
 
 /* 保存ボタンのスタイル */
 #uploadButton {
-    font-size: 1.3em; /* ボタンの文字サイズを大きく */
-    padding: 12px 24px; /* ボタンに余白を追加 */
+    font-size: 1.0em; /* ボタンの文字サイズを大きく */
+    padding: 10px 15px; /* ボタンに余白を追加 */
     background-color: #4CAF50;
     color: white;
     border: none;
