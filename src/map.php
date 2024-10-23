@@ -34,7 +34,7 @@
             echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>"; 
 
           }
-         echo '</select>';
+         echo '</select><br><br>';
 
         //  map
         echo '<table width=700>';
