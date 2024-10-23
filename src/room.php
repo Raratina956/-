@@ -201,7 +201,7 @@ if ($update_id == 1) {
                     foreach($users as $user){
 
                         //ユーザー情報を持ってくる
-                        $members=$pdo->prepare('select * from Users where user_id=? and type=1');
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
                         $members->execute([$user['user_id']]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
         
@@ -229,7 +229,7 @@ if ($update_id == 1) {
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=? and type=1');
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
                             $members->execute([$user['user_id']]);
                             $member = $members->fetch(PDO::FETCH_ASSOC);
                                 
@@ -260,7 +260,7 @@ if ($update_id == 1) {
                     foreach($users as $user){
 
                         //ユーザー情報を持ってくる
-                        $members=$pdo->prepare('select * from Users where user_id=? and type=0');
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
                         $members->execute([$user['user_id']]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
         
@@ -289,7 +289,7 @@ if ($update_id == 1) {
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=? and type=0');
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
                             $members->execute([$user['user_id']]);
                             $member = $members->fetch(PDO::FETCH_ASSOC);
                                 
