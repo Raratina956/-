@@ -34,7 +34,6 @@
 
           }
          echo '</select>';
-         echo '<br><br>';
 
         //  map
         echo '<table width=700>';
@@ -78,9 +77,7 @@
         ?>
 
         </div>
-    <br>
-    <hr>
-    <br>
+  
         <div class="gakugai-container">
         <h2>学外</h2>
         </div>
