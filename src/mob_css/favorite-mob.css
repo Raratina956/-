@@ -7,8 +7,20 @@ h1 {
     margin-top: auto;
 }
 table {
+    width: 100%;
     margin: auto;
     margin-top: 20px;
+}
+th, td {
+    white-space: nowrap; /* 改行を防ぐ */
+    overflow: hidden; /* はみ出たテキストを隠す */
+    /* text-overflow: ellipsis; /* はみ出たテキストに "..." を表示 */
+}
+@media screen and (max-width: 480px) {
+    th, td {
+        font-size: 20px; /* スマホ用にフォントサイズを小さく */
+        padding: px; /* スマホ用にパディングを小さく */
+    }
 }
 .back-link {
     position: fixed;
@@ -26,7 +38,7 @@ table {
 }
 .button_quit,
 .button_del {
-    min-width: 120px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
