@@ -117,30 +117,30 @@ if ($list_raw) {
                         if ($_POST['n_user'] != 0) {
                             foreach ($uni_n_users as $n_user_r) {
                                 if ($send_id == $n_user_r) {
-                                    $judge = 1;
+                                   $judge = 1;
                                 }
                             }
                         }
                     }
-                    if ($judge == 1) {
-
-                        echo '<tr>';
-                        echo '<td>アイコン（仮）</td>';
-                        echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
-                        if ($read_check == 0) {
-                            echo '<td>未読</td>';
-                        }
-                        echo '</tr>';
-                        echo '<tr>';
-                        echo '<td>', timeAgo($logtime), '</td>';
-                        echo '<td>', $title, '</td>';
-                        ?>
-                        <form action="info_detail.php" method="post">
-                            <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                            <td><input type="submit" value="詳細"></td>
-                        </form>
-                        <?php
+                    if($judge == 1){
+                        break;
                     }
+                    echo '<tr>';
+                    echo '<td>アイコン（仮）</td>';
+                    echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
+                    if ($read_check == 0) {
+                        echo '<td>未読</td>';
+                    }
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td>', timeAgo($logtime), '</td>';
+                    echo '<td>', $title, '</td>';
+                    ?>
+                    <form action="info_detail.php" method="post">
+                        <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                        <td><input type="submit" value="詳細"></td>
+                    </form>
+                    <?php
                 }
                 break;
             case 2:
@@ -162,12 +162,12 @@ if ($list_raw) {
                         if ($_POST['n_user'] != 0) {
                             foreach ($uni_n_users as $n_user_r) {
                                 if ($send_id == $n_user_r) {
-                                    $judge = 1;
+                                   $judge = 1;
                                 }
                             }
                         }
                     }
-                    if ($judge == 1) {
+                    if($judge == 1){
                         break;
                     }
                     echo '<tr>';
