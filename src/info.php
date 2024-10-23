@@ -116,7 +116,7 @@ if ($list_raw) {
                     if (isset($_POST['n_user'])) {
                         if ($_POST['n_user'] != 0) {
                             foreach ($uni_n_users as $n_user_r) {
-                                if ($send_id == $n_user_r['user_id']) {
+                                if ($send_id == $n_user_r) {
                                    $judge = 1;
                                 }
                             }
@@ -161,7 +161,7 @@ if ($list_raw) {
                     if (isset($_POST['n_user'])) {
                         if ($_POST['n_user'] != 0) {
                             foreach ($uni_n_users as $n_user_r) {
-                                if ($send_id == $n_user_r['user_id']) {
+                                if ($send_id == $n_user_r) {
                                    $judge = 1;
                                 }
                             }
