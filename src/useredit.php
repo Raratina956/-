@@ -37,7 +37,7 @@
 <?php
             echo '<div id="formContainer">';
             //名前変更
-            echo '名前：<input type="text" name="user_name" value="', $user['user_name'], '"><br>';
+            echo '<label for="class">名前：</label><input type="text" name="user_name" value="', $user['user_name'], '"><br>';
 ?>
             <!-- クラス変更 -->
             <label for="class">クラス：</label>
