@@ -141,7 +141,7 @@ if ($update_id == 1) {
                     $users->execute([$room_id]);
 
                     // ユーザーがいるかどうか
-                    if(isset($users)){
+                    if(!isset($users)){
                         // 初期表示、全件表示
                         foreach($users as $user){
 
