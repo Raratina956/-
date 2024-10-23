@@ -112,17 +112,20 @@ if ($update_id == 1) {
         <!-- 教室にいるユーザーを表示 -->
         <?php
             // 表示するユーザーの絞り込み
-            echo '<form action="room.php?id=' . $room_id . '&update=0" method="post">
+            $target = isset($_POST['target']) ? $_POST['target'] : 'all';
+            $favorite = isset($_POST['favorite']) ? $_POST['favorite'] : 0;
+            
+            echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=0" method="post">
                     <select name="target">
-                        <option value="all">すべて</option>
-                        <option value="teacher">教師</option>
-                        <option value="student">生徒</option>
+                        <option value="all"' . ($target === 'all' ? ' selected' : '') . '>すべて</option>
+                        <option value="teacher"' . ($target === 'teacher' ? ' selected' : '') . '>教師</option>
+                        <option value="student"' . ($target === 'student' ? ' selected' : '') . '>生徒</option>
                     </select>
                     <select name="favorite">
-                        <option value=0></option>
-                        <option value=1>お気に入り登録中</option>
-                    </select>
-                    <button type="submit">検索</button>
+                        <option value="0"' . ($favorite == 0 ? ' selected' : '') . '></option>
+                        <option value="1"' . ($favorite == 1 ? ' selected' : '') . '>お気に入り登録中</option>
+                        </select>
+                        <button type="submit">検索</button>
                   </form>';
         
             echo '<ul>';
