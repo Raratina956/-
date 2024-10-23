@@ -42,7 +42,6 @@ a{
 .number{
     display: flex;
     flex-wrap: wrap;
-    margin-left: 85%;
 }
 
 /* .gakugai{
