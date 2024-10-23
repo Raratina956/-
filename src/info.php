@@ -114,7 +114,7 @@ if ($list_raw) {
                     $logtime = $info_row['sending_time'];
                     if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
                         if ($send_id != $_POST['n_user']) {
-                            continue; // 選択されたユーザー以外の通知はスキップ
+                            continue 2; // 選択されたユーザー以外の通知はスキップ
                         }
                     }
                     echo '<tr>';
@@ -151,7 +151,7 @@ if ($list_raw) {
                     $logtime = $info_row['logtime'];
                     if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
                         if ($send_id != $_POST['n_user']) {
-                            continue; // 選択されたユーザー以外の通知はスキップ
+                            continue 2; // 選択されたユーザー以外の通知はスキップ
                         }
                     }
                     echo '<tr>';
