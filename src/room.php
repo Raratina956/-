@@ -158,14 +158,14 @@ if ($update_id == 1) {
                     }
 
                 // お気に入り選択時
-                }else{
+                }else if($_POST['favorite'] == 1){
                     // お気に入り登録しているユーザーのidを持ってくる
-                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follower_id=?');
+                    $favorites=$pdo->prepare('SELECT * FROM Favorite where follow_id=?');
                     $favorites->execute([$_SESSION['user']['user_id']]);
                     foreach($favorites as $favorite){
                         // 教室にいるメンバーを持ってくる(全件表示)
                         $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                        $users->execute([$room_id, $favorite['follow_id']]);
+                        $users->execute([$room_id, $favorite['follower_id']]);
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
@@ -186,7 +186,10 @@ if ($update_id == 1) {
                         }
                     }
                 }
-            // 
+
+            // 教師選択時
+            }else{
+
             }
 
             echo '</ul>';
