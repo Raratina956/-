@@ -21,6 +21,7 @@ require 'header.php';
     }
     echo '現在位置：', $current_name;
     // クッキーが設定されているかチェック
+    $is_auto_logged_in = false;
     if (isset($_COOKIE['remember_me_token'])) {
         $token = $_COOKIE['remember_me_token'];
         // トークンをデータベースで確認
