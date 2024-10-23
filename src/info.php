@@ -121,11 +121,9 @@ if ($list_raw) {
                     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                     $iconStmt->execute([$send_id]);
                     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td style="list-style: none; padding-left: 0;">
-                        <div class="profile-container"><div class="user-container">
+                    echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'], '</a>
-                      </td>';
+                        </td>';
                     echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
@@ -165,11 +163,9 @@ if ($list_raw) {
                     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                     $iconStmt->execute([$send_id]);
                     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td style="list-style: none; padding-left: 0;">
-                        <div class="profile-container"><div class="user-container">
+                    echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'], '</a>
-                      </td>';
+                        </td>';
                     echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
