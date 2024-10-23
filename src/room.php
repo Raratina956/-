@@ -201,8 +201,8 @@ if ($update_id == 1) {
                     foreach($users as $user){
 
                         //ユーザー情報を持ってくる
-                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
-                        $members->execute([$user['user_id']]);
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=?');
+                        $members->execute([$user['user_id'], 1]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
         
                         //アイコン情報を持ってくる
@@ -229,8 +229,8 @@ if ($update_id == 1) {
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=1');
-                            $members->execute([$user['user_id']]);
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=?');
+                            $members->execute([$user['user_id'], 1]);
                             $member = $members->fetch(PDO::FETCH_ASSOC);
                                 
                             //アイコン情報を持ってくる
@@ -260,8 +260,8 @@ if ($update_id == 1) {
                     foreach($users as $user){
 
                         //ユーザー情報を持ってくる
-                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
-                        $members->execute([$user['user_id']]);
+                        $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=?');
+                        $members->execute([$user['user_id'], 0]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
         
                         //アイコン情報を持ってくる
@@ -289,8 +289,8 @@ if ($update_id == 1) {
 
                         foreach($users as $user){
                             //ユーザー情報を持ってくる
-                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=0');
-                            $members->execute([$user['user_id']]);
+                            $members=$pdo->prepare('select * from Users where user_id=? and s_or_t=?');
+                            $members->execute([$user['user_id'], 0]);
                             $member = $members->fetch(PDO::FETCH_ASSOC);
                                 
                             //アイコン情報を持ってくる
