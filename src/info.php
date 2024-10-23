@@ -99,6 +99,7 @@ if ($list_raw) {
         switch ($row['type']) {
             case 1:
                 if ($narrow == 0 or $narrow == 1) {
+                    $judge = 0;
                     $announcement_id = $row['announcement_id'];
                     $read_check = $row['read_check'];
                     $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
@@ -115,10 +116,14 @@ if ($list_raw) {
                     if (isset($_POST['n_user'])) {
                         if ($_POST['n_user'] != 0) {
                             foreach ($uni_n_users as $n_user_r) {
-                                if ($send_id == $n_user_r['user_id']);
-                                break;
+                                if ($send_id == $n_user_r['user_id']) {
+                                   $judge = 1;
+                                }
                             }
                         }
+                    }
+                    if($judge == 1){
+                        break;
                     }
                     echo '<tr>';
                     echo '<td>アイコン（仮）</td>';
