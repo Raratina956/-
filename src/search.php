@@ -74,6 +74,8 @@ require 'header.php';
     </form>
     </p>
     <?php
+    $pe_user_raw = [];
+    $pe_tag_raw = [];
     $judge = 0;
     if ($_POST['a_p'] == "a") {
         // 完全一致の検索
