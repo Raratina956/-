@@ -146,6 +146,7 @@ if ($list_raw) {
             case 2:
                 // 位置情報
                 if ($narrow == 0 or $narrow == 2) {
+                    $judge = 0;
                     $current_location_id = $row['current_location_id'];
                     $read_check = $row['read_check'];
                     $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
@@ -157,6 +158,18 @@ if ($list_raw) {
                     $user_row = $user_sql->fetch();
                     $send_name = $user_row['user_name'];
                     $logtime = $info_row['logtime'];
+                    if (isset($_POST['n_user'])) {
+                        if ($_POST['n_user'] != 0) {
+                            foreach ($uni_n_users as $n_user_r) {
+                                if ($send_id == $n_user_r['user_id']) {
+                                   $judge = 1;
+                                }
+                            }
+                        }
+                    }
+                    if($judge == 1){
+                        break;
+                    }
                     echo '<tr>';
                     echo '<td>アイコン</td>';
                     echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
