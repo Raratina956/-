@@ -54,20 +54,12 @@
     height: 30px;
   }
 
-  input[type="submit"] {
-    position: absolute;
-    bottom: -8px;
-    right: 7px;
-    font-size: 11px;
+  .submit{
     border-color: black;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 8px 15px;
+    background-color: white;
+    color: black(248, 88, 88);
     border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-}
+  }
 
   .submit:hover{
     background-color: gray;
