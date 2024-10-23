@@ -112,12 +112,9 @@ if ($list_raw) {
                     $title = $info_row['title'];
                     $content = $info_row['content'];
                     $logtime = $info_row['sending_time'];
-                    if (isset($_POST['n_user'])) {
-                        if ($_POST['n_user'] != 0) {
-                            foreach ($uni_n_users as $n_user_r) {
-                                if ($send_id == $n_user_r['user_id']);
-                                break;
-                            }
+                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                        if ($send_id != $_POST['n_user']) {
+                            continue 2; // 選択されたユーザー以外の通知はスキップ
                         }
                     }
                     echo '<tr>';
@@ -152,6 +149,11 @@ if ($list_raw) {
                     $user_row = $user_sql->fetch();
                     $send_name = $user_row['user_name'];
                     $logtime = $info_row['logtime'];
+                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                        if ($send_id != $_POST['n_user']) {
+                            continue 2; // 選択されたユーザー以外の通知はスキップ
+                        }
+                    }
                     echo '<tr>';
                     echo '<td>アイコン</td>';
                     echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
