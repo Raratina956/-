@@ -7,8 +7,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="mob_css/map-mob.css" media="screen and (max-width: 480px)">
-    <link rel="stylesheet" type="text/css" href="css/map.css" media="screen and (min-width: 1280px)">
+<!-- <link rel="stylesheet" href="mob_css/map-mob.css" media="screen and (max-width: 480px)"> -->
+<!-- <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)"> -->
 
     <title></title>
    
@@ -34,7 +34,6 @@
 
           }
          echo '</select>';
-         echo '<br><br>';
 
         //  map
         echo '<table width=700>';
@@ -78,9 +77,7 @@
         ?>
 
         </div>
-    <br>
-    <hr>
-    <br>
+  
         <div class="gakugai-container">
         <h2>学外</h2>
         </div>

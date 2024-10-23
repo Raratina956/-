@@ -128,10 +128,10 @@ if ($update_id == 1) {
             echo '<ul>';
 
             // 初期分岐と「すべて」選択時
-            if($_POST['target'] == NULL || $_POST['target'].equals('all')){
+            if(empty($_POST['target']) || $_POST['target'].equals("all")){
 
                 // 初期分岐と未選択時
-                if($_POST['favorite'] == NULL || $_POST['favorite'] == 0){
+                if(empty($_POST['favorite']) || $_POST['favorite'] == 0){
 
                     // 教室にいるメンバーを持ってくる(全件表示)
                     $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
