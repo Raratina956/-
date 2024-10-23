@@ -51,10 +51,10 @@ if (isset($_POST['logout'])) {
             <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
             <li><a href="favorite.php">お気に入り</a></li>
             <li><a href="qr_read.php">QRカメラ</a></li>
-            <li>チャット</li>
+            <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
             <li><a href="tag_list.php">みんなのタグ</a></li>
             <li><a href="my_tag.php">MYタグ</a></li>
-            <li>アナウンス</li>
+            <li><a href="announce.php">アナウンス</a></li>
             <!-- 以下ログアウト -->
             <form id="myForm" action="" method="post">
                 <input type="hidden" name="logout" value="1">

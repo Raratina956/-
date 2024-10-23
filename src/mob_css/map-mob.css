@@ -20,10 +20,10 @@ body{
   
 }
 .map{
-    margin: 55px;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 10px; 
+    margin: 20px;
+    padding: 27px;
+    border-radius: 15px;
+    margin-bottom: 0px;
 }
 
 a{
@@ -32,17 +32,16 @@ a{
 
 
 .block{
-    border: 2px solid #333333;
+    border: 1px solid #333333;
     padding: 0px;
-    height: 120px;
-    width: 800px;
-    margin-inline-start: 21%;
+    height: 53px;
+    width: 250px;
+    margin-inline-start: 20%;
 }
 
 .number{
     display: flex;
     flex-wrap: wrap;
-    margin-left: 85%;
 }
 
 /* .gakugai{
@@ -89,14 +88,13 @@ button {
   }
 
 .list{
-    margin-left: 285%;
-    font-size: 25px;
-
+    margin-left: 74%;
+    font-size: 17px;
 }
 
 .usericon{
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 52px;
   border-radius: 50%;
   object-fit: cover;
 }

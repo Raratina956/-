@@ -27,7 +27,8 @@
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" width="20%" height="50%" class="icon">';
             }
 ?>
-            <link rel="stylesheet" type="text/css" href="css/useredit.css">
+            <link rel="stylesheet" type="text/css" href="mob_css/useredit-mob.css" media="screen and (max-width: 480px)">
+            <link rel="stylesheet" type="text/css" href="css/useredit.css" media="screen and (min-width: 1280px)">
             <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
@@ -36,7 +37,7 @@
 <?php
             echo '<div id="formContainer">';
             //名前変更
-            echo '名前：<input type="text" name="user_name" value="', $user['user_name'], '"><br>';
+            echo '<label for="class">名前：</label><input type="text" name="user_name" value="', $user['user_name'], '"><br>';
 ?>
             <!-- クラス変更 -->
             <label for="class">クラス：</label>
