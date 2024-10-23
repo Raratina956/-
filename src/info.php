@@ -118,7 +118,12 @@ if ($list_raw) {
                         }
                     }
                     echo '<tr>';
-                    echo '<td>アイコン（仮）</td>';
+                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                    $iconStmt->execute([$send_id]);
+                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                    echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
                     echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
@@ -155,7 +160,12 @@ if ($list_raw) {
                         }
                     }
                     echo '<tr>';
-                    echo '<td>アイコン</td>';
+                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                    $iconStmt->execute([$send_id]);
+                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                    echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
                     echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';

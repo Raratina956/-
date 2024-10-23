@@ -45,7 +45,8 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="mob_css/login-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" type="text/css" href="css/login.css" media="screen and (min-width: 1280px)">
     <title>Document</title>
 </head>
 
