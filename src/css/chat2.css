@@ -139,7 +139,7 @@ input[type="submit"]:hover {
     background-color: #d32f2f;
 }
 
-/* .ad-banner {
+.ad-banner {
     position: fixed; /* 固定位置に設定 */
     bottom: -100px; /* 画面の下に隠す（高さはバナーの高さに応じて調整） */
     left: 0; /* 左端に揃える */
@@ -153,4 +153,4 @@ input[type="submit"]:hover {
 .ad-banner.show {
     opacity: 1; /* フェードイン後の不透明度 */
     bottom: 0; /* 画面の下まで移動 */
-} */
+}
