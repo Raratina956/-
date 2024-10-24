@@ -39,22 +39,17 @@ if (isset($_POST['n_user'])) {
 }
 // 一括既読
 if (isset($_POST['all_read'])) {
-    var_dump(1);
     // 0:全て 1:アナウンス 2:位置情報
     if ($narrow == 0 && $n_user == 0) {
-        var_dump(2);
         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
     } else {
-        var_dump(3);
         $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
         $list_sql->execute([$_SESSION['user']['user_id']]);
         $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
         if ($list_raw) {
-            var_dump(4);
             foreach ($list_raw as $row) {
-                var_dump(5);
-                switch ($row['type']) {
+                switch ($n_user) {
                     case 1:
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
                         $n_announce_s->execute([$n_user]);
