@@ -31,7 +31,7 @@ table {
     margin-right: auto; /* Automatically adjust the right margin */
 }
 tr{
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #333;
 }
 .tag{
     white-space: nowrap; /* Prevent text wrapping */
