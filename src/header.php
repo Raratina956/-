@@ -65,8 +65,8 @@ if (isset($_POST['logout'])) {
         <ul>
             <li>
                 <form action="search.php" method="post">
-                    <input type="text" name="search" class="textbox">
-                    <input type="submit" class="search" value="検索">
+                    <input type="text" name="search" class="tbox">
+                    <input type="submit" class="search1" value="検索">
                 </form>
             </li>
             <li><a href="map.php">MAP</a></li>

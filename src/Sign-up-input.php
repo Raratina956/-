@@ -11,7 +11,7 @@
 
 <body>
     <a class="back-link"href="login.php">戻る</a>
-    <h2>新規会員登録</h2>
+    <h1>新規会員登録</h1>
     <form action="Sign-up-output.php" method="post">
         <div class="form-group">
             <label for="mail_address">メールアドレス：</label>

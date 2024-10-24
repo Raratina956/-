@@ -16,12 +16,13 @@ body {
 
 .chat-box {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; 
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
 }
+
 
 .chat-area {
     height: 500px;
@@ -74,9 +75,10 @@ body {
     border-radius: 50%;
     margin-right: 10px;
     position: absolute;
-    bottom: -15px;
-    left: -40px;
+    bottom: 0%;
+    left: -40px; /* ここを -40px から -30px に変更 */
 }
+
 
 .chat-time {
     display: block;
