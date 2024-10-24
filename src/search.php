@@ -3,7 +3,7 @@ require 'parts/auto-login.php';
 $search_text = $_POST['search'];
 unset($dis);
 $user_data = [];
-$judge = 0;
+$judge = 1;
 if (isset($_POST['kinds'])) {
     $kinds = $_POST['kinds'];
 } else {
@@ -73,7 +73,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
-        } else {
             $judge = 1;
         }
         if (isset($tag_data) && !empty($tag_data)) {
@@ -84,10 +83,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
-        } else {
             $judge = 1;
         }
-        if ($judge == 1) {
+        if ($judge == 0) {
             echo '<td colspan="3">検索結果なし</td>';
         }
         ?>
