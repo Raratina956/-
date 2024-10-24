@@ -16,7 +16,7 @@ body {
 
 .chat-box {
     width: 100%;
-    max-width: 800px; /* 600px から 800px に増やす */
+    max-width: 600px; 
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -76,8 +76,9 @@ body {
     margin-right: 10px;
     position: absolute;
     bottom: -15px;
-    left: -40px;
+    left: -30px; /* ここを -40px から -30px に変更 */
 }
+
 
 .chat-time {
     display: block;
