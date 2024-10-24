@@ -54,7 +54,7 @@
     height: 30px;
   }
 
-  .search{
+  .search1{
     border-color: black;
     background-color: white;
     color: black(248, 88, 88);
@@ -63,12 +63,12 @@
     width: 45px;
   }
 
-  .search:hover{
+  .search1:hover{
     background-color: gray;
     color: black;
   }
 
-  .textbox{
+  .tbox{
     height: 25px;
   }
 

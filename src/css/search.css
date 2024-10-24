@@ -71,7 +71,7 @@ form {
 .search-text{
     margin-top: 25px;
     width: 300px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     cursor: pointer;
     line-height: 36px; /*ここの数値を変更*/
