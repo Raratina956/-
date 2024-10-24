@@ -1,8 +1,8 @@
 body{
-    /* background-image: url(../img/SpotLinkbg.png); */
+     background-image: url(../img/SpotLinkbg.png); 
     
     /* 画像を常に天地左右の中央に配置 */
-    /* background-position: center center; */
+    background-position: center center;
               
     /* 画像をタイル状に繰り返し表示しない */
     /* background-repeat: no-repeat; */

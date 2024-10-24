@@ -39,6 +39,9 @@ a{
     margin-inline-start: 21%;
 }
 
+.table{
+    width: 700px;
+}
 .number{
     display: flex;
     flex-wrap: wrap;
