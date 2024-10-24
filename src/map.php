@@ -16,8 +16,8 @@
         <?php
         require 'header.php'; 
 
-        echo '<div class="map">';
-        echo '<h1>MAP</h1>';
+        // echo '<div class="map">';
+        // echo '<h1>MAP</h1>';
          $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
          $results = $sql->fetchAll(PDO::FETCH_ASSOC);
