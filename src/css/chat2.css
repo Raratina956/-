@@ -76,7 +76,7 @@ body {
     margin-right: 10px;
     position: absolute;
     bottom: 0%;
-    left: -20px; /* ここを -40px から -30px に変更 */
+    left: -40px; /* ここを -40px から -30px に変更 */
 }
 
 
