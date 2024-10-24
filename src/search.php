@@ -73,8 +73,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
     
     <!-- Search Form -->
     <form action="search.php" method="post">
-        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>">
-        
+        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>" placeholder="検索したい内容を入力してください">
+        <br>
         <select class="sort-tag" name="kinds">
             <option value="a" <?php if ($kinds == "a") echo 'selected'; ?>>全て</option>
             <option value="u" <?php if ($kinds == "u") echo 'selected'; ?>>ユーザーのみ</option>
