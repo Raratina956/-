@@ -81,9 +81,9 @@ form {
     width: 250px;
     box-sizing: border-box;
     height: 40px; /* ここで高さを調整 */
-    /* -webkit-appearance: none; /* ブラウザごとのデフォルトスタイルを無効化 */
-    /* -moz-appearance: none; */
-    /* appearance: none; */
+    -webkit-appearance: none; /* ブラウザごとのデフォルトスタイルを無効化 */
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* Submit Button */
