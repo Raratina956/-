@@ -37,7 +37,7 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
 }
 
 // 相手の情報を取得
-$sql = "SELECT user_name, icon_path FROM Users WHERE user_id = :partner_id";
+$sql = "SELECT user_nameFROM Users WHERE user_id = :partner_id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
 $stmt->execute();
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-            <img src="<?php echo htmlspecialchars($partner['icon_path']); ?>" alt="相手のアイコン" class="partner-icon">
+        <?php echo "<img src='image/{$message['send_id']}.png'>";  ?>
             <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
         </div>
 
