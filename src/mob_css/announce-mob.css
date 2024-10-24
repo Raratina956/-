@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the body takes the full height of the viewport */
+}
+
+/* Main Content */
+main {
+    margin-top: 120px; /* Adjust to account for header height */
+    margin-bottom: 100px;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center; /* Center the text inside the main container */
+}
+
+h1 {
+    text-align: center;
+    font-size: 45px;
+    color: #333;
+}
+
+span {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+form {
+    text-align: center;
+    position: relative; /* Ensures the submit button is positioned within the form */
+}
+
+select {
+    width: 50%; /* Adjusted to match textarea width */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 70%;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 80px;
+    margin-top: 1px;
+    position: relative; /* Necessary for the submit button to be positioned correctly */
+}
+
+.throw {
+    position: absolute;
+    bottom: 10px; /* Adjust the vertical position of the button */
+    right: 10px;  /* Adjust the horizontal position */
+    font-size: 16px;
+    background-color: #3e58ac;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1; /* Ensures the button appears above the text area */
+}
+.throw:hover{
+    background-color:  #a0eefc;
+    color: #333;
+}
+
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
+h2 {
+    margin-top: 20px;
+    font-size: 30px;
+    color: #333;
+}
+
+h3 {
+    margin-top: 10px;
+    font-size: 25px;
+    color: #444;
+    white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
+}

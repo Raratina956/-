@@ -1,6 +1,7 @@
 <?php
 require 'parts/auto-login.php';
-echo '<link rel="stylesheet" href="css/announce.css">';
+echo '<link rel="stylesheet" href="mob-css/announce-mob.css" media="screen and (max-width: 480px)">';
+echo '<link rel="stylesheet" href="css/announce.css" media="screen and (min-width: 1280px)">';
 if (isset($_POST['title'])) {
     $tag_id = $_POST['tag_id'];
     $title = $_POST['title'];

@@ -91,20 +91,24 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <form action="search.php" method="post">
         <input type="text" name="search" value="<?php echo $search_text; ?>">
         <select name="kinds">
-            <option value="a">全て</option>
-            <option value="u">ユーザーのみ</option>
-            <option value="t">タグのみ</option>
+            <option value="a" <?php if ($kinds == "a")
+                echo 'selected'; ?>>全て</option>
+            <option value="u" <?php if ($kinds == "u")
+                echo 'selected'; ?>>ユーザーのみ</option>
+            <option value="t" <?php if ($kinds == "t")
+                echo 'selected'; ?>>タグのみ</option>
         </select>
         <select name="method">
-            <option value="all">完全一致</option>
-            <option value="part">部分一致</option>
+            <option value="all" <?php if ($method == "all")
+                echo 'selected'; ?>>完全一致</option>
+            <option value="part" <?php if ($method == "part")
+                echo 'selected'; ?>>部分一致</option>
         </select>
         <input type="submit" value="再検索">
     </form>
     <table>
         <tr>
             <th>種類</th>
-            <th>ID</th>
             <th>名前</th>
         </tr>
         <?php
@@ -112,7 +116,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($user_data as $data) {
                 echo '<tr>';
                 echo '<td>', $data['type'], '</td>';
-                echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
@@ -122,7 +125,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($tag_data as $data) {
                 echo '<tr>';
                 echo '<td>', $data['type'], '</td>';
-                echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
