@@ -27,11 +27,17 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
-
+if (isset($_POST['narrow'])) {
+    $narrow = $_POST['narrow'];
+} else {
+    $narrow = 0;
+}
 // 一括既読
-if(isset($_POST['all_read'])){
+if (isset($_POST['all_read'])) {
+    // 0:全て 1:アナウンス 2:位置情報
+    echo $narrow;
     $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
-    $all_read_sql->execute([1,$_SESSION['user']['user_id']]);
+    $all_read_sql->execute([$narrow, $_SESSION['user']['user_id']]);
 }
 ?>
 <?php
@@ -97,16 +103,16 @@ if ($list_raw) {
     <br>
     <form action="info.php" method="post">
         <?php
-            if(isset($_POST['narrow'])){
-                echo '<input type="hidden" name="narrow" value=',$_POST['narrow'],'>';
-            }else{
-                echo '<input type="hidden" name="narrow" value=0>';
-            }
-            if(isset($_POST['n_user'])){
-                echo '<input type="hidden" name="n_user" value=',$_POST['n_user'],'>';
-            }else{
-                echo '<input type="hidden" name="n_user" value=0>';
-            }
+        if (isset($_POST['narrow'])) {
+            echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+        } else {
+            echo '<input type="hidden" name="narrow" value=0>';
+        }
+        if (isset($_POST['n_user'])) {
+            echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+        } else {
+            echo '<input type="hidden" name="n_user" value=0>';
+        }
         ?>
         <input type="hidden" name="all_read">
         <input type="submit" value="一括既読">
