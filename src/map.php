@@ -67,7 +67,7 @@
 
                 echo '</td>';
                 echo '<input type="hidden" name="floor" value=', $i, '>';
-                echo '<td class="number"><button type="submit" value="',$i,'" name="floor">',$i,'階</td>';
+                echo '<td class="number"><button type="submit" class="floor" value="',$i,'" name="floor">',$i,'階</td>';
                 echo '</tr>';
                 echo '</form>';
             }
