@@ -37,7 +37,7 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
 }
 
 // 相手の情報を取得
-$sql = "SELECT user_nameFROM Users WHERE user_id = :partner_id";
+$sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
 $stmt->execute();
