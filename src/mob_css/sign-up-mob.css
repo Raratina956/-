@@ -48,12 +48,14 @@ form {
     display: flex; /* 横に並べる */
     align-items: center; /* 中央に揃える */
     margin-bottom: 15px; /* 各グループの間隔 */
+    flex-direction: column;
 }
 
 .form-group label {
     width: 150px; /* ラベルの幅 */
-    margin-right: 10px; /* ラベルと入力欄の間隔 */
-    text-align: right; /* ラベルを右寄せ */
+    margin-right: 95px; /* ラベルと入力欄の間隔 */
+    margin-bottom: 5px; /* ラベルと入力フィールドの間に少し間隔を設定 */
+    text-align: left; /* ラベルのテキストを左揃えにする */
     white-space: nowrap; /* 改行しない */
 }
 
@@ -68,6 +70,7 @@ form {
     border-radius: 4px; /* 角を丸く */
     box-sizing: border-box; /* 幅と高さをパディングとボーダーに含める */
     height: 40px; /* 高さを固定 */
+    width: 250px;
 }
 
 /* Submit Button */

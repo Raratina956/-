@@ -41,19 +41,21 @@ body{
     /* height: 120px;
     width: 800px; */
     /* margin-inline-start: 21%; */
+    height: 85px;
 }
 
 table {
-    margin: 0 auto;  /* 左右の中央揃え */
+    margin: 0px 10px 0px 370px;  /* 左右の中央揃え */
     table-layout: fixed;  /* テーブル全体の幅を固定 */
-    width: 80%;  /* 必要に応じてテーブルの幅を調整 */
-    text-align: center; /* テーブル内のコンテンツを中央揃え */
+    width: 100%;  /* 必要に応じてテーブルの幅を調整 */
+    /* text-align: center; */ /* テーブル内のコンテンツを中央揃え */
+    height: 110%;
 }
 
 .number{
     display: flex;
     flex-wrap: wrap;
-    margin-left: 85%;
+    margin-left: 10%;
 }
 
 /* .gakugai{
@@ -92,9 +94,9 @@ button {
   }
 
 .list{
-    margin-left: 75%;
+    margin-left: 68%;
     font-size: 20px;
-
+    /* align-items: center; */
 }
 
 .usericon{
