@@ -17,6 +17,7 @@
     </head>
        
         <body>
+            <div class="main">
 <?php
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -203,5 +204,6 @@
         }
     }
 ?>
+</div>
 </body>
 </html>

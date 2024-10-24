@@ -1,6 +1,5 @@
 body {
     padding-top: 110px;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -12,6 +11,10 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #464646;
+}
+
+.main{
+    display: flex;
 }
 
 .profile-container{
