@@ -12,6 +12,8 @@ try {
 
 echo $_SESSION['user']['user_id'];
 echo $_GET['user_id'];
+echo "テスト";
+
 
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
