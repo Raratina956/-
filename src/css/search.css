@@ -30,6 +30,9 @@ table {
     margin-left: auto; /* Automatically adjust the left margin */
     margin-right: auto; /* Automatically adjust the right margin */
 }
+tr{
+    border-bottom: 1px solid #ddd;
+}
 .tag{
     white-space: nowrap; /* Prevent text wrapping */
     padding: 8px;
