@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(../img/SpotLinkbg.png); /* 背景画像 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 画面の高さに対して中央に配置 */
+    background-size: cover;
+    background-position: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 10px; /* フォームとの間隔を狭める */
+    font-size: 24px;
+    text-align: center;
+}
+
+.back-link {
+    position: absolute; /* 左上に配置 */
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
+}
+
+/* Form Styles */
+form {
+    width: 400px; /* フォームの幅 */
+    padding: 30px; /* フォームの内側の余白 */
+    display: flex; 
+    flex-direction: column; /* 縦に並べる */
+    align-items: stretch; /* フォーム内の要素を幅いっぱいに */
+}
+
+/* Form Fields */
+.form-group {
+    display: flex; /* 横に並べる */
+    align-items: center; /* 中央に揃える */
+    margin-bottom: 15px; /* 各グループの間隔 */
+}
+
+.form-group label {
+    width: 150px; /* ラベルの幅 */
+    margin-right: 10px; /* ラベルと入力欄の間隔 */
+    text-align: right; /* ラベルを右寄せ */
+    white-space: nowrap; /* 改行しない */
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select {
+    flex: 1; /* 残りのスペースを占める */
+    padding: 10px; /* 内側の余白 */
+    margin: 0; /* 外側の余白を0に */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角を丸く */
+    box-sizing: border-box; /* 幅と高さをパディングとボーダーに含める */
+    height: 40px; /* 高さを固定 */
+}
+
+/* Submit Button */
+input[type="submit"] {
+    width: 20%; /* 幅を100%にすることでバランスを取る */
+    background-color: #5f666a; /* ボタンの背景色 */
+    color: #fff; /* ボタンの文字色 */
+    padding: 10px; /* 内側の余白 */
+    border: none; /* 枠線なし */
+    border-radius: 4px; /* 角を丸く */
+    cursor: pointer; /* カーソルをポインタに */
+    font-size: 16px; /* フォントサイズ */
+    margin-top: 20px; /* 上の要素との間隔 */
+    margin: 20px auto 0; /* 上の要素との間隔を20px、左右のマージンを自動で中央に配置 */
+    display: block; /* ブロック要素として表示 */
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9; /* ホバー時の背景色 */
+}

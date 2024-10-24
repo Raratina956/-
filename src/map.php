@@ -18,7 +18,7 @@
 
         echo '<div class="map">';
         echo '<h1>MAP</h1>';
-        
+
          $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
          $results = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -36,7 +36,7 @@
          echo '</select><br><br>';
 
         //  map
-        echo '<table class="table">';
+        echo '<table>';
            for($i = 7;$i>0; $i--){
                 echo '<tr>';
                 echo '<form name="floor" action="floor.php" method="post">';
