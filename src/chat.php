@@ -12,7 +12,7 @@ try {
 
 echo $_SESSION['user']['user_id'];
 echo $_GET['user_id'];
-echo "テスト";
+echo "テスト2";
 
 
 // URLから相手のuser_idを取得
