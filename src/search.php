@@ -4,7 +4,7 @@ $search_text = $_POST['search'];
 unset($dis);
 $user_data = [];
 $tag_data = [];
-$judge = 1;
+$judge = 0;
 if (isset($_POST['kinds'])) {
     $kinds = $_POST['kinds'];
 } else {
