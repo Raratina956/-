@@ -1,0 +1,141 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-system {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-box {
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-area {
+    padding: 20px;
+    height: 70vh;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+.chat {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.person1 {
+    justify-content: flex-end;
+}
+
+.person2 {
+    justify-content: flex-start;
+}
+
+.chat img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.person1 .chat img {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.chat span {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.person1 span {
+    background-color: #9eea6a;
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.person2 span {
+    background-color: #e5e5ea;
+    color: black;
+    border-bottom-left-radius: 0;
+}
+
+.chat-time {
+    font-size: 10px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.send-box {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: white;
+}
+
+textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+    height: 40px;
+}
+
+#submit {
+    display: none;
+}
+
+label[for="submit"] {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.back-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+
+.back-btn:hover {
+    background-color: #45a049;
+}
+
+/* フェードインアニメーション */
+.ad-banner.show {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.ad-banner {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    text-align: center;
+    margin-bottom: 10px;
+}
