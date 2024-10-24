@@ -73,15 +73,15 @@ echo '<link rel="stylesheet" href="css/search.css">';
     
     <!-- Search Form -->
     <form action="search.php" method="post">
-        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>">
-        
+        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>" placeholder="検索したい内容を入力してください">
+        <br>
         <select class="sort-tag" name="kinds">
             <option value="a" <?php if ($kinds == "a") echo 'selected'; ?>>全て</option>
             <option value="u" <?php if ($kinds == "u") echo 'selected'; ?>>ユーザーのみ</option>
             <option value="t" <?php if ($kinds == "t") echo 'selected'; ?>>タグのみ</option>
         </select>
         
-        <select name="method">
+        <select class="sort-tag"name="method">
             <option value="all" <?php if ($method == "all") echo 'selected'; ?>>完全一致</option>
             <option value="part" <?php if ($method == "part") echo 'selected'; ?>>部分一致</option>
         </select>
@@ -99,7 +99,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td><img src="img/icon/default.jpg" width="20%"height="20%"></td>';
+                echo '<td><img src="img/icon/default.jpg" width="100%"height="100%"></td>';
                 echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
                 echo '</tr>';
             }
