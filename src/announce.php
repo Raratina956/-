@@ -67,7 +67,7 @@ if (!isset($_POST['title'])) {
             <br>
             <textarea name="content"></textarea>
             <br>
-            <input type="submit" value="送信">
+            <input type="submit" class="throw" value="送信">
         </form>
 
         <?php
