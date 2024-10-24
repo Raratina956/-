@@ -73,7 +73,7 @@ body{
 } */
 
 
-.floor {
+button {
     display: inline-block; /* ボタンを横並びにする */
     border: none; /* 枠線をなくす */
     border-radius: 5px; /* 角丸をつける */
