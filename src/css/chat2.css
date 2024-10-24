@@ -16,12 +16,13 @@ body {
 
 .chat-box {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px; /* 600px から 800px に増やす */
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
 }
+
 
 .chat-area {
     height: 500px;
