@@ -45,6 +45,10 @@ form {
     height: 40px;
 }
 
+.next{
+    text-align:center;
+}
+
 input[type="submit"] {
     width: 35%;
     background-color: #d8dcdf;
@@ -55,4 +59,9 @@ input[type="submit"] {
     font-size: 16px; 
     margin-top: 20px;
     margin: 20px auto 0;
+}
+
+a, a:visited {
+    color: #4b4bff;
+    text-decoration: none;
 }
