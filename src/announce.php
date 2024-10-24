@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-echo '<link rel="stylesheet" href="mob-css/announce-mob.css" media="screen and (max-width: 480px)">';
+echo '<link rel="stylesheet" href="mob_css/announce-mob.css" media="screen and (max-width: 480px)">';
 echo '<link rel="stylesheet" href="css/announce.css" media="screen and (min-width: 1280px)">';
 if (isset($_POST['title'])) {
     $tag_id = $_POST['tag_id'];
@@ -64,7 +64,7 @@ if (!isset($_POST['title'])) {
                 ?>
             </select>
             <br>
-            <input type="text" name="title">
+            <input type="text" name="title" placeholder="タイトル">
             <br>
             <textarea name="content"></textarea>
             <br>
