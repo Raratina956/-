@@ -49,7 +49,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
 <main>
     <h1>検索結果</h1>
     <h2><?php echo $search_text; ?></h2>
-    <form>
+    <form action="search.php" method="post">
         <input type="text" name="search" value="<?php echo $search_text; ?>">
         <select name="kinds">
             <option value="a">全て</option>
