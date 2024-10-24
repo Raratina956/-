@@ -103,9 +103,9 @@ if ($list_raw) {
                 echo '<input type="hidden" name="narrow" value=0>';
             }
             if(isset($_POST['n_user'])){
-                echo '<input type="hidden" name="narrow" value=',$_POST['n_user'],'>';
+                echo '<input type="hidden" name="n_user" value=',$_POST['n_user'],'>';
             }else{
-                echo '<input type="hidden" name="narrow" value=0>';
+                echo '<input type="hidden" name="n_user" value=0>';
             }
         ?>
         <input type="hidden" name="all_read">
