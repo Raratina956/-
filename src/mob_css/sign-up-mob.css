@@ -71,9 +71,16 @@ form {
     appearance: none;
 }
 
+.button-group {
+    display: flex; /* 横並びにする */
+    justify-content: center; /* 中央揃え */
+    gap: 10px; /* ボタン間のスペース */
+    margin-top: 20px; /* 上の要素との間隔 */
+}
+
 /* Submit Button */
 input[type="submit"] {
-    width: 20%; /* 幅を100%にすることでバランスを取る */
+    width: auto; /* 幅を100%にすることでバランスを取る */
     background-color: #5f666a; /* ボタンの背景色 */
     color: #fff; /* ボタンの文字色 */
     padding: 10px; /* 内側の余白 */
@@ -91,15 +98,13 @@ input[type="submit"]:hover {
 }
 
 .back-link {
-    display: block; /* ブロック要素として表示 */
-    text-align: center; /* テキストを中央揃え */
+    display: inline-block; /* インラインブロックに設定 */
     font-size: 16px;
     text-decoration: none;
     background-color: #a0eefc;
-    padding: 8px 15px;
+    padding: 10px 20px; /* パディングを調整 */
     border-radius: 5px;
-    margin: 20px auto 0; /* 上の要素との間隔、左右中央揃え */
-    width: fit-content; /* コンテンツに基づいた幅にする */
+    text-align: center;
 }
 
 .back-link:hover {

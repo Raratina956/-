@@ -35,8 +35,10 @@
             <label for="confirm_password">パスワード(確認用)：</label>
             <input type="password" name="confirm_password" id="confirm_password" required>
         </div>
+        <div class="button-group">
         <input type="submit" value="登録">
-        <a class="back-link"href="login.php">戻る</a>
+        <a class="back-link" href="login.php">戻る</a>
+    </div>
     </form>
 </body>
 
