@@ -20,6 +20,11 @@ body{
   
 }
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
 
 .map{
     /* margin: 55px;
@@ -32,9 +37,9 @@ body{
 .block{
     border: 2px solid #333333;
     padding: 0px;
-    height: 120px;
-    width: 800px;
-    margin-inline-start: 21%;
+    /* height: 120px;
+    width: 800px; */
+    /* margin-inline-start: 21%; */
 }
 
 .table{
@@ -68,7 +73,7 @@ body{
 } */
 
 
-.floor {
+button {
     display: inline-block; /* ボタンを横並びにする */
     border: none; /* 枠線をなくす */
     border-radius: 5px; /* 角丸をつける */
