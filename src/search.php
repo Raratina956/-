@@ -50,7 +50,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (isset($user_data) && !empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td>', $data['type'], '<td>';
+                echo '<td>', $data['type'], '</td>';
                 echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
@@ -61,7 +61,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (isset($tag_data) && !empty($tag_data)) {
             foreach ($tag_data as $data) {
                 echo '<tr>';
-                echo '<td>', $data['type'], '<td>';
+                echo '<td>', $data['type'], '</td>';
                 echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
