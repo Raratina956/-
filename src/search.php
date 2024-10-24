@@ -3,6 +3,7 @@ require 'parts/auto-login.php';
 $search_text = $_POST['search'];
 unset($dis);
 $user_data = [];
+$tag_data = [];
 $judge = 1;
 if (isset($_POST['kinds'])) {
     $kinds = $_POST['kinds'];
