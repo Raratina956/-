@@ -56,6 +56,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <option value="u">ユーザーのみ</option>
             <option value="t">タグのみ</option>
         </select>
+        <input type="submit" value="再検索">
     </form>
     <table>
         <tr>
