@@ -89,8 +89,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <h1>検索結果</h1>
     <h2><?php echo $search_text; ?></h2>
     <form action="search.php" method="post">
-        <input type="text" name="search" value="<?php echo $search_text; ?>">
-        <select name="kinds">
+        <input type="text" class="search-text"name="search" value="<?php echo $search_text; ?>">
+        <select class="sort-tag"name="kinds">
             <option value="a" <?php if ($kinds == "a")
                 echo 'selected'; ?>>全て</option>
             <option value="u" <?php if ($kinds == "u")
@@ -104,7 +104,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <option value="part" <?php if ($method == "part")
                 echo 'selected'; ?>>部分一致</option>
         </select>
-        <input type="submit" value="再検索">
+        <input class="search"type="submit" value="再検索">
     </form>
     <table>
         <tr>
