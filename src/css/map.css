@@ -19,6 +19,19 @@ body{
     padding-top: 125px;
   
 }
+
+header {
+    text-align: center;  /* 中央揃えにする */
+    padding: 20px;       /* 上下の余白を適切に調整 */
+}
+
+header img {
+    max-width: 100%;     /* 画像がコンテナの幅に収まるようにする */
+    height: auto;        /* アスペクト比を保ちながら画像の高さを自動調整 */
+    display: block;      /* ブロック要素にすることで画像の中央揃えが効くようにする */
+    margin: 0 auto;      /* 左右の中央揃え */
+}
+
 .map{
     /* margin: 55px;
     padding: 20px; */
