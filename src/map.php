@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="mob_css/map-mob.css" media="screen and (max-width: 480px)">
+<!-- <link rel="stylesheet" href="mob_css/map-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)">
 
-    <title></title>
+    <title></title> -->
    
    
     <body>
@@ -71,7 +71,7 @@
                 echo '</tr>';
                 echo '</form>';
             }
-        echo '<table>';
+        echo '</table>';
 
         ?>
 
