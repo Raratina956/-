@@ -20,21 +20,6 @@ h2 {
     text-align: center;
 }
 
-.back-link {
-    position: absolute; /* 左上に配置 */
-    top: 20px; /* 上からの距離 */
-    left: 20px; /* 左からの距離 */
-    font-size: 16px; /* フォントサイズ */
-    text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
-}
-
-.back-link:hover {
-    background-color: #ffffff; /* ホバー時の背景色 */
-}
-
 /* Form Styles */
 form {
     width: 400px; /* フォームの幅 */
@@ -71,21 +56,41 @@ form {
     height: 40px; /* 高さを固定 */
 }
 
+.button-group {
+    display: flex; /* 横並びにする */
+    justify-content: center; /* 中央揃え */
+    gap: 10px; /* ボタン間のスペース */
+    margin-top: 20px; /* 上の要素との間隔 */
+    gap: 70px; /* ボタン間のスペースを20pxに設定 */
+    flex-direction: row-reverse; /* ボタンの順序を逆にする */
+}
+
 /* Submit Button */
 input[type="submit"] {
-    width: 20%; /* 幅を100%にすることでバランスを取る */
-    background-color: #5f666a; /* ボタンの背景色 */
-    color: #fff; /* ボタンの文字色 */
-    padding: 10px; /* 内側の余白 */
-    border: none; /* 枠線なし */
-    border-radius: 4px; /* 角を丸く */
-    cursor: pointer; /* カーソルをポインタに */
-    font-size: 16px; /* フォントサイズ */
-    margin-top: 20px; /* 上の要素との間隔 */
-    margin: 20px auto 0; /* 上の要素との間隔を20px、左右のマージンを自動で中央に配置 */
-    display: block; /* ブロック要素として表示 */
+    width: auto; /* 幅を自動調整 */
+    background-color: #5f666a;
+    color: #fff;
+    padding: 10px 20px; /* 幅を広げるためにパディングを増やす */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 input[type="submit"]:hover {
     background-color: #2980b9; /* ホバー時の背景色 */
+}
+
+.back-link {
+    display: inline-block; /* インラインブロックに設定 */
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #a0eefc;
+    padding: 10px 20px; /* パディングを調整 */
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back-link:hover {
+    background-color: #ffffff; /* ホバー時の背景色 */
 }
