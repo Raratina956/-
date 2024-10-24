@@ -1,5 +1,7 @@
 <?php
     require 'parts/auto-login.php';
+    require 'header.php';
+    
 ?>
 
     <!DOCTYPE html>
@@ -36,8 +38,7 @@
         exit();
     }
 
-    require 'header.php';
-    
+   
     //ユーザー情報を持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     // $users->execute([$_SESSION['user']['user_id']]);
