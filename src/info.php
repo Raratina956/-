@@ -32,11 +32,47 @@ if (isset($_POST['narrow'])) {
 } else {
     $narrow = 0;
 }
+if (isset($_POST['n_user'])) {
+    $n_user = $_POST['n_user'];
+} else {
+    $n_user = 0;
+}
 // 一括既読
 if (isset($_POST['all_read'])) {
     // 0:全て 1:アナウンス 2:位置情報
-    $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
-    $all_read_sql->execute([1, $_SESSION['user']['user_id'],$narrow]);
+    if ($narrow == 0 && $n_user == 0) {
+        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
+        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+    } else {
+        $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+        $list_sql->execute([$_SESSION['user']['user_id']]);
+        $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+        if ($list_raw) {
+            foreach ($list_raw as $row) {
+                switch ($row['type']) {
+                    case 1:
+                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE user_id=?');
+                        $n_announce_s->execute([$n_user]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $announcement_id_a = $n_announce_r['announcement_id'];
+                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
+                        break;
+                    case 2:
+                        $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                        $n_announce_s->execute([$n_user]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $announcement_id_a = $n_announce_r['current_location_id'];
+                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
+                    default:
+                        # code...
+                        break;
+                }
+            }
+        }
+
+    }
 }
 ?>
 <?php
