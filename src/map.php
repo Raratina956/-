@@ -1,5 +1,6 @@
 <?php 
     require 'parts/auto-login.php';
+    require 'header.php'; 
 ?>
 
 <meta charset="UTF-8">
@@ -14,8 +15,7 @@
 
           
         <?php
-        require 'header.php'; 
-
+        
         echo '<div class="map">';
         echo '<h1>MAP</h1>';
 
