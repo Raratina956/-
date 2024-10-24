@@ -81,7 +81,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <option value="t" <?php if ($kinds == "t") echo 'selected'; ?>>タグのみ</option>
         </select>
         
-        <select name="method">
+        <select class="sort-tag"name="method">
             <option value="all" <?php if ($method == "all") echo 'selected'; ?>>完全一致</option>
             <option value="part" <?php if ($method == "part") echo 'selected'; ?>>部分一致</option>
         </select>
