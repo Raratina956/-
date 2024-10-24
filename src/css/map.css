@@ -20,6 +20,11 @@ body{
   
 }
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
 
 .map{
     /* margin: 55px;
