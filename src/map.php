@@ -16,8 +16,9 @@
         <?php
         require 'header.php'; 
 
-        // echo '<div class="map">';
-        // echo '<h1>MAP</h1>';
+        echo '<div class="map">';
+        echo '<h1>MAP</h1>';
+        
          $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
          $sql->execute([$_SESSION['user']['user_id']]);
          $results = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +68,7 @@
 
                 echo '</td>';
                 echo '<input type="hidden" name="floor" value=', $i, '>';
-                echo '<td class="number"><button type="submit" value="',$i,'" name="floor">',$i,'階</td>';
+                echo '<td class="number"><button type="submit" class="floor" value="',$i,'" name="floor">',$i,'階</td>';
                 echo '</tr>';
                 echo '</form>';
             }
