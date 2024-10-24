@@ -51,7 +51,7 @@ if (isset($_POST['all_read'])) {
             foreach ($list_raw as $row) {
                 switch ($row['type']) {
                     case 1:
-                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE user_id=?');
+                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['announcement_id'];
