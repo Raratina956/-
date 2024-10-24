@@ -71,7 +71,7 @@
                 echo '</tr>';
                 echo '</form>';
             }
-        echo '<table>';
+        echo '</table>';
 
         ?>
 
