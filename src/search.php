@@ -99,8 +99,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td>ユーザー</td>';
-                echo '<td>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
+                echo '<td><img src="img/icon/default.jpg" wight="20%"hight="20%"></td>';
+                echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
                 echo '</tr>';
             }
             $judge = 1;
@@ -109,8 +109,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
                 echo '<tr>';
-                echo '<td>タグ</td>';
-                echo '<td>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
+                echo '<td class="tag">タグ</td>';
+                echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
                 echo '</tr>';
             }
             $judge = 1;

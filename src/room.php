@@ -206,10 +206,7 @@ if ($update_id == 1) {
                 }
             }
             
-
-            // 教師選択時
-            }else if($_POST['target'] == "teacher"){
-
+            }else if($_POST['target'] == "teacher") {
                 // 初期分岐と未選択時
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
                     // 教室にいるメンバーを持ってくる(全件表示)
@@ -220,7 +217,7 @@ if ($update_id == 1) {
                     ');
                     $users->execute([$room_id]);
                     $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-                
+            
                     // ユーザーがいるかどうか
                     if ($usersList) {
                         // 初期表示、全件表示
@@ -229,7 +226,7 @@ if ($update_id == 1) {
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
                             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                
+            
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
@@ -241,10 +238,9 @@ if ($update_id == 1) {
                         echo '<p>ユーザーが見つかりませんでした。</p>';
                     }
                 }
-                
-
+            
                 // お気に入り選択時
-            }else if($_POST['favorite'] == 1) {
+            } else if($_POST['favorite'] == 1) {
                 // 教室にいるメンバーを持ってくる(お気に入りに登録している場合)
                 $users = $pdo->prepare('
                     SELECT Users.* FROM Users
@@ -274,9 +270,7 @@ if ($update_id == 1) {
                     // 条件に合うユーザーが見つからなかった場合のメッセージ
                     echo '<p>ユーザーが見つかりませんでした。</p>';
                 }
-            
 
-            // 生徒選択時
             }else if($_POST['target'] == "student"){
                 // 初期分岐と未選択時
                 if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
