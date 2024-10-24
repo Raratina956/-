@@ -20,17 +20,11 @@ body{
   
 }
 
-header {
-    text-align: center;  /* 中央揃えにする */
-    padding: 20px;       /* 上下の余白を適切に調整 */
+*{
+    margin: 0;
+    padding: 0;
 }
 
-header img {
-    max-width: 100%;     /* 画像がコンテナの幅に収まるようにする */
-    height: auto;        /* アスペクト比を保ちながら画像の高さを自動調整 */
-    display: block;      /* ブロック要素にすることで画像の中央揃えが効くようにする */
-    margin: 0 auto;      /* 左右の中央揃え */
-}
 
 .map{
     /* margin: 55px;
@@ -39,22 +33,19 @@ header img {
     margin-bottom: 10px; 
 }
 
-a{
-    display: block;
-}
-
 
 .block{
     border: 2px solid #333333;
     padding: 0px;
-    height: 120px;
-    width: 800px;
-    margin-inline-start: 21%;
+    /* height: 120px;
+    width: 800px; */
+    /* margin-inline-start: 21%; */
 }
 
 .table{
     width: 700px;
 }
+
 .number{
     display: flex;
     flex-wrap: wrap;
@@ -74,21 +65,13 @@ a{
 } */
 
 /* 学外 Section */
-.gakugai-container {
+/* .gakugai-container {
     background-color: #b3b3b3;
     padding: 15px; 
     border-radius: 10px;
     margin-top: 0; 
-}
+} */
 
-table{
-    margin: auto;
-    table-layout: fixed;
-}
-
-.box {
-      height: 100px;
-}
 
 button {
     display: inline-block; /* ボタンを横並びにする */
