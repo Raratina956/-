@@ -109,7 +109,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <table>
         <tr>
             <th>種類</th>
-            <th>ID</th>
             <th>名前</th>
         </tr>
         <?php
@@ -117,7 +116,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($user_data as $data) {
                 echo '<tr>';
                 echo '<td>', $data['type'], '</td>';
-                echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
@@ -127,7 +125,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($tag_data as $data) {
                 echo '<tr>';
                 echo '<td>', $data['type'], '</td>';
-                echo '<td>', $data['id'], '</td>';
                 echo '<td>', $data['name'], '</td>';
                 echo '</tr>';
             }
