@@ -61,6 +61,33 @@
                 ?>
             </select>
   <?php          
+        }else if($user['s_or_t'] == 1){
+            //教師情報編集
+            //アイコン編集
+
+            echo '<div id="iconContainer">';  // 左側にアイコンを配置するためのコンテナ
+
+            // 「現在のアイコン」ラベルを追加
+            echo '<p>現在のアイコン</p>';
+
+            $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
+            $iconStmt->execute([$_SESSION['user']['user_id']]);
+            $icon = $iconStmt->fetch();
+            if ($icon) {
+                echo '<img id="existingIcon" src="', $icon['icon_name'], '" width="20%" height="50%" class="icon">';
+            }
+?>
+            <link rel="stylesheet" type="text/css" href="mob_css/useredit-mob.css" media="screen and (max-width: 480px)">
+            <link rel="stylesheet" type="text/css" href="css/useredit.css" media="screen and (min-width: 1280px)">
+            <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
+            <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
+            </div>
+
+<?php
+            echo '<div id="formContainer">';
+            //名前変更
+            echo '<label for="class">名前：</label><input type="text" name="user_name" value="', $user['user_name'], '"><br>';
         }
     }
 ?>
