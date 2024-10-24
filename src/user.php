@@ -1,8 +1,10 @@
 <?php
     require 'parts/auto-login.php';
+    require 'header.php';
+    
 ?>
 
-    <!DOCTYPE html>
+   
     <html lang="ja">
     <head>
         <meta charset="UTF-8">
@@ -15,6 +17,7 @@
     </head>
        
         <body>
+            <div class="main">
 <?php
     //フォロー・フォロワー機能
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -36,8 +39,7 @@
         exit();
     }
 
-    require 'header.php';
-    
+   
     //ユーザー情報を持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     // $users->execute([$_SESSION['user']['user_id']]);
@@ -202,5 +204,6 @@
         }
     }
 ?>
+</div>
 </body>
 </html>

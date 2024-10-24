@@ -49,7 +49,7 @@ if (isset($_POST['all_read'])) {
         $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
         if ($list_raw) {
             foreach ($list_raw as $row) {
-                switch ($row['type']) {
+                switch ($narrow) {
                     case 1:
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
                         $n_announce_s->execute([$n_user]);
