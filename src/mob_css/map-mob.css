@@ -29,6 +29,10 @@ body{
     margin-bottom: 0px; */
 }
 
+.table{
+    width: 100px;
+}
+
 a{
     display: block;
 }
