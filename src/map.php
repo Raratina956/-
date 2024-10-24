@@ -35,7 +35,7 @@
          echo '</select><br><br>';
 
         //  map
-        echo '<table width=700>';
+        echo '<table class="table">';
            for($i = 7;$i>0; $i--){
                 echo '<tr>';
                 echo '<form name="floor" action="floor.php" method="post">';
