@@ -47,4 +47,22 @@
             width: 30px;
             height: 30px;
       }
+
+      .search{
+            border-color: black;
+            background-color: white;
+            color: black(248, 88, 88);
+            border-radius: 5px;
+            height: 30px;
+            width: 45px;
+          }
+        
+      .search:hover{
+            background-color: gray;
+            color: black;
+      }
+        
+      .textbox{
+            height: 25px;
+      }
 }

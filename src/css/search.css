@@ -24,7 +24,7 @@ main {
 
 /* Table Styles */
 table {
-    width: 50%;
+    width: 60%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-left: auto; /* Automatically adjust the left margin */
@@ -70,7 +70,7 @@ form {
 
 .search-text{
     margin-top: 25px;
-    width: 180px;
+    width: 300px;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
