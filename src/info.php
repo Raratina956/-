@@ -31,7 +31,7 @@ function timeAgo($logtime)
 // 一括既読
 if(isset($_POST['all_read'])){
     $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
-    $all_read_sql->execute([$_SESSION['user']['user_id']]);
+    $all_read_sql->execute([1,$_SESSION['user']['user_id']]);
 }
 ?>
 <?php
