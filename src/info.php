@@ -35,6 +35,7 @@ if (isset($_POST['narrow'])) {
 // 一括既読
 if (isset($_POST['all_read'])) {
     // 0:全て 1:アナウンス 2:位置情報
+    echo $narrow;
     $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
     $all_read_sql->execute([$narrow, $_SESSION['user']['user_id']]);
 }
