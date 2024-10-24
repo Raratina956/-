@@ -61,8 +61,7 @@ form {
 
 .form-group input[type="text"],
 .form-group input[type="password"],
-.form-group input[type="email"],
-.form-group select {
+.form-group input[type="email"] {
     flex: 1; /* 残りのスペースを占める */
     padding: 10px; /* 内側の余白 */
     margin: 0; /* 外側の余白を0に */
@@ -71,6 +70,20 @@ form {
     box-sizing: border-box; /* 幅と高さをパディングとボーダーに含める */
     height: 40px; /* 高さを固定 */
     width: 250px;
+}
+
+.form-group select {
+    flex: 1;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+    box-sizing: border-box;
+    height: 40px; /* ここで高さを調整 */
+    -webkit-appearance: none; /* ブラウザごとのデフォルトスタイルを無効化 */
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* Submit Button */
