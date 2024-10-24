@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-        <?php echo "<img src='image/{$message['send_id']}.png'>";  ?>
+        <?php echo "<img src='image/{$partner_id }.png'>";  ?>
             <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
         </div>
 
