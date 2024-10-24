@@ -17,6 +17,7 @@ body{
     background-color: #464646;
     height: 100%;
     padding-top: 125px;
+
   
 }
 
@@ -42,8 +43,11 @@ body{
     /* margin-inline-start: 21%; */
 }
 
-.table{
-    width: 700px;
+table {
+    margin: 0 auto;  /* 左右の中央揃え */
+    table-layout: fixed;  /* テーブル全体の幅を固定 */
+    width: 80%;  /* 必要に応じてテーブルの幅を調整 */
+    text-align: center; /* テーブル内のコンテンツを中央揃え */
 }
 
 .number{
