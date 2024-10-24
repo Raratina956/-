@@ -24,12 +24,19 @@ main {
 
 /* Table Styles */
 table {
-    width: 60%;
+    width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-left: auto; /* Automatically adjust the left margin */
     margin-right: auto; /* Automatically adjust the right margin */
 }
+tr{
+    border-bottom: 1px solid #333;
+}
+/* td{
+    width: 80%;
+    align-items: center;
+} */
 .tag{
     white-space: nowrap; /* Prevent text wrapping */
     padding: 8px;
@@ -43,6 +50,9 @@ font-size: 20px;
     white-space: nowrap; /* Prevent text wrapping */
     padding: 8px;
 font-size: 20px;
+align-items: center;
+
+
 }
 
 h1, h2 {

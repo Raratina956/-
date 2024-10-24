@@ -10,11 +10,6 @@ try {
     exit();  
 }
 
-echo $_SESSION['user']['user_id'];
-echo $_GET['user_id'];
-echo "テスト2";
-
-
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
@@ -40,6 +35,13 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+// 相手の情報を取得
+$sql = "SELECT user_name, icon_path FROM Users WHERE user_id = :partner_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
+$stmt->execute();
+$partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -77,19 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="chat-system">
     <div class="chat-box">
 
+        <!-- 相手のアイコンと名前表示部分 -->
+        <div class="chat-header">
+            <img src="<?php echo htmlspecialchars($partner['icon_path']); ?>" alt="相手のアイコン" class="partner-icon">
+            <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+        </div>
+
         <!-- 広告バナー -->
-        <!-- <div class="ad-banner" id="ad-banner">
+        <div class="ad-banner" id="ad-banner">
             <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
                 <img src="image/banner.png" alt="広告バナー" class="ad-image">
             </a>
-        </div> -->
-        <!-- 広告バナー -->
-<div class="ad-banner" id="ad-banner">
-    <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
-        <img src="image/banner.png" alt="広告バナー" class="ad-image">
-    </a>
-</div>
-
+        </div>
 
         <div class="chat-area" id="chat-area">
             <?php 
@@ -100,7 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="<?php echo $class; ?>">
                     <div class="chat">
                         <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
-                        <?php echo "<img src='image/{$message['send_id']}.png'>"; ?>
                         <span><?php echo htmlspecialchars($message['message_detail']); ?></span>
                     </div>
                 </div>
@@ -111,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
             <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
             <input type="submit" name="submit" value="送信" id="submit">
-            <label for="submit"><i class="far fa-paper-plane"></i></label>
         </form>
 
         <!-- トップページに戻るボタン -->
@@ -132,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }, 3000); // 3000ミリ秒 = 3秒
     });
 </script>
-
 
 </body>
 </html>
