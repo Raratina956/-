@@ -24,7 +24,7 @@ main {
 
 /* Table Styles */
 table {
-    width: 60%;
+    width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-left: auto; /* Automatically adjust the left margin */
@@ -34,7 +34,7 @@ tr{
     border-bottom: 1px solid #333;
 }
 td{
-    width: 100%;
+    width: 80%;
 }
 .tag{
     white-space: nowrap; /* Prevent text wrapping */
