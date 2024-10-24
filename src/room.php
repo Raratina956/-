@@ -139,6 +139,7 @@ if ($update_id == 1) {
                     // 教室にいるメンバーを持ってくる(全件表示)
                     $users=$pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
                     $users->execute([$room_id]);
+                    
 
                     // ユーザーがいるかどうか
                     if(isset($users)){
@@ -162,7 +163,6 @@ if ($update_id == 1) {
                                 </li>';
                         }
                     }else{
-                        var_dump('a');
                         echo '<p>ユーザーが見つかりません</p>';
                     }
 
@@ -288,22 +288,22 @@ if ($update_id == 1) {
                         JOIN Favorite ON Users.user_id = Favorite.follower_id
                         WHERE Current_location.classroom_id = ? AND Users.s_or_t = 0 AND Favorite.follow_id = ?
                     ');
-                $users->execute([$room_id, $_SESSION['user']['user_id']]);
+                    $users->execute([$room_id, $_SESSION['user']['user_id']]);
 
-                foreach($users as $user){
+                    foreach($users as $user){
 
-                    //アイコン情報を持ってくる
-                    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$user['user_id']]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        //アイコン情報を持ってくる
+                        $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
-                    echo '<li style="list-style: none; padding-left: 0;">
-                            <div class="profile-container"><div class="user-container">
-                            <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                            <a href="user.php?user_id=' . $user['user_id'] . '">', $user['user_name'] ,'</a>
-                        </li>';
+                        echo '<li style="list-style: none; padding-left: 0;">
+                                <div class="profile-container"><div class="user-container">
+                                <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                                <a href="user.php?user_id=' . $user['user_id'] . '">', $user['user_name'] ,'</a>
+                            </li>';
 
-                }
+                    }
                 }
             }
 
