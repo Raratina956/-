@@ -33,23 +33,22 @@ table {
 
 tr {
     border-bottom: 1px solid #333;
-    text-align: left; /* 行のアイテムを左寄せ */
+    text-align: center; /* 行のアイテムを左寄せ */
 }
 
 th, td {
-    padding: 10px; /* パディングを調整してスペースを均一に */
-    text-align: left; /* アイテムを左寄せ */
+    padding: 8px; /* パディングを調整してスペースを均一に */
+    text-align: center 
 }
 
 .tag, .name {
     white-space: nowrap; /* 改行させない */
-    font-size: 18px; /* フォントサイズを少し小さくして調整 */
+    font-size: 20px; 
     padding: 8px 15px; /* パディングを調整 */
 }
 
 img {
     vertical-align: middle; /* 画像の縦位置を中央に揃える */
-    margin-right: 10px; /* 画像と名前の間に余白を設定 */
 }
 
 h1, h2 {

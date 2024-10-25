@@ -136,7 +136,7 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索">
+        <input type="submit" value="検索" class="info">
     </form>
     <br>
     <form action="info.php" method="post">
@@ -153,11 +153,11 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読">
+        <input type="submit" value="一括既読" class="info">
     </form>
     <form action="info.php" method="post">
         <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除">
+        <input type="submit" value="一括削除" class="info">
     </form>
     <?php
     echo '<table>';
@@ -202,11 +202,11 @@ if ($list_raw) {
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td>', $title, '</td>';
+                    echo '<td class="title">件名：', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                        <td><input type="submit" value="詳細"></td>
+                        <td><input type="submit" value="詳細" class=""></td>
                     </form>
                     <?php
                 }
@@ -247,7 +247,7 @@ if ($list_raw) {
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td><input type="submit" value="詳細"></td>
+                        <td><input type="submit" value="詳細" class="info"></td>
                     </form>
                     <?php
                 }
