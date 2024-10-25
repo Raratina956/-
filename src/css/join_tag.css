@@ -1,6 +1,6 @@
 body{
     text-align: center;
-    padding-top: 130px;
+    padding-top: 10px;
     background-image: url(../img/SpotLinkbg.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -24,7 +24,7 @@ table{
     left: 10px;
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
-    background-image: url(../img/SpotLinkbg.png); /* 背景色 */
+    background-color: #a0eefc; /* 背景色 */
     padding: 8px 15px; /* 内側の余白 */
     border-radius: 5px; /* 角を丸く */
 }
