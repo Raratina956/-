@@ -44,11 +44,14 @@ th, td {
 .tag, .name {
     white-space: nowrap; /* 改行させない */
     font-size: 20px; 
-    padding: 8px 15px; /* パディングを調整 */
+    
 }
 
 img {
     vertical-align: middle; /* 画像の縦位置を中央に揃える */
+}
+.name{
+    padding-right: 20%;
 }
 
 h1, h2 {
