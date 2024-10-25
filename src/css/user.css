@@ -90,9 +90,10 @@ button:hover {
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    /* padding-left: 550px; */
-    /* padding: 0px 40px 0px 40px;
-    margin: 0px 170px 0px 170px; */
+    padding-left: 550px;
+    width:700px;
+    margin: 0px 0px 0px 00px;
+    padding: 0px 0px 0px 0px
 }
 
 .usericon{
