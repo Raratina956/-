@@ -34,6 +34,9 @@ table {
 tr {
     border-bottom: 1px solid #333;
 }
+th, td {
+    padding: 10px;
+}
 
 .tag, .name {
     white-space: nowrap; /* 改行させない */
