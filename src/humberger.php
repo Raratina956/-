@@ -1,5 +1,9 @@
+<?php
+    require 'parts/auto-login.php';
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +26,26 @@
         <!-- スライドメニュー -->
         <div class="slide-menu">
             <!-- メニューリスト -->
-            <ul>
+             <?php
+               //ユーザー情報を持ってくる
+                $users=$pdo->prepare('select * from Users where user_id=?');
+                // $users->execute([$_SESSION['user']['user_id']]);
+                $users->execute([$_GET['user_id']]);
+                
+                //アイコン情報を持ってくる
+                $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                $iconStmt->execute([$_GET['user_id']]);
+                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                echo '<ul>';
+                //DBから持ってきたユーザー情報を「$user」に入れる
+                    foreach($users as $user){
+                        echo '<li><img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"></li>';
+
+                    }
+
+             ?>
+
                 <li>MAP</li>
                 <li>ユーザー情報</li>
                 <li>お気に入り</li>
