@@ -33,7 +33,6 @@ table {
 
 tr {
     border-bottom: 1px solid #333;
-    text-align: center; /* 行のアイテムを左寄せ */
 }
 
 th, td {
