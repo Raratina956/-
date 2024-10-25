@@ -200,7 +200,7 @@ if ($list_raw) {
                     }
                     echo '</tr>';
                     echo '<tr>';
-                    echo '<td>', timeAgo($logtime), '</td>';
+                    echo '<td class="day">', timeAgo($logtime), '</td>';
                     echo '<td>', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
