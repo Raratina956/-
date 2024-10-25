@@ -81,7 +81,8 @@ if (isset($_POST['all_read'])) {
 <?php
 require 'header.php';
 ?>
-<link rel="stylesheet" href="css/info.css">
+<link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
 <h1>お知らせ</h1>
 <?php
 // Announce_check参照
