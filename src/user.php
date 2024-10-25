@@ -182,7 +182,7 @@
             
             echo '<br>';
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
-            echo '<div class="tag">';
+            // echo '<div class="tag">';
             echo 'タグ一覧<br>';
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
             $attribute->execute([$_SESSION['user']['user_id']]);
