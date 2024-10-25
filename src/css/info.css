@@ -52,7 +52,8 @@ td:nth-child(2) {
 
 .day{
     text-align: center;
-    margin-left: 280px;
+    margin-left: 300px;
+    color: rgb(103, 102, 102);
 }
 
 .title{
