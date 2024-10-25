@@ -63,7 +63,26 @@ if (isset($_POST['logout'])) {
     <div class="slide-menu">
         <!-- メニューリスト -->
         <ul>
-            <li>
+            <?php
+                //ユーザー情報を持ってくる
+                    $users=$pdo->prepare('select * from Users where user_id=?');
+                    // $users->execute([$_SESSION['user']['user_id']]);
+                    $users->execute([$_SESSION['user']['user_id']]);
+                    
+                    //アイコン情報を持ってくる
+                    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                    $iconStmt->execute([$_SESSION['user']['user_id']]);
+                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                    echo '<ul>';
+                    //DBから持ってきたユーザー情報を「$user」に入れる
+                        foreach($users as $user){
+                            echo '<li><img src="', $icon['icon_name'], '" width="10%" height="10%" class="usericon"></li>';
+
+                        }
+
+                ?>
+            <!-- <li> -->
                 <form action="search.php" method="post">
                     <input type="text" name="search" class="tbox">
                     <input type="submit" class="search1" value="検索">
