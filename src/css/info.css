@@ -16,7 +16,7 @@ td:nth-child(2) {
 }
 
 /* 詳細ボタンのスタイル */
-input[type="submit"] {
+.info{
     background-color: #4CAF50; /* ボタンの背景色 */
     color: white; /* ボタンの文字色 */
     padding: 8px 16px; /* ボタンのパディング */
