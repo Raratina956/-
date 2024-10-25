@@ -81,7 +81,8 @@ if (isset($_POST['all_read'])) {
 <?php
 require 'header.php';
 ?>
-<link rel="stylesheet" href="css/info.css">
+<link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
 <h1>お知らせ</h1>
 <?php
 // Announce_check参照
@@ -136,7 +137,7 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索">
+        <input type="submit" value="検索" class="info">
     </form>
     <br>
     <form action="info.php" method="post">
@@ -153,11 +154,11 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読">
+        <input type="submit" value="一括既読" class="info">
     </form>
     <form action="info.php" method="post">
         <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除">
+        <input type="submit" value="一括削除" class="info">
     </form>
     <?php
     echo '<table>';
@@ -202,7 +203,7 @@ if ($list_raw) {
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td>', $title, '</td>';
+                    echo '<td class="title"> 件名：', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
@@ -243,11 +244,11 @@ if ($list_raw) {
                     }
                     echo '</tr>';
                     echo '<tr>';
-                    echo '<td>', timeAgo($logtime), '</td>';
+                    echo '<td class="day">', timeAgo($logtime), '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td><input type="submit" value="詳細"></td>
+                        <td><input type="submit" value="詳細" class="info"></td>
                     </form>
                     <?php
                 }

@@ -1,0 +1,61 @@
+body {
+    padding-top: 120px;
+    background-image: url(../img/SpotLinkbg.png);
+    text-align:center;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px; /* 行間を広げる */
+    width: 80%; /* テーブルの幅を調整 */
+    /* background-color: #f0f0f0; /* 背景色を変更 */
+}
+
+td:nth-child(2) {
+    padding-left: 15px; /* テキストに余白を追加 */
+    text-align: left; /* 左寄せに設定 */
+}
+
+/* 詳細ボタンのスタイル */
+.info{
+    background-color: #4CAF50; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    padding: 8px 16px; /* ボタンのパディング */
+    margin: 4px 2px;
+    border: none; /* ボーダーを削除 */
+    border-radius: 8px; /* ボタンを丸くする */
+    cursor: pointer; /* ポインターを表示 */
+}
+
+.large-text {
+    font-size: 21px;
+}
+
+.back-link {
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
+
+.usericon{
+    text-align: center;
+    margin-left: 300px;
+}
+
+.day{
+    text-align: center;
+    margin-left: 300px;
+    color: rgb(103, 102, 102);
+}
+
+.title{
+    font-size: 20px;
+}

@@ -180,7 +180,6 @@
             echo '</div>';
             echo '</div>';
             
-            echo '<br>';
             //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
             echo '<div class="tag">';
             echo 'タグ一覧<br>';
