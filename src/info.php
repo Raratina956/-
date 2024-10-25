@@ -136,7 +136,7 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索">
+        <input type="submit" value="検索" class="info">
     </form>
     <br>
     <form action="info.php" method="post">
