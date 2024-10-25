@@ -100,7 +100,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td><img src="img/icon/default.jpg" width="40%"height="40%"></td>';
+                echo '<td class="icon"><img src="img/icon/default.jpg" width="40%"height="40%"></td>';
                 echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
                 echo '</tr>';
             }

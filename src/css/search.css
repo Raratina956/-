@@ -10,7 +10,7 @@ body {
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
 main {
-    margin-top: 120px; /* Adjust to account for header height */
+    margin-top: 100px; /* Adjust to account for header height */
     margin-bottom: 100px;
     width: 100%;
     max-width: 600px;
@@ -50,9 +50,6 @@ font-size: 20px;
     white-space: nowrap; /* Prevent text wrapping */
     padding: 8px;
 font-size: 20px;
-align-items: center;
-
-
 }
 
 h1, h2 {
