@@ -1,8 +1,4 @@
 <?php
-    require 'parts/auto-login.php';
-?>
-
-<?php
 if (isset($_POST['logout'])) {
     // ユーザー情報をセッションから削除
     unset($_SESSION['user']);
