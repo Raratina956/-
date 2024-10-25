@@ -43,9 +43,8 @@ if (isset($_POST['n_user'])) {
 if (isset($_POST['all_read'])) {
     // 0:全て 1:アナウンス 2:位置情報
     if ($narrow == 0 && $n_user == 0) {
-        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
-        // $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
-        $all_read_sql->execute([1, 2, 0]);
+        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
+        $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
     } else {
         $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
         $list_sql->execute([$_SESSION['user']['user_id']]);
@@ -201,7 +200,7 @@ if ($list_raw) {
                     }
                     echo '</tr>';
                     echo '<tr>';
-                    echo '<td>', timeAgo($logtime), '</td>';
+                    echo '<td class="day">', timeAgo($logtime), '</td>';
                     echo '<td>', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">

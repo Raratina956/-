@@ -47,4 +47,10 @@ input[type="submit"] {
 
 .usericon{
     text-align: center;
+    margin-left: 300px;
+}
+
+.day{
+    text-align: center;
+    margin-left: 280px;
 }
