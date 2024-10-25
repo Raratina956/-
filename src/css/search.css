@@ -38,13 +38,16 @@ th, td {
     padding: 10px;
 }
 
-.tag, .name {
-    white-space: nowrap; /* 改行させない */
-    font-size: 20px; 
-    
+.tag,.icon{
+    text-align: center; /* タグとアイコンを中央揃え */
+    padding: 8px;
 }
 .name{
-    padding-right: 20px;
+    padding-left: 20px; /* 左側に余白を追加 */
+    padding-right: 50px; /* 右側に余白を追加して中央に寄せる */
+    text-align: left; /* name部分のテキストを左揃え */
+    font-size: 20px;
+    white-space: nowrap;
 }
 
 h1, h2 {
