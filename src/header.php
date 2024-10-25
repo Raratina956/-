@@ -77,7 +77,7 @@ if (isset($_POST['logout'])) {
                     echo '<ul>';
                     //DBから持ってきたユーザー情報を「$user」に入れる
                         foreach($users as $user){
-                            echo '<li><img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon"></li>';
+                            echo '<li><img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon2"></li>';
 
                         }
 
