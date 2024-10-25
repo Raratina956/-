@@ -83,17 +83,18 @@ button:hover {
     padding-left: 270px;
 }
 
-.tag{
+.tag {
     background-color: azure;
     border: 2px solid #17A7E9;
     display: flex;
-    text-align: center;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 550px;
-    width:700px;
-    margin: 0px 0px 0px 00px;
-    padding: 0px 0px 0px 0px
+    justify-content: center; /* 文字を中央寄せにします */
+    text-align: center;
+    padding: 10px 20px; /* 内側の余白を少し調整 */
+    margin: 20px auto; /* 上下の余白を追加して、左右は自動で中央寄せ */
+    width: fit-content; /* タグの幅を内容に合わせて小さくします */
+    border-radius: 10px; /* 角を少し丸めて、デザインを柔らかくします（オプション） */
+    font-size: 14px; /* 文字サイズを調整（お好みで変更） */
 }
 
 .usericon{
