@@ -40,41 +40,59 @@ if (isset($_POST['n_user'])) {
     $n_user = 0;
 }
 // 一括既読
-if (isset($_POST['all_read'])) {
-    // 0:全て 1:アナウンス 2:位置情報
-    if ($narrow == 0 && $n_user == 0) {
-        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
-        $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
-    } else {
-        $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
-        $list_sql->execute([$_SESSION['user']['user_id']]);
-        $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
-        if ($list_raw) {
-            foreach ($list_raw as $row) {
-                switch ($narrow) {
-                    case 1:
-                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
-                        $n_announce_s->execute([$n_user]);
-                        $n_announce_r = $n_announce_s->fetch();
-                        $announcement_id_a = $n_announce_r['announcement_id'];
-                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
-                        break;
-                    case 2:
-                        $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                        $n_announce_s->execute([$n_user]);
-                        $n_announce_r = $n_announce_s->fetch();
-                        $announcement_id_a = $n_announce_r['current_location_id'];
-                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
-                        break;
-                    default:
-                        # code...
-                        break;
-                }
-            }
-        }
+if ($narrow == 0 && $n_user == 0) {
+    // アナウンス、位置情報 → 全てのアカウント
+    $stmt = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=?");
+    $stmt->execute([1, $_SESSION['user']['user_id']]);
+} elseif ($narrow != 0 && $n_user == 0) {
+    // アナウンス、位置情報のいずれか → 全てのアカウント
+    switch ($narrow) {
+        case 1:
+            $stmt = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?");
+            $stmt->execute([1, $_SESSION['user']['user_id'], 1]); // アナウンス
+            break;
+        case 2:
+            $stmt = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?");
+            $stmt->execute([1, $_SESSION['user']['user_id'], 2]); // 位置情報
+            break;
+    }
+} elseif ($narrow == 0 && $n_user > 0) {
+    // アナウンス、位置情報 → 特定のアカウント
+    // アナウンスの処理
+    $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
+    $stmt->execute([$n_user]);
+    while ($row = $stmt->fetch()) {
+        $stmtUpdate = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?");
+        $stmtUpdate->execute([1, $_SESSION['user']['user_id'], $row['announcement_id']]);
+    }
 
+    // 位置情報の処理
+    $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
+    $stmt->execute([$n_user]);
+    while ($row = $stmt->fetch()) {
+        $stmtUpdate = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?");
+        $stmtUpdate->execute([1, $_SESSION['user']['user_id'], $row['current_location_id']]);
+    }
+} else {
+    switch ($narrow) {
+        case 1:
+            // アナウンス → 特定のアカウント
+            $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
+            $stmt->execute([$n_user]);
+            while ($row = $stmt->fetch()) {
+                $stmtUpdate = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?");
+                $stmtUpdate->execute([1, $_SESSION['user']['user_id'], $row['announcement_id']]);
+            }
+            break;
+        case 2:
+            // 位置情報 → 特定のアカウント
+            $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
+            $stmt->execute([$n_user]);
+            while ($row = $stmt->fetch()) {
+                $stmtUpdate = $pdo->prepare("UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?");
+                $stmtUpdate->execute([1, $_SESSION['user']['user_id'], $row['current_location_id']]);
+            }
+            break;
     }
 }
 ?>
