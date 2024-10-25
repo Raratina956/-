@@ -247,7 +247,7 @@ if ($list_raw) {
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td class="info"><input type="submit" value="詳細"></td>
+                        <td><input type="submit" value="詳細" class="info"></td>
                     </form>
                     <?php
                 }
