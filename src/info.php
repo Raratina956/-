@@ -29,13 +29,13 @@ function timeAgo($logtime)
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
-    $narrow = (int)$narrow;
+    $narrow = (int) $narrow;
 } else {
     $narrow = 0;
 }
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
-    $n_user = (int)$n_user;
+    $n_user = (int) $n_user;
 } else {
     $n_user = 0;
 }
@@ -58,17 +58,17 @@ if (isset($_POST['all_read'])) {
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['announcement_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
                         break;
                     case 2:
-                        var_dump($n_user);
                         $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['current_location_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
-                        default:
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        break;
+                    default:
                         # code...
                         break;
                 }
@@ -136,7 +136,7 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索" class="info">
+        <input type="submit" value="検索">
     </form>
     <br>
     <form action="info.php" method="post">
@@ -153,11 +153,11 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読" class="info">
+        <input type="submit" value="一括既読">
     </form>
     <form action="info.php" method="post">
         <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除" class="info">
+        <input type="submit" value="一括削除">
     </form>
     <?php
     echo '<table>';
@@ -202,11 +202,11 @@ if ($list_raw) {
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td class="title">件名：', $title, '</td>';
+                    echo '<td>', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                        <td><input type="submit" value="詳細" class=""></td>
+                        <td><input type="submit" value="詳細" class="info"></td>
                     </form>
                     <?php
                 }
@@ -247,7 +247,7 @@ if ($list_raw) {
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td><input type="submit" value="詳細" class="info"></td>
+                        <td><input type="submit" value="詳細"></td>
                     </form>
                     <?php
                 }
