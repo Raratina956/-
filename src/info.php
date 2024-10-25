@@ -78,59 +78,61 @@ if (isset($_POST['all_read'])) {
     }
 }
 // 一括削除
-if ($narrow == 0 && $n_user == 0) {
-    // アナウンス、位置情報 → 全てのアカウント
-    $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=?");
-    $stmt->execute([$_SESSION['user']['user_id']]);
-} elseif ($narrow != 0 && $n_user == 0) {
-    // アナウンス、位置情報のいずれか → 全てのアカウント
-    switch ($narrow) {
-        case 1:
-            $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=?");
-            $stmt->execute([$_SESSION['user']['user_id'], 1]); // アナウンス
-            break;
-        case 2:
-            $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=?");
-            $stmt->execute([$_SESSION['user']['user_id'], 2]); // 位置情報
-            break;
-    }
-} elseif ($narrow == 0 && $n_user > 0) {
-    // アナウンス、位置情報 → 特定のアカウント
-    // アナウンスの処理
-    $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
-    $stmt->execute([$n_user]);
-    while ($row = $stmt->fetch()) {
-        $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?");
-        $stmtDelete->execute([$_SESSION['user']['user_id'], $row['announcement_id']]);
-    }
+if (isset($_POST['all_delete'])) {
+    if ($narrow == 0 && $n_user == 0) {
+        // アナウンス、位置情報 → 全てのアカウント
+        $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=?");
+        $stmt->execute([$_SESSION['user']['user_id']]);
+    } elseif ($narrow != 0 && $n_user == 0) {
+        // アナウンス、位置情報のいずれか → 全てのアカウント
+        switch ($narrow) {
+            case 1:
+                $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=?");
+                $stmt->execute([$_SESSION['user']['user_id'], 1]); // アナウンス
+                break;
+            case 2:
+                $stmt = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=?");
+                $stmt->execute([$_SESSION['user']['user_id'], 2]); // 位置情報
+                break;
+        }
+    } elseif ($narrow == 0 && $n_user > 0) {
+        // アナウンス、位置情報 → 特定のアカウント
+        // アナウンスの処理
+        $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
+        $stmt->execute([$n_user]);
+        while ($row = $stmt->fetch()) {
+            $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?");
+            $stmtDelete->execute([$_SESSION['user']['user_id'], $row['announcement_id']]);
+        }
 
-    // 位置情報の処理
-    $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
-    $stmt->execute([$n_user]);
-    while ($row = $stmt->fetch()) {
-        $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?");
-        $stmtDelete->execute([$_SESSION['user']['user_id'], $row['current_location_id']]);
-    }
-} else {
-    switch ($narrow) {
-        case 1:
-            // アナウンス → 特定のアカウント
-            $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
-            $stmt->execute([$n_user]);
-            while ($row = $stmt->fetch()) {
-                $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?");
-                $stmtDelete->execute([$_SESSION['user']['user_id'], $row['announcement_id']]);
-            }
-            break;
-        case 2:
-            // 位置情報 → 特定のアカウント
-            $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
-            $stmt->execute([$n_user]);
-            while ($row = $stmt->fetch()) {
-                $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?");
-                $stmtDelete->execute([$_SESSION['user']['user_id'], $row['current_location_id']]);
-            }
-            break;
+        // 位置情報の処理
+        $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
+        $stmt->execute([$n_user]);
+        while ($row = $stmt->fetch()) {
+            $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?");
+            $stmtDelete->execute([$_SESSION['user']['user_id'], $row['current_location_id']]);
+        }
+    } else {
+        switch ($narrow) {
+            case 1:
+                // アナウンス → 特定のアカウント
+                $stmt = $pdo->prepare("SELECT * FROM Notification WHERE send_person=?");
+                $stmt->execute([$n_user]);
+                while ($row = $stmt->fetch()) {
+                    $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?");
+                    $stmtDelete->execute([$_SESSION['user']['user_id'], $row['announcement_id']]);
+                }
+                break;
+            case 2:
+                // 位置情報 → 特定のアカウント
+                $stmt = $pdo->prepare("SELECT * FROM Current_location WHERE user_id=?");
+                $stmt->execute([$n_user]);
+                while ($row = $stmt->fetch()) {
+                    $stmtDelete = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?");
+                    $stmtDelete->execute([$_SESSION['user']['user_id'], $row['current_location_id']]);
+                }
+                break;
+        }
     }
 }
 ?>
