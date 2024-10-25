@@ -206,7 +206,7 @@ if ($list_raw) {
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                        <td><input type="submit" value="詳細" class=""></td>
+                        <td><input type="submit" value="詳細" class="info"></td>
                     </form>
                     <?php
                 }
