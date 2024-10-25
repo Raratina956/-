@@ -33,12 +33,6 @@ table {
 
 tr {
     border-bottom: 1px solid #333;
-    text-align: center; /* 行のアイテムを左寄せ */
-}
-
-th, td {
-    padding: 8px; /* パディングを調整してスペースを均一に */
-    text-align: center 
 }
 
 .tag, .name {
