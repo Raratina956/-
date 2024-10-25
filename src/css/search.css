@@ -51,7 +51,7 @@ img {
     vertical-align: middle; /* 画像の縦位置を中央に揃える */
 }
 .name{
-    padding-right: 20%;
+    padding-right: 20px;
 }
 
 h1, h2 {
