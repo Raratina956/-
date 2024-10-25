@@ -29,56 +29,45 @@ function timeAgo($logtime)
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
+    $narrow = (int)$narrow;
 } else {
     $narrow = 0;
 }
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
+    $n_user = (int)$n_user;
 } else {
     $n_user = 0;
 }
 // 一括既読
-var_dump(1);
 if (isset($_POST['all_read'])) {
     // 0:全て 1:アナウンス 2:位置情報
-    var_dump(2);
     if ($narrow == 0 && $n_user == 0) {
-        var_dump(3);
         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
-        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
-        var_dump("narrow".$narrow);
-        var_dump( "user_id".$_SESSION['user']['user_id']);
-        var_dump(4);
+        // $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+        $all_read_sql->execute([1, 2, 0]);
     } else {
-        var_dump(5);
         $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
         $list_sql->execute([$_SESSION['user']['user_id']]);
-        var_dump(6);
         $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
         if ($list_raw) {
-            var_dump(7);
             foreach ($list_raw as $row) {
-                var_dump(8);
                 switch ($narrow) {
                     case 1:
-                        var_dump(9);
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['announcement_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
-                        var_dump(10);
                         break;
                     case 2:
-                        var_dump(11);
                         $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['current_location_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow,$announcement_id_a]);
-                        var_dump(12);
                         default:
                         # code...
                         break;
@@ -88,7 +77,6 @@ if (isset($_POST['all_read'])) {
 
     }
 }
-var_dump(13);
 ?>
 <?php
 require 'header.php';
@@ -111,7 +99,7 @@ if ($list_raw) {
         </select>
         <label>ユーザー別</label>
         <select name="n_user">
-            <option value="0" selected>全て</option>
+            <option value=0 selected>全て</option>
             <?php
             $n_users = [];
             foreach ($list_raw as $row) {
