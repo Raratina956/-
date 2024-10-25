@@ -46,6 +46,8 @@ if (isset($_POST['all_read'])) {
         var_dump(3);
         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+        var_dump($narrow);
+        var_dump( $_SESSION['user']['user_id']);
         var_dump(4);
     } else {
         var_dump(5);
