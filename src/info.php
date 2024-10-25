@@ -96,7 +96,6 @@ if ($narrow == 0 && $n_user == 0) {
     }
 }
 ?>
-?>
 <?php
 require 'header.php';
 ?>
