@@ -35,11 +35,6 @@ tr {
     border-bottom: 1px solid #333;
 }
 
-th, td {
-    padding: 8px; /* パディングを調整してスペースを均一に */
-    text-align: center 
-}
-
 .tag, .name {
     white-space: nowrap; /* 改行させない */
     font-size: 20px; 
