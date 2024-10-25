@@ -70,4 +70,5 @@ td:nth-child(2) {
     border: none; /* ボーダーを削除 */
     border-radius: 8px; /* ボタンを丸くする */
     cursor: pointer; /* ポインターを表示 */
+    margin-right: -66px;
 }
