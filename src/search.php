@@ -94,7 +94,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <table>
         <tr>
             <th>種類</th>
-            <th>名前</th>
+            <th >名前</th>
         </tr>
         <?php
         if (!empty($user_data)) {
