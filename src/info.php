@@ -29,11 +29,13 @@ function timeAgo($logtime)
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
+    $narrow = (int)$narrow;
 } else {
     $narrow = 0;
 }
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
+    $n_user = (int)$n_user;
 } else {
     $n_user = 0;
 }
@@ -111,7 +113,7 @@ if ($list_raw) {
         </select>
         <label>ユーザー別</label>
         <select name="n_user">
-            <option value="0" selected>全て</option>
+            <option value=0 selected>全て</option>
             <?php
             $n_users = [];
             foreach ($list_raw as $row) {
