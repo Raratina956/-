@@ -8,7 +8,7 @@ body {
     background-color: #464646;
     background-attachment: fixed;
     display: flex; /* Flexboxを使用して垂直方向も中央寄せ */
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     min-height: 100vh; /* 画面全体の高さに対応 */
     margin: 0;
