@@ -11,40 +11,44 @@ body {
     align-items: center;
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
+/* Main Styles */
 main {
-    margin-top: 100px; /* Adjust to account for header height */
+    margin-top: 100px;
     margin-bottom: 100px;
     width: 100%;
     max-width: 600px;
     padding: 20px;
     border-radius: 8px;
-    text-align: center; /* Center the text inside the main container */
-     display: flex;
-    flex-direction: column; /* Ensure vertical stacking of elements */
-    align-items: center; /* Center align the content horizontally */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Table Styles */
 table {
-    width: 100%; /* テーブルを全幅に設定 */
+    width: 80%; /* テーブルを画面幅の80%に設定 */
     border-collapse: collapse;
     margin-top: 20px;
-    margin-left: auto; /* 中央寄せ */
-    margin-right: auto; /* 中央寄せ */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 tr {
     border-bottom: 1px solid #333;
 }
 
-.tag,.icon{
-  
+.tag, .icon {
+    width: 20%; /* アイコンの幅をテーブルの20%に設定 */
+    text-align: center;
     padding: 8px;
 }
-.name{
-    padding-left: 20px; /* 左側に余白を追加 */
-    padding-right: 50px; /* 右側に余白を追加して中央に寄せる */
-    text-align: left; /* name部分のテキストを左揃え */
+
+.name {
+    width: 60%; /* 名前の幅をテーブルの60%に設定 */
+    padding-left: 20px; /* 左側の余白を追加 */
+    padding-right: 0; /* 余分な右側の余白を削除 */
+    text-align: left; /* 名前を左揃えに設定 */
     font-size: 20px;
     white-space: nowrap;
 }
