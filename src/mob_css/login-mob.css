@@ -53,6 +53,11 @@ form {
     width: 200px;
 }
 
+.error{
+    text-align: center;
+    color: red;
+}
+
 .next{
     text-align:center;
 }

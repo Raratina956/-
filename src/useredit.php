@@ -33,6 +33,7 @@
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
             </div>
+            <body>
 
 <?php
             echo '<div id="formContainer">';
@@ -120,5 +121,6 @@
     };
     </script>
     </form>
+</body>
 
 
