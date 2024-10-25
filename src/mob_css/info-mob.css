@@ -16,7 +16,7 @@ td:nth-child(2) {
 }
 
 /* 詳細ボタンのスタイル */
-.info,.edit{
+.info{
     background-color: #4CAF50; /* ボタンの背景色 */
     color: white; /* ボタンの文字色 */
     padding: 8px 16px; /* ボタンのパディング */
@@ -47,7 +47,9 @@ td:nth-child(2) {
 
 .usericon{
     text-align: center;
-    margin-left: 300px;
+    margin-left: 30px;
+    width: 70px;
+    height: 70px;
 }
 
 .day{
@@ -57,5 +59,15 @@ td:nth-child(2) {
 }
 
 .title{
-    font-size: 20px;
+    font-size: 15px;
+}
+
+.edit{
+    background-color: #4CAF50; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    padding: 8px 16px; /* ボタンのパディング */
+    margin: 4px 2px;
+    border: none; /* ボーダーを削除 */
+    border-radius: 8px; /* ボタンを丸くする */
+    cursor: pointer; /* ポインターを表示 */
 }

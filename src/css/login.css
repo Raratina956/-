@@ -45,6 +45,11 @@ form {
     height: 40px;
 }
 
+.error{
+    text-align: center;
+    color: red;
+}
+
 .next{
     text-align:center;
 }
