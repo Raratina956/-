@@ -109,7 +109,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
-                echo '<tr rowspan="2">';
+                echo '<tr rowspan="2" align="center">';
                 // echo '<td class="tag"><h3>タグ</h3></td>';
                 echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
