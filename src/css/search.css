@@ -54,6 +54,10 @@ tr {
     white-space: nowrap;
 }
 
+.tag_name{
+    text-align: center;
+}
+
 h1, h2 {
     text-align: center;
     color: #333;
