@@ -64,7 +64,7 @@
                                 foreach($icon as $ic){
                                     if($i = 1; $i<8; $i++){
                                     echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
-                                    i++;
+                                   
                                     }
                                 }
                         }
