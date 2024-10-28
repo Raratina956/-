@@ -68,9 +68,7 @@ require 'header.php';
 echo '<link rel="stylesheet" href="css/search.css">';
 ?>
 <main>
-    <h1>検索結果</h1>
-    <h2><?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?></h2>
-    
+   
     <!-- Search Form -->
     <form action="search.php" method="post">
     <select class="sort-tag" name="kinds">
@@ -89,6 +87,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
         
         <input class="search" type="submit" value="再検索">
     </form>
+    <h1>検索結果</h1>
+    <h2><?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?></h2>
     
     <!-- Search Results -->
     <table>
