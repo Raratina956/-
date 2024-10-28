@@ -86,7 +86,7 @@ if (isset($_POST['logout'])) {
                     <input type="text" name="search" class="tbox">
                     <input type="submit" class="search1" value="検索">
                 </form>
-                
+
             <li><a href="map.php">MAP</a></li>
             <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
             <li><a href="favorite.php">お気に入り</a></li>
@@ -99,10 +99,13 @@ if (isset($_POST['logout'])) {
             <form id="myForm" action="" method="post">
                 <input type="hidden" name="logout" value="1">
             </form>
+            <li><a<li>
             <li><a href="#">a</a><li>
             <li><a href="#">a</a><li>
             <li><a href="#">a</a><li>
-            <li><a href="#">a</a><li>
+            <li><a<li>
+            <li><a<li>
+            <li><a<li>
             <li><a href="#" id="submitLink">ログアウト</a></li>
             <script>
                 document.getElementById('submitLink').addEventListener('click', function (event) {
