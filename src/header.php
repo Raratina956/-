@@ -62,7 +62,6 @@ if (isset($_POST['logout'])) {
     <!-- スライドメニュー -->
     <div class="slide-menu">
         <!-- メニューリスト -->
-        <ul>
             <?php
                 //ユーザー情報を持ってくる
                     $users=$pdo->prepare('select * from Users where user_id=?');
@@ -83,7 +82,6 @@ if (isset($_POST['logout'])) {
                         }
 
                 ?>
-            <!-- <li> -->
                 <form action="search.php" method="post">
                     <input type="text" name="search" class="tbox">
                     <input type="submit" class="search1" value="検索">
