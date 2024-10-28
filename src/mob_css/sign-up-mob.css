@@ -16,8 +16,6 @@ body {
     background-color: #464646; 
     height: 100%;
     padding-top: 110px;
-
-    text-align: center;
 }
 
 h2 {
@@ -118,4 +116,8 @@ input[type="submit"]:hover {
 
 .back-link:hover {
     background-color: #ffffff; /* ホバー時の背景色 */
+}
+
+h1{
+    margin-left: 128px;
 }
