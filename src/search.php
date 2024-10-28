@@ -101,7 +101,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($user_data as $data) {
                 echo '<tr>';
                 echo '<td class="tag"><img src="img/icon/default.jpg" width="40%"height="40%"></td>';
-                echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
+                echo '<td class="name"><h2>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h2></td>';
                 echo '</tr>';
             }
             $judge = 1;
@@ -111,7 +111,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($tag_data as $data) {
                 echo '<tr>';
                 echo '<td class="tag">タグ</td>';
-                echo '<td class="name">', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</td>';
+                echo '<td class="name"><h2>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h2></td>';
                 echo '</tr>';
             }
             $judge = 1;
