@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <title>Map Example</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVOfQ2kHq-JVAYMwjZXA8V2UNLPXePMls"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVOfQ2kHq-JVAYMwjZXA8V2UNLPXePMls&libraries=marker"></script>
     <script>
-        let map; // グローバル変数として地図を保持
-        let marker; // マーカーをグローバル変数として保持
+        let map; // 地図
+        let marker; // マーカー
 
         function initMap() {
             // 地図の初期化
@@ -47,7 +47,9 @@
             map.setCenter(position);
 
             // マーカーの位置を更新
-            marker.setMap(null); // 以前のマーカーを削除
+            if (marker) {
+                marker.setMap(null); // 以前のマーカーを削除
+            }
             marker = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
                 position: position,
