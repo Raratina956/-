@@ -102,12 +102,12 @@ if (isset($_POST['logout'])) {
             <li>a</li>
             <li>a</li>
             <li><a href="#" id="submitLink">ログアウト</a></li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           
             <script>
                 document.getElementById('submitLink').addEventListener('click', function (event) {
