@@ -1,12 +1,14 @@
-body{
-    text-align: center;
-    padding-top: 10px;
+body {
     background-image: url(../img/SpotLinkbg.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #464646;
-    background-attachment: fixed;
+    background-size: cover; /* 全体を覆う */
+    background-repeat: no-repeat; /* 繰り返さない */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
 main {
     margin-top: 100px;

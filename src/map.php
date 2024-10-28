@@ -61,9 +61,9 @@
                             $iconStmt->execute([$classroom_id]);
                             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
                             // アイコン表示
-                            $j = 0;
+                            $j = 1;
                                 foreach($icon as $ic){
-                                    if($j == 7){
+                                    if($j < 7){
                                     echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                                     $j++;
                                      }

@@ -6,7 +6,6 @@
     <title>hoge</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script defer>
-
         // ボタンクリック時
         $(document).ready(function() {
             $('#send').click(function() {
@@ -28,6 +27,7 @@
                 head: pos.coords.heading,              // 移動方向
                 speed: pos.coords.speed                // 速度
             };
+
             // サーバーサイドへPOSTする
             $.ajax({
                 type: "post",
