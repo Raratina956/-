@@ -64,5 +64,13 @@
         
       .tbox{
             height: 25px;
+            margin-left: 25px;
       }
+      .usericon2{
+
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
 }
