@@ -80,6 +80,9 @@
     /* メニューリスト */
     .slide-menu ul {
       padding-top: 10px;
+      height: 100%;
+      list-style: none;
+      overflow-y: scroll;
     }
 
     .slide-menu li {
