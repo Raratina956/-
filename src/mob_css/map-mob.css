@@ -19,6 +19,13 @@ body{
     /* padding-top: 125px; */
     padding-top: 110px;
 }
+
+.title{
+    text-align: center;
+
+}
+
+
 .map{
     /* margin: 20px;
     padding: 27px; */

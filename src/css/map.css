@@ -15,7 +15,6 @@ body{
               
     /* 背景画像が読み込まれる前に表示される背景のカラー */
     background-color: #464646; 
-    text-align: center;
     height: 100%;
     padding-top: 110px;
 
@@ -28,6 +27,7 @@ body{
 }
 
 .title{
+    text-align: center;
 
 }
 
