@@ -23,6 +23,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)">
+<main>
 <h1>みんなのタグ</h1>
 <a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
 <form action="tag_list" method="post">
@@ -98,3 +99,4 @@ if ($results) {
 }
 ?>
 <a href="main.php" class="back-link">メインへ</a>
+</main>
