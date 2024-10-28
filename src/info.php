@@ -104,7 +104,7 @@ if (isset($_POST['all_delete'])) {
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['current_location_id'];
                         $all_read_sql = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=? AND current_location_id=?");
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        $all_read_sql->execute([$_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
                         break;
                     default:
                         # code...
