@@ -3,9 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>位置情報取得</title>
+    <title>位置情報取得と地図表示</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script> <!-- Google Maps APIのスクリプトを追加 -->
     <script defer>
+        let map; // グローバル変数として地図を定義
+        let marker; // グローバル変数としてマーカーを定義
+
         $(document).ready(function() {
             $('#send').click(function() {
                 navigator.geolocation.getCurrentPosition(success, fail);
@@ -59,6 +63,9 @@
                 <p>移動方向: ${position.head}</p>
                 <p>速度: ${position.speed}</p>
             `);
+
+            // マップを表示
+            initMap(position.lat, position.lon);
         }
 
         function fail(error) {
@@ -66,12 +73,30 @@
             if (error.code == 2) alert('何らかのエラーが発生し位置情報が取得できなかった。');
             if (error.code == 3) alert('タイムアウト　制限時間内に位置情報が取得できなかった。');
         }
+
+        function initMap(lat, lon) {
+            const position = { lat: parseFloat(lat), lng: parseFloat(lon) }; // 緯度と経度をオブジェクトに
+
+            // 地図を初期化
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: position,
+            });
+
+            // マーカーを設置
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: "あなたの位置"
+            });
+        }
     </script>
 </head>
 
 <body>
     <button type="button" id="send">位置情報取得</button>
     <div id="result"></div> <!-- 結果を表示するための要素 -->
+    <div id="map" style="height: 400px; width: 100%;"></div> <!-- 地図を表示するための要素 -->
 </body>
 
 </html>
