@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>hoge</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script defer>
         // ボタンクリック時
         $(document).ready(function() {
@@ -20,12 +20,12 @@
             const position = {
                 data: date.toLocaleString(),                // 日時
                 lat: pos.coords.latitude,                   // 緯度
-                lon: pos.coords.longitude,             // 経度
-                alt: pos.coords.altitude,              // 高度
-                posacc: pos.coords.accuracy,           // 位置精度
-                altacc: pos.coords.altitudeAccuracy,   // 高度精度
-                head: pos.coords.heading,              // 移動方向
-                speed: pos.coords.speed                // 速度
+                lon: pos.coords.longitude,                  // 経度
+                alt: pos.coords.altitude,                   // 高度
+                posacc: pos.coords.accuracy,                // 位置精度
+                altacc: pos.coords.altitudeAccuracy,        // 高度精度
+                head: pos.coords.heading,                    // 移動方向
+                speed: pos.coords.speed                      // 速度
             };
 
             // サーバーサイドへPOSTする
