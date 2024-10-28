@@ -83,6 +83,7 @@
       height: 100%;
       list-style: none;
       overflow-y: scroll;
+      
     }
 
     .slide-menu li {
@@ -91,6 +92,8 @@
       line-height: 2.5;
       text-align: center;
       list-style: none;
+      font-size: 18px;
+      
     }
 
     /* ログアウトの赤文字 */
