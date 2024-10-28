@@ -111,7 +111,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($tag_data as $data) {
                 echo '<tr>';
                 // echo '<td class="tag"><h3>タグ</h3></td>';
-                echo '<td rowspan="2" class="tag_name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
+                echo '<td rowspan="2" align="center"class="tag_name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
             $judge = 1;
