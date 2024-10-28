@@ -14,6 +14,7 @@ require 'header.php';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="mob_css/j-tag.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/join_tag.css" media="screen and (min-width: 1280px)">
+<main>
 <h1>参加タグ一覧</h1>
 <?php
 $search_sql = $pdo->prepare("SELECT * FROM Tag_attribute WHERE user_id=?");
@@ -54,3 +55,4 @@ if ($results) {
 }
 ?>
 <a href="main.php" class="back-link">メインへ</a>
+</main>
