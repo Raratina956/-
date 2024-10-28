@@ -86,6 +86,7 @@
     }
 
     .slide-menu li {
+      height: auto;
       color: #fff;
       line-height: 2.5;
       text-align: center;
