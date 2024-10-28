@@ -62,7 +62,10 @@
                             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
                             // アイコン表示
                                 foreach($icon as $ic){
+                                    if($j = 1; $j<8; $j++){
                                     echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
+                                   
+                                    }
                                 }
                         }
 
