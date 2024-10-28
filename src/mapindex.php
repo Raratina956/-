@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>位置情報取得と地図表示</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script> <!-- Google Maps APIのスクリプトを追加 -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVOfQ2kHq-JVAYMwjZXA8V2UNLPXePMls"></script> <!-- Google Maps APIのスクリプトを非同期で読み込み -->
     <script defer>
         let map; // グローバル変数として地図を定義
         let marker; // グローバル変数としてマーカーを定義
@@ -83,11 +83,11 @@
                 center: position,
             });
 
-            // マーカーを設置
-            marker = new google.maps.Marker({
+            // AdvancedMarkerElementを使用してマーカーを設置
+            marker = new google.maps.marker.AdvancedMarkerElement({
                 position: position,
                 map: map,
-                title: "あなたの位置"
+                content: '<div style="color: black;">あなたの位置</div>' // マーカーに表示する内容
             });
         }
     </script>
