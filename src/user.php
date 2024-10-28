@@ -185,7 +185,7 @@
             echo 'タグ一覧<br>';
          
             $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
-            $attribute->execute([$_SESSION['user']['user_id']]);
+            $attribute->execute([$_GET['user']['user_id']]);
             $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
             foreach($attributes as $tag_attribute){
                 $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
