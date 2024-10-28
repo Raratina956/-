@@ -101,13 +101,14 @@ if (isset($_POST['logout'])) {
             </form>
             <li>a</li>
             <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
             <li><a href="#" id="submitLink">ログアウト</a></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          
             <script>
                 document.getElementById('submitLink').addEventListener('click', function (event) {
                     event.preventDefault(); // リンクのデフォルトの動作を防止
