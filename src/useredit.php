@@ -94,6 +94,7 @@
 ?>
     <button type="button" id="uploadButton">保存</button>
     </div>
+    <button type="button" id="back" onclick="history.back()">戻る</button>
     <script>
     document.getElementById('fileInput').onchange = function (event) {
         var reader = new FileReader();
