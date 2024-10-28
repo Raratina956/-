@@ -123,3 +123,4 @@ echo '<link rel="stylesheet" href="css/search.css">';
         ?>
     </table>
 </main>
+<a href="main.php" class="back-link">メインへ</a>
