@@ -104,3 +104,8 @@ h3 {
     color: #444;
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
+
+.title{
+    height: 35px;
+    width: 50px;
+}
