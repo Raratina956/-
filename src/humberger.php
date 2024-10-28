@@ -22,8 +22,8 @@
         <!-- スライドメニュー -->
         <div class="slide-menu">
             <!-- メニューリスト -->
-            <ul>
-                <li>MAP</li>
+            <!-- <ul> -->
+                <!-- <li>MAP</li>
                 <li>ユーザー情報</li>
                 <li>お気に入り</li>
                 <li>QRカメラ</li>
@@ -31,13 +31,8 @@
                 <li>みんなのタグ</li>
                 <li>MYタグ</li>
                 <li>アナウンス</li>
-                <li>アナウンス</li>
-                <li>アナウンス</li>
-                <li>アナウンス</li>
-                <li>アナウンス</li>
-                <li>アナウンス</li>
-                <li class="logout">ログアウト</li> <!-- ログアウトにクラスを追加 -->
-            </ul>
+                <li class="logout">ログアウト</li> ログアウトにクラスを追加 -->
+            <!-- </ul> -->
         </div>
     </header>
 
