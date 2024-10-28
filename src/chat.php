@@ -122,15 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
-<!-- フェードインのスクリプト -->
-<script>
-    window.addEventListener('load', function() {
-        const adBanner = document.getElementById('ad-banner');
-        setTimeout(() => {
-            adBanner.classList.add('show'); // 3秒後にバナーにshowクラスを追加してフェードインさせる
-        }, 3000); // 3000ミリ秒 = 3秒
-    });
-</script>
+
 
 </body>
 </html>
