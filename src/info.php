@@ -104,7 +104,7 @@ if (isset($_POST['all_delete'])) {
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['current_location_id'];
                         $all_read_sql = $pdo->prepare("DELETE FROM Announce_check WHERE user_id=? AND type=? AND current_location_id=?");
-                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        $all_read_sql->execute([$_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
                         break;
                     default:
                         # code...
@@ -194,6 +194,18 @@ if ($list_raw) {
         <input type="submit" value="一括既読" class="info">
     </form>
     <form action="info.php" method="post">
+    <?php
+        if (isset($_POST['narrow'])) {
+            echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+        } else {
+            echo '<input type="hidden" name="narrow" value=0>';
+        }
+        if (isset($_POST['n_user'])) {
+            echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+        } else {
+            echo '<input type="hidden" name="n_user" value=0>';
+        }
+        ?>
         <input type="hidden" name="all_delete">
         <input type="submit" value="一括削除" class="info">
     </form>
