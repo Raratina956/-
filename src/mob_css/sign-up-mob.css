@@ -10,6 +10,7 @@ body {
     height: 100vh; /* 画面の高さに対して中央に配置 */
     background-size: cover;
     background-position: center;
+    background-size: cover;
 }
 
 h2 {
