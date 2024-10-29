@@ -114,18 +114,24 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <th>名前</th>
         </tr>
         <?php
-        echo '<form name="form1" action="user.php" method="get">';
+      
         if (!empty($user_data)) {
+            // アイコン
+            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+            $iconStmt->execute([$user_data['id']]);
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
             foreach ($user_data as $data) {
+                echo '<form name="form1" action="user.php" method="get">';
                 echo '<tr>';
-                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="img/icon/default.jpg" width="40%"height="40%"></a></td>';
+                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="', $icon['icon_name'], '" width="40%"height="40%"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
                 echo '<td class="name"><a href="javascript:document.form1.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
                 echo '</tr>';
+                echo '</form>';
             }
             $judge = 1;
         }
-        echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
         <th colspan="2">タグ</th>
