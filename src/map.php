@@ -26,8 +26,8 @@
             //プルダウン
             echo '<select name="list" class="list">';
             foreach ($results as $tag_list) {
-                var_dump($tag_list['tag_id']);
-                if(!empty($tag_list)){
+
+                if(!empty($tag_list['tag_id'])){
                     $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
                     $sql_tag->execute([$tag_list['tag_id']]);
                     $row_tag = $sql_tag->fetch();
