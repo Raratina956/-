@@ -124,18 +124,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="send-container">
+            <!-- トップページに戻るボタン -->
+            <form action="chat-home.php" method="GET" class="back-form">
+                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
+                <input class="btn back-btn" type="submit" value="Top">
+            </form>
 
-        <!-- メッセージ送信フォーム -->
-        <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
-            <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-            <input type="submit" name="submit" value="送信" id="submit">
-        </form>
-
-        <!-- トップページに戻るボタン -->
-        <form action="chat-home.php" method="GET">
-            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-            <input class="btn back-btn" type="submit" value="Topページに戻る">
-        </form>
+            <!-- メッセージ送信フォーム -->
+            <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
+                <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
+                <input type="submit" name="submit" value="送信" id="submit">
+            </form>
+        </div>
 
     </div>
 </div>
