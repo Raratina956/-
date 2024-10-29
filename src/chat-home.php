@@ -19,6 +19,9 @@ if ($user_id === null) {
     echo "user_idが指定されていません。";
     exit();
 }
+$iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+    $iconStmt->execute([$_GET['user_id']]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 // 最後のメッセージを取得
 function getLastMessages($pdo, $user_id) {
@@ -121,7 +124,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
             $unread_count = getUnreadMessageCount($pdo, $user_id, $partner_id);
     ?>
         <div class="chat-item">
-            <img src="image/<?php echo htmlspecialchars($partner_id); ?>.png" alt="User Image" class="avatar">
+            <img src="<?php echo $icon['icon_name'] ?>" alt="User Image" class="avatar">
             <div class="chat-info">
                 <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
                     <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>

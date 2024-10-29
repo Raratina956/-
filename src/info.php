@@ -27,30 +27,44 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
-if ($_POST['narrow']) {
+if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
 } else {
     $narrow = 0;
 }
 // narrow→0:アナウンス、位置情報   1:アナウンス    2:位置情報
-if ($_POST['n_user']) {
+if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
 } else {
     $n_user = 0;
 }
-if(isset($message)){
+if (isset($message)) {
     unset($message);
 }
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
 
 // 一括既読機能
-if ($_POST['all_read']) {
-    if ($narrow == 0 && $n_user == 0) {
-        // narrow:0 n_user:0の時
-        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
-        $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
-        $message = 'narrow:'.$narrow.' n_user:'.$n_user;
-    }
+if (isset($_POST['all_read'])) {
+    switch ($narrow) {
+        case 0:
+            switch ($n_user) {
+                case 0:
+                    // narrow:0 n_user:0の時
+                    $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
+                    $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
+                    $message = 'narrow:' . $narrow . ' n_user:' . $n_user;
+                    break;
+    
+                default:
+                    # code...
+                    break;
+            }
+            break;
+        
+        default:
+            # code...
+            break;
+    } 
 }
 ?>
 <?php
@@ -67,10 +81,10 @@ $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
     <?php
-    if(isset($message)){
-    echo '<p>';
-        echo '<span>$message</span>';
-    echo '</p>';
+    if (isset($message)) {
+        echo '<p>';
+        echo '<span>'.$message.'</span>';
+        echo '</p>';
     }
     ?>
     <form action="info.php" method="post">
