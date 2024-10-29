@@ -108,7 +108,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
 
 <!-- 検索フォーム -->
 <form action="chat-idCheck.php" class="form" method="post">
-    <input type="text" name="search_keyword" placeholder="ユーザーIDまたは名前を入力">
+    <input type="text" class="textbox" name="search_keyword" placeholder="ユーザーIDまたは名前を入力">
     <button type="submit">検索</button>
 </form>
 

@@ -119,16 +119,13 @@ echo '<link rel="stylesheet" href="css/search.css">';
             }
             $judge = 1;
         }
+        echo '</table><table><th>作成者</th>
+            <th >タグ名</th>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
-                
-            
-                
-                $row_user = $sql_user->fetch();
-              
                 echo '<tr>';
-                echo '<td>', htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'), '</td>';
+                echo '<td><h3>', htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '<td><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
