@@ -1,5 +1,6 @@
 /* ベースのスタイル */
 body {
+    background-image: url(../img/SpotLinkbg.png);
     font-family: 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -10,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #e5ddd5;
 }
 
@@ -18,7 +19,7 @@ body {
     width: 100%;
     max-width: 600px; 
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 15px;
     overflow: hidden;
 }
@@ -208,4 +209,3 @@ input[type="submit"] {
 .back-btn:hover {
     background-color: #d32f2f; /* ホバー時の色 */
 }
-

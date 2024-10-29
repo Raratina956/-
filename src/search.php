@@ -104,24 +104,31 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <h2>【<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>】の検索結果</h2>
     
     <!-- Search Results -->
-     <h2> ユーザー</h2>
-    <table>
+    
+    <table class="user-table">
         <tr>
-            <th>種類</th>
-            <th >名前</th>
+            <th colspan="2">ユーザー</th>
+</tr>
+        <tr>
+            <td>種類</td>
+            <td>名前</td>
         </tr>
         <?php
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td class="tag"><img src="img/icon/default.jpg" width="40%"height="40%"></td>';
+                echo '<td class="tag"><a href="user.php"><img src="img/icon/default.jpg" width="40%"height="40%"></a></td>';
                 echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
             $judge = 1;
         }
-        echo '</table><h2>タグ</h2><table><th>作成者</th>
-            <th >タグ名</th>';
+        echo '</table><table class="tag-table">
+        <tr>
+        <th colspan="2">タグ</th>
+        </tr>
+        <tr><td>作成者</td>
+            <td>タグ名</td></tr>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
