@@ -19,20 +19,20 @@ require 'parts/auto-login.php';
                 $pass=$pdo->prepare('UPDATE Users SET password=? WHERE user_id=?');
                 $pass->execute([$hashed_password, $_SESSION['user']['user_id']]);
 
-                $_SESSION['user'] = [
+                $_SESSION['err'] = [
                     'success' => 'パスワード変更が完了しました'
                 ];
 
                 header("Location: useredit.php");
             }else{
-                $_SESSION['user'] = [
+                $_SESSION['err'] = [
                     'pass_err' => '新規パスワードと確認用パスワードが一致しません'
                 ];
                 
                 header("Location: passedit.php");
             }
         }else{
-            $_SESSION['user'] = [
+            $_SESSION['err'] = [
                 'pass_err' => '現在のパスワードが間違っています'
             ];
 
