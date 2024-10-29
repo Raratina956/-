@@ -125,7 +125,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$data['id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-               
+            //    javascriptでgetで値を飛ばす
                 echo '<tr>';
                 echo '<td class="tag"><a href="javascript:document.,'$data['id']',.submit()"><img src="', $icon['icon_name'], '" class="usericon"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
