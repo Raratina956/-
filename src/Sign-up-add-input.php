@@ -45,7 +45,7 @@ try {
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
             }
         ?>
-        <input type="file" id="fileInput" name="icon_file" class="image" accept=".jpg"><br>
+        <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <button type="button" id="uploadButton">登録</button>

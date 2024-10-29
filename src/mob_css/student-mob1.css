@@ -103,7 +103,7 @@ input[type="submit"]:hover {
     background-color: #ffffff; /* ホバー時の背景色 */
 }
 
-.image{
+.icon{
     width: 60px;
     height: 60px;
 }
