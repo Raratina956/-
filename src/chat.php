@@ -47,7 +47,7 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
     return $messages;
 
     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-    $iconStmt->execute([$partner_id])
+    $iconStmt->execute([$partner_id]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 }
 
