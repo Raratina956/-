@@ -123,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div id="latest-message"></div>
         </div>
         <div class="send-container">
             <!-- トップページに戻るボタン -->
@@ -140,5 +141,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 </div>
+<script>
+    // 最新のメッセージにスクロールする関数
+    function scrollToLatestMessage() {
+        const latestMessage = document.getElementById('latest-message');
+        latestMessage.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ページロード時にスクロールを実行
+    window.onload = scrollToLatestMessage;
+</script>
 </body>
 </html>
