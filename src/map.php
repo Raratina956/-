@@ -68,10 +68,10 @@
                                         break;
                                     }
                                     echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
-
-                                    $j++;
                                     
-                                     
+                                    $j++;
+                                    echo $j;
+                                    
                                 }
                         }
 
