@@ -120,16 +120,16 @@ echo '<link rel="stylesheet" href="css/search.css">';
             // var_dump($user_data['id']);
            
             foreach ($user_data as $data) {
-                echo '<form name="',$data['id'],'" action="user.php" method="get">';
+                echo '<form name="form',$data['id'],'" action="user.php" method="get">';
             // アイコン
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$data['id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
             //    javascriptでgetで値を飛ばす
                 echo '<tr>';
-                echo '<td class="tag"><a href="javascript:document.',$data['id'],'.submit()"><img src="', $icon['icon_name'], '" class="usericon"></a></td>';
+                echo '<td class="tag"><a href="javascript:document.form',$data['id'],'.submit()"><img src="', $icon['icon_name'], '" class="usericon"></A></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
-                echo '<td class="name"><a href="javascript:document.',$data['id'],'.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
+                echo '<td class="name"><a href="javascript:document.form',$data['id'],'.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
                 echo '</form>';
                 echo '</tr>';
                
