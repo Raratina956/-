@@ -11,15 +11,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #e5ddd5;
 }
 
 .chat-box {
     width: 100%;
-    max-width: 600px; 
+    /* max-width: 600px;  */
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 15px;
     overflow: hidden;
 }
@@ -99,7 +99,13 @@ body {
     background-color: #fff;
     padding: 10px;
     border-top: 1px solid #ddd;
+    position: fixed;  /* 画面下に固定 */
+    bottom: 0;  /* 下端に配置 */
+    left: 0;    /* 左端に配置 */
+    width: 100%; /* 横幅いっぱいに広げる */
+    box-sizing: border-box; /* パディング込みで幅を計算 */
 }
+
 
 textarea {
     width: 100%;
