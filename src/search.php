@@ -120,7 +120,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             $judge = 1;
         }
         echo '</table><table><th>作成者</th>
-            <th ></thタグ名>';
+            <th >タグ名</th>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
