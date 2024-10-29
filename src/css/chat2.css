@@ -229,8 +229,9 @@ input[type="submit"] {
     border-top: 1px solid #ddd;
     box-sizing: border-box;
     padding: 10px;
+    gap: 10px; /* 要素間のスペース */
 }
 
 .back-form {
-    margin-right: 10px; /* 戻るボタンとテキストエリアの間にスペース */
+    margin: 0;
 }
