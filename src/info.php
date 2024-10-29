@@ -74,7 +74,7 @@ if (isset($_POST['all_read'])) {
                             } else if ($list_row['type'] == 2) {
                                 // typeが2の場合(位置情報)
                                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                                $current_sql->execute($list_row['current_location_id']);
+                                $current_sql->execute([$list_row['current_location_id']]);
                                 $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
                                 $current_location_id_read = $current_row['current_location_id'];
                                 $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?');
