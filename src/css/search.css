@@ -26,28 +26,27 @@ main {
 }
 
 /* Table Styles */
-.user-table {
-    width: 100%; /* テーブルを画面幅の80%に設定 */
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-tr {
-    border-bottom: 1px solid #333;
-}
-.tag-table{
-    width: 100%; /* テーブルを画面幅の80%に設定 */
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+/* Styles for the container of the tables */
+.table-container {
+    display: flex; /* Use flexbox to arrange tables side by side */
+    justify-content: space-between; /* Space tables evenly */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin-top: 20px; /* Add some spacing above the tables */
 }
 
+/* Styles for each table */
+.user-table, .tag-table {
+    width: 48%; /* Set width to 48% for two tables with some space in between */
+    border-collapse: collapse;
+    margin: 0; /* Remove default margin */
+}
 
 tr {
     border-bottom: 1px solid #333;
 }
+
+/* Rest of your existing table styles... */
+
 
 
 .tag, .icon {
