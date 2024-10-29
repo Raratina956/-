@@ -2,6 +2,11 @@
     require 'parts/auto-login.php';
     require 'header.php';
 
+    if (isset($_SESSION['user']['pass_success'])) {
+        $error_message = $_SESSION['user']['success'];
+        echo '<script>alert("'.$error_message.'");</script>';
+    }
+
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
     $users->execute([$_SESSION['user']['user_id']]);
@@ -94,6 +99,7 @@
 ?>
     <button type="button" id="uploadButton">保存</button>
     </div>
+    <button type="button" onclick="location.href='passedit.php'">パスワード変更</button>
     <button type="button" id="back" onclick="history.back()">戻る</button>
     <script>
     document.getElementById('fileInput').onchange = function (event) {
