@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['login'] = [
             'uperror' => 'パスワードが一致しません。もう一度確認してください。'
         ];
-        exit();
+        header("Location: Sign-up-input.php");
     }
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['login'] = [
             'uperror' => 'このメールアドレスは既に登録されています。別のメールアドレスを使ってください。'
         ];
+        header("Location: Sign-up-input.php");
     } else {
         $sql = "INSERT INTO Users (mail_address, s_or_t, user_name, password) VALUES (:mail_address, :s_or_t, :user_name, :password)";
         $stmt = $pdo->prepare($sql);
