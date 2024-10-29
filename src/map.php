@@ -27,11 +27,14 @@
             echo '<select name="list" class="list">';
             foreach ($results as $tag_list) {
 
-                $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
-                $sql_tag->execute([$tag_list['tag_id']]);
-                $row_tag = $sql_tag->fetch();
-                echo "<option >"-"</option>"; 
-                echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>"; 
+                if(!empty($tag_list['tag_id'])){
+                    $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
+                    $sql_tag->execute([$tag_list['tag_id']]);
+                    $row_tag = $sql_tag->fetch();
+                    echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>";        
+                }
+                echo "<option value='""' >-</option>"; 
+                
 
             }
             echo '</select><br><br>';
