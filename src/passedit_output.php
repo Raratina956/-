@@ -7,8 +7,8 @@ require 'parts/auto-login.php';
 
     foreach($users as $user){
 
-        // 既存のパスワードと入力したパスワードが一致しているかを確認する
-        if(password_verify($pass, $user['password'])){
+        // めーえうアドレスが一致しているか確認
+        if($user['mail_address'] == $_POST['mail']){
 
             // 新規で入力したパスワードと確認用パスワードが一致しているかを確認する
             if($_POST['newpass'] == $_POST['re_newpass']){
@@ -33,7 +33,7 @@ require 'parts/auto-login.php';
             }
         }else{
             $_SESSION['err'] = [
-                'pass_err' => '現在のパスワードが間違っています'
+                'pass_err' => 'メールアドレスが間違っています'
             ];
 
             header("Location: passedit.php");
