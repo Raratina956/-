@@ -63,13 +63,12 @@
                             // アイコン表示
                             $j = 1;
                                 foreach($icon as $ic){
-                                    if($j < 4){
-                                        echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
-                                      
-                                    }else{
+                                    if($j >= 4){
                                         echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                                         break;
                                     }
+                                    echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
+
                                     $j++;
                                     
                                      
