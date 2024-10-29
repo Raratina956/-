@@ -120,7 +120,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             }
             $judge = 1;
         }
-        echo '</table><h2>タグ</h2><table><th>作成者</th>
+        echo '</table><p><h2>タグ</h2><table><th>作成者</th>
             <th >タグ名</th>';
 
         if (!empty($tag_data)) {
