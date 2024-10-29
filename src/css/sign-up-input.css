@@ -94,3 +94,8 @@ input[type="submit"]:hover {
 .back-link:hover {
     background-color: #ffffff; /* ホバー時の背景色 */
 }
+
+.error{
+    text-align: center;
+    color: red;
+}
