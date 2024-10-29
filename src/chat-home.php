@@ -122,9 +122,10 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
             // 未読メッセージ数を取得
             $unread_count = getUnreadMessageCount($pdo, $user_id, $partner_id);
 
-            $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-            $iconStmt->execute($partner_id);
+            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
+            $iconStmt->execute([$partner_id]); // 配列に包む
             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
     ?>
         <div class="chat-item">
             <img src="<?php echo $icon['icon_name'] ?>" alt="User Image" class="avatar">
