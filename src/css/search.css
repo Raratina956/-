@@ -48,7 +48,6 @@ tr {
 /* Rest of your existing table styles... */
 
 th {
-    background-color: #f2f2f2; /* Optional: Background color for headers */
     text-align: center; /* Center the text */
     padding: 12px; /* Set padding for all headers */
     height: 60px; /* Set a fixed height for headers */

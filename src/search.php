@@ -107,7 +107,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <div class="table-container">
     <table class="user-table">
         <tr>
-            <td colspan="2"><h2>ユーザー<h2></td>
+            <td colspan="2">ユーザー</td>
 </tr>
         <tr>
             <th>種類</th>
@@ -127,7 +127,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
-        <td colspan="2"><h2>タグ<h2></td>
+        <td colspan="2">タグ</td>
         </tr>
         <tr><th>作成者</th>
             <th>タグ名</th></tr>';
