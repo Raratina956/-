@@ -5,6 +5,8 @@
     if (isset($_SESSION['err']['pass_success'])) {
         $error_message = $_SESSION['err']['success'];
         echo '<script>alert("'.$error_message.'");</script>';
+        // セッションエラーを消去 
+        unset($_SESSION['err']['pass_success']);
     }
 
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
