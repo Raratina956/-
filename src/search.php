@@ -105,7 +105,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     
     <!-- Search Results -->
     
-    <table>
+    <table class="user-table">
         <tr>
             <th colspan="2">ユーザー</th>
 </tr>
