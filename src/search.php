@@ -109,9 +109,13 @@ echo '<link rel="stylesheet" href="css/search.css">';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
+                $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $sql_user->execute([$row['user_id']]);
+                $row_user = $sql_user->fetch();
+              
                 echo '<tr>';
-                // echo '<td class="tag"><h3>タグ</h3></td>';
-                echo '<td colspan="2" align="center"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
+                echo '<td>', $row_user['user_name'], '</td>';
+                echo '<td><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
             $judge = 1;
