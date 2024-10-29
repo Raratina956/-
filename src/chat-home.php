@@ -19,9 +19,7 @@ if ($user_id === null) {
     echo "user_idが指定されていません。";
     exit();
 }
-$iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-    $iconStmt->execute([$_GET['user_id']]);
-    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
 
 // 最後のメッセージを取得
 function getLastMessages($pdo, $user_id) {
@@ -118,10 +116,16 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
         // 最後のメッセージを取得
         $messages = getLastMessages($pdo, $user_id);
         foreach ($messages as $message): 
+            
             // 相手のIDを特定（自分以外のID）
             $partner_id = ($message['send_id'] == $user_id) ? $message['sent_id'] : $message['send_id'];
             // 未読メッセージ数を取得
             $unread_count = getUnreadMessageCount($pdo, $user_id, $partner_id);
+
+            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
+            $iconStmt->execute([$partner_id]); 
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
     ?>
         <div class="chat-item">
             <img src="<?php echo $icon['icon_name'] ?>" alt="User Image" class="avatar">
