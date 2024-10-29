@@ -1,6 +1,5 @@
 <?php
 require 'parts/auto-login.php';
-require 'header.php';
 
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
     $users=$pdo->prepare('select * from Users where user_id=?');
@@ -32,8 +31,6 @@ require 'header.php';
 
             header("Location: passedit.php");
         }
-    
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     }
 
 
