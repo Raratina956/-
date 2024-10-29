@@ -71,7 +71,7 @@
                             // アイコン表示
                           
                                 foreach($icon as $ic){
-                                    if($j >= 6){
+                                    if($j >= 7){
                                         // 7以上は表示しない
                                         echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                                         break;
