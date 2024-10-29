@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "parts/db-connect.php";
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
