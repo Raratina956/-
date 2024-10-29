@@ -119,7 +119,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
             foreach ($user_data as $data) {
                 echo '<tr>';
                 echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="img/icon/default.jpg" width="40%"height="40%"></A></td>';
-                echo '<input type="hidden" name="user_id" value="',$user_data['id'],'">';
                 echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
