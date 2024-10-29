@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 
 <?php
-session_start(); // セッションを開始
+
 
 require "db-connect.php";
 require 'header.php'; 
