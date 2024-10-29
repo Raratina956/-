@@ -29,12 +29,14 @@ function timeAgo($logtime)
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
+    $narrow = intval($narrow);
 } else {
     $narrow = 0;
 }
 // narrow→0:アナウンス、位置情報   1:アナウンス    2:位置情報
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
+    $n_user = intval($n_user);
 } else {
     $n_user = 0;
 }
@@ -42,7 +44,6 @@ if (isset($message)) {
     unset($message);
 }
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
-var_dump($n_user);
 // 一括既読機能
 if (isset($_POST['all_read'])) {
     switch ($narrow) {
