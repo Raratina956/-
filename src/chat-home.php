@@ -24,7 +24,7 @@ if ($user_id === null) {
 // 最後のメッセージを取得する関数
 function getLastMessages($pdo, $user_id) {
     $sql = "
-    SELECT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
+    SELECT DISTINCT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
     FROM Message m1
     INNER JOIN (
         SELECT 
@@ -44,6 +44,7 @@ function getLastMessages($pdo, $user_id) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 // ユーザー名を取得する関数
 function getUserName($pdo, $user_id) {
