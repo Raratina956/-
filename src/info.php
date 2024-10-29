@@ -59,8 +59,10 @@ if (isset($_POST['all_read'])) {
                             $n_announce_r = $n_announce_s->fetch();
                             $announcement_id_a = $n_announce_r['announcement_id'];
                             $announcement_id_a = $row['announcement_id'];
-                            $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
-                            $all_read_sql->execute([1, $_SESSION['user']['user_id'], 1, $announcement_id_a]);
+                            if ($announcement_id_a == $n_announce_r['announcement_id']) {
+                                $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
+                                $all_read_sql->execute([1, $_SESSION['user']['user_id'], 1, $announcement_id_a]);
+                            }
                         } else if ($row['type']) {
                             $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                             $n_announce_s->execute([$n_user]);
