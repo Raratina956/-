@@ -45,6 +45,9 @@ if (isset($_POST['all_read'])) {
     if ($narrow == 0 && $n_user == 0) {
         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
         $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
+        // アラートデバック用
+        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　1";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     } else {
         $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
         $list_sql->execute([$_SESSION['user']['user_id']]);
@@ -52,21 +55,63 @@ if (isset($_POST['all_read'])) {
         if ($list_raw) {
             foreach ($list_raw as $row) {
                 switch ($narrow) {
-                    case 1:
+                    case 0:
                         $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['announcement_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
-                        break;
-                    case 2:
+                        // アラートデバック用
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　announcement_id_a:".$announcement_id_a. "　7";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
                         $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
                         $announcement_id_a = $n_announce_r['current_location_id'];
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        // アラートデバック用
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user. "　announcement_id_a:".$announcement_id_a."　8";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        break;
+                    case 1:
+                        if ($n_user == 0) {
+                            $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
+                            $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+                            // アラートデバック用
+                            $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　5";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        } else {
+                            $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
+                            $n_announce_s->execute([$n_user]);
+                            $n_announce_r = $n_announce_s->fetch();
+                            $announcement_id_a = $n_announce_r['announcement_id'];
+                            $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
+                            $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                            // アラートデバック用
+                            $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　2";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        }
+                        break;
+                    case 2:
+                        if ($n_user == 0) {
+                            $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
+                            $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+                            // アラートデバック用
+                            $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　6";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        } else {
+                            $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                            $n_announce_s->execute([$n_user]);
+                            $n_announce_r = $n_announce_s->fetch();
+                            $announcement_id_a = $n_announce_r['current_location_id'];
+                            $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
+                            $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                            // アラートデバック用
+                            $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　3";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        }
                         break;
                     default:
                         # code...
@@ -195,17 +240,17 @@ if ($list_raw) {
     </form>
     <!-- <form action="info.php" method="post">
     <?php
-        // if (isset($_POST['narrow'])) {
-        //     echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
-        // } else {
-        //     echo '<input type="hidden" name="narrow" value=0>';
-        // }
-        // if (isset($_POST['n_user'])) {
-        //     echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
-        // } else {
-        //     echo '<input type="hidden" name="n_user" value=0>';
-        // }
-        ?>
+    // if (isset($_POST['narrow'])) {
+    //     echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+    // } else {
+    //     echo '<input type="hidden" name="narrow" value=0>';
+    // }
+    // if (isset($_POST['n_user'])) {
+    //     echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+    // } else {
+    //     echo '<input type="hidden" name="n_user" value=0>';
+    // }
+    ?>
         <input type="hidden" name="all_delete">
         <input type="submit" value="一括削除" class="info">
     </form> -->
