@@ -114,7 +114,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <th>名前</td>
         </tr>
         <?php
-        echo '<form action="user.php" method="post">';
+        echo '<form name="form1" action="user.php" method="post">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
