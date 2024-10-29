@@ -91,7 +91,20 @@ if (isset($_POST['all_read'])) {
                     break;
             }
             break;
-
+        case 1:
+            switch ($n_user) {
+                case 0:
+                    // narrow:1 n_user:0の時
+                    $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? type=?');
+                    $all_read_sql->execute([1, $_SESSION['user']['user_id'],$narrow]);
+                    $message = 'パターン3';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            break;
         default:
             # code...
             break;
