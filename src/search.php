@@ -104,7 +104,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <h2>【<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>】の検索結果</h2>
     
     <!-- Search Results -->
-    
+    <div class="table-container">
     <table class="user-table">
         <tr>
             <th colspan="2">ユーザー</th>
@@ -149,5 +149,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
         }
         ?>
     </table>
+    </div>
 </main>
 <a href="main.php" class="back-link">メインへ</a>
