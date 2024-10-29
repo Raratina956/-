@@ -126,7 +126,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                
                 echo '<tr>';
-                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="', $icon['icon_name'], '" width="45%"height="45%" class="usericon"></a></td>';
+                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="', $icon['icon_name'], '" width="40%"height="40%" class="usericon"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
                 echo '<td class="name"><a href="javascript:document.form1.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
                 echo '</tr>';
