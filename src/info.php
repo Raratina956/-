@@ -96,12 +96,28 @@ if (isset($_POST['all_read'])) {
                 case 0:
                     // narrow:1 n_user:0の時
                     $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
-                    $read_sql->execute([1, $_SESSION['user']['user_id'],$narrow]);
+                    $read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
                     $message = 'パターン3';
                     break;
-                
+
                 default:
-                    # code...
+                    // narrow:1 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=? AND send_person=?');
+                            $announce_sql->execute([$list_row['announcement_id'], $n_user]);
+                            $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
+                            if ($announce_row !== false) {
+                                $announcement_id_read = $announce_row['announcement_id'];
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?');
+                                $read_sql->execute([1, $_SESSION['user']['user_id'], $announcement_id_read]);
+                                $message = 'パターン4';
+                            }
+                        }
+                    }
                     break;
             }
             break;
