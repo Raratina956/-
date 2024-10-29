@@ -118,7 +118,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($user_data)) {
            
             // var_dump($user_data['id']);
-            echo '<form name="form1" action="user.php" method="get">';
+           
             foreach ($user_data as $data) {
             // アイコン
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
@@ -126,6 +126,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                
                 echo '<tr>';
+                echo '<form name="form1" action="user.php" method="get">';
                 echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="', $icon['icon_name'], '" class="usericon"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
                 echo '<td class="name"><a href="javascript:document.form1.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
