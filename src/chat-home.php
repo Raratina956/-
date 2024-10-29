@@ -1,7 +1,7 @@
 <?php
 session_start(); // セッションを開始
 
-require "db-connect.php";
+
 require 'parts/auto-login.php';
 require 'header.php';
 try {
