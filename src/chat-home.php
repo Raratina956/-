@@ -1,7 +1,7 @@
 <?php
-session_start(); // セッションを開始
 
-require "db-connect.php";
+require 'parts/auto-login.php';
+require 'header.php';
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
@@ -22,7 +22,7 @@ if ($user_id === null) {
 // 最後のメッセージを取得する関数
 function getLastMessages($pdo, $user_id) {
     $sql = "
-    SELECT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
+    SELECT DISTINCT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
     FROM Message m1
     INNER JOIN (
         SELECT 
@@ -42,6 +42,7 @@ function getLastMessages($pdo, $user_id) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 // ユーザー名を取得する関数
 function getUserName($pdo, $user_id) {
@@ -74,7 +75,7 @@ function getUserName($pdo, $user_id) {
 </div>
 
 <!-- 検索フォーム -->
-<form action="chat-idCheck.php" method="post">
+<form action="chat-idCheck.php" class="form" method="post">
     <input type="text" name="search_keyword" placeholder="ユーザーIDまたは名前を入力">
     <button type="submit">検索</button>
 </form>
