@@ -36,9 +36,8 @@
             <input type="password" name="confirm_password" id="confirm_password" maxlength="128" required>
         </div>
         <?php
-        if (isset($_SESSION['login']['uperror'])) {
+            if (isset($_SESSION['login']['uperror'])) {
             $error = $_SESSION['login']['uperror'];
-        }
         ?>
         <div class="error">
         <span>
@@ -48,6 +47,10 @@
         ?>
         </span>
         </div>
+        <?php
+            }
+        ?>
+
         <br>
         <div class="button-group">
         <input type="submit" value="登録">
