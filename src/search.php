@@ -117,10 +117,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
       
         if (!empty($user_data)) {
            
-            // var_dump($user_data['id']);
-            echo '<form name="form1" action="user.php" method="get">';
             foreach ($user_data as $data) {
-            // アイコン
+                echo '<form name="form1" action="user.php" method="get">';
+                // アイコン
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$data['id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
