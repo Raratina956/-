@@ -124,7 +124,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
             $judge = 1;
         }
         echo '</table><table class="tag-table">
+        <tr>
         <th colspan="2">タグ</th>
+        </tr>
         <tr><td>作成者</td>
             <td>タグ名</td></tr>';
 
