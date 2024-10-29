@@ -1,12 +1,9 @@
-<?php 
-    require 'parts/auto-login.php';
-    require 'header.php'; 
-?>
 
 <?php
 session_start(); // セッションを開始
 
 require "db-connect.php";
+require 'header.php'; 
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
