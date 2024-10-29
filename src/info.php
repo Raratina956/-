@@ -68,7 +68,7 @@ if (isset($_POST['all_read'])) {
                                 $announce_sql->execute([$list_row['announcement_id']]);
                                 $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
                                 $announcement_id_read = $announce_row['announcement_id'];
-                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id AND announcement_id=?');
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?');
                                 $all_read_sql->execute([1, $_SESSION['user']['user_id'], $announcement_id_read]);
                                 $message = 'パターン２';
                             } else if ($row['type'] == 2) {
