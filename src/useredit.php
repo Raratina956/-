@@ -2,11 +2,11 @@
     require 'parts/auto-login.php';
     require 'header.php';
 
-    if (isset($_SESSION['err']['pass_success'])) {
+    if (isset($_SESSION['err']['success'])) {
         $error_message = $_SESSION['err']['success'];
         echo '<script>alert("'.$error_message.'");</script>';
         // セッションエラーを消去 
-        unset($_SESSION['err']['pass_success']);
+        unset($_SESSION['err']['success']);
     }
 
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
@@ -102,7 +102,7 @@
     <button type="button" id="uploadButton">保存</button>
     </div>
     <button type="button" onclick="location.href='passedit.php'">パスワード変更</button>
-    <button type="button" id="back" onclick="history.back()">戻る</button>
+    <button type="button" id="back" onclick="location.href='user.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>'">戻る</button>
     <script>
     document.getElementById('fileInput').onchange = function (event) {
         var reader = new FileReader();

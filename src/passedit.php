@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-// require 'header.php';
+require 'header.php';
 
 if (isset($_SESSION['err']['pass_err'])) {
     $error_message = $_SESSION['err']['pass_err'];
