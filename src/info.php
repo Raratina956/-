@@ -55,6 +55,26 @@ if (isset($_POST['all_read'])) {
         if ($list_raw) {
             foreach ($list_raw as $row) {
                 switch ($narrow) {
+                    case 0:
+                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
+                        $n_announce_s->execute([$n_user]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $announcement_id_a = $n_announce_r['announcement_id'];
+                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        // アラートデバック用
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "2";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                        $n_announce_s->execute([$n_user]);
+                        $n_announce_r = $n_announce_s->fetch();
+                        $announcement_id_a = $n_announce_r['current_location_id'];
+                        $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
+                        $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
+                        // アラートデバック用
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "3";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        break;
                     case 1:
                         if ($n_user == 0) {
                             $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
