@@ -44,21 +44,27 @@ if (isset($message)) {
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
 
 // 一括既読機能
-if ($_POST['all_read']) {
-    if ($narrow == 0) {
-        switch ($n_user) {
-            case 0:
-                // narrow:0 n_user:0の時
-                $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
-                $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
-                $message = 'narrow:' . $narrow . ' n_user:' . $n_user;
-                break;
-
-            default:
-                # code...
-                break;
-        }
-    }
+if (isset($_POST['all_read'])) {
+    switch ($narrow) {
+        case 0:
+            switch ($n_user) {
+                case 0:
+                    // narrow:0 n_user:0の時
+                    $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
+                    $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
+                    $message = 'narrow:' . $narrow . ' n_user:' . $n_user;
+                    break;
+    
+                default:
+                    # code...
+                    break;
+            }
+            break;
+        
+        default:
+            # code...
+            break;
+    } 
 }
 ?>
 <?php
@@ -77,7 +83,7 @@ if ($list_raw) {
     <?php
     if (isset($message)) {
         echo '<p>';
-        echo '<span>$message</span>';
+        echo '<span>'.$message.'</span>';
         echo '</p>';
     }
     ?>

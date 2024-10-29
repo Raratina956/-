@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規会員登録</title>
     <link rel="stylesheet" href="mob_css/sign-up-mob.css" media="screen and (max-width: 480px)">
-<link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
 </head>
-
 <body>
     <h1>新規会員登録</h1>
     <form action="Sign-up-output.php" method="post">
         <div class="form-group">
-        <label for="mail_address">メールアドレス：</label>
-        <input type="email" name="mail_address" id="mail_address" maxlength="254" required>
+            <label for="mail_address">メールアドレス：</label>
+            <input type="email" name="mail_address" id="mail_address" maxlength="254" required>
         </div>
         <div class="form-group">
             <label for="type">分類：</label>
@@ -38,17 +36,19 @@
         <?php
         if (isset($_SESSION['login']['uperror'])) {
             $error = $_SESSION['login']['uperror'];
+            echo '<div class="error"><span>' . $error . '</span></div>';
             unset($_SESSION['login']['uperror']);
         }
         ?>
+        <br>
         <div class="button-group">
-        <input type="submit" value="登録">
-        <a class="back-link" href="login.php">戻る</a>
-    </div>
+            <input type="submit" value="登録">
+            <a class="back-link" href="login.php">戻る</a>
+        </div>
     </form>
 </body>
-
 </html>
+
 
 
 
