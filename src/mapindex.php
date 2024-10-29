@@ -9,7 +9,7 @@
   <style>
     #map { width: 100%; height: 500px; }
     .marker {
-      background-image: url('image/7.png'); /* アイコン画像のURLを変更 */
+      background-image: url('https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/image/4.png'); /* アイコン画像のURLを変更 */
       background-size: contain;
       width: 50px; /* アイコンの幅 */
       height: 50px; /* アイコンの高さ */

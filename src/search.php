@@ -107,11 +107,11 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <div class="table-container">
     <table class="user-table">
         <tr>
-            <td colspan="2">ユーザー</th>
+            <th colspan="2">ユーザー</th>
 </tr>
         <tr>
-            <th>種類</td>
-            <th>名前</td>
+            <td>種類</td>
+            <td>名前</td>
         </tr>
         <?php
         echo '<form name="form1" action="user.php" method="get">';
@@ -128,10 +128,10 @@ echo '<link rel="stylesheet" href="css/search.css">';
         echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
-        <td colspan="2">タグ</th>
+        <th colspan="2">タグ</th>
         </tr>
-        <tr><th>作成者</th>
-            <th>タグ名</th></tr>';
+        <tr><td>作成者</td>
+            <td>タグ名</td></tr>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
