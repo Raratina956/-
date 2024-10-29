@@ -63,7 +63,7 @@ if (isset($_POST['all_read'])) {
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
                         // アラートデバック用
-                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　7";
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　announcement_id_a:".$announcement_id_a. "　7";
                         echo "<script type='text/javascript'>alert('$message');</script>";
                         $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                         $n_announce_s->execute([$n_user]);
@@ -72,7 +72,7 @@ if (isset($_POST['all_read'])) {
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], $narrow, $announcement_id_a]);
                         // アラートデバック用
-                        $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　8";
+                        $message = "narrow:" . $narrow . "　n_user:" . $n_user. "　announcement_id_a:".$announcement_id_a."　8";
                         echo "<script type='text/javascript'>alert('$message');</script>";
                         break;
                     case 1:
