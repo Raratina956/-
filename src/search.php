@@ -122,10 +122,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
-                
-            
-                
-                $row_user = $sql_user->fetch();
               
                 echo '<tr>';
                 echo '<td>', htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'), '</td>';
