@@ -125,7 +125,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             }
             $judge = 1;
         }
-        echo '</form>'
+        echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
         <th colspan="2">タグ</th>
