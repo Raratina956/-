@@ -27,7 +27,7 @@
             // echo '<select name="list" class="list">';
 
             foreach ($results as $tag_list) {
-            var_dump($tag_list['tag_id']);
+            echo var_dump($tag_list['tag_id']);
                 if(empty($tag_list['tag_id'])){
 
                     echo  '<option value="">選択してください</option>'; 
