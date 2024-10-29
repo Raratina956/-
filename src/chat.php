@@ -36,7 +36,7 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
     $stmt->execute();
     $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // メッセージ表示後に既読フラグを更新
+    // 受信したメッセージ（自分宛て）の既読フラグを更新
     $sql_update = "UPDATE Message SET already = 1 
                    WHERE sent_id = :logged_in_user_id AND send_id = :partner_id AND already = 0";
     $stmt_update = $pdo->prepare($sql_update);
