@@ -44,7 +44,7 @@ if (isset($message)) {
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
 
 // 一括既読機能
-if ($_POST['all_read']) {
+if (isset($_POST['all_read'])) {
     switch ($narrow) {
         case 0:
             switch ($n_user) {
