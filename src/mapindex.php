@@ -1,75 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="utf-8" />
-    <title>Map Example</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVOfQ2kHq-JVAYMwjZXA8V2UNLPXePMls&libraries=marker"></script>
-    <script>
-        let map; // 地図
-        let marker; // マーカー
-
-        function initMap() {
-            // 地図の初期化
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 8,
-                center: { lat: -34.397, lng: 150.644 }, // 初期中心位置
-            });
-
-            // 初期マーカーの位置
-            const position = { lat: -34.397, lng: 150.644 };
-            marker = new google.maps.marker.AdvancedMarkerElement({
-                map: map,
-                position: position,
-                content: '<div style="color: #000;">Hello World!</div>', // マーカーのコンテンツ
-            });
-
-            // 「自分の位置に移動」ボタンのイベントリスナーを追加
-            document.getElementById('locateButton').addEventListener('click', locateUser);
-        }
-
-        function locateUser() {
-            // 位置情報の取得
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(success, error);
-            } else {
-                alert("このブラウザは位置情報をサポートしていません。");
-            }
-        }
-
-        function success(pos) {
-            const position = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude,
-            };
-
-            // 地図の中心を現在の位置に移動
-            map.setCenter(position);
-
-            // マーカーの位置を更新
-            if (marker) {
-                marker.setMap(null); // 以前のマーカーを削除
-            }
-            marker = new google.maps.marker.AdvancedMarkerElement({
-                map: map,
-                position: position,
-                content: '<div style="color: #000;">ここがあなたの位置です</div>',
-            });
-        }
-
-        function error() {
-            alert("位置情報の取得に失敗しました。");
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>現在地にピンを立てる</title>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    #map { width: 100%; height: 500px; }
+  </style>
 </head>
-
 <body>
-    <div id="map" style="height: 500px; width: 100%;"></div>
-    <button id="locateButton">自分の位置に移動</button>
-    <script>
-        // 地図を初期化
-        window.onload = initMap;
-    </script>
-</body>
+  <div id='map'></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
+    
+    // 地図の初期化（仮に日本の中心に設定）
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [139.6917, 35.6895], // 初期表示の中心
+      zoom: 10
+    });
 
+    // 現在地を取得してピンを立てる関数
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const userLocation = [position.coords.longitude, position.coords.latitude];
+        
+        // 地図の中心を現在地に移動
+        map.setCenter(userLocation);
+
+        // 現在地にマーカーを追加
+        new mapboxgl.Marker({ color: 'red' })  // 赤色のマーカー
+          .setLngLat(userLocation)
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<div>あなたの現在地です</div>'))
+          .addTo(map);
+      }, error => {
+        console.error('現在地を取得できませんでした:', error);
+      });
+    } else {
+      alert("Geolocationがサポートされていません");
+    }
+  </script>
+</body>
 </html>
