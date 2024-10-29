@@ -33,7 +33,7 @@
                     $row_tag = $sql_tag->fetch();
                     echo "<option value='",$row_tag['tag_id'],"'>",$row_tag['tag_name'],"</option>";        
                 }
-                echo "<option value="" >"ー"</option>"; 
+                echo "<option value="" >-</option>"; 
                 
 
             }
