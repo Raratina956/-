@@ -41,7 +41,7 @@
             echo '<div class="error"><span>' . $error . '</span></div>';
             unset($_SESSION['login']['uperror']);
         }
-        echo 'b';
+        echo 'c';
         ?>
         <br>
         <div class="button-group">
