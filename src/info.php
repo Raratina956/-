@@ -349,7 +349,7 @@ if ($list_raw) {
         <input type="hidden" name="all_read">
         <input type="submit" value="一括既読" class="info">
     </form>
-    <form action="info.php" method="post">
+    <form action="info.php" method="post" onsubmit="return confirmDelete()">
     <?php
     if (isset($_POST['narrow'])) {
         echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
@@ -468,3 +468,8 @@ if ($list_raw) {
     echo 'お知らせがありません';
 }
 ?>
+<script>
+    function confirmDelete() {
+        return confirm("本当に削除しますか？");
+    }
+</script>
