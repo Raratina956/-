@@ -131,7 +131,7 @@ if (isset($_POST['all_read'])) {
                     break;
 
                 default:
-                    // narrow: n_user:0以外の時
+                    // narrow:2 n_user:0以外の時
                     $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
                     $list_sql->execute([$_SESSION['user']['user_id']]);
                     $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
