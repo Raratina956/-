@@ -45,11 +45,12 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
     $stmt_update->execute();
 
     return $messages;
-
-    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-    $iconStmt->execute([$partner_id]);
-    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 }
+
+// アイコンを取得する処理
+$iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
+$iconStmt->execute([$partner_id]);
+$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 // 相手の情報を取得
 $sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
@@ -57,6 +58,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
 $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
