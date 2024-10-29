@@ -88,5 +88,6 @@ button:hover {
 }
 
 .back-button{
-    position:fixed;
+    margin-top: 60px;
+    float: left;
 }
