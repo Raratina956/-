@@ -14,13 +14,13 @@ try {
 // URLからuser_idを取得
 $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
-// user_idが取得できない場合の処理
+// user_idが取得できない場合
 if ($user_id === null) {
     echo "user_idが指定されていません。";
     exit();
 }
 
-// 最後のメッセージを取得する関数
+// 最後のメッセージを取得
 function getLastMessages($pdo, $user_id) {
     $sql = "
     SELECT DISTINCT m1.send_id, m1.sent_id, m1.message_detail, m1.message_time
@@ -44,7 +44,7 @@ function getLastMessages($pdo, $user_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// ユーザー名を取得する関数
+// ユーザー名を取得
 function getUserName($pdo, $user_id) {
     $sql = "SELECT user_name FROM Users WHERE user_id = :user_id";
     $stmt = $pdo->prepare($sql);

@@ -5,9 +5,9 @@ require "db-connect.php";
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch(PDOException $e){
+} catch(PDOException $e) {
     echo "接続エラー: " . $e->getMessage();
-    exit();  
+    exit();
 }
 
 // URLから相手のuser_idを取得
@@ -22,9 +22,10 @@ if ($partner_id === null || $logged_in_user_id === null) {
     exit();
 }
 
-// メッセージを取得する関数
+// メッセージを取得し既読フラグを更新する関数
 function getMessages($pdo, $logged_in_user_id, $partner_id) {
-    $sql = "SELECT send_id, sent_id, message_detail, message_time 
+    // メッセージを取得するSQL
+    $sql = "SELECT message_id, send_id, sent_id, message_detail, message_time 
             FROM Message 
             WHERE (send_id = :logged_in_user_id AND sent_id = :partner_id)
                OR (send_id = :partner_id AND sent_id = :logged_in_user_id)
@@ -33,7 +34,17 @@ function getMessages($pdo, $logged_in_user_id, $partner_id) {
     $stmt->bindParam(':logged_in_user_id', $logged_in_user_id, PDO::PARAM_INT);
     $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // 受信したメッセージ（自分宛て）の既読フラグを更新
+    $sql_update = "UPDATE Message SET already = 1 
+                   WHERE sent_id = :logged_in_user_id AND send_id = :partner_id AND already = 0";
+    $stmt_update = $pdo->prepare($sql_update);
+    $stmt_update->bindParam(':logged_in_user_id', $logged_in_user_id, PDO::PARAM_INT);
+    $stmt_update->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
+    $stmt_update->execute();
+
+    return $messages;
 }
 
 // 相手の情報を取得
@@ -50,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message_detail = $_POST['text'];
     $message_time = date('Y/m/d H:i:s');
 
-    $sql = "INSERT INTO Message (send_id, sent_id, message_detail, message_time) 
-            VALUES (:send_id, :sent_id, :message_detail, :message_time)";
+    $sql = "INSERT INTO Message (send_id, sent_id, message_detail, message_time, already) 
+            VALUES (:send_id, :sent_id, :message_detail, :message_time, 0)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':send_id', $send_id);
     $stmt->bindParam(':sent_id', $sent_id);
@@ -81,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-        <?php echo "<img src='image/{$partner_id }.png'>";  ?>
+        <?php echo "<img src='image/{$partner_id}.png'>";  ?>
             <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
         </div>
 
@@ -121,8 +132,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 </div>
-
-
-
 </body>
 </html>
