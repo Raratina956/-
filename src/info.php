@@ -73,7 +73,7 @@ if (isset($_POST['all_read'])) {
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], 2, $announcement_id_a]);
                         // アラートデバック用
-                        $sql_message = "UPDATE Announce_check SET read_check=1 WHERE user_id=".$_SESSION['user']['user_id']." AND type=2 AND announcement_id=". $announcement_id_a;
+                        $sql_message = "UPDATE Announce_check SET read_check=1 WHERE user_id=".$_SESSION['user']['user_id']." AND type=2 AND current_location_id=". $announcement_id_a;
                         $message = "narrow:" . $narrow . "　n_user:" . $n_user. "　announcement_id_a:".$announcement_id_a."　8";
                         echo "<script type='text/javascript'>alert('$sql_message');</script>";
                         break;
