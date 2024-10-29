@@ -14,11 +14,9 @@ body{
     background-size: cover;
               
     /* 背景画像が読み込まれる前に表示される背景のカラー */
-    background-color: #464646; 
+    background-color: #464646;
     height: 100%;
-    padding-top: 110px;
-
-  
+    padding-top: 120px;
 }
 
 *{
@@ -49,9 +47,9 @@ body{
 }
 
 table {
-    margin: 0px 10px 0px 370px;  /* 左右の中央揃え */
+    margin: 0px 10px 0px 320px;  /* 左右の中央揃え */
     table-layout: fixed;  /* テーブル全体の幅を固定 */
-    width: 100%;  /* 必要に応じてテーブルの幅を調整 */
+    width: 110%;  /* 必要に応じてテーブルの幅を調整 */
     /* text-align: center; */ /* テーブル内のコンテンツを中央揃え */
     height: 110%;
 }
@@ -98,8 +96,8 @@ button {
   }
 
 .list{
-    width: 100px;
-    margin-left: 68%;
+    width: 107px;
+    margin-left: 69%;
     font-size: 20px;
     /* align-items: center; */
 }
