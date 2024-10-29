@@ -123,7 +123,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
             $unread_count = getUnreadMessageCount($pdo, $user_id, $partner_id);
 
             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-            $iconStmt->execute([$partner_id])
+            $iconStmt->execute([$partner_id]); 
             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
     ?>
