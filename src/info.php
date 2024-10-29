@@ -42,7 +42,7 @@ if (isset($message)) {
     unset($message);
 }
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
-
+var_dump($n_user);
 // 一括既読機能
 if (isset($_POST['all_read'])) {
     switch ($narrow) {
@@ -73,7 +73,7 @@ if (isset($_POST['all_read'])) {
                                 $message = 'パターン２';
                             } else if ($list_row['type'] == 2) {
                                 // typeが2の場合(位置情報)
-                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id');
+                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id=?');
                                 $current_sql->execute([$list_row['current_location_id'],$n_user]);
                                 $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
                                 $current_location_id_read = $current_row['current_location_id'];
