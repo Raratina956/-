@@ -49,6 +49,7 @@
                     $floorStmt->execute([$i]);
                     $floor = $floorStmt->fetchAll(PDO::FETCH_ASSOC);
                     $class_id = "";
+                    $j = 0;
 
                         foreach($floor as $f){
                             $classroom_id = $f['classroom_id'];
@@ -61,7 +62,7 @@
                             $iconStmt->execute([$classroom_id]);
                             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
                             // アイコン表示
-                            $j = 1;
+                          
                                 foreach($icon as $ic){
                                     if($j >= 4){
                                         echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
