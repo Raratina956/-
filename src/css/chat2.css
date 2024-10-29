@@ -1,10 +1,10 @@
 /* ベースのスタイル */
 body {
-    background-image: url(../img/SpotLinkbg.png);
+    /* background-image: url(../img/SpotLinkbg.png); */
     font-family: 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #afe7ffe8;
+    /* background-color: #afe7ffe8; */
 }
 
 .chat-system {
@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     /* height: 100vh; */
-    background-color: #afe7ffe8;
+    /* background-color: #afe7ffe8; */
 }
 
 .chat-box {
