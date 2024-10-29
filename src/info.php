@@ -121,8 +121,35 @@ if (isset($_POST['all_read'])) {
                     break;
             }
             break;
-        default:
-            # code...
+        case 2:
+            switch ($n_user) {
+                case 0:
+                    // narrow:2 n_user:0の時
+                    $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
+                    $read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+                    $message = 'パターン5';
+                    break;
+
+                default:
+                    // narrow: n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id=?');
+                            $current_sql->execute([$list_row['current_location_id'], $n_user]);
+                            $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+                            if ($current_row !== false) {
+                                $current_location_id_read = $current_row['current_location_id'];
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?');
+                                $read_sql->execute([1, $_SESSION['user']['user_id'], $current_location_id_read]);
+                                $message = 'パターン6';
+                            }
+                        }
+                    }
+                    break;
+            }
             break;
     }
 }
