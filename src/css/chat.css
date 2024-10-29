@@ -65,7 +65,7 @@ body {
     margin-top:140px;
 }
 
-input[type="text"] {
+.textbox{
     width: 80%;
     padding: 10px;
     border: 1px solid #ccc;
