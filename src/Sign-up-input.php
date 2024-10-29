@@ -1,3 +1,13 @@
+<?php
+session_start();
+require 'parts/db-connect.php';
+
+if (isset($_SESSION['login']['uperror'])) {
+    $error = $_SESSION['login']['uperror'];
+    echo '<div class="error"><span>' . $error . '</span></div>';
+    unset($_SESSION['login']['uperror']);
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -33,16 +43,13 @@
             <label for="confirm_password">パスワード(確認用)：</label>
             <input type="password" name="confirm_password" id="confirm_password" maxlength="128" required>
         </div>
-        <?php
-        echo 'a';
+        <!-- <?php
         if (isset($_SESSION['login']['uperror'])) {
-            echo 'b';
             $error = $_SESSION['login']['uperror'];
             echo '<div class="error"><span>' . $error . '</span></div>';
             unset($_SESSION['login']['uperror']);
         }
-        echo 'c';
-        ?>
+        ?> -->
         <br>
         <div class="button-group">
             <input type="submit" value="登録">
@@ -51,8 +58,3 @@
     </form>
 </body>
 </html>
-
-
-
-
-

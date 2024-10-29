@@ -47,6 +47,18 @@ tr {
 
 /* Rest of your existing table styles... */
 
+th {
+    background-color: #f2f2f2; /* Optional: Background color for headers */
+    text-align: center; /* Center the text */
+    padding: 12px; /* Set padding for all headers */
+    height: 60px; /* Set a fixed height for headers */
+}
+
+.user-table th,
+.tag-table th {
+    width: 50%; /* Set width to ensure headers match */
+    border-bottom: 2px solid #333; /* Optional: Add border for clarity */
+}
 
 
 .tag, .icon {
