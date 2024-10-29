@@ -117,7 +117,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td class="tag"><a href="../user.php"><img src="img/icon/default.jpg" width="40%"height="40%"></a></td>';
+                echo '<td class="tag"><a href="user.php"><img src="img/icon/default.jpg" width="40%"height="40%"></a></td>';
                 echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
