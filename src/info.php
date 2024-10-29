@@ -83,7 +83,7 @@ if ($list_raw) {
     <?php
     if (isset($message)) {
         echo '<p>';
-        echo '<span>$message</span>';
+        echo '<span>'.$message.'</span>';
         echo '</p>';
     }
     ?>
