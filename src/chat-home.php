@@ -1,13 +1,16 @@
 <?php
+session_start(); // セッションを開始
 
+require 'db-connect.php';
 require 'parts/auto-login.php';
 require 'header.php';
+
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch(PDOException $e){
+} catch(PDOException $e) {
     echo "接続エラー: " . $e->getMessage();
-    exit();  
+    exit();
 }
 
 // URLからuser_idを取得
@@ -43,7 +46,6 @@ function getLastMessages($pdo, $user_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
 // ユーザー名を取得する関数
 function getUserName($pdo, $user_id) {
     $sql = "SELECT user_name FROM Users WHERE user_id = :user_id";
@@ -52,6 +54,21 @@ function getUserName($pdo, $user_id) {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     return $user ? $user['user_name'] : '不明';
+}
+
+// 未読メッセージ数を取得する関数
+function getUnreadMessageCount($pdo, $user_id, $partner_id) {
+    $sql = "
+    SELECT COUNT(*) AS unread_count
+    FROM Message
+    WHERE send_id = :partner_id AND sent_id = :user_id AND already = 0";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result ? $result['unread_count'] : 0;
 }
 ?>
 
@@ -63,13 +80,28 @@ function getUserName($pdo, $user_id) {
     <title>チャット</title>
     <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/chat.css" media="screen and (min-width: 1280px)">
+    <style>
+        /* 未読メッセージ数を示す赤丸 */
+        .unread-badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 0.3em 0.5em;
+            font-size: 0.8em;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .chat-item {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
 
 <!-- 戻るボタン -->
 <div class="back-button">
     <form action="main.php" method="GET">
-        
         <button type="submit">戻る</button>
     </form>
 </div>
@@ -86,7 +118,9 @@ function getUserName($pdo, $user_id) {
         $messages = getLastMessages($pdo, $user_id);
         foreach ($messages as $message): 
             // 相手のIDを特定（自分以外のID）
-            $partner_id = ($message['send_id'] == $user_id) ? $message['sent_id'] : $message['send_id']; 
+            $partner_id = ($message['send_id'] == $user_id) ? $message['sent_id'] : $message['send_id'];
+            // 未読メッセージ数を取得
+            $unread_count = getUnreadMessageCount($pdo, $user_id, $partner_id);
     ?>
         <div class="chat-item">
             <img src="image/<?php echo htmlspecialchars($partner_id); ?>.png" alt="User Image" class="avatar">
@@ -94,6 +128,11 @@ function getUserName($pdo, $user_id) {
                 <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
                     <?php echo htmlspecialchars(getUserName($pdo, $partner_id)); ?>
                 </a>
+
+                <!-- 未読メッセージ数を赤丸で表示 -->
+                <?php if ($unread_count > 0): ?>
+                    <span class="unread-badge"><?php echo $unread_count; ?></span>
+                <?php endif; ?>
               
                 <!-- 最後のメッセージを表示 -->
                 <p><?php echo htmlspecialchars($message['message_detail']); ?></p>
