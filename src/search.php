@@ -107,20 +107,20 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <div class="table-container">
     <table class="user-table">
         <tr>
-            <td colspan="2">ユーザー</th>
+            <th colspan="2">ユーザー</th>
 </tr>
         <tr>
-            <th>種類</td>
-            <th>名前</td>
+            <td>種類</td>
+            <td>名前</td>
         </tr>
         <?php
         echo '<form name="form1" action="user.php" method="get">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
-                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="img/icon/default.jpg" width="40%"height="40%"></A></td>';
+                echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="img/icon/default.jpg" width="40%"height="40%"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
-                echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
+                echo '<td class="name"><a href="javascript:document.form1.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
                 echo '</tr>';
             }
             $judge = 1;
@@ -128,10 +128,10 @@ echo '<link rel="stylesheet" href="css/search.css">';
         echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
-        <td colspan="2">タグ</th>
+        <th colspan="2">タグ</th>
         </tr>
-        <tr><th>作成者</th>
-            <th>タグ名</th></tr>';
+        <tr><td>作成者</td>
+            <td>タグ名</td></tr>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
