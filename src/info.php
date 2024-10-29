@@ -64,8 +64,8 @@ if (isset($_POST['all_read'])) {
                         foreach ($list_raw as $list_row) {
                             if ($list_row['type'] == 1) {
                                 // typeが1の場合(アナウンス)
-                                $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                                $announce_sql->execute([$list_row['announcement_id']]);
+                                $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=? AND send_person=?');
+                                $announce_sql->execute([$list_row['announcement_id'],$n_user]);
                                 $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
                                 $announcement_id_read = $announce_row['announcement_id'];
                                 $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?');
@@ -73,8 +73,8 @@ if (isset($_POST['all_read'])) {
                                 $message = 'パターン２';
                             } else if ($list_row['type'] == 2) {
                                 // typeが2の場合(位置情報)
-                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                                $current_sql->execute([$list_row['current_location_id']]);
+                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id');
+                                $current_sql->execute([$list_row['current_location_id'],$n_user]);
                                 $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
                                 $current_location_id_read = $current_row['current_location_id'];
                                 $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?');
