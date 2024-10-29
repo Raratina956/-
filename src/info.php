@@ -63,8 +63,9 @@ if (isset($_POST['all_read'])) {
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], 1, $announcement_id_a]);
                         // アラートデバック用
+                        $sql_message = "UPDATE Announce_check SET read_check=1 WHERE user_id=".$_SESSION['user']['user_id']." AND type=1 AND announcement_id=". $announcement_id_a;
                         $message = "narrow:" . $narrow . "　n_user:" . $n_user . "　announcement_id_a:".$announcement_id_a. "　7";
-                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        echo "<script type='text/javascript'>alert('$sql_message');</script>";
                         $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                         $n_announce_s->execute([$n_user]);
                         $n_announce_r = $n_announce_s->fetch();
@@ -72,8 +73,9 @@ if (isset($_POST['all_read'])) {
                         $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND current_location_id=?');
                         $all_read_sql->execute([1, $_SESSION['user']['user_id'], 2, $announcement_id_a]);
                         // アラートデバック用
+                        $sql_message = "UPDATE Announce_check SET read_check=1 WHERE user_id=".$_SESSION['user']['user_id']." AND type=2 AND announcement_id=". $announcement_id_a;
                         $message = "narrow:" . $narrow . "　n_user:" . $n_user. "　announcement_id_a:".$announcement_id_a."　8";
-                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        echo "<script type='text/javascript'>alert('$sql_message');</script>";
                         break;
                     case 1:
                         if ($n_user == 0) {
