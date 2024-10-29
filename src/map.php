@@ -65,11 +65,12 @@
                                 foreach($icon as $ic){
                                     if($j < 7){
                                         echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
-                                        $j++;
+                                      
                                     }else{
                                         echo '<img src="img/icon/iconover.png" width="12%" height=95%" class="usericon">';
                                         break;
                                     }
+                                    $j++;
                                     
                                      
                                 }
