@@ -117,6 +117,8 @@ textarea {
     font-size: 14px;
     outline: none;
     margin-right: 10px;
+    flex: 1; /* テキストエリアが残りのスペースを埋める */
+    margin-right: 10px;
 }
 
 textarea:focus {
@@ -214,4 +216,22 @@ input[type="submit"] {
 /* 戻るボタンのホバー効果 */
 .back-btn:hover {
     background-color: #d32f2f; /* ホバー時の色 */
+}
+
+.send-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 10px;
+    gap: 10px; /* 要素間のスペース */
+}
+
+.back-form {
+    margin: 0;
 }

@@ -29,12 +29,14 @@ function timeAgo($logtime)
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
+    $narrow = intval($narrow);
 } else {
     $narrow = 0;
 }
 // narrow→0:アナウンス、位置情報   1:アナウンス    2:位置情報
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
+    $n_user = intval($n_user);
 } else {
     $n_user = 0;
 }
@@ -42,7 +44,6 @@ if (isset($message)) {
     unset($message);
 }
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
-
 // 一括既読機能
 if (isset($_POST['all_read'])) {
     switch ($narrow) {
@@ -52,19 +53,45 @@ if (isset($_POST['all_read'])) {
                     // narrow:0 n_user:0の時
                     $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=?');
                     $all_read_sql->execute([1, $_SESSION['user']['user_id']]);
-                    $message = 'narrow:' . $narrow . ' n_user:' . $n_user;
+                    $message = 'パターン１';
                     break;
-    
+
                 default:
-                    # code...
+                    // narrow:0 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            if ($list_row['type'] == 1) {
+                                // typeが1の場合(アナウンス)
+                                $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=? AND send_person=?');
+                                $announce_sql->execute([$list_row['announcement_id'],$n_user]);
+                                $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
+                                $announcement_id_read = $announce_row['announcement_id'];
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND announcement_id=?');
+                                $read_sql->execute([1, $_SESSION['user']['user_id'], $announcement_id_read]);
+                                $message = 'パターン２';
+                            } else if ($list_row['type'] == 2) {
+                                // typeが2の場合(位置情報)
+                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id=?');
+                                $current_sql->execute([$list_row['current_location_id'],$n_user]);
+                                $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+                                $current_location_id_read = $current_row['current_location_id'];
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND current_location_id=?');
+                                $read_sql->execute([1, $_SESSION['user']['user_id'], $current_location_id_read]);
+                                $message = 'パターン２';
+                            }
+                        }
+                    }
                     break;
             }
             break;
-        
+
         default:
             # code...
             break;
-    } 
+    }
 }
 ?>
 <?php
@@ -83,7 +110,7 @@ if ($list_raw) {
     <?php
     if (isset($message)) {
         echo '<p>';
-        echo '<span>'.$message.'</span>';
+        echo '<span>' . $message . '</span>';
         echo '</p>';
     }
     ?>
