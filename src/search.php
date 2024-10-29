@@ -109,9 +109,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
         <tr>
             <th colspan="2">ユーザー</th>
 </tr>
-        <tr>
-            <td>種類</td>
-            <td>名前</td>
+        <tr class="h">
+            <th>種類</th>
+            <th>名前</th>
         </tr>
         <?php
         echo '<form name="form1" action="user.php" method="get">';
@@ -130,8 +130,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
         <tr>
         <th colspan="2">タグ</th>
         </tr>
-        <tr><td>作成者</td>
-            <td>タグ名</td></tr>';
+        <tr class="h"><th>作成者</th>
+            <th>タグ名</th></tr>';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
