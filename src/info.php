@@ -63,7 +63,7 @@ if (isset($_POST['all_read'])) {
                                 $all_read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=? AND announcement_id=?');
                                 $all_read_sql->execute([1, $_SESSION['user']['user_id'], 1, $announcement_id_a]);
                             }
-                        } else if ($row['type']) {
+                        } else if ($row['type']==2) {
                             var_dump($n_user);
                             $n_announce_s = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                             $n_announce_s->execute([$n_user]);
