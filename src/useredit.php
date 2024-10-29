@@ -2,11 +2,11 @@
     require 'parts/auto-login.php';
     require 'header.php';
 
-    if (isset($_SESSION['err']['pass_success'])) {
+    if (isset($_SESSION['err']['success'])) {
         $error_message = $_SESSION['err']['success'];
         echo '<script>alert("'.$error_message.'");</script>';
         // セッションエラーを消去 
-        unset($_SESSION['err']['pass_success']);
+        unset($_SESSION['err']['success']);
     }
 
     //ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
