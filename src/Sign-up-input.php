@@ -34,11 +34,14 @@
             <input type="password" name="confirm_password" id="confirm_password" maxlength="128" required>
         </div>
         <?php
+        echo 'a';
         if (isset($_SESSION['login']['uperror'])) {
+            echo 'b';
             $error = $_SESSION['login']['uperror'];
             echo '<div class="error"><span>' . $error . '</span></div>';
             unset($_SESSION['login']['uperror']);
         }
+        echo 'c';
         ?>
         <br>
         <div class="button-group">
