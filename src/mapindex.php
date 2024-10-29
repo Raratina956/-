@@ -8,6 +8,14 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
   <style>
     #map { width: 100%; height: 500px; }
+    .marker {
+      background-image: url('marker-icon.png'); /* アイコン画像のURL */
+      background-size: contain;
+      width: 50px; /* アイコンの幅 */
+      height: 50px; /* アイコンの高さ */
+      border: none;
+      border-radius: 50%;
+    }
   </style>
 </head>
 <body>
@@ -31,8 +39,12 @@
         // 地図の中心を現在地に移動
         map.setCenter(userLocation);
 
+        // アイコン画像を使用したマーカーを作成
+        const markerElement = document.createElement('div');
+        markerElement.className = 'marker';
+
         // 現在地にマーカーを追加
-        new mapboxgl.Marker({ color: 'red' })  // 赤色のマーカー
+        new mapboxgl.Marker(markerElement)  // アイコンを使用したマーカー
           .setLngLat(userLocation)
           .setPopup(new mapboxgl.Popup({ offset: 25 })
             .setHTML('<div>あなたの現在地です</div>'))
