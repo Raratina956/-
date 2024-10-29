@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'];
 
     if ($password !== $confirm_password) {
-        echo "パスワードが一致しません。もう一度確認してください。";
+        $_SESSION['login'] = [
+            'uperror' => 'パスワードが一致しません。もう一度確認してください。'
+        ];
         exit();
     }
 
@@ -30,7 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $count = $stmt->fetchColumn();
 
     if ($count > 0) {
-        echo "このメールアドレスは既に登録されています。別のメールアドレスを使ってください。";
+        $_SESSION['login'] = [
+            'uperror' => 'このメールアドレスは既に登録されています。別のメールアドレスを使ってください。'
+        ];
     } else {
         $sql = "INSERT INTO Users (mail_address, s_or_t, user_name, password) VALUES (:mail_address, :s_or_t, :user_name, :password)";
         $stmt = $pdo->prepare($sql);
