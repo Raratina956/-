@@ -64,7 +64,7 @@ if (!isset($_POST['title'])) {
                 ?>
             </select>
             <br>
-            <input type="text" name="title" placeholder="タイトル">
+            <input type="text" name="title" class="title" placeholder="タイトル">
             <br>
             <textarea name="content"></textarea>
             <br>

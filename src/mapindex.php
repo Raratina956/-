@@ -3,75 +3,73 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>位置情報取得</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script defer>
-        $(document).ready(function() {
-            $('#send').click(function() {
-                navigator.geolocation.getCurrentPosition(success, fail);
-            });
-        });
+    <title>Map Example</title>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVOfQ2kHq-JVAYMwjZXA8V2UNLPXePMls&libraries=marker"></script>
+    <script>
+        let map; // 地図
+        let marker; // マーカー
 
-        function success(pos) {
-            var date = new Date(pos.timestamp);
-            const position = {
-                data: date.toLocaleString(),                // 日時
-                lat: pos.coords.latitude,                   // 緯度
-                lon: pos.coords.longitude,                  // 経度
-                alt: pos.coords.altitude,                   // 高度
-                posacc: pos.coords.accuracy,                // 位置精度
-                altacc: pos.coords.altitudeAccuracy,        // 高度精度
-                head: pos.coords.heading,                    // 移動方向
-                speed: pos.coords.speed                      // 速度
-            };
-
-            // サーバーサイドへPOSTする
-            $.ajax({
-                type: "post",
-                url: "server_side.php",
-                data: {
-                    "date": position.data,
-                    "lat": position.lat,
-                    "lon": position.lon,
-                    "alt": position.alt,
-                    "posacc": position.posacc,
-                    "altacc": position.altacc,
-                    "head": position.head,
-                    "speed": position.speed
-                },
-                success: function(data, dataType) {
-                    alert(data); // サーバーサイドからの返答を表示
-                },
-                error: function() {
-                    alert('失敗らしい');
-                }
+        function initMap() {
+            // 地図の初期化
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: { lat: -34.397, lng: 150.644 }, // 初期中心位置
             });
 
-            // 位置情報をページに表示
-            $('#result').html(`
-                <h3>位置情報</h3>
-                <p>日時: ${position.data}</p>
-                <p>緯度: ${position.lat}</p>
-                <p>経度: ${position.lon}</p>
-                <p>高度: ${position.alt}</p>
-                <p>位置精度: ${position.posacc}</p>
-                <p>高度精度: ${position.altacc}</p>
-                <p>移動方向: ${position.head}</p>
-                <p>速度: ${position.speed}</p>
-            `);
+            // 初期マーカーの位置
+            const position = { lat: -34.397, lng: 150.644 };
+            marker = new google.maps.marker.AdvancedMarkerElement({
+                map: map,
+                position: position,
+                content: '<div style="color: #000;">Hello World!</div>', // マーカーのコンテンツ
+            });
+
+            // 「自分の位置に移動」ボタンのイベントリスナーを追加
+            document.getElementById('locateButton').addEventListener('click', locateUser);
         }
 
-        function fail(error) {
-            if (error.code == 1) alert('位置情報を取得する時に許可がない');
-            if (error.code == 2) alert('何らかのエラーが発生し位置情報が取得できなかった。');
-            if (error.code == 3) alert('タイムアウト　制限時間内に位置情報が取得できなかった。');
+        function locateUser() {
+            // 位置情報の取得
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                alert("このブラウザは位置情報をサポートしていません。");
+            }
+        }
+
+        function success(pos) {
+            const position = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+            };
+
+            // 地図の中心を現在の位置に移動
+            map.setCenter(position);
+
+            // マーカーの位置を更新
+            if (marker) {
+                marker.setMap(null); // 以前のマーカーを削除
+            }
+            marker = new google.maps.marker.AdvancedMarkerElement({
+                map: map,
+                position: position,
+                content: '<div style="color: #000;">ここがあなたの位置です</div>',
+            });
+        }
+
+        function error() {
+            alert("位置情報の取得に失敗しました。");
         }
     </script>
 </head>
 
 <body>
-    <button type="button" id="send">位置情報取得</button>
-    <div id="result"></div> <!-- 結果を表示するための要素 -->
+    <div id="map" style="height: 500px; width: 100%;"></div>
+    <button id="locateButton">自分の位置に移動</button>
+    <script>
+        // 地図を初期化
+        window.onload = initMap;
+    </script>
 </body>
 
 </html>
