@@ -1,6 +1,4 @@
 <?php
-session_start(); // セッションを開始
-
 
 require 'parts/auto-login.php';
 require 'header.php';
