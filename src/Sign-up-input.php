@@ -1,6 +1,6 @@
 <?php
-require 'parts/auto-login.php';
-require 'header.php';
+session_start();
+require 'parts/db-connect.php';
 
 if (isset($_SESSION['login']['uperror'])) {
     $error = $_SESSION['login']['uperror'];
