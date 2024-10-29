@@ -130,8 +130,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
                 echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="', $icon['icon_name'], '" class="usericon"></a></td>';
                 echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
                 echo '<td class="name"><a href="javascript:document.form1.submit()"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></A></td>';
-                echo '</tr>';
                 echo '</form>';
+                echo '</tr>';
+               
             }
             $judge = 1;
         }
