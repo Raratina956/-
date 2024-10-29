@@ -107,18 +107,19 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <div class="table-container">
     <table class="user-table">
         <tr>
-            <td colspan="2">ユーザー</td>
+            <td colspan="2">ユーザー</th>
 </tr>
         <tr>
-            <th>種類</th>
-            <th>名前</th>
+            <th>種類</td>
+            <th>名前</td>
         </tr>
         <?php
-        echo '<form action="user.php" method="post">';
+        echo '<form name="form1" action="user.php" method="get">';
         if (!empty($user_data)) {
             foreach ($user_data as $data) {
                 echo '<tr>';
                 echo '<td class="tag"><a href="javascript:document.form1.submit()"><img src="img/icon/default.jpg" width="40%"height="40%"></A></td>';
+                echo '<input type="hidden" name="user_id" value="',$data['id'],'">';
                 echo '<td class="name"><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
@@ -127,7 +128,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
         echo '</form>';
         echo '</table><table class="tag-table">
         <tr>
-        <td colspan="2">タグ</td>
+        <td colspan="2">タグ</th>
         </tr>
         <tr><th>作成者</th>
             <th>タグ名</th></tr>';

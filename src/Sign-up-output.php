@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "parts/db-connect.php";
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
@@ -17,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'];
 
     if ($password !== $confirm_password) {
-        echo 'a';
         $_SESSION['login'] = [
             'uperror' => 'パスワードが一致しません。もう一度確認してください。'
         ];
