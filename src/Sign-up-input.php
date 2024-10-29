@@ -38,9 +38,17 @@
         <?php
         if (isset($_SESSION['login']['uperror'])) {
             $error = $_SESSION['login']['uperror'];
-            unset($_SESSION['login']['uperror']);
         }
         ?>
+        <div class="error">
+        <span>
+        <?php
+            echo $error;
+            unset($_SESSION['login']['uperror']);
+        ?>
+        </span>
+        </div>
+        <br>
         <div class="button-group">
         <input type="submit" value="登録">
         <a class="back-link" href="login.php">戻る</a>
