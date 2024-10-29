@@ -41,12 +41,23 @@ if ($kinds == "a" || $kinds == "u") {
 }
 
 // タグ検索
+// タグ検索
 if ($kinds == "a" || $kinds == "t") {
     if ($method == "part") {
-        $search_all_t = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name LIKE ?');
+        $search_all_t = $pdo->prepare('
+            SELECT Tag_list.*, Users.user_name AS creator_name 
+            FROM Tag_list 
+            LEFT JOIN Users ON Tag_list.user_id = Users.user_id 
+            WHERE tag_name LIKE ?
+        ');
         $search_all_t->execute(['%' . $search_text . '%']);
     } else {
-        $search_all_t = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=?');
+        $search_all_t = $pdo->prepare('
+            SELECT Tag_list.*, Users.user_name AS creator_name 
+            FROM Tag_list 
+            LEFT JOIN Users ON Tag_list.user_id = Users.user_id 
+            WHERE tag_name = ?
+        ');
         $search_all_t->execute([$search_text]);
     }
     
@@ -56,11 +67,13 @@ if ($kinds == "a" || $kinds == "t") {
             $tag_data[] = [
                 'type' => 'tag',
                 'id' => $search_all_t_row['tag_id'],
-                'name' => $search_all_t_row['tag_name']
+                'name' => $search_all_t_row['tag_name'],
+                'creator_name' => $search_all_t_row['creator_name'] // 作成者名を追加
             ];
         }
     }
 }
+
 ?>
 
 <?php
@@ -109,15 +122,13 @@ echo '<link rel="stylesheet" href="css/search.css">';
 
         if (!empty($tag_data)) {
             foreach ($tag_data as $data) {
-                $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $sql_user->execute([$row['user_id']]);
-                $row_user = $sql_user->fetch();
               
                 echo '<tr>';
-                echo '<td>', $row_user['user_name'], '</td>';
+                echo '<td>', htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'), '</td>';
                 echo '<td><h3>', htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'), '</h3></td>';
                 echo '</tr>';
             }
+        
             $judge = 1;
         }
 

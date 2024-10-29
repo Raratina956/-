@@ -37,7 +37,7 @@
 
                 }
              }else{
-              echo  '<option value="">選択してください</option>'; 
+              echo  '<option value="">-</option>'; 
              }
 
             echo '</select><br><br>';
