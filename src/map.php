@@ -79,10 +79,10 @@ require 'header.php';
                     break;
                 }
                 echo '<a href="user.php?user_id=' . $user_id . '">';
-                echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                 $name_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
                 $name_sql->execute([$user_id]);
                 $name_row = $name_sql->fetch();
+                echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="'.$user_name.'">';
                 $j++;
                 echo '</a>';
             }
