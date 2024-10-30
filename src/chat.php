@@ -154,6 +154,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.getElementById('submit').addEventListener('click', function() {
         setTimeout(scrollToLatestMessage, 100); // 送信後にスクロール実行
     });
+
+    function adjustChatAreaHeight() {
+    const chatArea = document.getElementById('chat-area');
+    const chatBox = document.querySelector('.chat-box');
+    const sendContainer = document.querySelector('.send-container');
+    const header = document.querySelector('.chat-header');
+
+    // チャットエリアの高さを再計算
+    const availableHeight = window.innerHeight 
+        - header.offsetHeight 
+        - sendContainer.offsetHeight;
+
+    chatArea.style.height = `${availableHeight}px`;
+    }
+
+    // ページロード時とリサイズ時にチャットエリアの高さを調整
+    window.onload = adjustChatAreaHeight;
+    window.onresize = adjustChatAreaHeight;
 </script>
 </body>
 </html>
