@@ -106,7 +106,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     
     <!-- Search Results -->
     <?php
-    if ($judge == 0) {
+    if ($judge != 0) {
         ?>
     <div class="table-container">
     <table class="user-table">
@@ -159,7 +159,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
         }
 
         
-            echo '<tr><td colspan="2">検索結果なし</td></tr>';
+            
+        }else{
+           echo '<h2>検索結果なし</h2>';
         }
         ?>
     </table>
