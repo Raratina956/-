@@ -71,7 +71,7 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if ($j > 7) {
+                if ($j > 6) {
                     // 7以上は表示しない
                     echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                     break;
@@ -81,7 +81,7 @@ require 'header.php';
                 $j++;
                 echo '</a>';
             }
-            if($j>7){
+            if($j>6){
                 break;
             }
         }
