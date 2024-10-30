@@ -24,7 +24,7 @@ try {
     <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="text" name="student_number" id="student_number" maxlength="7" required placeholder="学籍番号は7桁で入力してください">
+            <input type="number" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
@@ -48,6 +48,14 @@ try {
         <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
+        <?php
+        if (isset($_SESSION['login']['number_error'])) {
+            $error = $_SESSION['login']['number_error'];
+            echo '<div class="error"><span>' . $error . '</span></div>';
+            unset($_SESSION['login']['number_error']);
+        }
+        ?>
+        <br>
         <button type="button" class="upload" id="uploadButton">登録</button>
     </form>
 
