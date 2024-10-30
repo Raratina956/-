@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($password !== $confirm_password) {
         $_SESSION['login'] = [
-            'uperror' => 'パスワードが一致しません。もう一度確認してください。'
+            'uperror' => 'パスワードが一致しません。<br>もう一度確認してください。'
         ];
         header("Location: Sign-up-input.php");
         exit;
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($count > 0) {
         $_SESSION['login'] = [
-            'uperror' => 'このメールアドレスは既に登録されています。別のメールアドレスを使ってください。'
+            'uperror' => 'このメールアドレスは既に登録されています。<br>別のメールアドレスを使ってください。'
         ];
         header("Location: Sign-up-input.php");
         exit;
