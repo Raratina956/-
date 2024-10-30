@@ -48,6 +48,7 @@ require 'header.php';
         echo '<tr>';
         
         echo '<td class="block">';
+        echo '<div style="display:inline-flex">';
 
         // 位置取得 階のIDを取得
         $floorStmt = $pdo->prepare('select * 
@@ -88,6 +89,7 @@ require 'header.php';
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="'.$name_row['user_name'].'">';
                 $j++;
                 echo '</a>';
+                echo '</div>';
             }
             if ($judge == 1) {
                 break;
