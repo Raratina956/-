@@ -154,12 +154,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.getElementById('submit').addEventListener('click', function() {
         setTimeout(scrollToLatestMessage, 100); // 送信後にスクロール実行
     });
-
-    const textarea = document.getElementById('textarea');
-    textarea.addEventListener('input', function () {
-        this.style.height = 'auto'; // 一旦高さをリセット
-        this.style.height = `${this.scrollHeight}px`; // 入力内容に応じて高さを調整
-    });
 </script>
 </body>
 </html>
