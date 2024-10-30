@@ -63,7 +63,7 @@ try {
         </div>
         <?php
         $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
-        $iconStmt->execute([$_SESSION['login']['user_id']]);
+        $iconStmt->execute([$_POST['user_id']]);
         $icon = $iconStmt->fetch();
         if ($icon) {
             echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
@@ -71,7 +71,7 @@ try {
         ?>
         <input type="file" class="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION['login']['user_id']; ?>">
+        <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <?php
         if (isset($_SESSION['login']['number_error'])) {
             $error = $_SESSION['login']['number_error'];
