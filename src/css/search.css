@@ -36,7 +36,7 @@ main {
 
 /* Styles for each table */
 .user-table, .tag-table {
-    width: 100px; /* Set width to 48% for two tables with some space in between */
+    width: 48%; /* Set width to 48% for two tables with some space in between */
     border-collapse: collapse;
     margin: 0; /* Remove default margin */
 }
