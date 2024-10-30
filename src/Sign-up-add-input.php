@@ -18,16 +18,6 @@ try {
     <title>新規会員登録</title>
     <link rel="stylesheet" href="mob_css/student-mob1.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
-
-    <script> 
-        function validateStudentNumber() {
-            var studentNumber = document.getElementById("student_number").value;
-            if (!/^\d{7}$/.test(studentNumber)) {
-                alert("学籍番号は7桁の数字で入力してください。");
-                return false;
-            }
-            return true;
-        } </script>
 </head>
 
 <body>
@@ -94,7 +84,16 @@ try {
         } else {
             console.error('uploadForm not found');
         }
-    };
+    }; 
+     
+    function validateStudentNumber() {
+        var studentNumber = document.getElementById("student_number").value;
+        if (!/^\d{7}$/.test(studentNumber)) {
+            alert("学籍番号は7桁の数字で入力してください。");
+            return false;
+        }
+        return true;
+    }
 </script>
 
 </body>
