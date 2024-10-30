@@ -4,10 +4,13 @@ body {
     background-size: cover; /* 全体を覆う */
     background-repeat: no-repeat; /* 繰り返さない */
     padding-top: 110px;
+    background-position: center;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
+    text-align: center;
     align-items: center;
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
@@ -23,10 +26,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-header{
-    
 }
 
 /* Table Styles */
