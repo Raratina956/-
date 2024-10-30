@@ -182,6 +182,8 @@ input[type="submit"]:hover {
     padding: 10px;
     background-color: #15aff1; /* ヘッダーの背景色 */
     border-bottom: 1px solid #ddd; /* ボーダー */
+    position:  relative;        /* 位置指定 */
+    z-index: 10; 
 }
 
 .chat-header img {
@@ -259,4 +261,6 @@ input[type="submit"] {
     align-items: center;
     left: 210%;
     top: -66px;
+    position:  relative;        /* 位置指定 */
+    z-index: 100000; 
 }
