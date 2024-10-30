@@ -48,7 +48,7 @@ if (isset($_POST['title'])) {
 require 'header.php';
 ?>
 <?php
-if (!isset($_POST['title'])) {
+if (empty($_POST['title'])) {
     // 下記アナウンス発信前
     ?>
     <main>
