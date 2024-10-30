@@ -48,7 +48,7 @@ if ($list_raw) {
     echo '<tr>';
     $follower_id =  $favorite['follower_id'];
     $icon_sql = $pdo->prepare('SELECT * FROM Icon WHERE user_id=?');
-    $icon_sql ->execute(['$follower_id']);
+    $icon_sql ->execute([$follower_id]);
     $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
     $icon_name = $icon_row['icno_name'];
     echo '<td><img src="'.$icon_name.'" width="12%" height=95%" class="usericon" title="'.$favorite['user_name'].'"></td>';
