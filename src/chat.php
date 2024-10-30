@@ -155,6 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setTimeout(scrollToLatestMessage, 100); // 送信後にスクロール実行
     });
 
+    document.getElementById('submit').addEventListener('click', function (e) {
+        e.preventDefault(); // デフォルトのフォーム送信を防ぐ
+        const form = e.target.closest('form');
+        if (form) form.submit(); // 手動でフォーム送信
+
+        setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
+    });
+
     function adjustChatAreaHeight() {
     const chatArea = document.getElementById('chat-area');
     const chatBox = document.querySelector('.chat-box');
