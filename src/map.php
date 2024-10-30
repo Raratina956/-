@@ -46,9 +46,6 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
-        if (isset($j)) {
-            echo $j;
-        }
         echo '<form name="floor" action="floor.php" method="post">';
         echo '<td class="block">';
 
@@ -74,6 +71,7 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
+                echo $j;
                 if ($j > 2) {
                     // 7以上は表示しない
                     echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
