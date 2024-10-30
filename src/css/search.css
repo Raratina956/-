@@ -27,68 +27,63 @@ main {
 
 /* Table Styles */
 /* Styles for the container of the tables */
+/* Table Styles */
 .table-container {
-    display: flex; /* Use flexbox to arrange tables side by side */
-    justify-content: space-between; /* Space tables evenly */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    margin-top: 20px; /* Add some spacing above the tables */
+    display: flex;
+    justify-content: space-around;
+    gap: 30px; /* 2つのテーブル間のスペースを追加 */
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1400px; /* 最大幅を広げてテーブルに十分なスペースを確保 */
+    margin-top: 20px;
 }
 
-/* Styles for each table */
+/* 各テーブルのスタイル */
 .user-table, .tag-table {
-    width: 48%; /* Set width to 48% for two tables with some space in between */
+    width: 48%; /* コンテナの48%程度の幅に設定して大きく表示 */
     border-collapse: collapse;
-    margin: 0; /* Remove default margin */
+    font-size: 22px; /* 文字サイズをさらに拡大して見やすく */
+    margin: 0;
 }
 
-tr {
-    border-bottom: 1px solid #333;
+th, td {
+    padding: 20px; /* 各セルにさらに余白を追加 */
+    text-align: center;
+    width: 33%; /* 3列テーブルなら33%に設定 */
 }
-
-/* Rest of your existing table styles... */
 
 th {
-    text-align: center; /* Center the text */
-    padding: 12px; /* Set padding for all headers */
-    height: 60px; /* Set a fixed height for headers */
+    height: 70px; /* ヘッダーの高さを調整して揃え */
+    font-weight: bold;
+    border-bottom: 2px solid #333;
 }
 
-.user-table th,
-.tag-table th {
-    width: 100px; /* Set width to ensure headers match */
-    border-bottom: 2px solid #333; /* Optional: Add border for clarity */
+.user-table td, .tag-table td {
+    width: 33%; /* 列幅を揃える */
 }
 
-
-.tag, .icon {
-    width: 60%; /* アイコンの幅をテーブルの20%に設定 */
-    text-align: center;
-    padding: 8px;
+/* アイコン画像のスタイル */
+.usericon {
+    width: 60px; /* 幅を60pxに調整 */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.name {
-    width: 80%; /* 名前の幅をテーブルの60%に設定 */
-    padding-left: 20px; /* 左側の余白を追加 */
-    padding-right: 20px; /* 余分な右側の余白を削除 */
-    text-align: center; /* 名前を左揃えに設定 */
-    font-size: 100;
-    white-space: nowrap;
-}
+/* 見出しの調整 */
 h1, h2 {
-    text-align: center;
+    font-size: 40px;
     color: #333;
-}
-
-h1 {
-    margin-top: 50px;
-    font-size: 48px;
-}
-
-h2 {
-    font-size: 35px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
+/* ボタンのスタイル */
+.search, .sort-tag {
+    font-size: 20px;
+    padding: 12px 25px;
+    border-radius: 5px;
+}
 
 
 /* Form Styles */
