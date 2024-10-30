@@ -174,5 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     window.onload = adjustChatAreaHeight;
     window.onresize = adjustChatAreaHeight;
 </script>
+<script type="text/javascript" src="Js/chat.js" async></script>
 </body>
 </html>
