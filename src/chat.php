@@ -148,13 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const latestMessage = document.getElementById('latest-message');
     latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
     }
-
-    // ページロード時とメッセージ送信時にスクロールを実行
-    window.onload = scrollToLatestMessage;
-    document.getElementById('submit').addEventListener('click', function() {
-        setTimeout(scrollToLatestMessage, 100); // 送信後にスクロール実行
-    });
-
     document.getElementById('submit').addEventListener('click', function (e) {
         e.preventDefault(); // デフォルトのフォーム送信を防ぐ
         const form = e.target.closest('form');
@@ -181,5 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     window.onload = adjustChatAreaHeight;
     window.onresize = adjustChatAreaHeight;
 </script>
+<script type="text/javascript" src="Js/chat.js" async></script>
 </body>
 </html>
