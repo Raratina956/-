@@ -70,6 +70,7 @@ require 'header.php';
             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
             $user_id = isset($icon[0]['icon_user_id']) ? $icon[0]['icon_user_id'] : null;
             // アイコン表示
+            echo $user_id;
             echo '<a href="user.php?user_id='.$user_id.'">';
             foreach ($icon as $ic) {
 
