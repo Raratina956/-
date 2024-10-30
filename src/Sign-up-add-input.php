@@ -8,9 +8,11 @@ try {
     echo "接続エラー: " . $e->getMessage();
     exit();
 }
+if(!isset($_SESSION['login']['user_id'])){
     $_SESSION['login'] = [
         'user_id' => $_POST['user_id']
     ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
