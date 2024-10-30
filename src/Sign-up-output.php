@@ -62,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
                         <input type="hidden" name="user_id" value="', $user_id, '">
                       </form>';
+                      $_SESSION['login'] = [
+                        'user_id' => $user_id
+                      ];
                 echo '<script>
                         document.getElementById("redirectForm").submit();
                       </script>';

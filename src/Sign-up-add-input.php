@@ -8,14 +8,6 @@ try {
     echo "接続エラー: " . $e->getMessage();
     exit();
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if(!isset($_SESSION['login']['user_id'])){
-        $_SESSION['login'] = [
-            'user_id' => $_POST['user_id']
-        ];
-        echo $_SESSION['login']['user_id'];
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,13 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 return false;
             }
             return true;
-        } 
-    </script>
+        } </script>
 </head>
 
 <body>
     <h2>新規会員登録</h2>
-    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data" onsubmit="return validateStudentNumber()">
+    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
             <input type="text" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" required>
