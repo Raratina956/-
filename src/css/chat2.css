@@ -22,6 +22,9 @@ body {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 15px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column; /* 縦に要素を並べる */
+    height: 100vh; /* ウィンドウ全体を使用 */
 }
 
 
@@ -31,6 +34,8 @@ body {
     padding: 10px; /* ここを20pxから10pxに変更 */
     background-color: #afe7ffe8;
     box-sizing: border-box; /* パディングも含めた幅管理 */
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .chat-area::-webkit-scrollbar {
