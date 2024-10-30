@@ -68,7 +68,7 @@ require 'header.php';
                            WHERE classroom_id = ?');
             $iconStmt->execute([$classroom_id]);
             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
-            $user_id = $icon_user_id['user_id'];
+            $user_id = isset($icon[0]['icon_user_id']) ? $icon[0]['icon_user_id'] : null;
             // アイコン表示
             echo '<a href="user.php?user_id='.$user_id.'">';
             foreach ($icon as $ic) {
