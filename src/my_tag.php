@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-if (isset($_POST['tag_name'])) {
+if (!(empty($_POST['tag_name']))) {
     $tag_name = $_POST['tag_name'];
     $sql_insert = $pdo->prepare('INSERT INTO Tag_list (tag_name,user_id) VALUES (?,?)');
     $sql_insert->execute([
