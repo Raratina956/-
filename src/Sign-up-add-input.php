@@ -30,10 +30,10 @@ try {
         function enableSubmitButton() {
             var studentNumber = document.getElementById("student_number").value;
             var submitButton = document.getElementById("uploadButton");
-            if (studentNumber === "") {
-                submitButton.disabled = true;
-            } else {
+            if (/^\d{7}$/.test(studentNumber)) {
                 submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
             }
         }
 
