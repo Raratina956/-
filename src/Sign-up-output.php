@@ -57,14 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':icon_name', $icon_name);
 
+        $_SESSION['login'] = [
+            'user_id' => $user_id
+          ];
+
         if ($stmt->execute()) {
             if($type == 0){
                 echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
                         <input type="hidden" name="user_id" value="', $user_id, '">
                       </form>';
-                      $_SESSION['login'] = [
-                        'user_id' => $user_id
-                      ];
                 echo '<script>
                         document.getElementById("redirectForm").submit();
                       </script>';

@@ -111,7 +111,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <th colspan="2">ユーザー</th>
 </tr>
         <tr class="h">
-            <th>種類</th>
+            <th></th>
             <th>名前</th>
         </tr>
         <?php
@@ -153,11 +153,8 @@ echo '<link rel="stylesheet" href="css/search.css">';
             }
         
             $judge = 1;
-        }
+        }if ($judge == 0) {}
 
-        if ($judge == 0) {
-            echo '<tr><td colspan="2">検索結果なし</td></tr>';
-        }
         ?>
     </table>
     </div>

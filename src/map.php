@@ -46,8 +46,9 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
-        echo '<form name="floor" action="floor.php" method="post">';
+        
         echo '<td class="block">';
+        echo '<div style="display:inline-flex">';
 
         // 位置取得 階のIDを取得
         $floorStmt = $pdo->prepare('select * 
@@ -72,7 +73,7 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if ($j > 6) {
+                if ($j > 5) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
@@ -88,6 +89,7 @@ require 'header.php';
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="'.$name_row['user_name'].'">';
                 $j++;
                 echo '</a>';
+                
             }
             if ($judge == 1) {
                 break;
@@ -95,6 +97,8 @@ require 'header.php';
         }
 
         echo '</td>';
+        echo '</div>';
+        echo '<form name="floor" action="floor.php" method="post">';
         echo '<input type="hidden" name="floor" value=', $i, '>';
         echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
         echo '</tr>';
