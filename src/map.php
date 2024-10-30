@@ -68,22 +68,20 @@ require 'header.php';
                            WHERE classroom_id = ?');
             $iconStmt->execute([$classroom_id]);
             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
-            $user_id = isset($icon[0]['icon_user_id']) ? $icon[0]['icon_user_id'] : null;
+        
             // アイコン表示
-            echo $user_id;
-            echo '<a href="user.php?user_id='.$user_id.'">';
             foreach ($icon as $ic) {
-
+                $user_id = $ic['icon_user_id'];
+                echo '<a href="user.php?user_id='.$user_id.'">';
                 if ($j >= 7) {
                     // 7以上は表示しない
                     echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                     break;
                 }
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
-
                 $j++;
+                echo '</a>';
             }
-            echo '</a>';
         }
 
         echo '</td>';

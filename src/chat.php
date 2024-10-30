@@ -133,7 +133,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <!-- メッセージ送信フォーム -->
-            <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
+            <form class="send-box flex-box" 
+                action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
+                method="post">
                 <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
                 <input type="submit" name="submit" value="送信" id="submit">
             </form>
@@ -142,14 +144,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 <script>
-    // 最新のメッセージにスクロールする関数
     function scrollToLatestMessage() {
-        const latestMessage = document.getElementById('latest-message');
-        latestMessage.scrollIntoView({ behavior: 'smooth' });
+    const latestMessage = document.getElementById('latest-message');
+    latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
     }
 
-    // ページロード時にスクロールを実行
+    // ページロード時とメッセージ送信時にスクロールを実行
     window.onload = scrollToLatestMessage;
+    document.getElementById('submit').addEventListener('click', function() {
+        setTimeout(scrollToLatestMessage, 100); // 送信後にスクロール実行
+    });
+
+    const textarea = document.getElementById('textarea');
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto'; // 一旦高さをリセット
+        this.style.height = `${this.scrollHeight}px`; // 入力内容に応じて高さを調整
+    });
 </script>
 </body>
 </html>
