@@ -46,19 +46,19 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
+        echo $j;
         echo '<form name="floor" action="floor.php" method="post">';
         echo '<td class="block">';
-        // 位置情報アイコン
+
         // 位置取得 階のIDを取得
         $floorStmt = $pdo->prepare('select * 
-                                            from Classroom                                    
-                                            where classroom_floor=?');
+                                  from Classroom                                    
+                                  where classroom_floor=?');
         $floorStmt->execute([$i]);
         $floor = $floorStmt->fetchAll(PDO::FETCH_ASSOC);
-        $class_id = "";
+
         $j = 1;
         foreach ($floor as $f) {
-            $j=1;
             $classroom_id = $f['classroom_id'];
 
             //アイコン情報を持ってくる
@@ -68,7 +68,7 @@ require 'header.php';
                            WHERE classroom_id = ?');
             $iconStmt->execute([$classroom_id]);
             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
@@ -77,19 +77,19 @@ require 'header.php';
                     echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                     break;
                 }
-                echo '<a href="user.php?user_id='.$user_id.'">';
+                echo '<a href="user.php?user_id=' . $user_id . '">';
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                 $j++;
                 echo '</a>';
             }
-            if($j>2){
+            if ($j > 2) {
                 break;
             }
         }
 
         echo '</td>';
         echo '<input type="hidden" name="floor" value=', $i, '>';
-        echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</td>';
+        echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
         echo '</tr>';
         echo '</form>';
     }
