@@ -8,7 +8,7 @@ try {
     echo "接続エラー: " . $e->getMessage();
     exit();
 }
-if(!isset($_SESSION['login']['user_id'])){
+if(empty($_SESSION['login']['user_id'])){
     $_SESSION['login'] = [
         'user_id' => $_POST['user_id']
     ];
