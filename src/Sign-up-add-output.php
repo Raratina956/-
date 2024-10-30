@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "parts/db-connect.php";
     try {
         $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
@@ -6,6 +7,20 @@
     } catch (PDOException $e) {
         echo "接続エラー: " . $e->getMessage();
         exit();
+    }
+
+    $sql = "SELECT COUNT(*) FROM Users WHERE student_number = :student_number";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_number', $_POST['student_number']);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+        $_SESSION['login'] = [
+            'number_error' => 'この学籍番号は既に存在します'
+        ];
+        header("Location: Sign-up-add-input.php");
+        exit;
     }
 
     $user_id = $_POST['user_id'];
