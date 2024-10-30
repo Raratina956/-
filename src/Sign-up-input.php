@@ -27,7 +27,7 @@ require 'parts/db-connect.php';
         </div>
         <div class="form-group">
             <label for="name">名前：</label>
-            <input type="text" name="name" id="name" maxlength="60" required>
+            <input type="text" name="name" id="name" maxlength="20" required>
         </div>
         <div class="form-group">
             <label for="password">パスワード：</label>

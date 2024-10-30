@@ -133,23 +133,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <!-- メッセージ送信フォーム -->
-            <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
+            <form class="send-box flex-box" 
+                action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
+                method="post">
                 <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                <input type="submit" name="submit" value="送信" id="submit">
+                <input type="submit" name="sub" value="送信" id="submit">
             </form>
         </div>
 
     </div>
 </div>
 <script>
-    // 最新のメッセージにスクロールする関数
     function scrollToLatestMessage() {
-        const latestMessage = document.getElementById('latest-message');
-        latestMessage.scrollIntoView({ behavior: 'smooth' });
+    const latestMessage = document.getElementById('latest-message');
+    latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
+    }
+    document.getElementById('submit').addEventListener('click', function (e) {
+        e.preventDefault(); // デフォルトのフォーム送信を防ぐ
+        const form = e.target.closest('form');
+        if (form) form.submit(); // 手動でフォーム送信
+
+        setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
+    });
+
+    function adjustChatAreaHeight() {
+    const chatArea = document.getElementById('chat-area');
+    const chatBox = document.querySelector('.chat-box');
+    const sendContainer = document.querySelector('.send-container');
+    const header = document.querySelector('.chat-header');
+
+    // チャットエリアの高さを再計算
+    const availableHeight = window.innerHeight 
+        - header.offsetHeight 
+        - sendContainer.offsetHeight;
+
+    chatArea.style.height = `${availableHeight}px`;
     }
 
-    // ページロード時にスクロールを実行
-    window.onload = scrollToLatestMessage;
+    // ページロード時とリサイズ時にチャットエリアの高さを調整
+    window.onload = adjustChatAreaHeight;
+    window.onresize = adjustChatAreaHeight;
 </script>
 </body>
 </html>

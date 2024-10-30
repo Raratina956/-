@@ -1,11 +1,11 @@
 body {
+    background-image: url(../img/SpotLinkbg.png);
     padding-top: 145px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 70vh;
     margin: 0;
-    background-image: url(../img/SpotLinkbg.png);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -18,16 +18,15 @@ body {
 
 .profile-container{
 
-    align-items: center; /* アイコンとテキストを縦方向に中央揃え */
-    /* justify-content: space-evenly; */ /* 左と右の要素の間にスペースを均等に配置 */
+    align-items: center;
+    /* justify-content: space-evenly; */
     padding: 20px;
-    margin: 0 auto; /* 横方向で中央に配置 */
-    max-width: 1139px; /* 最大幅を指定して、大きな画面での見栄えを向上 */
-    width: 100%; /* 幅を常に100%にする */
-    background-color: #f9f9f9; /* 背景色を淡い色にして視認性を向上 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 立体感を出すためのシャドウ効果 */
-    border-radius: 27px; /* 角を丸めて柔らかい印象を演出 */
-
+    margin: 0 auto;
+    max-width: 770px;
+    width: 100%;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 27px;
 }
  
 .user-container {
@@ -90,7 +89,7 @@ button:hover {
     align-items: center;
     justify-content: center; /* 文字を中央寄せにします */
     text-align: center;
-    padding: 10px 20px; /* 内側の余白を少し調整 */
+    padding: 10px 75px; /* 内側の余白を少し調整 */
     margin: 20px auto; /* 上下の余白を追加して、左右は自動で中央寄せ */
     width: fit-content; /* タグの幅を内容に合わせて小さくします */
     border-radius: 10px; /* 角を少し丸めて、デザインを柔らかくします（オプション） */

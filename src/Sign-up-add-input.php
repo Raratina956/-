@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "parts/db-connect.php";
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
@@ -17,6 +18,16 @@ try {
     <title>新規会員登録</title>
     <link rel="stylesheet" href="mob_css/student-mob1.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
+
+    <script> 
+        function validateStudentNumber() {
+            var studentNumber = document.getElementById("student_number").value;
+            if (!/^\d{7}$/.test(studentNumber)) {
+                alert("学籍番号は7桁の数字で入力してください。");
+                return false;
+            }
+            return true;
+        } </script>
 </head>
 
 <body>
@@ -24,7 +35,7 @@ try {
     <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="number" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" required>
+            <input type="text" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
@@ -39,15 +50,15 @@ try {
         </div>
         <?php
             $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
-            $iconStmt->execute([$_POST['user_id']]);
+            $iconStmt->execute([$_SESSION['login']['user_id']]);
             $icon = $iconStmt->fetch();
             if ($icon) {
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
             }
         ?>
-        <input type="file" id="fileInput" name="icon_file" accept=".jpg"><br>
+        <input type="file" class="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
-        <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['login']['user_id']; ?>">
         <?php
         if (isset($_SESSION['login']['number_error'])) {
             $error = $_SESSION['login']['number_error'];

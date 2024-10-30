@@ -22,18 +22,24 @@ body {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 15px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column; /* 縦に要素を並べる */
+    height: 100vh; /* ウィンドウ全体を使用 */
 }
 
 
 .chat-area {
-    min-height: 500px;
+    min-height: 780px;
     overflow-y: auto;
-    padding: 20px;
+    padding: 10px; /* ここを20pxから10pxに変更 */
     background-color: #afe7ffe8;
+    box-sizing: border-box; /* パディングも含めた幅管理 */
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-area::-webkit-scrollbar {
-    width: 0px;
+    width: 6px;
     background: transparent;
 }
 
@@ -55,7 +61,7 @@ body {
     padding: 10px;
     border-radius: 20px;
     word-wrap: break-word;
-    font-size: 14px;
+    font-size: 20px;
     position: relative;
 }
 
@@ -234,4 +240,8 @@ input[type="submit"] {
 
 .back-form {
     float: right;
+}
+
+#latest-message {
+    height: 1px; /* 最新メッセージの位置調整のための余白確保 */
 }
