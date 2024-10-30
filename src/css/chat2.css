@@ -245,3 +245,18 @@ input[type="submit"] {
 #latest-message {
     height: 1px; /* 最新メッセージの位置調整のための余白確保 */
 }
+
+.hamburger {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin-left: auto;
+    cursor: pointer;
+    border: 2px solid #00CFFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 210%;
+    top: -66px;
+}
