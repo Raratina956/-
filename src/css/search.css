@@ -6,9 +6,9 @@ body {
     padding-top: 110px;
     background-position: center;
     background-attachment: fixed;
-    margin: 0;
+    margin: 0px;
     padding: 0;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -26,6 +26,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: 100px 100px 100px 425px;
 }
 
 /* Table Styles */
