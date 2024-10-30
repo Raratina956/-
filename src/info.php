@@ -153,6 +153,116 @@ if (isset($_POST['all_read'])) {
             break;
     }
 }
+// n_user→0:全てのユーザー  0以外:特定のユーザーID
+// 一括削除機能
+if (isset($_POST['all_delete'])) {
+    switch ($narrow) {
+        case 0:
+            switch ($n_user) {
+                case 0:
+                    // narrow:0 n_user:0の時
+                    $all_read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=?');
+                    $all_read_sql->execute([$_SESSION['user']['user_id']]);
+                    $message = 'パターン１';
+                    break;
+
+                default:
+                    // narrow:0 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            if ($list_row['type'] == 1) {
+                                // typeが1の場合(アナウンス)
+                                $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=? AND send_person=?');
+                                $announce_sql->execute([$list_row['announcement_id'], $n_user]);
+                                $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
+                                if ($announce_row !== false) {
+                                    $announcement_id_read = $announce_row['announcement_id'];
+                                    $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?');
+                                    $read_sql->execute([$_SESSION['user']['user_id'], $announcement_id_read]);
+                                    $message = 'パターン２';
+                                }
+                            } else if ($list_row['type'] == 2) {
+                                // typeが2の場合(位置情報)
+                                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id=?');
+                                $current_sql->execute([$list_row['current_location_id'], $n_user]);
+                                $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+                                if ($current_row !== false) {
+                                    $current_location_id_read = $current_row['current_location_id'];
+                                    $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?');
+                                    $read_sql->execute([$_SESSION['user']['user_id'], $current_location_id_read]);
+                                    $message = 'パターン２';
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
+        case 1:
+            switch ($n_user) {
+                case 0:
+                    // narrow:1 n_user:0の時
+                    $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND type=?');
+                    $read_sql->execute([$_SESSION['user']['user_id'], $narrow]);
+                    $message = 'パターン3';
+                    break;
+
+                default:
+                    // narrow:1 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            $announce_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=? AND send_person=?');
+                            $announce_sql->execute([$list_row['announcement_id'], $n_user]);
+                            $announce_row = $announce_sql->fetch(PDO::FETCH_ASSOC);
+                            if ($announce_row !== false) {
+                                $announcement_id_read = $announce_row['announcement_id'];
+                                $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND announcement_id=?');
+                                $read_sql->execute([$_SESSION['user']['user_id'], $announcement_id_read]);
+                                $message = 'パターン4';
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
+        case 2:
+            switch ($n_user) {
+                case 0:
+                    // narrow:2 n_user:0の時
+                    $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND type=?');
+                    $read_sql->execute([$_SESSION['user']['user_id'], $narrow]);
+                    $message = 'パターン5';
+                    break;
+
+                default:
+                    // narrow:2 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=? AND user_id=?');
+                            $current_sql->execute([$list_row['current_location_id'], $n_user]);
+                            $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+                            if ($current_row !== false) {
+                                $current_location_id_read = $current_row['current_location_id'];
+                                $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE user_id=? AND current_location_id=?');
+                                $read_sql->execute([$_SESSION['user']['user_id'], $current_location_id_read]);
+                                $message = 'パターン6';
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
+    }
+}
 ?>
 <?php
 require 'header.php';
@@ -239,22 +349,22 @@ if ($list_raw) {
         <input type="hidden" name="all_read">
         <input type="submit" value="一括既読" class="info">
     </form>
-    <!-- <form action="info.php" method="post">
+    <form action="info.php" method="post" onsubmit="return confirmDelete()">
     <?php
-    // if (isset($_POST['narrow'])) {
-    //     echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
-    // } else {
-    //     echo '<input type="hidden" name="narrow" value=0>';
-    // }
-    // if (isset($_POST['n_user'])) {
-    //     echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
-    // } else {
-    //     echo '<input type="hidden" name="n_user" value=0>';
-    // }
+    if (isset($_POST['narrow'])) {
+        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+    } else {
+        echo '<input type="hidden" name="narrow" value=0>';
+    }
+    if (isset($_POST['n_user'])) {
+        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+    } else {
+        echo '<input type="hidden" name="n_user" value=0>';
+    }
     ?>
         <input type="hidden" name="all_delete">
         <input type="submit" value="一括削除" class="info">
-    </form> -->
+    </form>
     <?php
     echo '<table>';
     if (isset($_POST['narrow'])) {
@@ -358,3 +468,8 @@ if ($list_raw) {
     echo 'お知らせがありません';
 }
 ?>
+<script>
+    function confirmDelete() {
+        return confirm("本当に削除しますか？");
+    }
+</script>
