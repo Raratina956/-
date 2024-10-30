@@ -2,7 +2,6 @@
 session_start();
 require "parts/db-connect.php";
 unset($_SESSION['login']['uperror']);
-
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -12,6 +11,7 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $username = $_POST['name'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
@@ -25,8 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: Sign-up-input.php");
         exit;
     }
+    
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     $sql = "SELECT COUNT(*) FROM Users WHERE mail_address = :mail_address";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':mail_address', $mail_address);
@@ -50,26 +52,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $icon_name = "img/icon/default.jpg";
         $user_id = $pdo->lastInsertId();
-
         $sql = "INSERT INTO Icon (user_id, icon_name) VALUES (:user_id, :icon_name)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':icon_name', $icon_name);
 
+        $_SESSION['login'] = [
+            'user_id' => $user_id
+          ];
+
         if ($stmt->execute()) {
-            if ($type == 0) {
-                $_SESSION['login'] = [
-                    'user_id' => $user_id
-                ];
-                // セッションに user_id を設定後に出力
-                echo '<script>console.log("User ID in session: '.$_SESSION['login']['user_id'].'");</script>';
+            if($type == 0){
                 echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
-                        <input type="hidden" name="user_id" value="' . $user_id . '">
+                        <input type="hidden" name="user_id" value="', $user_id, '">
                       </form>';
                 echo '<script>
                         document.getElementById("redirectForm").submit();
                       </script>';
-            } else {
+            }else{
                 $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
                 header("Location: $redirect_url");
                 exit();
@@ -79,5 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "登録に失敗しました: " . $error_info[2];
         }
     }
+
 }
 ?>
