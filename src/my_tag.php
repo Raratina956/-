@@ -1,17 +1,23 @@
 <?php
 require 'parts/auto-login.php';
 if (isset($_POST['tag_name'])) {
-    $tag_name = $_POST['tag_name'];
-    $sql_insert = $pdo->prepare('INSERT INTO Tag_list (tag_name,user_id) VALUES (?,?)');
-    $sql_insert->execute([
-        $tag_name,
-        $_SESSION['user']['user_id']
-    ]);
+    unset($error);
+    if (!(empty($_POST['tag_name']))) {
+        $tag_name = $_POST['tag_name'];
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_list (tag_name,user_id) VALUES (?,?)');
+        $sql_insert->execute([
+            $tag_name,
+            $_SESSION['user']['user_id']
+        ]);
+    }else{
+        $error = '文字を入力してください';
+    }
 }
 ?>
 <?php
 require 'header.php';
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,12 +32,16 @@ require 'header.php';
     <input type="submit" value="作成" class="button_in">
 </form>
 <?php
+if(isset($error)){
+    echo '<span text-align="center" color="red">'.$error.'</span>';
+}
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
 $list_sql->execute([$_SESSION['user']['user_id']]);
 $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
-    <br><br><table id="table" border="0" style="font-size: 18pt;">
+    <br><br>
+    <table id="table" border="0" style="font-size: 18pt;">
         <th>タグID</th>
         <th>タグ名</th>
         <th></th>
