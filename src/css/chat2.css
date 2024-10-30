@@ -1,10 +1,10 @@
 /* ベースのスタイル */
 body {
-    background-image: url(../img/SpotLinkbg.png);
+    /* background-image: url(../img/SpotLinkbg.png); */
     font-family: 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    /* background-color: #afe7ffe8; */
 }
 
 .chat-system {
@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     /* height: 100vh; */
-    background-color: #e5ddd5;
+    /* background-color: #afe7ffe8; */
 }
 
 .chat-box {
@@ -26,7 +26,7 @@ body {
 
 
 .chat-area {
-    height: 500px;
+    min-height: 500px;
     overflow-y: auto;
     padding: 20px;
     background-color: #afe7ffe8;
@@ -233,5 +233,5 @@ input[type="submit"] {
 }
 
 .back-form {
-    margin: 0;
+    float: right;
 }

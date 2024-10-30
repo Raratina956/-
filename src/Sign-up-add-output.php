@@ -8,6 +8,20 @@
         exit();
     }
 
+    $sql = "SELECT COUNT(*) FROM Users WHERE student_number = :student_number";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_number', $_POST['student_number']);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+        $_SESSION['login'] = [
+            'number_error' => 'この学籍番号は既に存在します'
+        ];
+        header("Location: Sign-up-add-input.php");
+        exit;
+    }
+
     $user_id = $_POST['user_id'];
     $student_number = $_POST['student_number'];
     $sql = 'UPDATE Users SET student_number = :student_number WHERE user_id = :user_id';
