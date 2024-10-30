@@ -74,10 +74,9 @@ require 'header.php';
                 $user_id = $ic['icon_user_id'];
                 if ($j > 5) {
                     // 7以上は表示しない
-                    echo '<form action="floor.php" method="post">';
-                    echo '<input type="hidden" name="floor" value=', $i, '>';
+                    // echo '<form action="floor.php" method="post">';
+                    // echo '<input type="hidden" name="floor" value=', $i, '>';
                     echo '<input type="image" src="img/iconover.png" width="12%" height="95%" class="usericon" alt="over">';
-                    echo '</form>';
                     $judge = 1;
                     break;
                 }
@@ -87,6 +86,7 @@ require 'header.php';
                 $name_row = $name_sql->fetch();
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="'.$name_row['user_name'].'">';
                 $j++;
+                // echo '</form>';
                 echo '</a>';
             }
             if ($judge == 1) {

@@ -105,6 +105,9 @@ echo '<link rel="stylesheet" href="css/search.css">';
     <h2>【<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>】の検索結果</h2>
     
     <!-- Search Results -->
+    <?php
+    if ($judge == 0) {
+        ?>
     <div class="table-container">
     <table class="user-table">
         <tr>
@@ -155,7 +158,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             $judge = 1;
         }
 
-        if ($judge == 0) {
+        
             echo '<tr><td colspan="2">検索結果なし</td></tr>';
         }
         ?>
