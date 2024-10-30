@@ -11,40 +11,63 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規会員登録</title>
     <link rel="stylesheet" href="mob_css/student-mob1.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
-</head>
+    <script>
+        function validateForm() {
+            var studentNumber = document.getElementById("student_number").value;
+            if (studentNumber === "") {
+                alert("学籍番号を入力してください。");
+                return false;
+            }
+            return true;
+        }
 
+        function enableSubmitButton() {
+            var studentNumber = document.getElementById("student_number").value;
+            var submitButton = document.getElementById("uploadButton");
+            if (studentNumber === "") {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("student_number").addEventListener("input", enableSubmitButton);
+            enableSubmitButton(); // 初期ロード時にボタンの状態を設定
+        });
+    </script>
+</head>
 <body>
     <h2>新規会員登録</h2>
-    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data">
+    <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="text" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" required>
+            <input type="number" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" pattern="\d{7}" required>
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
             <select name="class" id="class">
                 <?php
-                    $classStmt=$pdo->query('select * from Classtag_list');
-                    foreach($classStmt as $class){
-                        echo '<option value="', $class['classtag_id'], '">', $class['classtag_name'], '</option>';
-                    }
+                $classStmt = $pdo->query('select * from Classtag_list');
+                foreach($classStmt as $class){
+                    echo '<option value="', $class['classtag_id'], '">', $class['classtag_name'], '</option>';
+                }
                 ?>
             </select>
         </div>
         <?php
-            $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
-            $iconStmt->execute([$_SESSION['login']['user_id']]);
-            $icon = $iconStmt->fetch();
-            if ($icon) {
-                echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
-            }
+        $iconStmt = $pdo->prepare('select * from Icon where user_id = ?');
+        $iconStmt->execute([$_SESSION['login']['user_id']]);
+        $icon = $iconStmt->fetch();
+        if ($icon) {
+            echo '<img id="existingIcon" src="', $icon['icon_name'], '" class="icon">';
+        }
         ?>
         <input type="file" class="file" id="fileInput" name="icon_file" accept=".jpg"><br>
         <img id="preview" src="#" alt="Preview" style="display:none;"><br>
@@ -57,16 +80,14 @@ try {
         }
         ?>
         <br>
-        <button type="button" class="upload" id="uploadButton">登録</button>
+        <button type="button" class="upload" id="uploadButton" disabled>登録</button>
     </form>
-
-<script>
+    <script>
     document.getElementById('fileInput').onchange = function (event) {
         var reader = new FileReader();
         reader.onload = function () {
             var existingIcon = document.getElementById('existingIcon');
             var preview = document.getElementById('preview');
-            
             if (existingIcon) {
                 existingIcon.src = reader.result;  // 既存のアイコンを置き換える
             } else {
@@ -84,17 +105,7 @@ try {
         } else {
             console.error('uploadForm not found');
         }
-    }; 
-     
-    function validateStudentNumber() {
-        var studentNumber = document.getElementById("student_number").value;
-        if (!/^\d{7}$/.test(studentNumber)) {
-            alert("学籍番号は7桁の数字で入力してください。");
-            return false;
-        }
-        return true;
-    }
-</script>
-
+    };
+    </script>
 </body>
 </html>
