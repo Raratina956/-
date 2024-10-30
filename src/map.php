@@ -62,14 +62,15 @@ require 'header.php';
             $classroom_id = $f['classroom_id'];
 
             //アイコン情報を持ってくる
-            $iconStmt = $pdo->prepare('select * 
-                                                    from Icon                                         
-                                                    LEFT JOIN Current_location On Icon.user_id = Current_location.user_id
-                                                    where classroom_id=?');
+            $iconStmt = $pdo->prepare('SELECT Icon.*, Current_location.*, Icon.user_id as icon_user_id 
+                           FROM Icon
+                           LEFT JOIN Current_location ON Icon.user_id = Current_location.user_id
+                           WHERE classroom_id = ?');
             $iconStmt->execute([$classroom_id]);
             $icon = $iconStmt->fetchAll(PDO::FETCH_ASSOC);
+            $user_id = $icon_user_id['user_id'];
             // アイコン表示
-            echo '<a href="user.php?user_id=2">';
+            echo '<a href="user.php?user_id='.$user_id.'">';
             foreach ($icon as $ic) {
 
                 if ($j >= 7) {
