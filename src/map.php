@@ -83,7 +83,6 @@ require 'header.php';
                 $name_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
                 $name_sql->execute([$user_id]);
                 $name_row = $name_sql->fetch();
-                echo '<span>'.$name_row['user_name'].'</span>';
                 $j++;
                 echo '</a>';
             }
