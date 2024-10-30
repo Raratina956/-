@@ -1,4 +1,5 @@
 <?php
+    require 'db-connect.php';
     $partner_id = $_GET['user_id'];
     $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
     $iconStmt->execute([$partner_id]);
