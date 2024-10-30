@@ -14,6 +14,8 @@ try {
     // トランザクション開始
     $pdo->beginTransaction();
 
+    $user_id = $_POST['user_id'];
+
     // 学籍番号の重複チェック
     $sql = "SELECT COUNT(*) FROM Users WHERE student_number = :student_number";
     $stmt = $pdo->prepare($sql);
@@ -26,12 +28,15 @@ try {
             'number_error' => 'この学籍番号は既に存在します'
         ];
         $pdo->rollBack();
-        header("Location: Sign-up-add-input.php");
-        exit();
+        echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
+                <input type="hidden" name="user_id" value="', $user_id, '">
+              </form>';
+        echo '<script>
+                document.getElementById("redirectForm").submit();
+              </script>';
     }
 
     // ユーザーの更新
-    $user_id = $_POST['user_id'];
     $student_number = $_POST['student_number'];
     $sql = 'UPDATE Users SET student_number = :student_number WHERE user_id = :user_id';
     $stmt = $pdo->prepare($sql);
