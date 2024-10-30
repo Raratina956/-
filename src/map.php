@@ -57,7 +57,6 @@ require 'header.php';
         $floor = $floorStmt->fetchAll(PDO::FETCH_ASSOC);
         $class_id = "";
         $j = 1;
-
         foreach ($floor as $f) {
             $classroom_id = $f['classroom_id'];
 
@@ -81,6 +80,9 @@ require 'header.php';
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                 $j++;
                 echo '</a>';
+            }
+            if($j>2){
+                break;
             }
         }
 
