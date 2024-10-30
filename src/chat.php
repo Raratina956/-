@@ -149,27 +149,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
     }
     document.getElementById('submit').addEventListener('click', function (e) {
-    e.preventDefault();
-    const form = e.target.closest('form');
-    const formData = new FormData(form);
+        e.preventDefault(); // デフォルトのフォーム送信を防ぐ
+        const form = e.target.closest('form');
+        if (form) form.submit(); // 手動でフォーム送信
 
-    fetch(form.action, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data.trim() === 'success') {
-            document.getElementById('textarea').value = ''; // 入力をクリア
-            scrollToLatestMessage();
-        } else {
-            console.error("送信エラー: " + data);
-        }
-    })
-    .catch(error => console.error("送信に失敗しました: " + error));
-});
-
-
+        setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
+    });
 
     function adjustChatAreaHeight() {
     const chatArea = document.getElementById('chat-area');
