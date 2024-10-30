@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/chat2.css">
 </head>
 <body>
+<div id="chat">
 <div class="chat-system">
     <div class="chat-box">
 
@@ -142,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
     </div>
+</div>
 </div>
 <script>
     // function scrollToLatestMessage() {
