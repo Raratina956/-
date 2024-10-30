@@ -24,7 +24,7 @@ $sql_current = $pdo->prepare('SELECT classroom_id, COUNT(*) AS user_count FROM C
 $sql_current->execute();
 $results = $sql_current->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<ul>';
+echo '<ul class="ul1">';
 foreach ($rows as $row) {
     $classroom_id = $row['classroom_id'];
     $classroom_name = $row['classroom_name'];
@@ -37,8 +37,8 @@ foreach ($rows as $row) {
         }
     }
 
-    echo '<li>';
-    echo '<a href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<font class="san">‣</font>',htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
+    echo '<li class="li1">';
+    echo '<a  class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<font class="san">‣</font>',htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
     echo '</li>';
 }
 echo '</ul></main>';
