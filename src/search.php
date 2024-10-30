@@ -106,7 +106,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
     
     <!-- Search Results -->
     <?php
-    if ($judge != 0) {
+    if ($judge == 0) {
         ?>
     <div class="table-container">
     <table class="user-table">
