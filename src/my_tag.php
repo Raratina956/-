@@ -35,7 +35,7 @@ require 'header.php';
 </form>
 <?php
 if(isset($error)){
-    echo '<span text-align="center" color="red">'.$error.'</span>';
+    echo '<span style="display: block; text-align: center; color: red;">' . $error . '</span>';
 }
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
 $list_sql->execute([$_SESSION['user']['user_id']]);

@@ -46,7 +46,7 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
-        echo '<form name="floor" action="floor.php" method="post">';
+        
         echo '<td class="block">';
 
         // 位置取得 階のIDを取得
@@ -95,6 +95,7 @@ require 'header.php';
         }
 
         echo '</td>';
+        echo '<form name="floor" action="floor.php" method="post">';
         echo '<input type="hidden" name="floor" value=', $i, '>';
         echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
         echo '</tr>';
