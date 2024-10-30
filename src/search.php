@@ -82,7 +82,7 @@ if ($kinds == "a" || $kinds == "t") {
 echo '<link rel="stylesheet" href="css/search.css">';
 ?>
 <main>
-   <div class="container">
+
     <!-- Search Form -->
     <form action="search.php" method="post">
     <select class="sort-tag" name="kinds">
@@ -160,7 +160,6 @@ echo '<link rel="stylesheet" href="css/search.css">';
         }
         ?>
     </table>
-    </div>
     </div>
 </main>
 <a href="main.php" class="back-link">メインへ</a>
