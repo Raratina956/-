@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 $search_text = $_POST['search'];
 unset($dis);
 $user_data = [];
@@ -77,7 +78,7 @@ if ($kinds == "a" || $kinds == "t") {
 ?>
 
 <?php
-require 'header.php';
+
 echo '<link rel="stylesheet" href="css/search.css">';
 ?>
 <main>
