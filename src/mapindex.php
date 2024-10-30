@@ -1,5 +1,12 @@
 <?php
     require 'db-connect.php';
+    try {
+      $pdo = new PDO($connect, USER, PASS);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+      echo 'データベース接続エラー: ' . $e->getMessage();
+      exit();
+  }
     $partner_id = $_GET['user_id'];
     $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
     $iconStmt->execute([$partner_id]);
