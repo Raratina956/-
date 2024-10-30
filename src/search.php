@@ -111,7 +111,7 @@ echo '<link rel="stylesheet" href="css/search.css">';
             <th colspan="2">ユーザー</th>
 </tr>
         <tr class="h">
-            <th>種類</th>
+            <th></th>
             <th>名前</th>
         </tr>
         <?php

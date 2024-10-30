@@ -131,8 +131,9 @@ form {
 }
 .sort-tag{
     margin-top: 30px;
-    width: 50%;
-    font-size: 20px;
+    width: 40%;
+    height: 36px;
+    font-size: 18px;
     text-align: center;
     cursor: pointer;
     line-height: 36px; /*ここの数値を変更*/
