@@ -29,13 +29,19 @@ main {
 /* Styles for the container of the tables */
 /* Table Styles */
 .table-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px; /* 2つのテーブル間のスペースを追加 */
-    flex-wrap: wrap;
+    display: flex; /* 横並び配置 */
+    justify-content: space-between; /* テーブル間のスペースを均等に */
+    align-items: flex-start; /* 上揃え */
+    gap: 30px; /* テーブル間の間隔 */
     width: 100%;
-    max-width: 1400px; /* 最大幅を広げてテーブルに十分なスペースを確保 */
+    max-width: 1200px; /* コンテナの最大幅を設定 */
     margin-top: 20px;
+}
+.user-table td, .user-table th,
+.tag-table td, .tag-table th {
+    
+   
+white-space: nowrap; /* 改行を無効化 */
 }
 
 /* 各テーブルのスタイル */
@@ -60,6 +66,8 @@ th {
 
 .user-table td, .tag-table td {
     width: 33%; /* 列幅を揃える */
+    border-bottom: 1px solid #333;
+    
 }
 
 /* アイコン画像のスタイル */
