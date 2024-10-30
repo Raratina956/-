@@ -82,7 +82,7 @@ if ($kinds == "a" || $kinds == "t") {
 echo '<link rel="stylesheet" href="css/search.css">';
 ?>
 <main>
-   <div>
+   <div class="container">
     <!-- Search Form -->
     <form action="search.php" method="post">
     <select class="sort-tag" name="kinds">
