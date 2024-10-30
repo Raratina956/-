@@ -56,7 +56,7 @@ require 'header.php';
         $floorStmt->execute([$i]);
         $floor = $floorStmt->fetchAll(PDO::FETCH_ASSOC);
         $class_id = "";
-        $j = 0;
+        $j = 1;
 
         foreach ($floor as $f) {
             $classroom_id = $f['classroom_id'];
@@ -72,12 +72,12 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                echo '<a href="user.php?user_id='.$user_id.'">';
-                if ($j >= 7) {
+                if ($j > 2) {
                     // 7以上は表示しない
                     echo '<img src="img/iconover.png" width="12%" height=95%" class="usericon">';
                     break;
                 }
+                echo '<a href="user.php?user_id='.$user_id.'">';
                 echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon">';
                 $j++;
                 echo '</a>';
