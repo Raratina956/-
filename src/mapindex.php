@@ -12,6 +12,7 @@
     $iconStmt->execute([$partner_id]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
     $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    echo $iconUrl;
 ?>
 
 <!DOCTYPE html>
