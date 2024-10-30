@@ -66,6 +66,7 @@ require 'header.php';
     </form>
     <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
     <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">メッセージ</a></li>'; ?>
+    <?php echo '<li><a href="mapindex.php?user_id=', $_SESSION['user']['user_id'], '">マップ</a></li>'; ?>
     <?php if ($_SESSION['user']['user_id'] == 7) {
         echo '<li><a href="admin.php">管理画面</a></li>';
     } ?>
