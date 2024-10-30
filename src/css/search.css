@@ -4,6 +4,7 @@ body {
     background-size: cover; /* 全体を覆う */
     background-repeat: no-repeat; /* 繰り返さない */
     font-family: Arial, sans-serif;
+    padding-top: 110px;
     margin: 0;
     padding: 0;
     display: flex;
