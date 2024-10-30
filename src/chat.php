@@ -93,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/chat2.css">
 </head>
 <body>
-<div id="chat">
 <div class="chat-system">
     <div class="chat-box">
 
@@ -144,19 +143,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 </div>
-</div>
 <script>
-    // function scrollToLatestMessage() {
-    // const latestMessage = document.getElementById('latest-message');
-    // latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
-    // }
-    // document.getElementById('submit').addEventListener('click', function (e) {
-    //     e.preventDefault(); // デフォルトのフォーム送信を防ぐ
-    //     const form = e.target.closest('form');
-    //     if (form) form.submit(); // 手動でフォーム送信
+    function scrollToLatestMessage() {
+    const latestMessage = document.getElementById('latest-message');
+    latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
+    }
+    document.getElementById('submit').addEventListener('click', function (e) {
+        e.preventDefault(); // デフォルトのフォーム送信を防ぐ
+        const form = e.target.closest('form');
+        if (form) form.submit(); // 手動でフォーム送信
 
-    //     setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
-    // });
+        setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
+    });
 
     function adjustChatAreaHeight() {
     const chatArea = document.getElementById('chat-area');
@@ -176,6 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     window.onload = adjustChatAreaHeight;
     window.onresize = adjustChatAreaHeight;
 </script>
-<script type="text/javascript" src="js/chat.js" async></script>
+<!-- <script type="text/javascript" src="js/chat.js" async></script> -->
 </body>
 </html>
