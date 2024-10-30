@@ -233,5 +233,5 @@ input[type="submit"] {
 }
 
 .back-form {
-    margin: 0;
+    float: right;
 }
