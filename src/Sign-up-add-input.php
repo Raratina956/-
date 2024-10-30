@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $_SESSION['login'] = [
             'user_id' => $_POST['user_id']
         ];
+        echo $_SESSION['login']['user_id'];
     }
 }
 ?>

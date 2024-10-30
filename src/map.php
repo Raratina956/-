@@ -58,6 +58,7 @@ require 'header.php';
         $class_id = "";
         $j = 1;
         foreach ($floor as $f) {
+            $j=1;
             $classroom_id = $f['classroom_id'];
 
             //アイコン情報を持ってくる
