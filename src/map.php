@@ -46,7 +46,9 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
-        echo $j;
+        if (isset($j)) {
+            echo $j;
+        }
         echo '<form name="floor" action="floor.php" method="post">';
         echo '<td class="block">';
 
