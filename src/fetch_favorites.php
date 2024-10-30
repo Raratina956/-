@@ -46,6 +46,7 @@ if ($list_raw) {
     echo '<table border="0" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
+    echo $favorite['user_id'];
     echo '<td>アイコン（仮）</td>';
     echo '<td>', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</td>';
     ?>
