@@ -72,7 +72,7 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if ($j > 5) {
+                if ($j > 6) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value=', $i, '>';

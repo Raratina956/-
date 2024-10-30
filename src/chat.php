@@ -104,11 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <!-- 広告バナー -->
-        <div class="ad-banner" id="ad-banner">
+        <!-- <div class="ad-banner" id="ad-banner">
             <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
                 <img src="image/banner.png" alt="広告バナー" class="ad-image">
             </a>
-        </div>
+        </div> -->
 
         <div class="chat-area" id="chat-area">
             <?php 
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
                 method="post">
                 <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                <input type="submit" name="sub" value="送信" id="submit">
+                <input type="submit" name="sub" value="送信" id="send-btn">
             </form>
         </div>
 
@@ -148,13 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const latestMessage = document.getElementById('latest-message');
     latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
     }
-    document.getElementById('submit').addEventListener('click', function (e) {
-        e.preventDefault(); // デフォルトのフォーム送信を防ぐ
-        const form = e.target.closest('form');
-        if (form) form.submit(); // 手動でフォーム送信
-
-        setTimeout(scrollToLatestMessage, 100); // 少し遅延を入れてスクロール
+    document.getElementById('send-btn').addEventListener('click', function (e) {
+        // e.preventDefault(); // この行を削除
+        scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
     });
+
 
     function adjustChatAreaHeight() {
     const chatArea = document.getElementById('chat-area');
