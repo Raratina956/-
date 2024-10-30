@@ -28,7 +28,7 @@ try {
             'number_error' => 'この学籍番号は既に存在します'
         ];
         $pdo->rollBack();
-        echo '<form id="redirectForm" action="Sign-up-add-output.php" method="post">
+        echo '<form id="redirectForm" action="Sign-up-add-input.php" method="post">
                 <input type="hidden" name="user_id" value="', $user_id, '">
               </form>';
         echo '<script>
