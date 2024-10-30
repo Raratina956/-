@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* テーブル全体のコンテナスタイル */
+=======
 /* General Styles */
 body {
     background-image: url(../img/SpotLinkbg.png);
@@ -32,32 +35,42 @@ main {
 
 /* Table Styles */
 /* Styles for the container of the tables */
+>>>>>>> 162c986d4b4d3f66dc79dd5126b16c5e8e438bf7
 .table-container {
-    display: flex; /* Use flexbox to arrange tables side by side */
-    justify-content: space-between; /* Space tables evenly */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    margin-top: 20px; /* Add some spacing above the tables */
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* 2つのテーブル間のスペースを追加 */
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px; /* 最大幅を広げてテーブルに十分なスペースを確保 */
+    margin-top: 20px;
 }
 
-/* Styles for each table */
+/* 各テーブルのスタイル */
 .user-table, .tag-table {
-    width: 100px; /* Set width to 48% for two tables with some space in between */
+    width: 48%; /* コンテナの半分程度の幅に設定 */
     border-collapse: collapse;
-    margin: 0; /* Remove default margin */
+    font-size: 20px; /* 文字サイズを拡大して見やすく */
+    margin: 0;
 }
 
-tr {
-    border-bottom: 1px solid #333;
+th, td {
+    padding: 15px; /* 各セルに十分な余白を追加 */
+    text-align: center; /* ヘッダーとセルの中央揃え */
 }
-
-/* Rest of your existing table styles... */
 
 th {
-    text-align: center; /* Center the text */
-    padding: 12px; /* Set padding for all headers */
-    height: 60px; /* Set a fixed height for headers */
+    height: 60px; /* ヘッダーの高さを調整して揃え */
+    font-weight: bold;
+    border-bottom: 2px solid #333;
 }
 
+<<<<<<< HEAD
+/* アイコン画像のスタイル */
+.usericon {
+    width: 60px; /* 幅を60pxに拡大 */
+    height: 60px; /* 高さも幅に揃え */
+=======
 .user-table th,
 .tag-table th {
     width: 100px; /* Set width to ensure headers match */
@@ -163,9 +176,35 @@ form {
 .usericon{
     width: 48px;
     height: 48px;
+>>>>>>> 162c986d4b4d3f66dc79dd5126b16c5e8e438bf7
     border-radius: 50%;
     object-fit: cover;
-  }
+}
+
+/* 見出しの調整 */
+h1, h2 {
+    font-size: 35px; /* テーブルと揃えるために文字サイズを拡大 */
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* ボタンのスタイル */
+.search, .sort-tag {
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.search:hover {
+    background-color: #a0eefc;
+}
+
+.back-link {
+    background-color: #a0eefc;
+    padding: 10px 15px;
+}
+
 
 *{
     margin: 0;
