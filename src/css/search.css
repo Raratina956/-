@@ -37,6 +37,12 @@ main {
     max-width: 1200px; /* コンテナの最大幅を設定 */
     margin-top: 20px;
 }
+.user-table td, .user-table th,
+.tag-table td, .tag-table th {
+    
+   
+white-space: nowrap; /* 改行を無効化 */
+}
 
 /* 各テーブルのスタイル */
 .user-table, .tag-table {
