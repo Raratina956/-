@@ -19,19 +19,19 @@ h1 {
     color: #333; /* フォント色 */
 }
 
-ul {
+.ul1 {
     list-style: none;
     padding: 0;
     margin: 20px;
 }
 
-li {
+.li1 {
     margin-bottom: 15px;
     font-size:40px;
     border-radius: 45px;
 }
 
-li a {
+.li1, .a1 {
     display: block;
     padding: 10px;
     color:black;
