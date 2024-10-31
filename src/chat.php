@@ -229,6 +229,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ページロード時とリサイズ時にチャットエリアの高さを調整
     window.onload = adjustChatAreaHeight;
     window.onresize = adjustChatAreaHeight;
+
+    document.querySelector('.hamburger').addEventListener('click', function () {
+        this.classList.toggle('active');
+        document.querySelector('.slide-menu').classList.toggle('active');
+    });
 </script>
 </body>
 </html>
