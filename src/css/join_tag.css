@@ -33,6 +33,10 @@ h1 {
     margin: 0; /* 上下の余白をリセット */
     z-index: 1; /* 他の要素より上に表示 */
 }
+h3{
+    margin: auto;
+    margin-top: 60px; 
+}
 
 table {
     margin: auto;
