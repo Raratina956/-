@@ -83,7 +83,7 @@ require 'header.php';
                     $tag_sql ->execute([$p_tag_id,$user_id]);
                     $tag_row = $tag_sql->fetch();
                 }
-                // if()
+                
                 if ($j > 5) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
