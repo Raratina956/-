@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
 require 'parts/auto-login.php';
 require 'header.php';
-=======
->>>>>>> 4dc1eee7e36e1ff9cef445af24ea545785bf78f3
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
