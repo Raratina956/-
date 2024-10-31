@@ -38,11 +38,9 @@ table {
     margin: auto;
     margin-top: 60px; /* h1とテーブルの間のスペースを調整 */
     width: 100%; /* テーブル幅を100%にして大きく表示 */
-    border-collapse: collapse; /* テーブルの枠線をきれいに表示 */
 }
 
-td, th {
-    border: 1px solid #333; /* セルの枠線 */
+td, th { 
     padding: 8px; /* セルの内側の余白 */
     white-space: nowrap; /* 改行しない */
 }
