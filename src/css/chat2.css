@@ -184,6 +184,7 @@ input[type="submit"]:hover {
     border-bottom: 1px solid #ddd; /* ボーダー */
     position:  relative;        /* 位置指定 */
     z-index: 10; 
+    position: fixed;
 }
 
 .chat-header img {
