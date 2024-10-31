@@ -7,7 +7,7 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
 
@@ -33,16 +33,18 @@ h1 {
     margin: 0; /* 上下の余白をリセット */
     z-index: 1; /* 他の要素より上に表示 */
 }
+h3{
+    margin: auto;
+    margin-top: 60px; 
+}
 
 table {
     margin: auto;
     margin-top: 60px; /* h1とテーブルの間のスペースを調整 */
     width: 100%; /* テーブル幅を100%にして大きく表示 */
-    border-collapse: collapse; /* テーブルの枠線をきれいに表示 */
 }
 
-td, th {
-    border: 1px solid #333; /* セルの枠線 */
+td, th { 
     padding: 8px; /* セルの内側の余白 */
     white-space: nowrap; /* 改行しない */
 }
