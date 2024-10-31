@@ -51,8 +51,9 @@ if ($results) {
     </table>
     <?php
 } else {
-    echo '参加済みのタグがありません';
+    echo '<tr><td colspan="3">参加済みのタグがありません</td></tr>';
 }
+echo'</table>'
 ?>
 <a href="main.php" class="back-link">メインへ</a>
 </main>
