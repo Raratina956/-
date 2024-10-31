@@ -24,10 +24,11 @@ require 'header.php';
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
+    echo '<form action="map.php" method="post">';
     echo '<select name="list" class="list">';
 
     if (!empty($results)) {
-
+        echo '<option value="0">全て</option>';
         foreach ($results as $tag_list) {
 
             $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
@@ -39,7 +40,7 @@ require 'header.php';
     } else {
         echo '<option value="">-</option>';
     }
-
+    echo '<input type="submit" value="絞込">';
     echo '</select><br><br>';
 
     //  map
