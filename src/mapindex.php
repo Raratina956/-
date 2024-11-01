@@ -1,20 +1,18 @@
 <?php
-    require 'db-connect.php';
-    try {
-      $pdo = new PDO($connect, USER, PASS);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  } catch (PDOException $e) {
-      echo 'データベース接続エラー: ' . $e->getMessage();
-      exit();
-  }
-    $partner_id = $_GET['user_id'];
-    $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-    $iconStmt->execute([$partner_id]);
-    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-    // $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
-    $iconUrl =  $icon['icon_name'];
-    echo $iconUrl;
-   
+require 'db-connect.php';
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'データベース接続エラー: ' . $e->getMessage();
+    exit();
+}
+$partner_id = intval($_GET['user_id']); // ユーザーIDを整数に変換
+$iconStmt = $pdo->prepare('SELECT icon_name, user_name FROM Icon INNER JOIN Users ON Icon.user_id = Users.user_id WHERE Icon.user_id = ?');
+$iconStmt->execute([$partner_id]);
+$user = $iconStmt->fetch(PDO::FETCH_ASSOC);
+$iconUrl = $user['icon_name'];
+$userName = $user['user_name'];
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +27,20 @@
     #map { width: 100%; height: 500px; }
     .marker {
       background-size: contain;
-      width: 50px;
-      height: 50px;
+      width: 50px;  /* アイコンの幅 */
+      height: 50px; /* アイコンの高さ */
       border: none;
       border-radius: 50%;
     }
   </style>
 </head>
 <body>
-  
+
+  <div>
+    <h1><?php echo htmlspecialchars($userName); ?>の位置情報</h1>
+    <img src="<?php echo htmlspecialchars($iconUrl); ?>" alt="<?php echo htmlspecialchars($userName); ?>のアイコン" style="width:50px;height:50px;">
+  </div>
+
   <div id='map'></div>
   <script>
   mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
@@ -56,11 +59,15 @@
 
       map.setCenter(userLocation);
 
+      // マーカー要素の作成
       const markerElement = document.createElement('div');
       markerElement.className = 'marker';
       markerElement.style.backgroundImage = `url(${iconUrl})`;
+      markerElement.style.backgroundSize = 'contain'; // アイコンが正しく表示されるように調整
+      markerElement.style.width = '50px'; // マーカーの幅
+      markerElement.style.height = '50px'; // マーカーの高さ
 
-
+      // マーカーを地図に追加
       new mapboxgl.Marker(markerElement)
         .setLngLat(userLocation)
         .setPopup(new mapboxgl.Popup({ offset: 25 })
