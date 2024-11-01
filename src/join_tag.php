@@ -55,5 +55,5 @@ if ($results) {
 }
 
 ?>
-<a href="main.php" class="back-link">メインへ</a>
+<a href="map.php" class="back-link">マップへ</a>
 </main>
