@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
             <form action="chat-home.php" method="GET">
-                <button type="submit">戻る</button>
+                <input type="submit" name="back-btn" class="back-btn" value="戻る">
             </form>
             <div class="center-content">
                 <img src="<?php echo $icon['icon_name']; ?>"  ?>
