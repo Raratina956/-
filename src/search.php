@@ -110,4 +110,4 @@ if ($kinds == "a" || $kinds == "t") {
         </table>
     </div>
 </main>
-<!-- <a href="main.php" class="back-link">メインへ</a> -->
+<a href="main.php" class="back-link">メインへ</a>
