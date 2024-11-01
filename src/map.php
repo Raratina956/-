@@ -25,9 +25,10 @@ require 'header.php';
 
     //プルダウン
     echo '<form action="map.php" method="post">';
+    $selected_tag = $_POST['favorite'] ?? 'no';
     echo '<select name="favorite" class="list">';
-    echo '<option value="yes">登録済み</option>';
-    echo '<option value="no">未登録</option>';
+    echo '<option value="yes"',($selected_tag === 'yes' ? ' selected' : ''),'>登録済み</option>';
+    echo '<option value="no"',($selected_tag === 'no' ? ' selected' : ''),'>未登録</option>';
     echo '</select>';
     echo '<select name="tag_list" class="list">';
 
