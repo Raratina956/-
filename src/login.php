@@ -23,7 +23,7 @@ if (isset($_COOKIE['remember_me_token'])) {
             ];
         }
     }
-    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
+    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
     header("Location: $redirect_url");
     exit();
 }
@@ -71,7 +71,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 $row['user_id']
             ]);
 
-            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/main.php';
+            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
             header("Location: $redirect_url");
             exit();
         } else {
