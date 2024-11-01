@@ -84,7 +84,7 @@ require 'header.php';
 
             // アイコン表示
             foreach ($icon as $ic) {
-                $j=1;
+                $j = 1;
                 $user_id = $ic['icon_user_id'];
                 if (isset($p_tag_id)) {
                     unset($p_tag_id);
@@ -125,9 +125,10 @@ require 'header.php';
             if ($judge == 1) {
                 break;
             }
-            if($j==1){
-                echo '<span>ユーザーがいません</span>';
-            }
+
+        }
+        if ($j == 1) {
+            echo '<span>ユーザーがいません</span>';
         }
 
         echo '</td>';
