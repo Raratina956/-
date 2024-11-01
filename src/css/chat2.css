@@ -131,7 +131,7 @@ textarea:focus {
     border-color: #66bb6a; /* フォーカス時のボーダー色 */
 }
 
-input[type="submit"] {
+.send{
     background-color: #93c895;
     border: none;
     color: #fff;
@@ -140,7 +140,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.send:hover {
     background-color: #4caf50;
 }
 
@@ -183,12 +183,14 @@ input[type="submit"]:hover {
     background-color: #15aff1; /* ヘッダーの背景色 */
     border-bottom: 1px solid #ddd; /* ボーダー */
     position:  relative;        /* 位置指定 */
-    z-index: 10; 
+    top: 100px;
+    z-index: 998;
+    font-size: 25px;
 }
 
 .chat-header img {
-    width: 40px; /* アイコンの幅 */
-    height: 40px; /* アイコンの高さ */
+    width: 50px; /* アイコンの幅 */
+    height: 50px; /* アイコンの高さ */
     border-radius: 50%; /* 丸いアイコン */
     margin-right: 10px; /* アイコンと名前の間のスペース */
 }
