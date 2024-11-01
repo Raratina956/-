@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-            <form action="chat-home.php" method="post">
+            <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
             </form>
             <div class="center-content">

@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-if(isset($_SESSION['floor']['kai'])){
+if(!isset($_SESSION['floor']['kai'])){
     $_SESSION['floor'] = [
         'kai' => $_POST['floor']
     ];    
