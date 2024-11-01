@@ -145,17 +145,18 @@ textarea:focus {
 }
 
 .back-btn {
-    background-color: #f44336;
+    background-color: #5240f8;
     border: none;
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
+    margin-top: 18px;
 }
 
 .back-btn:hover {
-    background-color: #d32f2f;
+    background-color: #2112af;
 }
 
 .ad-banner {
