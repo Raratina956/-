@@ -73,10 +73,10 @@ if ($list_raw) {
             <form action="my_tag.php" method="post">
             <input type="hidden" name="join_tag_id" value=<?php echo $row['tag_id']; ?>>
             <?php
-            $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-            $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
-            $row = $sql->fetch(PDO::FETCH_ASSOC);
-            if (!$row) {
+            $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+            $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+            $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
+            if (!$row_tag) {
                 echo '<td><input type="submit" value="参加" class="button_up"></td>';
             } else {
                 echo '<td><input type="submit" value="参加済" class="button_up"></td>';
