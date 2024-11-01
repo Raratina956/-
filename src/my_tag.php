@@ -80,6 +80,7 @@ if ($list_raw) {
                 echo '<td><input type="submit" value="参加" class="button_up"></td>';
             } else {
                 echo '<td><input type="submit" value="参加済" class="button_up"></td>';
+            }
             ?>
             </form>
             <form action="tag_update.php" method="post">
