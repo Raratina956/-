@@ -1,6 +1,6 @@
 <?php
 require 'parts/auto-login.php';
-if(isset($error)){
+if (isset($error)) {
     unset($error);
 }
 if (isset($_POST['tag_name'])) {
@@ -11,8 +11,24 @@ if (isset($_POST['tag_name'])) {
             $tag_name,
             $_SESSION['user']['user_id']
         ]);
-    }else{
+    } else {
         $error = '文字を入力してください';
+    }
+}
+if (isset($_POST['join_tag_id'])) {
+    $regi_tag_id = $_POST['join_tag_id'];
+    $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+    $sql->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    if (!$row) {
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
+        $sql_insert->execute([
+            $regi_tag_id,
+            $_SESSION['user']['user_id']
+        ]);
+    } else {
+        $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+        $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
     }
 }
 ?>
@@ -34,7 +50,7 @@ require 'header.php';
     <input type="submit" value="作成" class="button_in">
 </form>
 <?php
-if(isset($error)){
+if (isset($error)) {
     echo '<span style="display: block; text-align: center; color: red;">' . $error . '</span>';
 }
 $list_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE user_id=?');
@@ -54,6 +70,10 @@ if ($list_raw) {
             echo '<td>', $row['tag_id'], '</td>';
             echo '<td>', $row['tag_name'], '</td>';
             ?>
+            <form action="my_tag.php" method="post">
+                <input type="hidden" name="join_tag_id" value=<?php echo $row['tag_id']; ?>>
+                <td><input type="submit" value="参加" class="button_up"></td>
+            </form>
             <form action="tag_update.php" method="post">
                 <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
                 <td><input type="submit" value="更新" class="button_up"></td>
