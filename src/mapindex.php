@@ -40,7 +40,7 @@
   
   <div id='map'></div>
   <script>
-  mapboxgl.accessToken = 'your_mapbox_access_token';
+  mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
   const iconUrl = "<?php echo $iconUrl; ?>";
   const map = new mapboxgl.Map({
