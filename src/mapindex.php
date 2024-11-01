@@ -58,7 +58,8 @@
 
       const markerElement = document.createElement('div');
       markerElement.className = 'marker';
-      markerElement.style.backgroundImage = url(${iconUrl});
+      markerElement.style.backgroundImage = `url(${iconUrl})`;
+
 
       new mapboxgl.Marker(markerElement)
         .setLngLat(userLocation)
