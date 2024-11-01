@@ -12,7 +12,7 @@ $kinds = $_POST['kinds'] ?? "a";
 $method = $_POST['method'] ?? "part";
 
 function limitDisplay($text, $limit = 10) {
-    $characters = preg_split('//u', $text, null, PREG_SPLIT_NO_EMPTY);
+    $characters = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY); // 第3引数に -1 を指定
     return count($characters) > $limit ? implode('', array_slice($characters, 0, $limit)) . '...' : $text;
 }
 
