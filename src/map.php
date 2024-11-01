@@ -27,21 +27,32 @@ require 'header.php';
     echo '<form action="map.php" method="post">';
     echo '<select name="tag_list" class="list">';
 
+    // POSTデータから選択されたタグの値を取得
+    $selected_tag = $_POST['tag_list'] ?? '0'; // デフォルトで「全て」を選択
+    
     if (!empty($results)) {
-        echo '<option value=0>全て</option>';
-        foreach ($results as $tag_list) {
+        echo '<option value="0"', ($selected_tag === '0' ? ' selected' : ''), '>全て</option>';
 
-            $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
-            $sql_tag->execute([$tag_list['tag_id']]);
-            $row_tag = $sql_tag->fetch();
-            echo "<option value='", $row_tag['tag_id'], "'>", $row_tag['tag_name'], "</option>";
+        // Tag_listテーブルからすべてのタグを一度に取得
+        $tag_ids = array_column($results, 'tag_id');
+        $placeholders = implode(',', array_fill(0, count($tag_ids), '?'));
+        $sql_tag = $pdo->prepare("SELECT * FROM Tag_list WHERE tag_id IN ($placeholders)");
+        $sql_tag->execute($tag_ids);
 
+        // 各タグをリストに表示
+        foreach ($sql_tag as $row_tag) {
+            $tag_id = $row_tag['tag_id'];
+            $tag_name = htmlspecialchars($row_tag['tag_name'], ENT_QUOTES, 'UTF-8');
+            $selected = ($tag_id == $selected_tag) ? ' selected' : '';
+            echo "<option value='{$tag_id}'{$selected}>{$tag_name}</option>";
         }
     } else {
-        echo '<option value="">-</option>';
+        echo '<option value=0>-</option>';
     }
     echo '<input type="submit" value="絞込">';
     echo '</select><br><br>';
+    echo '</form>';
+
 
     //  map
     echo '<table>';
@@ -77,15 +88,17 @@ require 'header.php';
                 if (isset($p_tag_id)) {
                     unset($p_tag_id);
                 }
-                if (isset($_POST['tag_list'])||$_POST['tag_list']!=0) {
-                    $p_tag_id = intval($_POST['tag_list']);
-                    $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                    $tag_sql->execute([$p_tag_id, $user_id]);
-                    $tag_row = $tag_sql->fetch();
-                    // echo $p_tag_id;
-                    // echo $user_id;
-                    if (!($tag_row)) {
-                        break;
+                if (isset($_POST['tag_list'])) {
+                    if ($_POST['tag_list'] != 0) {
+                        $p_tag_id = intval($_POST['tag_list']);
+                        $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                        $tag_sql->execute([$p_tag_id, $user_id]);
+                        $tag_row = $tag_sql->fetch();
+                        // echo $p_tag_id;
+                        // echo $user_id;
+                        if (!($tag_row)) {
+                            break;
+                        }
                     }
                 }
 
@@ -111,6 +124,10 @@ require 'header.php';
             if ($judge == 1) {
                 break;
             }
+
+        }
+        if ($j == 1) {
+            echo '<span>ユーザーがいません</span>';
         }
 
         echo '</td>';
