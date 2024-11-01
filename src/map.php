@@ -28,7 +28,7 @@ require 'header.php';
     echo '<select name="tag_list" class="list">';
 
     if (!empty($results)) {
-        echo '<option value="0">全て</option>';
+        echo '<option value=0>全て</option>';
         foreach ($results as $tag_list) {
 
             $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
