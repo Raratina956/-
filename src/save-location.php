@@ -16,7 +16,7 @@ try {
     $updated_at = date('Y-m-d H:i:s');
 
     // データベースに挿入
-    $stmt = $pdo->prepare("INSERT INTO location (user_id, latitude, longitude, updated_at) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE latitude = ?, longitude = ?, updated_at = ?");
+    $stmt = $pdo->prepare("INSERT INTO locations (user_id, latitude, longitude, updated_at) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE latitude = ?, longitude = ?, updated_at = ?");
     $stmt->execute([$user_id, $latitude, $longitude, $updated_at, $latitude, $longitude, $updated_at]);
 
     echo json_encode(['status' => 'success', 'message' => '位置情報が保存されました']);
