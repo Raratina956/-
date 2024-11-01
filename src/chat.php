@@ -102,11 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-            <form action="chat-home.php" method="GET" class="back-form">
-                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-                <input class="btn back-btn" type="submit" value="戻る">
+            <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
+                <input type="submit" name="back-btn" class="back-btn" value="戻る">
             </form>
-
             <div class="center-content">
                 <img src="<?php echo $icon['icon_name']; ?>"  ?>
                 <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
