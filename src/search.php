@@ -55,59 +55,60 @@ if ($kinds == "a" || $kinds == "t") {
     <!-- Search Form -->
     <form action="search.php" method="post">
         <select class="sort-tag" name="kinds">
-            <option value="a" <?= $kinds == "a" ? 'selected' : '' ?>>全て</option>
-            <option value="u" <?= $kinds == "u" ? 'selected' : '' ?>>ユーザーのみ</option>
-            <option value="t" <?= $kinds == "t" ? 'selected' : '' ?>>タグのみ</option>
+            <option value="a" <?php if ($kinds == "a") echo 'selected'; ?>>全て</option>
+            <option value="u" <?php if ($kinds == "u") echo 'selected'; ?>>ユーザーのみ</option>
+            <option value="t" <?php if ($kinds == "t") echo 'selected'; ?>>タグのみ</option>
         </select>
         
         <select class="sort-tag" name="method">
-            <option value="all" <?= $method == "all" ? 'selected' : '' ?>>完全一致</option>
-            <option value="part" <?= $method == "part" ? 'selected' : '' ?>>部分一致</option>
+            <option value="all" <?php if ($method == "all") echo 'selected'; ?>>完全一致</option>
+            <option value="part" <?php if ($method == "part") echo 'selected'; ?>>部分一致</option>
         </select>
         <br>
-        <input type="text" class="search-text" name="search" value="<?= htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8') ?>" placeholder="検索したい内容を入力してください">
+        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>" placeholder="検索したい内容を入力してください">
         <input class="search" type="submit" value="再検索">
     </form>
     
-    <h2>【<?= htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8') ?>】の検索結果</h2>
-
-    <!-- Search Results -->
+    <h2>【<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>】の検索結果</h2>
+    
     <div class="table-container">
-        <table class="user-table">
-            <tr><th colspan="2">ユーザー</th></tr>
-            <tr class="h"><th></th><th>名前</th></tr>
-            <?php if (!empty($user_data)) : ?>
-                <?php foreach ($user_data as $data) : ?>
-                    <form name="form<?= $data['id'] ?>" action="user.php" method="get">
+        <?php if (!empty($user_data)): ?>
+            <table class="user-table">
+                <tr><th colspan="2">ユーザー</th></tr>
+                <tr class="h"><th></th><th>名前</th></tr>
+                <?php foreach ($user_data as $data): ?>
+                    <form name="form<?php echo $data['id']; ?>" action="user.php" method="get">
+                        <?php
+                        $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id=?');
+                        $iconStmt->execute([$data['id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        ?>
                         <tr>
-                            <?php
-                            $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-                            $iconStmt->execute([$data['id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <td class="tag"><a href="javascript:document.form<?= $data['id'] ?>.submit()"><img src="<?= $icon['icon_name'] ?>" class="usericon"></a></td>
-                            <input type="hidden" name="user_id" value="<?= $data['id'] ?>">
-                            <td class="name"><a href="javascript:document.form<?= $data['id'] ?>.submit()"><h3><?= htmlspecialchars(limitDisplay($data['name']), ENT_QUOTES, 'UTF-8') ?></h3></a></td>
+                            <td class="tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
+                            <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
+                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><h3><?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?></h3></a></td>
                         </tr>
                     </form>
                 <?php endforeach; ?>
-                <?php $judge = 1; ?>
-            <?php endif; ?>
-        </table>
+            </table>
+        <?php endif; ?>
 
-        <table class="tag-table">
-            <tr><th colspan="2">タグ</th></tr>
-            <tr class="h"><th>作成者</th><th>タグ名</th></tr>
-            <?php if (!empty($tag_data)) : ?>
-                <?php foreach ($tag_data as $data) : ?>
+        <?php if (!empty($tag_data)): ?>
+            <table class="tag-table">
+                <tr><th colspan="2">タグ</th></tr>
+                <tr class="h"><th>作成者</th><th>タグ名</th></tr>
+                <?php foreach ($tag_data as $data): ?>
                     <tr>
-                        <td><h3><?= htmlspecialchars(limitDisplay($data['creator_name']), ENT_QUOTES, 'UTF-8') ?></h3></td>
-                        <td><h3><?= htmlspecialchars(limitDisplay($data['name']), ENT_QUOTES, 'UTF-8') ?></h3></td>
+                        <td><h3><?php echo htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'); ?></h3></td>
+                        <td><h3><?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?></h3></td>
                     </tr>
                 <?php endforeach; ?>
-                <?php $judge = 1; ?>
-            <?php endif; ?>
-        </table>
+            </table>
+        <?php endif; ?>
+
+        <?php if (empty($user_data) && empty($tag_data)): ?>
+            <p>検索結果がありません。</p>
+        <?php endif; ?>
     </div>
 </main>
-<!-- <a href="main.php" class="back-link">メインへ</a> -->
+<a href="main.php" class="back-link">メインへ</a>

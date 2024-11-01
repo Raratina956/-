@@ -338,7 +338,8 @@ if ($update_id == 1) {
 
             echo '</ul>';
         ?>
-        <a href="floor.php" class="back-link">戻る</a>
+    <!-- メイン(マップ)に戻る -->
+    <button type="button" class="back-link" onclick="location.href='floor.php'">戻る</button> 
     </main>
 </body>
 
