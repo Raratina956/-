@@ -93,7 +93,7 @@ require 'header.php';
                     unset($p_tag_id);
                 }
                 if (isset($_POST['favorite'])) {
-                    if ($_POST['favorite'] == "no") {
+                    if ($_POST['favorite'] != "no") {
                         $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
                         $favorite_sql->execute([$_SESSION['user']['user_id'],$user_id]);
                         $favorite_row = $favorite_sql->fetch();
@@ -106,8 +106,6 @@ require 'header.php';
                                 $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
                                 $tag_sql->execute([$p_tag_id, $user_id]);
                                 $tag_row = $tag_sql->fetch();
-                                // echo $p_tag_id;
-                                // echo $user_id;
                                 if (!($tag_row)) {
                                     break;
                                 }
