@@ -77,7 +77,10 @@ require 'header.php';
                 if (isset($p_tag_id)) {
                     unset($p_tag_id);
                 }
-                if (isset($_POST['tag_list'])||$_POST['tag_list']!=0) {
+                if (isset($_POST['tag_list'])) {
+                    if($_POST['tag_list']!=0){
+                        break;
+                    }
                     $p_tag_id = intval($_POST['tag_list']);
                     $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
                     $tag_sql->execute([$p_tag_id, $user_id]);
