@@ -78,17 +78,16 @@ require 'header.php';
                     unset($p_tag_id);
                 }
                 if (isset($_POST['tag_list'])) {
-                    if($_POST['tag_list']!=0){
-                        break;
-                    }
-                    $p_tag_id = intval($_POST['tag_list']);
-                    $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                    $tag_sql->execute([$p_tag_id, $user_id]);
-                    $tag_row = $tag_sql->fetch();
-                    // echo $p_tag_id;
-                    // echo $user_id;
-                    if (!($tag_row)) {
-                        break;
+                    if ($_POST['tag_list'] != 0) {
+                        $p_tag_id = intval($_POST['tag_list']);
+                        $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                        $tag_sql->execute([$p_tag_id, $user_id]);
+                        $tag_row = $tag_sql->fetch();
+                        // echo $p_tag_id;
+                        // echo $user_id;
+                        if (!($tag_row)) {
+                            break;
+                        }
                     }
                 }
 
