@@ -47,7 +47,7 @@ require 'header.php';
     echo '<table>';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
-        
+
         echo '<td class="block">';
         echo '<div style="display:inline-flex">';
 
@@ -74,20 +74,21 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if(isset($p_tag_id)){
+                if (isset($p_tag_id)) {
                     unset($p_tag_id);
                 }
-                if(isset($_POST['tag_list'])){
-                    $p_tag_id = $_POST['tag_list'];
+                if (isset($_POST['tag_list'])) {
+                    $p_tag_id = intval($_POST['tag_list']);
                     $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                    $tag_sql ->execute([$p_tag_id,$user_id]);
+                    $tag_sql->execute([$p_tag_id, $user_id]);
                     $tag_row = $tag_sql->fetch();
-                    $attri_user = $tag_row['user_id'];
-                    if($user_id != $attri_user){
+                    // echo $p_tag_id;
+                    // echo $user_id;
+                    if (!($tag_row)) {
                         break;
                     }
                 }
-                
+
                 if ($j > 5) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
@@ -97,15 +98,15 @@ require 'header.php';
                     $judge = 1;
                     break;
                 }
-                
+
                 echo '<a href="user.php?user_id=' . $user_id . '">';
                 $name_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
                 $name_sql->execute([$user_id]);
                 $name_row = $name_sql->fetch();
-                echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="'.$name_row['user_name'].'">';
+                echo '<img src="', $ic['icon_name'], '" width="12%" height=95%" class="usericon" title="' . $name_row['user_name'] . '">';
                 $j++;
                 echo '</a>';
-                
+
             }
             if ($judge == 1) {
                 break;

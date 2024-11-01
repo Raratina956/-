@@ -107,8 +107,19 @@
     document.getElementById('fileInput').onchange = function (event) {
         var file = event.target.files[0];
         if (!file) {
+            // ファイルが選択されていない場合
+            var defaultImage = 'img/icon/default.jpg';  // デフォルトの画像パスを指定
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            if (existingIcon) {
+                existingIcon.src = defaultImage;
+            } else {
+                preview.src = defaultImage;
+                preview.style.display = 'block';
+            }
             return;
         }
+
         var reader = new FileReader();
         reader.onload = function () {
             var existingIcon = document.getElementById('existingIcon');
