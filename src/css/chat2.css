@@ -186,11 +186,13 @@ input[type="submit"]:hover {
     position: fixed; /* 固定位置に変更 */
     top: 100px; /* headerの高さ100pxの下に配置 */
     z-index: 998; /* headerの下に配置されるように */
+    width: 100%;
+    font-size: 25px;
 }
 
 .chat-header img {
-    width: 40px; /* アイコンの幅 */
-    height: 40px; /* アイコンの高さ */
+    width: 50px; /* アイコンの幅 */
+    height: 50px; /* アイコンの高さ */
     border-radius: 50%; /* 丸いアイコン */
     margin-right: 10px; /* アイコンと名前の間のスペース */
 }
