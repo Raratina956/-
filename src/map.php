@@ -25,6 +25,10 @@ require 'header.php';
 
     //プルダウン
     echo '<form action="map.php" method="post">';
+    echo '<select name="favorite" class="list">';
+    echo '<option value="yes">登録済み</option>';
+    echo '<option value="no">未登録</option>';
+    echo '</select>';
     echo '<select name="tag_list" class="list">';
 
     // POSTデータから選択されたタグの値を取得
