@@ -16,9 +16,15 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
 // 他のユーザーの位置情報を取得
-$userStmt = $pdo->prepare('SELECT user_id, latitude, longitude, icon_name FROM locations INNER JOIN Icon ON locations.user_id = Icon.user_id WHERE locations.user_id != ?');
+$userStmt = $pdo->prepare('
+    SELECT locations.user_id, locations.latitude, locations.longitude, Icon.icon_name 
+    FROM locations 
+    INNER JOIN Icon ON locations.user_id = Icon.user_id 
+    WHERE locations.user_id != ?
+');
 $userStmt->execute([$partner_id]);
 $otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +50,7 @@ $otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
   
   <div id='map'></div>
   <script>
-  mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+  mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
   const iconUrl = "<?php echo $iconUrl; ?>";
   const map = new mapboxgl.Map({
