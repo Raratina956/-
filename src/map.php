@@ -84,12 +84,8 @@ require 'header.php';
                     $tag_row = $tag_sql->fetch();
                     // echo $p_tag_id;
                     // echo $user_id;
-                    if ($tag_row) {
-                        echo 'a';
-                        $attri_user = $tag_row['user_id'];
-                        if ($user_id != $attri_user) {
-                            break;
-                        }
+                    if (!($tag_row)) {
+                        break;
                     }
                 }
 
