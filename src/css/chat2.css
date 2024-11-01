@@ -183,7 +183,7 @@ textarea:focus {
     background-color: #15aff1; /* ヘッダーの背景色 */
     border-bottom: 1px solid #ddd; /* ボーダー */
     position:  relative;        /* 位置指定 */
-    top: 100px;
+    top: 80px;
     z-index: 998;
     font-size: 25px;
 }
@@ -193,6 +193,7 @@ textarea:focus {
     height: 50px; /* アイコンの高さ */
     border-radius: 50%; /* 丸いアイコン */
     margin-right: 10px; /* アイコンと名前の間のスペース */
+    margin-top: 8px;
 }
 
 .partner-name {
