@@ -77,9 +77,9 @@ if ($list_raw) {
             $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
             $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
             if (!$row_tag) {
-                echo '<td><input type="submit" value="参加" class="button_up"></td>';
+                echo '<td><input type="submit" value="参加" class="join"></td>';
             } else {
-                echo '<td><input type="submit" value="参加済" class="button_up"></td>';
+                echo '<td><input type="submit" value="参加済" class="joined"></td>';
             }
             ?>
             </form>
