@@ -99,7 +99,7 @@ if (empty($_POST['title'])) {
             <p>
             <h2><?php echo $title; ?></h2>
             <h3><?php echo $content; ?></h3>
-            <a class="back-link" href="main.php">メインへ</a>
+            <a class="back-link" href="map.php">マップへ</a>
         </main>
         <?php
     // 上記アナウンス発信後

@@ -92,16 +92,24 @@ require 'header.php';
                 if (isset($p_tag_id)) {
                     unset($p_tag_id);
                 }
-                if (isset($_POST['tag_list'])) {
-                    if ($_POST['tag_list'] != 0) {
-                        $p_tag_id = intval($_POST['tag_list']);
-                        $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                        $tag_sql->execute([$p_tag_id, $user_id]);
-                        $tag_row = $tag_sql->fetch();
-                        // echo $p_tag_id;
-                        // echo $user_id;
-                        if (!($tag_row)) {
+                if (isset($_POST['favorite'])) {
+                    if ($_POST['favorite'] != "no") {
+                        $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
+                        $favorite_sql->execute([$_SESSION['user']['user_id'],$user_id]);
+                        $favorite_row = $favorite_sql->fetch();
+                        if(!($favorite_row)){
                             break;
+                        }
+                        if (isset($_POST['tag_list'])) {
+                            if ($_POST['tag_list'] != 0) {
+                                $p_tag_id = intval($_POST['tag_list']);
+                                $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                                $tag_sql->execute([$p_tag_id, $user_id]);
+                                $tag_row = $tag_sql->fetch();
+                                if (!($tag_row)) {
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
