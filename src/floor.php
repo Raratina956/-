@@ -13,7 +13,8 @@ require 'header.php';
     <link rel="stylesheet" href="css/floor.css">
 </head>
 <body>
-<a href="map.php" class="back-link">マップへ</a>
+<!-- メイン(マップ)に戻る -->
+<button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
 <?php
 echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
