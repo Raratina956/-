@@ -9,27 +9,26 @@
     }
 
     /* ハンバーガーメニューのデザイン */
-    hamburger {
-      width: 40px;
-      height: 40px;
+    .hamburger {
+      width: 60px;
+      height: 60px;
+      position: relative; /* absolute から relative に変更 */
+      margin-left: auto; /* 右寄せ */
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border: 2px solid #00CFFF;
       border-radius: 50%;
-      position: relative;
-      z-index: 15; /* ヘッダー要素より前面に表示 */
-      background-color: #fff;
-  }
-  .hamburger span {
-      display: block;
-      width: 20px;
-      height: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hamburger span {
+      position: absolute;
+      width: 70%;
+      height: 4px;
       background-color: #00CFFF;
-      margin: 4px 0;
-      transition: 0.4s;
-  }
+      transition: .5s ease-in-out;
+    }
 
     .hamburger span:first-of-type {
       top: 25%;
@@ -46,14 +45,15 @@
 
     /* スライドメニュー */
     .slide-menu {
+      background-color: rgba(46, 149, 222, 0.8);
       position: fixed;
-      top: 0;
-      left: -250px; /* 初期位置を画面外に */
+      top: 65px;
       width: 250px;
       height: 100%;
-      background-color: rgba(46, 149, 222, 0.8);
-      transition: left 0.3s ease;
-      z-index: 14; /* ハンバーガーメニューの背面に設定 */
+      right: 0;
+      transform: translateX(100%);
+      transition: transform 0.5s ease;
+      margin-top: 35px;
     }
 
     /* ユーザー情報セクション */
@@ -118,6 +118,7 @@
 
     /* スライドメニューアクティブ時 */
     .slide-menu.active {
-      left: 0; /* メニューを画面内に表示 */
+      transform: translateX(0);
+      margin-top: 35px;
     }
   }

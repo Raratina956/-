@@ -25,7 +25,7 @@ require 'header.php';
 
     //プルダウン
     echo '<form action="map.php" method="post">';
-    echo '<select name="list" class="list">';
+    echo '<select name="tag_list" class="list">';
 
     if (!empty($results)) {
         echo '<option value="0">全て</option>';
@@ -74,6 +74,16 @@ require 'header.php';
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
+                if(isset($p_tag_id)){
+                    unset($p_tag_id);
+                }
+                if(isset($_POST['tag_list'])){
+                    $p_tag_id = $_POST['tag_list'];
+                    $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                    $tag_sql ->execute([$p_tag_id,$user_id]);
+                    $tag_row = $tag_sql->fetch();
+                }
+                
                 if ($j > 5) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
@@ -83,6 +93,7 @@ require 'header.php';
                     $judge = 1;
                     break;
                 }
+                
                 echo '<a href="user.php?user_id=' . $user_id . '">';
                 $name_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
                 $name_sql->execute([$user_id]);
