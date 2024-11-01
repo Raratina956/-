@@ -16,9 +16,15 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
 // 他のユーザーの位置情報を取得
-$userStmt = $pdo->prepare('SELECT user_id, latitude, longitude, icon_name FROM locations INNER JOIN Icon ON locations.user_id = Icon.user_id WHERE locations.user_id != ?');
+$userStmt = $pdo->prepare('
+    SELECT locations.user_id, locations.latitude, locations.longitude, Icon.icon_name 
+    FROM locations 
+    INNER JOIN Icon ON locations.user_id = Icon.user_id 
+    WHERE locations.user_id != ?
+');
 $userStmt->execute([$partner_id]);
 $otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
