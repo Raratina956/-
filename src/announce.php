@@ -87,7 +87,7 @@ if (empty($_POST['title'])) {
         } else {
             echo 'タグを追加してください';
         }
-        echo '<a class="back-link"  href="main.php">メインへ</a></main>';
+        echo '<a class="back-link"  href="map.php">マップへ</a></main>';
     // 上記アナウンス発信前
 } else {
     // 下記アナウンス発信後
