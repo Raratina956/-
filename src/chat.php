@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
             <form action="chat-home.php" method="GET" class="back-form">
+                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
                 <input class="btn back-btn" type="submit" value="戻る">
             </form>
 
@@ -135,12 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="latest-message"></div>
         </div>
         <div class="send-container">
-            <!-- トップページに戻るボタン -->
-            <form action="chat-home.php" method="GET" class="back-form">
-                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-                <input class="btn back-btn" type="submit" value="Top">
-            </form>
-
             <!-- メッセージ送信フォーム -->
             <form class="send-box flex-box" 
                 action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 

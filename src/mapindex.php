@@ -1,32 +1,22 @@
 <?php
-require 'db-connect.php';
-try {
-    $pdo = new PDO($connect, USER, PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'データベース接続エラー: ' . $e->getMessage();
-    exit();
-}
-
-// 現在のユーザーの情報を取得
-$partner_id = $_GET['user_id'];
-$iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$partner_id]);
-$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-$iconUrl = $icon['icon_name'];
-
-// 他のユーザーの位置情報を取得
-$userStmt = $pdo->prepare('
-    SELECT locations.user_id, locations.latitude, locations.longitude, Icon.icon_name 
-    FROM locations 
-    INNER JOIN Icon ON locations.user_id = Icon.user_id 
-    WHERE locations.user_id != ?
-');
-$userStmt->execute([$partner_id]);
-$otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
-
-
+    require 'db-connect.php';
+    try {
+      $pdo = new PDO($connect, USER, PASS);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+      echo 'データベース接続エラー: ' . $e->getMessage();
+      exit();
+  }
+    $partner_id = $_GET['user_id'];
+    $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
+    $iconStmt->execute([$partner_id]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+    // $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    $iconUrl =  $icon['icon_name'];
+    echo $iconUrl;
+   
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -66,10 +56,10 @@ $otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
 
       map.setCenter(userLocation);
 
-      // 現在のユーザーのマーカー
       const markerElement = document.createElement('div');
       markerElement.className = 'marker';
       markerElement.style.backgroundImage = `url(${iconUrl})`;
+
 
       new mapboxgl.Marker(markerElement)
         .setLngLat(userLocation)
@@ -77,24 +67,33 @@ $otherUsers = $userStmt->fetchAll(PDO::FETCH_ASSOC);
           .setHTML('<div>あなたの現在地です</div>'))
         .addTo(map);
 
-      // 他のユーザーのマーカー
-      const otherUsers = <?php echo json_encode($otherUsers); ?>;
-      otherUsers.forEach(user => {
-        const otherMarkerElement = document.createElement('div');
-        otherMarkerElement.className = 'marker';
-        otherMarkerElement.style.backgroundImage = `url(${user.icon_name})`;
-        
-        new mapboxgl.Marker(otherMarkerElement)
-          .setLngLat([user.longitude, user.latitude])
-          .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<div>User ID: ${user.user_id}</div>`))
-          .addTo(map);
+      // 現在地をサーバーに送信
+      fetch('save-location.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: "<?php echo $partner_id; ?>",
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('位置情報が保存されました:', data);
+      })
+      .catch(error => {
+        console.error('位置情報の保存に失敗しました:', error);
       });
+      
+    }, error => {
+      console.error('現在地を取得できませんでした:', error);
     });
   } else {
     alert("Geolocationがサポートされていません");
   }
-  </script>
+</script>
 
 </body>
 </html>
