@@ -124,6 +124,10 @@ require 'header.php';
             if ($judge == 1) {
                 break;
             }
+
+        }
+        if ($j == 1) {
+            echo '<span>ユーザーがいません</span>';
         }
 
         echo '</td>';
