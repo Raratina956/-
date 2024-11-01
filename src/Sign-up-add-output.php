@@ -13,9 +13,8 @@ try {
 try {
     // トランザクション開始
     $pdo->beginTransaction();
-
     $user_id = $_POST['user_id'];
-
+    
     // 学籍番号の重複チェック
     $sql = "SELECT COUNT(*) FROM Users WHERE student_number = :student_number";
     $stmt = $pdo->prepare($sql);
@@ -34,6 +33,7 @@ try {
         echo '<script>
                 document.getElementById("redirectForm").submit();
               </script>';
+        exit();
     }
 
     // ユーザーの更新
@@ -55,17 +55,28 @@ try {
     // ファイルのアップロード
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['icon_file'])) {
         $uploadDir = 'img/icon/';
-        $uploadFile = $uploadDir . basename($_FILES['icon_file']['name']);
+        $file = $_FILES['icon_file'];
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $newFileName = uniqid() . '.jpg';  // 新しいファイル名を生成
 
-        // ファイルを移動
-        if (move_uploaded_file($_FILES['icon_file']['tmp_name'], $uploadFile)) {
-            // データベースの更新
-            $sql = 'UPDATE Icon SET icon_name = :icon_name WHERE user_id = :user_id';
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':icon_name', $uploadFile);
-            $stmt->bindParam(':user_id', $user_id);
-            $stmt->execute();
+        if ($fileExtension === 'png') {
+            // PNG を JPG に変換
+            $img = imagecreatefrompng($file['tmp_name']);
+            $uploadFile = $uploadDir . $newFileName;
+            imagejpeg($img, $uploadFile, 90);  // 90は品質
+            imagedestroy($img);
+        } else {
+            // 直接アップロード
+            $uploadFile = $uploadDir . basename($file['name']);
+            move_uploaded_file($file['tmp_name'], $uploadFile);
         }
+
+        // データベースの更新
+        $sql = 'UPDATE Icon SET icon_name = :icon_name WHERE user_id = :user_id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':icon_name', $uploadFile);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
     }
 
     // コミット
