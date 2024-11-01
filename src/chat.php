@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
                 method="post">
                 <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                <input type="submit" name="sub" value="送信" id="send-btn">
+                <input type="submit" name="sub" class="send" value="送信" id="send-btn">
             </form>
         </div>
 

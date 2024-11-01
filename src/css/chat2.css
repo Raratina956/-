@@ -132,7 +132,7 @@ textarea:focus {
     border-color: #66bb6a; /* フォーカス時のボーダー色 */
 }
 
-input[type="submit"] {
+.send{
     background-color: #93c895;
     border: none;
     color: #fff;
@@ -141,7 +141,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.send:hover {
     background-color: #4caf50;
 }
 
