@@ -84,7 +84,6 @@ require 'header.php';
 
             // アイコン表示
             foreach ($icon as $ic) {
-                $j = 1;
                 $user_id = $ic['icon_user_id'];
                 if (isset($p_tag_id)) {
                     unset($p_tag_id);
