@@ -24,6 +24,8 @@ try {
     echo json_encode(['status' => 'success', 'message' => '位置情報が保存されました']);
 } catch (PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => 'データベース接続エラー: ' . $e->getMessage()]);
+    exit(); // エラーが発生した場合はスクリプトを終了
 } catch (Exception $e) {
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+    exit(); // エラーが発生した場合はスクリプトを終了
 }

@@ -52,6 +52,16 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
+// styleimagemissing イベントのリスナーを追加
+map.on('styleimagemissing', function(event) {
+    console.log('Missing image: ' + event.id);
+    // 例としてデフォルトのアイコンを使用する
+    map.loadImage('https://example.com/path/to/default-icon.png', function(error, image) {
+        if (error) throw error;
+        map.addImage(event.id, image);
+    });
+});
+
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
         const userLocation = [position.coords.longitude, position.coords.latitude];
@@ -112,6 +122,7 @@ if (navigator.geolocation) {
 } else {
     alert("Geolocationがサポートされていません");
 }
+
 </script>
 
 </body>
