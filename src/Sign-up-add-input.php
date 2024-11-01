@@ -83,52 +83,63 @@ try {
         <button type="button" class="upload" id="uploadButton" disabled>登録</button>
     </form>
     <script>
-    document.getElementById('fileInput').onchange = function (event) {
-            var file = event.target.files[0];
-            if (!file) {
-                return;
+        document.getElementById('fileInput').onchange = function (event) {
+        var file = event.target.files[0];
+        if (!file) {
+            // ファイルが選択されていない場合
+            var defaultImage = 'img/icon/default.jpg';  // デフォルトの画像パスを指定
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            if (existingIcon) {
+                existingIcon.src = defaultImage;
+            } else {
+                preview.src = defaultImage;
+                preview.style.display = 'block';
             }
-            var reader = new FileReader();
-            reader.onload = function () {
-                var existingIcon = document.getElementById('existingIcon');
-                var preview = document.getElementById('preview');
-                var img = new Image();
-                img.src = reader.result;
-                img.onload = function () {
-                    var canvas = document.createElement('canvas');
-                    var ctx = canvas.getContext('2d');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    // PNG を JPG に変換
-                    if (file.type === "image/png") {
-                        ctx.drawImage(img, 0, 0);
-                        var jpgDataUrl = canvas.toDataURL("image/jpeg", 0.9);
-                        // プレビュー表示を更新
-                        if (existingIcon) {
-                            existingIcon.src = jpgDataUrl;
-                        } else {
-                            preview.src = jpgDataUrl;
-                            preview.style.display = 'block';
-                        }
-                        // Data URL を Blob に変換してフォームに追加
-                        var jpgBlob = dataURLtoBlob(jpgDataUrl);
-                        var jpgFile = new File([jpgBlob], file.name.replace('.png', '.jpg'), { type: "image/jpeg" });
-                        var dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(jpgFile);
-                        document.getElementById('fileInput').files = dataTransfer.files;
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function () {
+            var existingIcon = document.getElementById('existingIcon');
+            var preview = document.getElementById('preview');
+            var img = new Image();
+            img.src = reader.result;
+            img.onload = function () {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                // PNG を JPG に変換
+                if (file.type === "image/png") {
+                    ctx.drawImage(img, 0, 0);
+                    var jpgDataUrl = canvas.toDataURL("image/jpeg", 0.9);
+                    // プレビュー表示を更新
+                    if (existingIcon) {
+                        existingIcon.src = jpgDataUrl;
                     } else {
-                        // 既存のプレビュー表示を更新
-                        if (existingIcon) {
-                            existingIcon.src = reader.result;
-                        } else {
-                            preview.src = reader.result;
-                            preview.style.display = 'block';
-                        }
+                        preview.src = jpgDataUrl;
+                        preview.style.display = 'block';
                     }
-                };
+                    // Data URL を Blob に変換してフォームに追加
+                    var jpgBlob = dataURLtoBlob(jpgDataUrl);
+                    var jpgFile = new File([jpgBlob], file.name.replace('.png', '.jpg'), { type: "image/jpeg" });
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(jpgFile);
+                    document.getElementById('fileInput').files = dataTransfer.files;
+                } else {
+                    // 既存のプレビュー表示を更新
+                    if (existingIcon) {
+                        existingIcon.src = reader.result;
+                    } else {
+                        preview.src = reader.result;
+                        preview.style.display = 'block';
+                    }
+                }
             };
-            reader.readAsDataURL(file);
         };
+        reader.readAsDataURL(file);
+    };
 
     // Data URL を Blob に変換する関数
     function dataURLtoBlob(dataurl) {
