@@ -11,7 +11,8 @@
     $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
     $iconStmt->execute([$partner_id]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-    $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    // $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    $iconUrl =  $icon['icon_name'];
     echo $iconUrl;
    
 ?>
@@ -39,44 +40,59 @@
   
   <div id='map'></div>
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
-    
-    // PHPで生成したアイコン画像のURLをJavaScriptに渡す
-    const iconUrl = "<?php echo $iconUrl; ?>";
+  mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
-    // 地図の初期化
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [139.6917, 35.6895],
-      zoom: 10
-    });
+  const iconUrl = "<?php echo $iconUrl; ?>";
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [139.6917, 35.6895],
+    zoom: 10
+  });
 
-    // 現在地を取得してピンを立てる
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const userLocation = [position.coords.longitude, position.coords.latitude];
-        
-        // 地図の中心を現在地に移動
-        map.setCenter(userLocation);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userLocation = [position.coords.longitude, position.coords.latitude];
 
-        // マーカー要素を作成
-        const markerElement = document.createElement('div');
-        markerElement.className = 'marker';
-        markerElement.style.backgroundImage = `url(${iconUrl})`;  // ここでアイコンURLを適用
+      map.setCenter(userLocation);
 
-        // 現在地にマーカーを追加
-        new mapboxgl.Marker(markerElement)
-          .setLngLat(userLocation)
-          .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<div>あなたの現在地です</div>'))
-          .addTo(map);
-      }, error => {
-        console.error('現在地を取得できませんでした:', error);
+      const markerElement = document.createElement('div');
+      markerElement.className = 'marker';
+      markerElement.style.backgroundImage = `url(${iconUrl})`;
+
+      new mapboxgl.Marker(markerElement)
+        .setLngLat(userLocation)
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+          .setHTML('<div>あなたの現在地です</div>'))
+        .addTo(map);
+
+      // 現在地をサーバーに送信
+      fetch('save-location.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: "<?php echo $partner_id; ?>",
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('位置情報が保存されました:', data);
+      })
+      .catch(error => {
+        console.error('位置情報の保存に失敗しました:', error);
       });
-    } else {
-      alert("Geolocationがサポートされていません");
-    }
-  </script>
+      
+    }, error => {
+      console.error('現在地を取得できませんでした:', error);
+    });
+  } else {
+    alert("Geolocationがサポートされていません");
+  }
+</script>
+
 </body>
 </html>
