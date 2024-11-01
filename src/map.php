@@ -113,9 +113,6 @@ require 'header.php';
                             }
                         }
                     } else {
-                        if (!($favorite_row)) {
-                            break;
-                        }
                         if (isset($_POST['tag_list'])) {
                             if ($_POST['tag_list'] != 0) {
                                 $p_tag_id = intval($_POST['tag_list']);
