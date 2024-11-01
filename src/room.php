@@ -338,7 +338,7 @@ if ($update_id == 1) {
 
             echo '</ul>';
         ?>
-        <a href="main.php" class="back-link">メインへ</a>
+        <a href="floor.php" class="back-link">戻る</a>
     </main>
 </body>
 
