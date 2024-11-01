@@ -20,9 +20,9 @@ require 'header.php';
 <!-- メイン(マップ)に戻る -->
 <button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
 <?php
-echo '<main><h1>', htmlspecialchars($floor), '階</h1>';
+echo '<main><h1>', htmlspecialchars($_SESSION['floor']['kai']), '階</h1>';
 $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
-$sql->execute([$floor]);
+$sql->execute([$_SESSION['floor']['kai']]);
 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 $sql_current = $pdo->prepare('SELECT classroom_id, COUNT(*) AS user_count FROM Current_location GROUP BY classroom_id');
