@@ -39,7 +39,7 @@ try {
   <div id="map"></div>
 
   <script>
-    mapboxgl.accessToken = 'your_actual_mapbox_access_token';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
     // PHPから位置情報データをJavaScriptに渡す
     const locations = <?php echo json_encode($locations, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
