@@ -82,9 +82,10 @@ require 'header.php';
                     $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
                     $tag_sql->execute([$p_tag_id, $user_id]);
                     $tag_row = $tag_sql->fetch();
-                    echo $p_tag_id;
-                    echo $user_id;
+                    // echo $p_tag_id;
+                    // echo $user_id;
                     if ($tag_row) {
+                        echo 'a';
                         $attri_user = $tag_row['user_id'];
                         if ($user_id != $attri_user) {
                             break;
