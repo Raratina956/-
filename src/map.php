@@ -49,8 +49,8 @@ require 'header.php';
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '</select><br><br>';
     echo '<input type="submit" value="絞込">';
+    echo '</select><br><br>';
     echo '</form>';
 
 
