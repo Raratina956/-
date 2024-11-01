@@ -339,7 +339,10 @@ if ($update_id == 1) {
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
-    <button type="button" class="back-link" onclick="location.href='floor.php'">戻る</button> 
+    <form action="floor.php" method="post">
+        <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
+        <button type="submit" class="back-link">戻る</button> 
+    </form>
     </main>
 </body>
 
