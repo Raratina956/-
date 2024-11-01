@@ -30,7 +30,8 @@ main {
 /* Table Styles */
 .table-container {
     display: flex; /* 横並び配置 */
-    justify-content: space-between; /* テーブル間のスペースを均等に */
+    /* justify-content: space-between; テーブル間のスペースを均等に */
+    justify-content: center;
     align-items: flex-start; /* 上揃え */
     gap: 30px; /* テーブル間の間隔 */
     width: 100%;
@@ -39,7 +40,7 @@ main {
 }
 .user-table td, .user-table th,
 .tag-table td, .tag-table th {
-    
+    padding: 8px;
    
 white-space: nowrap; /* 改行を無効化 */
 }
