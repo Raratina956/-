@@ -11,7 +11,8 @@
     $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
     $iconStmt->execute([$partner_id]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-    $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    // $iconUrl = "https://babyblue-aso2201203.webdav-lolipop.jp/Nomodon/src/" . $icon['icon_name'];
+    $iconUrl =  $icon['icon_name'];
     echo $iconUrl;
    
 ?>
