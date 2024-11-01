@@ -468,6 +468,7 @@ if ($list_raw) {
     echo 'お知らせがありません';
 }
 ?>
+<a href="map.php" class="back-link">マップへ</a>
 <script>
     function confirmDelete() {
         return confirm("本当に削除しますか？");

@@ -100,4 +100,4 @@ if ($list_raw) {
     echo '作成されたタグがありません';
 }
 ?>
-<a href="main.php" class="back-link">メインへ</a>
+<a href="map.php" class="back-link">マップへ</a>
