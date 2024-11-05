@@ -17,9 +17,10 @@
     top: 0;          /* ページの上部に配置 */
     left: 0;
     width: 100%;     /* 横幅を画面いっぱいに */
-    height: 60px;    /* 高さを設定（お好みで調整してください） */
+    height: 100px;    /* 高さを設定（お好みで調整してください） */
     background-color: white;/* ヘッダーの背景色（例） */
     z-index: 1000;   /* 他の要素の上に表示 */
+    
 }
 
 
@@ -30,6 +31,7 @@
     }
 
     .hamburger {
+      top: -70px;
       width: 60px;
       height: 60px;
       position: relative;
@@ -39,15 +41,13 @@
       border-radius: 50%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      left: 210%;
-      top: -66px;
+     
   }
 
     .spot{
-      position: relative;
-      left: 83%;
-      top: 60px;
+    position: relative;
+    left: 0;
+    margin: 0 auto; /* 真ん中に配置 */
     }
     
     
@@ -56,11 +56,11 @@
     }
     
     .bell {
-      margin-top:10px;
-      margin-left: 250%;
-      margin-right: 20px; /* ロゴとのスペースを調整 */
-  }
-
+     position: absolute;
+    right: 140px; /* 画面右端からの余白 */
+    top: 30px; /* ヘッダー上部からの位置 */
+    }
+    
   .bell img {
     width: 30px; /* アイコン自体のサイズ */
     height: 30px;
