@@ -89,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
-    <link rel="stylesheet" href="css/chat2.css">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
     <?php
