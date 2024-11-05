@@ -11,6 +11,12 @@ if (isset($_POST['tag_name'])) {
             $tag_name,
             $_SESSION['user']['user_id']
         ]);
+        $lastInsertId = $pdo->lastInsertId();
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
+        $sql_insert->execute([
+            $lastInsertId,
+            $_SESSION['user']['user_id']
+        ]);
     } else {
         $error = '文字を入力してください';
     }
