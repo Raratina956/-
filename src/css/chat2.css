@@ -1,39 +1,31 @@
 /* ベースのスタイル */
 body {
-    /* background-image: url(../img/SpotLinkbg.png); */
     font-family: 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    /* background-color: #afe7ffe8; */
 }
 
 .chat-system {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
-    /* background-color: #afe7ffe8; */
 }
 
 .chat-box {
     width: 100%;
-    /* max-width: 600px;  */
     background-color: #fff;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 15px;
     overflow: hidden;
     display: flex;
-    flex-direction: column; /* 縦に要素を並べる */
-    height: 100vh; /* ウィンドウ全体を使用 */
+    flex-direction: column;
+    height: 100vh;
 }
 
-
 .chat-area {
-    height: 80%;
+    flex-grow: 1; /* 残りのスペースを占める */
     overflow-y: auto;
-    padding: 10px; /* ここを20pxから10pxに変更 */
+    padding: 10px;
     background-color: #afe7ffe8;
-    box-sizing: border-box; /* パディングも含めた幅管理 */
     display: flex;
     flex-direction: column;
 }
@@ -66,17 +58,15 @@ body {
 }
 
 .person1 .chat {
-    background-color: #dcf8c6; /* 自分のメッセージの背景色 */
+    background-color: #dcf8c6;
     border-top-right-radius: 0;
 }
 
 .person2 .chat {
     background-color: #fff;
     border-top-left-radius: 0;
-    border: 1px solid #ddd; /* 相手のメッセージの境界線 */
-   
+    border: 1px solid #ddd;
 }
-
 
 .chat img {
     width: 30px;
@@ -85,9 +75,8 @@ body {
     margin-right: 10px;
     position: absolute;
     bottom: 0%;
-    left: -40px; /* ここを -40px から -30px に変更 */
+    left: -30px;
 }
-
 
 .chat-time {
     display: block;
@@ -105,13 +94,12 @@ body {
     background-color: #fff;
     padding: 10px;
     border-top: 1px solid #ddd;
-    position: fixed;  /* 画面下に固定 */
-    bottom: 0;  /* 下端に配置 */
-    left: 0;    /* 左端に配置 */
-    width: 100%; /* 横幅いっぱいに広げる */
-    box-sizing: border-box; /* パディング込みで幅を計算 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 
 textarea {
     width: 100%;
@@ -123,15 +111,14 @@ textarea {
     font-size: 14px;
     outline: none;
     margin-right: 10px;
-    flex: 1; /* テキストエリアが残りのスペースを埋める */
-    margin-right: 10px;
+    flex: 1;
 }
 
 textarea:focus {
-    border-color: #66bb6a; /* フォーカス時のボーダー色 */
+    border-color: #66bb6a;
 }
 
-.send{
+.send {
     background-color: #93c895;
     border: none;
     color: #fff;
@@ -159,33 +146,15 @@ textarea:focus {
     background-color: #2112af;
 }
 
-.ad-banner {
-    position: fixed; /* 固定位置に設定 */
-    bottom: -100px; /* 画面の下に隠す（高さはバナーの高さに応じて調整） */
-    left: 0; /* 左端に揃える */
-    width: 100%; /* バナーを横幅いっぱいに */
-    margin: 0; /* マージンなし */
-    text-align: center; /* 中央揃え */
-    opacity: 0; /* 初期状態を透明に */
-    transition: opacity 1s ease, bottom 1s ease; /* フェードインのアニメーション */
-}
-
-.ad-banner.show {
-    opacity: 1; /* フェードイン後の不透明度 */
-    bottom: 0; /* 画面の下まで移動 */
-}
-
-
-/* チャットヘッダーのスタイル */
 .chat-header {
     display: flex;
     align-items: center;
-    justify-content: center; /* ヘッダーの内容を中央寄せ */
+    justify-content: center;
     padding: 10px;
-    background-color: #15aff1; /* ヘッダーの背景色 */
-    border-bottom: 1px solid #ddd; /* ボーダー */
-    position:  relative;        /* 位置指定 */
-    top: 80px;
+    background-color: #15aff1;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    top: 0;
     z-index: 998;
     font-size: 25px;
 }
@@ -193,14 +162,14 @@ textarea:focus {
 .center-content {
     display: flex;
     align-items: center;
-    gap: 10px; /* アイコンと名前の間にスペース */
+    gap: 10px;
 }
 
 .chat-header img {
-    width: 50px; /* アイコンの幅 */
-    height: 50px; /* アイコンの高さ */
-    border-radius: 50%; /* 丸いアイコン */
-    margin-right: 10px; /* アイコンと名前の間のスペース */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
     margin-top: 8px;
 }
 
@@ -211,34 +180,28 @@ textarea:focus {
 }
 
 .partner-name {
-    font-size: 1.2em; /* フォントサイズ */
-    font-weight: bold; /* 太字 */
-    color: #333; /* フォントの色 */
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
 }
 
-/* メッセージボックスのホバー効果 */
 .chat:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* ホバー時の影 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* テキストエリアのホバー効果 */
 textarea:hover {
-    border-color: #66bb6a; /* ホバー時のボーダー色 */
+    border-color: #66bb6a;
 }
 
-/* 広告バナーのスタイル */
 .ad-banner img {
-    max-width: 100%; /* バナー画像の幅を調整 */
-    height: auto; /* 高さは自動で調整 */
-    border-radius: 10px; /* 角を丸く */
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
-/* メッセージ送信ボタンのスタイル */
 input[type="submit"] {
-    transition: background-color 0.3s ease; /* ホバー時のスムーズなトランジション */
+    transition: background-color 0.3s ease;
 }
-
-
 
 .send-container {
     position: fixed;
@@ -251,13 +214,9 @@ input[type="submit"] {
     border-top: 1px solid #ddd;
     box-sizing: border-box;
     padding: 10px;
-    gap: 10px; /* 要素間のスペース */
-}
-
-.back-form {
-    float: right;
+    gap: 10px;
 }
 
 #latest-message {
-    height: 1px; /* 最新メッセージの位置調整のための余白確保 */
+    height: 1px;
 }
