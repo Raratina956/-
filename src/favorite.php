@@ -37,7 +37,7 @@ require 'header.php';
 <div id="favorite-list"></div>
 
 <!-- メイン(マップ)に戻る -->
-<button type="button" class="back" onclick="location.href='map.php'">戻る</button>
+<button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
 
 <script>
     function fetchData(type) {
