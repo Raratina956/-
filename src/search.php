@@ -163,4 +163,6 @@ if ($kinds == "a" || $kinds == "t") {
         <?php endif; ?>
     </div>
 </main>
-<a href="map.php" class="back-link">メインへ</a>
+
+<a href="main.php" class="back-link">メインへ</a>
+
