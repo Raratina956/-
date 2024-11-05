@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'db-connect.php';
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -8,7 +9,7 @@ try {
     exit();
 }
 
-$partner_id = $_GET['user_id'];
+$partner_id = $_SESSION['user']['user_id'];
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
