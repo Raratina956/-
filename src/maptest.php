@@ -3,15 +3,45 @@ require 'parts/auto-login.php';
 require 'header.php';
 unset($_SESSION['floor']['kai']);
 
+// 定数の定義を確認
+if (!defined('SERVER')) {
+    define('SERVER', 'your_server');
+}
+if (!defined('DBNAME')) {
+    define('DBNAME', 'your_dbname');
+}
+if (!defined('USER')) {
+    define('USER', 'your_username');
+}
+if (!defined('PASS')) {
+    define('PASS', 'your_password');
+}
+
 // データベース接続
 require 'db-connect.php';
 
 // ユーザーIDを取得
 $user_id = $_SESSION['user']['user_id'];
 
-// ユーザーのタグ情報を取得
-$sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
-$sql->execute([$user_id]);
+// ユーザーの位置情報を取得
+$sql_locations = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+$sql_locations->execute([$user_id]);
+$location_data = $sql_locations->fetchAll(PDO::FETCH_ASSOC);
+
+$locations = [];
+foreach ($location_data as $location) {
+    // カラムの存在をチェック
+    if (isset($location['x_coordinate'], $location['y_coordinate'], $location['z_coordinate'])) {
+        $locations[] = [
+            'x' => (float)$location['x_coordinate'],
+            'y' => (float)$location['y_coordinate'],
+            'z' => (float)$location['z_coordinate']
+        ];
+    } else {
+        echo "位置情報が不完全です。";
+    }
+}
+
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 // 位置情報を取得
