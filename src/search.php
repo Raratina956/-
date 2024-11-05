@@ -1,7 +1,22 @@
 <?php
 require 'parts/auto-login.php';
 require 'header.php';
-
+if (isset($_POST['join_tag_id'])) {
+    $regi_tag_id = $_POST['join_tag_id'];
+    $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+    $sql->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    if (!$row) {
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
+        $sql_insert->execute([
+            $regi_tag_id,
+            $_SESSION['user']['user_id']
+        ]);
+    } else {
+        $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+        $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+    }
+}
 $search_text = $_POST['search'] ?? '';
 unset($dis);
 $user_data = [];
@@ -11,7 +26,8 @@ $judge = 0;
 $kinds = $_POST['kinds'] ?? "a";
 $method = $_POST['method'] ?? "part";
 
-function limitDisplay($text, $limit = 10) {
+function limitDisplay($text, $limit = 10)
+{
     $characters = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY); // 第3引数に -1 を指定
     return count($characters) > $limit ? implode('', array_slice($characters, 0, $limit)) . '...' : $text;
 }
@@ -19,9 +35,9 @@ function limitDisplay($text, $limit = 10) {
 // User search
 if ($kinds == "a" || $kinds == "u") {
     $search_all_u = $pdo->prepare(
-        $method == "part" 
-            ? 'SELECT * FROM Users WHERE user_name LIKE ?' 
-            : 'SELECT * FROM Users WHERE user_name = ?'
+        $method == "part"
+        ? 'SELECT * FROM Users WHERE user_name LIKE ?'
+        : 'SELECT * FROM Users WHERE user_name = ?'
     );
     $search_all_u->execute($method == "part" ? ['%' . $search_text . '%'] : [$search_text]);
 
@@ -33,9 +49,9 @@ if ($kinds == "a" || $kinds == "u") {
 // Tag search
 if ($kinds == "a" || $kinds == "t") {
     $search_all_t = $pdo->prepare(
-        $method == "part" 
-            ? 'SELECT Tag_list.*, Users.user_name AS creator_name FROM Tag_list LEFT JOIN Users ON Tag_list.user_id = Users.user_id WHERE tag_name LIKE ?' 
-            : 'SELECT Tag_list.*, Users.user_name AS creator_name FROM Tag_list LEFT JOIN Users ON Tag_list.user_id = Users.user_id WHERE tag_name = ?'
+        $method == "part"
+        ? 'SELECT Tag_list.*, Users.user_name AS creator_name FROM Tag_list LEFT JOIN Users ON Tag_list.user_id = Users.user_id WHERE tag_name LIKE ?'
+        : 'SELECT Tag_list.*, Users.user_name AS creator_name FROM Tag_list LEFT JOIN Users ON Tag_list.user_id = Users.user_id WHERE tag_name = ?'
     );
     $search_all_t->execute($method == "part" ? ['%' . $search_text . '%'] : [$search_text]);
 
@@ -55,27 +71,38 @@ if ($kinds == "a" || $kinds == "t") {
     <!-- Search Form -->
     <form action="search.php" method="post">
         <select class="sort-tag" name="kinds">
-            <option value="a" <?php if ($kinds == "a") echo 'selected'; ?>>全て</option>
-            <option value="u" <?php if ($kinds == "u") echo 'selected'; ?>>ユーザーのみ</option>
-            <option value="t" <?php if ($kinds == "t") echo 'selected'; ?>>タグのみ</option>
+            <option value="a" <?php if ($kinds == "a")
+                echo 'selected'; ?>>全て</option>
+            <option value="u" <?php if ($kinds == "u")
+                echo 'selected'; ?>>ユーザーのみ</option>
+            <option value="t" <?php if ($kinds == "t")
+                echo 'selected'; ?>>タグのみ</option>
         </select>
-        
+
         <select class="sort-tag" name="method">
-            <option value="all" <?php if ($method == "all") echo 'selected'; ?>>完全一致</option>
-            <option value="part" <?php if ($method == "part") echo 'selected'; ?>>部分一致</option>
+            <option value="all" <?php if ($method == "all")
+                echo 'selected'; ?>>完全一致</option>
+            <option value="part" <?php if ($method == "part")
+                echo 'selected'; ?>>部分一致</option>
         </select>
         <br>
-        <input type="text" class="search-text" name="search" value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>" placeholder="検索したい内容を入力してください">
+        <input type="text" class="search-text" name="search"
+            value="<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>" placeholder="検索したい内容を入力してください">
         <input class="search" type="submit" value="再検索">
     </form>
-    
+
     <h2>【<?php echo htmlspecialchars($search_text, ENT_QUOTES, 'UTF-8'); ?>】の検索結果</h2>
-    
+
     <div class="table-container">
         <?php if (!empty($user_data)): ?>
             <table class="user-table">
-                <tr><th colspan="2">ユーザー</th></tr>
-                <tr class="h"><th></th><th>名前</th></tr>
+                <tr>
+                    <th colspan="2">ユーザー</th>
+                </tr>
+                <tr class="h">
+                    <th></th>
+                    <th>名前</th>
+                </tr>
                 <?php foreach ($user_data as $data): ?>
                     <form name="form<?php echo $data['id']; ?>" action="user.php" method="get">
                         <?php
@@ -84,9 +111,12 @@ if ($kinds == "a" || $kinds == "t") {
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                            <td class="tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
+                            <td class="tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><img
+                                        src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
                             <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
-                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><h3><?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?></h3></a></td>
+                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                                    <h3><?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                                </a></td>
                         </tr>
                     </form>
                 <?php endforeach; ?>
@@ -95,14 +125,33 @@ if ($kinds == "a" || $kinds == "t") {
 
         <?php if (!empty($tag_data)): ?>
             <table class="tag-table">
-                <tr><th colspan="2">タグ</th></tr>
-                <tr class="h"><th>作成者</th><th>タグ名</th></tr>
+                <tr>
+                    <th colspan="2">タグ</th>
+                </tr>
+                <tr class="h">
+                    <th>作成者</th>
+                    <th>タグ名</th>
+                </tr>
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
-                        <td><h3><?php echo htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'); ?></h3></td>
+                        <td>
+                            <h3><?php echo htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                        </td>
                         <form action="search.php" method="post">
-                            <input type="hidden" name="join_tag_id" value=<?php echo $data['id'];?>>
-                            <td><input type="submit" value="参加"></td>
+                            <input type="hidden" name="join_tag_id" value=<?php echo $data['id']; ?>>
+                            <?php
+                            if (isset($_POST['search'])) {
+                                echo '<input type="hidden" name="search" value="', $_POST['search'], '">';
+                            }
+                            $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                            $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+                            $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
+                            if (!$row_tag) {
+                                echo '<td><input type="submit" value="参加" class="join"></td>';
+                            } else {
+                                echo '<td><input type="submit" value="参加済" class="joined"></td>';
+                            }
+                            ?>
                         </form>
                     </tr>
                 <?php endforeach; ?>
@@ -114,4 +163,9 @@ if ($kinds == "a" || $kinds == "t") {
         <?php endif; ?>
     </div>
 </main>
+<<<<<<< HEAD
+<a href="main.php" class="back-link">メインへ</a>
+
+=======
 <a href="map.php" class="back-link">メインへ</a>
+>>>>>>> 4a738b8d523231cf2f614c8c4e224e972e7c7e6d
