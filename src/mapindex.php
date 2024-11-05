@@ -107,7 +107,7 @@ otherUsers.forEach(user => {
     const userIcon = document.createElement('img');
     userIcon.src = user.icon_name; // アイコン画像
     const userName = document.createElement('span');
-    userName.textContent = user.name; // ユーザー名
+    userName.textContent = user.user_name; // ユーザー名を修正
 
     listItem.appendChild(userIcon);
     listItem.appendChild(userName);
@@ -120,12 +120,13 @@ otherUsers.forEach(user => {
         // クリック時にポップアップ表示
         new mapboxgl.Popup()
             .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.name}</div>`)
+            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`) // ここも修正
             .addTo(map);
     });
 
     friendList.appendChild(listItem);
 });
+
 
 // 現在地を取得し、自分のマーカーを表示
 if (navigator.geolocation) {
