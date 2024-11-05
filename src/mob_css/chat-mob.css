@@ -57,8 +57,8 @@ body {
 }
 
 .chat {
-    max-width: 75%;
-    padding: 10px;
+    max-width: 60%;
+    padding: 3px;
     border-radius: 20px;
     word-wrap: break-word;
     font-size: 20px;
@@ -153,6 +153,8 @@ textarea:focus {
     cursor: pointer;
     margin: 10px;
     margin-top: 18px;
+    width: 52px;
+    height: 38px;
 }
 
 .back-btn:hover {
@@ -187,7 +189,8 @@ textarea:focus {
     position:  relative;        /* 位置指定 */
     top: 80px;
     z-index: 998;
-    font-size: 25px;
+    font-size: 22px;
+    height: 58px;
 }
 
 .center-content {
@@ -211,7 +214,7 @@ textarea:focus {
 }
 
 .partner-name {
-    font-size: 1.2em; /* フォントサイズ */
+    /* font-size: 1.2em; フォントサイズ */
     font-weight: bold; /* 太字 */
     color: #333; /* フォントの色 */
 }
