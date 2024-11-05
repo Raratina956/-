@@ -18,7 +18,7 @@ unset($_SESSION['floor']['kai']);
     <?php
 
     echo '<div class="map">';
-    echo '<h1 class="title">MAP</h1>';
+    echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
 
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
     $sql->execute([$_SESSION['user']['user_id']]);
