@@ -12,6 +12,7 @@ require 'parts/auto-login.php';
     if ($ann_list_row) {
         ?>
     <table>
+        <th></th>
         <th>タイトル</th>
         <th>送信者</th>
         <th>送信先</th>
@@ -25,6 +26,7 @@ require 'parts/auto-login.php';
             $send_user_id = $ann_row['send_person'];
             $sent_tag_id = $ann_row['sent_tag'];
             $send_time = $ann_row['sending_time'];
+            $ann_type="1";
             $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $user_sql->execute([$send_user_id]);
             $user_row = $user_sql->fetch(PDO::FETCH_ASSOC);
@@ -35,6 +37,21 @@ require 'parts/auto-login.php';
             $sent_tag_name = $tag_row['tag_name'];
             ?>
             <tr>
+                <td>
+                    <?php
+                        switch ($type) {
+                            case 1:
+                                echo "送信";
+                                break;
+                            case 2:
+                                echo "受信";
+                                break;
+                            default:
+                                echo "エラー";
+                                break;
+                        }
+                    ?>
+                </td>
                 <td><?php echo $title; ?></td>
                 <td><?php echo $send_user_name; ?></td>
                 <td><?php echo $sent_tag_name; ?></td>
