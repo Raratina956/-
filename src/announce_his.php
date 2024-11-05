@@ -15,6 +15,7 @@ require 'parts/auto-login.php';
         <th>タイトル</th>
         <th>送信先</th>
         <th>送信日時</th>
+        <th></th>
     </table>
     <?php
     foreach ($ann_list_row as $ann_row) {
@@ -34,7 +35,7 @@ require 'parts/auto-login.php';
             <td><?php echo $send_time; ?></td>
             <form action="announce_his_info.php" method="post">
                 <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                <input type="submit" value="詳細">
+                <td><input type="submit" value="詳細"></td>
             </form>
         </tr>
         <?php
