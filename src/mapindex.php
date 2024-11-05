@@ -15,8 +15,14 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
 // 他のユーザーの情報と位置情報を取得する
-$allLocationsStmt = $pdo->query('SELECT Icon.user_id, Icon.icon_name, Icon.name, locations.latitude, locations.longitude FROM Icon INNER JOIN locations ON Icon.user_id = locations.user_id');
+$allLocationsStmt = $pdo->query('
+    SELECT Icon.user_id, Icon.icon_name, Users.name, locations.latitude, locations.longitude 
+    FROM Icon
+    INNER JOIN Users ON Icon.user_id = Users.user_id
+    INNER JOIN locations ON Icon.user_id = locations.user_id
+');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
