@@ -7,7 +7,19 @@ body {
 #qrcode {
   height: 160px;
   margin-top: 15px;
-  display: block; /* ブロック要素として扱う */
+  display: inline-block; /* インラインブロック要素として扱う */
   margin-left: auto; /* 自動で左側の余白を設定 */
   margin-right: auto; /* 自動で右側の余白を設定 */
 }
+
+#qrcode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qrcode {
+  height: 160px;
+  margin-top: 15px;
+}
+
