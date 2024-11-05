@@ -79,7 +79,7 @@ if ($update_id == 1) {
 <body>
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
-        <span><?php echo htmlspecialchars($room_name); ?></span>
+        <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -109,7 +109,7 @@ if ($update_id == 1) {
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-            <button type="submit">QR表示</button>
+            <button class="room" type="submit">QR表示</button>
         </form>
 
         <!-- 教室にいるユーザーを表示 -->

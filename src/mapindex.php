@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'db-connect.php';
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -8,7 +9,7 @@ try {
     exit();
 }
 
-$partner_id = $_GET['user_id'];
+$partner_id = $_SESSION['user']['user_id'];
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
@@ -33,46 +34,8 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <title>現在地にピンを立てる</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body {
-            display: flex;
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
-        #sidebar {
-            width: 200px;
-            padding: 10px;
-            background-color: #f8f8f8;
-            overflow-y: auto;
-        }
-        #map {
-            flex-grow: 1;
-            height: 100%;
-        }
-        .marker {
-            background-size: contain;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-        }
-        .friend-item {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 5px;
-        }
-        .friend-item img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .friend-item:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <link rel="stylesheet" href="css/mapindex.css">
+    
 </head>
 <body>
 

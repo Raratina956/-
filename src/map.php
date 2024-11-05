@@ -171,7 +171,7 @@ unset($_SESSION['floor']['kai']);
     </div>
 
     <div class="gakugai-container">
-        <h2>学外</h2>
+        <h2><a href="mapindex.php">学外</a></h2>
     </div>
     <br>
     <br>
