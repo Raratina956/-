@@ -104,7 +104,7 @@ if ($kinds == "a" || $kinds == "t") {
                             <input type="hidden" name="join_tag_id" value=<?php echo $data['id'];?>>
                             <?php
                                 if(isset($_POST['search'])){
-                                    echo '<input type="hidden name="search" value="',$_POST['search'],'">';
+                                    echo '<input type="hidden" name="search" value="',$_POST['search'],'">';
                                 }
                             ?>
                             <td><input type="submit" value="参加"></td>
