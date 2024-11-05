@@ -163,11 +163,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const header = document.querySelector('.chat-header');
 
     // チャットエリアの高さを再計算
-    const availableHeight = window.innerHeight 
-        - header.offsetHeight 
-        - sendContainer.offsetHeight;
+    // const availableHeight = window.innerHeight 
+    //     - header.offsetHeight 
+    //     - sendContainer.offsetHeight;
 
-    chatArea.style.height = `${availableHeight}px`;
+    // chatArea.style.height = `${availableHeight}px`;
     }
 
     // ページロード時とリサイズ時にチャットエリアの高さを調整
