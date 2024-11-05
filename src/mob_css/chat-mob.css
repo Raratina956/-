@@ -58,7 +58,7 @@ body {
 
 .chat {
     max-width: 60%;
-    padding: 3px;
+    padding: 10px;
     border-radius: 20px;
     word-wrap: break-word;
     font-size: 20px;
