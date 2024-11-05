@@ -18,8 +18,7 @@
     left: 0;
     width: 100%;     /* 横幅を画面いっぱいに */
     height: 60px;    /* 高さを設定（お好みで調整してください） */
-    background-color: #333; /* ヘッダーの背景色（例） */
-    color: white;    /* テキストカラー */
+    background-color: white;/* ヘッダーの背景色（例） */
     z-index: 1000;   /* 他の要素の上に表示 */
 }
 
