@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif; /* フォントを追加 */
+    background-color: #f0f4f8; /* 背景色を明るく */
+}
+
+#sidebar {
+    width: 250px; /* サイドバーの幅を広げる */
+    padding: 20px; /* パディングを調整 */
+    background-color: #ffffff; /* 背景色を白に */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ボックスシャドウで浮き上がらせる */
+    overflow-y: auto;
+}
+
+h2 {
+    color: #333; /* タイトルの色 */
+    margin-bottom: 15px; /* タイトル下のマージン */
+}
+
+#map {
+    flex-grow: 1;
+    height: 100%;
+    border: 1px solid #ddd; /* マップの境界線 */
+}
+
+.marker {
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* マーカーに影を追加 */
+}
+
+.friend-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* パディングを調整 */
+    border-radius: 5px; /* 角を丸くする */
+    transition: background-color 0.3s; /* 背景色の遷移効果 */
+}
+
+.friend-item:hover {
+    background-color: #e0e0e0; /* ホバー時の色 */
+}
+
+.friend-item img {
+    width: 35px; /* アイコンのサイズを少し大きく */
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px; /* アイコンとテキストの間隔 */
+}
+
+.friend-item span {
+    color: #555; /* テキストの色 */
+    font-weight: bold; /* 太字 */
+}
+
+.friend-item.active {
+    background-color: #d0e9ff; /* 選択されたアイテムの色 */
+    border-left: 4px solid #007bff; /* 左側にアクセントのボーダー */
+}
+body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #sidebar {
+            width: 200px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            overflow-y: auto;
+        }
+        #map {
+            flex-grow: 1;
+            height: 100%;
+        }
+        .marker {
+            background-size: contain;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+        }
+        .friend-item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+        .friend-item img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .friend-item:hover {
+            background-color: #e0e0e0;
+        }
