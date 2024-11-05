@@ -19,10 +19,9 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 60px;
+    height: 100px;
     background-color: white;
     z-index: 1000;
-    
 }
 
 
@@ -33,7 +32,7 @@
     }
 
     .hamburger {
-      top: -70px;
+      top: -50px;
       width: 60px;
       height: 60px;
       position: relative;
@@ -43,16 +42,14 @@
       border-radius: 50%;
       display: flex;
       justify-content: center;
-     
   }
 
     .spot{
       display: flex;
-      justify-content: flex-end; 
+      justify-content: flex-end;
       position: relative;
       margin: 0 auto; /* 親のflexboxで中央に配置 */
       text-align: center; /* .spot内のテキストを中央に */
-
     }
     
     
@@ -62,10 +59,10 @@
     
     .bell {
       display: flex;
-      justify-content: flex-end; 
+      justify-content: flex-end;
       position: absolute;
-      right: 10px; /* 右端からの余白 */
-      top: 15px; /* ヘッダー上部からの位置 */
+      right: 200px; /* 右端からの余白 */
+      top: 30px; /* ヘッダー上部からの位置 */
       text-align: right; /* 念のために右寄せ */
   }
 
