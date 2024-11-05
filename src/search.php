@@ -102,6 +102,11 @@ if ($kinds == "a" || $kinds == "t") {
                         <td><h3><?php echo htmlspecialchars($data['creator_name'], ENT_QUOTES, 'UTF-8'); ?></h3></td>
                         <form action="search.php" method="post">
                             <input type="hidden" name="join_tag_id" value=<?php echo $data['id'];?>>
+                            <?php
+                                if(isset($_POST['search'])){
+                                    echo '<input type="hidden name="search" value="',$_POST['search'],'">';
+                                }
+                            ?>
                             <td><input type="submit" value="参加"></td>
                         </form>
                     </tr>
