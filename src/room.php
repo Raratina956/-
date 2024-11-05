@@ -79,7 +79,7 @@ if ($update_id == 1) {
 <body>
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
-        <span><?php echo htmlspecialchars($room_name); ?></span>
+        <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
