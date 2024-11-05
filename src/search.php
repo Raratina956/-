@@ -112,3 +112,4 @@ if ($kinds == "a" || $kinds == "t") {
     </div>
 </main>
 <a href="main.php" class="back-link">メインへ</a>
+
