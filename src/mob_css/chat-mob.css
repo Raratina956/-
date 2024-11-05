@@ -103,7 +103,7 @@ body {
 
 .send-box {
     background-color: #fff;
-    padding: 10px;
+    padding: 3px;
     border-top: 1px solid #ddd;
     position: fixed;  /* 画面下に固定 */
     bottom: 0;  /* 下端に配置 */
