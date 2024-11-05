@@ -66,8 +66,8 @@ body {
     margin-top: 85px;
 }
 
-input[type="text"] {
-    width: 80%;
+.textbox{
+    width: 70%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 20px;
