@@ -29,7 +29,7 @@
     
     }
 
-    /* .hamburger {
+    .hamburger {
       width: 60px;
       height: 60px;
       position: relative;
@@ -42,7 +42,7 @@
       align-items: center;
       left: 210%;
       top: -66px;
-  } */
+  }
 
     .spot{
       position: relative;
