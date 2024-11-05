@@ -13,13 +13,15 @@
   /* } */ 
 
   header {
-    position: fixed; /* ヘッダーを固定 */
-    top: 0;          /* ページの上部に配置 */
-    left: 0;
-    width: 100%;     /* 横幅を画面いっぱいに */
-    height: 100px;    /* 高さを設定（お好みで調整してください） */
-    background-color: white;/* ヘッダーの背景色（例） */
-    z-index: 1000;   /* 他の要素の上に表示 */
+    display: flex;
+    justify-content: center; /* ヘッダー内の中央寄せ */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    z-index: 1000;
     
 }
 
@@ -45,9 +47,12 @@
   }
 
     .spot{
-    position: relative;
-    left: 0;
-    margin: 0 auto; /* 真ん中に配置 */
+      display: flex;
+      justify-content: flex-end; 
+      position: relative;
+      margin: 0 auto; /* 親のflexboxで中央に配置 */
+      text-align: center; /* .spot内のテキストを中央に */
+
     }
     
     
@@ -56,11 +61,14 @@
     }
     
     .bell {
-     position: absolute;
-    right: 140px; /* 画面右端からの余白 */
-    top: 30px; /* ヘッダー上部からの位置 */
-    }
-    
+      display: flex;
+      justify-content: flex-end; 
+      position: absolute;
+      right: 10px; /* 右端からの余白 */
+      top: 15px; /* ヘッダー上部からの位置 */
+      text-align: right; /* 念のために右寄せ */
+  }
+
   .bell img {
     width: 30px; /* アイコン自体のサイズ */
     height: 30px;
