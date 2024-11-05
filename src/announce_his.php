@@ -39,7 +39,7 @@ require 'parts/auto-login.php';
             <tr>
                 <td>
                     <?php
-                        switch ($type) {
+                        switch ($ann_type) {
                             case 1:
                                 echo "送信";
                                 break;
