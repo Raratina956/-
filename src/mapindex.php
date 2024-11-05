@@ -14,10 +14,9 @@ $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
-// 他のユーザーの情報も取得する
-$allUsersStmt = $pdo->query('SELECT user_id, icon_name FROM Icon');
-$allUsers = $allUsersStmt->fetchAll(PDO::FETCH_ASSOC);
-
+// 他のユーザーの情報と位置情報を取得する
+$allLocationsStmt = $pdo->query('SELECT Icon.user_id, Icon.icon_name, locations.latitude, locations.longitude FROM Icon INNER JOIN locations ON Icon.user_id = locations.user_id');
+$allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -100,14 +99,14 @@ if (navigator.geolocation) {
         });
 
         // 他のユーザーのマーカーを表示
-        const otherUsers = <?php echo json_encode($allUsers); ?>;
+        const otherUsers = <?php echo json_encode($allLocations); ?>;
         otherUsers.forEach(user => {
             const markerElement = document.createElement('div');
             markerElement.className = 'marker';
             markerElement.style.backgroundImage = `url(${user.icon_name})`;
 
-            // 他のユーザーの位置情報を取得するための適切なAPIを実装する必要があります
-            const userPosition = [139.6917, 35.6895]; // 仮の位置情報（適切な値に変更すること）
+            // 他のユーザーの位置情報を使用
+            const userPosition = [user.longitude, user.latitude];
             
             new mapboxgl.Marker(markerElement)
                 .setLngLat(userPosition)

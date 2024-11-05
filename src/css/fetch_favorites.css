@@ -15,6 +15,13 @@ table {
     margin: auto;
     margin-top: 20px;
 }
+.usericon {
+    margin: 0; /* アイコンの外側の余白を削除 */
+    padding: 0; /* アイコンの内側の余白を削除 */
+    display: inline-block;
+    vertical-align: middle; /* テキストとアイコンを中央揃え */
+    margin-right:30px;
+}
 .back-link {
     position: fixed;
     bottom: 20px;
@@ -31,7 +38,7 @@ table {
 }
 .button_quit,
 .button_del {
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -52,6 +59,7 @@ table {
 .button_del {
     border-color: rgb(248, 88, 88);
     color: rgb(248, 88, 88);
+    margin-left:30px;
 }
 .button_del:hover {
     background-color: rgb(207, 40, 40);
@@ -66,4 +74,3 @@ table {
 .unselected {
     color: gray;
 }
-
