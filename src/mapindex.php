@@ -28,7 +28,20 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
     <style>
-        #map { width: 100%; height: 500px; }
+        body {
+            display: flex;
+            margin: 0;
+        }
+        #sidebar {
+            width: 200px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            overflow-y: auto;
+        }
+        #map {
+            width: calc(100% - 200px);
+            height: 500px;
+        }
         .marker {
             background-size: contain;
             width: 50px;
@@ -36,39 +49,67 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
             border: none;
             border-radius: 50%;
         }
+        .friend-item {
+            cursor: pointer;
+            padding: 5px;
+        }
+        .friend-item:hover {
+            background-color: #e0e0e0;
+        }
     </style>
 </head>
 <body>
 
+<div id="sidebar">
+    <h2>友達一覧</h2>
+    <ul id="friend-list">
+        <!-- 友達リストはここに追加される -->
+    </ul>
+</div>
 <div id='map'></div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 中心座標を東京に設定していますが、必要に応じて変更してください
-    zoom: 15 // ズームレベルを拡大
+    center: [139.6917, 35.6895], // 初期中心座標（東京）
+    zoom: 10
 });
 
+// 他のユーザーの位置情報を取得
+const otherUsers = <?php echo json_encode($allLocations); ?>;
 
-// styleimagemissing イベントのリスナーを追加
-map.on('styleimagemissing', function(event) {
-    console.log('Missing image: ' + event.id);
-    // 例としてデフォルトのアイコンを使用する
-    map.loadImage('https://example.com/path/to/default-icon.png', function(error, image) {
-        if (error) throw error;
-        map.addImage(event.id, image);
+// 友達一覧を作成
+const friendList = document.getElementById('friend-list');
+otherUsers.forEach(user => {
+    const listItem = document.createElement('li');
+    listItem.className = 'friend-item';
+    listItem.textContent = `ユーザーID: ${user.user_id}`;
+
+    // 友達リスト項目にクリックイベントを追加
+    listItem.addEventListener('click', () => {
+        const userPosition = [user.longitude, user.latitude];
+        map.flyTo({ center: userPosition, zoom: 15 }); // ズームして中心を設定
+
+        // クリック時にポップアップ表示
+        new mapboxgl.Popup()
+            .setLngLat(userPosition)
+            .setHTML(`<div>ユーザーID: ${user.user_id}</div>`)
+            .addTo(map);
     });
+
+    friendList.appendChild(listItem);
 });
 
+// 現在地を取得し、自分のマーカーを表示
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
         const userLocation = [position.coords.longitude, position.coords.latitude];
 
         map.setCenter(userLocation);
 
-        // 自分のマーカーを表示
         const myMarkerElement = document.createElement('div');
         myMarkerElement.className = 'marker';
         myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
@@ -100,13 +141,11 @@ if (navigator.geolocation) {
         });
 
         // 他のユーザーのマーカーを表示
-        const otherUsers = <?php echo json_encode($allLocations); ?>;
         otherUsers.forEach(user => {
             const markerElement = document.createElement('div');
             markerElement.className = 'marker';
             markerElement.style.backgroundImage = `url(${user.icon_name})`;
 
-            // 他のユーザーの位置情報を使用
             const userPosition = [user.longitude, user.latitude];
             
             new mapboxgl.Marker(markerElement)
