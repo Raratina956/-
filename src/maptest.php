@@ -4,7 +4,7 @@ require 'header.php';
 unset($_SESSION['floor']['kai']);
 
 // データベース接続
-$pdo = new PDO('mysql:host=localhost;dbname=locations', 'username', 'password'); // DBの設定を変更してください
+require 'db-connect.php';
 
 // ユーザーIDを取得
 $user_id = $_SESSION['user']['user_id'];
