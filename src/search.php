@@ -144,7 +144,7 @@ if ($kinds == "a" || $kinds == "t") {
                                 echo '<input type="hidden" name="search" value="', $_POST['search'], '">';
                             }
                             $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                            $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+                            $sql_tag->execute([$data['id'], $_SESSION['user']['user_id']]);
                             $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
                             if (!$row_tag) {
                                 echo '<td><input type="submit" value="参加" class="join"></td>';
