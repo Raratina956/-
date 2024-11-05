@@ -47,9 +47,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],
-    zoom: 10
+    center: [139.6917, 35.6895], // 中心座標を東京に設定していますが、必要に応じて変更してください
+    zoom: 15 // ズームレベルを拡大
 });
+
 
 // styleimagemissing イベントのリスナーを追加
 map.on('styleimagemissing', function(event) {
