@@ -15,7 +15,7 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
 // 他のユーザーの情報と位置情報を取得する
-$allLocationsStmt = $pdo->query('SELECT Icon.user_id, Icon.icon_name, locations.latitude, locations.longitude FROM Icon INNER JOIN locations ON Icon.user_id = locations.user_id');
+$allLocationsStmt = $pdo->query('SELECT Icon.user_id, Icon.icon_name, Icon.name, locations.latitude, locations.longitude FROM Icon INNER JOIN locations ON Icon.user_id = locations.user_id');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -31,6 +31,8 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
         body {
             display: flex;
             margin: 0;
+            height: 100vh;
+            overflow: hidden;
         }
         #sidebar {
             width: 200px;
@@ -39,8 +41,8 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
             overflow-y: auto;
         }
         #map {
-            width: calc(100% - 200px);
-            height: 500px;
+            flex-grow: 1;
+            height: 100%;
         }
         .marker {
             background-size: contain;
@@ -51,7 +53,15 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
         }
         .friend-item {
             cursor: pointer;
+            display: flex;
+            align-items: center;
             padding: 5px;
+        }
+        .friend-item img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
         }
         .friend-item:hover {
             background-color: #e0e0e0;
@@ -74,7 +84,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期中心座標（東京）
+    center: [139.6917, 35.6895],
     zoom: 10
 });
 
@@ -86,17 +96,25 @@ const friendList = document.getElementById('friend-list');
 otherUsers.forEach(user => {
     const listItem = document.createElement('li');
     listItem.className = 'friend-item';
-    listItem.textContent = `ユーザーID: ${user.user_id}`;
+    
+    // アイコンと名前を表示
+    const userIcon = document.createElement('img');
+    userIcon.src = user.icon_name; // アイコン画像
+    const userName = document.createElement('span');
+    userName.textContent = user.name; // ユーザー名
+
+    listItem.appendChild(userIcon);
+    listItem.appendChild(userName);
 
     // 友達リスト項目にクリックイベントを追加
     listItem.addEventListener('click', () => {
         const userPosition = [user.longitude, user.latitude];
-        map.flyTo({ center: userPosition, zoom: 15 }); // ズームして中心を設定
+        map.flyTo({ center: userPosition, zoom: 15 });
 
         // クリック時にポップアップ表示
         new mapboxgl.Popup()
             .setLngLat(userPosition)
-            .setHTML(`<div>ユーザーID: ${user.user_id}</div>`)
+            .setHTML(`<div>ユーザー名: ${user.name}</div>`)
             .addTo(map);
     });
 
@@ -151,7 +169,7 @@ if (navigator.geolocation) {
             new mapboxgl.Marker(markerElement)
                 .setLngLat(userPosition)
                 .setPopup(new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<div>ユーザーID: ${user.user_id}</div>`))
+                    .setHTML(`<div>ユーザー名: ${user.name}</div>`))
                 .addTo(map);
         });
 
