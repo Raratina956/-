@@ -10,6 +10,7 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
         $customUrl = htmlspecialchars($_POST['custom_url'], ENT_NOQUOTES);
+        echo $_POST['room'], '教室';
         echo '<div id="qrcode"></div>';
         echo '送信されたURL: ' . $customUrl;
     ?>
