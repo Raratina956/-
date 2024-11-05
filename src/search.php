@@ -129,8 +129,8 @@ if ($kinds == "a" || $kinds == "t") {
                     <th colspan="2">タグ</th>
                 </tr>
                 <tr class="h">
-                    <th>作成者</th>
                     <th>タグ名</th>
+                    <th></th>
                 </tr>
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
