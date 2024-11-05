@@ -1,5 +1,25 @@
+body {
+  padding-top: 120px;
+  background-image: url(../img/SpotLinkbg.png);
+  text-align: center; /* 親要素の中央揃え */
+}
+
 #qrcode {
-    width:160px;
-    height:160px;
-    margin-top:15px;
-  }
+  height: 160px;
+  margin-top: 15px;
+  display: inline-block; /* インラインブロック要素として扱う */
+  margin-left: auto; /* 自動で左側の余白を設定 */
+  margin-right: auto; /* 自動で右側の余白を設定 */
+}
+
+#qrcode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qrcode {
+  height: 160px;
+  margin-top: 15px;
+}
+

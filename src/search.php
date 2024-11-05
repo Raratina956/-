@@ -129,8 +129,8 @@ if ($kinds == "a" || $kinds == "t") {
                     <th colspan="2">タグ</th>
                 </tr>
                 <tr class="h">
-                    <th>作成者</th>
                     <th>タグ名</th>
+                    <th></th>
                 </tr>
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
@@ -144,7 +144,7 @@ if ($kinds == "a" || $kinds == "t") {
                                 echo '<input type="hidden" name="search" value="', $_POST['search'], '">';
                             }
                             $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                            $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+                            $sql_tag->execute([$data['id'], $_SESSION['user']['user_id']]);
                             $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
                             if (!$row_tag) {
                                 echo '<td><input type="submit" value="参加" class="join"></td>';
@@ -163,9 +163,6 @@ if ($kinds == "a" || $kinds == "t") {
         <?php endif; ?>
     </div>
 </main>
-<<<<<<< HEAD
-<a href="main.php" class="back-link">メインへ</a>
 
-=======
 <a href="map.php" class="back-link">メインへ</a>
->>>>>>> 4a738b8d523231cf2f614c8c4e224e972e7c7e6d
+

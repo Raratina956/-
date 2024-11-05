@@ -170,3 +170,39 @@ form {
 
 
 
+  .join{
+    min-width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(230, 183, 64);
+    background-color: white;
+    color:rgb(230, 183, 64);
+    border-radius: 5px;
+}
+
+.join:hover{
+    background-color: rgb(230, 153, 64);
+    color: white;
+}
+
+.joined{
+    min-width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    background-color: rgb(179, 247, 91);
+    color:black;
+    border-radius: 5px;
+}
+
+.joined:hover{
+    background-color: rgb(63, 225, 95);
+    color: black;
+}

@@ -10,7 +10,8 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['custom_url'])) {
         $customUrl = htmlspecialchars($_POST['custom_url'], ENT_NOQUOTES);
-        echo '<div id="qrcode"></div>';
+        echo $_POST['room'], '教室';
+        echo '<div id="qrcode-container"><div id="qrcode"></div></div>';
         echo '送信されたURL: ' . $customUrl;
     ?>
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
