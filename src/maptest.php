@@ -1,5 +1,8 @@
 <?php
+// セッションを開始
+session_start();
 
+// unset関数を使用してセッションのデータを削除
 unset($_SESSION['floor']['kai']);
 
 // 定数を定義
@@ -19,7 +22,12 @@ try {
 }
 
 // ユーザーIDを取得
-$user_id = $_SESSION['user']['user_id'];
+$user_id = $_SESSION['user']['user_id'] ?? null; // null合体演算子でエラー回避
+
+if ($user_id === null) {
+    echo "ユーザーIDが設定されていません。";
+    exit;
+}
 
 // ユーザーのタグ情報を取得
 $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
