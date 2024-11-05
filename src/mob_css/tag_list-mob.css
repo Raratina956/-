@@ -26,37 +26,9 @@ table {
     color: white;
 }
 
-/* Responsive for Mobile Devices */
-@media screen and (max-width: 480px) {
-    body {
-        padding-top: 80px;
-    }
-
-    .textbox {
-        width: 80%; /* Make input boxes larger on mobile */
-        font-size: 18px;
-    }
-
-    .search, .join, .joined {
-        width: 80px; /* Reduce button size */
-        height: 32px;
-        font-size: 14px;
-    }
-
-    .join_tag {
-        font-size: 14px;
-        padding: 6px 12px; /* Smaller padding for mobile */
-    }
-
-    .back-link {
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-}
-
 .textbox {
     margin-top: 25px;
-    width: 30%;
+    width: 45%;
     font-size: 30%;
     text-align: center;
     cursor: pointer;
@@ -85,8 +57,8 @@ table {
 }
 
 .back-link {
-    position: fixed;
-    bottom: 20px;
+    position: static;
+    /* bottom: 20px; */
     left: 10px;
     font-size: 16px;
     text-decoration: none;
