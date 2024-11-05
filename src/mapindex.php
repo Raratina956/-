@@ -15,8 +15,14 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon['icon_name'];
 
 // 他のユーザーの情報と位置情報を取得する
-$allLocationsStmt = $pdo->query('SELECT Icon.user_id, Icon.icon_name, Icon.name, locations.latitude, locations.longitude FROM Icon INNER JOIN locations ON Icon.user_id = locations.user_id');
+$allLocationsStmt = $pdo->query('
+    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
+    FROM Icon
+    INNER JOIN Users ON Icon.user_id = Users.user_id
+    INNER JOIN locations ON Icon.user_id = locations.user_id
+');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +107,7 @@ otherUsers.forEach(user => {
     const userIcon = document.createElement('img');
     userIcon.src = user.icon_name; // アイコン画像
     const userName = document.createElement('span');
-    userName.textContent = user.name; // ユーザー名
+    userName.textContent = user.user_name; // ユーザー名を修正
 
     listItem.appendChild(userIcon);
     listItem.appendChild(userName);
@@ -114,12 +120,13 @@ otherUsers.forEach(user => {
         // クリック時にポップアップ表示
         new mapboxgl.Popup()
             .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.name}</div>`)
+            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`) // ここも修正
             .addTo(map);
     });
 
     friendList.appendChild(listItem);
 });
+
 
 // 現在地を取得し、自分のマーカーを表示
 if (navigator.geolocation) {
