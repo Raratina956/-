@@ -13,7 +13,7 @@ require 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $floor; ?>階</title>
+    <title><?php echo $$_SESSION['floor']['kai']; ?>階</title>
     <link rel="stylesheet" href="css/floor.css">
 </head>
 <body>

@@ -11,6 +11,12 @@ if (isset($_POST['tag_name'])) {
             $tag_name,
             $_SESSION['user']['user_id']
         ]);
+        $lastInsertId = $pdo->lastInsertId();
+        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
+        $sql_insert->execute([
+            $lastInsertId,
+            $_SESSION['user']['user_id']
+        ]);
     } else {
         $error = '文字を入力してください';
     }
@@ -60,14 +66,12 @@ if ($list_raw) {
     ?>
     <br><br>
     <table id="table" border="0" style="font-size: 18pt;">
-        <th>タグID</th>
         <th>タグ名</th>
         <th></th>
         <th></th>
         <?php
         foreach ($list_raw as $row) {
             echo '<tr>';
-            echo '<td>', $row['tag_id'], '</td>';
             echo '<td>', $row['tag_name'], '</td>';
             ?>
             <form action="my_tag.php" method="post">

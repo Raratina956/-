@@ -56,12 +56,13 @@ body {
 }
 
 /* Search Bar */
-form {
+.form {
     max-width: 500px;
     margin: 30px auto;
     display: flex;
     justify-content: center;
     padding: 10px;
+    margin-top: 85px;
 }
 
 input[type="text"] {
@@ -88,8 +89,10 @@ button:hover {
 
 .back-button{
     margin-top: 60px;
-    float: left;
     border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
 }
