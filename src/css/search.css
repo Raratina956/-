@@ -30,7 +30,8 @@ main {
 /* Table Styles */
 .table-container {
     display: flex; /* 横並び配置 */
-    justify-content: space-between; /* テーブル間のスペースを均等に */
+    /* justify-content: space-between; テーブル間のスペースを均等に */
+    justify-content: center;
     align-items: flex-start; /* 上揃え */
     gap: 30px; /* テーブル間の間隔 */
     width: 100%;
@@ -39,7 +40,7 @@ main {
 }
 .user-table td, .user-table th,
 .tag-table td, .tag-table th {
-    
+    padding: 8px;
    
 white-space: nowrap; /* 改行を無効化 */
 }
@@ -131,9 +132,9 @@ form {
 }
 .sort-tag{
     margin-top: 30px;
-    width: 40%;
+    width: 43%;
     height: 45px;
-    font-size: 18px;
+    font-size: 14px;
     align-items: center;
     text-align: center;
     cursor: pointer;
@@ -169,3 +170,39 @@ form {
 
 
 
+  .join{
+    min-width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(230, 183, 64);
+    background-color: white;
+    color:rgb(230, 183, 64);
+    border-radius: 5px;
+}
+
+.join:hover{
+    background-color: rgb(230, 153, 64);
+    color: white;
+}
+
+.joined{
+    min-width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    background-color: rgb(179, 247, 91);
+    color:black;
+    border-radius: 5px;
+}
+
+.joined:hover{
+    background-color: rgb(63, 225, 95);
+    color: black;
+}

@@ -1,4 +1,4 @@
-body {
+body { 
     background-image: url(../img/SpotLinkbg.png);
     background-size: cover; /* 全体を覆う */
     background-repeat: no-repeat; /* 繰り返さない */
@@ -7,9 +7,10 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
+
 main {
     margin-top: 100px;
     margin-bottom: 100px;
@@ -21,15 +22,34 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-h1{
-    margin-top: auto;
+    position: relative; /* 追加 */
 }
 
-table{
-    margin: auto;
-    margin-top: 20px;
+h1 {
+    position: absolute; /* 変更 */
+    top: 0; /* 固定位置を設定 */
+    left: 50%;
+    transform: translateX(-50%); /* 中央揃え */
+    margin: 0; /* 上下の余白をリセット */
+    z-index: 1; /* 他の要素より上に表示 */
 }
+h3{
+    margin: auto;
+    margin-top: 60px; 
+}
+
+table {
+    margin: auto;
+    margin-top: 60px; /* h1とテーブルの間のスペースを調整 */
+    width: 100%; /* テーブル幅を100%にして大きく表示 */
+}
+
+td, th { 
+    padding: 8px; /* セルの内側の余白 */
+    white-space: nowrap; /* 改行しない */
+}
+
+
 
 .back-link {
     position: fixed;

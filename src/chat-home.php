@@ -77,7 +77,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
-    <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="mob_css/chat-home-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/chat.css" media="screen and (min-width: 1280px)">
     <style>
         /* 未読メッセージ数を示す赤丸 */
@@ -100,7 +100,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
 
 <!-- 戻るボタン -->
 <div class="back-button">
-    <form action="main.php" method="GET">
+    <form action="map.php" method="GET">
         <button type="submit">戻る</button>
     </form>
 </div>

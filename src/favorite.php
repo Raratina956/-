@@ -36,6 +36,9 @@ require 'header.php';
 
 <div id="favorite-list"></div>
 
+<!-- メイン(マップ)に戻る -->
+<button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
+
 <script>
     function fetchData(type) {
         console.log('fetchDataが呼ばれました。'); // fetchDataの呼び出しログ

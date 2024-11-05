@@ -1,7 +1,6 @@
 <?php
-session_start(); // セッションを開始
+require 'parts/auto-login.php';
 
-require "db-connect.php";
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
@@ -90,75 +89,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
-    <link rel="stylesheet" href="css/chat2.css">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
+    <?php
+    require 'header.php';
+    ?>
 <div class="chat-system">
     <div class="chat-box">
 
 
         <!-- 相手のアイコンと名前表示部分 -->
         <div class="chat-header">
-        <img src="<?php echo $icon['icon_name']; ?>"  ?>
-            <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
-
-            <div class="slide-menu">
-        <!-- メニューリスト -->
-            <?php
-                //ユーザー情報を持ってくる
-                    $users=$pdo->prepare('select * from Users where user_id=?');
-                    // $users->execute([$_SESSION['user']['user_id']]);
-                    $users->execute([$_SESSION['user']['user_id']]);
-                    
-                    //アイコン情報を持ってくる
-                    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$_SESSION['user']['user_id']]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-
-                    echo '<ul>';
-                    //DBから持ってきたユーザー情報を「$user」に入れる
-                        foreach($users as $user){
-                            echo '<li><img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon2"></li>';
-                            echo '<li>',$user['user_name'],'</li>';
-
-                        }
-
-                ?>
-                <form action="search.php" method="post">
-                    <input type="text" name="search" class="tbox">
-                    <input type="submit" class="search1" value="検索">
-                </form>
-
-            <li><a href="map.php">MAP</a></li>
-            <?php echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">自分のプロフィール</a></li>'; ?>
-            <li><a href="favorite.php">お気に入り</a></li>
-            <li><a href="qr_read.php">QRカメラ</a></li>
-            <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-            <li><a href="tag_list.php">みんなのタグ</a></li>
-            <li><a href="my_tag.php">MYタグ</a></li>
-            <li><a href="announce.php">アナウンス</a></li>
-            <!-- 以下ログアウト -->
-            <form id="myForm" action="" method="post">
-                <input type="hidden" name="logout" value="1">
+            <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
+                <input type="submit" name="back-btn" class="back-btn" value="戻る">
             </form>
-            <li><a href="#" id="submitLink">ログアウト</a></li>
-          
-            <script>
-                document.getElementById('submitLink').addEventListener('click', function (event) {
-                    event.preventDefault(); // リンクのデフォルトの動作を防止
-                    // 現在のURLを取得
-                    var currentUrl = window.location.href;
-                    // フォームのactionに現在のURLを設定
-                    document.getElementById('myForm').action = currentUrl;
-                    // フォームを送信
-                    document.getElementById('myForm').submit();
-                });
-            </script>
-
-            <!-- 以上ログアウト -->
-        </ul>
-    </div>
+            <div class="center-content">
+                <img src="<?php echo $icon['icon_name']; ?>"  ?>
+                <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+            </div>
         </div>
 
         <!-- 広告バナー -->
@@ -184,18 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="latest-message"></div>
         </div>
         <div class="send-container">
-            <!-- トップページに戻るボタン -->
-            <form action="chat-home.php" method="GET" class="back-form">
-                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user']['user_id']); ?>">
-                <input class="btn back-btn" type="submit" value="Top">
-            </form>
-
             <!-- メッセージ送信フォーム -->
             <form class="send-box flex-box" 
                 action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
                 method="post">
                 <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                <input type="submit" name="sub" value="送信" id="send-btn">
+                <input type="submit" name="sub" class="send" value="送信" id="send-btn">
             </form>
         </div>
 

@@ -56,34 +56,31 @@
         //自分か相手側かで表示する内容を変更
         if($_SESSION['user']['user_id'] == ($user['user_id'])){
             //自分のプロフィール
-
-            
             //編集ボタン
             echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
             echo '<div class="profile-container">';
             echo '<div class="user-container">';
             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
-
-         
-      
-
             //ユーザー情報
             if($user['s_or_t'] == 0){
-                //クラスを持ってくる
-                $classtagStmt=$pdo->prepare('select * from Classtag_attribute where user_id=?');
+
+                // クラスを持ってくる
+                $classtagStmt = $pdo->prepare('select * from Classtag_attribute where user_id=?');
                 $classtagStmt->execute([$_SESSION['user']['user_id']]);
                 $classtag = $classtagStmt->fetch();
-    
-                $classtagnameStmt=$pdo->prepare('select * from Classtag_list where classtag_id=?');
-                $classtagnameStmt->execute([$classtag['classtag_id']]);
-                $classtagname = $classtagnameStmt->fetch();
-
                 echo '<div class="profile">';
-                //生徒(名前、クラス、メールアドレス)
-                echo '名前：',$user['user_name'],"<br>";
-                echo 'クラス：', $classtagname['classtag_name'], '<br>';
-                echo $user['mail_address'],"<br>";
+                // 生徒(名前、クラス、メールアドレス)
+                echo '名前：', $user['user_name'], "<br>";
+                if ($classtag) {
+                    $classtagnameStmt = $pdo->prepare('select * from Classtag_list where classtag_id=?');
+                    $classtagnameStmt->execute([$classtag['classtag_id']]);
+                    $classtagname = $classtagnameStmt->fetch();
+                    echo 'クラス：', $classtagname['classtag_name'], '<br>';
+                }else{
+                    echo 'クラス：クラスが設定されていません', '<br>';
+                }
+                echo $user['mail_address'], "<br>";
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
@@ -154,21 +151,30 @@
 
             //ユーザー情報
             if($user['s_or_t'] == 0){
-                //クラスを持ってくる
-                $classtagStmt=$pdo->prepare('select * from Classtag_attribute where user_id=?');
+                // クラスを持ってくる
+                $classtagStmt = $pdo->prepare('select * from Classtag_attribute where user_id=?');
                 $classtagStmt->execute([$_GET['user_id']]);
                 $classtag = $classtagStmt->fetch();
-    
-                $classtagnameStmt=$pdo->prepare('select * from Classtag_list where classtag_id=?');
-                $classtagnameStmt->execute([$classtag['classtag_id']]);
-                $classtagname = $classtagnameStmt->fetch();
 
-                //生徒(名前、クラス、メールアドレス)
-                echo '<div class="profile">';
-                echo '名前：',$user['user_name'],"<br>";
-                echo 'クラス：', $classtagname['classtag_name'], '<br>';
-                echo $user['mail_address'],"<br>";
-                echo '</div>';
+                if ($classtag) {
+                    $classtagnameStmt = $pdo->prepare('select * from Classtag_list where classtag_id=?');
+                    $classtagnameStmt->execute([$classtag['classtag_id']]);
+                    $classtagname = $classtagnameStmt->fetch();
+
+                    // 生徒(名前、クラス、メールアドレス)
+                    echo '<div class="profile">';
+                    echo '名前：', $user['user_name'], "<br>";
+                    echo 'クラス：', $classtagname['classtag_name'], '<br>';
+                    echo $user['mail_address'], "<br>";
+                    echo '</div>';
+                } else {
+                    // クラス情報がなかった場合の処理
+                    echo '<div class="profile">';
+                    echo '名前：', $user['user_name'], "<br>";
+                    echo 'クラス：クラスが設定されていません', '<br>';
+                    echo $user['mail_address'], "<br>";
+                    echo '</div>';
+                }
             }else{
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
@@ -203,5 +209,7 @@
         }
     }
 ?>
+<!-- メイン(マップ)に戻る -->
+<button type="button" class="back" onclick="location.href='map.php'">戻る</button>
 </body>
 </html>
