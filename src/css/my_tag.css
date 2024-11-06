@@ -9,16 +9,39 @@ body{
     padding-top: 110px;
 }
 
-table{
+/* Style for table and table cells */
+table {
     margin: auto;
+    border-collapse: separate; /* Keeps cell spacing */
+    border-spacing: 6px 10px; /* Reduces row and column space */
+    font-size: 18pt;
+    width: 80%;
 }
-th{
-    font-weight: bold;
+
+td {
+    padding: 6px; /* Reduces space inside cells */
+    text-align: center;
     border-bottom: 2px solid #333;
 }
-td{
+
+th {
+    font-weight: bold;
     border-bottom: 1px solid #333;
+    padding: 6px; /* Matches td padding */
 }
+
+
+/* Add some spacing around the buttons */
+.button_in, .button_up, .button_del, .join, .joined {
+    padding: 10px 20px;
+    margin: 5px; /* Adds space between buttons */
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+
 span{
     font-size: 20px;
 }

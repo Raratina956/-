@@ -43,10 +43,11 @@ require 'header.php';
         }
 
         echo '<li class="li1">';
-        echo '<a  class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<font class="san">‣</font>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
+        echo '<a  class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
         echo '</li>';
     }
     echo '</ul></main>';
     ?>
 </body>
 </html>
+
