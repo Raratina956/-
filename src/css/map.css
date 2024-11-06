@@ -30,8 +30,6 @@ body{
 }
 
 .map{
-    /* margin: 55px;
-    padding: 20px; */
     border-radius: 10px;
     margin-bottom: 10px; 
 }
@@ -49,7 +47,6 @@ body{
 table {
     margin: 0px 10px 0px 320px;  /* 左右の中央揃え */
     table-layout: fixed;  /* テーブル全体の幅を固定 */
-    width: 110%;  /* 必要に応じてテーブルの幅を調整 */
     /* text-align: center; */ /* テーブル内のコンテンツを中央揃え */
     height: 110%;
 }

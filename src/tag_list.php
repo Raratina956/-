@@ -54,7 +54,9 @@ if (isset($_POST['tag_search'])) {
 }
 if ($results) {
     ?>
-    <br><br>
+    <br>
+    <a href="map.php" class="back-link">マップへ</a>
+    <br>
     <table id="table" border="0">
         <th>タグ名</th>
         <th>参加人数</th>
@@ -98,4 +100,3 @@ if ($results) {
     echo 'タグがありません';
 }
 ?>
-<a href="map.php" class="back-link">マップへ</a>

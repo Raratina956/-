@@ -12,7 +12,13 @@ body{
 table{
     margin: auto;
 }
-
+th{
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+}
+td{
+    border-bottom: 1px solid #333;
+}
 span{
     font-size: 20px;
 }
