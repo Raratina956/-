@@ -55,7 +55,7 @@ if (isset($_POST['tag_search'])) {
 if ($results) {
     ?>
     <br><br>
-    <table id="table" border="0" style="font-size: 14pt;">
+    <table id="table" border="0" style="font-size: 18pt;">
         <th>タグ名</th>
         <th>参加人数</th>
         <th>作成者</th>
