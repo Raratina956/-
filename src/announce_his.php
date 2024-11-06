@@ -74,6 +74,11 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
     ?>
+    <select id="filterType" onchange="filterAnnouncements()">
+        <option value="all">全て</option>
+        <option value="send">送信</option>
+        <option value="receive">受信</option>
+    </select>
     <table>
         <th>種別</th>
         <th>タイトル</th>
@@ -83,6 +88,8 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         <th></th>
         <?php
         foreach ($announcements as $announcement) {
+            $typeClass = ($announcement['ann_type'] === 1) ? 'send' : 'receive';
+            echo '<tr class="announcement-row ' . $typeClass . '">';
             echo '<tr>';
             switch ($announcement['ann_type']) {
                 case 1:
@@ -100,13 +107,32 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             echo '<td>' . $announcement['sent_tag_name'] . '</td>';
             echo '<td>' . $announcement['send_time'] . '</td>';
             echo '<form action="announce_his_info.php" method ="post">';
-            echo '<input type="hidden" name="announcement_id" value='.$announcement['announcement_id'].'>';
+            echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
             echo '<td><input type="submit" value="詳細"></td>';
             echo '</form>';
             echo '</tr>';
         }
         ?>
     </table>
+    <script>
+        function filterAnnouncements() {
+            const filter = document.getElementById("filterType").value;
+            const rows = document.querySelectorAll(".announcement-row");
+
+            rows.forEach(row => {
+                if (filter === "all") {
+                    row.style.display = "";
+                } else if (filter === "send" && row.classList.contains("send")) {
+                    row.style.display = "";
+                } else if (filter === "receive" && row.classList.contains("receive")) {
+                    row.style.display = "none";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
     <?php
 } else {
     echo '<span>送信したアナウンスがありません</span>';
