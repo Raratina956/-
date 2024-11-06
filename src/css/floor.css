@@ -1,3 +1,24 @@
+/* General Styles */
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Main Content Styles */
+main {
+    margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
+    padding: 20px; /* 全体にパディングを追加 */
+    text-align: center; /* 中央揃え */
+}
+
+h1 {
+    font-size: 60px; /* フォントサイズ */
+    color: #333; /* フォント色 */
+}
+
 .ul1 {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
