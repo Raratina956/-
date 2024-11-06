@@ -26,7 +26,7 @@ if (isset($_SESSION['err']['pass_err'])) {
         メールアドレス<input type="text" class="text" name="mail"><br>
         新規パスワード<input type="password" class="text" name="newpass"><br>
         確認パスワード<input type="password" class="text" name="re_newpass"><br>
-        <button type="submit">登録</button>
+        <button type="submit" class="update">登録</button>
     </form>
 </div>
 <button type="button" class="back" onclick="location.href='useredit.php'">戻る</button>
