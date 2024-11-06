@@ -65,8 +65,9 @@ $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
     <br><br>
-    <table id="table" border="0" style="font-size: 18pt;">
+    <table id="table"  style="font-size: 18pt;">
         <th>タグ名</th>
+        <th></th>
         <th></th>
         <th></th>
         <?php
