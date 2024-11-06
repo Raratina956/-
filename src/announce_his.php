@@ -63,6 +63,40 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             ];
         }
     }
+    // 並び替えのための関数を定義
+    usort($announcements, function ($a, $b) {
+        return strtotime($b['send_time']) <=> strtotime($a['send_time']);
+    });
+    ?>
+    <table>
+        <th>種別</th>
+        <th>タイトル</th>
+        <th>投稿者</th>
+        <th>投稿先</th>
+        <th>投稿日時</th>
+        <th></th>
+        <?php
+        foreach ($announcements as $announcement) {
+            echo '<tr>';
+            switch ($announcement['ann_type']) {
+                case 1:
+                    echo '<td>送信</td>';
+                    break;
+                case 2:
+                    echo '<td>受信</td>';
+                default:
+                    echo '<td>エラー</td>';
+                    break;
+            }
+            echo '<td>'.$announcement['title'].'</td>';
+            echo '<td>'.$announcement['send_user_name'].'</td>';
+            echo '<td>'.$announcement['sent_tag_name'].'</td>';
+            echo '<td>'.$announcement['send_time'].'</td>';
+            echo '</tr>';
+        }
+        ?>
+    </table>
+    <?php
 } else {
     echo '<span>送信したアナウンスがありません</span>';
 }
