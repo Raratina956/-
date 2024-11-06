@@ -46,7 +46,7 @@ if ($results) {
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row_tag['user_id']]);
             $row_user = $sql_user->fetch();
-            echo '<td>', limitDisplay($row_user['user_name'],10) '</td>';
+            echo '<td>', limitDisplay($row_user['user_name'],10), '</td>';
             echo '<td>';
             ?>
             <form action="join_tag.php" method="post">
