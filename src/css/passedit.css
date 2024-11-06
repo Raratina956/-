@@ -23,16 +23,28 @@ body {
 }
 
 .update{
-    width: 50px;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(175, 233, 131);
+    color: black;
+    border: none;
+    border-radius: 25px;
+    height: 30px;
+}
+
+.update:hover{
+    background-color: rgb(17, 149, 17);
+    color: white;
 }
 
 .back{
-    width: 50px;
+    width: 60px;
     margin-left: 150px;
     background-color: #f9f9f9;
     color: black;
     border: none;
     border-radius: 25px;
+    height: 30px;
 }
 
 .back:hover{
