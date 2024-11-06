@@ -44,10 +44,10 @@ th{
 }
 
 .search {
-    width: 100px;
+    width: 80px;
     height: 36px;
     padding: 0 16px;
-    font-size: 18px;
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -78,10 +78,10 @@ th{
 }
 
 .join {
-    min-width: 100px;
+    min-width: 80px;
     height: 36px;
     padding: 0 16px;
-    font-size: 18px;
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -97,10 +97,10 @@ th{
 }
 
 .joined {
-    min-width: 100px;
+    min-width: 80px;
     height: 36px;
     padding: 0 16px;
-    font-size: 18px;
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
