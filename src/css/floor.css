@@ -18,6 +18,10 @@ h1 {
     color: #333; /* フォント色 */
 }
 
+ul{
+    list-style:none;
+}
+
 .ul1 {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
