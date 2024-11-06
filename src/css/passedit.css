@@ -15,21 +15,22 @@ body {
 }
 
 .form{
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .text{
     width: 200px;
+    height: 30px;
 }
 
 .update{
-    width: 60px;
-    height: 30px;
+    width: 80px;
     background-color: rgb(175, 233, 131);
     color: black;
     border: none;
     border-radius: 25px;
-    height: 30px;
+    height: 40px;
+    font-size: 20px;
 }
 
 .update:hover{
@@ -38,13 +39,14 @@ body {
 }
 
 .back{
-    width: 60px;
+    width: 80px;
     margin-left: 150px;
     background-color: #f9f9f9;
     color: black;
     border: none;
     border-radius: 25px;
-    height: 30px;
+    height: 40px;
+    font-size: 20px;
 }
 
 .back:hover{
