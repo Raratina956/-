@@ -107,11 +107,11 @@
     
     .bell {
       display: flex;
-            justify-content: flex-end;
-            position: absolute;
-            right: 185px;
-            top: 30px;
-            text-align: right;
+      justify-content: flex-end;
+      position: absolute;
+      top: 30px;
+      text-align: right;
+      margin-left: 700px;
   }
 
   .bell img {

@@ -12,7 +12,8 @@ body{
 /* Style for table and table cells */
 table {
     margin: auto;
-    border-collapse: separate; /* Keeps cell spacing */
+    border-collapse: collapse;
+
     border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
     width: 80%;
@@ -21,12 +22,12 @@ table {
 td {
     padding: 6px; /* Reduces space inside cells */
     text-align: center;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #333;
 }
 
 th {
     font-weight: bold;
-    border-bottom: 1px solid #333;
+    border-bottom: 2px solid #333;
     padding: 6px; /* Matches td padding */
 }
 
