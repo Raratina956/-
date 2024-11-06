@@ -11,7 +11,7 @@ $ann_send_list_sql->execute([$_SESSION['user']['user_id']]);
 $ann_send_list_row = $ann_send_list_sql->fetchAll(PDO::FETCH_ASSOC);
 
 // 受信リストを取得
-$ann_check_list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
+$ann_check_list_sql = $pdo->prepare('SELECT * FROM Announce_his WHERE sent_person=?');
 $ann_check_list_sql->execute([$_SESSION['user']['user_id'], 1]);
 $ann_check_list_row = $ann_check_list_sql->fetchAll(PDO::FETCH_ASSOC);
 
