@@ -73,7 +73,8 @@ if ($list_raw) {
         <?php
         foreach ($list_raw as $row) {
             echo '<tr>';
-            echo '<td>', $row['tag_name'], '</td>';
+            echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
+
             ?>
             <form action="my_tag.php" method="post">
             <input type="hidden" name="join_tag_id" value=<?php echo $row['tag_id']; ?>>
