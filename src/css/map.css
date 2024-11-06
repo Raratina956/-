@@ -30,23 +30,21 @@ body{
 }
 
 .map{
-    border-radius: 10px;
-    margin-bottom: 10px; 
+    /* border-radius: 10px; */
+    /* margin-bottom: 10px; */
 }
 
 
 .block{
     border: 2px solid #333333;
     padding: 0px;
-    /* height: 120px;
-    width: 800px; */
-    /* margin-inline-start: 21%; */
     height: 85px;
 }
 
 table {
     height: 110%;
-    margin-left:300px
+    margin-left:18%;
+    width: 70%;
 }
 
 .number{
