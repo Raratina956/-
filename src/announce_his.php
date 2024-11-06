@@ -5,18 +5,24 @@ $announcements = [];
 $ann_send_list_row = [];
 $ann_sent_list_row = [];
 
+// 送信リストを取得
 $ann_send_list_sql = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
 $ann_send_list_sql->execute([$_SESSION['user']['user_id']]);
 $ann_send_list_row = $ann_send_list_sql->fetchAll(PDO::FETCH_ASSOC);
 
+// 受信リストを取得
 $ann_check_list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
 $ann_check_list_sql->execute([$_SESSION['user']['user_id'], 1]);
 $ann_check_list_row = $ann_check_list_sql->fetchAll(PDO::FETCH_ASSOC);
+
 if ($ann_check_list_row) {
     foreach ($ann_check_list_row as $check_row) {
         $ann_sent_list_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
         $ann_sent_list_sql->execute([$check_row['announcement_id']]);
-        $ann_sent_list_row = $ann_sent_list_sql->fetchAll(PDO::FETCH_ASSOC);
+        $ann_sent_list = $ann_sent_list_sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // 受信リストをマージして保持
+        $ann_sent_list_row = array_merge($ann_sent_list_row, $ann_sent_list);
     }
 }
 
@@ -89,10 +95,10 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                     echo '<td>エラー</td>';
                     break;
             }
-            echo '<td>'.$announcement['title'].'</td>';
-            echo '<td>'.$announcement['send_user_name'].'</td>';
-            echo '<td>'.$announcement['sent_tag_name'].'</td>';
-            echo '<td>'.$announcement['send_time'].'</td>';
+            echo '<td>' . $announcement['title'] . '</td>';
+            echo '<td>' . $announcement['send_user_name'] . '</td>';
+            echo '<td>' . $announcement['sent_tag_name'] . '</td>';
+            echo '<td>' . $announcement['send_time'] . '</td>';
             echo '</tr>';
         }
         ?>
