@@ -31,17 +31,33 @@ form {
     text-align: center; /* フォーム全体を中央揃え */
 }
 
+.button-container {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    align-items: center;     /* 縦中央揃え */
+    margin: 10px 0;          /* 上下に少し余白 */
+}
+
 .room {
     min-width: 150px;
     height: 40px;
     font-size: 18px;
     color: black;
-    background-color: #a0eefc; 
+    background-color: #a0eefc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
 }
+
+.room:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
 
 .room:hover {
     background-color: #ffffff; /* ホバー時の色変更 */

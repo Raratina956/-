@@ -86,20 +86,18 @@ if ($update_id == 1) {
         $point->execute([$_SESSION['user']['user_id']]);
         $current_location = $point->fetch();
         if ($current_location && $current_location['classroom_id'] == $room_id) {
-            echo '<button class="room" disabled>登録済み</button>';
+            echo '<div class="button-container"><button class="room" disabled>登録済み</button></div>';
         } else {
-            // 登録されているが、room_idが異なる場合
             if ($current_location) {
-                echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
+                echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
                         <input class="room" type="submit" value="位置情報を更新">
-                      </form>';
+                      </form></div>';
             } else {
-                // 登録されていない場合
-                echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
+                echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
                         <input class="room" type="submit" value="位置登録">
-                      </form>';
+                      </form></div>';
             }
         }
         ?>

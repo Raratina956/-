@@ -5,21 +5,24 @@ $announcements = [];
 $ann_send_list_row = [];
 $ann_sent_list_row = [];
 
+// 送信リストを取得
 $ann_send_list_sql = $pdo->prepare('SELECT * FROM Notification WHERE send_person=?');
 $ann_send_list_sql->execute([$_SESSION['user']['user_id']]);
 $ann_send_list_row = $ann_send_list_sql->fetchAll(PDO::FETCH_ASSOC);
 
+// 受信リストを取得
 $ann_check_list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
 $ann_check_list_sql->execute([$_SESSION['user']['user_id'], 1]);
 $ann_check_list_row = $ann_check_list_sql->fetchAll(PDO::FETCH_ASSOC);
-echo '0';
+
 if ($ann_check_list_row) {
-    echo '1';
     foreach ($ann_check_list_row as $check_row) {
-        echo '2';
         $ann_sent_list_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
         $ann_sent_list_sql->execute([$check_row['announcement_id']]);
-        $ann_sent_list_row = $ann_sent_list_sql->fetchAll(PDO::FETCH_ASSOC);
+        $ann_sent_list = $ann_sent_list_sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // 受信リストをマージして保持
+        $ann_sent_list_row = array_merge($ann_sent_list_row, $ann_sent_list);
     }
 }
 
@@ -66,6 +69,41 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             ];
         }
     }
+    // 並び替えのための関数を定義
+    usort($announcements, function ($a, $b) {
+        return strtotime($b['send_time']) <=> strtotime($a['send_time']);
+    });
+    ?>
+    <table>
+        <th>種別</th>
+        <th>タイトル</th>
+        <th>投稿者</th>
+        <th>投稿先</th>
+        <th>投稿日時</th>
+        <th></th>
+        <?php
+        foreach ($announcements as $announcement) {
+            echo '<tr>';
+            switch ($announcement['ann_type']) {
+                case 1:
+                    echo '<td>送信</td>';
+                    break;
+                case 2:
+                    echo '<td>受信</td>';
+                    break;
+                default:
+                    echo '<td>エラー</td>';
+                    break;
+            }
+            echo '<td>' . $announcement['title'] . '</td>';
+            echo '<td>' . $announcement['send_user_name'] . '</td>';
+            echo '<td>' . $announcement['sent_tag_name'] . '</td>';
+            echo '<td>' . $announcement['send_time'] . '</td>';
+            echo '</tr>';
+        }
+        ?>
+    </table>
+    <?php
 } else {
     echo '<span>送信したアナウンスがありません</span>';
 }
