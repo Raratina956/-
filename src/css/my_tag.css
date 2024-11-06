@@ -20,7 +20,7 @@ table {
 }
 
 td {
-    padding: 6px 4px; /* Reduces space inside cells */
+    padding: 6px 2px; /* Reduces space inside cells */
     text-align: center;
     border-bottom: 1px solid #333;
 }
@@ -28,7 +28,7 @@ td {
 th {
     font-weight: bold;
     border-bottom: 2px solid #333;
-    padding: 6px; /* Matches td padding */
+    padding: 6px 2px; /* Matches td padding */
 }
 
 
