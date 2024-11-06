@@ -19,26 +19,43 @@ h1 {
 }
 
 ul{
-    list-style:none;
+    list-style: none;
 }
 
-.ul1 {
+.ul1.vertical {
+    display: block; /* 縦並び */
+    padding: 0;
+    margin: 20px auto;
+    text-align: center; /* リスト全体を中央揃え */
+}
+
+.ul1.vertical .li1 {
+    display: inline-block; /* リストアイテムをインラインブロックに */
+    width: auto; /* 幅を自動調整 */
+}
+
+.ul1.horizontal {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
-    justify-content: center; /* 中央揃え */
     padding: 0;
     margin: 20px auto;
     max-width: 800px; /* 適当な最大幅を設定 */
 }
 
 .li1 {
-    width: 45%; /* 横に二つ並べるための幅 */
+    width: calc(50% - 20px); /* 横に二つ並べるための幅 */
     box-sizing: border-box; /* パディング込みの幅計算 */
     margin: 10px; /* 要素間の余白 */
     font-size: 40px;
     border-radius: 45px;
     background-color: transparent; /* 背景色を透明に設定 */
     border: none; /* 境界線を取り除く */
+    text-align: center; /* 中央揃え */
+}
+
+/* 奇数個の要素の場合の最後の要素を左寄せ */
+.li1:nth-child(odd):last-child {
+    flex: 1 1 100%; /* 横幅を全体に広げる */
 }
 
 .a1 {

@@ -1,0 +1,40 @@
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    padding-top: 145px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    display: grid;
+}
+
+.form{
+    font-size: 18px;
+}
+
+.text{
+    width: 200px;
+}
+
+.update{
+    width: 50px;
+}
+
+.back{
+    width: 50px;
+    margin-left: 150px;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    border-radius: 25px;
+}
+
+.back:hover{
+    background-color:#17A6E9;
+}

@@ -16,11 +16,11 @@ table {
 
     border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
-    width: 80%;
+    width: 60%;
 }
 
 td {
-    padding: 6px 4px; /* Reduces space inside cells */
+    padding: 6px 0px; /* Reduces space inside cells */
     text-align: center;
     border-bottom: 1px solid #333;
 }
@@ -28,7 +28,7 @@ td {
 th {
     font-weight: bold;
     border-bottom: 2px solid #333;
-    padding: 6px; /* Matches td padding */
+    padding: 6px 0px; /* Matches td padding */
 }
 
 
@@ -78,7 +78,7 @@ span{
 }
 
 .button_up{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -97,7 +97,7 @@ span{
 }
 
 .button_del{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;

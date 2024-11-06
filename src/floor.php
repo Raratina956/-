@@ -29,7 +29,9 @@ require 'header.php';
     $sql_current->execute();
     $results = $sql_current->fetchAll(PDO::FETCH_ASSOC);
 
-    echo '<ul class="ul1">';
+    $ul_class = count($rows) < 5 ? 'vertical' : 'horizontal';
+    
+    echo '<ul class="ul1 ', $ul_class, '">';
     foreach ($rows as $row) {
         $classroom_id = $row['classroom_id'];
         $classroom_name = $row['classroom_name'];
@@ -43,11 +45,10 @@ require 'header.php';
         }
 
         echo '<li class="li1">';
-        echo '<a  class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
+        echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
         echo '</li>';
     }
     echo '</ul></main>';
     ?>
 </body>
 </html>
-
