@@ -69,6 +69,7 @@ if ($list_raw) {
         <th>タグ名</th>
         <th></th>
         <th></th>
+        <th></th>
         <?php
         foreach ($list_raw as $row) {
             echo '<tr>';
