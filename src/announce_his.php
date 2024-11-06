@@ -12,11 +12,8 @@ $ann_send_list_row = $ann_send_list_sql->fetchAll(PDO::FETCH_ASSOC);
 $ann_check_list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
 $ann_check_list_sql->execute([$_SESSION['user']['user_id'], 1]);
 $ann_check_list_row = $ann_check_list_sql->fetchAll(PDO::FETCH_ASSOC);
-echo '0';
 if ($ann_check_list_row) {
-    echo '1';
     foreach ($ann_check_list_row as $check_row) {
-        echo '2';
         $ann_sent_list_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
         $ann_sent_list_sql->execute([$check_row['announcement_id']]);
         $ann_sent_list_row = $ann_sent_list_sql->fetchAll(PDO::FETCH_ASSOC);
