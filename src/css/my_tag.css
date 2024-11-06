@@ -78,7 +78,7 @@ span{
 }
 
 .button_up{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -97,7 +97,7 @@ span{
 }
 
 .button_del{
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
