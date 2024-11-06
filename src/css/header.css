@@ -1,89 +1,142 @@
-body {
-  background-image: url(../img/SpotLinkbg.png);
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #000; /* テキストカラーを黒に設定 */
+@media screen and (min-width: 1280px){
+  header {
+    display: flex;
+    justify-content: center; /* ヘッダー内の中央寄せ */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    z-index: 1000;
+  }
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  .hamburger {
+    top: -50px;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin-left: auto;
+    cursor: pointer;
+    border: 2px solid #00CFFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    left: 585px;
+  }
+
+  .spot{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin: 0 auto; /* 親のflexboxで中央に配置 */
+    text-align: center; /* .spot内のテキストを中央に */
+    left: 50px;
+  }
+
+  .icon {
+    margin-left: 38%;
+  }
+
+  .bell {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 30px;
+    text-align: right;
+    margin-left: 700px;
+  }
+
+  .bell img {
+    width: 30px; /* アイコン自体のサイズ */
+    height: 30px;
+  }
+
+  .search1 {
+    border-color: black;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    height: 30px;
+    width: 35px;
+  }
+
+  .search1:hover {
+    background-color: gray;
+    color: black;
+  }
+
+  .tbox {
+    height: 25px;
+    margin-left: 25px;
+  }
+
+  .usericon2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
 
-/* Main Content Styles */
-main {
-  margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
-  padding: 20px; /* 全体にパディングを追加 */
-  text-align: center; /* 中央揃え */
-}
-
-h1 {
-  font-size: 60px; /* フォントサイズ */
-  color: #333; /* フォント色 */
-}
-
-.ul1.vertical {
-  display: block; /* 縦並び */
-  padding: 0;
-  margin: 20px auto;
-  text-align: center; /* リスト全体を中央揃え */
-}
-
-.ul1.vertical .li1 {
-  display: inline-block; /* リストアイテムをインラインブロックに */
-  width: auto; /* 幅を自動調整 */
-}
-
-.ul1.horizontal {
+.spot {
   display: flex;
-  flex-wrap: wrap; /* 要素を折り返す */
-  padding: 0;
-  margin: 20px auto;
-  max-width: 800px; /* 適当な最大幅を設定 */
+  justify-content: flex-end;
+  position: relative;
+  margin: 0 auto; /* 親のflexboxで中央に配置 */
+  text-align: center; /* .spot内のテキストを中央に */
 }
 
-.li1 {
-  width: calc(50% - 20px); /* 横に二つ並べるための幅 */
-  box-sizing: border-box; /* パディング込みの幅計算 */
-  margin: 10px; /* 要素間の余白 */
-  font-size: 40px;
-  border-radius: 45px;
-  background-color: transparent; /* 背景色を透明に設定 */
-  border: none; /* 境界線を取り除く */
-  text-align: center; /* 中央揃え */
+.icon {
+  margin-left: 38%;
 }
 
-/* 奇数個の要素の場合の最後の要素を左寄せ */
-.li1:nth-child(odd):last-child {
-  flex: 1 1 100%; /* 横幅を全体に広げる */
+.bell {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 200px; /* 右端からの余白 */
+  top: 30px; /* ヘッダー上部からの位置 */
+  text-align: right; /* 念のために右寄せ */
 }
 
-.a1 {
-  display: block;
-  padding: 10px;
+.bell img {
+  width: 30px; /* アイコン自体のサイズ */
+  height: 30px;
+}
+
+.search1 {
+  border-color: black;
+  background-color: white;
   color: black;
-  text-decoration: none;
-  text-align: center; /* 中央揃え */
+  border-radius: 5px;
+  height: 30px;
+  width: 35px;
 }
 
-.san {
-  font-size: 30px;
-  color: blue;
+.search1:hover {
+  background-color: gray;
+  color: black;
 }
 
-.back-link {
-  position: fixed;
-  bottom: 20px;
-  left: 10px;
-  font-size: 16px; /* フォントサイズ */
-  text-decoration: none;
-  background-color: #a0eefc; /* 背景色 */
-  padding: 8px 15px; /* 内側の余白 */
-  border-radius: 5px; /* 角を丸く */
+.tbox {
+  height: 25px;
+  margin-left: 25px;
 }
 
-.back-link:hover {
-  background-color: rgb(54, 98, 216);
-  color: white;
+.usericon2 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.spot{
+.spot img {
   width: 100%; /* 幅を親要素に合わせる */
   height: auto; /* 高さは自動調整 */
   max-width: 300px; /* 必要に応じて最大幅を設定 */
