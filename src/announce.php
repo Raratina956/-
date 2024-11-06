@@ -92,7 +92,7 @@ if (empty($_POST['title'])) {
         } else {
             echo 'タグを追加してください';
         }
-        echo '<a herf="announce_his.php" text-align="center">アナウンス履歴</a>';
+        echo '<a href="announce_his.php" text-align="center">アナウンス履歴</a>';
         echo '<a class="back-link"  href="map.php">マップへ</a></main>';
     // 上記アナウンス発信前
 } else {
