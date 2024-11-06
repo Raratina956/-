@@ -138,7 +138,7 @@ if ($kinds == "a" || $kinds == "t") {
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
                         <td>
-                        <h3><?php echo htmlspecialchars(limitDisplay($data['creator_name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
+                        <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
                         </td>
                         <form action="search.php" method="post">
                             <input type="hidden" name="join_tag_id" value=<?php echo $data['id']; ?>>
