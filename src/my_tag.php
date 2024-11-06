@@ -56,6 +56,17 @@ require 'header.php';
     <input type="submit" value="作成" class="button_in">
 </form>
 <?php
+function limitDisplay($text, $limit) {
+    // Check if the text exceeds the limit
+    if (mb_strlen($text) > $limit) {
+        // Return the limited text with ellipsis
+        return mb_substr($text, 0, $limit) . '...';
+    } else {
+        // Return the original text if within the limit
+        return $text;
+    }
+}
+
 if (isset($error)) {
     echo '<span style="display: block; text-align: center; color: red;">' . $error . '</span>';
 }
@@ -73,7 +84,8 @@ if ($list_raw) {
         <?php
         foreach ($list_raw as $row) {
             echo '<tr>';
-            echo '<td>', mb_substr($row['tag_name'], 0, 10), '</td>';
+            echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
+
 
 
             ?>

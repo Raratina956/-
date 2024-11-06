@@ -23,10 +23,10 @@ if (isset($_SESSION['err']['pass_err'])) {
 </head>
 <div class="form">
     <form action="passedit_output.php" method="post" onsubmit="return confirm('本当に変更しますか？');">
-        メールアドレス<input type="text" name="mail"><br>
-        新規パスワード<input type="password" name="newpass"><br>
-        確認パスワード<input type="password" name="re_newpass"><br>
-        <button type="submit">登録</button>
+        メールアドレス<input type="text" class="text" name="mail"><br>
+        新規パスワード<input type="password" class="text" name="newpass"><br>
+        確認パスワード<input type="password" class="text" name="re_newpass"><br>
+        <button type="submit" class="update">登録</button>
     </form>
 </div>
-<button type="button" onclick="location.href='useredit.php'">戻る</button>
+<button type="button" class="back" onclick="location.href='useredit.php'">戻る</button>

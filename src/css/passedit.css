@@ -15,5 +15,40 @@ body {
 }
 
 .form{
-    margin-top: 50px;
+    font-size: 25px;
+}
+
+.text{
+    width: 200px;
+    height: 30px;
+}
+
+.update{
+    width: 80px;
+    background-color: rgb(175, 233, 131);
+    color: black;
+    border: none;
+    border-radius: 25px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.update:hover{
+    background-color: rgb(17, 149, 17);
+    color: white;
+}
+
+.back{
+    width: 80px;
+    margin-left: 150px;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.back:hover{
+    background-color:#17A6E9;
 }

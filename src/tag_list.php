@@ -20,6 +20,7 @@ if (isset($_POST['tag_id'])) {
 
 <?php
 require 'header.php';
+
 ?>
 <link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)">
@@ -31,6 +32,17 @@ require 'header.php';
     <input type="submit" value="検索" class="search">
 </form>
 <?php
+function limitDisplay($text, $limit) {
+    // Check if the text exceeds the limit
+    if (mb_strlen($text) > $limit) {
+        // Return the limited text with ellipsis
+        return mb_substr($text, 0, $limit) . '...';
+    } else {
+        // Return the original text if within the limit
+        return $text;
+    }
+}
+
 if (isset($_POST['tag_search'])) {
     if (empty($_POST['tag_search'])) {
         $query = "SELECT * FROM Tag_list";
@@ -63,37 +75,38 @@ if ($results) {
         <th>作成者</th>
         <th></th>
         <?php
-        foreach ($results as $row) {
-            $sql_count = $pdo->prepare('SELECT COUNT(DISTINCT user_id) AS user_count FROM Tag_attribute WHERE tag_id = ?');
-            $sql_count->execute([$row['tag_id']]);
-            $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
-            $user_count = $count_result['user_count'];
-            if ($user_count != 0 || $judge == 0) {
-                echo '<tr>';
-                echo '<td>', $row['tag_name'], '</td>';
-                echo '<td>', $user_count, '</td>';
-                $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $sql_user->execute([$row['user_id']]);
-                $row_user = $sql_user->fetch();
-                echo '<td>', $row_user['user_name'], '</td>';
-                echo '<form action="tag_list.php" method="post">';
-                echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
-                if (isset($_POST['tag_search'])) {
-                    echo '<input type="hidden" name="tag_search" value="', $tag_search, '">';
-                }
-                $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-                $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
-                $row = $sql->fetch(PDO::FETCH_ASSOC);
-                if (!$row) {
-                    echo '<td><input type="submit" value="参加" class="join"></td>';
-                } else {
-                    echo '<td><input type="submit" value="参加済" class="joined"></td>';
-                }
-                echo '</form>';
-                echo '</tr>';
-            }
+foreach ($results as $row) {
+    $sql_count = $pdo->prepare('SELECT COUNT(DISTINCT user_id) AS user_count FROM Tag_attribute WHERE tag_id = ?');
+    $sql_count->execute([$row['tag_id']]);
+    $count_result = $sql_count->fetch(PDO::FETCH_ASSOC);
+    $user_count = $count_result['user_count'];
+    if ($user_count != 0 || $judge == 0) {
+        echo '<tr>';
+        echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
+        echo '<td>', $user_count, '</td>';
+        $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+        $sql_user->execute([$row['user_id']]);
+        $row_user = $sql_user->fetch();
+        echo '<td>', limitDisplay($row_user['user_name'], 10), '</td>';
+        echo '<form action="tag_list.php" method="post">';
+        echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
+        if (isset($_POST['tag_search'])) {
+            echo '<input type="hidden" name="tag_search" value="', $tag_search, '">';
         }
-        ?>
+        $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+        $sql->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            echo '<td><input type="submit" value="参加" class="join"></td>';
+        } else {
+            echo '<td><input type="submit" value="参加済" class="joined"></td>';
+        }
+        echo '</form>';
+        echo '</tr>';
+    }
+}
+?>
+
     </table>
     <?php
 } else {
