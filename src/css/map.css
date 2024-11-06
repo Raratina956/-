@@ -45,10 +45,8 @@ body{
 }
 
 table {
-    margin: 0px 10px 0px 320px;  /* 左右の中央揃え */
-    table-layout: fixed;  /* テーブル全体の幅を固定 */
-    /* text-align: center; */ /* テーブル内のコンテンツを中央揃え */
     height: 110%;
+    margin-left:300px
 }
 
 .number{

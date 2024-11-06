@@ -97,6 +97,7 @@
       position: relative;
       margin: 0 auto; /* 親のflexboxで中央に配置 */
       text-align: center; /* .spot内のテキストを中央に */
+      left: 50px;
     }
     
     
