@@ -88,20 +88,19 @@ if ($update_id == 1) {
         if ($current_location && $current_location['classroom_id'] == $room_id) {
             echo '<button class="room" disabled>登録済み</button>';
         } else {
-            // 登録されているが、room_idが異なる場合
             if ($current_location) {
                 echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
                         <input class="room" type="submit" value="位置情報を更新">
                       </form>';
             } else {
-                // 登録されていない場合
                 echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
                         <input class="room" type="submit" value="位置登録">
                       </form>';
             }
         }
+        
         ?>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
