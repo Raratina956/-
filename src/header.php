@@ -36,7 +36,7 @@ if (isset($_POST['logout'])) {
 <header>
     <div class="header-container">
         <a href="map.php" class="icon">
-            <img src="img/icon.png" width="460" height="80" class="spot">
+            <img src="img/icon.png" class="spot">
         </a>
 
         <div class="right-elements">
