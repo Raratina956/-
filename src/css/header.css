@@ -24,52 +24,6 @@
     z-index: 1000;
 }
 
-
-    *{
-      margin: 0 ;
-      padding: 0;
-    
-    }
-
-    .hamburger {
-      top: -50px;
-      width: 60px;
-      height: 60px;
-      position: relative;
-      margin-left: auto;
-      cursor: pointer;
-      border: 2px solid #00CFFF;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      @media screen and (min-width: 1280px){
-  /* header {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 子要素間にスペースを配置 */
-    /* padding: 0 20px; 左右の余白を設定 */
-  /* } */ 
-
-  header {
-    display: flex;
-    justify-content: center; /* ヘッダー内の中央寄せ */
-    align-items: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    z-index: 1000;
-    padding: 0px 0 0px 40px;
-}
-
-
     *{
       margin: 0 ;
       padding: 0;
