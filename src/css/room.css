@@ -36,12 +36,20 @@ form {
     height: 40px;
     font-size: 18px;
     color: black;
-    background-color: #a0eefc; 
+    background-color: #a0eefc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
 }
+
+.room:disabled {
+    background-color: #ccc; /* 無効状態の背景色 */
+    cursor: not-allowed; /* 無効状態のカーソル */
+}
+
 
 .room:hover {
     background-color: #ffffff; /* ホバー時の色変更 */
