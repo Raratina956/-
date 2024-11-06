@@ -1,44 +1,24 @@
-body {
-    background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #000; /* テキストカラーを黒に設定 */
-}
-
-/* Main Content Styles */
-main {
-    margin-top: 80px; /* ヘッダーの高さを考慮して調整 */
-    padding: 20px; /* 全体にパディングを追加 */
-    text-align: center; /* 中央揃え */
-}
-
-h1 {
-    font-size: 60px; /* フォントサイズ */
-    color: #333; /* フォント色 */
-}
-
-ul{
-    list-style:none;
-}
-
 .ul1 {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
-    justify-content: center; /* 中央揃え */
+    justify-content: flex-start; /* 左寄せ */
     padding: 0;
     margin: 20px auto;
     max-width: 800px; /* 適当な最大幅を設定 */
 }
 
 .li1 {
-    width: 45%; /* 横に二つ並べるための幅 */
+    width: calc(50% - 20px); /* 横に二つ並べるための幅 */
     box-sizing: border-box; /* パディング込みの幅計算 */
     margin: 10px; /* 要素間の余白 */
     font-size: 40px;
     border-radius: 45px;
     background-color: transparent; /* 背景色を透明に設定 */
     border: none; /* 境界線を取り除く */
+}
+
+.li1:nth-child(odd):last-child {
+    width: calc(100% - 20px); /* 奇数個の場合の最後の要素を左寄せ */
 }
 
 .a1 {
