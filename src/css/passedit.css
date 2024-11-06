@@ -19,5 +19,9 @@ body {
 }
 
 .text{
-    width: 25px;
+    width: 200px;
+}
+
+.back{
+    width: 20px;
 }
