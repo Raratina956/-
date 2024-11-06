@@ -83,7 +83,7 @@ h1 {
   color: white;
 }
 
-.spot img {
+.spot{
   width: 100%; /* 幅を親要素に合わせる */
   height: auto; /* 高さは自動調整 */
   max-width: 300px; /* 必要に応じて最大幅を設定 */
