@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #000; /* テキストカラーを黒に設定 */
 }
 
 /* Main Content Styles */
@@ -18,14 +17,9 @@ h1 {
     color: #333; /* フォント色 */
 }
 
-ul{
-    list-style:none;
-}
-
 .ul1 {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
-    justify-content: flex-start; /* 左寄せ */
     padding: 0;
     margin: 20px auto;
     max-width: 800px; /* 適当な最大幅を設定 */
@@ -39,10 +33,12 @@ ul{
     border-radius: 45px;
     background-color: transparent; /* 背景色を透明に設定 */
     border: none; /* 境界線を取り除く */
+    text-align: center; /* 中央揃え */
 }
 
+/* 奇数個の要素の場合の最後の要素を左寄せ */
 .li1:nth-child(odd):last-child {
-    width: calc(100% - 20px); /* 奇数個の場合の最後の要素を左寄せ */
+    flex: 1 1 100%; /* 横幅を全体に広げる */
 }
 
 .a1 {
