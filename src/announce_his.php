@@ -99,6 +99,10 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             echo '<td>' . $announcement['send_user_name'] . '</td>';
             echo '<td>' . $announcement['sent_tag_name'] . '</td>';
             echo '<td>' . $announcement['send_time'] . '</td>';
+            echo '<form aciton="announce_his_info">';
+            echo '<input type="hidden" value='.$announcement['announcement_id'].'>';
+            echo '<td><input type="submit" value="詳細">';
+            echo '</form>';
             echo '</tr>';
         }
         ?>
