@@ -278,11 +278,11 @@ $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
     <?php
-    if (isset($message)) {
-        echo '<p>';
-        echo '<span>' . $message . '</span>';
-        echo '</p>';
-    }
+    // if (isset($message)) {
+    //     echo '<p>';
+    //     echo '<span>' . $message . '</span>';
+    //     echo '</p>';
+    // }
     ?>
     <form action="info.php" method="post">
         <label>種別</label>
