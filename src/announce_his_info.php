@@ -3,9 +3,9 @@ require 'parts/auto-login.php';
 if (isset($_POST['announcement_id'])) {
     $announcement_id = $_POST['announcement_id'];
 } else {
-    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/announce_his.php';
-    header("Location: $redirect_url");
-    exit();
+    // $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/announce_his.php';
+    // header("Location: $redirect_url");
+    // exit();
 }
 $ann_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
 $ann_sql->execute([$announcement_id]);
