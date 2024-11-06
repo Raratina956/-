@@ -12,22 +12,24 @@ body{
 /* Style for table and table cells */
 table {
     margin: auto;
-    border-collapse: separate; /* Allows cell spacing */
-    border-spacing: 10px 15px; /* Adds space between rows and columns */
+    border-collapse: separate; /* Keeps cell spacing */
+    border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
-    width: 80%; /* Adjust width as needed */
+    width: 80%;
 }
 
 td {
-    padding: 10px; /* Adds space inside cells */
+    padding: 6px; /* Reduces space inside cells */
     text-align: center;
     border-bottom: 2px solid #333;
 }
 
-th{
+th {
     font-weight: bold;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 6px; /* Matches td padding */
 }
+
 
 /* Add some spacing around the buttons */
 .button_in, .button_up, .button_del, .join, .joined {
