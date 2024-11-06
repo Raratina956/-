@@ -100,4 +100,3 @@ if ($results) {
     echo 'タグがありません';
 }
 ?>
-<a href="map.php" class="back-link">マップへ</a>
