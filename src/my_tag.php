@@ -73,7 +73,8 @@ if ($list_raw) {
         <?php
         foreach ($list_raw as $row) {
             echo '<tr>';
-            echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
+            echo '<td>', mb_substr($row['tag_name'], 0, 10), '</td>';
+
 
             ?>
             <form action="my_tag.php" method="post">
