@@ -22,7 +22,13 @@ ul{
     list-style:none;
 }
 
-.ul1 {
+.ul1.vertical {
+    display: block; /* 縦並び */
+    padding: 0;
+    margin: 20px auto;
+}
+
+.ul1.horizontal {
     display: flex;
     flex-wrap: wrap; /* 要素を折り返す */
     padding: 0;
