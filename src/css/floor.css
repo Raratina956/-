@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: #000; /* テキストカラーを黒に設定 */
 }
 
 /* Main Content Styles */
@@ -15,6 +16,10 @@ main {
 h1 {
     font-size: 60px; /* フォントサイズ */
     color: #333; /* フォント色 */
+}
+
+ul{
+    list-style:none;
 }
 
 .ul1 {
