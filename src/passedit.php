@@ -29,4 +29,4 @@ if (isset($_SESSION['err']['pass_err'])) {
         <button type="submit">登録</button>
     </form>
 </div>
-<button type="button" onclick="location.href='useredit.php'">戻る</button>
+<button type="button" class="back" onclick="location.href='useredit.php'">戻る</button>
