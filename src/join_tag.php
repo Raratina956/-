@@ -27,16 +27,26 @@ if ($results) {
         <th>作成者</th>
         <th></th>
         <?php
+        function limitDisplay($text, $limit) {
+            // Check if the text exceeds the limit
+            if (mb_strlen($text) > $limit) {
+                // Return the limited text with ellipsis
+                return mb_substr($text, 0, $limit) . '...';
+            } else {
+                // Return the original text if within the limit
+                return $text;
+            }
+        }
         foreach ($results as $row) {
             $sql_tag = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
             $sql_tag->execute([$row['tag_id']]);
             $row_tag = $sql_tag->fetch();
             echo '<tr>';
-            echo '<td>', $row_tag['tag_name'], '</td>';
+            echo '<td>', limitDisplay($row_tag['tag_name'], 10), '</td>';
             $sql_user = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
             $sql_user->execute([$row_tag['user_id']]);
             $row_user = $sql_user->fetch();
-            echo '<td>', $row_user['user_name'], '</td>';
+            echo '<td>', limitDisplay($row_user['user_name'],10) '</td>';
             echo '<td>';
             ?>
             <form action="join_tag.php" method="post">
