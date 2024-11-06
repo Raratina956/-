@@ -13,11 +13,26 @@ h1{
     margin-top: auto;
 }
 
-table{
+table {
     margin: auto;
+    border-collapse: collapse;
+
+    border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
+    width: 60%;
 }
 
+td {
+    padding: 6px 2px; /* Reduces space inside cells */
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+    padding: 6px 2px; /* Matches td padding */
+}
 
 .join_tag{
     font-size: 16px; /* フォントサイズ */
