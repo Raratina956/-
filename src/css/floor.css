@@ -30,7 +30,6 @@ ul{
 }
 
 .ul1.vertical .li1 {
-    display: inline-block; /* リストアイテムをインラインブロックに */
     width: auto; /* 幅を自動調整 */
 }
 
