@@ -84,6 +84,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                     break;
                 case 2:
                     echo '<td>受信</td>';
+                    break;
                 default:
                     echo '<td>エラー</td>';
                     break;
