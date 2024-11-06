@@ -20,26 +20,34 @@ h1 {
 }
 
 .ul1 {
-    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* 要素を折り返す */
+    justify-content: center; /* 中央揃え */
     padding: 0;
-    margin: 20px;
+    margin: 20px auto;
+    max-width: 800px; /* 適当な最大幅を設定 */
 }
 
 .li1 {
-    margin-bottom: 15px;
-    font-size:40px;
+    width: 45%; /* 横に二つ並べるための幅 */
+    box-sizing: border-box; /* パディング込みの幅計算 */
+    margin: 10px; /* 要素間の余白 */
+    font-size: 40px;
     border-radius: 45px;
+    background-color: #f4f4f4; /* 背景色 */
 }
 
-.li1, .a1 {
+.a1 {
     display: block;
     padding: 10px;
-    color:black;
+    color: black;
     text-decoration: none;
+    text-align: center; /* 中央揃え */
 }
-.san{
-    size: 120px;
-    color:blue;
+
+.san {
+    font-size: 30px;
+    color: blue;
 }
 
 .back-link {
@@ -53,7 +61,7 @@ h1 {
     border-radius: 5px; /* 角を丸く */
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: rgb(54, 98, 216);
     color: white;
 }
