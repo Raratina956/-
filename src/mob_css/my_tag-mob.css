@@ -98,7 +98,7 @@ span{
 }
 
 .join{
-    min-width: 100px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
@@ -117,7 +117,7 @@ span{
 }
 
 .joined{
-    min-width: 100px;
+    min-width: 10px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
