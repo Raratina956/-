@@ -33,10 +33,10 @@ if (isset($_POST['title'])) {
                     $sent_user_id,
                     1
                 ]);
-                $sql_insert = $pdo->prepare('INSERT INTO FROM Announce_his(announcement_id,send_person,sent_person) VALUES(?,?,?)');
+                $sql_insert = $pdo->prepare('INSERT INTO Announce_his(announcement_id,send_person,sent_person) VALUES(?,?,?)');
                 $sql_insert->execute([
                     $announcement_id,
-                    $SESSION['user']['user_id'],
+                    $_SESSION['user']['user_id'],
                     $sent_user_id
                 ]);
             }
@@ -88,11 +88,11 @@ if (empty($_POST['title'])) {
                 <br>
                 <input type="submit" class="throw" value="送信">
             </form>
-
             <?php
         } else {
             echo 'タグを追加してください';
         }
+        echo '<a herf="announce_his.php" text-align="center">アナウンス履歴</a>';
         echo '<a class="back-link"  href="map.php">マップへ</a></main>';
     // 上記アナウンス発信前
 } else {

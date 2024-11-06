@@ -1,26 +1,25 @@
 @media screen and (min-width: 1280px){
   /* ヘッダー */
-      .header-area {
+      /* .header-area {
         display: flex;
         justify-content: flex-end; /* 右端に要素を寄せる */
-        align-items: center;
-        height: 100%; /* ヘッダー全体をカバー */
-        padding-right: 45px; /* ハンバーガーの余白を調整 */
-    }
+        /* align-items: center; */
+        /* height: 100%; ヘッダー全体をカバー */
+        /* padding-right: 45px; ハンバーガーの余白を調整 */
+    /* } */ 
 
     /* ハンバーガーメニューのデザイン */
     .hamburger {
       width: 60px;
       height: 60px;
       position: relative; /* absolute から relative に変更 */
-      margin-left: auto; /* 右寄せ */
+      margin-left: 170%; /* 右寄せ */
       cursor: pointer;
       border: 2px solid #00CFFF;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      left: 550px;
     }
 
     .hamburger span {
