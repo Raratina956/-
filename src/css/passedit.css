@@ -22,6 +22,19 @@ body {
     width: 200px;
 }
 
+.update{
+    width: 50px;
+}
+
 .back{
-    width: 20px;
+    width: 50px;
+    margin-left: 150px;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    border-radius: 25px;
+}
+
+.back:hover{
+    background-color:#17A6E9;
 }
