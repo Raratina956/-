@@ -33,10 +33,10 @@ if (isset($_POST['title'])) {
                     $sent_user_id,
                     1
                 ]);
-                $sql_insert = $pdo->prepare('INSERT INTO FROM Announce_his(announcement_id,send_person,sent_person) VALUES(?,?,?)');
+                $sql_insert = $pdo->prepare('INSERT INTO Announce_his(announcement_id,send_person,sent_person) VALUES(?,?,?)');
                 $sql_insert->execute([
                     $announcement_id,
-                    $SESSION['user']['user_id'],
+                    $_SESSION['user']['user_id'],
                     $sent_user_id
                 ]);
             }

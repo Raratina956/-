@@ -98,7 +98,7 @@ if ($results) {
     <?php
 } else {
     echo 'タグがありません';
-    echo '<br>';
+    echo '<br><br><br>';
     echo '<a href="map.php" class="back-link">マップへ</a>';
 }
 ?>
