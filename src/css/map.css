@@ -89,7 +89,7 @@ button {
   }
 
 .list{
-    width: 107px;
+    width: 125px;
     margin-left: 69%;
     font-size: 20px;
     /* align-items: center; */
@@ -100,4 +100,19 @@ button {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.abst{
+    background-color: rgb(177, 177, 177);
+    color: black;
+    border-radius: 5px; /* 角丸をつける */
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+}
+
+.abst:hover{
+    background-color: rgb(160, 158, 158);
 }
