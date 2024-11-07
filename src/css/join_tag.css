@@ -42,6 +42,7 @@ h3 {
 table {
     margin: auto;
     white-space: nowrap;
+    border-collapse: collapse;
     margin-top: 20px; /* Reduced top margin to balance spacing */
     width: 100%;
 }
