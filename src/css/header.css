@@ -1,158 +1,95 @@
-@media screen and (min-width: 1280px){
-  /* header {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 子要素間にスペースを配置 */
-    /* padding: 0 20px; 左右の余白を設定 */
-  /* } */ 
-
-  header {
-    display: flex;
-    justify-content: center; /* ヘッダー内の中央寄せ */
-    align-items: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    z-index: 1000;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
 }
 
-    *{
-      margin: 0 ;
-      padding: 0;
-    
-    }
-
-    .hamburger {
-      top: -50px;
-      width: 60px;
-      height: 60px;
-      position: relative;
-      margin-left: auto;
-      cursor: pointer;
-      border: 2px solid #00CFFF;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      left: 585px;
-     
-  }
-
-    .spot{
-      display: flex;
-      justify-content: flex-end;
-      position: relative;
-      margin: 0 auto; /* 親のflexboxで中央に配置 */
-      text-align: center; /* .spot内のテキストを中央に */
-      left: 50px;
-    }
-    
-    
-    .icon {
-      margin-left: 38%;
-    }
-    
-    .bell {
-      display: flex;
-      justify-content: flex-end;
-      position: absolute;
-      top: 30px;
-      text-align: right;
-      margin-left: 700px;
-  }
-
-  .bell img {
-    width: 30px; /* アイコン自体のサイズ */
-    height: 30px;
-  }
-
-  .search1{
-    border-color: black;
-    background-color: white;
-    color: black(248, 88, 88);
-    border-radius: 5px;
-    height: 30px;
-    width: 35px;
-  }
-
-  .search1:hover{
-    background-color: gray;
-    color: black;
-  }
-
-  .tbox{
-    height: 25px;
-    margin-left: 25px;
-  }
-
-  .usericon2{
-
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  z-index: 1000;
 }
-  }
 
-    .spot{
-      display: flex;
-      justify-content: flex-end;
-      position: relative;
-      margin: 0 auto; /* 親のflexboxで中央に配置 */
-      text-align: center; /* .spot内のテキストを中央に */
-    }
-    
-    
-    .icon {
-      margin-left: 38%;
-    }
-    
-    .bell {
-      display: flex;
-      justify-content: flex-end;
-      position: absolute;
-      right: 200px; /* 右端からの余白 */
-      top: 30px; /* ヘッダー上部からの位置 */
-      text-align: right; /* 念のために右寄せ */
-  }
+/* Hamburger Menu Styles */
+/* .hamburger {
+  top: -50px;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  margin-left: auto;
+  cursor: pointer;
+  border: 2px solid #00CFFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  left: 585px;
+} */
 
-  .bell img {
-    width: 30px; /* アイコン自体のサイズ */
-    height: 30px;
-  }
+/* Spot Styles */
+.spot {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  max-width: 329px;
+  top: 14px;
+}
 
-  .search1{
-    border-color: black;
-    background-color: white;
-    color: black(248, 88, 88);
-    border-radius: 5px;
-    height: 30px;
-    width: 35px;
-  }
+.icon {
+  margin-left: 38%;
+}
 
-  .search1:hover{
-    background-color: gray;
-    color: black;
-  }
+.bell {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 21px;
+  text-align: right;
+  right: 200px;
+  margin-left: 700px;
+  width: auto;
+  height: 60px;
+}
 
-  .tbox{
-    height: 25px;
-    margin-left: 25px;
-  }
+.bell img {
+  width: 30px;
+  height: 30px;
+}
 
-  .usericon2{
+/* Search Box Styles */
+.search1 {
+  border-color: black;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  height: 30px;
+  width: 35px;
+}
 
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+.search1:hover {
+  background-color: gray;
+  color: black;
+}
+
+.tbox {
+  height: 25px;
+  margin-left: 25px;
+}
+
+/* User Icon Styles */
+.usericon2 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
 }
