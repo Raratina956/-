@@ -118,7 +118,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             echo '<td>' . $announcement['send_time'] . '</td>';
             echo '<form action="announce_his_info.php" method ="post">';
             echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
-            echo '<td><input type="submit" value="詳細"></td>';
+            echo '<td><input type="submit" value="詳細" class="detail"></td>';
             echo '</form>';
             echo '</tr>';
         }
