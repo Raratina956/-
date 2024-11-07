@@ -26,8 +26,8 @@ body{
 }
 
 
-.map{
-}
+/* .map{
+} */
 
 .table{
     width: 100px;
@@ -104,4 +104,20 @@ button {
   height: 52px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.abst{
+    background-color: rgb(177, 177, 177);
+    color: black;
+    border-radius: 5px; /* 角丸をつける */
+    padding: 1px 10px; /* ボタンの内側の余白 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+    height: 40px;
+}
+
+.abst:hover{
+    background-color: rgb(160, 158, 158);
 }
