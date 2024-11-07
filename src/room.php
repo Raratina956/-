@@ -107,7 +107,7 @@ if ($update_id == 1) {
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-            <button class="room" type="submit">QR表示</button>
+             <input class="room" type="image" src="img/QR.png"  value="QR">
         </form>
 
         <!-- 教室にいるユーザーを表示 -->
