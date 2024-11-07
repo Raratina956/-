@@ -51,6 +51,7 @@ if (isset($_POST['title'])) {
     }
 }
 ?>
+<body>
 <?php
 if (empty($_POST['title'])) {
     // 下記アナウンス発信前
@@ -92,10 +93,12 @@ if (empty($_POST['title'])) {
         }
         echo '<a href="announce_his.php" text-align="center">アナウンス履歴</a>';
         echo '<a class="back-link"  href="map.php">マップへ</a></main>';
+        echo '</body>';
     // 上記アナウンス発信前
 } else {
     // 下記アナウンス発信後
     ?>
+    <body>
         <main>
             <h2>アナウンス発信しました。</h2>
             <p>
@@ -105,6 +108,7 @@ if (empty($_POST['title'])) {
             <h3><?php echo $content; ?></h3>
             <a class="back-link" href="map.php">マップへ</a>
         </main>
+    </body>
         <?php
     // 上記アナウンス発信後
 }
