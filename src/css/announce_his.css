@@ -22,6 +22,10 @@ body {
     border-radius: 8px;
 }
 
+.filter{
+    width: 100px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
