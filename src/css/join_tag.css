@@ -42,14 +42,22 @@ h3 {
 table {
     margin: auto;
     white-space: nowrap;
+    border-collapse: collapse;
     margin-top: 20px; /* Reduced top margin to balance spacing */
     width: 100%;
 }
 
-td, th { 
+td { 
     padding: 8px;
     white-space: nowrap;
+    border-bottom: 1px solid #333;
 }
+ th { 
+    padding: 8px;
+    white-space: nowrap;
+    border-bottom: 2px solid #333;
+}
+
 
 .back-link {
     position: fixed;
