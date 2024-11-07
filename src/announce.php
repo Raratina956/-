@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 echo '<link rel="stylesheet" href="mob_css/announce-mob.css" media="screen and (max-width: 480px)">';
 echo '<link rel="stylesheet" href="css/announce.css" media="screen and (min-width: 1280px)">';
 if (isset($error)) {
@@ -49,9 +50,6 @@ if (isset($_POST['title'])) {
         $error = 'タイトルを入力してください';
     }
 }
-?>
-<?php
-require 'header.php';
 ?>
 <?php
 if (empty($_POST['title'])) {
