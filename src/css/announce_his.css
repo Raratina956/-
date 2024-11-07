@@ -23,7 +23,9 @@ body {
 }
 
 .filter{
-    width: 100px;
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
 }
 
 table {
