@@ -18,7 +18,7 @@ header {
 }
 
 /* Hamburger Menu Styles */
-.hamburger {
+/* .hamburger {
   top: -50px;
   width: 60px;
   height: 60px;
@@ -30,7 +30,7 @@ header {
   display: flex;
   justify-content: center;
   left: 585px;
-}
+} */
 
 /* Spot Styles */
 .spot {
