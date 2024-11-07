@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             }
         } else {
-            $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type)(?,?,?,?)');
+            $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
             $ann_insert->execute([$message_id,$sent_id,0,3]);
         }
 
