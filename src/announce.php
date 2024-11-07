@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -11,7 +12,6 @@ require 'parts/auto-login.php';
 </head>
 <body>
 <?php
-require 'header.php';
 
 if (isset($error)) {
     unset($error);
