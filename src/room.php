@@ -80,7 +80,7 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <ul>
+        <div style="display:inline-flex">
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -92,12 +92,12 @@ if ($update_id == 1) {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <li><input class="room" type="image" src="img/pin.png"  value="位置情報を更新"></li>
+                        <input class="room" type="image" src="img/pin.png"  value="位置情報を更新">
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
-                        <li><input class="room" type="submit" value="位置登録"></li>
+                        <input class="room" type="submit" value="位置登録">
                       </form></div>';
             }
         }
@@ -108,9 +108,9 @@ if ($update_id == 1) {
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-             <li><input class="room" type="image" src="img/QR.png"  value="QR"></li>
+             <input class="room" type="image" src="img/QR.png"  value="QR">
         </form>
-        </ul>
+    </div>
 
         <!-- 教室にいるユーザーを表示 -->
         <?php
