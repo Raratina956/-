@@ -84,12 +84,12 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         <link rel="stylesheet" type="text/css" href="mob_css/announce_his-mob.css" media="screen and (max-width: 480px)">
         <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
     </head>
+    <div class="container">
     <select id="filterType" onchange="filterAnnouncements()">
         <option value="all">全て</option>
         <option value="send">送信</option>
         <option value="receive">受信</option>
     </select>
-    <div class="container">
     <table>
         <th>種別</th>
         <th>タイトル</th>
