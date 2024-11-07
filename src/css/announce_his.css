@@ -1,4 +1,4 @@
-body{
+body {
     text-align: center;
     padding-top: 130px;
     background-image: url(../img/SpotLinkbg.png);
@@ -7,4 +7,32 @@ body{
     background-size: cover;
     background-color: #464646;
     background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+select {
+    margin-bottom: 20px;
 }
