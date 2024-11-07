@@ -55,7 +55,7 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '<input type="submit" value="絞込">';
+    echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
     echo '</form>';
 
@@ -128,7 +128,7 @@ unset($_SESSION['floor']['kai']);
                     }
                 }
 
-                if ($j > 5) {
+                if ($j > 7) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
