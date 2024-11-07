@@ -74,11 +74,22 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
     ?>
+    <?php
+        require 'header.php';
+    ?>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mob_css/announce_his-mob.css" media="screen and (max-width: 480px)">
+        <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
+    </head>
     <select id="filterType" onchange="filterAnnouncements()">
         <option value="all">全て</option>
         <option value="send">送信</option>
         <option value="receive">受信</option>
     </select>
+    <div class="container">
     <table>
         <th>種別</th>
         <th>タイトル</th>
@@ -107,12 +118,13 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             echo '<td>' . $announcement['send_time'] . '</td>';
             echo '<form action="announce_his_info.php" method ="post">';
             echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
-            echo '<td><input type="submit" value="詳細"></td>';
+            echo '<td><input type="submit" value="詳細" class="detail"></td>';
             echo '</form>';
             echo '</tr>';
         }
         ?>
     </table>
+    </div>
     <script>
         function filterAnnouncements() {
             const filter = document.getElementById("filterType").value;

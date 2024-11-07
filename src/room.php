@@ -91,7 +91,7 @@ if ($update_id == 1) {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <input class="room" type="image" src="img/pin.png" width="20%" height="20%" value="位置情報を更新">
+                        <input class="room" type="image" src="img/pin.png"  value="位置情報を更新">
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
@@ -107,7 +107,7 @@ if ($update_id == 1) {
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-            <button class="room" type="submit">QR表示</button>
+             <input class="room" type="image" src="img/QR.png"  value="QR">
         </form>
 
         <!-- 教室にいるユーザーを表示 -->
