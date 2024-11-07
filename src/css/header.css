@@ -53,10 +53,12 @@ header {
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: 30px;
+  top: 21px;
   text-align: right;
-  right: 200px; /* 右端からの余白 */
-  margin-left: 700px; /* 注: これは他の margin-left と矛盾します */
+  right: 200px;
+  margin-left: 700px;
+  width: auto;
+  height: 60px;
 }
 
 .bell img {
