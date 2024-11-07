@@ -82,8 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ann_sql->execute([$sent_id, 3]);
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
         if ($ann_row) {
-            $debugMessage = "デバッグメッセージ1";
-            echo "<script>alert('" . addslashes($debugMessage) . "');</script>";
             foreach ($ann_row as $ann_list) {
                 $message_id_check = $ann_list['message_id'];
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id = ? ORDER BY message_id DESC');
