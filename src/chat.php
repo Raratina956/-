@@ -3,8 +3,8 @@ require 'parts/auto-login.php';
 
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch(PDOException $e) {
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
     echo "接続エラー: " . $e->getMessage();
     exit();
 }
@@ -22,7 +22,8 @@ if ($partner_id === null || $logged_in_user_id === null) {
 }
 
 // メッセージを取得し既読フラグを更新する関数
-function getMessages($pdo, $logged_in_user_id, $partner_id) {
+function getMessages($pdo, $logged_in_user_id, $partner_id)
+{
     // メッセージを取得するSQL
     $sql = "SELECT message_id, send_id, sent_id, message_detail, message_time 
             FROM Message 
@@ -74,17 +75,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':message_detail', $message_detail);
     $stmt->bindParam(':message_time', $message_time);
 
+
     if ($stmt->execute()) {
-        echo 'success';
+        $message_id = $pdo->lastInsertId();
+        $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
+        $ann_sql->execute([$sent_id, 3]);
+        $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
+        if ($ann_row) {
+            foreach ($ann_row as $ann_list) {
+                
+
+            }
+        } else {
+            $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type)(?,?,?,?)');
+            $ann_insert->execute([$message_id,$sent_id,0,3],);
+        }
+
     } else {
-        $error_info = $stmt->errorInfo(); 
-        echo "登録に失敗しました: " . $error_info[2]; 
+        $error_info = $stmt->errorInfo();
+        echo "登録に失敗しました: " . $error_info[2];
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,87 +108,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
 </head>
+
 <body>
     <?php
     require 'header.php';
     ?>
-<div class="chat-system">
-    <div class="chat-box">
+    <div class="chat-system">
+        <div class="chat-box">
 
 
-        <!-- 相手のアイコンと名前表示部分 -->
-        <div class="chat-header">
-            <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
+            <!-- 相手のアイコンと名前表示部分 -->
+            <div class="chat-header">
+                <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
-            </form>
-            <div class="center-content">
-                <img src="<?php echo $icon['icon_name']; ?>"  ?>
-                <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+                </form>
+                <div class="center-content">
+                    <img src="<?php echo $icon['icon_name']; ?>" ?>
+                    <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+                </div>
             </div>
-        </div>
 
-        <!-- 広告バナー -->
-        <!-- <div class="ad-banner" id="ad-banner">
+            <!-- 広告バナー -->
+            <!-- <div class="ad-banner" id="ad-banner">
             <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
                 <img src="image/banner.png" alt="広告バナー" class="ad-image">
             </a>
         </div> -->
 
-        <div class="chat-area" id="chat-area">
-            <?php 
-            // 指定した相手とのチャット履歴を取得して表示
-            $messages = getMessages($pdo, $logged_in_user_id, $partner_id);
-            foreach ($messages as $message): ?>
-                <?php $class = ($message['send_id'] == $logged_in_user_id) ? 'person1' : 'person2'; ?>
-                <div class="<?php echo $class; ?>">
-                    <div class="chat">
-                        <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
-                        <span><?php echo htmlspecialchars($message['message_detail']); ?></span>
+            <div class="chat-area" id="chat-area">
+                <?php
+                // 指定した相手とのチャット履歴を取得して表示
+                $messages = getMessages($pdo, $logged_in_user_id, $partner_id);
+                foreach ($messages as $message): ?>
+                    <?php $class = ($message['send_id'] == $logged_in_user_id) ? 'person1' : 'person2'; ?>
+                    <div class="<?php echo $class; ?>">
+                        <div class="chat">
+                            <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
+                            <span><?php echo htmlspecialchars($message['message_detail']); ?></span>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-            <div id="latest-message"></div>
-        </div>
-        <div class="send-container">
-            <!-- メッセージ送信フォーム -->
-            <form class="send-box flex-box" 
-                action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" 
-                method="post">
-                <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                <input type="submit" name="sub" class="send" value="送信" id="send-btn">
-            </form>
-        </div>
+                <?php endforeach; ?>
+                <div id="latest-message"></div>
+            </div>
+            <div class="send-container">
+                <!-- メッセージ送信フォーム -->
+                <form class="send-box flex-box"
+                    action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
+                    <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
+                    <input type="submit" name="sub" class="send" value="送信" id="send-btn">
+                </form>
+            </div>
 
+        </div>
     </div>
-</div>
-<script>
-    function scrollToLatestMessage() {
-    const latestMessage = document.getElementById('latest-message');
-    latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
-    }
-    document.getElementById('send-btn').addEventListener('click', function (e) {
-        // e.preventDefault(); // この行を削除
-        scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
-    });
+    <script>
+        function scrollToLatestMessage() {
+            const latestMessage = document.getElementById('latest-message');
+            latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
+        }
+        document.getElementById('send-btn').addEventListener('click', function (e) {
+            // e.preventDefault(); // この行を削除
+            scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
+        });
 
 
-    // function adjustChatAreaHeight() {
-    // const chatArea = document.getElementById('chat-area');
-    // const chatBox = document.querySelector('.chat-box');
-    // const sendContainer = document.querySelector('.send-container');
-    // const header = document.querySelector('.chat-header');
+        // function adjustChatAreaHeight() {
+        // const chatArea = document.getElementById('chat-area');
+        // const chatBox = document.querySelector('.chat-box');
+        // const sendContainer = document.querySelector('.send-container');
+        // const header = document.querySelector('.chat-header');
 
-    // // チャットエリアの高さを再計算
-    // const availableHeight = window.innerHeight 
-    //     - header.offsetHeight 
-    //     - sendContainer.offsetHeight;
+        // // チャットエリアの高さを再計算
+        // const availableHeight = window.innerHeight
+        //     - header.offsetHeight
+        //     - sendContainer.offsetHeight;
 
-    // chatArea.style.height = `${availableHeight}px`;
-    // }
+        // chatArea.style.height = `${availableHeight}px`;
+        // }
 
-    // // ページロード時とリサイズ時にチャットエリアの高さを調整
-    // window.onload = adjustChatAreaHeight;
-    // window.onresize = adjustChatAreaHeight;
-</script>
+        // // ページロード時とリサイズ時にチャットエリアの高さを調整
+        // window.onload = adjustChatAreaHeight;
+        // window.onresize = adjustChatAreaHeight;
+    </script>
 </body>
+
 </html>
