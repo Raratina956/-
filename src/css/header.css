@@ -1,7 +1,13 @@
-@media screen and (min-width: 1280px){
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 1280px) {
   header {
     display: flex;
-    justify-content: center; /* ヘッダー内の中央寄せ */
+    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
@@ -9,11 +15,6 @@
     height: 100px;
     background-color: white;
     z-index: 1000;
-  }
-
-  *{
-    margin: 0;
-    padding: 0;
   }
 
   .hamburger {
@@ -30,12 +31,12 @@
     left: 585px;
   }
 
-  .spot{
+  .spot {
     display: flex;
     justify-content: flex-end;
     position: relative;
-    margin: 0 auto; /* 親のflexboxで中央に配置 */
-    text-align: center; /* .spot内のテキストを中央に */
+    margin: 0 auto;
+    text-align: center;
     left: 50px;
   }
 
@@ -48,12 +49,12 @@
     justify-content: flex-end;
     position: absolute;
     top: 30px;
-    text-align: right;
     margin-left: 700px;
+    text-align: right;
   }
 
   .bell img {
-    width: 30px; /* アイコン自体のサイズ */
+    width: 30px;
     height: 30px;
   }
 
@@ -88,10 +89,10 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  margin: 0 auto; /* 親のflexboxで中央に配置 */
-  text-align: center; /* .spot内のテキストを中央に */
-  width: 100%; /* 幅を親要素に合わせる */
-  height: auto; /* 高さは自動調整 */
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: auto;
   max-width: 329px;
   top: 14px;
 }
@@ -104,13 +105,13 @@
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  right: 200px; /* 右端からの余白 */
-  top: 30px; /* ヘッダー上部からの位置 */
-  text-align: right; /* 念のために右寄せ */
+  right: 200px;
+  top: 30px;
+  text-align: right;
 }
 
 .bell img {
-  width: 30px; /* アイコン自体のサイズ */
+  width: 30px;
   height: 30px;
 }
 
