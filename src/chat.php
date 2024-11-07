@@ -73,6 +73,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':sent_id', $sent_id);
     $stmt->bindParam(':message_detail', $message_detail);
     $stmt->bindParam(':message_time', $message_time);
+    $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
+    $ann_sql->execute([$sent_id,3]);
+    $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
+    if($ann_row){
+        foreach($ann_row as $ann_list){
+            $message_id = $ann_list['message_id'];
+
+        }
+    }else{
+        $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type)(?,?,?,?)');
+        $ann_insert->execute;
+    }
+
+
 
     if ($stmt->execute()) {
         echo 'success';
