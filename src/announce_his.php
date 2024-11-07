@@ -89,7 +89,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         <option value="send">送信</option>
         <option value="receive">受信</option>
     </select>
-    <div class="container">
+    <!-- <div class="container"> -->
     <table>
         <th>種別</th>
         <th>タイトル</th>
@@ -124,7 +124,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         }
         ?>
     </table>
-    </div>
+    <!-- </div> -->
     <script>
         function filterAnnouncements() {
             const filter = document.getElementById("filterType").value;
