@@ -42,7 +42,7 @@ header {
   width: 100%;
   height: auto;
   max-width: 329px;
-  top: 14px;
+  top: 43px;
 }
 
 .icon {
@@ -53,10 +53,10 @@ header {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: 21px;
+  top: -27px;
   text-align: right;
-  right: 200px;
-  margin-left: 700px;
+  right: 110px;
+  margin-left: 860px;
   width: auto;
   height: 60px;
 }
