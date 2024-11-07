@@ -46,7 +46,7 @@ if (isset($_POST['logout'])) {
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <a href="info.php">
-                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell" width="50" height="50">
+                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
             </a>
 
             <div class="header-area">
