@@ -29,10 +29,10 @@ body{
 
 }
 
-.map{
-    /* border-radius: 10px; */
-    /* margin-bottom: 10px; */
-}
+/* .map{
+    border-radius: 10px; 
+    margin-bottom: 10px;
+} */
 
 
 .block{
@@ -106,11 +106,12 @@ button {
     background-color: rgb(177, 177, 177);
     color: black;
     border-radius: 5px; /* 角丸をつける */
-    padding: 10px 15px; /* ボタンの内側の余白 */
+    padding: 1px 10px; /* ボタンの内側の余白 */
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
     font-size: 15px; /* テキストのフォントサイズ */
     cursor: pointer; /* マウスポインタを変更する */
+    height: 40px;
 }
 
 .abst:hover{
