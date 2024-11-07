@@ -100,7 +100,6 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         foreach ($announcements as $announcement) {
             $typeClass = ($announcement['ann_type'] === 1) ? 'send' : 'receive';
             echo '<tr class="announcement-row ' . $typeClass . '">';
-            echo '<tr>';
             switch ($announcement['ann_type']) {
                 case 1:
                     echo '<td>送信</td>';
