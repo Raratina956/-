@@ -1,14 +1,13 @@
 body { 
     background-image: url(../img/SpotLinkbg.png);
-    background-size: cover; /* 全体を覆う */
-    background-repeat: no-repeat; /* 繰り返さない */
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    
-    min-height: 100vh; /* Ensures the body takes the full height of the viewport */
+    min-height: 100vh;
 }
 
 main {
@@ -16,60 +15,59 @@ main {
     margin-bottom: 100px;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 100px 20px 20px; /* Added top padding to create space for h1 */
     border-radius: 8px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* 追加 */
+    position: relative;
 }
 
 h1 {
-    position: absolute; /* 変更 */
-    top: 0; /* 固定位置を設定 */
+    position: absolute;
+    top: 20px; /* Adjusted for spacing from the top */
     left: 50%;
-    transform: translateX(-50%); /* 中央揃え */
-    margin: 0; /* 上下の余白をリセット */
-    z-index: 1; /* 他の要素より上に表示 */
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 1;
+    white-space: nowrap; /* Prevent text wrapping */
 }
-h3{
+
+h3 {
     margin: auto;
-    margin-top: 60px; 
+    margin-top: 60px;
 }
 
 table {
     margin: auto;
-    white-space: nowrap; 
-    margin-top: 60px; /* h1とテーブルの間のスペースを調整 */
-    width: 100%; /* テーブル幅を100%にして大きく表示 */
+    white-space: nowrap;
+    margin-top: 20px; /* Reduced top margin to balance spacing */
+    width: 100%;
 }
-
 
 td, th { 
-    padding: 8px; /* セルの内側の余白 */
-    white-space: nowrap; /* 改行しない */
+    padding: 8px;
+    white-space: nowrap;
 }
-
-
 
 .back-link {
     position: fixed;
     bottom: 20px;
     left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #a0eefc;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: rgb(54, 98, 216);
     color: white;
 }
 
-.button_quit{
+.button_quit {
     min-width: 120px;
     height: 36px;
     padding: 0 16px;
@@ -81,9 +79,9 @@ td, th {
     background-color: white;
     color: rgb(248, 88, 88);
     border-radius: 5px;
-}  
+}
 
-.button_quit:hover{
+.button_quit:hover {
     background-color: rgb(207, 40, 40);
     color: white;
 }
@@ -91,6 +89,7 @@ td, th {
 .selected {
     color: blue;
 }
+
 .unselected {
     color: gray;
 }
