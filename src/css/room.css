@@ -86,8 +86,8 @@ form {
 }
 
 .usericon{
-    width: 210px;
-    height: 210px;
+    width: 50%;
+    height: 20%;
     border-radius: 50%;
     object-fit: cover;
   }
