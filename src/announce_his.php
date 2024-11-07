@@ -74,6 +74,16 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
     ?>
+    <?php
+        require 'header.php';
+    ?>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mob_css/announce_his-mob.css" media="screen and (max-width: 480px)">
+        <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
+    </head>
     <select id="filterType" onchange="filterAnnouncements()">
         <option value="all">全て</option>
         <option value="send">送信</option>
@@ -90,7 +100,6 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         foreach ($announcements as $announcement) {
             $typeClass = ($announcement['ann_type'] === 1) ? 'send' : 'receive';
             echo '<tr class="announcement-row ' . $typeClass . '">';
-            echo '<tr>';
             switch ($announcement['ann_type']) {
                 case 1:
                     echo '<td>送信</td>';
