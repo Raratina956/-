@@ -11,6 +11,7 @@ try {
 
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+echo $partner;
 
 // ログイン中のユーザーIDをセッションから取得
 $logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
