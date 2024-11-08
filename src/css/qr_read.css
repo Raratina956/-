@@ -1,37 +1,34 @@
 body {
     background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #000; /* テキストカラーを黒に設定 */
 }
 
-#wrapper{
+#wrapper {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
 }
 
-#video{
+#video, #camera-canvas, #rect-canvas {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    visibility: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#camera-canvas{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+#camera-canvas {
     z-index: 50;
 }
 
-#rect-canvas{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+#rect-canvas {
     z-index: 100;
 }
 
-#qr-msg{
+#qr-msg {
     position: absolute;
     top: 500px;
     left: 0px;
