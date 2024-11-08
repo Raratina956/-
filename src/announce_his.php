@@ -108,19 +108,19 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                 echo '<tr class="announcement-row ' . $typeClass . '">';
                 switch ($announcement['ann_type']) {
                     case 1:
-                        echo '<td>送信</td>';
+                        echo '<td data-label="種別">送信</td>';
                         break;
                     case 2:
-                        echo '<td>受信</td>';
+                        echo '<td data-label="種別">受信</td>';
                         break;
                     default:
-                        echo '<td>エラー</td>';
+                        echo '<td data-label="種別">エラー</td>';
                         break;
                 }
-                echo '<td>' . $announcement['title'] . '</td>';
-                echo '<td>' . $announcement['send_user_name'] . '</td>';
-                echo '<td>' . $announcement['sent_tag_name'] . '</td>';
-                echo '<td>' . $announcement['send_time'] . '</td>';
+                echo '<td data-label="タイトル">' . $announcement['title'] . '</td>';
+                echo '<td data-label="投稿者">' . $announcement['send_user_name'] . '</td>';
+                echo '<td data-label="投稿先">' . $announcement['sent_tag_name'] . '</td>';
+                echo '<td data-label="投稿日時">' . $announcement['send_time'] . '</td>';
                 echo '<form action="announce_his_info.php" method ="post">';
                 echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
                 echo '<td><input type="submit" value="詳細" class="detail"></td>';
