@@ -88,11 +88,12 @@ form {
 
 .flex_item{
     display: flex;
-    padding: 0;
-    margin: 0;
+    padding: 45px 0px 0px 0px;
+    margin: 0px 0px 0px 15px;
     list-style-type: none;
     flex-wrap: wrap;
-    width: 600px;
+    width: 500px;
+    justify-content: space-between;
 }
 
 .usericon{
@@ -101,5 +102,8 @@ form {
     border-radius: 50%;
     object-fit: cover;
   }
+li{
+    padding: 10px 0px;
+}
 
 
