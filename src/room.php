@@ -13,6 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     parse_str(parse_url($fixed_url, PHP_URL_QUERY), $queryParams);
     $room_id = htmlspecialchars($queryParams['id']);
     $update_id = htmlspecialchars($queryParams['update']);
+    $room=$pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+    $room->execute([$room_id]);
+    $room_row=$room->fetch();
+
+    if(!isset($_SESSION['floor']['kai'])){
+        $_SESSION['floor'] = [
+            'kai' => $room_row['classroom_floor']
+        ];    
+    }
 } else {
     $room_id = $_GET['id'];
     $update_id = $_GET['update'];
