@@ -38,6 +38,7 @@ $sent_tag_name = $tag_row['tag_name'];
     ?>
     <h1><sapn>アナウンス詳細</sapn></h1><br>
     <div class="container">
+        <br>
         <span>タイトル：<?php echo $title; ?></span><br>
         <span>内容：<?php echo $content; ?></span><br>
         <span>投稿主：<?php echo $send_user_name; ?></span><br>
