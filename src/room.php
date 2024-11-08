@@ -89,7 +89,8 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div style="display:inline-flex;margin-left: 70px;">
+        <div style="display:inline-flex;">
+        <ul>
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -101,16 +102,17 @@ if ($update_id == 1) {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <input class="room" type="image" src="img/pin.png" width="30%" height="60%" value="位置情報を更新">
+                        <li><input class="room" type="image" src="img/pin.png" width="30%" height="60%" value="位置情報を更新"></li>
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
-                        <input class="room" type="submit" value="位置登録">
+                        <li><input class="room" type="submit" value="位置登録"></li>
                       </form></div>';
             }
         }
         ?>
+        </ul>
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
             <?php    

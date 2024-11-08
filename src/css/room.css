@@ -94,7 +94,7 @@ form {
     flex-wrap: wrap;
     width: 500px;
     justify-content: space-between;
-    /* margin-right: 102px; */
+   
 }
 
 .usericon{
@@ -105,6 +105,11 @@ form {
   }
 li{
     padding: 10px 0px;
+}
+
+ul{
+    display: flex;
+    text-align: center;
 }
 
 
