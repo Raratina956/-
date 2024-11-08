@@ -134,9 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
-                </form>
                 <div class="center-content">
-                <?php echo $partner; ?>
+                <?php echo $partner_id; ?>
                     <img src="<?php echo $icon['icon_name']; ?>" ?>
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
