@@ -31,6 +31,6 @@ body {
 
 #qr-msg {
     position: relative;
-    top: 20px; /* Adjust this value to position the message */
+    top: 275px; /* Adjust this value to position the message */
     text-align: center;
 }
