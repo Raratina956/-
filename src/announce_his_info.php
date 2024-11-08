@@ -39,9 +39,9 @@ $sent_tag_name = $tag_row['tag_name'];
     <h2><sapn>アナウンス詳細</sapn></h2><br>
     <span>タイトル：<?php echo $title; ?></span><br>
     <span>内容：<?php echo $content; ?></span><br>
-    <span>送信日<?php echo $send_time; ?></span><br>
-    <span>送信者：<?php echo $send_user_name; ?></span><br>
-    <span>宛先：<?php echo $sent_tag_name; ?></span><br>
+    <span>投稿日時：<?php echo $send_time; ?></span><br>
+    <span>投稿主：<?php echo $send_user_name; ?></span><br>
+    <span>宛先タグ：<?php echo $sent_tag_name; ?></span><br>
     <?php echo '<form action="announce_his.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
         <input type="submit" name="back-btn" class="back-btn" value="戻る">
     </form>
