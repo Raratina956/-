@@ -12,6 +12,7 @@ try {
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
+
 // ログイン中のユーザーIDをセッションから取得
 $logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
 
@@ -135,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
                 <div class="center-content">
+                <?php echo $partner; ?>
                     <img src="<?php echo $icon['icon_name']; ?>" ?>
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>

@@ -2,10 +2,10 @@
 body {
     text-align: center;
     background-image: url(../img/SpotLinkbg.png);
-  font-family: Arial, sans-serif;  
+    font-family: Arial, sans-serif;  
     margin: 0;
     padding: 0;
-    padding-top:110px;
+   
 }
 
 main {
@@ -91,6 +91,8 @@ form {
     padding: 0;
     margin: 0;
     list-style-type: none;
+    flex-wrap: wrap;
+    width: 600px;
 }
 
 .usericon{
