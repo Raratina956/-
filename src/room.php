@@ -103,25 +103,30 @@ if ($update_id == 1) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
                         <li><input class="room" type="image" src="img/pin.png" width="30%" height="60%" value="位置情報を更新"></li>
+                        <li>更新</li>
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
                         <li><input class="room" type="submit" value="位置登録"></li>
+                        
                       </form></div>';
             }
         }
         ?>
-        </ul>
+      
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
             <?php    
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-             <input class="room" type="image" src="img/QR.png" width="45%" height="60%" value="QR">
+             <li><input class="room" type="image" src="img/QR.png" width="45%" height="60%" value="QR"></li>
+             <li>QR</li>
         </form>
+        </ul>
     </div>
+    
 
         <!-- 教室にいるユーザーを表示 -->
         <?php
