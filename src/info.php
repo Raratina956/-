@@ -359,14 +359,16 @@ if ($list_raw) {
                         $n_current_r = $n_current_s->fetch();
                         $n_send_person_id = $n_current_r['user_id'];
                         $n_users[] = $n_send_person_id;
+                        break;
                     case 3:
                         // チャット
                         $n_message_id = $row['message_id'];
                         $n_message_s = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
                         $n_message_s->execute([$n_message_id]);
                         $n_message_r = $n_message_s->fetch();
-                        $n_send_person_id = $n_current_r['send_id'];
+                        $n_send_person_id = $n_message_r['send_id'];
                         $n_users[] = $n_send_person_id;
+                        break;
                     default:
                         # code...
                         break;
