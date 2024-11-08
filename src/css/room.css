@@ -104,12 +104,14 @@ form {
     object-fit: cover;
   }
 li{
+    list-style-type: none;
     padding: 10px 0px;
 }
 
 ul{
     display: flex;
     text-align: center;
+    list-style-type: none;
 }
 
 
