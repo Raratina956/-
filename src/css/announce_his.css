@@ -1,0 +1,67 @@
+body {
+    text-align: center;
+    padding-top: 130px;
+    background-image: url(../img/SpotLinkbg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #464646;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.filter{
+    position: relative;
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
+    z-index: 1000;
+    top: 11px;
+    left: 2px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+select {
+    margin-bottom: 20px;
+}
+
+.detail{
+    min-width: 80px;
+    height: 35px;
+    padding: 0 16px;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(93, 134, 246);
+    background-color: white;
+    color:rgb(93, 134, 246);
+    border-radius: 5px;
+}
+
+.detail:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}

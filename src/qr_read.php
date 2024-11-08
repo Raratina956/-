@@ -1,5 +1,6 @@
 <?php
     require 'parts/auto-login.php';
+    require 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QRコード読み取り</title>
-    <link rel="stylesheet" href="css/qr_read.css">
+    <link rel="stylesheet" href="css/qr_read.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" href="mob_css/qr_read.css" media="screen and (max-width: 480px)">
 </head>
 
 <body>

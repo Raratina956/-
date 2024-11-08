@@ -90,7 +90,7 @@ foreach ($results as $row) {
         echo '<td>', limitDisplay($row_user['user_name'], 10), '</td>';
         echo '<form action="tag_list.php" method="post">';
         echo '<input type="hidden" name="tag_id" value=', $row['tag_id'], '>';
-        if (isset($_POST['tag_search'])) {
+        if (!(empty($_POST['tag_search']))) {
             echo '<input type="hidden" name="tag_search" value="', $tag_search, '">';
         }
         $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');

@@ -80,6 +80,7 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
+        <div style="display:inline-flex;margin-left: 70px;">
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -91,7 +92,7 @@ if ($update_id == 1) {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <input class="room" type="image" src="img/pin.png" width="20%" height="20%" value="位置情報を更新">
+                        <input class="room" type="image" src="img/pin.png" width="30%" height="60%" value="位置情報を更新">
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
@@ -107,8 +108,9 @@ if ($update_id == 1) {
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-            <button class="room" type="submit">QR表示</button>
+             <input class="room" type="image" src="img/QR.png" width="45%" height="60%" value="QR">
         </form>
+    </div>
 
         <!-- 教室にいるユーザーを表示 -->
         <?php
@@ -128,8 +130,8 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-        
-            echo '<ul>';
+
+            echo '<ul class="flex_item">';
 
             // 初期分岐と「すべて」選択時
             if(empty($_POST['target']) || $_POST['target'] == "all"){
@@ -157,8 +159,8 @@ if ($update_id == 1) {
                 
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a>
+                                    <img src="', htmlspecialchars($icon['icon_name']), '"  class="usericon">
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
                                   </li>';
                         }
                     } else {
@@ -229,7 +231,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($user['user_name']), '</a>
+                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
                                   </li>';
                         }
                     } else {
@@ -261,7 +263,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($user['user_name']) ,'</a>
+                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
                                 </li>';
                         }
                     } else {
@@ -294,7 +296,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($user['user_name']), '</a>
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
                                   </li>';
                         }
                     } else {
@@ -327,7 +329,7 @@ if ($update_id == 1) {
                         echo '<li style="list-style: none; padding-left: 0;">
                                 <div class="profile-container"><div class="user-container">
                                 <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                <a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($user['user_name']) ,'</a>
+                                <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
                               </li>';
                     }
                 } else {
@@ -336,7 +338,7 @@ if ($update_id == 1) {
                 }
             }
         }
-
+            echo '</div>';
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
