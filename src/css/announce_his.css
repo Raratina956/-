@@ -22,6 +22,12 @@ body {
     border-radius: 8px;
 }
 
+.filter{
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
