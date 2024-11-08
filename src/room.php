@@ -139,7 +139,7 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-
+            echo '<div class="icon_container">';
             echo '<ul class="flex_item">';
 
             // 初期分岐と「すべて」選択時

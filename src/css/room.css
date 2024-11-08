@@ -102,8 +102,13 @@ form {
     border-radius: 50%;
     object-fit: cover;
   }
+
 li{
     padding: 10px 0px;
+}
+
+.icon_container{
+    
 }
 
 
