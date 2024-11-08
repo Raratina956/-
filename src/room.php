@@ -102,7 +102,8 @@ if ($update_id == 1) {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <li><input class="room" type="image" src="img/pin.png" width="65px" height="60px" value="位置情報を更新">更新</li>
+                        <li><input class="room" type="image" src="img/pin.png" width="65px" height="60px" value="位置情報を更新"></li>
+                        <li>更新</li>
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
