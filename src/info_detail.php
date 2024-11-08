@@ -8,7 +8,7 @@ if (isset($_POST['announcement_id'])) {
     $type = 2;
 } elseif (isset($_POST['message_id'])) {
     $message_id = $_POST['message_id'];
-    $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id_id=?');
+    $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
     $mess_sql ->execute([$message_id]);
     $mess_row = $mess_sql->fetch();
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id='.$mess_row['send_id'];
