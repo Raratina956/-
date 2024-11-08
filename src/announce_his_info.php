@@ -43,7 +43,7 @@ $sent_tag_name = $tag_row['tag_name'];
         <span>内容：<?php echo $content; ?></span><br>
         <span>投稿主：<?php echo $send_user_name; ?></span><br>
         <span>宛先タグ：<?php echo $sent_tag_name; ?></span><br>
-        <span>投稿日時：<?php echo $send_time; ?></span><br>
+        <span>投稿日時：<?php echo $send_time; ?></span><br><br>
     </div>
     <?php echo '<form action="announce_his.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
         <input type="submit" name="back-btn" class="back-btn" value="戻る">
