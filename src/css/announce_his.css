@@ -28,6 +28,8 @@ body {
     height: 25px;
     font-size: 15px;
     z-index: 1000;
+    top: 11px;
+    left: 2px;
 }
 
 table {
