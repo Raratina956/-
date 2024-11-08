@@ -359,6 +359,7 @@ if ($list_raw) {
                         $n_current_r = $n_current_s->fetch();
                         $n_send_person_id = $n_current_r['user_id'];
                         $n_users[] = $n_send_person_id;
+                        break;
                     case 3:
                         // チャット
                         $n_message_id = $row['message_id'];
