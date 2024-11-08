@@ -2,16 +2,16 @@
 body {
     text-align: center;
     background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif;  
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-   
+    padding-top: 100px
 }
 
 main {
-    margin: 100px auto;
+    margin: 40px auto;
     width: 80%;
-    max-width: 400px;
+    max-width: 500px;
     border-radius: 8px;
  
 }
@@ -94,6 +94,7 @@ form {
     flex-wrap: wrap;
     width: 500px;
     justify-content: space-between;
+    /* margin-right: 102px; */
 }
 
 .usericon{
@@ -102,13 +103,8 @@ form {
     border-radius: 50%;
     object-fit: cover;
   }
-
 li{
     padding: 10px 0px;
-}
-
-.icon_container{
-    
 }
 
 
