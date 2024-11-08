@@ -24,9 +24,26 @@ $tag_row = $tag_sql->fetch(PDO::FETCH_ASSOC);
 $send_user_name = $user_row['user_name'];
 $sent_tag_name = $tag_row['tag_name'];
 ?>
-<sapn>アナウンス詳細</sapn><br>
-<span><?php echo $title; ?></span><br>
-<span><?php echo $content; ?></span><br>
-<span><?php echo $send_time; ?></span><br>
-<span>送信者：<?php echo $send_user_name; ?></span><br>
-<span>宛先：<?php echo $sent_tag_name; ?></span><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/announce_his_info.css" media="screen and (min-width: 1280px)">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+        require 'header.php';
+    ?>
+    <h2><sapn>アナウンス詳細</sapn></h2><br>
+    <span>タイトル：<?php echo $title; ?></span><br>
+    <span>内容：<?php echo $content; ?></span><br>
+    <span>送信日<?php echo $send_time; ?></span><br>
+    <span>送信者：<?php echo $send_user_name; ?></span><br>
+    <span>宛先：<?php echo $sent_tag_name; ?></span><br>
+    <?php echo '<form action="announce_his.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
+        <input type="submit" name="back-btn" class="back-btn" value="戻る">
+    </form>
+</body>
+</html>
