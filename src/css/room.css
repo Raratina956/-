@@ -107,7 +107,7 @@ form {
     padding: 10px 0px;
 }
 
-ul{
+.ul{
     display: flex;
     text-align: center;
     list-style-type: none;
