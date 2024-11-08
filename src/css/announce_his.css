@@ -23,9 +23,11 @@ body {
 }
 
 .filter{
+    position: relative;
     width: 70px;
     height: 25px;
     font-size: 15px;
+    z-index: 1000;
 }
 
 table {

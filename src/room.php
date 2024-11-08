@@ -130,8 +130,8 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-        
-            echo '<ul>';
+
+            echo '<ul class="flex_item">';
 
             // 初期分岐と「すべて」選択時
             if(empty($_POST['target']) || $_POST['target'] == "all"){
@@ -338,7 +338,7 @@ if ($update_id == 1) {
                 }
             }
         }
-
+            echo '</div>';
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
