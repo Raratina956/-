@@ -87,15 +87,10 @@ form {
 }
 
 .flex_item{
-    display: flex;	
-    margin-right: 30px;
-    width: 170px;
-    flex-flow: colunm;
-    flex-wrap: wrap;
-    text-align: center;
-    display:inline-block
-    
-
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
 
 .usericon{
