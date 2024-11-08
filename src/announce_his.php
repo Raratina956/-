@@ -84,46 +84,53 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
     </head>
     <div class="container">
-    <select id="filterType" class="filter" onchange="filterAnnouncements()">
-        <option value="all">全て</option>
-        <option value="send">送信</option>
-        <option value="receive">受信</option>
-    </select>
     <table>
-        <th>種別</th>
-        <th>タイトル</th>
-        <th>投稿者</th>
-        <th>投稿先</th>
-        <th>投稿日時</th>
-        <th></th>
-        <?php
-        foreach ($announcements as $announcement) {
-            $typeClass = ($announcement['ann_type'] === 1) ? 'send' : 'receive';
-            echo '<tr class="announcement-row ' . $typeClass . '">';
-            switch ($announcement['ann_type']) {
-                case 1:
-                    echo '<td>送信</td>';
-                    break;
-                case 2:
-                    echo '<td>受信</td>';
-                    break;
-                default:
-                    echo '<td>エラー</td>';
-                    break;
+        <thead>
+            <tr>
+                <th>
+                    <select id="filterType" class="filter" onchange="filterAnnouncements()">
+                        <option value="all">全て</option>
+                        <option value="send">送信</option>
+                        <option value="receive">受信</option>
+                    </select>
+                </th>
+                <th>タイトル</th>
+                <th>投稿者</th>
+                <th>投稿先</th>
+                <th>投稿日時</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($announcements as $announcement) {
+                $typeClass = ($announcement['ann_type'] === 1) ? 'send' : 'receive';
+                echo '<tr class="announcement-row ' . $typeClass . '">';
+                switch ($announcement['ann_type']) {
+                    case 1:
+                        echo '<td>送信</td>';
+                        break;
+                    case 2:
+                        echo '<td>受信</td>';
+                        break;
+                    default:
+                        echo '<td>エラー</td>';
+                        break;
+                }
+                echo '<td>' . $announcement['title'] . '</td>';
+                echo '<td>' . $announcement['send_user_name'] . '</td>';
+                echo '<td>' . $announcement['sent_tag_name'] . '</td>';
+                echo '<td>' . $announcement['send_time'] . '</td>';
+                echo '<form action="announce_his_info.php" method ="post">';
+                echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
+                echo '<td><input type="submit" value="詳細" class="detail"></td>';
+                echo '</form>';
+                echo '</tr>';
             }
-            echo '<td>' . $announcement['title'] . '</td>';
-            echo '<td>' . $announcement['send_user_name'] . '</td>';
-            echo '<td>' . $announcement['sent_tag_name'] . '</td>';
-            echo '<td>' . $announcement['send_time'] . '</td>';
-            echo '<form action="announce_his_info.php" method ="post">';
-            echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
-            echo '<td><input type="submit" value="詳細" class="detail"></td>';
-            echo '</form>';
-            echo '</tr>';
-        }
-        ?>
+            ?>
+        </tbody>
     </table>
-    </div>
+</div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function filterAnnouncements() {
