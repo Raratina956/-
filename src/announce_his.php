@@ -74,9 +74,8 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
     ?>
-    <?php
-        require 'header.php';
-    ?>
+
+    <?php require 'header.php'; ?>
 
     <head>
         <meta charset="UTF-8">
@@ -85,7 +84,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
     </head>
     <div class="container">
-    <select id="filterType" onchange="filterAnnouncements()" class="filter">
+    <select id="filterType" class="filter" onchange="filterAnnouncements()">
         <option value="all">全て</option>
         <option value="send">送信</option>
         <option value="receive">受信</option>
@@ -126,22 +125,26 @@ if ($ann_send_list_row || $ann_sent_list_row) {
     </table>
     </div>
     <script>
-        function filterAnnouncements() {
-            const filter = document.getElementById("filterType").value;
-            const rows = document.querySelectorAll(".announcement-row");
+        document.addEventListener('DOMContentLoaded', function() {
+            function filterAnnouncements() {
+                const filter = document.getElementById("filterType").value;
+                const rows = document.querySelectorAll(".announcement-row");
 
-            rows.forEach(row => {
-                if (filter === "all") {
-                    row.style.display = "";
-                } else if (filter === "send" && row.classList.contains("send")) {
-                    row.style.display = "";
-                } else if (filter === "receive" && row.classList.contains("receive")) {
-                    row.style.display = "none";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
+                rows.forEach(row => {
+                    if (filter === "all") {
+                        row.style.display = "";
+                    } else if (filter === "send" && row.classList.contains("send")) {
+                        row.style.display = "";
+                    } else if (filter === "receive" && row.classList.contains("receive")) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            }
+
+            document.getElementById("filterType").addEventListener("change", filterAnnouncements);
+        });
     </script>
 
     <?php
@@ -149,3 +152,4 @@ if ($ann_send_list_row || $ann_sent_list_row) {
     echo '<span>送信したアナウンスがありません</span>';
 }
 ?>
+
