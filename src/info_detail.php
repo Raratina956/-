@@ -3,9 +3,17 @@ require 'parts/auto-login.php';
 if (isset($_POST['announcement_id'])) {
     $announcement_id = $_POST['announcement_id'];
     $type = 1;
-} elseif ($_POST['current_location_id']) {
+} elseif (isset($_POST['current_location_id'])) {
     $current_location_id = $_POST['current_location_id'];
     $type = 2;
+} elseif (isset($_POST['message_id'])) {
+    $message_id = $_POST['message_id'];
+    $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id_id=?');
+    $mess_sql ->execute([$message_id]);
+    $mess_row = $mess_sql->fetch();
+    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id='.$mess_row['send_id'];
+    header("Location: $redirect_url");
+    exit();
 }
 switch ($type) {
     case 1:
@@ -42,6 +50,14 @@ switch ($type) {
             $_SESSION['user']['user_id']
         ]);
         break;
+    case 3:
+        $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE message_id = ? AND user_id = ?');
+        $sql_update->execute([
+            1,
+            $message_id,
+            $_SESSION['user']['user_id']
+        ]);
+        break;
     default:
         # code...
         break;
@@ -75,7 +91,7 @@ switch ($type) {
             </form>
             </p>
             <p> -->
-                <!-- <span>削除</span> -->
+            <!-- <span>削除</span> -->
             <!-- <form action="info_detail.php" method="post">
                 <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                 <input type="hidden" name="delete" value="0">
@@ -111,6 +127,7 @@ switch ($type) {
         </div>
         <?php
         break;
+
     default:
         # code...
         break;
