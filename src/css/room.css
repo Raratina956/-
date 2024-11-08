@@ -93,8 +93,7 @@ form {
     list-style-type: none;
     flex-wrap: wrap;
     width: 500px;
-    justify-content: space-between;
-   
+    justify-content: space-evenly;
 }
 
 .usericon{

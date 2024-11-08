@@ -108,7 +108,8 @@ if ($update_id == 1) {
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
-                        <li><input class="room" type="submit" value="位置登録"></li>
+                        <li><input class="room" type="image" src="img/pin2.png" width="65px" height="60px" value="位置情報を更新"></li>
+                        <li>更新済み</li>
                         
                       </form></div>';
             }
