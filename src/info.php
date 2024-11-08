@@ -368,6 +368,7 @@ if ($list_raw) {
                         $n_message_r = $n_message_s->fetch();
                         $n_send_person_id = $n_message_r['send_id'];
                         $n_users[] = $n_send_person_id;
+                        break;
                     default:
                         # code...
                         break;
