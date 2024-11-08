@@ -470,7 +470,7 @@ if ($list_raw) {
                 $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
                 $user_sql->execute([$send_id]);
                 $user_row = $user_sql->fetch();
-                $sent_name = $user_row[$send_id];
+                $sent_name = $user_row['user_name'];
                 $logtime = $info_row['message_time'];
                 if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
                     if ($send_id != $_POST['n_user']) {
