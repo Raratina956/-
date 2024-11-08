@@ -130,7 +130,8 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-        
+
+            echo '<div class="flex_item">';    
             echo '<ul>';
 
             // 初期分岐と「すべて」選択時
@@ -338,7 +339,7 @@ if ($update_id == 1) {
                 }
             }
         }
-
+            echo '</div>';
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
