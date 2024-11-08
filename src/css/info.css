@@ -61,8 +61,8 @@ td:nth-child(2) {
 }
 
 .usericon{
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
   }
