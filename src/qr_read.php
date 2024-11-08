@@ -1,5 +1,6 @@
 <?php
     require 'parts/auto-login.php';
+    require 'header.php';
 ?>
 
 <!DOCTYPE html>
