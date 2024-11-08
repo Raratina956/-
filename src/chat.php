@@ -87,22 +87,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id = ? ORDER BY message_id DESC');
                 $mess_sql->execute([$message_id_check]);
                 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
-                if($mess_row){
-                    foreach($mess_row as $mess_list){
+                if ($mess_row) {
+                    foreach ($mess_row as $mess_list) {
                         $send_id_check = $mess_list['send_id'];
                         $sent_id_check = $mess_list['sent_id'];
-                        if($send_id_check == $send_id AND $sent_id == $sent_id){
+                        if ($send_id_check == $send_id and $sent_id == $sent_id) {
                             $info_up_sql = $pdo->prepare('UPDATE Announce_check SET message_id=?, read_check=? WHERE message_id=? AND type=?');
-                            $info_up_sql->execute([$message_id_check,0,$message_id,3]);
+                            $info_up_sql->execute([$message_id, 0, $message_id_check, 3]);
                         }
                     }
                 }
-
-
             }
         } else {
             $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
-            $ann_insert->execute([$message_id,$sent_id,0,3]);
+            $ann_insert->execute([$message_id, $sent_id, 0, 3]);
         }
 
     } else {

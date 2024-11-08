@@ -290,6 +290,7 @@ if ($list_raw) {
             <option value=0 selected>全て</option>
             <option value=1>アナウンス</option>
             <option value=2>位置情報</option>
+            <option value=3>チャット</option>
         </select>
         <label>ユーザー別</label>
         <select name="n_user">
@@ -315,6 +316,7 @@ if ($list_raw) {
                         $n_current_r = $n_current_s->fetch();
                         $n_send_person_id = $n_current_r['user_id'];
                         $n_users[] = $n_send_person_id;
+                    case 3:
                     default:
                         # code...
                         break;
@@ -459,7 +461,7 @@ if ($list_raw) {
                 }
                 break;
             default:
-                echo 'その他';
+                // echo 'その他';
                 break;
         }
     }
