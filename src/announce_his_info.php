@@ -33,6 +33,9 @@ $sent_tag_name = $tag_row['tag_name'];
     <title>Document</title>
 </head>
 <body>
+    <?php
+        require 'header.php';
+    ?>
     <h2><sapn>アナウンス詳細</sapn></h2><br>
     <span>タイトル：<?php echo $title; ?></span><br>
     <span>内容：<?php echo $content; ?></span><br>
