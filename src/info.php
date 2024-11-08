@@ -33,7 +33,7 @@ if (isset($_POST['narrow'])) {
 } else {
     $narrow = 0;
 }
-// narrow→0:アナウンス、位置情報   1:アナウンス    2:位置情報
+// narrow→0:アナウンス、位置情報   1:アナウンス    2:位置情報   3:チャット
 if (isset($_POST['n_user'])) {
     $n_user = $_POST['n_user'];
     $n_user = intval($n_user);
@@ -85,6 +85,18 @@ if (isset($_POST['all_read'])) {
                                     $read_sql->execute([1, $_SESSION['user']['user_id'], $current_location_id_read]);
                                     $message = 'パターン２';
                                 }
+                            } else if ($list_row['type'] == 3) {
+                                // typeが3の場合(チャット)
+                                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=? AND send_id=?');
+                                $mess_sql->execute([$list_row['message_id'], $n_user]);
+                                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+                                if ($mess_row !== false) {
+                                    $message_id_read = $mess_row['message_id'];
+                                    $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND message_id=?');
+                                    $read_sql->execute([1, $_SESSION['user']['user_id'], $message_id_read]);
+                                    $message = 'パターン２';
+                                }
+
                             }
                         }
                     }
@@ -151,6 +163,37 @@ if (isset($_POST['all_read'])) {
                     break;
             }
             break;
+        case 3:
+            switch ($n_user) {
+                case 0:
+                    // narrow:3 n_user:0の時
+                    $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND type=?');
+                    $read_sql->execute([1, $_SESSION['user']['user_id'], $narrow]);
+                    $message = 'パターン5';
+                    break;
+
+                default:
+                    // narrow:3 n_user:0以外の時
+                    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+                    $list_sql->execute([$_SESSION['user']['user_id']]);
+                    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+                    if ($list_raw) {
+                        foreach ($list_raw as $list_row) {
+                            $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=? AND user_id=?');
+                            $mess_sql->execute([$list_row['message_id'], $n_user]);
+                            $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+                            if ($mess_row !== false) {
+                                $message_id_read = $mess_row['message_id'];
+                                $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE user_id=? AND message_id=?');
+                                $read_sql->execute([1, $_SESSION['user']['user_id'], $message_id_read]);
+                                $message = 'パターン6';
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
+
     }
 }
 // n_user→0:全てのユーザー  0以外:特定のユーザーID
@@ -484,7 +527,7 @@ if ($list_raw) {
                 echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
-                echo '<td rowspan="2">', $send_name, 'さんからチャットが届きました</td>';
+                echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                 if ($read_check == 0) {
                     echo '<td>未読</td>';
                 }
