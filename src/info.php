@@ -352,18 +352,18 @@ if ($list_raw) {
         <input type="submit" value="一括既読" class="info">
     </form>
     <form action="info.php" method="post" onsubmit="return confirmDelete()">
-    <?php
-    if (isset($_POST['narrow'])) {
-        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
-    } else {
-        echo '<input type="hidden" name="narrow" value=0>';
-    }
-    if (isset($_POST['n_user'])) {
-        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
-    } else {
-        echo '<input type="hidden" name="n_user" value=0>';
-    }
-    ?>
+        <?php
+        if (isset($_POST['narrow'])) {
+            echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+        } else {
+            echo '<input type="hidden" name="narrow" value=0>';
+        }
+        if (isset($_POST['n_user'])) {
+            echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+        } else {
+            echo '<input type="hidden" name="n_user" value=0>';
+        }
+        ?>
         <input type="hidden" name="all_delete">
         <input type="submit" value="一括削除" class="info">
     </form>
@@ -459,6 +459,44 @@ if ($list_raw) {
                     </form>
                     <?php
                 }
+                break;
+            case 3:
+                $message_id = $row['message_id'];
+                $read_check = $row['message_id'];
+                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
+                $mess_sql->execute([$message_id]);
+                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+                $send_id = $mess_row['send_id'];
+                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                $user_sql->execute([$send_id]);
+                $user_row = $user_sql->fetch();
+                $sent_name = $user_row[$send_id];
+                $logtime = $info_row['message_time'];
+                if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                    if ($send_id != $_POST['n_user']) {
+                        continue 2; // 選択されたユーザー以外の通知はスキップ
+                    }
+                }
+                echo '<tr>';
+                $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                $iconStmt->execute([$send_id]);
+                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
+                echo '<td rowspan="2">', $send_name, 'さんからチャットが届きました</td>';
+                if ($read_check == 0) {
+                    echo '<td>未読</td>';
+                }
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td class="day">', timeAgo($logtime), '</td>';
+                ?>
+                <form action="info_detail.php" method="post">
+                    <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
+                    <td><input type="submit" value="詳細" class="edit"></td>
+                </form>
+                <?php
                 break;
             default:
                 // echo 'その他';
