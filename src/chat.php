@@ -12,6 +12,7 @@ try {
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
+
 // ログイン中のユーザーIDをセッションから取得
 $logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
 
@@ -48,9 +49,9 @@ function getMessages($pdo, $logged_in_user_id, $partner_id)
 }
 
 // アイコンを取得する処理
-$iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$partner_id]);
-$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+$iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
+            $iconStmt->execute([$partner_id]); 
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 // 相手の情報を取得
 $sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
@@ -133,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
-                </form>
                 <div class="center-content">
+                <?php echo $partner_id; ?>
                     <img src="<?php echo $icon['icon_name']; ?>" ?>
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>

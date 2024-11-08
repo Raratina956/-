@@ -1,38 +1,52 @@
 body {
     background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #000; /* テキストカラーを黒に設定 */
 }
 
-#wrapper{
+#wrapper {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ビューポートの高さを全体に設定 */
+    flex-direction: column; /* 要素を縦に並べる */
 }
 
-#video{
+#video, #camera-canvas, #rect-canvas {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    visibility: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; /* ビューポートの幅を全体に設定 */
+    height: 100vw; /* ビューポートの幅を高さにも設定して正方形にする */
+    max-width: 100vh; /* ビューポートの高さを超えないように設定 */
+    max-height: 100vh; /* ビューポートの高さを超えないように設定 */
 }
 
-#camera-canvas{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+#camera-canvas {
     z-index: 50;
 }
 
-#rect-canvas{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+#rect-canvas {
     z-index: 100;
 }
 
-#qr-msg{
-    position: absolute;
-    top: 500px;
-    left: 0px;
+#qr-msg {
+    position: relative;
+    top: 20px; /* メッセージの位置を調整 */
+    text-align: center;
+}
+
+/* 画面幅が480px以下の場合のメディアクエリ */
+@media screen and (max-width: 480px) {
+    #video, #camera-canvas, #rect-canvas {
+        width: 90vw; /* 小さい画面用に幅を調整 */
+        height: 90vw; /* 高さも同様に調整して正方形を維持 */
+    }
+
+    #qr-msg {
+        top: 30%; /* 小さい画面用に位置を調整 */
+    }
 }

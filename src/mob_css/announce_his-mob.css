@@ -1,14 +1,62 @@
-body {
+body{
     text-align: center;
-    padding-top: 130px;
-    background-image: url(../img/SpotLinkbg.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #464646;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
+    padding-top: 110px;
+    background-color: #a0eefc;
+}
+
+table, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    .announcement-row {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 各セルにラベルを表示 */
+    td {
+        position: relative;
+        padding: 10px 10px 10px 80px; /* 左に余白を追加してラベルと内容を分ける */
+        text-align: left;
+    }
+
+    /* 擬似要素でラベルを追加 */
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: #333;
+        width: 60px; /* ラベル部分の幅を指定 */
+        white-space: nowrap; /* ラベルが改行されないように設定 */
+    }
+
+    /* フォームとボタンの調整 */
+    form {
+        display: inline-block;
+        width: 100%;
+    }
+    .detail{
+    min-width: 60px;
+    height: 35px;
+    padding: 0 16px;
+    font-size: 15px;
+    display: inline-flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;  
+    border-color: rgb(93, 134, 246);
+    background-color: white;
+    color:rgb(93, 134, 246);
+    border-radius: 5px;
+}
+
+.detail:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
 }
