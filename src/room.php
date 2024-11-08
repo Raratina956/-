@@ -172,7 +172,7 @@ if ($update_id == 1) {
                             $iconStmt->execute([$user['user_id']]);
                             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                 
-                            echo '<li style="list-style: none; padding-left: 0;">
+                            echo '<li class="li" style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '"  class="usericon">
                                     <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>

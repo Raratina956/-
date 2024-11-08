@@ -102,7 +102,7 @@ form {
     border-radius: 50%;
     object-fit: cover;
   }
-li{
+.li{
     list-style-type: none;
     padding: 10px 0px;
 }
