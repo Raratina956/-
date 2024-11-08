@@ -131,8 +131,7 @@ if ($update_id == 1) {
                         <button type="submit">検索</button>
                   </form>';
 
-            echo '<div class="flex_item">';    
-            echo '<ul>';
+            echo '<ul class="flex_item">';
 
             // 初期分岐と「すべて」選択時
             if(empty($_POST['target']) || $_POST['target'] == "all"){
