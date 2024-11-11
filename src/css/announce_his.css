@@ -66,21 +66,21 @@ select {
     color: white;
 }
 
-button:hover {
-    background-color: #0056b3;
+.back-button{
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(93, 134, 246);
+    background-color: white;
+    color:rgb(93, 134, 246);
+    border-radius: 5px;
 }
 
-.back-button{
-    border: none;
-    background-color: #007bff;
+.back-button:hover{
+    background-color: rgb(54, 98, 216);
     color: white;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 45px;
-    height: 40px;
-    margin-top: 60px;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
 }
