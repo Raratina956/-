@@ -25,6 +25,7 @@ unset($_SESSION['floor']['kai']);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
+    echo '<div style="display:inline-flex">'
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no';
     echo '<select name="favorite" class="list">';
@@ -59,7 +60,7 @@ unset($_SESSION['floor']['kai']);
     }
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
-    echo '</form><br><br><br>';
+    echo '</form></div><br><br><br>';
     
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
