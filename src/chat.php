@@ -76,7 +76,9 @@ if ($read_row) {
             $send_id_check = $mess_list['send_id'];
             $sent_id_check = $mess_list['sent_id'];
         }
+        var_dump(1);
         if ($send_id_check == $send_id and $sent_id == $sent_id) {
+            var_dump(2);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1, $message_id]);
             break;
