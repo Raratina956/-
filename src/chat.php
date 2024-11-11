@@ -64,7 +64,9 @@ $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 $read_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
 $read_sql->execute([$_SESSION['user']['user_id'], 3]);
 $read_row = $read_sql->fetchAll(PDO::FETCH_ASSOC);
+var_dump(1);
 if ($read_row) {
+    var_dump(2);
     foreach ($read_row as $read_list) {
         $message_id = $read_list['message_id'];
         $send_id = $logged_in_user_id; // セッションから送信者のIDを取得
@@ -77,6 +79,7 @@ if ($read_row) {
             $sent_id_check = $mess_list['sent_id'];
         }
         if ($send_id_check == $send_id and $sent_id == $sent_id) {
+            var_dump(3);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1, $message_id]);
         }
