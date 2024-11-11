@@ -78,11 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($stmt->execute()) {
+        // info 追加
         $message_id = $pdo->lastInsertId();
         $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
         $ann_sql->execute([$sent_id, 3]);
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
+        var_dump(2);
         if ($ann_row) {
+            var_dump(3);
             foreach ($ann_row as $ann_list) {
                 $message_id_check = $ann_list['message_id'];
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id = ? ORDER BY message_id DESC');
@@ -100,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } else {
+            var_dump(1);
             $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
             $ann_insert->execute([$message_id, $sent_id, 0, 3]);
         }
@@ -134,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
+                </form>
                 <div class="center-content">
                 <?php echo $partner_id; ?>
                     <img src="<?php echo $icon['icon_name']; ?>" ?>
