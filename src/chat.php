@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mess_sql->execute([$message_id_check]);
                 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
                 if ($mess_row) {
+                    var_dump(4);
                     foreach ($mess_row as $mess_list) {
                         $send_id_check = $mess_list['send_id'];
                         $sent_id_check = $mess_list['sent_id'];
