@@ -46,15 +46,10 @@ require 'header.php';
         xhr.open('POST', 'fetch_favorites.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
-        if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            let html = '';
-            response.forEach(user => {
-                html += `<a href="useredit.php?user_id=${user.id}" class="user-name">${user.name}</a>`;
-            });
-            document.getElementById('favorite-list').innerHTML = html;
-        }
-    };
+            if (xhr.status === 200) {
+                document.getElementById('favorite-list').innerHTML = xhr.responseText;
+            }
+        };
         xhr.send('type=' + type);
 
         // クリックされた要素に'active'クラスを付与し、それ以外の要素からは削除
