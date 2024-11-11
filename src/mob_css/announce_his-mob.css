@@ -1,12 +1,22 @@
 body{
     text-align: center;
     padding-top: 110px;
-    background-color: #a0eefc;
+    background-image: url(../img/SpotLinkbg.png);
 }
 
 table, th, td {
         display: block;
         width: 100%;
+    }
+
+th, td {
+    width: 100%; /* 各セルの幅を100%に設定 */
+    box-sizing: border-box; /* パディング込みで幅を計算 */
+    text-align: center;
+}
+
+th:not(:first-child) {
+        display: none;
     }
 
     .announcement-row {
@@ -17,6 +27,25 @@ table, th, td {
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+#filterType {
+    padding: 8px 12px; /* セレクトボックス内のパディングを増やして大きく見せる */
+    font-size: 14px; /* 文字サイズを少し大きくする */
+    border-radius: 5px; /* セレクトボックス自体にも丸みを追加 */
+    border: 1px solid #ddd; /* ボーダーの色を調整 */
+    background-color: #fff; /* 背景色を白に設定 */
+    color: #333; /* 文字色を調整 */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* セレクトボックスにも影を追加 */
+}
+
+table {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    border-collapse: separate; /* セルの境界線を分離 */
+    border-spacing: 0; /* セル間のスペースをなくす */
+}
 
     /* 各セルにラベルを表示 */
     td {
