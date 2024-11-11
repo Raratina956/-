@@ -514,7 +514,7 @@ if ($list_raw) {
                 break;
             case 3:
                 $message_id = $row['message_id'];
-                $read_check = $row['message_id'];
+                $read_check = $row['read_check'];
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
                 $mess_sql->execute([$message_id]);
                 $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
