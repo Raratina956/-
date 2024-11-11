@@ -25,7 +25,7 @@ unset($_SESSION['floor']['kai']);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
-    echo '<div style="display:inline-flex">'
+    echo '<div style="display:inline-flex">';
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no';
     echo '<select name="favorite" class="list">';
