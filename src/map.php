@@ -19,7 +19,6 @@ unset($_SESSION['floor']['kai']);
 
     echo '<div class="map">';
     echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
-    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
     $sql->execute([$_SESSION['user']['user_id']]);
@@ -61,7 +60,9 @@ unset($_SESSION['floor']['kai']);
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
     echo '</form>';
-
+    
+    // 学外
+    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     //  map
     echo '<table>';
