@@ -123,7 +123,9 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                 echo '<td data-label="投稿日時">' . $announcement['send_time'] . '</td>';
                 echo '<form action="announce_his_info.php" method ="post">';
                 echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';
+                echo '<div class="button-container">';
                 echo '<td><input type="submit" value="詳細" class="detail"></td>';
+                echo '</div>';
                 echo '</form>';
                 echo '</tr>';
             }
