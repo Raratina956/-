@@ -79,7 +79,7 @@ table {
     margin-left: 307px;
 }
 
-gakugai-container:hover {
+.gakugai-container:hover {
     background-color: #0056b3;       /* ホバー時の青色（少し濃くする） */
   }
 
