@@ -60,7 +60,7 @@ unset($_SESSION['floor']['kai']);
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
     echo '</form>';
-
+    
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
@@ -69,7 +69,7 @@ unset($_SESSION['floor']['kai']);
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
 
-        echo '<td>';
+        echo '<td class="block">';
         echo '<div style="display:inline-flex">';
 
         // 位置取得 階のIDを取得
