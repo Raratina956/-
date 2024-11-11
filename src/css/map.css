@@ -46,6 +46,8 @@ table {
     margin-left:20%;
     max-width: 65%;
     min-width: 70%;
+    table-layout: fixed;
+
 }
 
 .number{
