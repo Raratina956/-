@@ -72,13 +72,15 @@ table {
     display: inline-block;
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 45px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
     transition: background-color 0.3s ease;
-    margin-left: 307px;
+    position: absolute;
+    right: 155px;
+    top: 185px;
 }
 
 .gakugai-container:hover {
