@@ -67,12 +67,11 @@ table {
 } */
 
 /* 学外 Section */
-/* .gakugai-container {
-    background-color: #b3b3b3;
-    padding: 15px; 
-    border-radius: 10px;
-    margin-top: 0; 
-} */
+.gakugai-container {
+  color: blue;           /* 文字色を青に */
+  font-weight: bold;     /* 太字にする */
+  text-decoration: underline; /* 下線をつける */
+}
 
 
 button {
