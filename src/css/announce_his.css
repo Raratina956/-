@@ -67,14 +67,20 @@ select {
 }
 
 .back-button{
-    background-color: #007bff;
-    color: white;
-    border-radius: 20px;
-    font-size: 16px;
-    width: 45px;
-    height: 40px;
+    min-width: 120px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;  
+    border-color: rgb(93, 134, 246);
+    background-color: white;
+    color:rgb(93, 134, 246);
+    border-radius: 5px;
 }
 
 .back-button:hover{
-    background-color: #0056b3;
+    background-color: rgb(54, 98, 216);
+    color: white;
 }
