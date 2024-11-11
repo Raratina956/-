@@ -63,6 +63,11 @@ td::before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* セレクトボックスにも影を追加 */
 }
 
+td:last-child {
+    padding-left: 140px;
+    padding-bottom: 15px;
+}
+
 .detail {
     min-width: 60px;
     height: 35px;
