@@ -71,6 +71,7 @@ if ($read_row) {
         $sent_id = $partner_id; // 受信者のIDはリンクから取得した相手のID
         $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
         $mess_sql->execute(params: [$message_id]);
+        $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
         foreach ($mess_row as $mess_list) {
             $send_id_check = $mess_list['send_id'];
             $sent_id_check = $mess_list['sent_id'];
