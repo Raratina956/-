@@ -101,8 +101,8 @@
 ?>
     <button type="button" id="uploadButton">保存</button>
     </div>
-    <button type="button" onclick="location.href='passedit.php'">パスワード変更</button>
-    <button type="button" id="back" onclick="location.href='user.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>'">戻る</button>
+    <button type="button" id="back" onclick="location.href='user.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>'">戻る</button><br>
+    <button type="button" id="pass" onclick="location.href='passedit.php'">パスワード変更</button>
     <script>
     document.getElementById('fileInput').onchange = function (event) {
         var file = event.target.files[0];

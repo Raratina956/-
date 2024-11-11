@@ -514,7 +514,7 @@ if ($list_raw) {
                 break;
             case 3:
                 $message_id = $row['message_id'];
-                $read_check = $row['message_id'];
+                $read_check = $row['read_check'];
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
                 $mess_sql->execute([$message_id]);
                 $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
@@ -537,6 +537,7 @@ if ($list_raw) {
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
                 echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
+                var_dump($read_check);
                 if ($read_check == 0) {
                     echo '<td>未読</td>';
                 }

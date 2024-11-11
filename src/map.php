@@ -19,6 +19,7 @@ unset($_SESSION['floor']['kai']);
 
     echo '<div class="map">';
     echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
+    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
     $sql->execute([$_SESSION['user']['user_id']]);
@@ -171,11 +172,6 @@ unset($_SESSION['floor']['kai']);
     ?>
 
     </div>
-
-    <div class="gakugai-container">
-        <h2><a href="mapindex.php">学外</a></h2>
-    </div>
-    <br>
     <br>
 </body>
 
