@@ -106,7 +106,7 @@ input[type="text"], select {
     border-radius: 5px;
     cursor: pointer;
     position: relative;
-    width: 100%;
+    top: 15px;
 }
 
 #pass:hover {
