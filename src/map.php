@@ -59,7 +59,7 @@ unset($_SESSION['floor']['kai']);
     }
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
-    echo '</form><br>';
+    echo '</form><br><br><br>';
     
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
