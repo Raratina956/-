@@ -61,31 +61,11 @@ $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // info既読機能
-$read_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
-$read_sql->execute([$_SESSION['user']['user_id'], 3]);
-$read_row = $read_sql->fetchAll(PDO::FETCH_ASSOC);
-if ($read_row) {
-    foreach ($read_row as $read_list) {
-        $message_id = $read_list['message_id'];
-        $send_id = intval($logged_in_user_id); // セッションから送信者のIDを取得
-        $sent_id = intval($partner_id); // 受信者のIDはリンクから取得した相手のID
-        $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-        $mess_sql->execute(params: [$message_id]);
-        $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($mess_row as $mess_list) {
-            $send_id_check = $mess_list['send_id'];
-            $sent_id_check = $mess_list['sent_id'];
-        }
-        var_dump($send_id);
-        var_dump($send_id_check);
-
-        if ($send_id_check == $send_id and $sent_id == $sent_id) {
-            var_dump(2);
-            $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
-            $info_up->execute([1, $message_id]);
-            break;
-        }
-    }
+if(isset($_SESSION['read']['message_id'])){
+    $read_mess_id = $_SESSION['read']['message_id'];
+    unset($_SESSION['read']['message_id']);
+    $read_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
+    $read_up->execute([$read_mess_id]);
 }
 
 // メッセージ送信処理
