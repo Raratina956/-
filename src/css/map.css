@@ -39,6 +39,7 @@ body{
     border: 2px solid #333333;
     padding: 0px;
     height: 85px;
+    width: 80%;
 }
 
 table {
@@ -47,10 +48,6 @@ table {
     width: 100%;
     table-layout: fixed;
 
-}
-
-tr{
-    width: 80%;
 }
 
 .number{
