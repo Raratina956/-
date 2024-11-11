@@ -89,37 +89,44 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div style="display:inline-flex;margin-left: 70px;">
+        <div style="display:inline-flex;">
+        <ul class="ul">
         <?php
         // 現在の位置情報を取得するクエリ
         $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
         $point->execute([$_SESSION['user']['user_id']]);
         $current_location = $point->fetch();
         if ($current_location && $current_location['classroom_id'] == $room_id) {
-            echo '<div class="button-container"><button class="room" disabled>登録済み</button></div>';
+            echo '<div class="button-container"><button class="room" disabled><img  src="img/pin2.png" width="65px" height="60px" ><li>登録済み</li></button></div>';
         } else {
             if ($current_location) {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
-                        <input class="room" type="image" src="img/pin.png" width="30%" height="60%" value="位置情報を更新">
+                        <li><input class="room" type="image" src="img/pin.png" width="65px" height="60px" value="位置情報を更新"></li>
+                        <li>更新</li>
                       </form></div>';
             } else {
                 echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
-                        <input class="room" type="submit" value="位置登録">
+                        <li><input class="room" type="submit" value="位置登録"></li>
+                        
                       </form></div>';
             }
         }
         ?>
+      
         <!-- QR表示 -->
         <form id="qr-form" action="qr_show.php" method="post" target="_blank">
             <?php    
                 echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
                 echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
             ?>
-             <input class="room" type="image" src="img/QR.png" width="45%" height="60%" value="QR">
+             <li><input class="room" type="image" src="img/QR.png" width="70px" height="70px" value="QR"></li>
+             <li>QR</li>
         </form>
+        </ul>
     </div>
+    
 
         <!-- 教室にいるユーザーを表示 -->
         <?php
@@ -139,7 +146,7 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-
+            echo '<div class="icon_container">';
             echo '<ul class="flex_item">';
 
             // 初期分岐と「すべて」選択時
@@ -166,7 +173,7 @@ if ($update_id == 1) {
                             $iconStmt->execute([$user['user_id']]);
                             $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                 
-                            echo '<li style="list-style: none; padding-left: 0;">
+                            echo '<li class="li" style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '"  class="usericon">
                                     <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
