@@ -66,13 +66,13 @@ $read_sql->execute([$_SESSION['user']['user_id'], 3]);
 $read_row = $read_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($read_row) {
     foreach ($read_row as $read_list) {
-        $send_id_check = $mess_list['send_id'];
-        $sent_id_check = $mess_list['sent_id'];
         $message_id = $read_list['message_id'];
         $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
         $mess_sql->execute(params: [$message_id]);
-        $send_id_check = $mess_list['send_id'];
-        $sent_id_check = $mess_list['sent_id'];
+        foreach ($mess_row as $mess_list) {
+            $send_id_check = $mess_list['send_id'];
+            $sent_id_check = $mess_list['sent_id'];
+        }
         if ($send_id_check == $send_id and $sent_id == $sent_id) {
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1, $message_id]);
