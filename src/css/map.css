@@ -79,7 +79,7 @@ table {
     text-align: center;
     transition: background-color 0.3s ease;
     position: absolute;
-    right: 186px;
+    right: 165px;
     top: 216px;
 }
 
@@ -104,7 +104,6 @@ button {
 
 .list{
     width: 125px;
-    margin-left: 69%;
     font-size: 20px;
     /* align-items: center; */
 }
