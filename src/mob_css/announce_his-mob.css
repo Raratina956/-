@@ -63,11 +63,6 @@ td::before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* セレクトボックスにも影を追加 */
 }
 
-.button-container {
-    text-align: center; /* ボタンを中央に配置 */
-    margin-top: 10px; /* ボタンの上に少し余白を追加（任意） */
-}
-
 .detail {
     min-width: 60px;
     height: 35px;
