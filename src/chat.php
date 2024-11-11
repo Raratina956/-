@@ -60,6 +60,13 @@ $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
 $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// info既読機能
+if(isset($_SESSION['read']['message_id'])){
+    $read_mess_id = $_SESSION['read']['message_id'];
+    unset($_SESSION['read']['message_id']);
+    $read_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
+    $read_up->execute([1,$read_mess_id]);
+}
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

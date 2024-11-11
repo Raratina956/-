@@ -39,13 +39,15 @@ body{
     border: 2px solid #333333;
     padding: 0px;
     height: 85px;
+    width: 58%;
 }
 
 table {
     height: 110%;
     margin-left:20%;
-    max-width: 65%;
-    min-width: 70%;
+    width: 100%;
+    table-layout: fixed;
+
 }
 
 .number{
@@ -70,13 +72,15 @@ table {
     display: inline-block;
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 45px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
     transition: background-color 0.3s ease;
-    margin-left: 307px;
+    position: absolute;
+    right: 165px;
+    top: 216px;
 }
 
 .gakugai-container:hover {
@@ -100,7 +104,6 @@ button {
 
 .list{
     width: 125px;
-    margin-left: 69%;
     font-size: 20px;
     /* align-items: center; */
 }

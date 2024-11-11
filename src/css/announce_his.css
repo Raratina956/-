@@ -65,3 +65,19 @@ select {
     background-color: rgb(54, 98, 216);
     color: white;
 }
+
+.back-button button {
+    background-color: #5240f8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 40px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button button:hover {
+    background-color: #2112af; /* ホバー時に少し濃い青に */
+}

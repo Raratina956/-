@@ -11,6 +11,7 @@ if (isset($_POST['announcement_id'])) {
     $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
     $mess_sql ->execute([$message_id]);
     $mess_row = $mess_sql->fetch();
+    $_SESSION['read']['message_id'] = $message_id;
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id='.$mess_row['send_id'];
     header("Location: $redirect_url");
     exit();

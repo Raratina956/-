@@ -19,13 +19,13 @@ unset($_SESSION['floor']['kai']);
 
     echo '<div class="map">';
     echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
-    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE user_id=?');
     $sql->execute([$_SESSION['user']['user_id']]);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
+    echo '<div style="display:inline-flex;margin-left: 610px";>';
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no';
     echo '<select name="favorite" class="list">';
@@ -60,8 +60,10 @@ unset($_SESSION['floor']['kai']);
     }
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
-    echo '</form>';
-
+    echo '</form></div><br><br><br>';
+    
+    // 学外
+    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     //  map
     echo '<table>';
