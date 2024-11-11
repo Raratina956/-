@@ -97,7 +97,7 @@ input[type="text"], select {
     background-color: #0099c3;
 }
 
-#id{
+#pass{
     font-size: 1.3em; /* ボタンの文字サイズを大きく */
     padding: 12px 24px; /* ボタンに余白を追加 */
     background-color: #eae724;
@@ -107,7 +107,7 @@ input[type="text"], select {
     cursor: pointer;
 }
 
-#id:hover {
+#pass:hover {
     background-color: #ff0000;
     color: #eae724;
 }
