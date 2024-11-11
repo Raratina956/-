@@ -66,17 +66,17 @@ select {
     color: white;
 }
 
-.back-button{
-    background-color: #5240f8;
-    border: none;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-    margin-top: 18px;
+.back-button button {
+    background-color: #4a90e2; /* 青っぽい色 */
+    color: white; /* テキストの色を白に */
+    padding: 10px 20px; /* ボタンの余白 */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角を少し丸くする */
+    cursor: pointer; /* ホバー時のカーソルを変更 */
+    font-size: 16px; /* フォントサイズを指定 */
+    transition: background-color 0.3s ease; /* ホバー時の背景色変化をスムーズに */
 }
 
-.back-button:hover{
-    background-color: #2112af;
+.back-button button:hover {
+    background-color: #357ab8; /* ホバー時に少し濃い青に */
 }
