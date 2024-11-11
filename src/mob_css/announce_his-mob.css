@@ -34,7 +34,7 @@ th:not(:first-child) {
 
 td {
     position: relative;
-    padding: 10px 10px 10px 80px; /* 左に余白を追加してラベルと内容を分ける */
+    padding: 10px 10px 10px 110px; /* 左に余白を追加してラベルと内容を分ける */
     text-align: left;
     background-color: #fff;
     margin-bottom: 5px; /* 各セルの間隔を少し空ける */
