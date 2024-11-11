@@ -96,3 +96,18 @@ input[type="text"], select {
 #back:hover {
     background-color: #0099c3;
 }
+
+#id{
+    font-size: 1.3em; /* ボタンの文字サイズを大きく */
+    padding: 12px 24px; /* ボタンに余白を追加 */
+    background-color: #eae724;
+    color: rgb(255, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#id:hover {
+    background-color: #ff0000;
+    color: #eae724;
+}
