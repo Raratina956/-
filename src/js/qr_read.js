@@ -67,7 +67,7 @@ const checkImage = () => {
                 alert("外部のQRコードです");
                 document.getElementById('qr-msg').textContent = "外部のQRコードです";
                 stopCamera();
-                startCamera(); // カメラを再起動
+                startCamera(); // カメラと読み取り機能を再起動
             }
             lastScannedUrl = qrCodeUrl; // 最後にスキャンされたURLを更新
         }
