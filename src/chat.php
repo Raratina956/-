@@ -163,8 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
                 <div class="center-content">
-                    <?php echo $partner_id; ?>
-                    <img src="<?php echo $partner['icon_name']; ?>" ?>
+                <img src="<?php echo htmlspecialchars($partner['icon_name']); ?>" alt="Partner Icon">
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
             </div>
