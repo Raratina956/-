@@ -29,7 +29,7 @@ th:not(:first-child) {
     padding: 10px;
     border: 1px solid #ddd;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
     border-radius: 5px; /* 行全体に丸みをつける */
 }
 
@@ -61,12 +61,13 @@ td::before {
     background-color: #fff; /* 背景色を白に設定 */
     color: #333; /* 文字色を調整 */
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* セレクトボックスにも影を追加 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0); /* セレクトボックスにも影を追加 */
 }
 
 td:last-child {
     padding-left: 140px;
     padding-bottom: 15px;
+    border-bottom:2px  solid;
 }
 
 .detail {
