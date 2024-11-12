@@ -101,14 +101,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
                 if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
-                    var_dump(1);
                     $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
                     break;
-                }else{
-                    var_dump(2);
                 }
             }
+        }else{
+            $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
+            $info_insert->execute([$message_id, $sent_id, 0, 3]);
+
         }
     } else {
         $error_info = $stmt->errorInfo();
