@@ -34,6 +34,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
 </head>
 <header>
+    <div class="header-container">
         <a href="map.php" class="icon">
             <img src="img/icon.png" class="spot">
         </a>
@@ -56,6 +57,7 @@ if (isset($_POST['logout'])) {
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- スライドメニュー -->
     <div class="slide-menu">
