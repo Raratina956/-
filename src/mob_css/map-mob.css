@@ -22,7 +22,7 @@ body{
 
 .title{
    text-align: center;
-
+   font-size: 25px;
 }
 
 
@@ -85,7 +85,7 @@ table {
    transition: background-color 0.3s ease;
    position: absolute;
    right: 95px;
-   top: 281px;
+   top: 225px;
 }
 
 .gakugai-container:hover {
