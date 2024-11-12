@@ -100,10 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
-                var_dump($send_id);
-                var_dump($send_id_check);
                 if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
-                    $info_up = $pdo->prepare('UPDATE Announce_check SET readread_check = ? message_id=? WHERE message_id=?');
+                    $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ? message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
                     break;
                 }
