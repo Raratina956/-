@@ -93,3 +93,13 @@ header {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.header-area{
+  position: relative;
+  z-index: -1000;
+}
+
+.right-elements{
+  position: relative;
+  z-index: -1000;
+}

@@ -133,7 +133,7 @@ unset($_SESSION['floor']['kai']);
                     }
                 }
 
-                if ($j > 7) {
+                if ($j > 6) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
