@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
                 <div class="center-content">
                     <?php echo $partner_id; ?>
-                    <img src="<?php echo $icon['icon_name']; ?>" ?>
+                    <img src="<?php echo $partner['icon_name']; ?>" ?>
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
             </div>
