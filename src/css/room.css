@@ -2,16 +2,15 @@
 body {
     text-align: center;
     background-image: url(../img/SpotLinkbg.png);
-    font-family: Arial, sans-serif;  
     margin: 0;
     padding: 0;
-   
+    padding-top: 100px
 }
 
 main {
-    margin: 100px auto;
+    margin: 40px auto;
     width: 80%;
-    max-width: 400px;
+    max-width: 500px;
     border-radius: 8px;
  
 }
@@ -88,11 +87,12 @@ form {
 
 .flex_item{
     display: flex;
-    padding: 0;
-    margin: 0;
+    padding: 45px 0px 0px 0px;
+    margin: 0px 0px 0px 15px;
     list-style-type: none;
     flex-wrap: wrap;
-    width: 600px;
+    width: 500px;
+    justify-content: space-evenly;
 }
 
 .usericon{
@@ -101,5 +101,15 @@ form {
     border-radius: 50%;
     object-fit: cover;
   }
+.li{
+    list-style-type: none;
+    padding: 10px 0px;
+}
+
+.ul{
+    display: flex;
+    text-align: center;
+    list-style-type: none;
+}
 
 

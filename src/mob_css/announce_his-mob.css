@@ -1,14 +1,105 @@
 body {
     text-align: center;
-    padding-top: 130px;
+    padding-top: 110px;
     background-image: url(../img/SpotLinkbg.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #464646;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
+}
+
+table {
+    margin: 0 auto; /* テーブル全体を中央に寄せる */
+    width: 90%;
+    max-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th, td {
+    display: block; /* 各セルをブロック要素として扱う */
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+th:not(:first-child) {
+    display: none; /* 最初の列以外のthを非表示 */
+}
+
+.announcement-row {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* 行全体に丸みをつける */
+}
+
+td {
+    position: relative;
+    padding: 10px 10px 10px 110px; /* 左に余白を追加してラベルと内容を分ける */
+    text-align: left;
+    background-color: #fff;
+    margin-bottom: 5px; /* 各セルの間隔を少し空ける */
+}
+
+/* 擬似要素でラベルを追加 */
+td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+    color: #333;
+    width: 60px; /* ラベル部分の幅を指定 */
+    white-space: nowrap; /* ラベルが改行されないように設定 */
+}
+
+#filterType {
+    padding: 10px 15px; /* セレクトボックス内のパディングを調整 */
+    font-size: 16px; /* 文字サイズを少し大きくする */
+    border-radius: 5px; /* セレクトボックス自体に丸みを追加 */
+    border: 1px solid #ddd; /* ボーダーの色を調整 */
+    background-color: #fff; /* 背景色を白に設定 */
+    color: #333; /* 文字色を調整 */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* セレクトボックスにも影を追加 */
+}
+
+td:last-child {
+    padding-left: 140px;
+    padding-bottom: 15px;
+}
+
+.detail {
+    min-width: 60px;
+    height: 35px;
+    padding: 0 16px;
+    font-size: 15px;
+    display: inline-flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;  
+    border-color: rgb(93, 134, 246);
+    background-color: white;
+    color: rgb(93, 134, 246);
+    border-radius: 5px;
+}
+
+.detail:hover {
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
+
+.back-button button {
+    background-color: #5240f8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button button:hover {
+    background-color: #2112af; /* ホバー時に少し濃い青に */
 }

@@ -50,8 +50,8 @@ function getMessages($pdo, $logged_in_user_id, $partner_id)
 
 // アイコンを取得する処理
 $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-            $iconStmt->execute([$partner_id]); 
-            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+$iconStmt->execute([$partner_id]);
+$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 // 相手の情報を取得
 $sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
@@ -60,6 +60,13 @@ $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
 $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// info既読機能
+if (isset($_SESSION['read']['message_id'])) {
+    $read_mess_id = $_SESSION['read']['message_id'];
+    unset($_SESSION['read']['message_id']);
+    $read_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
+    $read_up->execute([1, $read_mess_id]);
+}
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -78,32 +85,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($stmt->execute()) {
+        // info 追加
         $message_id = $pdo->lastInsertId();
         $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
         $ann_sql->execute([$sent_id, 3]);
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
+        $found = false;
         if ($ann_row) {
             foreach ($ann_row as $ann_list) {
+                $send_id = intval($send_id);
+                $sent_id = intval($sent_id);
                 $message_id_check = $ann_list['message_id'];
-                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id = ? ORDER BY message_id DESC');
+                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
                 $mess_sql->execute([$message_id_check]);
-                $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
-                if ($mess_row) {
-                    foreach ($mess_row as $mess_list) {
-                        $send_id_check = $mess_list['send_id'];
-                        $sent_id_check = $mess_list['sent_id'];
-                        if ($send_id_check == $send_id and $sent_id == $sent_id) {
-                            $info_up_sql = $pdo->prepare('UPDATE Announce_check SET message_id=?, read_check=? WHERE message_id=? AND type=?');
-                            $info_up_sql->execute([$message_id, 0, $message_id_check, 3]);
-                        }
-                    }
+                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+                $send_id_check = $mess_row['send_id'];
+                $sent_id_check = $mess_row['sent_id'];
+                if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
+                    $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
+                    $info_up->execute([0, $message_id, $message_id_check]);
+                    $found = false;
+                    break;
                 }
             }
-        } else {
-            $ann_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
-            $ann_insert->execute([$message_id, $sent_id, 0, 3]);
-        }
+            if (!$found) {
+                $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
+                $info_insert->execute([$message_id, $sent_id, 0, 3]);
+            }
+        }else{
+            $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
+            $info_insert->execute([$message_id, $sent_id, 0, 3]);
 
+        }
     } else {
         $error_info = $stmt->errorInfo();
         echo "登録に失敗しました: " . $error_info[2];
@@ -134,8 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
+                </form>
                 <div class="center-content">
-                <?php echo $partner_id; ?>
+                    <?php echo $partner_id; ?>
                     <img src="<?php echo $icon['icon_name']; ?>" ?>
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
