@@ -115,3 +115,4 @@ foreach ($results as $row) {
     echo '<a href="map.php" class="back-link">マップへ</a>';
 }
 ?>
+

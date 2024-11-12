@@ -37,13 +37,23 @@ a{
     display: block;
 }
 
+.select{
+}
+
 
 .block{
-    border: 1px solid #333333;
+    border: 2px solid #333333;
     padding: 0px;
-    height: 53px;
-    width: 250px;
-    margin-inline-start: 20%;
+    height: 85px;
+    width: 83%;
+}
+
+table {
+    height: 110%;
+    margin-left:20%;
+    width: 100%;
+    table-layout: fixed;
+
 }
 
 .number{
@@ -65,11 +75,23 @@ a{
 
 /* 学外 Section */
 .gakugai-container {
-    background-color: #b3b3b3;
-    padding: 15px; 
-    border-radius: 10px;
-    margin-top: 0; 
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 45px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 165px;
+    top: 216px;
 }
+
+.gakugai-container:hover {
+    background-color: #0056b3;       /* ホバー時の青色（少し濃くする） */
+  }
 
 table{
     margin: auto;
@@ -81,21 +103,21 @@ table{
 }
 
 button {
-    display: inline-block; /* ボタンを横並びにする */
-    border: none; /* 枠線をなくす */
-    border-radius: 5px; /* 角丸をつける */
-    padding: 10px 15px; /* ボタンの内側の余白 */
-    margin: 5px; /* ボタン同士の余白 */
-    background-color: #17A7E9; /* ボタンの背景色 */
-    color: white; /* ボタンの文字色 */
-    text-align: center; /* ボタンのテキストを中央揃えにする */
-    text-decoration: none; /* テキストに下線をつけない */
-    font-size: 15px; /* テキストのフォントサイズ */
-    cursor: pointer; /* マウスポインタを変更する */
-  }
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 6px;
+    margin: 22px;
+    background-color: #17A7E9;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    cursor: pointer;
+}
 
 .list{
-    margin-left: 64%;
+    margin-left: 42%;
     font-size: 17px;
 }
 
