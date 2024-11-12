@@ -98,3 +98,8 @@ header {
   position: relative;
   z-index: -1000;
 }
+
+.right-elements{
+  position: relative;
+  z-index: -1000;
+}
