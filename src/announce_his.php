@@ -126,9 +126,9 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                 echo '<td><input type="submit" value="詳細" class="detail"></td>';
                 echo '</form>';
                 echo '</tr>';
-                echo '<hr>';
             }
             ?>
+            echo '<hr>';
         </tbody>
     </table>
 </div>
