@@ -1,5 +1,5 @@
 <?php
-// require 'parts/auto-login.php';
+require 'parts/auto-login.php';
 require 'header.php';
 unset($_SESSION['floor']['kai']);
 ?>
