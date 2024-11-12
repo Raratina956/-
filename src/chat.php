@@ -90,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
         $ann_sql->execute([$sent_id, 3]);
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
+        $found = false;
         if ($ann_row) {
             foreach ($ann_row as $ann_list) {
                 $send_id = intval($send_id);
@@ -103,8 +104,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
                     $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
+                    $found = false;
                     break;
                 }
+            }
+            if (!$found) {
+                $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
+                $info_insert->execute([$message_id, $sent_id, 0, 3]);
             }
         }else{
             $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
