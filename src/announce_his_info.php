@@ -59,6 +59,7 @@ $sent_tag_name = $tag_row['tag_name'];
             <span class="content"><?php echo htmlspecialchars($send_time); ?></span>
         </div>
     </div>
+    <hr>
     <?php echo '<form action="announce_his.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
         <input type="submit" name="back-btn" class="back-btn" value="戻る">
     </form>
