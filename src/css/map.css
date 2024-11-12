@@ -29,6 +29,12 @@ body{
 
 }
 
+.select{
+   display:inline-flex;
+   margin-left: 610px;
+}
+
+
 /* .map{
     border-radius: 10px; 
     margin-bottom: 10px;
