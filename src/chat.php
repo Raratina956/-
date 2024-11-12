@@ -61,12 +61,26 @@ $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // info既読機能
-if (isset($_SESSION['read']['message_id'])) {
-    $read_mess_id = $_SESSION['read']['message_id'];
-    unset($_SESSION['read']['message_id']);
-    $read_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
-    $read_up->execute([1, $read_mess_id]);
+$sent_id = $partner_id;
+$send_id = $logged_in_user_id;
+$mess_sql = $pdo->prepare('SELECT * FROM MESSAGE WHERE send_id = ? AND sent_id=?');
+$mess_sql->execute([$send_id,$sent_id]);
+$mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
+if($mess_row){
+    foreach($mess_row as $mess_list){
+        $message_id_check = $mess_list['message_id'];
+        $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
+        $mess_check->execute([$message_id_check]);
+        $mess_check_row = $mess_check->fetch();
+        if($mess_check_row){
+            $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
+            $info_up->execute([1,$message_id_check]);
+        }
+
+    }
 }
+
+
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
