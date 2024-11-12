@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
                 if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
-                    $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ? message_id=? WHERE message_id=?');
+                    $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
                     break;
                 }
