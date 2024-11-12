@@ -67,7 +67,7 @@ td::before {
 td:last-child {
     padding-left: 140px;
     padding-bottom: 15px;
-    border-bottom:2px  solid;
+    border-bottom:1.4px  solid;
 }
 
 .detail {
