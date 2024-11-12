@@ -128,7 +128,6 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                 echo '</tr>';
             }
             ?>
-            echo '<hr>';
         </tbody>
     </table>
 </div>
