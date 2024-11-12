@@ -39,24 +39,24 @@ $sent_tag_name = $tag_row['tag_name'];
     <h1><sapn>アナウンス詳細</sapn></h1><br>
     <div class="container">
         <div class="announcement-item">
-            <div class="label">タイトル</div>
-            <div class="content"><?php echo htmlspecialchars($title); ?></div>
+            <span class="label">タイトル：</span>
+            <span class="content"><?php echo htmlspecialchars($title); ?></span>
         </div>
         <div class="announcement-item">
-            <div class="label">内容</div>
-            <div class="content"><?php echo nl2br(htmlspecialchars($content)); ?></div>
+            <span class="label">内容：</span>
+            <span class="content"><?php echo nl2br(htmlspecialchars($content)); ?></span>
         </div>
         <div class="announcement-item">
-            <div class="label">投稿主</div>
-            <div class="content"><?php echo htmlspecialchars($send_user_name); ?></div>
+            <span class="label">投稿主：</span>
+            <span class="content"><?php echo htmlspecialchars($send_user_name); ?></span>
         </div>
         <div class="announcement-item">
-            <div class="label">宛先タグ</div>
-            <div class="content"><?php echo htmlspecialchars($sent_tag_name); ?></div>
+            <span class="label">宛先タグ：</span>
+            <span class="content"><?php echo htmlspecialchars($sent_tag_name); ?></span>
         </div>
         <div class="announcement-item">
-            <div class="label">日時</div>
-            <div class="content"><?php echo htmlspecialchars($send_time); ?></div>
+            <span class="label">日時：</span>
+            <span class="content"><?php echo htmlspecialchars($send_time); ?></span>
         </div>
     </div>
     <?php echo '<form action="announce_his.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>

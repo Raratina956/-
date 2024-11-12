@@ -28,6 +28,8 @@ body {
 }
 
 .announcement-item {
+    display: flex;
+    align-items: center;
     margin-bottom: 15px;
 }
 
@@ -35,7 +37,8 @@ body {
     font-weight: bold;
     color: #555;
     font-size: 18px;
-    margin-bottom: 5px;
+    margin-right: 10px; /* ラベルと内容の間にスペースを確保 */
+    white-space: nowrap; /* ラベルが複数行に折り返されないようにする */
 }
 
 .content {
@@ -44,6 +47,8 @@ body {
     background-color: #f7f7f7;
     padding: 8px 12px;
     border-radius: 5px;
+    flex-grow: 1; /* コンテンツが残りの幅を占める */
+    text-align: left;
 }
 
 .back-btn {
