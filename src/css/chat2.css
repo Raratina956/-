@@ -185,7 +185,7 @@ textarea:focus {
     background-color: #15aff1; /* ヘッダーの背景色 */
     border-bottom: 1px solid #ddd; /* ボーダー */
     position:  relative;        /* 位置指定 */
-    top: 80px;
+    top: 100px;
     z-index: 998;
     font-size: 25px;
 }
