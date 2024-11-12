@@ -3,3 +3,27 @@ body {
     padding-top: 110px;
     background-image: url(../img/SpotLinkbg.png);
 }
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.back-btn {
+    background-color: #5240f8;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    margin-top: 18px;
+}
+
+.back-btn:hover {
+    background-color: #2112af;
+}
