@@ -75,11 +75,23 @@ table {
 
 /* 学外 Section */
 .gakugai-container {
-    background-color: #b3b3b3;
-    padding: 15px; 
-    border-radius: 10px;
-    margin-top: 0; 
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 45px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 165px;
+    top: 216px;
 }
+
+.gakugai-container:hover {
+    background-color: #0056b3;       /* ホバー時の青色（少し濃くする） */
+  }
 
 table{
     margin: auto;
