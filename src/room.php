@@ -7,14 +7,6 @@ function fix_url($url)
     return str_replace('&amp;', '&', $url);
 }
 
-function encrypt($data, $key) {
-    return bin2hex(openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, substr($key, 0, 16)));
-}
-
-function decrypt($data, $key) {
-    return openssl_decrypt(hex2bin($data), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, substr($key, 0, 16));
-}
-
 // QRコードから読み取ったURLを修正
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $fixed_url = fix_url($_SERVER['REQUEST_URI']);
@@ -31,9 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         ];    
     }
 } else {
-    $secret_key = 'a8x!F2$rKlo0VzQ9@e7wM1Pb5#H6T%uG';
-    $room_id_hashed = $_GET['id'];
-    $room_id = decrypt($room_id_hashed, $secret_key);
+    $room_id = $_GET['id'];
     $update_id = $_GET['update'];
 }
 
