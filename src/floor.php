@@ -1,13 +1,5 @@
 <?php
 require 'parts/auto-login.php';
-function encrypt($data, $key) {
-    return bin2hex(openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, substr($key, 0, 16)));
-}
-
-function decrypt($data, $key) {
-    return openssl_decrypt(hex2bin($data), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, substr($key, 0, 16));
-}
-
 if(!isset($_SESSION['floor']['kai'])){
     $_SESSION['floor'] = [
         'kai' => $_POST['floor']
@@ -53,9 +45,7 @@ require 'header.php';
         }
 
         echo '<li class="li1">';
-        $secret_key = 'a8x!F2$rKlo0VzQ9@e7wM1Pb5#H6T%uG';
-        $classroom_id_hashed = encrypt($classroom_id, $secret_key);
-        echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id_hashed), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>';
+        echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
         echo '</li>';
     }
     echo '</ul></main>';
