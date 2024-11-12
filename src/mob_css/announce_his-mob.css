@@ -38,7 +38,6 @@ td {
     padding: 10px 10px 10px 110px; /* 左に余白を追加してラベルと内容を分ける */
     text-align: left;
     background-color: #fff;
-    margin-bottom: 5px; /* 各セルの間隔を少し空ける */
 }
 
 /* 擬似要素でラベルを追加 */
