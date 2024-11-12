@@ -103,3 +103,8 @@ header {
   position: relative;
   z-index: -1000;
 }
+
+.header-container{
+  position: relative;
+  z-index: -1000;
+}
