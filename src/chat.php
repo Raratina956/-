@@ -92,15 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
         if ($ann_row) {
             foreach ($ann_row as $ann_list) {
-                $message_id = $ann_list['message_id'];
+                $message_id_check = $ann_list['message_id'];
                 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                $mess_sql->execute([$message_id]);
+                $mess_sql->execute([$message_id_check]);
                 $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
                 if($send_id==$send_id_check AND $sent_id == $sent_id_check){
-                    $info_up = $pdo->prepare('UPDATE Announce_check SET readread_check = ? WHERE message_id=?');
-                    $info_up->execute([1,$message_id]);
+                    $info_up = $pdo->prepare('UPDATE Announce_check SET readread_check = ? message_id=? WHERE message_id=?');
+                    $info_up->execute([0,$message_id,$message_id_check]);
                     break;
                 }
             }
