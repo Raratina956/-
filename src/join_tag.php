@@ -65,5 +65,5 @@ if ($results) {
 }
 
 ?>
-<a href="map.php" class="back-link">マップへ</a>
+<a href="tag_list.php" class="back-link">戻る</a>
 </main>
