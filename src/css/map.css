@@ -41,13 +41,6 @@ body{
 } */
 
 
-.block{
-    border: 2px solid #333333;
-    padding: 0px;
-    height: 85px;
-    width: 58%;
-}
-
 table {
     height: 110%;
     margin-left:20%;
@@ -57,6 +50,9 @@ table {
 }
 
  .block { 
+    padding: 0px;
+    height: 85px;
+    width: 58%;
     background-color: #ffffff; 
     border: 1px solid #ccc; 
     border-radius: 5px;
