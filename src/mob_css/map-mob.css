@@ -29,9 +29,6 @@ body{
 /* .map{
 } */
 
-.table{
-   width: 100px;
-}
 
 a{
    display: block;
@@ -41,6 +38,7 @@ a{
 
 
 .block { 
+   margin: 0 auto;
    padding: 0px;
    height: 85px;
    width: 58%;
@@ -55,9 +53,9 @@ a{
 .table {
    height: 110%;
    margin-left:20%;
-   width: 100%;
+   width: 80%;
    table-layout: fixed;
-   margin: auto;
+   margin: auto 20%;
 
 }
 
