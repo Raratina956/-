@@ -67,18 +67,25 @@ $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?
 $mess_sql->execute([$send_id,$sent_id]);
 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
 if($mess_row){
+    var_dump(1);
     foreach($mess_row as $mess_list){
         $message_id_check = $mess_list['message_id'];
         $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
         $mess_check->execute([$message_id_check]);
         $mess_check_row = $mess_check->fetch();
         if($mess_check_row){
+            var_dump(2);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1,$message_id_check]);
+        }else{
+            var_dump(3);
         }
 
     }
+}else{
+    var_dump(4);
 }
+var_dump(5);
 
 
 
