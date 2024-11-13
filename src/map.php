@@ -73,7 +73,7 @@ unset($_SESSION['floor']['kai']);
         echo '<td class="block">';
         echo '<div style="display:inline-flex">';
 
-        // 位置取得 階のIDを取得
+        // 位置取得 階のIDを取得階
         $floorStmt = $pdo->prepare('select * 
                                   from Classroom                                    
                                   where classroom_floor=?');
