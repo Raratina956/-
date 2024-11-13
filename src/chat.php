@@ -77,6 +77,7 @@ if($mess_row){
             var_dump(2);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1,$message_id_check]);
+            var_dump($message_id_check);
         }else{
             var_dump(3);
         }
