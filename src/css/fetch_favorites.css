@@ -21,6 +21,8 @@ table {
     display: inline-block;
     vertical-align: middle; /* テキストとアイコンを中央揃え */
     margin-right:30px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .back-link {
     position: fixed;

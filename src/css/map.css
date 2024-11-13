@@ -56,15 +56,15 @@ table {
 
 }
 
-.block, table {
-    background-color: #ffffff; /* 背景色を白に設定 */
-    border: 1px solid #ccc; /* 基本の枠線の色 */
-    border-radius: 5px; /* 角を少し丸める */
-    box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.7), /* 内側に明るい影を付けて浮き上がらせる */
-                inset -1px -1px 5px rgba(0, 0, 0, 0.2), /* 内側に暗い影を付けて3D効果を出す */
-                2px 2px 5px rgba(0, 0, 0, 0.3); /* 外側に影を付ける */
-    padding: 10px;
-}
+/* .block, table { */
+    /* background-color: #ffffff; 背景色を白に設定 */
+    /* border: 1px solid #ccc; 基本の枠線の色 */
+    /* border-radius: 5px; 角を少し丸める */
+    /* box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.7), 内側に明るい影を付けて浮き上がらせる */
+                /* inset -1px -1px 5px rgba(0, 0, 0, 0.2), 内側に暗い影を付けて3D効果を出す */
+                /* 2px 2px 5px rgba(0, 0, 0, 0.3); 外側に影を付ける */
+    /* padding: 10px; */
+/* } */
 
 
 .number{

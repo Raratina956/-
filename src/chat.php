@@ -70,6 +70,7 @@ if($mess_row){
     // var_dump(1);
     foreach($mess_row as $mess_list){
         $message_id_check = $mess_list['message_id'];
+        var_dump($message_id_check);
         $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
         $mess_check->execute([$message_id_check]);
         $mess_check_row = $mess_check->fetch();
