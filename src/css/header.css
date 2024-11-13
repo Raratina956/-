@@ -34,15 +34,14 @@ header {
 
 /* Spot Styles */
 .spot {
-  display: flex;
-  justify-content: flex-end;
   position: relative;
   margin: 0 auto;
   text-align: center;
   width: 100%;
   height: auto;
-  max-width: 329px;
-  top: 43px;
+  max-width: 330px;
+  top: 63px;
+  display: inline-block;
 }
 
 .icon {
