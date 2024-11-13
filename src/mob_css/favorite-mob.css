@@ -16,6 +16,10 @@ th, td {
     overflow: hidden; /* はみ出たテキストを隠す */
     /* text-overflow: ellipsis; /* はみ出たテキストに "..." を表示 */
 }
+.usericon{
+    border-radius: 50%;
+    object-fit: cover;
+}
 @media screen and (max-width: 480px) {
     th, td {
         font-size: 20px; /* スマホ用にフォントサイズを小さく */
