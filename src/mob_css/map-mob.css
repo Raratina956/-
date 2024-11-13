@@ -57,6 +57,7 @@ table {
    margin-left:20%;
    width: 100%;
    table-layout: fixed;
+   margin: auto;
 
 }
 
@@ -96,11 +97,6 @@ table {
 .gakugai-container:hover {
    background-color: #0056b3;       /* ホバー時の青色（少し濃くする） */
  }
-
-table{
-   margin: auto;
-   table-layout: fixed;
-}
 
 .box {
      height: 100px;
