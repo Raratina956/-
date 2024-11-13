@@ -34,12 +34,14 @@
                 echo '<img id="existingIcon" src="', $icon['icon_name'], '" width="20%" height="50%" class="icon">';
             }
 ?>
+            <head>
             <link rel="stylesheet" type="text/css" href="mob_css/useredit-mob.css" media="screen and (max-width: 480px)">
             <link rel="stylesheet" type="text/css" href="css/useredit.css" media="screen and (min-width: 1280px)">
             <input type="file" id="fileInput" name="icon_file" accept=".jpg, .png"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['user_id']; ?>">
             </div>
+            </head>
             <body>
 
 <?php

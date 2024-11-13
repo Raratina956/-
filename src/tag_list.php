@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 if (isset($_POST['tag_id'])) {
     $regi_tag_id = $_POST['tag_id'];
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
@@ -16,11 +17,6 @@ if (isset($_POST['tag_id'])) {
         $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
     }
 }
-?>
-
-<?php
-require 'header.php';
-
 ?>
 <link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)">
