@@ -74,17 +74,17 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
 }
-    ?>
+?>
 
-    <?php require 'header.php'; ?>
+<?php require 'header.php'; ?>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="mob_css/announce_his-mob.css" media="screen and (max-width: 480px)">
-        <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
-    </head>
-    <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="mob_css/announce_his-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" type="text/css" href="css/announce_his.css" media="screen and (min-width: 1280px)">
+</head>
+<div class="container">
     <table>
         <thead>
             <tr>
@@ -131,31 +131,46 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             ?>
         </tbody>
     </table>
+    <!-- 絞り込み結果がない場合のエラーメッセージ表示用 -->
+    <div id="noAnnouncementMessage" style="color:red; margin-top:10px; display:none;">該当するアナウンスはありません</div>
 </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function filterAnnouncements() {
-                const filter = document.getElementById("filterType").value;
-                const rows = document.querySelectorAll(".announcement-row");
 
-                rows.forEach(row => {
-                    if (filter === "all") {
-                        row.style.display = "";
-                    } else if (filter === "send" && row.classList.contains("send")) {
-                        row.style.display = "";
-                    } else if (filter === "receive" && row.classList.contains("receive")) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function filterAnnouncements() {
+            const filter = document.getElementById("filterType").value;
+            const rows = document.querySelectorAll(".announcement-row");
+            let visibleRowCount = 0;
+
+            rows.forEach(row => {
+                if (filter === "all") {
+                    row.style.display = "";
+                    visibleRowCount++;
+                } else if (filter === "send" && row.classList.contains("send")) {
+                    row.style.display = "";
+                    visibleRowCount++;
+                } else if (filter === "receive" && row.classList.contains("receive")) {
+                    row.style.display = "";
+                    visibleRowCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            // エラーメッセージの表示・非表示を切り替え
+            const errorMessage = document.getElementById("noAnnouncementMessage");
+            if (visibleRowCount === 0) {
+                errorMessage.style.display = "block";
+            } else {
+                errorMessage.style.display = "none";
             }
+        }
 
-            document.getElementById("filterType").addEventListener("change", filterAnnouncements);
-        });
-    </script>
+        document.getElementById("filterType").addEventListener("change", filterAnnouncements);
+    });
+</script>
 
-    <?php
+<?php
 if (!($ann_send_list_row || $ann_sent_list_row)) { // 送信リストも受信リストもない場合
     if (empty($ann_send_list_row)) {
         echo '<span>送信したアナウンスはありません</span>';
@@ -170,4 +185,3 @@ if (!($ann_send_list_row || $ann_sent_list_row)) { // 送信リストも受信�
         <button type="submit">戻る</button>
     </form>
 </div>
-
