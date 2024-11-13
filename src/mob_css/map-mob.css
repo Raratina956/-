@@ -40,12 +40,17 @@ a{
 .select{margin-right: 45px;}
 
 
-.block{
-   border: 2px solid #333333;
+.block { 
    padding: 0px;
    height: 85px;
-   width: 100%;
-}
+   width: 58%;
+   background-color: #ffffff; 
+   border: 1px solid #ccc; 
+   border-radius: 5px;
+   box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.7), 
+               inset -1px -1px 5px rgba(0, 0, 0, 0.2), 
+               2px 2px 5px rgba(0, 0, 0, 0.3); 
+} 
 
 table {
    height: 110%;
