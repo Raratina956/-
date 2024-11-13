@@ -61,16 +61,16 @@ $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // info既読機能
-$sent_id = $partner_id;
-$send_id = $logged_in_user_id;
+$send_id_che = $partner_id;
+$sent_id_che = $logged_in_user_id;
 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?');
-$mess_sql->execute([$send_id,$sent_id]);
+$mess_sql->execute([$send_id_che,$sent_id_che]);
 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
 if($mess_row){
     // var_dump(1);
     foreach($mess_row as $mess_list){
         $message_id_check = $mess_list['message_id'];
-        var_dump($message_id_check);
+        // var_dump($message_id_check);
         $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
         $mess_check->execute([$message_id_check]);
         $mess_check_row = $mess_check->fetch();
@@ -78,7 +78,7 @@ if($mess_row){
             // var_dump(2);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1,$message_id_check]);
-            var_dump($message_id_check);
+            // var_dump($message_id_check);
         }else{
             // var_dump(3);
         }
@@ -115,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
         $found = false;
         if ($ann_row) {
+            var_dump(1);
             foreach ($ann_row as $ann_list) {
                 $send_id = intval($send_id);
                 $sent_id = intval($sent_id);
@@ -125,17 +126,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
                 if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
+                    var_dump(2);
                     $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
-                    $found = false;
+                    $found = true;
                     break;
                 }
             }
             if (!$found) {
+                var_dump(3);
                 $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
                 $info_insert->execute([$message_id, $sent_id, 0, 3]);
             }
         }else{
+            var_dump(4);
             $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
             $info_insert->execute([$message_id, $sent_id, 0, 3]);
 
