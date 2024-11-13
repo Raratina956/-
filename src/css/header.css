@@ -42,20 +42,21 @@ header {
   width: 100%;
   height: auto;
   max-width: 329px;
-  top: 43px;
+  top: 63px;
 }
 
 .icon {
   margin-left: 38%;
+  display: inline-block;
 }
 
 .bell {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: -15px;
+  top: -18px;
   text-align: right;
-  right: 110px;
+  right: -70px;
   margin-left: 860px;
   width: auto;
   height: 60px;
