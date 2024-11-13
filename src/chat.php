@@ -12,7 +12,6 @@ try {
 // URLから相手のuser_idを取得
 $partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
-
 // ログイン中のユーザーIDをセッションから取得
 $logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
 
@@ -64,32 +63,20 @@ $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 $send_id_che = $partner_id;
 $sent_id_che = $logged_in_user_id;
 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?');
-$mess_sql->execute([$send_id_che,$sent_id_che]);
+$mess_sql->execute([$send_id_che, $sent_id_che]);
 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
 if($mess_row){
-    // var_dump(1);
     foreach($mess_row as $mess_list){
         $message_id_check = $mess_list['message_id'];
-        // var_dump($message_id_check);
         $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
         $mess_check->execute([$message_id_check]);
         $mess_check_row = $mess_check->fetch();
         if($mess_check_row){
-            // var_dump(2);
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
-            $info_up->execute([1,$message_id_check]);
-            // var_dump($message_id_check);
-        }else{
-            // var_dump(3);
+            $info_up->execute([1, $message_id_check]);
         }
-
     }
-}else{
-    // var_dump(4);
 }
-// var_dump(5);
-
-
 
 // メッセージ送信処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -106,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':message_detail', $message_detail);
     $stmt->bindParam(':message_time', $message_time);
 
-
     if ($stmt->execute()) {
         // info 追加
         $message_id = $pdo->lastInsertId();
@@ -115,7 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
         $found = false;
         if ($ann_row) {
-            var_dump(1);
             foreach ($ann_row as $ann_list) {
                 $send_id = intval($send_id);
                 $sent_id = intval($sent_id);
@@ -125,8 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
                 $send_id_check = $mess_row['send_id'];
                 $sent_id_check = $mess_row['sent_id'];
-                if ($send_id == $send_id_check and $sent_id == $sent_id_check) {
-                    var_dump(2);
+                if ($send_id == $send_id_check && $sent_id == $sent_id_check) {
                     $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
                     $info_up->execute([0, $message_id, $message_id_check]);
                     $found = true;
@@ -134,15 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             if (!$found) {
-                var_dump(3);
                 $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
                 $info_insert->execute([$message_id, $sent_id, 0, 3]);
             }
-        }else{
-            var_dump(4);
+        } else {
             $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
             $info_insert->execute([$message_id, $sent_id, 0, 3]);
-
         }
     } else {
         $error_info = $stmt->errorInfo();
@@ -153,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -161,11 +141,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
 </head>
-
 <body>
-    <?php
-    require 'header.php';
-    ?>
+    <?php require 'header.php'; ?>
     <div class="chat-system">
         <div class="chat-box">
 
@@ -176,8 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
                 <div class="center-content">
-                <img src="<?php echo htmlspecialchars($icon['icon_name']); 
-                            ?>" alt="Partner Icon">
+                    <img src="<?php echo htmlspecialchars($icon['icon_name']); ?>" alt="Partner Icon">
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
             </div>
@@ -212,14 +188,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="submit" name="sub" class="send" value="送信" id="send-btn">
                 </form>
             </div>
-
         </div>
     </div>
     <script>
         function scrollToLatestMessage() {
             const latestMessage = document.getElementById('latest-message');
             latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
-        }
+            }
         document.getElementById('send-btn').addEventListener('click', function (e) {
             // e.preventDefault(); // この行を削除
             scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
@@ -245,5 +220,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // window.onresize = adjustChatAreaHeight;
     </script>
 </body>
-
 </html>
