@@ -163,6 +163,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
         echo '<span>受信しているアナウンスはありません</span>';
     }
 }
+?>
 <div class="back-button">
     <form action="announce.php" method="GET">
         <button type="submit">戻る</button>
