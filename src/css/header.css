@@ -103,9 +103,14 @@ header {
 .right-elements{
   position: relative;
   z-index: -1000;
+  display: inline-block;
 }
 
 .header-container{
   position: relative;
   z-index: -1000;
+}
+
+.bell-icon{
+  display: inline-block;
 }
