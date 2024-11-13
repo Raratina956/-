@@ -18,8 +18,8 @@ if (isset($_POST['tag_id'])) {
     }
 }
 ?>
-<link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
-<link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)">
+<!-- <link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)"> -->
 
 <h1>みんなのタグ</h1>
 <a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
