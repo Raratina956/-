@@ -126,13 +126,6 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                 echo '<td><input type="submit" value="詳細" class="detail"></td>';
                 echo '</form>';
                 echo '</tr>';
-            } else { // 送信リストも受信リストもない場合
-                if (empty($ann_send_list_row)) {
-                    echo '<span>送信したアナウンスはありません</span>';
-                }
-                if (empty($ann_sent_list_row)) {
-                    echo '<span>受信しているアナウンスはありません</span>';
-                }
             }
             ?>
         </tbody>
@@ -160,6 +153,17 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             document.getElementById("filterType").addEventListener("change", filterAnnouncements);
         });
     </script>
+
+    <?php
+} else { // 送信リストも受信リストもない場合
+    if (empty($ann_send_list_row)) {
+        echo '<span>送信したアナウンスはありません</span>';
+    }
+    if (empty($ann_sent_list_row)) {
+        echo '<span>受信しているアナウンスはありません</span>';
+    }
+}
+?>
 <div class="back-button">
     <form action="announce.php" method="GET">
         <button type="submit">戻る</button>
