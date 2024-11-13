@@ -59,6 +59,7 @@ header {
   margin-left: 860px;
   width: auto;
   height: 60px;
+  display: inline-block;
 }
 
 .bell img {
