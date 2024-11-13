@@ -73,6 +73,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
     usort($announcements, function ($a, $b) {
         return strtotime($b['send_time']) <=> strtotime($a['send_time']);
     });
+}
     ?>
 
     <?php require 'header.php'; ?>
@@ -155,7 +156,7 @@ if ($ann_send_list_row || $ann_sent_list_row) {
     </script>
 
     <?php
-} else { // 送信リストも受信リストもない場合
+if (!($ann_send_list_row || $ann_sent_list_row)) { // 送信リストも受信リストもない場合
     if (empty($ann_send_list_row)) {
         echo '<span>送信したアナウンスはありません</span>';
     }

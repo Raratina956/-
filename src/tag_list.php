@@ -67,7 +67,7 @@ if (isset($_POST['tag_search'])) {
 if ($results) {
     ?>
     <br>
-    <a href="map.php" class="back-link">マップへ</a>
+    <a href="map.php" class="back-link">戻る</a>
     <br>
     <table id="table" border="0">
         <th>タグ名</th>
