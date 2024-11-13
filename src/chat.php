@@ -61,8 +61,8 @@ $stmt->execute();
 $partner = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // info既読機能
-$sent_id = $partner_id;
-$send_id = $logged_in_user_id;
+$send_id = $partner_id;
+$sent_id = $logged_in_user_id;
 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?');
 $mess_sql->execute([$send_id,$sent_id]);
 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
