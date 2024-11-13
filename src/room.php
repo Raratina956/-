@@ -239,6 +239,12 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -271,6 +277,11 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -304,6 +315,11 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -337,6 +353,11 @@ if ($update_id == 1) {
                 if ($usersList) {
                     // 初期表示、全件表示
                     foreach($usersList as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+                    
                         // アイコン情報を持ってくる
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$user['user_id']]);
