@@ -66,7 +66,7 @@ unset($_SESSION['floor']['kai']);
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     //  map
-    echo '<table>';
+    echo '<table class="table">';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
 
