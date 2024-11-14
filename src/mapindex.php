@@ -29,7 +29,8 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-const otherUsers = <?php echo htmlspecialchars(json_encode($allLocations), ENT_QUOTES, 'UTF-8'); ?>;
+const otherUsers = <?php echo json_encode($allLocations, JSON_HEX_TAG); ?>;
+
 
 const friendList = document.getElementById('friend-list');
 
