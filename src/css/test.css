@@ -46,7 +46,7 @@
 
     /* スライドメニュー */
     .slide-menu {
-      background-color: rgba(46, 149, 222, 0.8);
+      background-color: rgb(46, 149, 222);
       position: fixed;
       top: 65px;
       width: 250px;
