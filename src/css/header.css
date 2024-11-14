@@ -76,6 +76,8 @@ header {
   border-radius: 5px;
   height: 30px;
   width: 35px;
+  display: block;
+  margin: auto;
 }
 
 .search1:hover {
@@ -86,6 +88,8 @@ header {
 .tbox {
   height: 25px;
   margin-left: 25px;
+  display: block;
+  margin: auto;
 }
 
 /* User Icon Styles */

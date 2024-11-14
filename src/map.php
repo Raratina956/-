@@ -73,7 +73,7 @@ unset($_SESSION['floor']['kai']);
         echo '<td class="block">';
         echo '<div style="display:inline-flex">';
 
-        // 位置取得 階のIDを取得
+        // 位置取得 階のIDを取得階
         $floorStmt = $pdo->prepare('select * 
                                   from Classroom                                    
                                   where classroom_floor=?');
@@ -165,8 +165,8 @@ unset($_SESSION['floor']['kai']);
         echo '</div>';
         echo '<form name="floor" action="floor.php" method="post">';
         echo '<input type="hidden" name="floor" value=', $i, '>';
-        // echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
-        echo '<td class="number">test</td>'; // 修正: buttonタグを閉じる位置
+        echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
+        // echo '<td class="number">test</td>'; // 修正: buttonタグを閉じる位置
         echo '</tr>';
         echo '</form>';
     }

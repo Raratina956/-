@@ -82,7 +82,7 @@ if (isset($_POST['logout'])) {
 
                 ?>
                 <form action="search.php" method="post">
-                    <input type="text" name="search" class="tbox">
+                    <input type="text" name="search" class="tbox"><br>
                     <input type="submit" class="search1" value="検索">
                 </form>
 
