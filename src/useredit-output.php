@@ -1,8 +1,7 @@
 <?php
-session_start();
-require 'db_connection.php';
-
+require 'parts/auto-login.php';
 try {
+    $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "接続エラー: " . $e->getMessage();
@@ -10,7 +9,7 @@ try {
 }
 
 // ユーザー情報を「$_SESSION['user']['user_id']」を使って持ってくる
-$users = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
+$users = $pdo->prepare('select * from Users where user_id=?');
 $users->execute([$_SESSION['user']['user_id']]);
 
 foreach ($users as $user) {
@@ -55,14 +54,6 @@ foreach ($users as $user) {
         $sql = 'UPDATE Icon SET icon_name = :icon_name WHERE user_id = :user_id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':icon_name', $uploadFile);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-    } else {
-        // ファイルが選択されていない場合、デフォルトのアイコンを設定
-        $defaultIcon = 'img/icon/default_icon.png';
-        $sql = 'UPDATE Icon SET icon_name = :icon_name WHERE user_id = :user_id';
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':icon_name', $defaultIcon);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
     }
