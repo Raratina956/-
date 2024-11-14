@@ -58,17 +58,23 @@ try {
         $file = $_FILES['icon_file'];
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $newFileName = uniqid() . '.jpg';  // 新しいファイル名を生成
+        $defaultImage = 'img/icon/default.jpg';  // デフォルトの画像パスを指定
 
-        if ($fileExtension === 'png') {
-            // PNG を JPG に変換
-            $img = imagecreatefrompng($file['tmp_name']);
-            $uploadFile = $uploadDir . $newFileName;
-            imagejpeg($img, $uploadFile, 90);  // 90は品質
-            imagedestroy($img);
+        if (isset($file) && $file['size'] > 0) {
+            if ($fileExtension === 'png') {
+                // PNG を JPG に変換
+                $img = imagecreatefrompng($file['tmp_name']);
+                $uploadFile = $uploadDir . $newFileName;
+                imagejpeg($img, $uploadFile, 90);  // 90は品質
+                imagedestroy($img);
+            } else {
+                // 直接アップロード
+                $uploadFile = $uploadDir . basename($file['name']);
+                move_uploaded_file($file['tmp_name'], $uploadFile);
+            }
         } else {
-            // 直接アップロード
-            $uploadFile = $uploadDir . basename($file['name']);
-            move_uploaded_file($file['tmp_name'], $uploadFile);
+            // ファイルが選択されていない場合、デフォルトの画像を使用
+            $uploadFile = $defaultImage;
         }
 
         // データベースの更新

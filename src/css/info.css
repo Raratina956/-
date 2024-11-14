@@ -3,27 +3,35 @@ body {
     background-image: url(../img/SpotLinkbg.png);
     /* text-align:center; */
 }
+
 table {
-    border-collapse: separate;
-    border-spacing: 0 15px; /* 行間を広げる */
-    width: 80%; /* テーブルの幅を調整 */
-    /* background-color: #f0f0f0; /* 背景色を変更 */
+    border-collapse: collapse; /* Collapses borders into a single border */
+    width: 80%; /* Adjusts table width */
+    margin: 0 auto; /* Centers the table */
+}
+
+tr {
+    border-bottom: 1px solid #333; /* Adds a horizontal line between rows */
+}
+
+td {
+    padding: 15px; /* Adds padding to each cell */
+    text-align: left; /* Aligns text to the left */
 }
 
 td:nth-child(2) {
-    padding-left: 15px; /* テキストに余白を追加 */
-    text-align: left; /* 左寄せに設定 */
+    padding-left: 15px; /* Adds padding to second column */
 }
 
-/* 詳細ボタンのスタイル */
-.info,.edit{
-    background-color: #4CAF50; /* ボタンの背景色 */
-    color: white; /* ボタンの文字色 */
-    padding: 8px 16px; /* ボタンのパディング */
-    margin: 4px 2px;
-    border: none; /* ボーダーを削除 */
-    border-radius: 8px; /* ボタンを丸くする */
-    cursor: pointer; /* ポインターを表示 */
+/* Button styles for info and edit buttons */
+.info, .edit {
+    background-color: #4CAF50; /* Button background color */
+    color: white; /* Button text color */
+    padding: 8px 16px; /* Button padding */
+    margin: 4px 2px; /* Button margin */
+    border: none; /* Removes border */
+    border-radius: 8px; /* Rounds button corners */
+    cursor: pointer; /* Changes cursor to pointer */
 }
 
 .large-text {
@@ -31,42 +39,41 @@ td:nth-child(2) {
 }
 
 .back-link {
+    position: fixed;
     bottom: 20px;
     left: 10px;
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
+    background-color: #5240f8;
+    color: white;
     padding: 8px 15px; /* 内側の余白 */
     border-radius: 5px; /* 角を丸く */
 }
 
 .back-link:hover{
-    background-color: rgb(54, 98, 216);
+    background-color: #2112af;
     color: white;
 }
 
-.usericon{
+.usericon {
     text-align: center;
     margin-left: 300px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.day{
+.day {
     text-align: center;
     margin-left: 300px;
     color: rgb(103, 102, 102);
 }
 
-.title{
+.title {
     font-size: 20px;
 }
 
-.usericon{
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .center{
+.center {
     text-align: center;
-  }
+}
