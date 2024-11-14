@@ -28,12 +28,11 @@ body{
     text-align: center;
 
 }
-
-.select{
-   display:inline-flex;
-   margin-left: 6920px;
-}
-
+ .select{
+     margin: auto 45%;
+     font-size: 17px;
+     /* display: block; */
+ }
 
 /* .map{
     border-radius: 10px; 
@@ -53,7 +52,7 @@ body{
     margin: 0 auto;
     padding: 0px;
     height: 85px;
-    width: 80%;
+    width: 71%;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -81,7 +80,7 @@ body{
     text-align: center;
     transition: background-color 0.3s ease;
     position: absolute;
-    right: 165px;
+    right: 260px;
     top: 160px;
 }
 
@@ -118,18 +117,18 @@ button {
 }
 
 .abst{
+    margin: auto 29%;
     background-color: rgb(177, 177, 177);
     color: black;
     border-radius: 5px; /* 角丸をつける */
-    padding: 1px 10px; /* ボタンの内側の余白 */
+    padding: 5px;
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
-    font-size: 15px; /* テキストのフォントサイズ */
+    margin-left: 40px;
     cursor: pointer; /* マウスポインタを変更する */
-    height: 40px;
+    
 }
 
 .abst:hover{
     background-color: rgb(160, 158, 158);
 }
-
