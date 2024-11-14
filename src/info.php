@@ -547,7 +547,7 @@ if ($list_raw) {
                 }
                 echo '</tr>';
                 echo '<tr>';
-                echo '<td class="day">', timeAgo($logtime), '</td>';
+                echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                 ?>
                 <form action="info_detail.php" method="post">
                     <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
