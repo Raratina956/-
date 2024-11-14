@@ -313,289 +313,301 @@ require 'header.php';
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
 <div class="center">
-<h1>お知らせ</h1>
-<?php
-// Announce_check参照
-$list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
-$list_sql->execute([$_SESSION['user']['user_id']]);
-$list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
-if ($list_raw) {
-    ?>
+    <h1>お知らせ</h1>
     <?php
-    // if (isset($message)) {
-    //     echo '<p>';
-    //     echo '<span>' . $message . '</span>';
-    //     echo '</p>';
-    // }
-    ?>
-    <form action="info.php" method="post">
-        <label>種別</label>
-        <select name="narrow">
-            <option value=0 selected>全て</option>
-            <option value=1>アナウンス</option>
-            <option value=2>位置情報</option>
-            <option value=3>チャット</option>
-        </select>
-        <label>ユーザー別</label>
-        <select name="n_user">
-            <option value=0 selected>全て</option>
-            <?php
-            $n_users = [];
-            foreach ($list_raw as $row) {
-                switch ($row['type']) {
-                    case 1:
-                        // アナウンス
-                        $n_announcement_id = $row['announcement_id'];
-                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                        $n_announce_s->execute([$n_announcement_id]);
-                        $n_announce_r = $n_announce_s->fetch();
-                        $n_send_person_id = $n_announce_r['send_person'];
-                        $n_users[] = $n_send_person_id;
-                        break;
-                    case 2:
-                        // 位置情報
-                        $n_current_location_id = $row['current_location_id'];
-                        $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                        $n_current_s->execute([$n_current_location_id]);
-                        $n_current_r = $n_current_s->fetch();
-                        $n_send_person_id = $n_current_r['user_id'];
-                        $n_users[] = $n_send_person_id;
-                        break;
-                    case 3:
-                        // チャット
-                        $n_message_id = $row['message_id'];
-                        $n_message_s = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                        $n_message_s->execute([$n_message_id]);
-                        $n_message_r = $n_message_s->fetch();
-                        $n_send_person_id = $n_message_r['send_id'];
-                        $n_users[] = $n_send_person_id;
-                        break;
-                    default:
-                        # code...
-                        break;
+    // Announce_check参照
+    $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
+    $list_sql->execute([$_SESSION['user']['user_id']]);
+    $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($list_raw) {
+        ?>
+        <?php
+        // if (isset($message)) {
+        //     echo '<p>';
+        //     echo '<span>' . $message . '</span>';
+        //     echo '</p>';
+        // }
+        ?>
+        <form action="info.php" method="post">
+            <label>種別</label>
+            <select name="narrow">
+                <option value=0 selected>全て</option>
+                <option value=1>アナウンス</option>
+                <option value=2>位置情報</option>
+                <option value=3>チャット</option>
+            </select>
+            <label>ユーザー別</label>
+            <select name="n_user">
+                <option value=0 selected>全て</option>
+                <?php
+                $n_users = [];
+                foreach ($list_raw as $row) {
+                    switch ($row['type']) {
+                        case 1:
+                            // アナウンス
+                            $n_announcement_id = $row['announcement_id'];
+                            $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+                            $n_announce_s->execute([$n_announcement_id]);
+                            $n_announce_r = $n_announce_s->fetch();
+                            $n_send_person_id = $n_announce_r['send_person'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        case 2:
+                            // 位置情報
+                            $n_current_location_id = $row['current_location_id'];
+                            $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                            $n_current_s->execute([$n_current_location_id]);
+                            $n_current_r = $n_current_s->fetch();
+                            $n_send_person_id = $n_current_r['user_id'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        case 3:
+                            // チャット
+                            $n_message_id = $row['message_id'];
+                            $n_message_s = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
+                            $n_message_s->execute([$n_message_id]);
+                            $n_message_r = $n_message_s->fetch();
+                            $n_send_person_id = $n_message_r['send_id'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
                 }
+                $uni_n_users = array_unique($n_users);
+                foreach ($uni_n_users as $n_user_r) {
+                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                    $user_sql->execute([$n_user_r]);
+                    $user_row = $user_sql->fetch();
+                    echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
+                    echo $n_user_r;
+                }
+                ?>
+            </select>
+            <input type="submit" value="検索" class="info">
+        </form>
+        <br>
+        <form action="info.php" method="post">
+            <?php
+            if (isset($_POST['narrow'])) {
+                echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+            } else {
+                echo '<input type="hidden" name="narrow" value=0>';
             }
-            $uni_n_users = array_unique($n_users);
-            foreach ($uni_n_users as $n_user_r) {
-                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $user_sql->execute([$n_user_r]);
-                $user_row = $user_sql->fetch();
-                echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
-                echo $n_user_r;
+            if (isset($_POST['n_user'])) {
+                echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+            } else {
+                echo '<input type="hidden" name="n_user" value=0>';
             }
             ?>
-        </select>
-        <input type="submit" value="検索" class="info">
-    </form>
-    <br>
-    <form action="info.php" method="post">
+            <input type="hidden" name="all_read">
+            <input type="submit" value="一括既読" class="info">
+        </form>
+        <form action="info.php" method="post" onsubmit="return confirmDelete()">
+            <?php
+            if (isset($_POST['narrow'])) {
+                echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+            } else {
+                echo '<input type="hidden" name="narrow" value=0>';
+            }
+            if (isset($_POST['n_user'])) {
+                echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+            } else {
+                echo '<input type="hidden" name="n_user" value=0>';
+            }
+            ?>
+            <input type="hidden" name="all_delete">
+            <input type="submit" value="一括削除" class="info">
+        </form>
         <?php
+        echo '<table>';
         if (isset($_POST['narrow'])) {
-            echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+            $narrow = $_POST['narrow'];
         } else {
-            echo '<input type="hidden" name="narrow" value=0>';
+            $narrow = 0;
         }
-        if (isset($_POST['n_user'])) {
-            echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
-        } else {
-            echo '<input type="hidden" name="n_user" value=0>';
+        usort($list_raw, function ($a, $b) {
+            // 各通知タイプに応じて送信時間またはログ時間を取得し、比較します
+            $time_a = 0;
+            $time_b = 0;
+
+            // 通知タイプに基づく時間取得（Announcement, Location, Message）
+            switch ($a['type']) {
+                case 1: // Announcement
+                    if (isset($a['sending_time'])) {
+                        $time_a = strtotime($a['sending_time']);
+                    }
+                    break;
+                case 2: // Location
+                    if (isset($a['logtime'])) {
+                        $time_a = strtotime($a['logtime']);
+                    }
+                    break;
+                case 3: // Message
+                    if (isset($a['message_time'])) {
+                        $time_a = strtotime($a['message_time']);
+                    }
+                    break;
+            }
+
+            switch ($b['type']) {
+                case 1: // Announcement
+                    if (isset($b['sending_time'])) {
+                        $time_b = strtotime($b['sending_time']);
+                    }
+                    break;
+                case 2: // Location
+                    if (isset($b['logtime'])) {
+                        $time_b = strtotime($b['logtime']);
+                    }
+                    break;
+                case 3: // Message
+                    if (isset($b['message_time'])) {
+                        $time_b = strtotime($b['message_time']);
+                    }
+                    break;
+            }
+
+            // 最新の時間が前に来るように比較
+            return $time_b - $time_a;
+        });
+
+        foreach ($list_raw as $row) {
+            switch ($row['type']) {
+                case 1:
+                    if ($narrow == 0 or $narrow == 1) {
+                        $announcement_id = $row['announcement_id'];
+                        $read_check = $row['read_check'];
+                        $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+                        $info_sql->execute([$announcement_id]);
+                        $info_row = $info_sql->fetch();
+                        $send_id = $info_row['send_person'];
+                        $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                        $user_sql->execute([$send_id]);
+                        $user_row = $user_sql->fetch();
+                        $send_name = $user_row['user_name'];
+                        $title = $info_row['title'];
+                        $content = $info_row['content'];
+                        $logtime = $info_row['sending_time'];
+                        if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                            if ($send_id != $_POST['n_user']) {
+                                continue 2; // 選択されたユーザー以外の通知はスキップ
+                            }
+                        }
+                        echo '<tr>';
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$send_id]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
+                        echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
+                        if ($read_check == 0) {
+                            echo '<td>未読</td>';
+                        }
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<td class="day">', timeAgo($logtime), '</td>';
+                        echo '<td class="title"> 件名：', $title, '</td>';
+                        ?>
+                        <form action="info_detail.php" method="post">
+                            <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                            <td><input type="submit" value="詳細" class="edit"></td>
+                        </form>
+                        <?php
+                    }
+                    break;
+                case 2:
+                    // 位置情報
+                    if ($narrow == 0 or $narrow == 2) {
+                        $current_location_id = $row['current_location_id'];
+                        $read_check = $row['read_check'];
+                        $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                        $info_sql->execute([$current_location_id]);
+                        $info_row = $info_sql->fetch();
+                        $send_id = $info_row['user_id'];
+                        $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                        $user_sql->execute([$send_id]);
+                        $user_row = $user_sql->fetch();
+                        $send_name = $user_row['user_name'];
+                        $logtime = $info_row['logtime'];
+                        if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                            if ($send_id != $_POST['n_user']) {
+                                continue 2; // 選択されたユーザー以外の通知はスキップ
+                            }
+                        }
+                        echo '<tr>';
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$send_id]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
+                        echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
+                        if ($read_check == 0) {
+                            echo '<td>未読</td>';
+                        }
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<td class="day">', timeAgo($logtime), '</td>';
+                        ?>
+                        <form action="info_detail.php" method="post">
+                            <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
+                            <td><input type="submit" value="詳細" class="edit"></td>
+                        </form>
+                        <?php
+                    }
+                    break;
+                case 3:
+                    $message_id = $row['message_id'];
+                    $read_check = $row['read_check'];
+                    $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
+                    $mess_sql->execute([$message_id]);
+                    $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+                    $send_id = $mess_row['send_id'];
+                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                    $user_sql->execute([$send_id]);
+                    $user_row = $user_sql->fetch();
+                    $sent_name = $user_row['user_name'];
+                    $logtime = $mess_row['message_time'];
+                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
+                        if ($send_id != $_POST['n_user']) {
+                            continue 2; // 選択されたユーザー以外の通知はスキップ
+                        }
+                    }
+                    echo '<tr>';
+                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                    $iconStmt->execute([$send_id]);
+                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                    echo '<td>
+                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                        </td>';
+                    echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
+                    if ($read_check == 0) {
+                        echo '<td>未読</td>';
+                    }
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td class="day">', timeAgo($logtime), '</td>';
+                    ?>
+                    <form action="info_detail.php" method="post">
+                        <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
+                        <td><input type="submit" value="詳細" class="edit"></td>
+                    </form>
+                    <?php
+                    break;
+                default:
+                    // echo 'その他';
+                    break;
+            }
         }
-        ?>
-        <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読" class="info">
-    </form>
-    <form action="info.php" method="post" onsubmit="return confirmDelete()">
-        <?php
-        if (isset($_POST['narrow'])) {
-            echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
-        } else {
-            echo '<input type="hidden" name="narrow" value=0>';
-        }
-        if (isset($_POST['n_user'])) {
-            echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
-        } else {
-            echo '<input type="hidden" name="n_user" value=0>';
-        }
-        ?>
-        <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除" class="info">
-    </form>
-    <?php
-    echo '<table>';
-    if (isset($_POST['narrow'])) {
-        $narrow = $_POST['narrow'];
+        echo '</table>';
     } else {
-        $narrow = 0;
+        echo 'お知らせがありません';
     }
-    // PHPで時間順にソートする
-    usort($list_raw, function ($a, $b) {
-        // 各通知タイプに応じて送信時間またはログ時間を取得し、比較します
-        $time_a = 0;
-        $time_b = 0;
-
-        // 通知タイプに基づく時間取得（Announcement, Location, Message）
-        switch ($a['type']) {
-            case 1: // Announcement
-                $time_a = strtotime($a['sending_time']);
-                break;
-            case 2: // Location
-                $time_a = strtotime($a['logtime']);
-                break;
-            case 3: // Message
-                $time_a = strtotime($a['message_time']);
-                break;
-        }
-
-        switch ($b['type']) {
-            case 1: // Announcement
-                $time_b = strtotime($b['sending_time']);
-                break;
-            case 2: // Location
-                $time_b = strtotime($b['logtime']);
-                break;
-            case 3: // Message
-                $time_b = strtotime($b['message_time']);
-                break;
-        }
-
-        // 最新の時間が前に来るように比較
-        return $time_b - $time_a;
-    });
-    foreach ($list_raw as $row) {
-        switch ($row['type']) {
-            case 1:
-                if ($narrow == 0 or $narrow == 1) {
-                    $announcement_id = $row['announcement_id'];
-                    $read_check = $row['read_check'];
-                    $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                    $info_sql->execute([$announcement_id]);
-                    $info_row = $info_sql->fetch();
-                    $send_id = $info_row['send_person'];
-                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                    $user_sql->execute([$send_id]);
-                    $user_row = $user_sql->fetch();
-                    $send_name = $user_row['user_name'];
-                    $title = $info_row['title'];
-                    $content = $info_row['content'];
-                    $logtime = $info_row['sending_time'];
-                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                        if ($send_id != $_POST['n_user']) {
-                            continue 2; // 選択されたユーザー以外の通知はスキップ
-                        }
-                    }
-                    echo '<tr>';
-                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$send_id]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                    echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
-                    if ($read_check == 0) {
-                        echo '<td>未読</td>';
-                    }
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td class="title"> 件名：', $title, '</td>';
-                    ?>
-                    <form action="info_detail.php" method="post">
-                        <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                        <td><input type="submit" value="詳細" class="edit"></td>
-                    </form>
-                    <?php
-                }
-                break;
-            case 2:
-                // 位置情報
-                if ($narrow == 0 or $narrow == 2) {
-                    $current_location_id = $row['current_location_id'];
-                    $read_check = $row['read_check'];
-                    $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                    $info_sql->execute([$current_location_id]);
-                    $info_row = $info_sql->fetch();
-                    $send_id = $info_row['user_id'];
-                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                    $user_sql->execute([$send_id]);
-                    $user_row = $user_sql->fetch();
-                    $send_name = $user_row['user_name'];
-                    $logtime = $info_row['logtime'];
-                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                        if ($send_id != $_POST['n_user']) {
-                            continue 2; // 選択されたユーザー以外の通知はスキップ
-                        }
-                    }
-                    echo '<tr>';
-                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$send_id]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                    echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
-                    if ($read_check == 0) {
-                        echo '<td>未読</td>';
-                    }
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<td class="day">', timeAgo($logtime), '</td>';
-                    ?>
-                    <form action="info_detail.php" method="post">
-                        <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td><input type="submit" value="詳細" class="edit"></td>
-                    </form>
-                    <?php
-                }
-                break;
-            case 3:
-                $message_id = $row['message_id'];
-                $read_check = $row['read_check'];
-                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                $mess_sql->execute([$message_id]);
-                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
-                $send_id = $mess_row['send_id'];
-                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $user_sql->execute([$send_id]);
-                $user_row = $user_sql->fetch();
-                $sent_name = $user_row['user_name'];
-                $logtime = $mess_row['message_time'];
-                if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                    if ($send_id != $_POST['n_user']) {
-                        continue 2; // 選択されたユーザー以外の通知はスキップ
-                    }
-                }
-                echo '<tr>';
-                $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                $iconStmt->execute([$send_id]);
-                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
-                if ($read_check == 0) {
-                    echo '<td>未読</td>';
-                }
-                echo '</tr>';
-                echo '<tr>';
-                echo '<td class="day">', timeAgo($logtime), '</td>';
-                ?>
-                <form action="info_detail.php" method="post">
-                    <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
-                    <td><input type="submit" value="詳細" class="edit"></td>
-                </form>
-                <?php
-                break;
-            default:
-                // echo 'その他';
-                break;
-        }
-    }
-    echo '</table>';
-} else {
-    echo 'お知らせがありません';
-}
-?>
-<a href="map.php" class="back-link">マップへ</a>
+    ?>
+    <a href="map.php" class="back-link">マップへ</a>
 </div>
 <script>
     function confirmDelete() {
