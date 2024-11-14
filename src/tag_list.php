@@ -53,7 +53,7 @@ if (isset($_POST['tag_search'])) {
         $search_sql->execute([$tag_search]);
         $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
         $judge = 0;
-        echo '<center>【'$tag_search,'】の検索結果</center>'
+        echo '<center>【'$tag_search,'】の検索結果</center>';
     }
 
 } else {
