@@ -420,142 +420,163 @@ if ($list_raw) {
         <input type="submit" value="一括削除" class="info">
     </form>
     <?php
-    echo '<table>';
-    if (isset($_POST['narrow'])) {
-        $narrow = $_POST['narrow'];
-    } else {
-        $narrow = 0;
+// データベースから通知の情報を取得（$list_rawに格納されていると仮定）
+$list_raw = []; // 例として空の配列ですが、実際にはデータベースから取得します。
+
+// ここで実際のデータ取得処理があるはずです。
+// $list_raw = $pdo->query("SELECT * FROM Notification JOIN ...")->fetchAll();
+
+// 通知を時間順に並べ替える
+usort($list_raw, function ($a, $b) {
+    // 各通知の時間を取得（通知タイプに応じて処理）
+    $time_a = 0;
+    $time_b = 0;
+
+    // 通知タイプに基づく時間取得
+    switch ($a['type']) {
+        case 1: // Announcement
+            $time_a = strtotime($a['sending_time']);
+            break;
+        case 2: // Location
+            $time_a = strtotime($a['logtime']);
+            break;
+        case 3: // Message
+            $time_a = strtotime($a['message_time']);
+            break;
     }
-    foreach ($list_raw as $row) {
-        switch ($row['type']) {
-            case 1:
-                if ($narrow == 0 or $narrow == 1) {
-                    $announcement_id = $row['announcement_id'];
-                    $read_check = $row['read_check'];
-                    $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                    $info_sql->execute([$announcement_id]);
-                    $info_row = $info_sql->fetch();
-                    $send_id = $info_row['send_person'];
-                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                    $user_sql->execute([$send_id]);
-                    $user_row = $user_sql->fetch();
-                    $send_name = $user_row['user_name'];
-                    $title = $info_row['title'];
-                    $content = $info_row['content'];
-                    $logtime = $info_row['sending_time'];
-                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                        if ($send_id != $_POST['n_user']) {
-                            continue 2; // 選択されたユーザー以外の通知はスキップ
-                        }
-                    }
-                    echo '<tr>';
-                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$send_id]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                    echo '<td rowspan="1">', $send_name, 'さんから、アナウンスが届きました</td>';
-                    if ($read_check == 0) {
-                        echo '<td>未読</td>';
-                    }
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td class="title"> 件名：', $title, '</td>';
-                    ?>
-                    <form action="info_detail.php" method="post">
-                        <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                        <td><input type="submit" value="詳細" class="edit"></td>
-                    </form>
-                    <?php
-                }
-                break;
-            case 2:
-                // 位置情報
-                if ($narrow == 0 or $narrow == 2) {
-                    $current_location_id = $row['current_location_id'];
-                    $read_check = $row['read_check'];
-                    $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                    $info_sql->execute([$current_location_id]);
-                    $info_row = $info_sql->fetch();
-                    $send_id = $info_row['user_id'];
-                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                    $user_sql->execute([$send_id]);
-                    $user_row = $user_sql->fetch();
-                    $send_name = $user_row['user_name'];
-                    $logtime = $info_row['logtime'];
-                    if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                        if ($send_id != $_POST['n_user']) {
-                            continue 2; // 選択されたユーザー以外の通知はスキップ
-                        }
-                    }
-                    echo '<tr>';
-                    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$send_id]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                    echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
-                    if ($read_check == 0) {
-                        echo '<td>未読</td>';
-                    }
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<td class="day">', timeAgo($logtime), '</td>';
-                    ?>
-                    <form action="info_detail.php" method="post">
-                        <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                        <td><input type="submit" value="詳細" class="edit"></td>
-                    </form>
-                    <?php
-                }
-                break;
-            case 3:
-                $message_id = $row['message_id'];
-                $read_check = $row['read_check'];
-                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                $mess_sql->execute([$message_id]);
-                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
-                $send_id = $mess_row['send_id'];
-                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $user_sql->execute([$send_id]);
-                $user_row = $user_sql->fetch();
-                $sent_name = $user_row['user_name'];
-                $logtime = $mess_row['message_time'];
-                if (isset($_POST['n_user']) && $_POST['n_user'] != 0) {
-                    if ($send_id != $_POST['n_user']) {
-                        continue 2; // 選択されたユーザー以外の通知はスキップ
-                    }
-                }
-                echo '<tr>';
-                $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                $iconStmt->execute([$send_id]);
-                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
-                if ($read_check == 0) {
-                    echo '<td>未読</td>';
-                }
-                echo '</tr>';
-                echo '<tr>';
-                echo '<td class="day">', timeAgo($logtime), '</td>';
-                ?>
-                <form action="info_detail.php" method="post">
-                    <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
-                    <td><input type="submit" value="詳細" class="edit"></td>
-                </form>
-                <?php
-                break;
-            default:
-                // echo 'その他';
-                break;
-        }
+
+    switch ($b['type']) {
+        case 1: // Announcement
+            $time_b = strtotime($b['sending_time']);
+            break;
+        case 2: // Location
+            $time_b = strtotime($b['logtime']);
+            break;
+        case 3: // Message
+            $time_b = strtotime($b['message_time']);
+            break;
     }
-    echo '</table>';
+
+    // 新しい時間が先に来るように比較（降順）
+    return $time_b - $time_a;
+});
+
+// 通知を時間順に並べ替えた後、表示部分を記述
+echo '<table>';
+foreach ($list_raw as $row) {
+    switch ($row['type']) {
+        case 1: // アナウンスメント
+            $announcement_id = $row['announcement_id'];
+            $read_check = $row['read_check'];
+            $info_sql = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+            $info_sql->execute([$announcement_id]);
+            $info_row = $info_sql->fetch();
+            $send_id = $info_row['send_person'];
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+            $user_sql->execute([$send_id]);
+            $user_row = $user_sql->fetch();
+            $send_name = $user_row['user_name'];
+            $title = $info_row['title'];
+            $content = $info_row['content'];
+            $logtime = $info_row['sending_time'];
+            
+            echo '<tr>';
+            $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id=?');
+            $iconStmt->execute([$send_id]);
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+            echo '<td>
+                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                  </td>';
+            echo '<td rowspan="1">', $send_name, 'さんからアナウンスが届きました</td>';
+            if ($read_check == 0) {
+                echo '<td>未読</td>';
+            }
+            echo '</tr>';
+            echo '<tr>';
+            echo '<td class="day">', timeAgo($logtime), '</td>';
+            echo '<td class="title"> 件名：', $title, '</td>';
+            ?>
+            <form action="info_detail.php" method="post">
+                <input type="hidden" name="announcement_id" value="<?php echo $announcement_id; ?>">
+                <td><input type="submit" value="詳細" class="edit"></td>
+            </form>
+            <?php
+            break;
+        case 2: // 位置情報
+            $current_location_id = $row['current_location_id'];
+            $read_check = $row['read_check'];
+            $info_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+            $info_sql->execute([$current_location_id]);
+            $info_row = $info_sql->fetch();
+            $send_id = $info_row['user_id'];
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+            $user_sql->execute([$send_id]);
+            $user_row = $user_sql->fetch();
+            $send_name = $user_row['user_name'];
+            $logtime = $info_row['logtime'];
+            
+            echo '<tr>';
+            $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id=?');
+            $iconStmt->execute([$send_id]);
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+            echo '<td>
+                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                  </td>';
+            echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
+            if ($read_check == 0) {
+                echo '<td>未読</td>';
+            }
+            echo '</tr>';
+            echo '<tr>';
+            echo '<td class="day">', timeAgo($logtime), '</td>';
+            ?>
+            <form action="info_detail.php" method="post">
+                <input type="hidden" name="current_location_id" value="<?php echo $current_location_id; ?>">
+                <td><input type="submit" value="詳細" class="edit"></td>
+            </form>
+            <?php
+            break;
+        case 3: // メッセージ
+            $message_id = $row['message_id'];
+            $read_check = $row['read_check'];
+            $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
+            $mess_sql->execute([$message_id]);
+            $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
+            $send_id = $mess_row['send_id'];
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+            $user_sql->execute([$send_id]);
+            $user_row = $user_sql->fetch();
+            $sent_name = $user_row['user_name'];
+            $logtime = $mess_row['message_time'];
+            
+            echo '<tr>';
+            $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id=?');
+            $iconStmt->execute([$send_id]);
+            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+            echo '<td>
+                    <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
+                  </td>';
+            echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
+            if ($read_check == 0) {
+                echo '<td>未読</td>';
+            }
+            echo '</tr>';
+            echo '<tr>';
+            echo '<td class="day">', timeAgo($logtime), '</td>';
+            ?>
+            <form action="info_detail.php" method="post">
+                <input type="hidden" name="message_id" value="<?php echo $message_id; ?>">
+                <td><input type="submit" value="詳細" class="edit"></td>
+            </form>
+            <?php
+            break;
+        default:
+            // その他
+            break;
+    }
+}
+echo '</table>';
+
 } else {
     echo 'お知らせがありません';
 }
