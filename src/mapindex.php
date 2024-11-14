@@ -40,6 +40,8 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div id="sidebar">
+<button id="update-location-btn">現在地を更新</button>
+
     <h2>友達一覧</h2>
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
@@ -92,63 +94,68 @@ otherUsers.forEach(user => {
 
 
 // 現在地を取得し、自分のマーカーを表示
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-        const userLocation = [position.coords.longitude, position.coords.latitude];
+document.getElementById('update-location-btn').addEventListener('click', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const userLocation = [position.coords.longitude, position.coords.latitude];
 
-        map.setCenter(userLocation);
+            // マップの中心を現在地に設定
+            map.setCenter(userLocation);
 
-        const myMarkerElement = document.createElement('div');
-        myMarkerElement.className = 'marker';
-        myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+            // 現在地にマーカーを追加
+            const myMarkerElement = document.createElement('div');
+            myMarkerElement.className = 'marker';
+            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
 
-        new mapboxgl.Marker(myMarkerElement)
-            .setLngLat(userLocation)
-            .setPopup(new mapboxgl.Popup({ offset: 25 })
-                .setHTML('<div>あなたの現在地です</div>'))
-            .addTo(map);
-
-        // 現在地をサーバーに送信
-        fetch('save-location.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: "<?php echo $partner_id; ?>",
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('位置情報が保存されました:', data);
-        })
-        .catch(error => {
-            console.error('位置情報の保存に失敗しました:', error);
-        });
-
-        // 他のユーザーのマーカーを表示
-        otherUsers.forEach(user => {
-            const markerElement = document.createElement('div');
-            markerElement.className = 'marker';
-            markerElement.style.backgroundImage = `url(${user.icon_name})`;
-
-            const userPosition = [user.longitude, user.latitude];
-            
-            new mapboxgl.Marker(markerElement)
-                .setLngLat(userPosition)
+            new mapboxgl.Marker(myMarkerElement)
+                .setLngLat(userLocation)
                 .setPopup(new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<div>ユーザー名: ${user.name}</div>`))
+                    .setHTML('<div>あなたの現在地です</div>'))
                 .addTo(map);
-        });
 
-    }, error => {
-        console.error('現在地を取得できませんでした:', error);
-    });
-} else {
-    alert("Geolocationがサポートされていません");
-}
+            // 現在地をサーバーに送信
+            fetch('save-location.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: "<?php echo $partner_id; ?>",
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('位置情報が保存されました:', data);
+            })
+            .catch(error => {
+                console.error('位置情報の保存に失敗しました:', error);
+            });
+
+            // 他のユーザーのマーカーを表示
+            otherUsers.forEach(user => {
+                const markerElement = document.createElement('div');
+                markerElement.className = 'marker';
+                markerElement.style.backgroundImage = `url(${user.icon_name})`;
+
+                const userPosition = [user.longitude, user.latitude];
+                
+                new mapboxgl.Marker(markerElement)
+                    .setLngLat(userPosition)
+                    .setPopup(new mapboxgl.Popup({ offset: 25 })
+                        .setHTML(`<div>ユーザー名: ${user.name}</div>`))
+                    .addTo(map);
+            });
+
+        }, error => {
+            console.error('現在地を取得できませんでした:', error);
+        });
+    } else {
+        alert("Geolocationがサポートされていません");
+    }
+});
+
 
 </script>
 
