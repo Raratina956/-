@@ -1,7 +1,7 @@
 body {
     padding-top: 120px;
     background-image: url(../img/SpotLinkbg.png);
-    text-align:center;
+    /* text-align:center; */
 }
 table {
     border-collapse: separate;
@@ -65,4 +65,8 @@ td:nth-child(2) {
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .center{
+    text-align: center;
   }

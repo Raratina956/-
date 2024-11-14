@@ -312,6 +312,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
+<div class="center">
 <h1>お知らせ</h1>
 <?php
 // Announce_check参照
@@ -426,6 +427,40 @@ if ($list_raw) {
     } else {
         $narrow = 0;
     }
+    // PHPで時間順にソートする
+    usort($list_raw, function ($a, $b) {
+        // 各通知タイプに応じて送信時間またはログ時間を取得し、比較します
+        $time_a = 0;
+        $time_b = 0;
+
+        // 通知タイプに基づく時間取得（Announcement, Location, Message）
+        switch ($a['type']) {
+            case 1: // Announcement
+                $time_a = strtotime($a['sending_time']);
+                break;
+            case 2: // Location
+                $time_a = strtotime($a['logtime']);
+                break;
+            case 3: // Message
+                $time_a = strtotime($a['message_time']);
+                break;
+        }
+
+        switch ($b['type']) {
+            case 1: // Announcement
+                $time_b = strtotime($b['sending_time']);
+                break;
+            case 2: // Location
+                $time_b = strtotime($b['logtime']);
+                break;
+            case 3: // Message
+                $time_b = strtotime($b['message_time']);
+                break;
+        }
+
+        // 最新の時間が前に来るように比較
+        return $time_b - $time_a;
+    });
     foreach ($list_raw as $row) {
         switch ($row['type']) {
             case 1:
@@ -561,6 +596,7 @@ if ($list_raw) {
 }
 ?>
 <a href="map.php" class="back-link">マップへ</a>
+</div>
 <script>
     function confirmDelete() {
         return confirm("本当に削除しますか？");
