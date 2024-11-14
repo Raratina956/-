@@ -22,41 +22,15 @@
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
+// PHPからJavaScriptに変数を渡す
+const iconUrl = <?php echo json_encode($iconUrl); ?>;
+const otherUsers = <?php echo json_encode($allLocations); ?>;
+
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [139.6917, 35.6895],
     zoom: 10
-});
-
-// 他のユーザーの位置情報を取得
-const otherUsers = <?php echo json_encode($allLocations); ?>;
-
-// 友達一覧を作成
-const friendList = document.getElementById('friend-list');
-otherUsers.forEach(user => {
-    const listItem = document.createElement('li');
-    listItem.className = 'friend-item';
-    
-    // アイコンと名前を表示
-    const userIcon = document.createElement('img');
-    userIcon.src = user.icon_name;
-    const userName = document.createElement('span');
-    userName.textContent = user.user_name;
-
-    listItem.appendChild(userIcon);
-    listItem.appendChild(userName);
-
-    listItem.addEventListener('click', () => {
-        const userPosition = [user.longitude, user.latitude];
-        map.flyTo({ center: userPosition, zoom: 15 });
-        new mapboxgl.Popup()
-            .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-            .addTo(map);
-    });
-
-    friendList.appendChild(listItem);
 });
 
 // 自分のマーカーを管理する変数
@@ -76,7 +50,7 @@ function updateLocation() {
             } else {
                 const myMarkerElement = document.createElement('div');
                 myMarkerElement.className = 'marker';
-                myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+                myMarkerElement.style.backgroundImage = `url(${iconUrl})`; // iconUrlを直接使用
 
                 myMarker = new mapboxgl.Marker(myMarkerElement)
                     .setLngLat(userLocation)
@@ -130,6 +104,3 @@ otherUsers.forEach(user => {
 });
 
 </script>
-
-</body>
-</html>
