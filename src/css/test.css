@@ -46,7 +46,7 @@
 
     /* スライドメニュー */
     .slide-menu {
-      background-color: rgba(46, 149, 222, 0.8);
+      background-color: rgb(46, 149, 222);
       position: fixed;
       top: 65px;
       width: 250px;
@@ -90,10 +90,10 @@
     .slide-menu li {
       height: auto;
       color: #fff;
-      line-height: 2.5;
+      line-height: 2.2;
       text-align: center;
       list-style: none;
-      font-size: 18px;
+      font-size: 14.4px;
       
     }
 
@@ -122,4 +122,5 @@
       transform: translateX(0);
       margin-top: 35px;
     }
+    
   }
