@@ -428,7 +428,7 @@ if ($list_raw) {
     }
 
     // 既存のリスト取得コード（例: $list_raw = 既存のデータ取得部分）
-    $list_raw = $pdo->query('SELECT * FROM Notifications')->fetchAll(PDO::FETCH_ASSOC);
+    $list_raw = $pdo->query('SELECT * FROM Notification')->fetchAll(PDO::FETCH_ASSOC);
 
     // PHPで受信時間順に並べ替え（降順）
     usort($list_raw, function ($a, $b) {
