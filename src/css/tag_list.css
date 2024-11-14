@@ -35,12 +35,13 @@ th {
     padding: 6px 2px; /* Matches td padding */
 }
 
-.join_tag{
-    font-size: 16px; /* フォントサイズ */
+.join_tag {
+    font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #6de5ff;
+    color: #4700c6;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
 .join_tag:hover{
