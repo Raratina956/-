@@ -70,7 +70,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 $now_time,
                 $row['user_id']
             ]);
-
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
+            header("Location: $redirect_url");
+            exit();
+            }
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
             header("Location: $redirect_url");
             exit();

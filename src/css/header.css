@@ -42,23 +42,25 @@ header {
   width: 100%;
   height: auto;
   max-width: 329px;
-  top: 43px;
+  top: 63px;
 }
 
 .icon {
   margin-left: 38%;
+  display: inline-block;
 }
 
 .bell {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: -27px;
+  top: -18px;
   text-align: right;
-  right: 110px;
+  right: -70px;
   margin-left: 860px;
   width: auto;
   height: 60px;
+  display: inline-block;
 }
 
 .bell img {
@@ -73,7 +75,9 @@ header {
   color: black;
   border-radius: 5px;
   height: 30px;
-  width: 35px;
+  width: 40px;
+  display: block;
+  margin: auto;
 }
 
 .search1:hover {
@@ -84,6 +88,8 @@ header {
 .tbox {
   height: 25px;
   margin-left: 25px;
+  display: block;
+  margin: auto;
 }
 
 /* User Icon Styles */
@@ -92,4 +98,24 @@ header {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.header-area{
+  position: relative;
+  z-index: -1000;
+}
+
+.right-elements{
+  position: relative;
+  z-index: -1000;
+  display: inline-block;
+}
+
+.header-container{
+  position: relative;
+  z-index: -1000;
+}
+
+.bell-icon{
+  display: inline-block;
 }

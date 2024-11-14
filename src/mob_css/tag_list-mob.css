@@ -22,7 +22,8 @@ th{
 .join_tag {
     font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc;
+    background-color: #6de5ff;
+    color: #4700c6;
     padding: 8px 15px;
     border-radius: 5px;
 }
@@ -66,15 +67,16 @@ th{
     position: static;
     /* bottom: 20px; */
     left: 10px;
-    font-size: 16px;
+    font-size: 13px;
     text-decoration: none;
-    background-color: #a0eefc;
-    padding: 8px 15px;
+    background-color: #5240f8;
+    color: white;
+    padding: 8px 10px;
     border-radius: 5px;
 }
 
 .back-link:hover {
-    background-color: rgb(54, 98, 216);
+    background-color: #2112af;
     color: white;
 }
 

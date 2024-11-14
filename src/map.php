@@ -25,7 +25,7 @@ unset($_SESSION['floor']['kai']);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
-    echo '<div style="display:inline-flex;margin-left: 610px";>';
+    echo '<div class="select">';
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no';
     echo '<select name="favorite" class="list">';
@@ -66,14 +66,14 @@ unset($_SESSION['floor']['kai']);
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
 
     //  map
-    echo '<table>';
+    echo '<table class="table">';
     for ($i = 7; $i > 0; $i--) {
         echo '<tr>';
 
         echo '<td class="block">';
         echo '<div style="display:inline-flex">';
 
-        // 位置取得 階のIDを取得
+        // 位置取得 階のIDを取得階
         $floorStmt = $pdo->prepare('select * 
                                   from Classroom                                    
                                   where classroom_floor=?');
@@ -133,7 +133,7 @@ unset($_SESSION['floor']['kai']);
                     }
                 }
 
-                if ($j > 7) {
+                if ($j > 6) {
                     // 7以上は表示しない
                     echo '<form action="floor.php" method="post">';
                     echo '<input type="hidden" name="floor" value=', $i, '>';
@@ -166,6 +166,7 @@ unset($_SESSION['floor']['kai']);
         echo '<form name="floor" action="floor.php" method="post">';
         echo '<input type="hidden" name="floor" value=', $i, '>';
         echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
+        // echo '<td class="number">test</td>'; // 修正: buttonタグを閉じる位置
         echo '</tr>';
         echo '</form>';
     }

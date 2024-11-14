@@ -89,7 +89,7 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div style="display:inline-flex;">
+        <div style="display:inline-flex;/* text-align: center; */position: relative;left: 145px;">
         <ul class="ul">
         <?php
         // 現在の位置情報を取得するクエリ
@@ -239,6 +239,12 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -246,8 +252,8 @@ if ($update_id == 1) {
             
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
+                                    <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
+                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
                                   </li>';
                         }
                     } else {
@@ -271,6 +277,11 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -279,7 +290,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
+                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
                                 </li>';
                         }
                     } else {
@@ -304,6 +315,11 @@ if ($update_id == 1) {
                     if ($usersList) {
                         // 初期表示、全件表示
                         foreach($usersList as $user) {
+                            // ユーザー情報を持ってくる
+                            $members = $pdo->prepare('select * from Users where user_id=?');
+                            $members->execute([$user['user_id']]);
+                            $member = $members->fetch(PDO::FETCH_ASSOC);
+
                             // アイコン情報を持ってくる
                             $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                             $iconStmt->execute([$user['user_id']]);
@@ -311,8 +327,8 @@ if ($update_id == 1) {
                 
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
+                                    <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
                                   </li>';
                         }
                     } else {
@@ -337,6 +353,11 @@ if ($update_id == 1) {
                 if ($usersList) {
                     // 初期表示、全件表示
                     foreach($usersList as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+                    
                         // アイコン情報を持ってくる
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$user['user_id']]);

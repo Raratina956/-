@@ -45,7 +45,7 @@ if (isset($_POST['logout'])) {
             $list_sql->execute([$_SESSION['user']['user_id'], 0]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <a href="info.php">
+            <a href="info.php" class="bell-icon">
                 <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
             </a>
 
@@ -82,7 +82,7 @@ if (isset($_POST['logout'])) {
 
                 ?>
                 <form action="search.php" method="post">
-                    <input type="text" name="search" class="tbox">
+                    <input type="text" name="search" class="tbox"><br>
                     <input type="submit" class="search1" value="検索">
                 </form>
 

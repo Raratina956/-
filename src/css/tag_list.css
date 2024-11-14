@@ -1,5 +1,5 @@
 body{
-    text-align: center;
+    /* text-align: center; */
     padding-top: 130px;
     background-image: url(../img/SpotLinkbg.png);
     background-position: center;
@@ -7,6 +7,7 @@ body{
     background-size: cover;
     background-color: #464646;
     background-attachment: fixed;
+    padding-bottom: 50px;
 }
 
 h1{
@@ -34,12 +35,13 @@ th {
     padding: 6px 2px; /* Matches td padding */
 }
 
-.join_tag{
-    font-size: 16px; /* フォントサイズ */
+.join_tag {
+    font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #6de5ff;
+    color: #4700c6;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
 .join_tag:hover{
@@ -83,13 +85,14 @@ th {
     left: 10px;
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
+    background-color: #5240f8;
+    color: white;
     padding: 8px 15px; /* 内側の余白 */
     border-radius: 5px; /* 角を丸く */
 }
 
 .back-link:hover{
-    background-color: rgb(54, 98, 216);
+    background-color: #2112af;
     color: white;
 }
 
@@ -128,4 +131,8 @@ th {
 .joined:hover{
     background-color: rgb(63, 225, 95);
     color: black;
+}
+
+.center{
+    text-align: center;
 }

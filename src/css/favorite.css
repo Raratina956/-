@@ -1,5 +1,5 @@
 body{
-    text-align: center;
+    /* text-align: center; */
     padding-top: 130px;
     background-image: url(../img/SpotLinkbg.png);
     background-position: center;
@@ -10,6 +10,7 @@ body{
 }
 
 h1{
+    text-align: center;
     margin-top: auto;
 }
 
@@ -21,13 +22,16 @@ table{
 
 .back-link {
     position: fixed;
-    bottom: 20px;
-    left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    left: 0%;
+    /* margin-top: 50px; */
+    /* left: 10%; */
+    margin: 20px;
+    font-size: 16px;
     text-decoration: none;
-    background-image: url(../img/SpotLinkbg.png);/* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #5240f8;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
 .back-link:hover{

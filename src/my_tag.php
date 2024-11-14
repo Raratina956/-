@@ -48,13 +48,15 @@ require 'header.php';
     <link rel="stylesheet" type="text/css" href="mob_css/my_tag-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/my_tag.css" media="screen and (min-width: 1280px)">
 </head>
-<h1>ｍｙタグ一覧</h1>
-<h2>タグ作成</h2>
-<form action="my_tag.php" method="post">
-    <span>タグ名：</span>
-    <input type="name" name="tag_name" class="textbox">
-    <input type="submit" value="作成" class="button_in">
-</form>
+<div class="center">
+    <h1>ｍｙタグ一覧</h1>
+    <h2>タグ作成</h2>
+    <form action="my_tag.php" method="post">
+        <span>タグ名：</span>
+        <input type="name" name="tag_name" class="textbox">
+        <input type="submit" value="作成" class="button_in">
+    </form>
+</div>
 <?php
 function limitDisplay($text, $limit) {
     // Check if the text exceeds the limit
