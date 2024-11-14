@@ -55,6 +55,8 @@
             border-radius: 5px;
             height: 30px;
             width: 45px;
+            display: block;
+            margin: auto;
           }
         
       .search1:hover{
@@ -65,9 +67,10 @@
       .tbox{
             height: 25px;
             margin-left: 25px;
+            display: block;
+            margin: auto;
       }
       .usericon2{
-
             width: 90px;
             height: 90px;
             border-radius: 50%;
