@@ -119,7 +119,9 @@
             echo '<div class="profile-container">';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
+            echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=',$_GET['user_id'],'">';
             echo '<img src="img\chat.png" width="85%" height="100% class="chat">';
+            echo '</a>';
             echo '</button>';
 
             //お気に入りボタン表示
