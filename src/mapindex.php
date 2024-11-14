@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'db-connect.php';
+
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -35,18 +36,18 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="css/mapindex.css">
-    
 </head>
 <body>
 
 <div id="sidebar">
-<button id="update-location-btn">現在地を更新</button>
+    <button id="update-location-btn">現在地を更新</button>
 
     <h2>友達一覧</h2>
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
     </ul>
 </div>
+
 <div id='map'></div>
 
 <script>
@@ -72,7 +73,7 @@ otherUsers.forEach(user => {
     const userIcon = document.createElement('img');
     userIcon.src = user.icon_name; // アイコン画像
     const userName = document.createElement('span');
-    userName.textContent = user.user_name; // ユーザー名を修正
+    userName.textContent = user.user_name; // ユーザー名
 
     listItem.appendChild(userIcon);
     listItem.appendChild(userName);
@@ -91,7 +92,6 @@ otherUsers.forEach(user => {
 
     friendList.appendChild(listItem);
 });
-
 
 // 現在地を取得し、自分のマーカーを表示
 document.getElementById('update-location-btn').addEventListener('click', () => {
@@ -144,7 +144,7 @@ document.getElementById('update-location-btn').addEventListener('click', () => {
                 new mapboxgl.Marker(markerElement)
                     .setLngLat(userPosition)
                     .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML(`<div>ユーザー名: ${user.name}</div>`))
+                        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)) // ユーザー名を修正
                     .addTo(map);
             });
 
@@ -155,8 +155,6 @@ document.getElementById('update-location-btn').addEventListener('click', () => {
         alert("Geolocationがサポートされていません");
     }
 });
-
-
 </script>
 
 </body>
