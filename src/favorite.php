@@ -23,7 +23,7 @@ require 'header.php';
     <link rel="stylesheet" type="text/css" href="mob_css/favorite-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/fetch_favorites.css" media="screen and (min-width: 1280px)">
 </head>
-<h1>お気に入り</h1>
+<h1 class="okini">お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
         <th id="allTab" class="selected" onclick="fetchData('all'); selectTab(this)">全て</th>
