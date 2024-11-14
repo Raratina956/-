@@ -89,7 +89,7 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div style="display:inline-flex;">
+        <div style="display:inline-flex;/* text-align: center; */position: relative;left: 145px;">
         <ul class="ul">
         <?php
         // 現在の位置情報を取得するクエリ
