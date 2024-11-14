@@ -79,9 +79,10 @@
 
   .slide-menu li {
     color: #fff;
-    line-height: 2.5;
+    line-height: 2.2;
     text-align: center;
     list-style: none;
+    font-size: 15px;
   }
 
   /* ログアウトの赤文字 */

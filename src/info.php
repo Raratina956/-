@@ -312,6 +312,7 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
+<div class="center">
 <h1>お知らせ</h1>
 <?php
 // Announce_check参照
@@ -426,6 +427,10 @@ if ($list_raw) {
     } else {
         $narrow = 0;
     }
+
+
+
+
     foreach ($list_raw as $row) {
         switch ($row['type']) {
             case 1:
@@ -561,6 +566,7 @@ if ($list_raw) {
 }
 ?>
 <a href="map.php" class="back-link">マップへ</a>
+</div>
 <script>
     function confirmDelete() {
         return confirm("本当に削除しますか？");

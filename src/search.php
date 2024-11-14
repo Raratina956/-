@@ -65,8 +65,8 @@ if ($kinds == "a" || $kinds == "t") {
     }
 }
 ?>
-
-<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="mob_css/search-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/search.css" media="screen and (min-width: 1280px)">
 <main>
     <!-- Search Form -->
     <form action="search.php" method="post">

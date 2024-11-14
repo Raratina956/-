@@ -53,7 +53,7 @@ if (isset($_POST['tag_search'])) {
         $search_sql->execute([$tag_search]);
         $results = $search_sql->fetchAll(PDO::FETCH_ASSOC);
         $judge = 0;
-        echo $tag_search;
+        echo '<center>【'$tag_search,'】の検索結果</center>';
     }
 
 } else {
@@ -108,7 +108,7 @@ foreach ($results as $row) {
     </table>
     <?php
 } else {
-    echo 'タグがありません';
+    echo '<br><center>タグがありません</center>';
     echo '<br><br><br>';
     echo '<a href="map.php" class="back-link">マップへ</a>';
 }
