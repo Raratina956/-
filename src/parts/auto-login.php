@@ -1,6 +1,9 @@
 <?php
 ob_start();
-session_start();
+$current_file = basename(__FILE__);
+if (!($current_file == "room.php")) {
+    session_start();
+}
 require 'parts/db-connect.php';
 
 // 自動ログイン処理開始
