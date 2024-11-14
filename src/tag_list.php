@@ -108,7 +108,7 @@ foreach ($results as $row) {
     </table>
     <?php
 } else {
-    echo 'タグがありません';
+    echo '<center>タグがありません</center>';
     echo '<br><br><br>';
     echo '<a href="map.php" class="back-link">マップへ</a>';
 }
