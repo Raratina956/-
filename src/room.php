@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'parts/auto-login.php';
 require 'header.php'; // ヘッダー読み込み
 
