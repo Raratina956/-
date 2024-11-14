@@ -80,7 +80,7 @@
 
     /* メニューリスト */
     .slide-menu ul {
-      padding-top: 10px;
+      padding-top: 3px;
       height: 100%;
       list-style: none;
       overflow-y: scroll;
