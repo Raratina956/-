@@ -122,4 +122,8 @@
       transform: translateX(0);
       margin-top: 35px;
     }
+
+    .list{
+      font-size: 20px;
+    }
   }

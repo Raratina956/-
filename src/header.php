@@ -86,18 +86,18 @@ if (isset($_POST['logout'])) {
                     <input type="submit" class="search1" value="検索">
                 </form>
 
-            <li><a href="map.php">MAP</a></li>
-            <li><a href="favorite.php">お気に入り</a></li>
-            <li><a href="qr_read.php">QRカメラ</a></li>
-            <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-            <li><a href="tag_list.php">みんなのタグ</a></li>
-            <li><a href="my_tag.php">MYタグ</a></li>
-            <li><a href="announce.php">アナウンス</a></li>
+            <li class="list"><a href="map.php">MAP</a></li>
+            <li class="list"><a href="favorite.php">お気に入り</a></li>
+            <li class="list"><a href="qr_read.php">QRカメラ</a></li>
+            <?php echo '<li class="list"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
+            <li class="list"><a href="tag_list.php">みんなのタグ</a></li>
+            <li class="list"><a href="my_tag.php">MYタグ</a></li>
+            <li class="list"><a href="announce.php">アナウンス</a></li>
             <!-- 以下ログアウト -->
             <form id="myForm" action="" method="post">
                 <input type="hidden" name="logout" value="1">
             </form>
-            <li><a href="#" id="submitLink">ログアウト</a></li>
+            <li class="list"><a href="#" id="submitLink">ログアウト</a></li>
           
             <script>
                 document.getElementById('submitLink').addEventListener('click', function (event) {
