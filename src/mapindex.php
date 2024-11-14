@@ -68,7 +68,7 @@ document.getElementById('update-location').addEventListener('click', () => {
 
             const myMarkerElement = document.createElement('div');
             myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+            myMarkerElement.style.backgroundImage = 'url(<?php echo json_encode($iconUrl); ?>)';
 
             new mapboxgl.Marker(myMarkerElement)
                 .setLngLat(userLocation)
