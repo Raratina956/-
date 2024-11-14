@@ -11,7 +11,7 @@ table {
 }
 
 tr {
-    border-bottom: 1px solid #ddd; /* Adds a horizontal line between rows */
+    border-bottom: 1px solid #333; /* Adds a horizontal line between rows */
 }
 
 td {
