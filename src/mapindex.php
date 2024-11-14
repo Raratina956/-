@@ -73,7 +73,7 @@ if (navigator.geolocation) {
 
         const myMarkerElement = document.createElement('div');
         myMarkerElement.className = 'marker';
-        myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+        myMarkerElement.style.backgroundImage = 'url("<?php echo htmlspecialchars($iconUrl); ?>")'; // 修正
 
         new mapboxgl.Marker(myMarkerElement)
             .setLngLat(userLocation)
@@ -105,7 +105,7 @@ if (navigator.geolocation) {
         otherUsers.forEach(user => {
             const markerElement = document.createElement('div');
             markerElement.className = 'marker';
-            markerElement.style.backgroundImage = `url(${user.icon_name})`;
+            markerElement.style.backgroundImage = `url(${user.icon_name})`; // 修正
 
             const userPosition = [user.longitude, user.latitude];
             
@@ -135,7 +135,7 @@ document.getElementById('refresh-btn').addEventListener('click', function() {
             // 現在地のマーカーを更新
             const myMarkerElement = document.createElement('div');
             myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+            myMarkerElement.style.backgroundImage = 'url("<?php echo htmlspecialchars($iconUrl); ?>")'; // 修正
 
             new mapboxgl.Marker(myMarkerElement)
                 .setLngLat(userLocation)
