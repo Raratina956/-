@@ -427,51 +427,59 @@ require 'header.php';
         } else {
             $narrow = 0;
         }
+
+        
         usort($list_raw, function ($a, $b) {
-            // 各通知タイプに応じて送信時間またはログ時間を取得し、比較します
             $time_a = 0;
             $time_b = 0;
-
+        
             // 通知タイプに基づく時間取得（Announcement, Location, Message）
             switch ($a['type']) {
                 case 1: // Announcement
                     if (isset($a['sending_time'])) {
                         $time_a = strtotime($a['sending_time']);
+                        var_dump($a['sending_time'], $time_a); // デバッグ用
                     }
                     break;
                 case 2: // Location
                     if (isset($a['logtime'])) {
                         $time_a = strtotime($a['logtime']);
+                        var_dump($a['logtime'], $time_a); // デバッグ用
                     }
                     break;
                 case 3: // Message
                     if (isset($a['message_time'])) {
                         $time_a = strtotime($a['message_time']);
+                        var_dump($a['message_time'], $time_a); // デバッグ用
                     }
                     break;
             }
-
+        
             switch ($b['type']) {
                 case 1: // Announcement
                     if (isset($b['sending_time'])) {
                         $time_b = strtotime($b['sending_time']);
+                        var_dump($b['sending_time'], $time_b); // デバッグ用
                     }
                     break;
                 case 2: // Location
                     if (isset($b['logtime'])) {
                         $time_b = strtotime($b['logtime']);
+                        var_dump($b['logtime'], $time_b); // デバッグ用
                     }
                     break;
                 case 3: // Message
                     if (isset($b['message_time'])) {
                         $time_b = strtotime($b['message_time']);
+                        var_dump($b['message_time'], $time_b); // デバッグ用
                     }
                     break;
             }
-
+        
             // 最新の時間が前に来るように比較
             return $time_b - $time_a;
         });
+        
 
         foreach ($list_raw as $row) {
             switch ($row['type']) {
