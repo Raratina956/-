@@ -15,16 +15,12 @@
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
     </ul>
-    <button id="update-location-btn">現在地を更新</button> <!-- 更新ボタンを追加 -->
+    <button id="update-location-btn">現在地を更新</button>
 </div>
 <div id='map'></div>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
-
-// PHPからJavaScriptに変数を渡す
-const iconUrl = <?php echo json_encode($iconUrl); ?>;
-const otherUsers = <?php echo json_encode($allLocations); ?>;
 
 const map = new mapboxgl.Map({
     container: 'map',
@@ -33,31 +29,49 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-// 自分のマーカーを管理する変数
-let myMarker;
+const otherUsers = <?php echo htmlspecialchars(json_encode($allLocations), ENT_QUOTES, 'UTF-8'); ?>;
 
-// 現在地を更新する関数
-function updateLocation() {
+const friendList = document.getElementById('friend-list');
+
+otherUsers.forEach(user => {
+    const listItem = document.createElement('li');
+    listItem.className = 'friend-item';
+
+    const userIcon = document.createElement('img');
+    userIcon.src = user.icon_name; 
+    const userName = document.createElement('span');
+    userName.textContent = user.user_name; 
+
+    listItem.appendChild(userIcon);
+    listItem.appendChild(userName);
+
+    listItem.addEventListener('click', () => {
+        const userPosition = [user.longitude, user.latitude];
+        map.flyTo({ center: userPosition, zoom: 15 });
+        new mapboxgl.Popup()
+            .setLngLat(userPosition)
+            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+            .addTo(map);
+    });
+
+    friendList.appendChild(listItem);
+});
+
+const updateLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             const userLocation = [position.coords.longitude, position.coords.latitude];
-
-            // 現在地に移動
             map.setCenter(userLocation);
 
-            if (myMarker) {
-                myMarker.setLngLat(userLocation); // 既存のマーカーを更新
-            } else {
-                const myMarkerElement = document.createElement('div');
-                myMarkerElement.className = 'marker';
-                myMarkerElement.style.backgroundImage = `url(${iconUrl})`; // iconUrlを直接使用
+            const myMarkerElement = document.createElement('div');
+            myMarkerElement.className = 'marker';
+            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
 
-                myMarker = new mapboxgl.Marker(myMarkerElement)
-                    .setLngLat(userLocation)
-                    .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML('<div>あなたの現在地です</div>'))
-                    .addTo(map);
-            }
+            new mapboxgl.Marker(myMarkerElement)
+                .setLngLat(userLocation)
+                .setPopup(new mapboxgl.Popup({ offset: 25 })
+                    .setHTML('<div>あなたの現在地です</div>'))
+                .addTo(map);
 
             fetch('save-location.php', {
                 method: 'POST',
@@ -77,30 +91,17 @@ function updateLocation() {
             .catch(error => {
                 console.error('位置情報の保存に失敗しました:', error);
             });
+
         }, error => {
             console.error('現在地を取得できませんでした:', error);
         });
     } else {
         alert("Geolocationがサポートされていません");
     }
-}
+};
 
-// 更新ボタンのクリックイベントを設定
 document.getElementById('update-location-btn').addEventListener('click', updateLocation);
-
-// 他のユーザーのマーカーを表示
-otherUsers.forEach(user => {
-    const markerElement = document.createElement('div');
-    markerElement.className = 'marker';
-    markerElement.style.backgroundImage = `url(${user.icon_name})`;
-
-    const userPosition = [user.longitude, user.latitude];
-    
-    new mapboxgl.Marker(markerElement)
-        .setLngLat(userPosition)
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
-        .addTo(map);
-});
-
 </script>
+
+</body>
+</html>
