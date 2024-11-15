@@ -328,16 +328,16 @@ if ($list_raw) {
     //     echo '</p>';
     // }
     ?>
-    <form action="info.php" method="post">
-        <label>種別</label>
-        <select name="narrow">
-            <option value=0 selected>全て</option>
-            <option value=1>アナウンス</option>
-            <option value=2>位置情報</option>
-            <option value=3>チャット</option>
-        </select>
+<form action="info.php" method="post" class="filter-form">
+    <label>種別</label>
+    <select name="narrow" class="dropdown">
+        <option value="0" selected>全て</option>
+        <option value="1">アナウンス</option>
+        <option value="2">位置情報</option>
+        <option value="3">チャット</option>
+    </select>
         <label>ユーザー別</label>
-        <select name="n_user">
+        <select name="n_user" class="dropdown">
             <option value=0 selected>全て</option>
             <?php
             $n_users = [];
@@ -385,10 +385,10 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索" class="info">
+        <input type="submit" value="検索" class="submit-button info">
     </form>
     <br>
-    <form action="info.php" method="post">
+    <form action="info.php" method="post" class="action-form">
         <?php
         if (isset($_POST['narrow'])) {
             echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
@@ -402,9 +402,9 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読" class="info">
+        <input type="submit" value="一括既読" class="submit-button info">
     </form>
-    <form action="info.php" method="post" onsubmit="return confirmDelete()">
+    <form action="info.php" method="post" onsubmit="return confirmDelete()" class="action-form">
         <?php
         if (isset($_POST['narrow'])) {
             echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
