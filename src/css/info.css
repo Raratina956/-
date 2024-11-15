@@ -15,8 +15,13 @@ table {
 }
 
 tr {
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #aaa; /* Default thin line */
 }
+
+tr:nth-child(2n) {
+    border-bottom: 2px solid #333; /* Thicker line for every second row */
+}
+
 
 td {
     padding: 12px 20px;
