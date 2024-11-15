@@ -1,15 +1,20 @@
 <?php
 ob_start();
-$current_file = basename(__FILE__);
 // セッションがまだ開始されていない場合に session_start() を呼び出す
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if($current_file == "room.php"){
-    echo 'A';
-}else{
-    // echo $current_file;
-}
+// 現在のURLを取得
+$currentUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+// URLをセッションに保存
+$_SESSION['current_url'] = $currentUrl;
+
+// セッションに保存されたURLを確認（デバッグ用）
+echo $_SESSION['current_url'];
+
+
+
 require 'parts/db-connect.php';
 
 // 自動ログイン処理開始
