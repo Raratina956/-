@@ -7,6 +7,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 if($current_file == "room.php"){
     echo 'A';
+}else{
+    echo 'b';
 }
 require 'parts/db-connect.php';
 
