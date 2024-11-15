@@ -28,10 +28,17 @@ body{
     text-align: center;
 
 }
+
+.textA{
+    text-align: center;
+}
+
  .select{
      margin: auto 45%;
      font-size: 17px;
      /* display: block; */
+     width: max-content;
+     text-align: end;
  }
 
 /* .map{
