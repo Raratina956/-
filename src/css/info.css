@@ -106,17 +106,28 @@ width: 100px;
     text-align: center;
 }
 /* General form styling */
+/* Container for top controls */
+.top-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+/* Adjust filter form for center alignment */
 .filter-form {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    margin: 15px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    gap: 15px;
     background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
 }
+
 
 .filter-form label,
 .filter-form .dropdown {
