@@ -58,7 +58,7 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '<input type="submit" class="abst" value="絞込">';
+    echo '<br><input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
     echo '</form></div><br>';
     
