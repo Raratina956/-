@@ -502,7 +502,7 @@ if ($list_raw) {
                     echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
-                    echo '<td rowspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
+                    echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
                     }
