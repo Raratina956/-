@@ -126,7 +126,7 @@ unset($_SESSION['floor']['kai']);
                                 $tag_sql->execute([$p_tag_id, $user_id]);
                                 $tag_row = $tag_sql->fetch();
                                 if (!($tag_row)) {
-                                    break;
+                                    continue;
                                 }
                             }
                         }
