@@ -106,7 +106,7 @@ width: 100px;
     text-align: center;
 }
 /* General form styling */
-.filter-form, .action-form {
+.filter-form {
     display: flex;
     align-items: center;
     justify-content: flex-start;
