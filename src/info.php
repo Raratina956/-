@@ -467,7 +467,7 @@ if ($list_raw) {
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td class="title"> 件名：', $title, '</td>';
+                    echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
@@ -541,13 +541,13 @@ if ($list_raw) {
                 echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
-                echo '<td rowspan="2">', $sent_name, 'さんからチャットが届きました</td>';
+                echo '<td colspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                 if ($read_check == 0) {
                     echo '<td>未読</td>';
                 }
                 echo '</tr>';
                 echo '<tr>';
-                echo '<td class="day">', timeAgo($logtime), '</td>';
+                echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                 ?>
                 <form action="info_detail.php" method="post">
                     <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
