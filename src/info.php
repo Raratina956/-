@@ -385,7 +385,7 @@ if ($list_raw) {
             }
             ?>
         </select>
-        <input type="submit" value="検索" class="submit-button info">
+        <input type="submit" value="検索" class="sort">
     </form>
     <br>
     <form action="info.php" method="post" class="action-form">
