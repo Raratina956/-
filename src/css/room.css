@@ -40,6 +40,12 @@ form {
     margin: 10px 0;          /* 上下に少し余白 */
 }
 
+.Current_container{
+    display: inline-flex;
+    position: relative;
+    left: 145px;
+}
+
 .room {
     /* min-width: 40px;
     height: 75px; */

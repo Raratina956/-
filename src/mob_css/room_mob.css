@@ -8,11 +8,10 @@ body {
 }
 
 main {
-    margin: 40px auto;
+    margin: auto 10%;
     width: 80%;
     max-width: 500px;
-    border-radius: 8px;
- 
+    border-radius: 8px; 
 }
 
 h1 {
@@ -38,6 +37,11 @@ form {
     justify-content: center; /* 中央揃え */
     align-items: center;     /* 縦中央揃え */
     margin: 10px 0;          /* 上下に少し余白 */
+}
+
+.Current_container{
+    display: inline-flex;
+    margin: auto 12%;
 }
 
 .room {
