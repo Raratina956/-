@@ -120,6 +120,7 @@ width: 100px;
 }
 /* Center container */
 /* Center container */
+/* Center container */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -136,7 +137,7 @@ width: 100px;
     gap: 10px;
 }
 
-/* Label and dropdown alignment */
+/* Label, dropdown, and button alignment in a row */
 .form-row {
     display: flex;
     align-items: center;
@@ -145,11 +146,17 @@ width: 100px;
 }
 
 .form-row label {
-    width: 80px; /* Set width to align labels */
+    width: 80px;
     text-align: right;
 }
 
-/* Button alignment */
+.dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
 .sort {
     width: 100px;
     height: 36px;
@@ -158,6 +165,9 @@ width: 100px;
     background-color: rgb(192, 191, 191);
     color: black;
     border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sort:hover {
@@ -173,7 +183,6 @@ width: 100px;
     margin-top: 15px;
 }
 
-/* Common button styles */
 .read, .delete {
     min-width: 100px;
     height: 36px;
