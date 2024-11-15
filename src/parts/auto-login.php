@@ -1,9 +1,26 @@
 <?php
 ob_start();
-$current_file = basename(__FILE__);
-if (!($current_file == "room.php")) {
+// セッションがまだ開始されていない場合に session_start() を呼び出す
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+// 現在のURLを取得
+$requestUri = $_SERVER['REQUEST_URI'];
+
+// URLのパス部分を抽出
+$parsedUrl = parse_url($requestUri, PHP_URL_PATH);
+
+// パス部分からファイル名だけを取得
+$fileName = basename($parsedUrl);
+
+// 'room.php' の場合に true の処理を行う
+if ($fileName === 'room.php') {
+    echo "room.php がリクエストされました。";
+    // ここにtrueの処理を書く
+}
+
+
+
 require 'parts/db-connect.php';
 
 // 自動ログイン処理開始

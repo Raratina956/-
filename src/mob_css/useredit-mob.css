@@ -77,3 +77,34 @@ input[type="text"], select {
     display: block;
     margin: 0 auto; /* プレビュー画像も中央に揃える */
 }
+
+#back {
+    font-size: 1.0em; /* ボタンの文字サイズを大きく */
+    padding: 10px 15px; /* ボタンに余白を追加 */
+    background-color: #095db7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#back:hover {
+    background-color: #0099c3;
+}
+
+#pass{
+    font-size: 1.0em; /* ボタンの文字サイズを大きく */
+    padding: 10px 15px; /* ボタンに余白を追加 */
+    background-color: #f7e15a;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 15px;
+}
+
+#pass:hover {
+    background-color: #ffdb00;
+    color: black;
+}

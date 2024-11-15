@@ -82,7 +82,8 @@ if ($update_id == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/room.css">
+    <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" href="mob_css/room_mob.css" media="screen and (max-width: 480px)">>
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
 
@@ -90,7 +91,7 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div style="display:inline-flex;/* text-align: center; */position: relative;left: 145px;">
+        <div  class="Current_container">
         <ul class="ul">
         <?php
         // 現在の位置情報を取得するクエリ

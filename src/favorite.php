@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 
 if (isset($_POST['delete'])) {
     $delete = $_POST['delete'];
@@ -14,7 +15,6 @@ if (isset($_POST['delete'])) {
     exit;
 }
 
-require 'header.php';
 ?>
 <!-- <link rel="stylesheet" href="css/join_tag.css"> -->
 <head>
