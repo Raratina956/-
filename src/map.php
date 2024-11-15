@@ -28,7 +28,7 @@ unset($_SESSION['floor']['kai']);
     echo '<div class="select">';
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no';
-    echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
+    echo '<p class="textA">ユーザー絞り込み</p>お気に入り<select name="favorite" class="list">';
     // echo '<option value="">ユーザー</option>';
     echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
     echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
