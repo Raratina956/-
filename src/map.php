@@ -27,12 +27,15 @@ unset($_SESSION['floor']['kai']);
     //プルダウン
     echo '<div class="select">';
     echo '<form action="map.php" method="post">';
-    $selected_tag = $_POST['favorite'] ?? 'no';
-    echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
-    // echo '<option value="">ユーザー</option>';
-    echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
-    echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
-    echo '</select>';
+    $selected_tag = $_POST['favorite'] ?? 'no'; ?>
+
+    お気に入り<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
+    <?php
+    // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
+    // // echo '<option value="">ユーザー</option>';
+    // echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
+    // echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
+    // echo '</select>';
     echo '<br>タグ<select name="tag_list" class="list">';
     // echo '<option value="">タグ</option>';
 
