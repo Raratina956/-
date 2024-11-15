@@ -5,42 +5,30 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
     min-height: 100vh; /* Ensures the body takes the full height of the viewport */
 }
+
 /* Main Styles */
 main {
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    border-radius: 8px;
+    max-width: 100%;
+    padding: 10px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Table Styles */
-/* Styles for the container of the tables */
-/* Table Styles */
+/* Table Container */
 .table-container {
     display: flex; /* 横並び配置 */
     /* justify-content: space-between; テーブル間のスペースを均等に */
     justify-content: center;
     align-items: flex-start; /* 上揃え */
-    gap: 30px; /* テーブル間の間隔 */
+    gap: 20px; /* テーブル間の間隔 */
     width:100%;
     max-width: 1200px; /* コンテナの最大幅を設定 */
     margin-top: 20px;
-}
-.user-table td, .user-table th,
-.tag-table td, .tag-table th {
-    padding: 8px;
-   
-white-space: nowrap; /* 改行を無効化 */
 }
 
 /* 各テーブルのスタイル */
@@ -51,58 +39,42 @@ white-space: nowrap; /* 改行を無効化 */
     margin: 0;
 }
 
-th, td {
-    padding: 20px; /* 各セルにさらに余白を追加 */
-    text-align: center;
-    width: 33%; /* 3列テーブルなら33%に設定 */
+/* タグテーブルのセル間隔を詰める */
+.tag-table th, .tag-table td {
+    padding: 5px 8px; /* パディングを減らして詰める */
+    font-size: 14px;
 }
 
-th {
-    height: 70px; /* ヘッダーの高さを調整して揃え */
-    font-weight: bold;
-    border-bottom: 2px solid #333;
-}
-
-.user-table td, .tag-table td {
-    width: 33%; /* 列幅を揃える */
-    border-bottom: 1px solid #333;
-    
+/* テーブル内セルのスタイル調整 */
+.user-table td, .user-table th {
+    padding: 5px; /* セルのパディングを小さく */
 }
 
 /* アイコン画像のスタイル */
 .usericon {
-    width: 60px; /* 幅を60pxに調整 */
-    height: 60px;
+    width: 50px; /* アイコンサイズを調整 */
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-/* 見出しの調整 */
+/* 見出し */
 h1, h2 {
-    font-size: 40px;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 24px; /* 見出しのフォントサイズをスマホに合わせて縮小 */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-/* ボタンのスタイル */
-.search, .sort-tag {
-    font-size: 20px;
-    padding: 12px 25px;
-    border-radius: 5px;
-}
-
-
-/* Form Styles */
+/* 検索フォーム */
 form {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .search-text{
     margin-top: 25px;
-    width: 200px;
-    font-size: 18px;
+    width: 240px;
+    font-size: 14px;
     text-align: center;
     cursor: pointer;
     line-height: 36px; /*ここの数値を変更*/
@@ -112,10 +84,10 @@ form {
 }
 
 .search{
-    width: 90px;
-    height: 36px;
+    width: 80px;
+    height: 35px;
     padding: 0 16px;
-    font-size: 18px;
+    font-size: 15px;
     display: inline-flex;
     align-items: center;
     justify-content: center;  
@@ -128,10 +100,10 @@ form {
     background-color:  #a0eefc;
     color: #333;
 }
+
 .sort-tag{
-    margin-top: 30px;
     width: 43%;
-    height: 45px;
+    height: 40px;
     font-size: 14px;
     align-items: center;
     text-align: center;
@@ -142,37 +114,42 @@ form {
     border-color: white;
 }
 
+/* ボタンのスタイル */
+.join, .joined {
+    width: 100%; /* ボタン幅を100%にし画面にフィットさせる */
+    font-size: 14px;
+    padding: 8px 0;
+}
 
+/* 戻るリンク */
 .back-link {
-    position: fixed;
-    bottom: 20px;
-    left: 10px;
+    position: relative;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* テーブル見出しのスタイル */
+.user-table th, .tag-table th {
     font-size: 16px;
-    text-decoration: none;
-    background-color: #a0eefc;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 8px;
 }
 
-.back-link:hover {
-    background-color: rgb(54, 98, 216);
-    color: white;
+/* テーブルセルのテキストを調整 */
+th, td {
+    font-size: 14px;
 }
 
-.usericon{
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+th {
+    height: 40px; /* ヘッダーの高さを調整して揃え */
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+}
 
-
-
-  .join{
-    min-width: 100px;
+.join{
+    min-width: 80px;
     height: 36px;
-    padding: 0 16px;
-    font-size: 18px;
+    padding: 0 14px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;  
@@ -188,10 +165,10 @@ form {
 }
 
 .joined{
-    min-width: 100px;
+    min-width: 80px;
     height: 36px;
-    padding: 0 16px;
-    font-size: 18px;
+    padding: 0 14px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;  
