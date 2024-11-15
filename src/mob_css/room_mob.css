@@ -96,8 +96,8 @@ form {
     list-style-type: none;
     flex-wrap: wrap;
     width: 229px;
-    justify-content: space-evenly;
-    margin: auto 10%; 
+    justify-content: space-between;
+    margin: 10%;
 }
 
 .usericon{
