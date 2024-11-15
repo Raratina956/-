@@ -1,9 +1,14 @@
 <?php
 ob_start();
 $current_file = basename(__FILE__);
-// セッションがまだ開始されていない場合、かつ現在のファイルが "room.php" でない場合に session_start() を呼び出す
-if (!($current_file == "room.php") && session_status() == PHP_SESSION_NONE) {
+// セッションがまだ開始されていない場合に session_start() を呼び出す
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+if($current_file == "room.php"){
+    echo 'A';
+}else{
+    echo 'b';
 }
 require 'parts/db-connect.php';
 
