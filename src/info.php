@@ -338,8 +338,6 @@ if ($list_raw) {
                 <option value="2">位置情報</option>
                 <option value="3">チャット</option>
             </select>
-        </div>
-        <div class="form-row">
             <label>ユーザー別</label>
             <select name="n_user" class="dropdown">
                 <option value=0 selected>全て</option>
