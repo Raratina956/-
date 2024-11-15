@@ -122,6 +122,7 @@ width: 100px;
 /* Center container */
 /* Center container */
 /* Center container */
+/* Center container */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -152,6 +153,7 @@ width: 100px;
 .form-row label {
     width: 80px;
     text-align: right;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* Dropdown styles */
@@ -175,6 +177,7 @@ width: 100px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* Hover effect for search button */
@@ -197,6 +200,7 @@ width: 100px;
     height: 36px;
     font-size: 18px;
     border-radius: 5px;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* "既読" button styles */
