@@ -28,10 +28,17 @@ body{
     text-align: center;
 
 }
+
+.textA{
+    text-align: center;
+}
+
  .select{
      margin: auto 45%;
      font-size: 17px;
      /* display: block; */
+     width: max-content;
+     text-align: end;
  }
 
 /* .map{
@@ -131,4 +138,8 @@ button {
 
 .abst:hover{
     background-color: rgb(160, 158, 158);
+}
+
+select{
+    max-width: fit-content;
 }

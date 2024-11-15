@@ -40,7 +40,7 @@ form {
 }
 
 select {
-    width: 10%; /* Adjusted to match textarea width */
+    width: fit-content; /* Adjusted to match textarea width */
     padding: 10px;
     margin-bottom: 20px;
     font-size: 16px;
