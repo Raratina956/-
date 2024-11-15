@@ -87,17 +87,18 @@ form {
 
 .flex_item{
     display: flex;
-    padding: 45px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
     margin: 0px 0px 0px 15px;
     list-style-type: none;
     flex-wrap: wrap;
-    width: 500px;
+    width: 229px;
     justify-content: space-evenly;
+    /* margin: auto 10%; */
 }
 
 .usericon{
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
   }
