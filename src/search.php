@@ -167,5 +167,5 @@ if ($kinds == "a" || $kinds == "t") {
     </div>
 </main>
 
-<a href="map.php" class="back-link">メインへ</a>
+<a href="map.php" class="back-link">戻る</a>
 
