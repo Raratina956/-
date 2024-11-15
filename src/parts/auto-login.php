@@ -13,6 +13,13 @@ $_SESSION['current_url'] = $currentUrl;
 // セッションに保存されたURLを確認（デバッグ用）
 echo $_SESSION['current_url'];
 
+$requestUri = $_SERVER['REQUEST_URI'];
+
+// URLのファイル名部分（room.php）を取得
+$fileName = basename($requestUri);
+
+echo $fileName; // 出力例: room.php
+
 
 
 require 'parts/db-connect.php';
