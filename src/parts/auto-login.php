@@ -20,6 +20,7 @@ $pathInfo = pathinfo($requestUri);
 $fileName = $pathInfo['basename']; // ファイル名部分 (例: room.php)
 
 // 'room.php' の場合に true の処理を行う
+echo $fileName;
 if ($fileName === 'room.php') {
     echo "room.php がリクエストされました。";
     // ここにtrueの処理を書く
