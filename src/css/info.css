@@ -105,21 +105,27 @@ width: 100px;
 .center {
     text-align: center;
 }
+/* Centering container for top controls */
 .top-controls {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center-aligns the form container */
     padding-top: 20px;
-    width: 100%;
+    width: 100%; /* Ensures full-width container */
+    text-align: center; /* Centers text inside */
 }
 
-/* Compact layout for filter form */
+/* Filter form styling */
 .filter-form {
     display: flex;
+    align-items: center;
     gap: 10px;
-    text-align: center;
     padding: 8px 20px;
     background-color: #f3f3f3;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: fit-content; /* Shrinks form to fit content */
 }
 
 /* Style adjustments for labels and dropdowns */
