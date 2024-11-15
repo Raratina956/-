@@ -22,6 +22,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 400px;
 }
 
 /* Table Styles */

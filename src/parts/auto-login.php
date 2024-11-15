@@ -5,20 +5,19 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // 現在のURLを取得
-$currentUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-// URLをセッションに保存
-$_SESSION['current_url'] = $currentUrl;
-
-// セッションに保存されたURLを確認（デバッグ用）
-echo $_SESSION['current_url'];
-
 $requestUri = $_SERVER['REQUEST_URI'];
 
-// URLのファイル名部分（room.php）を取得
-$fileName = basename($requestUri);
+// URLのパス部分を抽出
+$parsedUrl = parse_url($requestUri, PHP_URL_PATH);
 
-echo $fileName; // 出力例: room.php
+// パス部分からファイル名だけを取得
+$fileName = basename($parsedUrl);
+
+// 'room.php' の場合に true の処理を行う
+if ($fileName === 'room.php') {
+    echo "room.php がリクエストされました。";
+    // ここにtrueの処理を書く
+}
 
 
 
