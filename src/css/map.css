@@ -139,3 +139,7 @@ button {
 .abst:hover{
     background-color: rgb(160, 158, 158);
 }
+
+select{
+    max-width: fit-content;
+}
