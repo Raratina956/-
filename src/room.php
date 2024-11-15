@@ -83,7 +83,7 @@ if ($update_id == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 1280px)">
-    <link rel="stylesheet" href="css/room-mob.css" media="screen and (max-width: 480px)">>
+    <link rel="stylesheet" href="mob_css/room-mob.css" media="screen and (max-width: 480px)">>
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
 
