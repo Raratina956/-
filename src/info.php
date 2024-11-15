@@ -387,7 +387,6 @@ if ($list_raw) {
         </select>
         <input type="submit" value="検索" class="sort">
     </form>
-    <br>
     <form action="info.php" method="post" class="filter-form">
         <?php
         if (isset($_POST['narrow'])) {
