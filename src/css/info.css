@@ -121,6 +121,7 @@ width: 100px;
 /* Center container */
 /* Center container */
 /* Center container */
+/* Center container */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -129,34 +130,40 @@ width: 100px;
     text-align: center;
 }
 
-/* Form alignment */
+/* Form row alignment with balanced spacing */
 .filter-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
-/* Label, dropdown, and button alignment in a row */
+/* Label, dropdown, and button in a row */
 .form-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: space-between; /* Ensure balanced spacing */
+    gap: 15px;
+    width: 100%;
+    max-width: 800px; /* Adjust max-width for the form to look nice */
 }
 
+/* Label styling */
 .form-row label {
-    width: 100px;
+    width: 80px;
     text-align: right;
 }
 
+/* Dropdown styles */
 .dropdown {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
+    flex-grow: 1; /* Allow dropdowns to take more space */
 }
 
+/* Search button styles */
 .sort {
     width: 100px;
     height: 36px;
@@ -170,6 +177,7 @@ width: 100px;
     justify-content: center;
 }
 
+/* Hover effect for search button */
 .sort:hover {
     background-color: #a0eefc;
     color: #333;
@@ -183,6 +191,7 @@ width: 100px;
     margin-top: 15px;
 }
 
+/* Action buttons styling */
 .read, .delete {
     min-width: 100px;
     height: 36px;
@@ -190,6 +199,7 @@ width: 100px;
     border-radius: 5px;
 }
 
+/* "既読" button styles */
 .read {
     border: 1px solid rgb(93, 134, 246);
     background-color: white;
@@ -201,6 +211,7 @@ width: 100px;
     color: white;
 }
 
+/* "削除" button styles */
 .delete {
     border: 1px solid rgb(248, 88, 88);
     background-color: white;

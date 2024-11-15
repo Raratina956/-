@@ -331,15 +331,16 @@ if ($list_raw) {
 <div class="form-container">
     <form action="info.php" method="post" class="filter-form">
         <div class="form-row">
-            <label>種別</label>
-            <select name="narrow" class="dropdown">
+            <label for="narrow">種別</label>
+            <select name="narrow" class="dropdown" id="narrow">
                 <option value="0" selected>全て</option>
                 <option value="1">アナウンス</option>
                 <option value="2">位置情報</option>
                 <option value="3">チャット</option>
             </select>
-            <label>ユーザー別</label>
-            <select name="n_user" class="dropdown">
+
+            <label for="n_user">ユーザー別</label>
+            <select name="n_user" class="dropdown" id="n_user">
                 <option value=0 selected>全て</option>
                 <?php
                 $n_users = [];
@@ -355,8 +356,9 @@ if ($list_raw) {
                 }
                 ?>
             </select>
+
+            <input type="submit" value="検索" class="sort">
         </div>
-        <input type="submit" value="検索" class="sort">
     </form>
 
     <div class="action-buttons">
@@ -370,6 +372,7 @@ if ($list_raw) {
         </form>
     </div>
 </div>
+
 
 
     <?php
