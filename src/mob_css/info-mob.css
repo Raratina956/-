@@ -15,9 +15,6 @@ td:nth-child(2) {
     text-align: left; /* 左寄せに設定 */
 }
 
-tr {
-    border-bottom: 1px solid #333; /* Adds a horizontal line between rows */
-}
 
 /* 詳細ボタンのスタイル */
 .info{
