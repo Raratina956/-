@@ -33,7 +33,7 @@ unset($_SESSION['floor']['kai']);
     echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
     echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
     echo '</select>';
-    echo 'タグ<select name="tag_list" class="list">';
+    echo '<br>タグ<select name="tag_list" class="list">';
     // echo '<option value="">タグ</option>';
 
     // POSTデータから選択されたタグの値を取得
