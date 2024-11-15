@@ -1,0 +1,115 @@
+
+body {
+    /* text-align: center; */
+    background-image: url(../img/SpotLinkbg.png);
+    margin: 0;
+    padding: 0;
+    padding-top: 100px
+}
+
+main {
+    margin: 40px auto;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+ 
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px; /* フォントサイズ */
+    color: #333;
+}
+
+span {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+}
+
+form {
+    text-align: center; /* フォーム全体を中央揃え */
+    /* padding: 100px; */
+    /* size: 60px; */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    align-items: center;     /* 縦中央揃え */
+    margin: 10px 0;          /* 上下に少し余白 */
+}
+
+.room {
+    /* min-width: 40px;
+    height: 75px; */
+    font-size: 18px;
+    color: black;
+    /* background-color: #a0eefc; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.room:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+
+.room:hover {
+    background-color: #ffffff; /* ホバー時の色変更 */
+}
+
+.back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    font-size: 16px; /* フォントサイズ */
+    text-decoration: none;
+    background-color: #a0eefc; /* 背景色 */
+    padding: 8px 15px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸く */
+}
+
+.back-link:hover{
+    background-color: rgb(54, 98, 216);
+    color: white;
+}
+
+.heya{
+    font-size: 30px;
+}
+
+.flex_item{
+    display: flex;
+    padding: 45px 0px 0px 0px;
+    margin: 0px 0px 0px 15px;
+    list-style-type: none;
+    flex-wrap: wrap;
+    width: 500px;
+    justify-content: space-evenly;
+}
+
+.usericon{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+.li{
+    list-style-type: none;
+    padding: 10px 0px;
+}
+
+.ul{
+    display: flex;
+    text-align: center;
+    list-style-type: none;
+}
+
+
