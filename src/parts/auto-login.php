@@ -11,14 +11,19 @@ $currentUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION['current_url'] = $currentUrl;
 
 // セッションに保存されたURLを確認（デバッグ用）
-echo $_SESSION['current_url'];
-
+// echo $_SESSION['current_url'];
+// 現在のURLパスを取得
 $requestUri = $_SERVER['REQUEST_URI'];
 
-// URLのファイル名部分（room.php）を取得
-$fileName = basename($requestUri);
+// クエリ部分を取り除いてファイル名だけを取得
+$pathInfo = pathinfo($requestUri);
+$fileName = $pathInfo['basename']; // ファイル名部分 (例: room.php)
 
-echo $fileName; // 出力例: room.php
+// 'room.php' の場合に true の処理を行う
+if ($fileName === 'room.php') {
+    echo "room.php がリクエストされました。";
+    // ここにtrueの処理を書く
+}
 
 
 
