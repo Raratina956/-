@@ -467,7 +467,7 @@ if ($list_raw) {
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td>';
-                    echo '<td class="title"> 件名：', $title, '</td>';
+                    echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                     ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
