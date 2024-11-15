@@ -388,7 +388,7 @@ if ($list_raw) {
         <input type="submit" value="検索" class="sort">
     </form>
     <br>
-    <form action="info.php" method="post" class="action-form">
+    <form action="info.php" method="post" class="filter-form">
         <?php
         if (isset($_POST['narrow'])) {
             echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
@@ -404,7 +404,7 @@ if ($list_raw) {
         <input type="hidden" name="all_read">
         <input type="submit" value="一括既読" class="read">
     </form>
-    <form action="info.php" method="post" onsubmit="return confirmDelete()" class="action-form">
+    <form action="info.php" method="post" onsubmit="return confirmDelete()" class="filter-form">
         <?php
         if (isset($_POST['narrow'])) {
             echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
