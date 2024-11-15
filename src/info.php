@@ -402,7 +402,7 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読" class="submit-button info">
+        <input type="submit" value="一括既読" class="read">
     </form>
     <form action="info.php" method="post" onsubmit="return confirmDelete()" class="action-form">
         <?php
@@ -418,7 +418,7 @@ if ($list_raw) {
         }
         ?>
         <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除" class="info">
+        <input type="submit" value="一括削除" class="delete">
     </form>
     <?php
     echo '<table>';
