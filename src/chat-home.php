@@ -100,9 +100,9 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
 
 <!-- 戻るボタン -->
 <div class="back-button">
-<br>
-    <a href="map.php" class="back-link">戻る</a>
-    <br>
+    <form action="map.php" method="GET">
+        <button type="submit" class="back-link">戻る</button>
+    </form>
 </div>
 
 <!-- 検索フォーム -->
