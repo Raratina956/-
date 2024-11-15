@@ -332,7 +332,7 @@ if ($list_raw) {
     <form action="info.php" method="post" class="filter-form">
         <div class="form-row">
             <label>種別</label>
-            <select name="narrow" class="sort">
+            <select name="narrow" class="dropdown">
                 <option value="0" selected>全て</option>
                 <option value="1">アナウンス</option>
                 <option value="2">位置情報</option>
@@ -341,7 +341,7 @@ if ($list_raw) {
         </div>
         <div class="form-row">
             <label>ユーザー別</label>
-            <select name="n_user" class="sort">
+            <select name="n_user" class="dropdown">
                 <option value=0 selected>全て</option>
                 <?php
                 $n_users = [];
