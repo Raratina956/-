@@ -116,7 +116,7 @@ width: 100px;
 .filter-form {
     display: flex;
     gap: 10px;
-    align-items: center;
+    text-align: center;
     padding: 8px 20px;
     background-color: #f3f3f3;
     text-align: center;
