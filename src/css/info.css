@@ -123,12 +123,14 @@ width: 100px;
 /* Center container */
 /* Center container */
 /* Center container */
+/* Center container */
 .form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
     text-align: center;
+    width: 100%;
 }
 
 /* Form row alignment with balanced spacing */
@@ -151,6 +153,7 @@ width: 100px;
 
 /* Label styling */
 .form-row label {
+    flex-shrink: 0; /* Prevent labels from shrinking */
     width: 80px;
     text-align: right;
     white-space: nowrap; /* Prevent text from wrapping */
@@ -163,6 +166,7 @@ width: 100px;
     border-radius: 5px;
     background-color: #fff;
     flex-grow: 1; /* Allow dropdowns to take more space */
+    max-width: 200px; /* Set max width for dropdowns */
 }
 
 /* Search button styles */
@@ -190,7 +194,7 @@ width: 100px;
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     margin-top: 15px;
 }
 
