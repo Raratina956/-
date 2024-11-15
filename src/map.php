@@ -34,7 +34,7 @@ unset($_SESSION['floor']['kai']);
     echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
     echo '</select>';
     echo '<select name="tag_list" class="list">';
-    echo '<option value="">タグ</option>';
+    // echo '<option value="">タグ</option>';
 
     // POSTデータから選択されたタグの値を取得
     $selected_tag = $_POST['tag_list'] ?? '0'; // デフォルトで「全て」を選択
