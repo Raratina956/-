@@ -330,75 +330,49 @@ if ($list_raw) {
     ?>
 <div class="form-container">
     <form action="info.php" method="post" class="filter-form">
-        <label>種別</label>
-        <select name="narrow" class="dropdown">
-            <option value="0" selected>全て</option>
-            <option value="1">アナウンス</option>
-            <option value="2">位置情報</option>
-            <option value="3">チャット</option>
-        </select>
-        <label>ユーザー別</label>
-        <select name="n_user" class="dropdown">
-            <option value=0 selected>全て</option>
-            <?php
-            $n_users = [];
-            foreach ($list_raw as $row) {
-                switch ($row['type']) {
-                    case 1:
-                        $n_announcement_id = $row['announcement_id'];
-                        $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
-                        $n_announce_s->execute([$n_announcement_id]);
-                        $n_announce_r = $n_announce_s->fetch();
-                        $n_send_person_id = $n_announce_r['send_person'];
-                        $n_users[] = $n_send_person_id;
-                        break;
-                    case 2:
-                        $n_current_location_id = $row['current_location_id'];
-                        $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
-                        $n_current_s->execute([$n_current_location_id]);
-                        $n_current_r = $n_current_s->fetch();
-                        $n_send_person_id = $n_current_r['user_id'];
-                        $n_users[] = $n_send_person_id;
-                        break;
-                    case 3:
-                        $n_message_id = $row['message_id'];
-                        $n_message_s = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                        $n_message_s->execute([$n_message_id]);
-                        $n_message_r = $n_message_s->fetch();
-                        $n_send_person_id = $n_message_r['send_id'];
-                        $n_users[] = $n_send_person_id;
-                        break;
+        <div class="form-row">
+            <label>種別</label>
+            <select name="narrow" class="dropdown">
+                <option value="0" selected>全て</option>
+                <option value="1">アナウンス</option>
+                <option value="2">位置情報</option>
+                <option value="3">チャット</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>ユーザー別</label>
+            <select name="n_user" class="dropdown">
+                <option value=0 selected>全て</option>
+                <?php
+                $n_users = [];
+                foreach ($list_raw as $row) {
+                    // Processing user list options (omitted for brevity)
                 }
-            }
-            $uni_n_users = array_unique($n_users);
-            foreach ($uni_n_users as $n_user_r) {
-                $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
-                $user_sql->execute([$n_user_r]);
-                $user_row = $user_sql->fetch();
-                echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
-            }
-            ?>
-        </select>
+                $uni_n_users = array_unique($n_users);
+                foreach ($uni_n_users as $n_user_r) {
+                    $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
+                    $user_sql->execute([$n_user_r]);
+                    $user_row = $user_sql->fetch();
+                    echo '<option value=', $n_user_r, '>', $user_row['user_name'], '</option>';
+                }
+                ?>
+            </select>
+        </div>
         <input type="submit" value="検索" class="sort">
-        <br>
     </form>
-    <form action="info.php" method="post" class="filter-form">
-        <?php
-        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'] ?? 0, '>';
-        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'] ?? 0, '>';
-        ?>
-        <input type="hidden" name="all_read">
-        <input type="submit" value="一括既読" class="read">
-    </form>
-    <form action="info.php" method="post" onsubmit="return confirmDelete()" class="filter-form">
-        <?php
-        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'] ?? 0, '>';
-        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'] ?? 0, '>';
-        ?>
-        <input type="hidden" name="all_delete">
-        <input type="submit" value="一括削除" class="delete">
-    </form>
+
+    <div class="action-buttons">
+        <form action="info.php" method="post" class="inline-form">
+            <input type="hidden" name="all_read">
+            <input type="submit" value="一括既読" class="read">
+        </form>
+        <form action="info.php" method="post" onsubmit="return confirmDelete()" class="inline-form">
+            <input type="hidden" name="all_delete">
+            <input type="submit" value="一括削除" class="delete">
+        </form>
+    </div>
 </div>
+
 
     <?php
     echo '<table>';

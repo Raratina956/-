@@ -105,65 +105,72 @@ width: 100px;
 .center {
     text-align: center;
 }
-.top-controls {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    width: 100%;
-}
-/* Container to center forms */
+/* Center container */
 .form-container {
     display: flex;
-    justify-content: center;
-    gap: 10px; /* Spacing between forms */
+    flex-direction: column;
+    align-items: center;
     padding-top: 20px;
-    width: 100%; /* Full width to enable centering */
     text-align: center;
 }
 
-/* Compact layout for filter form */
+/* Form alignment */
 .filter-form {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
-    text-align: center;
-    padding: 8px 20px;
-    text-align: center;
 }
 
-/* Style adjustments for labels and dropdowns */
-.filter-form label {
-    font-size: 14px;
-    margin: 0;
+/* Label and dropdown alignment */
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.dropdown {
-    padding: 6px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.form-row label {
+    width: 80px; /* Set width to align labels */
+    text-align: right;
 }
 
-/* Button styling */
-.sort, .read, .delete {
-    padding: 5px 12px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
+/* Button alignment */
 .sort {
+    width: 100px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 18px;
     background-color: rgb(192, 191, 191);
     color: black;
+    border-radius: 5px;
 }
 
 .sort:hover {
     background-color: #a0eefc;
+    color: #333;
+}
+
+/* Align "既読" and "削除" buttons below */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Common button styles */
+.read, .delete {
+    min-width: 100px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 5px;
 }
 
 .read {
+    border: 1px solid rgb(93, 134, 246);
     background-color: white;
     color: rgb(93, 134, 246);
-    border: 1px solid rgb(93, 134, 246);
 }
 
 .read:hover {
@@ -172,9 +179,9 @@ width: 100px;
 }
 
 .delete {
+    border: 1px solid rgb(248, 88, 88);
     background-color: white;
     color: rgb(248, 88, 88);
-    border: 1px solid rgb(248, 88, 88);
 }
 
 .delete:hover {
