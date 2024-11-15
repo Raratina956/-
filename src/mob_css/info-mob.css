@@ -15,6 +15,7 @@ td:nth-child(2) {
     text-align: left; /* 左寄せに設定 */
 }
 
+
 /* 詳細ボタンのスタイル */
 .info{
     background-color: #4CAF50; /* ボタンの背景色 */
