@@ -1,4 +1,4 @@
 window.onload = function () {
-    const scrollBtn = document.getElementById('chat');
-    scrollBtn.scrollIntoView(false);
+    const chatArea = document.getElementById('chat-area');
+    chatArea.scrollIntoView(false);
 };

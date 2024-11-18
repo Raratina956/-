@@ -165,6 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         -->
 
+        <div class="chat">
             <div class="chat-area" id="chat-area">
                 <?php
                 // 指定した相手とのチャット履歴を取得して表示
@@ -188,7 +189,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
         </div>
+    </div>
 </div>
+
 
     <script>
         function scrollToLatestMessage() {
