@@ -145,11 +145,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require 'header.php'; ?>
     <div class="chat-system">
         <div class="chat-box">
+            <!-- 相手のアイコンと名前表示部分 -->
+            <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post" class="backform">' ?>
                     <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
-            <!-- 相手のアイコンと名前表示部分 -->
-            <div class="chat-header">
                 <div class="center-content">
                     <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
