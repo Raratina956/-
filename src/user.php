@@ -186,16 +186,16 @@ require 'header.php';
                     $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                     $current_sql->execute([$_SESSION['user']['user_id']]);
                     $current_row = $current_sql->fetch();
-                    if($current_row){
+                    if ($current_row) {
                         $room_id = $current_row['classroom_id'];
                         $logtime = $current_row['logtime'];
                         $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
                         $room_sql->execute([$room_id]);
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
-                        echo '現在地：'.$room_name.'<br>';
-                        echo $logtime.'<br>';
-                    }else{
+                        echo '現在地：' . $room_name . '<br>';
+                        echo timeAgo($logtime) . '<br>';
+                    } else {
                         echo '現在地：設定なし';
                     }
                     echo '</div>';
@@ -205,41 +205,41 @@ require 'header.php';
                     echo '名前：', $user['user_name'], "<br>";
                     echo 'クラス：クラスが設定されていません', '<br>';
                     echo $user['mail_address'], "<br>";
-                    // $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                    // $current_sql->execute($_SESSION['user']['user_id']);
-                    // $current_row = $current_sql->fetch();
-                    // if($current_row){
-                    //     $room_id = $current_row['classroom_id'];
-                    //     $logtime = $current_row['logtime'];
-                    //     $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                    //     $room_sql->execute([$room_id]);
-                    //     $room_row = $room_sql->fetch();
-                    //     $room_name = $room_row['classroom_name'];
-                    //     echo '現在地：'.$room_name.'<br>';
-                    //     echo $logtime.'<br>';
-                    // }else{
-                    //     echo '現在地：設定なし';
-                    // }
+                    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                    $current_sql->execute([$_SESSION['user']['user_id']]);
+                    $current_row = $current_sql->fetch();
+                    if ($current_row) {
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                        echo '現在地：' . $room_name . '<br>';
+                        echo timeAgo($logtime) . '<br>';
+                    } else {
+                        echo '現在地：設定なし';
+                    }
                     echo '</div>';
                 }
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo '名前：',$user['user_name'], "先生<br>";
-                echo $user['mail_address'],"<br>";
+                echo '名前：', $user['user_name'], "先生<br>";
+                echo $user['mail_address'], "<br>";
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                 $current_sql->execute($_SESSION['user']['user_id']);
                 $current_row = $current_sql->fetch();
-                if($current_row){
+                if ($current_row) {
                     $room_id = $current_row['classroom_id'];
                     $logtime = $current_row['logtime'];
                     $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
                     $room_sql->execute([$room_id]);
                     $room_row = $room_sql->fetch();
                     $room_name = $room_row['classroom_name'];
-                    echo '現在地：'.$room_name.'<br>';
-                    echo $logtime.'<br>';
-                }else{
+                    echo '現在地：' . $room_name . '<br>';
+                    echo $logtime . '<br>';
+                } else {
                     echo '現在地：設定なし';
                 }
                 echo '</div>';
@@ -276,3 +276,33 @@ require 'header.php';
 </body>
 
 </html>
+
+<?php
+function timeAgo($logtime)
+{
+    if (empty($logtime)) {
+        return '日時が設定されていません。'; // 空の日時に対する処理
+    }
+    $now = new DateTime(); // 現在時刻
+    $ago = new DateTime($logtime); // 保存された日時
+    $diff = $now->diff($ago); // 差分を取得
+
+    // 差分を秒単位で計算
+    $diffInSeconds = $now->getTimestamp() - $ago->getTimestamp();
+
+    // 結果の判定
+    if ($diffInSeconds < 3600) { // 1時間以内なら
+        // 分数で表示
+        $minutes = floor($diffInSeconds / 60);
+        return $minutes . '分前';
+    } elseif ($diffInSeconds < 86400) { // 24時間以内なら
+        // 時間数で表示
+        $hours = floor($diffInSeconds / 3600);
+        return $hours . '時間前';
+    } else {
+        // 日数で表示
+        $days = floor($diffInSeconds / 86400);
+        return $days . '日前';
+    }
+}
+?>
