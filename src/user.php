@@ -81,6 +81,20 @@
                     echo 'クラス：クラスが設定されていません', '<br>';
                 }
                 echo $user['mail_address'], "<br>";
+                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_row = $current_sql->fetch();
+                if($current_row && isset($current_row['classroom_id'])){
+                    $room_id = $current_row['classroom_id'];
+                    $logtime = $current_row['logtime'];
+                    $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    $room_sql->execute([$room_id]);
+                    $room_row = $room_sql->fetch();
+                    $room_name = $room_row['classroom_name'];
+                    echo '現在地：'.$room_name.'<br>';
+                    echo $logtime.'<br>';
+
+                }
                 echo '</div>';
             }else{
                 //先生(名前、メールアドレス)
