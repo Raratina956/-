@@ -15,7 +15,7 @@ unset($_SESSION['floor']['kai']);
         display: none; /* 初期状態では非表示 */
         position: fixed; /* 固定位置 */
         top: 0;
-        left: 0;
+        left: 10px;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
