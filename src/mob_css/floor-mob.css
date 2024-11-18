@@ -79,9 +79,9 @@ ul{
     padding: 8px 15px; /* 内側の余白 */
     border-radius: 5px; /* 角を丸く */
     border-color: #5240f8;
-    color: white;
 }
 
 .back-link:hover {
     background-color: #2112af;
+    color: white;
 }

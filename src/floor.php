@@ -14,7 +14,8 @@ require 'header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($_SESSION['floor']['kai']); ?>階</title>
-    <link rel="stylesheet" href="css/floor.css">
+    <link rel="stylesheet" href="mob_css/floor-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/floor.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
     <!-- メイン(マップ)に戻る -->
