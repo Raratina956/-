@@ -114,6 +114,9 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
         }
+        if(isset($_SESSION['room']['uri'])){
+            echo $_SESSION['room']['uri'];
+        }
         ?>
         <div class="error">
         <span><?php echo $error ?></span>
