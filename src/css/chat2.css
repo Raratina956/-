@@ -263,3 +263,8 @@ input[type="submit"] {
 #latest-message {
     height: 1px; /* 最新メッセージの位置調整のための余白確保 */
 }
+
+.backform{
+    position: relative;
+    left: -36%;
+}
