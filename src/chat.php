@@ -176,7 +176,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <div id="latest-message"></div>
+                <div id="latest-message">
+                    <script type="text/javascript" src="js/chat.js" async></script>
+                </div>
             </div>
             <div class="send-container">
                 <!-- メッセージ送信フォーム -->
