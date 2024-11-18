@@ -81,7 +81,15 @@
                     echo 'クラス：クラスが設定されていません', '<br>';
                 }
                 echo $user['mail_address'], "<br>";
-                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                echo '</div>';
+            }else{
+                //先生(名前、メールアドレス)
+                echo '<div class="profile"><br>';
+                echo '名前：',$user['user_name'], "先生<br>";
+                echo $user['mail_address'];
+                echo '</div>';
+            }
+            $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                 $current_sql->execute($_SESSION['user']['user_id']);
                 $current_row = $current_sql->fetch();
                 if($current_row){
@@ -96,14 +104,6 @@
                 }else{
                     echo '現在地：設定なし';
                 }
-                echo '</div>';
-            }else{
-                //先生(名前、メールアドレス)
-                echo '<div class="profile"><br>';
-                echo '名前：',$user['user_name'], "先生<br>";
-                echo $user['mail_address'];
-                echo '</div>';
-            }
 
             echo '</div>';
             echo '</div>';
