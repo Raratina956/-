@@ -29,3 +29,11 @@ body {
     background-color: rgb(54, 98, 216);
     color: white;
 }
+
+.usericon{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
