@@ -143,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php require 'header.php'; ?>
+    <div class="chat">
     <div class="chat-system">
         <div class="chat-box">
             <!-- 相手のアイコンと名前表示部分 -->
@@ -218,6 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
     </script>
+    </div>
     <script type="text/javascript" src="js/chat.js" async></script>
 </body>
 </html>
