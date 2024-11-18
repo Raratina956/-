@@ -25,10 +25,10 @@ unset($_SESSION['floor']['kai']);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
-    echo '<div class="select">';
+    echo '<div class="user-kensaku"><div class="select">';
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
-
+    
     お気に入り　　<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
@@ -62,7 +62,7 @@ unset($_SESSION['floor']['kai']);
     }
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br><br>';
-    echo '</form></div><br>';
+    echo '</form></div></div><br>';
     
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
