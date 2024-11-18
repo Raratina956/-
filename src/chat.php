@@ -165,6 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         -->
 
+        <div class="chat">
             <div class="chat-area" id="chat-area">
                 <?php
                 // 指定した相手とのチャット履歴を取得して表示
@@ -182,13 +183,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="send-container">
                 <!-- メッセージ送信フォーム -->
-                <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
+                <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#latest-message" method="post">
                     <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
                     <input type="submit" name="sub" class="send" value="送信" id="send-btn">
                 </form>
             </div>
         </div>
+    </div>
 </div>
+
 
     <script>
         function scrollToLatestMessage() {
@@ -218,6 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // // ページロード時とリサイズ時にチャットエリアの高さを調整
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
+        
     </script>
     <script type="text/javascript" src="js/chat.js" async></script>
 </body>
