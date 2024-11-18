@@ -25,8 +25,8 @@ unset($_SESSION['floor']['kai']);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //プルダウン
-    echo '<div class="user-kensaku"><div class="select">';
-    echo '<form action="map.php" method="post">';
+    echo '<div class="select">';
+    echo '<form action="map.php" method="post" class="user^kensaku">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
     
     <p class="kensaku-user">ユーザー絞り込み</p>
@@ -62,8 +62,8 @@ unset($_SESSION['floor']['kai']);
         echo '<option value=0>-</option>';
     }
     echo '<input type="submit" class="abst" value="絞込">';
-    echo '</select><br><br>';
-    echo '</form></div></div><br>';
+    echo '</select><br>';
+    echo '</form></div><br>';
     
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
