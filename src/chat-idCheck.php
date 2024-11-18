@@ -42,25 +42,33 @@ if ($search_keyword) {
     $search_results = searchUsers($pdo, $search_keyword);
 
     if (!empty($search_results)) {
-        echo "<h3>検索結果:</h3>";
+        echo "<h3>検索結果</h3><br>";
         foreach ($search_results as $user) {
+
                  //アイコン
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$user['user_id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+
+                echo '<table><tr>';
+                echo '<td><img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"></td>';
 
                 // ユーザー名をリンク化して表示
-                echo '<p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p>';
+                echo '<td><p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '"class="username">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p></td>';
+                echo '</tr>';
+                echo '</table>';
         }
     } else {
         echo "<p>該当するユーザーが見つかりません。</p>";
     }
 }
-?>
 
-<!-- メイン(マップ)に戻る -->
-<button type="button" class="back" onclick="location.href='map.php'">戻る</button>
+
+// chat-homeに戻る
+// <button type="button" class="back-link" onclick="location.href='chat-home.php'">チャットHOME画面へ戻る</button>
+echo '<a href="chat-home.php?user_id=' .$_SESSION['user']['user_id']. '" class="back-link" >戻る';
+
+?>
 
 </body>
 </html>

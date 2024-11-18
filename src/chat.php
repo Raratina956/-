@@ -143,12 +143,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php require 'header.php'; ?>
+    <div class="chat">
     <div class="chat-system">
         <div class="chat-box">
             <!-- 相手のアイコンと名前表示部分 -->
             <div class="chat-header">
-                <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
-                <input type="submit" name="back-btn" class="back-btn" value="戻る">
+                <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post" class="backform">' ?>
+                    <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
                 <div class="center-content">
                     <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
@@ -176,7 +177,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <div id="latest-message"></div>
+                <div id="latest-message">
+                </div>
             </div>
             <div class="send-container">
                 <!-- メッセージ送信フォーム -->
@@ -217,5 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
     </script>
+    </div>
+    <script type="text/javascript" src="js/chat.js" async></script>
 </body>
 </html>

@@ -83,7 +83,7 @@ if ($update_id == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 1280px)">
-    <link rel="stylesheet" href="mob_css/room_mob.css" media="screen and (max-width: 480px)">>
+    <link rel="stylesheet" href="mob_css/room_mob.css" media="screen and (max-width: 480px)">
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
 
@@ -148,6 +148,12 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
+            
+            echo '<form action="floor.php" method="post">';
+                echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">';
+                echo '<button type="submit" class="back-link">戻る</button>';
+            echo '</form>'; 
+
             echo '<div class="icon_container">';
             echo '<ul class="flex_item">';
 
@@ -381,10 +387,10 @@ if ($update_id == 1) {
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
-    <form action="floor.php" method="post">
-        <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
+    
+        <!-- <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
         <button type="submit" class="back-link">戻る</button> 
-    </form>
+    </form> -->
     </main>
 </body>
 

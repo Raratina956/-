@@ -12,7 +12,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-button.back {
+.back-link {
     width: 60px;
     height: 30px;
     font-size: 16px;
@@ -21,5 +21,28 @@ button.back {
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px; /* ボタンの上部余白を調整 */
+    margin-top: 40px; /* ボタンの上部余白を調整 */
+}
+.usericon{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #333;
+}
+.username {
+    font-size: 20px; /* リンクのフォントサイズを大きく */
+    font-weight: bold;
+    color: #0015ff; /* 青色リンク */
+    text-decoration: none;
+    transition: color 0.3s;
+    margin: 20px;
+}
+
+.username:hover {
+    color: #0056b3; /* ホバー時の色変更 */
 }
