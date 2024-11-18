@@ -124,7 +124,7 @@ button {
 }
 
 .abst{
-    margin: auto 29%;
+    margin: auto -20%;
     background-color: rgb(177, 177, 177);
     color: black;
     border-radius: 5px; /* 角丸をつける */
