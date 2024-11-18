@@ -35,6 +35,7 @@ table {
     padding: 8px 15px; /* 内側の余白 */
     border-radius: 5px; /* 角を丸く */
     margin: 20px;
+    border-color: #5240f8;
 }
 .back-link:hover {
     background-color: #2112af;
