@@ -26,7 +26,7 @@ unset($_SESSION['floor']['kai']);
 
     //プルダウン
     echo '<div class="select">';
-    echo '<form action="map.php" method="post" class="user^kensaku">';
+    echo '<form action="map.php" method="post" class="user-kensaku">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
     
     <p class="kensaku-user">ユーザー絞り込み</p>
