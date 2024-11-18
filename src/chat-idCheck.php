@@ -42,8 +42,8 @@ if ($search_keyword) {
     $search_results = searchUsers($pdo, $search_keyword);
 
     //アイコン
-    $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-    $iconStmt->execute([$partner_id]); 
+    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+    $iconStmt->execute([$user['user_id']]);
     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
     if (!empty($search_results)) {
