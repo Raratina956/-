@@ -50,7 +50,7 @@ function getMessages($pdo, $logged_in_user_id, $partner_id)
 // アイコンを取得する処理
 $iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
 $iconStmt->execute([$partner_id]);
-$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+$iconchat = $iconStmt->fetch(PDO::FETCH_ASSOC);
 
 // 相手の情報を取得
 $sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
@@ -145,15 +145,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require 'header.php'; ?>
     <div class="chat-system">
         <div class="chat-box">
-
-
             <!-- 相手のアイコンと名前表示部分 -->
             <div class="chat-header">
                 <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
                 <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
                 <div class="center-content">
-                    <img src="<?php echo htmlspecialchars($icon['icon_name']); ?>" alt="Partner Icon">
+                    <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
                     <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
                 </div>
             </div>
