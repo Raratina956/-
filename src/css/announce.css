@@ -84,13 +84,14 @@ textarea {
     left: 10px;
     font-size: 16px;
     text-decoration: none;
-    background-color: #a0eefc;
+    background-color: #5240f8;
     padding: 8px 15px;
     border-radius: 5px;
+    border-color: #5240f8;
 }
 
 .back-link:hover {
-    background-color: rgb(54, 98, 216);
+    background-color: #2112af;
     color: white;
 }
 h2 {
