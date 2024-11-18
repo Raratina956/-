@@ -143,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php require 'header.php'; ?>
-    <div class="chat">
     <div class="chat-system">
+    <div class="chat">
         <div class="chat-box">
             <!-- 相手のアイコンと名前表示部分 -->
             <div class="chat-header">
@@ -190,6 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
+    </div>
     <script>
         function scrollToLatestMessage() {
             const latestMessage = document.getElementById('latest-message');
@@ -219,7 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
     </script>
-    </div>
     <script type="text/javascript" src="js/chat.js" async></script>
 </body>
 </html>
