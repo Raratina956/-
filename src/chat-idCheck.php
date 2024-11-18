@@ -48,7 +48,7 @@ if ($search_keyword) {
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$user['user_id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                echo '<table><tr>'
+                echo '<table><tr>';
                 echo '<td><img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"></td>';
 
                 // ユーザー名をリンク化して表示
