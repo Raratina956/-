@@ -42,12 +42,14 @@ if ($search_keyword) {
     $search_results = searchUsers($pdo, $search_keyword);
 
     if (!empty($search_results)) {
-        echo "<h3>検索結果:</h3>";
+        echo "<h3>検索結果</h3><br>";
         foreach ($search_results as $user) {
+
                  //アイコン
                 $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
                 $iconStmt->execute([$user['user_id']]);
                 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
                 echo '<table><tr>';
                 echo '<td><img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"></td>';
 
