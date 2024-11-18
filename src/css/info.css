@@ -56,22 +56,6 @@ td:nth-child(2) {
     border-radius: 5px; /* 角を丸く */
     border-color: white;
 }
-.sort{
-width: 100px;
-    height: 36px;
-    padding: 0 16px;
-    font-size: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;  
-    background-color: rgb(192, 191, 191);
-    color:black;
-    border-radius: 5px;
-}
-.sort:hover{
-    background-color:  #a0eefc;
-    color: #333;
-}
 .large-text {
     font-size: 22px;
     font-weight: bold;
