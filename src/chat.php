@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require 'header.php'; ?>
     <div class="chat-system">
         <div class="chat-box">
-                <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post">' ?>
+                <?php echo '<form action="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" method="post" class="backform">' ?>
                     <input type="submit" name="back-btn" class="back-btn" value="戻る">
                 </form>
             <!-- 相手のアイコンと名前表示部分 -->
