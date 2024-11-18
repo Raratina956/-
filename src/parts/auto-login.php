@@ -6,14 +6,14 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // 現在のURLを取得
 $requestUri = $_SERVER['REQUEST_URI'];
-
 // URLのパス部分を抽出
 $parsedUrl = parse_url($requestUri, PHP_URL_PATH);
-
 // パス部分からファイル名だけを取得
 $fileName = basename($parsedUrl);
-
 // 'room.php' の場合に true の処理を行う
+if(isset($_SESSION['room']['uri'])){
+    unset($_SESSION['room']['uri']);
+}
 if ($fileName === 'room.php' && !(isset($_COOKIE['remember_me_token'])) ) {
     $_SESSION['room']['uri'] = $requestUri;
 }
