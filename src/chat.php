@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
-    <!-- <?php require 'header.php'; ?> -->
+
     <div class="chat-system">
         <div class="chat-box">
 
