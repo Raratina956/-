@@ -177,7 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 <?php endforeach; ?>
                 <div id="latest-message">
-                    <script type="text/javascript" src="js/chat.js" async></script>
                 </div>
             </div>
             <div class="send-container">
@@ -219,5 +218,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
     </script>
+    <script type="text/javascript" src="js/chat.js" async></script>
 </body>
 </html>
