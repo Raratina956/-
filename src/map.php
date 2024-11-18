@@ -22,6 +22,7 @@ unset($_SESSION['floor']['kai']);
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1001; /* モーダルが最前面に来るようにZインデックスを調整 */
     }
 
     .icon-modal img {
