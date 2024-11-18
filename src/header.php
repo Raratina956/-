@@ -11,7 +11,9 @@ if (isset($_POST['logout'])) {
         $sql_delete_token = $pdo->prepare('DELETE FROM Login_tokens WHERE token = ?');
         $sql_delete_token->execute([$token]);
     }
-
+    if(isset(($_SESSION['room']['uri']))){
+        unset($_SESSION['room']['uri']);
+    }
     // クッキーを削除
     setcookie('remember_me_token', '', time() - 3600, "/"); // 過去の時間に設定
 
