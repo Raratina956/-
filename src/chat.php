@@ -1,224 +1,292 @@
 <?php
-require 'parts/auto-login.php';
-
-try {
-    $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "接続エラー: " . $e->getMessage();
-    exit();
-}
-
-// URLから相手のuser_idを取得
-$partner_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
-
-// ログイン中のユーザーIDをセッションから取得
-$logged_in_user_id = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
-
-// user_idが取得できない場合の処理
-if ($partner_id === null || $logged_in_user_id === null) {
-    echo "ユーザーIDが指定されていません。";
-    exit();
-}
-
-// メッセージを取得し既読フラグを更新する関数
-function getMessages($pdo, $logged_in_user_id, $partner_id)
-{
-    // メッセージを取得するSQL
-    $sql = "SELECT message_id, send_id, sent_id, message_detail, message_time 
-            FROM Message 
-            WHERE (send_id = :logged_in_user_id AND sent_id = :partner_id)
-               OR (send_id = :partner_id AND sent_id = :logged_in_user_id)
-            ORDER BY message_time ASC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':logged_in_user_id', $logged_in_user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // 受信したメッセージ（自分宛て）の既読フラグを更新
-    $sql_update = "UPDATE Message SET already = 1 
-                   WHERE sent_id = :logged_in_user_id AND send_id = :partner_id AND already = 0";
-    $stmt_update = $pdo->prepare($sql_update);
-    $stmt_update->bindParam(':logged_in_user_id', $logged_in_user_id, PDO::PARAM_INT);
-    $stmt_update->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
-    $stmt_update->execute();
-
-    return $messages;
-}
-
-// アイコンを取得する処理
-$iconStmt = $pdo->prepare('select icon_name from Icon where user_id = ?');
-$iconStmt->execute([$partner_id]);
-$iconchat = $iconStmt->fetch(PDO::FETCH_ASSOC);
-
-// 相手の情報を取得
-$sql = "SELECT user_name FROM Users WHERE user_id = :partner_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':partner_id', $partner_id, PDO::PARAM_INT);
-$stmt->execute();
-$partner = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// info既読機能
-$send_id_che = $partner_id;
-$sent_id_che = $logged_in_user_id;
-$mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?');
-$mess_sql->execute([$send_id_che, $sent_id_che]);
-$mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
-if($mess_row){
-    foreach($mess_row as $mess_list){
-        $message_id_check = $mess_list['message_id'];
-        $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
-        $mess_check->execute([$message_id_check]);
-        $mess_check_row = $mess_check->fetch();
-        if($mess_check_row){
-            $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
-            $info_up->execute([1, $message_id_check]);
-        }
-    }
-}
-
-// メッセージ送信処理
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $send_id = $logged_in_user_id; // セッションから送信者のIDを取得
-    $sent_id = $partner_id; // 受信者のIDはリンクから取得した相手のID
-    $message_detail = $_POST['text'];
-    $message_time = date('Y/m/d H:i:s');
-
-    $sql = "INSERT INTO Message (send_id, sent_id, message_detail, message_time, already) 
-            VALUES (:send_id, :sent_id, :message_detail, :message_time, 0)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':send_id', $send_id);
-    $stmt->bindParam(':sent_id', $sent_id);
-    $stmt->bindParam(':message_detail', $message_detail);
-    $stmt->bindParam(':message_time', $message_time);
-
-    if ($stmt->execute()) {
-        // info 追加
-        $message_id = $pdo->lastInsertId();
-        $ann_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND type=?');
-        $ann_sql->execute([$sent_id, 3]);
-        $ann_row = $ann_sql->fetchAll(PDO::FETCH_ASSOC);
-        $found = false;
-        if ($ann_row) {
-            foreach ($ann_row as $ann_list) {
-                $send_id = intval($send_id);
-                $sent_id = intval($sent_id);
-                $message_id_check = $ann_list['message_id'];
-                $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
-                $mess_sql->execute([$message_id_check]);
-                $mess_row = $mess_sql->fetch(PDO::FETCH_ASSOC);
-                $send_id_check = $mess_row['send_id'];
-                $sent_id_check = $mess_row['sent_id'];
-                if ($send_id == $send_id_check && $sent_id == $sent_id_check) {
-                    $info_up = $pdo->prepare('UPDATE Announce_check SET read_check = ?, message_id=? WHERE message_id=?');
-                    $info_up->execute([0, $message_id, $message_id_check]);
-                    $found = true;
-                    break;
-                }
-            }
-            if (!$found) {
-                $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
-                $info_insert->execute([$message_id, $sent_id, 0, 3]);
-            }
-        } else {
-            $info_insert = $pdo->prepare('INSERT INTO Announce_check(message_id,user_id,read_check,type) VALUES (?,?,?,?)');
-            $info_insert->execute([$message_id, $sent_id, 0, 3]);
-        }
-    } else {
-        $error_info = $stmt->errorInfo();
-        echo "登録に失敗しました: " . $error_info[2];
-    }
-}
+    require 'parts/auto-login.php';
+    require 'header.php';
+    
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>チャット</title>
-    <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
-    <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
-</head>
-<body>
-    <?php require 'header.php'; ?>
-    <div class="chat-system">
-    <div class="chat-box">
-        <!-- 相手のアイコンと名前表示部分 -->
-        <div class="chat-header">
-            <form action="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>" method="post" class="backform">
-                <input type="submit" name="back-btn" class="back-btn" value="戻る">
-            </form>
-            <div class="center-content">
-                <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
-                <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
-            </div>
-        </div>
+   
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 1280px)">
+        <link rel="stylesheet" type="text/css" href="mob_css/user-mob.css" media="screen and (max-width: 480px)">
 
-        <!-- 広告バナー -->
-        <!--
-        <div class="ad-banner" id="ad-banner">
-            <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
-                <img src="image/banner.png" alt="広告バナー" class="ad-image">
-            </a>
-        </div>
-        -->
+        <title>Document</title>
+       
+    </head>
+       
+        <body>
+<?php
+    //フォロー・フォロワー機能
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $follower_id = $_POST['user_id'];
+        $follow_id = $_SESSION['user']['user_id'];
 
-            <div class="chat-area" id="chat-area">
-                <?php
-                // 指定した相手とのチャット履歴を取得して表示
-                $messages = getMessages($pdo, $logged_in_user_id, $partner_id);
-                foreach ($messages as $message): ?>
-                    <?php $class = ($message['send_id'] == $logged_in_user_id) ? 'person1' : 'person2'; ?>
-                    <div class="<?php echo $class; ?>">
-                        <div class="chat">
-                            <small class="chat-time"><?php echo htmlspecialchars($message['message_time']); ?></small>
-                            <span><?php echo htmlspecialchars($message['message_detail']); ?></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <div id="latest-message"></div>
-            </div>
-            <div class="send-container">
-                <!-- メッセージ送信フォーム -->
-                <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#chat-area" method="post">
-                    <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
-                    <input type="submit" name="sub" class="send" value="送信" id="send-btn">
-                </form>
-            </div>
-        </div>
-</div>
+        if (isset($_POST['action']) && $_POST['action'] == 'follow') {
+            // フォローを追加
+            $sql = $pdo->prepare('insert into Favorite (follow_id, follower_id) values (?, ?)');
+            $sql->execute([$follow_id, $follower_id]);
+        } elseif (isset($_POST['action']) && $_POST['action'] == 'unfollow') {
+            // フォローを解除
+            $sql = $pdo->prepare('delete from Favorite where follow_id=? and follower_id=?');
+            $sql->execute([$follow_id, $follower_id]);
+        }
 
-    <script>
-        function scrollToLatestMessage() {
-            const latestMessage = document.getElementById('latest-message');
-            latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
+        // リダイレクトして同じページを再読み込み
+        header('Location: user.php?user_id=' .$_POST['user_id']);
+        exit();
+    }
+
+   
+    //ユーザー情報を持ってくる
+    $users=$pdo->prepare('select * from Users where user_id=?');
+    // $users->execute([$_SESSION['user']['user_id']]);
+    $users->execute([$_GET['user_id']]);
+    
+    //アイコン情報を持ってくる
+    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+    $iconStmt->execute([$_GET['user_id']]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+
+    //DBから持ってきたユーザー情報を「$user」に入れる
+    foreach($users as $user){
+
+        //自分か相手側かで表示する内容を変更
+        if($_SESSION['user']['user_id'] == ($user['user_id'])){
+            //自分のプロフィール
+            //編集ボタン
+            echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
+            //アイコン表示
+            echo '<div class="profile-container">';
+            echo '<div class="user-container">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+            //ユーザー情報
+            if($user['s_or_t'] == 0){
+
+                // クラスを持ってくる
+                $classtagStmt = $pdo->prepare('select * from Classtag_attribute where user_id=?');
+                $classtagStmt->execute([$_SESSION['user']['user_id']]);
+                $classtag = $classtagStmt->fetch();
+                echo '<div class="profile">';
+                // 生徒(名前、クラス、メールアドレス)
+                echo '名前：', $user['user_name'], "<br>";
+                if ($classtag) {
+                    $classtagnameStmt = $pdo->prepare('select * from Classtag_list where classtag_id=?');
+                    $classtagnameStmt->execute([$classtag['classtag_id']]);
+                    $classtagname = $classtagnameStmt->fetch();
+                    echo 'クラス：', $classtagname['classtag_name'], '<br>';
+                }else{
+                    echo 'クラス：クラスが設定されていません', '<br>';
+                }
+                echo $user['mail_address'], "<br>";
+                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_row = $current_sql->fetch();
+                if($current_row){
+                    $room_id = $current_row['classroom_id'];
+                    $logtime = $current_row['logtime'];
+                    $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    $room_sql->execute([$room_id]);
+                    $room_row = $room_sql->fetch();
+                    $room_name = $room_row['classroom_name'];
+                    echo '現在地：'.$room_name.'<br>';
+                    echo $logtime.'<br>';
+                }else{
+                    echo '現在地：設定なし';
+                }
+                echo '</div>';
+            }else{
+                //先生(名前、メールアドレス)
+                echo '<div class="profile"><br>';
+                echo '名前：',$user['user_name'], "先生<br>";
+                echo $user['mail_address'];
+                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_row = $current_sql->fetch();
+                if($current_row){
+                    $room_id = $current_row['classroom_id'];
+                    $logtime = $current_row['logtime'];
+                    $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    $room_sql->execute([$room_id]);
+                    $room_row = $room_sql->fetch();
+                    $room_name = $room_row['classroom_name'];
+                    echo '現在地：'.$room_name.'<br>';
+                    echo $logtime.'<br>';
+                }else{
+                    echo '現在地：設定なし';
+                }
+                echo '</div>';
             }
-        document.getElementById('send-btn').addEventListener('click', function (e) {
-            // e.preventDefault(); // この行を削除
-            scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
-        });
 
+            echo '</div>';
+            echo '</div>';
+            echo '<br>';
+            //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
+            echo '<div class="tag">';
+            $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
+            $attribute->execute([$_SESSION['user']['user_id']]);
+            $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
 
-        // function adjustChatAreaHeight() {
-        // const chatArea = document.getElementById('chat-area');
-        // const chatBox = document.querySelector('.chat-box');
-        // const sendContainer = document.querySelector('.send-container');
-        // const header = document.querySelector('.chat-header');
+            echo 'タグ一覧<br><br>';
+            foreach($attributes as $tag_attribute){
+                $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
+                $tagStmt->execute([$tag_attribute['tag_id']]);
+                $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // // チャットエリアの高さを再計算
-        // const availableHeight = window.innerHeight
-        //     - header.offsetHeight
-        //     - sendContainer.offsetHeight;
+                //タグ一覧
+                foreach($tags as $tag){
+                    echo $tag['tag_name'];
+                    echo '&emsp;';
+                }
+                
+            }
+            echo '</div>';
+        }else{
+            //相手のプロフィール
+            //チャットボタン表示
+            echo '<div class="profile-container">';
+            echo '<div class="favorite-container">';
+            echo '<button type="submit" class="star">';
+            echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=',$_GET['user_id'],'">';
+            echo '<img src="img\chat.png" width="85%" height="100% class="chat">';
+            echo '</a>';
+            echo '</button>';
 
-        // chatArea.style.height = `${availableHeight}px`;
-        // }
+            //お気に入りボタン表示
+            $followStmt=$pdo->prepare('select * from Favorite where follow_id=? and follower_id=?');
+            $followStmt->execute([$_SESSION['user']['user_id'], $_GET['user_id']]);
+            $follow = $followStmt->fetch();
+            if($follow){
+                echo '<form action="user.php" method="post">
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
+                        <input type="hidden" name="action" value="unfollow">
+                        <button type="submit" class="star">
+                            <img src="img\star.png" width="85%" height="100%">
+                        </button>
+                      </form><br>';
+            }else{
+                echo '<form action="user.php" method="post">
+                        <input type="hidden" name="user_id" value=', $_GET['user_id'], '>
+                        <input type="hidden" name="action" value="follow">
+                        <button type="submit">
+                            <img src="img\notstar.png" width="85%" height="100%" class="star">
+                        </button>
+                      </form><br>';
+            }
+            echo '</div>';
 
-        // // ページロード時とリサイズ時にチャットエリアの高さを調整
-        // window.onload = adjustChatAreaHeight;
-        // window.onresize = adjustChatAreaHeight;
-    </script>
-    <script type="text/javascript" src="js/chat.js" async></script>
+            //アイコン表示
+            echo '<div class="user-container">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"><br>';
+
+            //ユーザー情報
+            if($user['s_or_t'] == 0){
+                // クラスを持ってくる
+                $classtagStmt = $pdo->prepare('select * from Classtag_attribute where user_id=?');
+                $classtagStmt->execute([$_GET['user_id']]);
+                $classtag = $classtagStmt->fetch();
+
+                if ($classtag) {
+                    $classtagnameStmt = $pdo->prepare('select * from Classtag_list where classtag_id=?');
+                    $classtagnameStmt->execute([$classtag['classtag_id']]);
+                    $classtagname = $classtagnameStmt->fetch();
+
+                    // 生徒(名前、クラス、メールアドレス)
+                    echo '<div class="profile">';
+                    echo '名前：', $user['user_name'], "<br>";
+                    echo 'クラス：', $classtagname['classtag_name'], '<br>';
+                    echo $user['mail_address'], "<br>";
+                    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                    $current_sql->execute($_SESSION['user']['user_id']);
+                    $current_row = $current_sql->fetch();
+                    if($current_row){
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                        echo '現在地：'.$room_name.'<br>';
+                        echo $logtime.'<br>';
+                    }else{
+                        echo '現在地：設定なし';
+                    }
+                    echo '</div>';
+                } else {
+                    // クラス情報がなかった場合の処理
+                    echo '<div class="profile">';
+                    echo '名前：', $user['user_name'], "<br>";
+                    echo 'クラス：クラスが設定されていません', '<br>';
+                    echo $user['mail_address'], "<br>";
+                    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                    $current_sql->execute($_SESSION['user']['user_id']);
+                    $current_row = $current_sql->fetch();
+                    if($current_row){
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                        echo '現在地：'.$room_name.'<br>';
+                        echo $logtime.'<br>';
+                    }else{
+                        echo '現在地：設定なし';
+                    }
+                    echo '</div>';
+                }
+            }else{
+                //先生(名前、メールアドレス)
+                echo '<div class="profile">';
+                echo '名前：',$user['user_name'], "先生<br>";
+                echo $user['mail_address'],"<br>";
+                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_row = $current_sql->fetch();
+                if($current_row){
+                    $room_id = $current_row['classroom_id'];
+                    $logtime = $current_row['logtime'];
+                    $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    $room_sql->execute([$room_id]);
+                    $room_row = $room_sql->fetch();
+                    $room_name = $room_row['classroom_name'];
+                    echo '現在地：'.$room_name.'<br>';
+                    echo $logtime.'<br>';
+                }else{
+                    echo '現在地：設定なし';
+                }
+                echo '</div>';
+            }
+
+            echo '</div>';
+            echo '</div>';
+            
+            //タグ情報を「$_SESSION['user']['user_id']」を使って持ってくる
+            echo '<div class="tag">';
+            echo 'タグ一覧<br>';
+         
+            $attribute=$pdo->prepare('select * from Tag_attribute where user_id=?');
+            $attribute->execute([$_GET['user_id']]);
+            $attributes = $attribute->fetchAll(PDO::FETCH_ASSOC);
+            foreach($attributes as $tag_attribute){
+                $tagStmt=$pdo->prepare('select * from Tag_list where tag_id=?');
+                $tagStmt->execute([$tag_attribute['tag_id']]);
+                $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                //タグ一覧
+                foreach($tags as $tag){
+                    echo $tag['tag_name'];
+                    echo '&emsp;';
+                }
+              
+            }
+            echo '</div>';
+        }
+    }
+?>
+<!-- メイン(マップ)に戻る -->
+<button type="button" class="back" onclick="location.href='map.php'">戻る</button>
 </body>
 </html>

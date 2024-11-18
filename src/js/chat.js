@@ -1,4 +1,4 @@
 window.onload = function () {
-    const chatArea = document.getElementById('chat-area');
-    chatArea.scrollIntoView(false);
+    const latestMessage = document.getElementById('latest-message');
+    latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
 };

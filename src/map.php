@@ -26,9 +26,10 @@ unset($_SESSION['floor']['kai']);
 
     //プルダウン
     echo '<div class="select">';
-    echo '<form action="map.php" method="post">';
+    echo '<form action="map.php" method="post" class="user^kensaku">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
-
+    
+    <p class="kensaku-user">ユーザー絞り込み</p>
     お気に入り　　<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
@@ -61,7 +62,7 @@ unset($_SESSION['floor']['kai']);
         echo '<option value=0>-</option>';
     }
     echo '<input type="submit" class="abst" value="絞込">';
-    echo '</select><br><br>';
+    echo '</select><br>';
     echo '</form></div><br>';
     
     // 学外
