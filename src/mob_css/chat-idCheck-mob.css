@@ -1,5 +1,5 @@
 body {
-    padding-top: 150px;
+    /* padding-top: 120px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,4 +28,12 @@ body {
 .back-link:hover{
     background-color: rgb(54, 98, 216);
     color: white;
+}
+
+.usericon{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+
 }
