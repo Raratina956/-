@@ -85,3 +85,13 @@ th, td {
 .unselected {
     color: gray;
 }
+
+.atag{
+    text-decoration: none;
+    color: inherit;
+}
+
+.atag:hover, .atag:active, .atag:visited{
+    color: inherit;
+    text-decoration: none;
+}
