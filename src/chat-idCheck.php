@@ -35,7 +35,7 @@ function searchUsers($pdo, $search_keyword) {
     <link rel="stylesheet" href="css/chat-idCheck.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
-
+<?php require 'header.php'; ?>
 <?php
 if ($search_keyword) {
     // 検索機能を実行
