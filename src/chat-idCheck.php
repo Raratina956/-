@@ -41,16 +41,15 @@ if ($search_keyword) {
     // 検索機能を実行
     $search_results = searchUsers($pdo, $search_keyword);
 
-    //アイコン
-    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-    $iconStmt->execute([$user['user_id']]);
-    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-
     if (!empty($search_results)) {
         echo "<h3>検索結果:</h3>";
         foreach ($search_results as $user) {
-                // アイコン表示
+                 //アイコン
+                $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+                $iconStmt->execute([$user['user_id']]);
+                $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                 echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+
                 // ユーザー名をリンク化して表示
                 echo '<p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p>';
         }
