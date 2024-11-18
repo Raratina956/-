@@ -225,10 +225,6 @@ require 'header.php';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-<<<<<<< HEAD
-                echo '名前：', $user['user_name'], "先生<br>";
-                echo $user['mail_address'], "<br>";
-=======
                 echo '名前：',$user['user_name'], "先生<br>";
                 echo $user['mail_address'],"<br>";
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -246,7 +242,6 @@ require 'header.php';
                 }else{
                     echo '現在地：設定なし';
                 }
->>>>>>> 7c46419ead60887362a7cb7e3aceb163f1e2f00b
                 echo '</div>';
             }
 
