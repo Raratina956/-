@@ -29,6 +29,7 @@ unset($_SESSION['floor']['kai']);
     echo '<form action="map.php" method="post">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
     
+    <p class="kensaku-user">ユーザー絞り込み</p>
     お気に入り　　<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
