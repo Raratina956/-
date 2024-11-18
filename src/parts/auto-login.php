@@ -14,9 +14,8 @@ $parsedUrl = parse_url($requestUri, PHP_URL_PATH);
 $fileName = basename($parsedUrl);
 
 // 'room.php' の場合に true の処理を行う
-if ($fileName === 'room.php') {
-    echo "room.php がリクエストされました。";
-    // ここにtrueの処理を書く
+if ($fileName === 'room.php' && !(isset($_COOKIE['remember_me_token'])) ) {
+    $_SESSION['room']['uri'] = $requestUri;
 }
 
 
