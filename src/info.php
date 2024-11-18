@@ -411,7 +411,7 @@ if ($list_raw) {
 
 
 
-    foreach ($list_raw as $row) {
+    foreach ($lists_raw as $row) {
         switch ($row['type']) {
             case 1:
                 if ($narrow == 0 or $narrow == 1) {
