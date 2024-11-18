@@ -1,0 +1,10 @@
+body { 
+    background-image: url(../img/SpotLinkbg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
