@@ -46,6 +46,7 @@
 
     /* スライドメニュー */
     .slide-menu {
+      display: inline-block;
       background-color: rgb(46, 149, 222);
       position: fixed;
       top: 65px;

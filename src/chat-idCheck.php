@@ -31,20 +31,28 @@ function searchUsers($pdo, $search_keyword) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザー検索</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="mob_css/chat-idCheck-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/chat-idCheck.css" media="screen and (min-width: 1280px)">
 </head>
 <body>
-
+<?php require 'header.php'; ?>
 <?php
 if ($search_keyword) {
     // 検索機能を実行
     $search_results = searchUsers($pdo, $search_keyword);
 
+    //アイコン
+    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
+    $iconStmt->execute([$user['user_id']]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
     if (!empty($search_results)) {
         echo "<h3>検索結果:</h3>";
         foreach ($search_results as $user) {
-            // ユーザー名をリンク化して表示
-            echo '<p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p>';
+                // アイコン表示
+                echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                // ユーザー名をリンク化して表示
+                echo '<p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p>';
         }
     } else {
         echo "<p>該当するユーザーが見つかりません。</p>";
