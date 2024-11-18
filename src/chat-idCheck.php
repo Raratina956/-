@@ -54,9 +54,7 @@ if ($search_keyword) {
                 echo '<td><img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon"></td>';
 
                 // ユーザー名をリンク化して表示
-                echo '<div class="username">';
-                echo '<td><p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p></td>';
-                echo '</div>';
+                echo '<td><p><a href="chat.php?user_id=' . htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8') . '"class="username">' . htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8') . '</a></p></td>';
                 echo '</tr>';
                 echo '</table>';
         }
@@ -64,10 +62,15 @@ if ($search_keyword) {
         echo "<p>該当するユーザーが見つかりません。</p>";
     }
 }
-?>
 
-<!-- メイン(マップ)に戻る -->
-<button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
+
+// chat-homeに戻る
+echo '<form action="chat-home.php" method="GET">
+      <input type="hidden" name="user_id" value=', $_SESSION['user']['user_id'], '>
+      <input type="submit" class="back-link" value="戻る">
+      </form>';
+     
+?>
 
 </body>
 </html>
