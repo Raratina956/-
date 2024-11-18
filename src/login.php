@@ -70,10 +70,17 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 $now_time,
                 $row['user_id']
             ]);
-            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            if (isset($_SESSION['room']['uri'])) {
+                $uri = $_SESSION['room']['uri'];
+                unset($_SESSION['room']['uri']);
+                $redirect_url = 'https://aso2201203.babyblue.jp'.$uri;
+                header("Location: $redirect_url");
+                exit();
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
-            header("Location: $redirect_url");
-            exit();
+                header("Location: $redirect_url");
+                exit();
             }
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
             header("Location: $redirect_url");
@@ -114,15 +121,18 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
         }
+        if(isset($_SESSION['room']['uri'])){
+            echo $_SESSION['room']['uri'];
+        }
         ?>
         <div class="error">
-        <span><?php echo $error ?></span>
+            <span><?php echo $error ?></span>
         </div>
         <br>
         <div class="next">
-        <span>次回からログインを省略する</span>
-        <br>
-        <input type="checkbox" name="remember_me" value="1">
+            <span>次回からログインを省略する</span>
+            <br>
+            <input type="checkbox" name="remember_me" value="1">
         </div>
         <br>
         <input type="submit" value="ログイン">
