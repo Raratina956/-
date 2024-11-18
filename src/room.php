@@ -148,6 +148,12 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
+            
+            echo '<form action="floor.php" method="post">';
+                echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">';
+                echo '<button type="submit" class="back-link">戻る</button>';
+            echo '</form>'; 
+
             echo '<div class="icon_container">';
             echo '<ul class="flex_item">';
 
@@ -381,10 +387,10 @@ if ($update_id == 1) {
             echo '</ul>';
         ?>
     <!-- メイン(マップ)に戻る -->
-    <form action="floor.php" method="post">
-        <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
+    
+        <!-- <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
         <button type="submit" class="back-link">戻る</button> 
-    </form>
+    </form> -->
     </main>
 </body>
 
