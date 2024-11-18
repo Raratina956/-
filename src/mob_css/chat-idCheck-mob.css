@@ -20,9 +20,11 @@ body {
     left: 10px;
     font-size: 16px; /* フォントサイズ */
     text-decoration: none;
-    background-color: #a0eefc; /* 背景色 */
+    font-size: 16px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
     padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
 }
 
 .back-link:hover{
