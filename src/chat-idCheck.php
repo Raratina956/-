@@ -62,10 +62,13 @@ if ($search_keyword) {
         echo "<p>該当するユーザーが見つかりません。</p>";
     }
 }
-?>
 
-<!-- メイン(マップ)に戻る -->
-<button type="button" class="back-link" onclick="location.href='chat-home.php'">チャットHOME画面へ戻る</button>
+
+// chat-homeに戻る
+// <button type="button" class="back-link" onclick="location.href='chat-home.php'">チャットHOME画面へ戻る</button>
+echo '<a href="chat-home.php?user_id=' .$_SESSION['user']['user_id']. '" class="back-link" >戻る';
+
+?>
 
 </body>
 </html>
