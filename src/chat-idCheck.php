@@ -66,7 +66,7 @@ if ($search_keyword) {
 
 // chat-homeに戻る
 // <button type="button" class="back-link" onclick="location.href='chat-home.php'">チャットHOME画面へ戻る</button>
-echo '<a href="chat-home.php?user_id=' .$_SESSION['user']['user_id']. ' class=back-link" >';
+echo '<a href="chat-home.php?user_id=' .$_SESSION['user']['user_id']. '" class="back-link" >';
 
 ?>
 
