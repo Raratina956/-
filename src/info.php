@@ -345,7 +345,32 @@ if ($list_raw) {
                 <?php
                 $n_users = [];
                 foreach ($list_raw as $row) {
-                    // Processing user list options (omitted for brevity)
+                    switch ($row['type']) {
+                        case 1:
+                            $n_announcement_id = $row['announcement_id'];
+                            $n_announce_s = $pdo->prepare('SELECT * FROM Notification WHERE announcement_id=?');
+                            $n_announce_s->execute([$n_announcement_id]);
+                            $n_announce_r = $n_announce_s->fetch();
+                            $n_send_person_id = $n_announce_r['send_person'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        case 2:
+                            $n_current_location_id = $row['current_location_id'];
+                            $n_current_s = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+                            $n_current_s->execute([$n_current_location_id]);
+                            $n_current_r = $n_current_s->fetch();
+                            $n_send_person_id = $n_current_r['user_id'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        case 3:
+                            $n_message_id = $row['message_id'];
+                            $n_message_s = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
+                            $n_message_s->execute([$n_message_id]);
+                            $n_message_r = $n_message_s->fetch();
+                            $n_send_person_id = $n_message_r['send_id'];
+                            $n_users[] = $n_send_person_id;
+                            break;
+                        }
                 }
                 $uni_n_users = array_unique($n_users);
                 foreach ($uni_n_users as $n_user_r) {
