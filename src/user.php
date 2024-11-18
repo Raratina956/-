@@ -183,21 +183,21 @@ require 'header.php';
                     echo '名前：', $user['user_name'], "<br>";
                     echo 'クラス：', $classtagname['classtag_name'], '<br>';
                     echo $user['mail_address'], "<br>";
-                    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                    $current_sql->execute($_SESSION['user']['user_id']);
-                    $current_row = $current_sql->fetch();
-                    if($current_row){
-                        $room_id = $current_row['classroom_id'];
-                        $logtime = $current_row['logtime'];
-                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                        $room_sql->execute([$room_id]);
-                        $room_row = $room_sql->fetch();
-                        $room_name = $room_row['classroom_name'];
-                        echo '現在地：'.$room_name.'<br>';
-                        echo $logtime.'<br>';
-                    }else{
-                        echo '現在地：設定なし';
-                    }
+                    // $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                    // $current_sql->execute($_SESSION['user']['user_id']);
+                    // $current_row = $current_sql->fetch();
+                    // if($current_row){
+                    //     $room_id = $current_row['classroom_id'];
+                    //     $logtime = $current_row['logtime'];
+                    //     $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    //     $room_sql->execute([$room_id]);
+                    //     $room_row = $room_sql->fetch();
+                    //     $room_name = $room_row['classroom_name'];
+                    //     echo '現在地：'.$room_name.'<br>';
+                    //     echo $logtime.'<br>';
+                    // }else{
+                    //     echo '現在地：設定なし';
+                    // }
                     echo '</div>';
                 } else {
                     // クラス情報がなかった場合の処理
@@ -205,21 +205,21 @@ require 'header.php';
                     echo '名前：', $user['user_name'], "<br>";
                     echo 'クラス：クラスが設定されていません', '<br>';
                     echo $user['mail_address'], "<br>";
-                    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                    $current_sql->execute($_SESSION['user']['user_id']);
-                    $current_row = $current_sql->fetch();
-                    if($current_row){
-                        $room_id = $current_row['classroom_id'];
-                        $logtime = $current_row['logtime'];
-                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                        $room_sql->execute([$room_id]);
-                        $room_row = $room_sql->fetch();
-                        $room_name = $room_row['classroom_name'];
-                        echo '現在地：'.$room_name.'<br>';
-                        echo $logtime.'<br>';
-                    }else{
-                        echo '現在地：設定なし';
-                    }
+                    // $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                    // $current_sql->execute($_SESSION['user']['user_id']);
+                    // $current_row = $current_sql->fetch();
+                    // if($current_row){
+                    //     $room_id = $current_row['classroom_id'];
+                    //     $logtime = $current_row['logtime'];
+                    //     $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    //     $room_sql->execute([$room_id]);
+                    //     $room_row = $room_sql->fetch();
+                    //     $room_name = $room_row['classroom_name'];
+                    //     echo '現在地：'.$room_name.'<br>';
+                    //     echo $logtime.'<br>';
+                    // }else{
+                    //     echo '現在地：設定なし';
+                    // }
                     echo '</div>';
                 }
             } else {
