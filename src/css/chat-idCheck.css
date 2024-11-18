@@ -29,6 +29,14 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
-.username{
-    font-size: 18px;
+.username {
+    font-size: 20px; /* リンクのフォントサイズを大きく */
+    font-weight: bold;
+    color: #007bff; /* 青色リンク */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.username:hover {
+    color: #0056b3; /* ホバー時の色変更 */
 }
