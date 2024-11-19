@@ -35,7 +35,9 @@ unset($_SESSION['floor']['kai']);
 
 
     <?php
-    $img = 10;
+    if(!isset($img)){
+        $img = 10;
+    }
     if ($img == 10) {
         $img = 0;
     }
