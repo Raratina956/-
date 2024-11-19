@@ -131,3 +131,7 @@ object-fit: cover;
 .abst:hover{
   background-color: rgb(160, 158, 158);
 }
+
+.kensaku-user{
+  margin: auto 46px;
+}
