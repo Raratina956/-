@@ -52,10 +52,10 @@ if (isset($_POST['read_id'])) {
             $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id=?');
             break;
         case 2:
-            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
+            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
             break;
         case 3:
-            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
+            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
             break;
         default:
             # code...
