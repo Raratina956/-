@@ -2,7 +2,6 @@
 session_start();
 require 'parts/db-connect.php';
 // クッキーのチェック
-unset($_SESSION['user']['img']);
 if (isset($_COOKIE['remember_me_token'])) {
     $token = $_COOKIE['remember_me_token'];
 
@@ -20,8 +19,7 @@ if (isset($_COOKIE['remember_me_token'])) {
         if ($user_row) {
             $_SESSION['user'] = [
                 'user_id' => $user_row['user_id'],
-                'user_name' => $user_row['user_name'],
-                'img' => 0
+                'user_name' => $user_row['user_name']
             ];
         }
     }
@@ -47,8 +45,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user'] = [
                 'user_id' => $row['user_id'],
-                'user_name' => $row['user_name'],
-                'img' => 0
+                'user_name' => $row['user_name']
             ];
 
             // 自動ログイン処理開始

@@ -35,9 +35,13 @@ unset($_SESSION['floor']['kai']);
 
 
     <?php
-    if($_SESSION['user']['img'] == 0){
-        $_SESSION['user']['img'] = 1;
-        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon.png" alt="アイコン" id="icon"> </div>';
+    if(!isset($_SESSION['user']['img'])){
+        $_SESSION['user']['img'] = 0;
+    }
+
+    if($_SESSION['user']['img'] <= 0){
+        $_SESSION['user']['img']++;
+        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
     }
     
 
