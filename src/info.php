@@ -534,7 +534,7 @@ require 'header.php';
                         }
                         echo '</tr>';
                         echo '<tr>';
-                        echo '<td class="day">', timeAgo($logtime), '</td>';
+                        echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
                         <form action="info.php" method="post">
                             <input type="hidden" name="read_type" value=2>
