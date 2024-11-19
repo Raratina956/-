@@ -111,7 +111,7 @@ button {
   }
 
 .list{
-    width: 50%;
+    width: 15%;
     font-size: 20px;
     text-align: center;
     /* align-items: center; */
@@ -126,10 +126,11 @@ button {
 
 .abst{
     margin: auto -20%;
-    background-color: rgb(177, 177, 177);
+    background-color: rgb(48 212 197);
     color: black;
     border-radius: 5px; /* 角丸をつける */
-    padding: 5px;
+    padding-block: 3px;
+    padding-inline: 10px;
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
     margin-left: 40px;
@@ -138,7 +139,7 @@ button {
 }
 
 .abst:hover{
-    background-color: rgb(160, 158, 158);
+    background-color: rgb(135 206 250);
 }
 
 select{
