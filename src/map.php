@@ -10,10 +10,29 @@ unset($_SESSION['floor']['kai']);
 <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)">
 
 <title>MAP</title>
+<style>
+    .icon-modal {
+        display: none; /* 初期状態では非表示 */
+        position: fixed; /* 固定位置 */
+        top: 0;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001; /* モーダルが最前面に来るようにZインデックスを調整 */
+    }
 
-
+    .icon-modal img {
+        width: 700px; /* アイコンのサイズを調整 */
+        opacity: 1; /* 初期透明度 */
+        transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
+    }
+</style>
 <body>
-
+<div class="icon-modal" id="icon-modal"> <img src="img/icon.png" alt="アイコン" id="icon"> </div>
 
     <?php
 
@@ -179,6 +198,19 @@ unset($_SESSION['floor']['kai']);
 
     </div>
     <br>
+    <script> 
+        window.onload = function() {
+            const iconModal = document.getElementById('icon-modal');
+            const icon = document.getElementById('icon');
+            iconModal.style.display = 'flex';// モーダルを表示
+            setTimeout(function() {
+                icon.style.opacity = '0'; // フェードアウト開始
+            }, 1000); // 1秒間表示してからフェードアウトを開始
+            setTimeout(function() {
+                iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
+            }, 2000); // フェードアウトが完了するまで待つ
+            };
+    </script>
 </body>
 
 </html>
