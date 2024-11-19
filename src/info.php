@@ -27,9 +27,22 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
-if(isset($_POST['delete'])){
-    $delete_id = $_POST['delete'];
-    $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE announce_check_id=?');
+if (isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    switch ($_POST['delete_type']) {
+        case 1:
+            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE announce_check_id=?');
+            break;
+        case 2:
+            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE current_location_id=?');
+            break;
+        case 3:
+            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
+            break;
+        default:
+            # code...
+            break;
+    }
     $delete_sql->execute([$delete_id]);
 }
 if (isset($_POST['narrow'])) {
@@ -459,7 +472,8 @@ require 'header.php';
                             <td><input type="submit" value="詳細" class="edit"></td>
                         </form>
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                            <input type="hidden" name="delete_type" value=1>
+                            <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
                             <td><input type="submit" value="削除" class="delete"></td>
                         </form>
                         <?php
@@ -504,6 +518,11 @@ require 'header.php';
                             <td colspan="2"></td>
                             <td><input type="submit" value="詳細" class="edit"></td>
                         </form>
+                        <form action="info.php" method="post" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="delete_type" value=2>
+                            <input type="hidden" name="delete_id" value=<?php echo $current_location_id; ?>>
+                            <td><input type="submit" value="削除" class="delete"></td>
+                        </form>
                         <?php
                     }
                     break;
@@ -542,6 +561,11 @@ require 'header.php';
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
                         <td><input type="submit" value="詳細" class="edit"></td>
+                    </form>
+                    <form action="info.php" method="post" onsubmit="return confirmDelete()">
+                        <input type="hidden" name="delete_type" value=3>
+                        <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
+                        <td><input type="submit" value="削除" class="delete"></td>
                     </form>
                     <?php
                     break;
