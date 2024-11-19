@@ -87,7 +87,6 @@
       overflow-y: scroll;
       
     }
-
     .slide-menu li {
       height: auto;
       color: #fff;
@@ -95,7 +94,8 @@
       text-align: center;
       list-style: none;
       font-size: 14.9px;
-      
+      text-decoration: none;
+      color: inherit; 
     }
 
     /* ログアウトの赤文字 */
