@@ -119,7 +119,9 @@ if ($list_raw) {
     </table>
     <?php
 } else {
+    echo '<div class="text">';
     echo '作成されたタグがありません';
+    echo '</div>';
 }
 ?>
 <a href="map.php" class="back-link">マップへ</a>

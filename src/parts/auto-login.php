@@ -41,7 +41,8 @@ if (isset($_COOKIE['remember_me_token'])) {
         if ($user_row) {
             $_SESSION['user'] = [
                 'user_id' => $user_row['user_id'],
-                'user_name' => $user_row['user_name']
+                'user_name' => $user_row['user_name'],
+                'img' => 0
             ];
         }
     }
