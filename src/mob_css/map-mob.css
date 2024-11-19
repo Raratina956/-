@@ -132,6 +132,14 @@ object-fit: cover;
   background-color: rgb(160, 158, 158);
 }
 
+.user-kensaku{
+  width: 140%;
+  text-align: -webkit-center;
+  background-color: lightskyblue;
+  border: 5px solid #30d4c5;
+}
+
+
 .kensaku-user{
   margin: auto 46px;
 }
