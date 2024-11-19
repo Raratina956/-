@@ -88,8 +88,8 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '<input type="submit" class="abst" value="絞込">';
     echo '</select><br>';
+    echo '<input type="submit" class="abst" value="絞込">';
     echo '</form></div><br><br><br>';
     
     // 学外
