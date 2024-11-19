@@ -31,13 +31,13 @@ if (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     switch ($_POST['delete_type']) {
         case 1:
-            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE announce_check_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announce_check_id=?');
             break;
         case 2:
-            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE current_location_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
             break;
         case 3:
-            $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
             break;
         default:
             # code...
