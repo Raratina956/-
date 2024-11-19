@@ -31,19 +31,37 @@ if (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     switch ($_POST['delete_type']) {
         case 1:
-            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id=?');
+            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE announcement_id=?');
             break;
         case 2:
-            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
+            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE current_location_id=?');
             break;
         case 3:
-            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
+            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             break;
         default:
             # code...
             break;
     }
-    $delete_sql->execute([$delete_id]);
+    $delete_sql->execute([1,$read_id]);
+}
+if (isset($_POST['read_id'])) {
+    $read_id = $_POST['read_id'];
+    switch ($_POST['read_type']) {
+        case 1:
+            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id=?');
+            break;
+        case 2:
+            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
+            break;
+        case 3:
+            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
+            break;
+        default:
+            # code...
+            break;
+    }
+    $read_sql->execute([$read_id]);
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
@@ -467,6 +485,11 @@ require 'header.php';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
                         echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                         ?>
+                        <form action="info.php" method="post">
+                            <input type="hidden" name="read_type" value=1>
+                            <input type="hidden" name="read_id" value=<?php echo $announcement_id; ?>>
+                            <td><input type="submit" value="既読" class="read_one"></td>
+                        </form>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                             <td><input type="submit" value="詳細" class="edit"></td>
@@ -513,6 +536,11 @@ require 'header.php';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
                         ?>
+                        <form action="info.php" method="post">
+                            <input type="hidden" name="read_type" value=2>
+                            <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
+                            <td><input type="submit" value="既読" class="read_one"></td>
+                        </form>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
                             <td colspan="2"></td>
@@ -558,6 +586,11 @@ require 'header.php';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                     ?>
+                    <form action="info.php" method="post">
+                            <input type="hidden" name="read_type" value=3>
+                            <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
+                            <td><input type="submit" value="既読" class="read_one"></td>
+                        </form>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
                         <td><input type="submit" value="詳細" class="edit"></td>
