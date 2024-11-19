@@ -27,6 +27,11 @@ function timeAgo($logtime)
         return $days . '日前';
     }
 }
+if(isset($_POST['delete'])){
+    $delete_id = $_POST['delete'];
+    $delete_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE announce_check_id=?');
+    $delete_sql->execute([$delete_id]);
+}
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
     $narrow = intval($narrow);
@@ -453,7 +458,7 @@ require 'header.php';
                             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                             <td><input type="submit" value="詳細" class="edit"></td>
                         </form>
-                        <form action="info.php" method="post">
+                        <form action="info.php" method="post" onsubmit="return confirmDelete()">
                             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                             <td><input type="submit" value="削除" class="delete"></td>
                         </form>
