@@ -133,7 +133,7 @@ object-fit: cover;
 }
 
 .user-kensaku{
-  width: 140%;
+  margin: auto -20px;
   text-align: -webkit-center;
   background-color: lightskyblue;
   border: 5px solid #30d4c5;
