@@ -61,7 +61,7 @@ if (isset($_POST['read_id'])) {
             # code...
             break;
     }
-    $delete_sql->execute([$delete_id]);
+    $read_sql->execute([$delete_id]);
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
