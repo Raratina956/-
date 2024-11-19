@@ -85,6 +85,7 @@
       height: 100%;
       list-style: none;
       overflow-y: scroll;
+      text-align: center;
     }
     .slide-menu li a{
       height: auto;
