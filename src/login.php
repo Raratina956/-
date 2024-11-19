@@ -47,7 +47,8 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user'] = [
                 'user_id' => $row['user_id'],
-                'user_name' => $row['user_name']
+                'user_name' => $row['user_name'],
+                'img' => 0
             ];
 
             // 自動ログイン処理開始
