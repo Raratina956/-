@@ -474,7 +474,7 @@ require 'header.php';
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
                             <input type="hidden" name="delete_type" value=1>
                             <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
-                            <td><input type="submit" value="削除" class="delete"></td>
+                            <td><input type="submit" value="削除" class="delete_one"></td>
                         </form>
                         <?php
                     }
@@ -521,7 +521,7 @@ require 'header.php';
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
                             <input type="hidden" name="delete_type" value=2>
                             <input type="hidden" name="delete_id" value=<?php echo $current_location_id; ?>>
-                            <td><input type="submit" value="削除" class="delete"></td>
+                            <td><input type="submit" value="削除" class="delete_one"></td>
                         </form>
                         <?php
                     }
@@ -565,7 +565,7 @@ require 'header.php';
                     <form action="info.php" method="post" onsubmit="return confirmDelete()">
                         <input type="hidden" name="delete_type" value=3>
                         <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
-                        <td><input type="submit" value="削除" class="delete"></td>
+                        <td><input type="submit" value="削除" class="delete_one"></td>
                     </form>
                     <?php
                     break;
