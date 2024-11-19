@@ -32,9 +32,14 @@ unset($_SESSION['floor']['kai']);
     }
 </style>
 <body>
-<div class="icon-modal" id="icon-modal"> <img src="img/icon.png" alt="アイコン" id="icon"> </div>
+
 
     <?php
+    if($_SESSION['user']['img'] == 0){
+        $_SESSION['user']['img'] = 1;
+        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon.png" alt="アイコン" id="icon"> </div>';
+    }
+    
 
     echo '<div class="map">';
     echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
