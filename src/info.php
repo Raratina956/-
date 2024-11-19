@@ -485,11 +485,20 @@ require 'header.php';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
                         echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                         ?>
-                        <form action="info.php" method="post">
-                            <input type="hidden" name="read_type" value=1>
-                            <input type="hidden" name="read_id" value=<?php echo $announcement_id; ?>>
-                            <td><input type="submit" value="既読" class="read_one"></td>
-                        </form>
+                        <?php
+                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE announcement_id=?');
+                        $read_check_s->execute([$announcement_id]);
+                        $read_check_r = $read_check_s->fetch();
+                        if ($read_check_r['read_check'] == 0) {
+                            ?>
+                            <form action="info.php" method="post">
+                                <input type="hidden" name="read_type" value=1>
+                                <input type="hidden" name="read_id" value=<?php echo $announcement_id; ?>>
+                                <td><input type="submit" value="既読" class="read_one"></td>
+                            </form>
+                            <?php
+                        }
+                        ?>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
                             <td><input type="submit" value="詳細" class="edit"></td>
@@ -536,11 +545,20 @@ require 'header.php';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
-                        <form action="info.php" method="post">
-                            <input type="hidden" name="read_type" value=2>
-                            <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
-                            <td><input type="submit" value="既読" class="read_one"></td>
-                        </form>
+                        <?php
+                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE current_location_id=?');
+                        $read_check_s->execute([$current_location_id]);
+                        $read_check_r = $read_check_s->fetch();
+                        if ($read_check_r['read_check'] == 0) {
+                            ?>
+                            <form action="info.php" method="post">
+                                <input type="hidden" name="read_type" value=2>
+                                <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
+                                <td><input type="submit" value="既読" class="read_one"></td>
+                            </form>
+                            <?php
+                        }
+                        ?>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
                             <td><input type="submit" value="詳細" class="edit"></td>
@@ -585,11 +603,20 @@ require 'header.php';
                     echo '<tr>';
                     echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                     ?>
-                    <form action="info.php" method="post">
-                        <input type="hidden" name="read_type" value=3>
-                        <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
-                        <td><input type="submit" value="既読" class="read_one"></td>
-                    </form>
+                    <?php
+                    $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
+                    $read_check_s->execute([$message_id]);
+                    $read_check_r = $read_check_s->fetch();
+                    if ($read_check_r['read_check'] == 0) {
+                        ?>
+                        <form action="info.php" method="post">
+                            <input type="hidden" name="read_type" value=3>
+                            <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
+                            <td><input type="submit" value="既読" class="read_one"></td>
+                        </form>
+                        <?php
+                    }
+                    ?>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
                         <td><input type="submit" value="詳細" class="edit"></td>
