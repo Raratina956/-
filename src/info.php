@@ -61,7 +61,7 @@ if (isset($_POST['read_id'])) {
             # code...
             break;
     }
-    $read_sql->execute([1,$read_id]);
+    $read_sql->execute([1, $read_id]);
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
@@ -543,7 +543,6 @@ require 'header.php';
                         </form>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                            <td colspan="2"></td>
                             <td><input type="submit" value="詳細" class="edit"></td>
                         </form>
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
@@ -587,10 +586,10 @@ require 'header.php';
                     echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                     ?>
                     <form action="info.php" method="post">
-                            <input type="hidden" name="read_type" value=3>
-                            <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
-                            <td><input type="submit" value="既読" class="read_one"></td>
-                        </form>
+                        <input type="hidden" name="read_type" value=3>
+                        <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
+                        <td><input type="submit" value="既読" class="read_one"></td>
+                    </form>
                     <form action="info_detail.php" method="post">
                         <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
                         <td><input type="submit" value="詳細" class="edit"></td>
