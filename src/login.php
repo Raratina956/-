@@ -85,9 +85,6 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 header("Location: $redirect_url");
                 exit();
             }
-            $_SESSION['user'] =[
-                'img' => 0
-            ];
             $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
             header("Location: $redirect_url");
             exit();
