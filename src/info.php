@@ -31,37 +31,37 @@ if (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     switch ($_POST['delete_type']) {
         case 1:
-            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id=?');
             break;
         case 2:
-            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE current_location_id=?');
             break;
         case 3:
-            $read_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
+            $delete_sql = $pdo->prepare('DELETE FROM Announce_check WHERE message_id=?');
             break;
         default:
             # code...
             break;
     }
-    $delete_sql->execute([1,$read_id]);
+    $delete_sql->execute([$delete_id]);
 }
 if (isset($_POST['read_id'])) {
     $read_id = $_POST['read_id'];
     switch ($_POST['read_type']) {
         case 1:
-            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE announcement_id=?');
+            $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE announcement_id=?');
             break;
         case 2:
-            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE current_location_id=?');
+            $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE current_location_id=?');
             break;
         case 3:
-            $delete_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
+            $read_sql = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             break;
         default:
             # code...
             break;
     }
-    $read_sql->execute([$read_id]);
+    $read_sql->execute([1,$read_id]);
 }
 if (isset($_POST['narrow'])) {
     $narrow = $_POST['narrow'];
