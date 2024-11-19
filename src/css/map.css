@@ -154,8 +154,7 @@ input[type="checkbox"]{
 }
 
 .user-kensaku{
-    width: 140%;
-    text-align: -webkit-center;
+    text-align: center;
     background-color: lightskyblue;
     border: 5px solid #30d4c5;
 }
