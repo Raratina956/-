@@ -35,7 +35,7 @@ unset($_SESSION['floor']['kai']);
 
 
     <?php
-    if(!isset($_SESSION['user']['img'])){
+    if(isset($_SESSION['user']['img'])){
         $_SESSION['user']['img'] = 0;
     }
 
