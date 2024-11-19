@@ -41,7 +41,7 @@ unset($_SESSION['floor']['kai']);
 
     if($_SESSION['user']['img'] <= 0){
         $_SESSION['user']['img']++;
-        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon.png" alt="アイコン" id="icon"> </div>';
+        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
     }
     
 
