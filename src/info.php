@@ -536,7 +536,6 @@ require 'header.php';
                         echo '<td><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
-                        echo '</a>';
                         echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
