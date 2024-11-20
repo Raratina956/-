@@ -473,11 +473,9 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<a href="user.php?user_id=' . $send_id . '">';
-                        echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                        echo '</a>';
+                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '</a></td>';
                         echo '<td colspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
@@ -496,7 +494,7 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
-                        }else{
+                        } else {
                             echo '<td></td>';
                         }
                         ?>
@@ -535,10 +533,9 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<a href="user.php?user_id=' . $send_id . '">';
-                        echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
+                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '</a></td>';
                         echo '</a>';
                         echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
@@ -557,7 +554,7 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
-                        }else{
+                        } else {
                             echo '<td></td>';
                         }
                         ?>
@@ -594,11 +591,9 @@ require 'header.php';
                     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                     $iconStmt->execute([$send_id]);
                     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<a href="user.php?user_id=' . $send_id . '">';
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
-                    echo '</a>';
+                    echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                    echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                    echo '</a></td>';
                     echo '<td colspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
@@ -616,7 +611,7 @@ require 'header.php';
                             <td><input type="submit" value="既読" class="read_one"></td>
                         </form>
                         <?php
-                    }else{
+                    } else {
                         echo '<td></td>';
                     }
                     ?>
