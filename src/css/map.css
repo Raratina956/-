@@ -115,6 +115,7 @@ button {
 
 .list{
     /* width: 15%; */
+    margin-inline-start: 15px;
     font-size: 20px;
     text-align: center;
     /* align-items: center; */
@@ -153,7 +154,8 @@ input[type="checkbox"]{
     position: relative;
     accent-color: rgb(0, 4, 255);
     transform: scale(1.5);
-    margin-inline: 15px;
+    margin-inline-end: 25px;
+    margin-inline-start: 15px;
 }
 
 .user-kensaku{
