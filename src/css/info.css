@@ -15,22 +15,17 @@ table {
 }
 
 tr {
-    border-bottom: 1px solid #aaa; /* Default thin line */
+    border-bottom: 1px solid #aaa;
 }
 
 tr:nth-child(2n) {
-    border-bottom: 2px solid #333; /* Thicker line for every second row */
+    border-bottom: 2px solid #333;
 }
-
 
 td {
     padding: 12px 20px;
     text-align: left;
     font-size: 16px;
-}
-
-td:nth-child(2) {
-    padding-left: 20px;
 }
 
 .info, .edit {
@@ -43,19 +38,18 @@ td:nth-child(2) {
     cursor: pointer;
     font-size: 14px;
 }
-.dropdown{
-    margin-top: 30px;
-    width: 40%;
+
+.dropdown {
+    width: 100%;
+    max-width: 300px;
     height: 45px;
     font-size: 14px;
-    align-items: center;
     text-align: center;
     cursor: pointer;
-    line-height: 36px; /*ここの数値を変更*/
-    border: none;
-    border-radius: 5px; /* 角を丸く */
-    border-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
+
 .large-text {
     font-size: 22px;
     font-weight: bold;
@@ -102,12 +96,8 @@ td:nth-child(2) {
 .center {
     text-align: center;
 }
-/* Center container */
-/* Center container */
-/* Center container */
-/* Center container */
-/* Center container */
-/* Center container */
+
+/* Form container */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -169,25 +159,22 @@ td:nth-child(2) {
     color: #333;
 }
 
-
-/* Align "既読" and "削除" buttons below */
+/* Action buttons (Read/Delete) */
 .action-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
-/* Action buttons styling */
 .read, .delete {
     min-width: 100px;
     height: 36px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 5px;
-    white-space: nowrap; /* Prevent text from wrapping */
+    white-space: nowrap;
 }
 
-/* "既読" button styles */
 .read {
     border: 1px solid rgb(93, 134, 246);
     background-color: white;
@@ -199,7 +186,6 @@ td:nth-child(2) {
     color: white;
 }
 
-/* "削除" button styles */
 .delete {
     border: 1px solid rgb(248, 88, 88);
     background-color: white;
@@ -209,4 +195,20 @@ td:nth-child(2) {
 .delete:hover {
     background-color: rgb(207, 40, 40);
     color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dropdown, .sort {
+        width: 100%;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
 }
