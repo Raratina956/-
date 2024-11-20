@@ -486,10 +486,7 @@ require 'header.php';
                         echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                         ?>
                         <?php
-                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE announcement_id=?');
-                        $read_check_s->execute([$announcement_id]);
-                        $read_check_r = $read_check_s->fetch();
-                        if ($read_check_r['read_check'] == 0) {
+                        if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=1>
@@ -548,10 +545,7 @@ require 'header.php';
                         echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
                         <?php
-                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE current_location_id=?');
-                        $read_check_s->execute([$current_location_id]);
-                        $read_check_r = $read_check_s->fetch();
-                        if ($read_check_r['read_check'] == 0) {
+                        if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=2>
@@ -608,10 +602,7 @@ require 'header.php';
                     echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                     ?>
                     <?php
-                    $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
-                    $read_check_s->execute([$message_id]);
-                    $read_check_r = $read_check_s->fetch();
-                    if ($read_check_r['read_check'] == 0) {
+                    if ($read_check == 0) {
                         ?>
                         <form action="info.php" method="post">
                             <input type="hidden" name="read_type" value=3>
