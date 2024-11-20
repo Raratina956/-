@@ -608,7 +608,7 @@ require 'header.php';
                         <form action="info.php" method="post">
                             <input type="hidden" name="read_type" value=3>
                             <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
-                            <td><input type="submit" value="既読" class="read_one"></td>
+                            <td><input type="submit" value="既読" class="read"></td>
                         </form>
                         <?php
                     } else {
@@ -622,7 +622,7 @@ require 'header.php';
                     <form action="info.php" method="post" onsubmit="return confirmDelete()">
                         <input type="hidden" name="delete_type" value=3>
                         <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
-                        <td><input type="submit" value="削除" class="delete_one"></td>
+                        <td><input type="submit" value="削除" class="delete"></td>
                     </form>
                     <?php
                     break;

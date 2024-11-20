@@ -167,14 +167,18 @@ td {
     margin-top: 20px;
 }
 
+
+
+/* Action buttons styling */
 .read, .delete {
     min-width: 100px;
     height: 36px;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 5px;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
+/* "既読" button styles */
 .read {
     border: 1px solid rgb(93, 134, 246);
     background-color: white;
@@ -186,6 +190,7 @@ td {
     color: white;
 }
 
+/* "削除" button styles */
 .delete {
     border: 1px solid rgb(248, 88, 88);
     background-color: white;
@@ -196,6 +201,7 @@ td {
     background-color: rgb(207, 40, 40);
     color: white;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -212,3 +218,5 @@ td {
         flex-direction: column;
     }
 }
+
+
