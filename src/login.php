@@ -1,6 +1,9 @@
 <?php
 session_start();
 require 'parts/db-connect.php';
+if (isset($_COOKIE['img_displayed'])) {
+    setcookie('img_displayed', '', time() - 3600, "/"); // 有効期限を過去に設定して削除
+}
 // クッキーのチェック
 if (isset($_COOKIE['remember_me_token'])) {
     $token = $_COOKIE['remember_me_token'];

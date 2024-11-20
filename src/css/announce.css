@@ -42,7 +42,8 @@ form {
 select {
     width: fit-content; /* Adjusted to match textarea width */
     padding: 10px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -66,8 +67,8 @@ textarea {
 
 .throw {
     position: absolute;
-    bottom: 10px; /* Adjust the vertical position of the button */
-    right: 10px;  /* Adjust the horizontal position */
+    bottom: 30px; /* Adjust the vertical position of the button */
+    right: 0px;  /* Adjust the horizontal position */
     font-size: 16px;
     background-color: #3e58ac;
     color: white;
