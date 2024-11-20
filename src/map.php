@@ -35,13 +35,11 @@ unset($_SESSION['floor']['kai']);
 
 
     <?php
-    if (!isset($_SESSION['user']['img'])) {
-        $_SESSION['user']['img'] = 0;
-    }
-    if ($_SESSION['user']['img'] <= 0) {
-        $_SESSION['user']['img']++;
-        echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
-    }
+        if(!isset($_COOKIE['img_displayed'])) {
+            echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
+            setcookie('img_displayed', 'true', time() + (86400 * 30), "/");
+            // Cookie valid for 30 days
+        }
     
 
     echo '<div class="map">';
@@ -88,7 +86,7 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '</select>';
+    echo '</select><br>';
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</form></div><br><br>';
     
@@ -218,6 +216,12 @@ unset($_SESSION['floor']['kai']);
                 iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
             }, 2000); // フェードアウトが完了するまで待つ
             };
+
+            document.addEventListener("DOMContentLoaded", function() {
+                if (document.querySelector('#icon-modal')) {
+                    // Show the modal document.querySelector('#icon-modal').style.display = 'block';
+                }
+            });
     </script>
 </body>
 

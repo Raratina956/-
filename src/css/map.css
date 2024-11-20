@@ -33,13 +33,16 @@ body{
     text-align: center;
 }
 
- .select{
-     margin: auto 39%;
-     font-size: 17px;
-     /* display: block; */
-     width: max-content;
-     text-align: end;
- }
+.select {
+    font-size: 17px;
+    width: max-content;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 /* .map{
     border-radius: 10px; 
@@ -111,7 +114,7 @@ button {
   }
 
 .list{
-    width: 15%;
+    /* width: 15%; */
     font-size: 20px;
     text-align: center;
     /* align-items: center; */
@@ -133,7 +136,7 @@ button {
     padding-inline: 10px;
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
-    margin-left: 40px;
+    /* margin-left: 40px; */
     cursor: pointer; /* マウスポインタを変更する */
     
 }
@@ -154,10 +157,10 @@ input[type="checkbox"]{
 }
 
 .user-kensaku{
-    width: 140%;
-    text-align: -webkit-center;
+    text-align: center;
     background-color: lightskyblue;
     border: 5px solid #30d4c5;
+    padding: 20px;
 }
 
 .kensaku-user{
