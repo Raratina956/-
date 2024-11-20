@@ -81,6 +81,7 @@ $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
             </li>
         <?php endforeach; ?>
     </ul>
+    <button id="update-location-btn">位置情報を更新</button> <!-- 位置情報更新ボタン -->
 </div>
 
 <div id="map"></div>
@@ -88,7 +89,6 @@ $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
-// マップの初期化
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -96,23 +96,66 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-// 友達のデータをPHPから受け取る
-const friends = <?= json_encode($friends); ?>;
-const selfIcon = <?= json_encode($selfIcon['icon_name']); ?>;
+const selfIcon = 'path/to/self-icon.png'; // 自分のアイコンURL
 
-// 自分の現在地を表示
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-        const userLocation = [position.coords.longitude, position.coords.latitude];
+// 位置情報を更新ボタンがクリックされたとき
+document.getElementById('update-location-btn').addEventListener('click', function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const userLocation = [position.coords.longitude, position.coords.latitude];
 
-        new mapboxgl.Marker({ element: createMarker(selfIcon) })
-            .setLngLat(userLocation)
-            .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
-            .addTo(map);
+            // 地図の中心を自分の位置に移動
+            map.flyTo({ center: userLocation, zoom: 14 });
 
-        map.flyTo({ center: userLocation, zoom: 14 });
+            // 自分のマーカーを地図に追加（既にマーカーがあれば更新）
+            new mapboxgl.Marker({ element: createMarker(selfIcon) })
+                .setLngLat(userLocation)
+                .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
+                .addTo(map);
+
+            // PHPを使ってデータベースに位置情報を更新
+            updateLocationInDatabase(position.coords.latitude, position.coords.longitude);
+        });
+    } else {
+        alert('位置情報が取得できません。');
+    }
+});
+
+// 自分の位置情報をデータベースに更新するための関数
+function updateLocationInDatabase(latitude, longitude) {
+    fetch('update_location.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            latitude: latitude,
+            longitude: longitude,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('位置情報が更新されました');
+        } else {
+            console.error('位置情報の更新に失敗しました');
+        }
+    })
+    .catch(error => {
+        console.error('エラーが発生しました:', error);
     });
 }
+
+// 友達のピンをマップに表示
+const friends = <?= json_encode($friends); ?>;
+
+// 友達の位置を表示
+friends.forEach(friend => {
+    new mapboxgl.Marker({ element: createMarker(friend.icon_name) })
+        .setLngLat([friend.longitude, friend.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
+        .addTo(map);
+});
 
 // カスタムマーカーを作成する関数
 function createMarker(iconUrl) {
@@ -124,14 +167,6 @@ function createMarker(iconUrl) {
     marker.style.borderRadius = '50%';
     return marker;
 }
-
-// 友達のピンをマップに表示
-friends.forEach(friend => {
-    new mapboxgl.Marker({ element: createMarker(friend.icon_name) })
-        .setLngLat([friend.longitude, friend.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
-        .addTo(map);
-});
 
 // 友達リストをクリックしたときの動作
 document.querySelectorAll('.friend-item').forEach(item => {
@@ -146,3 +181,4 @@ document.querySelectorAll('.friend-item').forEach(item => {
 
 </body>
 </html>
+
