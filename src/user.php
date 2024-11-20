@@ -216,7 +216,7 @@ require 'header.php';
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
                         echo '現在地：' . $room_name . '<br>';
-                        echo timeAgo($logtime) . '<br>';
+                        echo timeAgo($logtime) . 'に登録<br>';
                     } else {
                         echo '現在地：設定なし';
                     }
