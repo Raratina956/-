@@ -108,14 +108,31 @@ td:nth-child(2) {
 /* Center container */
 /* Center container */
 /* Center container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
 /* Form row alignment with balanced spacing */
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Label, dropdown, and button in a row */
 .form-row {
     display: flex;
-    align-items: center; /* 垂直方向に要素を中央揃え */
-    justify-content: space-between; /* 水平方向のスペースを均等配置 */
+    align-items: center;
+    justify-content: space-between; /* Ensure balanced spacing */
     gap: 15px;
     width: 100%;
-    max-width: 800px;
+    max-width: 800px; /* Adjust max-width for the form to look nice */
 }
 
 /* Label styling */
@@ -124,7 +141,6 @@ td:nth-child(2) {
     width: 80px;
     text-align: right;
     white-space: nowrap; /* Prevent text from wrapping */
-    line-height: 36px; /* 高さをボタンや入力フィールドと一致させる */
 }
 
 /* Dropdown styles */
@@ -135,14 +151,12 @@ td:nth-child(2) {
     background-color: #fff;
     flex-grow: 1; /* Allow dropdowns to take more space */
     max-width: 200px; /* Set max width for dropdowns */
-    height: 36px; /* ボタンの高さに合わせる */
-    box-sizing: border-box; /* Padding含めて高さを調整 */
 }
 
 /* Search button styles */
 .sort {
     width: 100px;
-    height: 36px; /* 他要素と高さを揃える */
+    height: 36px;
     padding: 0 16px;
     font-size: 18px;
     background-color: rgb(192, 191, 191);
@@ -152,7 +166,6 @@ td:nth-child(2) {
     align-items: center;
     justify-content: center;
     white-space: nowrap; /* Prevent text from wrapping */
-    box-sizing: border-box; /* 高さ調整を統一 */
 }
 
 /* Hover effect for search button */
