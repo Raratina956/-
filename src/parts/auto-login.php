@@ -11,10 +11,10 @@ $parsedUrl = parse_url($requestUri, PHP_URL_PATH);
 // パス部分からファイル名だけを取得
 $fileName = basename($parsedUrl);
 // 'room.php' の場合に true の処理を行う
-if(isset($_SESSION['room']['uri'])){
+if (isset($_SESSION['room']['uri'])) {
     unset($_SESSION['room']['uri']);
 }
-if ($fileName === 'room.php' && !(isset($_COOKIE['remember_me_token'])) ) {
+if ($fileName === 'room.php' && !(isset($_COOKIE['remember_me_token']))) {
     $_SESSION['room']['uri'] = $requestUri;
 }
 
@@ -43,6 +43,12 @@ if (isset($_COOKIE['remember_me_token'])) {
                 'user_id' => $user_row['user_id'],
                 'user_name' => $user_row['user_name']
             ];
+            $now_time = date("Y/m/d H:i:s");
+            $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
+            $sql_update->execute([
+                $now_time,
+                $row['user_id']
+            ]);
         }
     }
 }

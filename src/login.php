@@ -23,6 +23,12 @@ if (isset($_COOKIE['remember_me_token'])) {
             ];
         }
     }
+    $now_time = date("Y/m/d H:i:s");
+    $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
+    $sql_update->execute([
+        $now_time,
+        $row['user_id']
+    ]);
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
     header("Location: $redirect_url");
     exit();
@@ -63,7 +69,6 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 setcookie('remember_me_token', $token, time() + (86400 * 30), "/");  // 30日間有効
             }
             // 自動ログイン処理終了
-
             $now_time = date("Y/m/d H:i:s");
             $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
             $sql_update->execute([
@@ -71,9 +76,10 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
                 $row['user_id']
             ]);
             if (isset($_SESSION['room']['uri'])) {
+
                 $uri = $_SESSION['room']['uri'];
                 unset($_SESSION['room']['uri']);
-                $redirect_url = 'https://aso2201203.babyblue.jp'.$uri;
+                $redirect_url = 'https://aso2201203.babyblue.jp' . $uri;
                 header("Location: $redirect_url");
                 exit();
             }
