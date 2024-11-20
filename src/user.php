@@ -13,7 +13,7 @@ require 'header.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 1280px)">
     <link rel="stylesheet" type="text/css" href="mob_css/user-mob.css" media="screen and (max-width: 480px)">
 
@@ -134,15 +134,31 @@ require 'header.php';
             echo '</div>';
         } else {
             //相手のプロフィール
-            //チャットボタン表示
             $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
-            $user_sql ->execute([$_GET['user_id']]);
+            $user_sql->execute([$_GET['user_id']]);
             $user_row = $user_sql->fetch();
             $last_login = $user_row['last_login'];
             echo '<div class="profile-container">';
             echo '<span class="login-container">';
-            echo timeAgo($last_login).'にオンライン';
+            // 最後のログイン時刻をもとに時間差を計算
+            $timeAgoText = timeAgo($last_login);
+            if (strpos($timeAgoText, '分前') !== false) {
+                // "分前" が含まれる場合、数字を抽出して分数を取得
+                preg_match('/(\d+)分前/', $timeAgoText, $matches);
+                if (isset($matches[1]) && (int) $matches[1] <= 5) {
+                    // 5分以内の場合は「オンライン中」と表示
+                    echo 'オンライン中';
+                } else {
+                    // 通常の出力
+                    echo $timeAgoText . 'にオンライン';
+                }
+            } else {
+                // 他の場合はそのまま出力
+                echo $timeAgoText . 'にオンライン';
+            }
             echo '</span>';
+            echo '</div>';
+            //チャットボタン表示
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
             echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=', $_GET['user_id'], '">';
