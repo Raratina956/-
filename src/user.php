@@ -157,7 +157,6 @@ require 'header.php';
                 echo $timeAgoText . 'にオンライン';
             }
             echo '</span>';
-            echo '</div>';
             //チャットボタン表示
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
