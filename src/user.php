@@ -84,7 +84,7 @@ require 'header.php';
                 echo $user['mail_address'], "<br>";
                 echo '</div>';
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_sql->execute([$_SESSION['user']['user_id']]);
                 $current_row = $current_sql->fetch();
                 if ($current_row) {
                     $room_id = $current_row['classroom_id'];
