@@ -1,3 +1,37 @@
+<?php
+session_start();
+require 'db-connect.php';
+
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'データベース接続エラー: ' . $e->getMessage();
+    exit();
+}
+
+// 自分のID
+$selfUserId = 7;
+
+// 自分のアイコン取得
+$selfIconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
+$selfIconStmt->execute([$selfUserId]);
+$selfIcon = $selfIconStmt->fetch(PDO::FETCH_ASSOC);
+
+// 他のユーザーの情報を取得
+$friendStmt = $pdo->query('
+    SELECT 
+        Icon.user_id, 
+        Icon.icon_name, 
+        locations.latitude, 
+        locations.longitude, 
+        locations.updated_at 
+    FROM Icon
+    INNER JOIN locations ON Icon.user_id = locations.user_id
+    WHERE Icon.user_id != 7
+');
+$friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
