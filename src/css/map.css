@@ -119,6 +119,7 @@ button {
     font-size: 20px;
     text-align: center;
     /* align-items: center; */
+    max-width: 150px;
 }
 
 .usericon{
