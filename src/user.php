@@ -135,8 +135,14 @@ require 'header.php';
         } else {
             //相手のプロフィール
             //チャットボタン表示
+            $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
+            $user_sql ->execute([$_GET['user_id']]);
+            $user_row = $user_sql->fetch();
+            $last_login = $user_row['last_login'];
             echo '<div class="profile-container">';
-            echo '<span class="login-container">オンライン中</span>';
+            echo '<span class="login-container">';
+            echo timeAgo($logtime);
+            echo '</span>';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
             echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=', $_GET['user_id'], '">';
