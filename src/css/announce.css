@@ -60,6 +60,10 @@ textarea {
     position: relative; /* Necessary for the submit button to be positioned correctly */
 }
 
+.history{
+    text-decoration: none; 
+}
+
 .throw {
     position: absolute;
     bottom: 10px; /* Adjust the vertical position of the button */

@@ -101,8 +101,8 @@ if (empty($_POST['title'])) {
     } else {
         echo 'タグを追加してください';
     }
-    echo '<a href="announce_his.php" text-align="center">アナウンス履歴</a>';
-    echo '<a class="back-link"  href="map.php">マップへ</a>';
+    echo '<a href="announce_his.php" class="history" text-align="center">アナウンス履歴</a>';
+    echo '<a class="back-link"  href="map.php">戻る</a>';
     // 上記アナウンス発信前
 } else {
     // 下記アナウンス発信後
@@ -113,7 +113,7 @@ if (empty($_POST['title'])) {
     <p>
     <h2><?php echo $title; ?></h2>
     <h3><?php echo $content; ?></h3>
-    <a class="back-link" href="map.php">マップへ</a>
+    <a class="back-link" href="map.php">戻る</a>
     <?php
     // 上記アナウンス発信後
 }

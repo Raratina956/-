@@ -35,8 +35,9 @@ body{
 
 .select {
     font-size: 17px;
-    width: max-content;
-    display: flex;
+    padding-inline: 530px;
+    /* width: 53%; */
+    /* display: flow; */
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
