@@ -86,7 +86,6 @@ require 'header.php';
                     echo 'クラス：クラスが設定されていません', '<br>';
                 }
                 echo $user['mail_address'], "<br>";
-                echo '</div>';
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                 $current_sql->execute([$_SESSION['user']['user_id']]);
                 $current_row = $current_sql->fetch();
@@ -102,6 +101,7 @@ require 'header.php';
                 } else {
                     echo '現在地：設定なし';
                 }
+                echo '</div>';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile"><br>';
