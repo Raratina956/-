@@ -84,7 +84,7 @@ require 'header.php';
                 echo $user['mail_address'], "<br>";
                 echo '</div>';
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_sql->execute([$_SESSION['user']['user_id']]);
                 $current_row = $current_sql->fetch();
                 if ($current_row) {
                     $room_id = $current_row['classroom_id'];
@@ -94,7 +94,7 @@ require 'header.php';
                     $room_row = $room_sql->fetch();
                     $room_name = $room_row['classroom_name'];
                     echo '現在地：' . $room_name . '<br>';
-                    echo $logtime . '<br>';
+                    echo timeAgo($logtime) . '<br>';
                 } else {
                     echo '現在地：設定なし';
                 }
@@ -216,7 +216,7 @@ require 'header.php';
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
                         echo '現在地：' . $room_name . '<br>';
-                        echo timeAgo($logtime) . '<br>';
+                        echo timeAgo($logtime) . 'に登録<br>';
                     } else {
                         echo '現在地：設定なし';
                     }

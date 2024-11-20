@@ -43,26 +43,6 @@ td:nth-child(2) {
     cursor: pointer;
     font-size: 14px;
 }
-.read_one{
-    background-color: #4268f1;
-    color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.delete_one{
-    background-color: #ef2626;
-    color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
 .dropdown{
     margin-top: 30px;
     width: 40%;
@@ -161,6 +141,7 @@ td:nth-child(2) {
     width: 80px;
     text-align: right;
     white-space: nowrap; /* Prevent text from wrapping */
+    line-height: 40px;
 }
 
 /* Dropdown styles */
@@ -169,14 +150,16 @@ td:nth-child(2) {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    flex-grow: 1; /* Allow dropdowns to take more space */
     max-width: 200px; /* Set max width for dropdowns */
+    height: 36px; /* ボタンの高さに合わせる */
+    flex-grow: 1; /* Allow dropdowns to take more space */
+    
 }
 
 /* Search button styles */
 .sort {
     width: 100px;
-    height: 36px;
+    height: 40px;
     padding: 0 16px;
     font-size: 18px;
     background-color: rgb(192, 191, 191);

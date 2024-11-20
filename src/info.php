@@ -376,6 +376,7 @@ require 'header.php';
                     </select>
 
                     <label for="n_user">ユーザー別</label>
+                    
                     <select name="n_user" class="dropdown" id="n_user">
                         <option value=0 selected>全て</option>
                         <?php
@@ -473,9 +474,9 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
+                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '</a></td>';
                         echo '<td colspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
@@ -486,10 +487,7 @@ require 'header.php';
                         echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
                         ?>
                         <?php
-                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE announcement_id=?');
-                        $read_check_s->execute([$announcement_id]);
-                        $read_check_r = $read_check_s->fetch();
-                        if ($read_check_r['read_check'] == 0) {
+                        if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=1>
@@ -497,7 +495,7 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
-                        }else{
+                        } else {
                             echo '<td></td>';
                         }
                         ?>
@@ -536,9 +534,9 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
+                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                        echo '</a></td>';
                         echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
@@ -548,10 +546,7 @@ require 'header.php';
                         echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
                         <?php
-                        $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE current_location_id=?');
-                        $read_check_s->execute([$current_location_id]);
-                        $read_check_r = $read_check_s->fetch();
-                        if ($read_check_r['read_check'] == 0) {
+                        if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=2>
@@ -559,7 +554,7 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
-                        }else{
+                        } else {
                             echo '<td></td>';
                         }
                         ?>
@@ -596,9 +591,9 @@ require 'header.php';
                     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                     $iconStmt->execute([$send_id]);
                     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<td>
-                        <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                        </td>';
+                    echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                    echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                    echo '</a></td>';
                     echo '<td colspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                     if ($read_check == 0) {
                         echo '<td>未読</td>';
@@ -608,10 +603,7 @@ require 'header.php';
                     echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
                     ?>
                     <?php
-                    $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
-                    $read_check_s->execute([$message_id]);
-                    $read_check_r = $read_check_s->fetch();
-                    if ($read_check_r['read_check'] == 0) {
+                    if ($read_check == 0) {
                         ?>
                         <form action="info.php" method="post">
                             <input type="hidden" name="read_type" value=3>
@@ -619,7 +611,7 @@ require 'header.php';
                             <td><input type="submit" value="既読" class="read_one"></td>
                         </form>
                         <?php
-                    }else{
+                    } else {
                         echo '<td></td>';
                     }
                     ?>
