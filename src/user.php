@@ -10,6 +10,10 @@ require 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 1280px)">
     <link rel="stylesheet" type="text/css" href="mob_css/user-mob.css" media="screen and (max-width: 480px)">
 
@@ -132,6 +136,7 @@ require 'header.php';
             //相手のプロフィール
             //チャットボタン表示
             echo '<div class="profile-container">';
+            echo '<span class="login-container">オンライン中</span>';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
             echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=', $_GET['user_id'], '">';
