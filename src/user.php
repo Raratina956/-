@@ -136,7 +136,7 @@ require 'header.php';
             //相手のプロフィール
             //チャットボタン表示
             echo '<div class="profile-container">';
-            echo '<span>オンライン中</span>';
+            echo '<span class="login-container">オンライン中</span>';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
             echo '<a href="https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=', $_GET['user_id'], '">';
