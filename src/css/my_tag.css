@@ -58,6 +58,12 @@ span{
     border-radius: 5px;
 }
 
+.text{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 20px;
+}
+
 .button_in{
     min-width: 120px;
     height: 36px;

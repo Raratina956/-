@@ -10,12 +10,37 @@ unset($_SESSION['floor']['kai']);
 <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)">
 
 <title>MAP</title>
+<style>
+    .icon-modal {
+        display: none; /* 初期状態では非表示 */
+        position: fixed; /* 固定位置 */
+        top: 0;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001; /* モーダルが最前面に来るようにZインデックスを調整 */
+    }
 
-
+    .icon-modal img {
+        width: 700px; /* アイコンのサイズを調整 */
+        opacity: 1; /* 初期透明度 */
+        transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
+    }
+</style>
 <body>
 
 
     <?php
+        if(!isset($_COOKIE['img_displayed'])) {
+            echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
+            setcookie('img_displayed', 'true', time() + (86400 * 30), "/");
+            // Cookie valid for 30 days
+        }
+    
 
     echo '<div class="map">';
     echo '<h1 class="title">麻生情報ビジネス専門学校</h1>';
@@ -26,17 +51,18 @@ unset($_SESSION['floor']['kai']);
 
     //プルダウン
     echo '<div class="select">';
-    echo '<form action="map.php" method="post">';
+    echo '<form action="map.php" method="post" class="user-kensaku">';
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
-
-    お気に入り　　<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
+    
+    <p class="kensaku-user">ユーザー絞り込み</p>
+    ◯お気に入り<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
     // // echo '<option value="">ユーザー</option>';
     // echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
     // echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
     // echo '</select>';
-    echo '<br>タグ　　　<select name="tag_list" class="list">';
+    echo '◯タグ<select name="tag_list" class="list">';
 
     // POSTデータから選択されたタグの値を取得
     $selected_tag = $_POST['tag_list'] ?? '0'; // デフォルトで「全て」を選択
@@ -60,12 +86,12 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
+    echo '</select><br>';
     echo '<input type="submit" class="abst" value="絞込">';
-    echo '</select><br><br>';
-    echo '</form></div><br>';
+    echo '</form></div>';
     
     // 学外
-    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2>';
+    echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2><br><br><br>';
 
     //  map
     echo '<table class="table">';
@@ -178,6 +204,25 @@ unset($_SESSION['floor']['kai']);
 
     </div>
     <br>
+    <script> 
+        window.onload = function() {
+            const iconModal = document.getElementById('icon-modal');
+            const icon = document.getElementById('icon');
+            iconModal.style.display = 'flex';// モーダルを表示
+            setTimeout(function() {
+                icon.style.opacity = '0'; // フェードアウト開始
+            }, 1000); // 1秒間表示してからフェードアウトを開始
+            setTimeout(function() {
+                iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
+            }, 2000); // フェードアウトが完了するまで待つ
+            };
+
+            document.addEventListener("DOMContentLoaded", function() {
+                if (document.querySelector('#icon-modal')) {
+                    // Show the modal document.querySelector('#icon-modal').style.display = 'block';
+                }
+            });
+    </script>
 </body>
 
 </html>

@@ -75,19 +75,24 @@
    /* メニューリスト */
   .slide-menu ul {
     padding-top: 6px;
+    height: 100%;
+    list-style: none;
+    overflow-y: scroll;
+    text-align: center;
   }
 
-  .slide-menu li {
-    color: #fff;
+  .slide-menu li a{
     line-height: 2.2;
     text-align: center;
     list-style: none;
-    font-size: 16px;
+    font-size: 17px;
+    color: black; /* すべてのメニューリンクを黒文字に */
+    text-decoration: none; 
   }
 
   /* ログアウトの赤文字 */
-  .slide-menu li.logout {
-    color: red; /* ログアウトのみ赤色 */
+  .slide-menu li.logout a {
+    color: #bf4545; /* ログアウトのみ赤文字 */
   }
 
   /* ハンバーガーアクティブ時のアニメーション */

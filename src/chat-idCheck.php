@@ -65,9 +65,11 @@ if ($search_keyword) {
 
 
 // chat-homeに戻る
-// <button type="button" class="back-link" onclick="location.href='chat-home.php'">チャットHOME画面へ戻る</button>
-echo '<a href="chat-home.php?user_id=' .$_SESSION['user']['user_id']. '" class="back-link" >戻る';
-
+echo '<form action="chat-home.php" method="GET">
+      <input type="hidden" name="user_id" value=', $_SESSION['user']['user_id'], '>
+      <input type="submit" class="back-link" value="戻る">
+      </form>';
+     
 ?>
 
 </body>
