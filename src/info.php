@@ -497,6 +497,8 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
+                        }else{
+                            echo '<td></td>';
                         }
                         ?>
                         <form action="info_detail.php" method="post">
@@ -557,6 +559,8 @@ require 'header.php';
                                 <td><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
+                        }else{
+                            echo '<td></td>';
                         }
                         ?>
                         <form action="info_detail.php" method="post">
@@ -615,6 +619,8 @@ require 'header.php';
                             <td><input type="submit" value="既読" class="read_one"></td>
                         </form>
                         <?php
+                    }else{
+                        echo '<td></td>';
                     }
                     ?>
                     <form action="info_detail.php" method="post">
