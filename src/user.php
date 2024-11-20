@@ -141,7 +141,7 @@ require 'header.php';
             $last_login = $user_row['last_login'];
             echo '<div class="profile-container">';
             echo '<span class="login-container">';
-            echo timeAgo($last_login);
+            echo timeAgo($last_login).'にオンライン';
             echo '</span>';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
