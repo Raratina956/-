@@ -473,7 +473,7 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<a href="user.php?user_id=' . $user_id . '">';
+                        echo '<a href="user.php?user_id=' . $send_id . '">';
                         echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
@@ -535,7 +535,7 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<a href="user.php?user_id=' . $user_id . '">';
+                        echo '<a href="user.php?user_id=' . $send_id . '">';
                         echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
@@ -594,7 +594,7 @@ require 'header.php';
                     $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                     $iconStmt->execute([$send_id]);
                     $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                    echo '<a href="user.php?user_id=' . $user_id . '">';
+                    echo '<a href="user.php?user_id=' . $send_id . '">';
                     echo '<td>
                         <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
                         </td>';
