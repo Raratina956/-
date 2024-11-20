@@ -367,7 +367,8 @@ require 'header.php';
         <div class="form-container">
             <form action="info.php" method="post" class="filter-form">
                 <div class="form-row">
-                    <label for="narrow">種別</label>
+                    <!-- <label for="narrow">種別</label> -->
+                     <h3>種別</h3>
                     <select name="narrow" class="dropdown" id="narrow">
                         <option value="0" selected>全て</option>
                         <option value="1">アナウンス</option>
@@ -375,7 +376,8 @@ require 'header.php';
                         <option value="3">チャット</option>
                     </select>
 
-                    <label for="n_user">ユーザー別</label>
+                    <!-- <label for="n_user">ユーザー別</label> -->
+                     <h3>ユーザ別</h3>
                     <select name="n_user" class="dropdown" id="n_user">
                         <option value=0 selected>全て</option>
                         <?php

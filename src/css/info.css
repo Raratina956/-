@@ -43,26 +43,6 @@ td:nth-child(2) {
     cursor: pointer;
     font-size: 14px;
 }
-.read_one{
-    background-color: #4268f1;
-    color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.delete_one{
-    background-color: #ef2626;
-    color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
 .dropdown{
     margin-top: 30px;
     width: 40%;
