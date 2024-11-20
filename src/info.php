@@ -483,7 +483,7 @@ require 'header.php';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
-                        echo '<td colspan="2"class="title"> 件名：', $title, '</td>';
+                        echo '<td colspan="1"class="title"> 件名：', $title, '</td>';
                         ?>
                         <?php
                         $read_check_s = $pdo->prepare('SELECT * FROM Announce_check WHERE announcement_id=?');
