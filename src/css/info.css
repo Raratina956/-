@@ -141,7 +141,9 @@ td:nth-child(2) {
     width: 80px;
     text-align: right;
     white-space: nowrap; /* Prevent text from wrapping */
-    line-height: 40px;
+    line-height: 45px;
+    size:16px;
+    padding: 8px;
 }
 
 /* Dropdown styles */
@@ -159,8 +161,8 @@ td:nth-child(2) {
 /* Search button styles */
 .sort {
     width: 100px;
-    height: 40px;
-    padding: 0 16px;
+    height: 36px;
+    padding: 8px;
     font-size: 18px;
     background-color: rgb(192, 191, 191);
     color: black;
