@@ -43,8 +43,8 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-// 現在地用のマーカーを定義
-let userMarker;
+// 現在地用のマーカーを定義（初期状態では未作成）
+let userMarker = null;
 
 // 現在地を取得し、マップを更新する関数
 function updateUserLocation() {
@@ -52,11 +52,11 @@ function updateUserLocation() {
         navigator.geolocation.getCurrentPosition(position => {
             const userLocation = [position.coords.longitude, position.coords.latitude];
 
-            // マーカーが存在する場合、位置を更新
             if (userMarker) {
+                // すでにマーカーがある場合は位置を更新
                 userMarker.setLngLat(userLocation);
             } else {
-                // 初回のマーカー作成
+                // 初回のボタンクリックでマーカーを作成
                 userMarker = new mapboxgl.Marker({ color: 'red' })
                     .setLngLat(userLocation)
                     .setPopup(new mapboxgl.Popup({ offset: 25 })
@@ -74,9 +74,6 @@ function updateUserLocation() {
         alert('このブラウザはGeolocationをサポートしていません。');
     }
 }
-
-// 初期表示時に現在地を取得
-updateUserLocation();
 
 // ボタンをクリックしたときに現在地を更新
 document.getElementById('update-location').addEventListener('click', updateUserLocation);
