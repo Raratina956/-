@@ -161,6 +161,7 @@ input[type="checkbox"]{
     background-color: lightskyblue;
     border: 5px solid #30d4c5;
     padding: 20px;
+    margin-top: 8px;
 }
 
 .kensaku-user{

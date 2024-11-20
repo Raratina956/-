@@ -55,14 +55,14 @@ unset($_SESSION['floor']['kai']);
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
     
     <p class="kensaku-user">ユーザー絞り込み</p>
-    お気に入り<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
+    ◯お気に入り<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
     // // echo '<option value="">ユーザー</option>';
     // echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
     // echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
     // echo '</select>';
-    echo 'タグ<select name="tag_list" class="list">';
+    echo '◯タグ<select name="tag_list" class="list">';
 
     // POSTデータから選択されたタグの値を取得
     $selected_tag = $_POST['tag_list'] ?? '0'; // デフォルトで「全て」を選択
@@ -88,7 +88,7 @@ unset($_SESSION['floor']['kai']);
     }
     echo '</select><br>';
     echo '<input type="submit" class="abst" value="絞込">';
-    echo '</form></div><br><br>';
+    echo '</form></div>';
     
     // 学外
     echo '<h2 ><a class="gakugai-container" href="mapindex.php">学外</a></h2><br><br><br>';
