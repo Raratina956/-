@@ -47,7 +47,7 @@ if (isset($_COOKIE['remember_me_token'])) {
             $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
             $sql_update->execute([
                 $now_time,
-                $row['user_id']
+                $_SESSION['user']['user_id']
             ]);
         }
     }

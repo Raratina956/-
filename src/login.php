@@ -30,7 +30,7 @@ if (isset($_COOKIE['remember_me_token'])) {
     $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
     $sql_update->execute([
         $now_time,
-        $row['user_id']
+        $_SESSION['user']['user_id']
     ]);
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/map.php';
     header("Location: $redirect_url");
@@ -76,7 +76,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
             $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
             $sql_update->execute([
                 $now_time,
-                $row['user_id']
+                $_SESSION['user']['user_id']
             ]);
             if (isset($_SESSION['room']['uri'])) {
 
