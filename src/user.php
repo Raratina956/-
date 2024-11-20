@@ -93,7 +93,7 @@ require 'header.php';
                     $room_sql->execute([$room_id]);
                     $room_row = $room_sql->fetch();
                     $room_name = $room_row['classroom_name'];
-                    echo '現在地：' . $room_name . '<br>';
+                    echo '現在地：' . $room_name . '　';
                     echo timeAgo($logtime) . '登録<br>';
                 } else {
                     echo '現在地：設定なし';
@@ -193,7 +193,7 @@ require 'header.php';
                         $room_sql->execute([$room_id]);
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
-                        echo '現在地：' . $room_name . '<br>';
+                        echo '現在地：' . $room_name . '　';
                         echo timeAgo($logtime) . '登録<br>';
                     } else {
                         echo '現在地：設定なし';
