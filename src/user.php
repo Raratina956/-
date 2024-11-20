@@ -141,7 +141,7 @@ require 'header.php';
             $last_login = $user_row['last_login'];
             echo '<div class="profile-container">';
             echo '<span class="login-container">';
-            echo timeAgo($logtime);
+            echo timeAgo($last_login);
             echo '</span>';
             echo '<div class="favorite-container">';
             echo '<button type="submit" class="star">';
