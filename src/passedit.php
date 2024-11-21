@@ -20,6 +20,11 @@ if (isset($_SESSION['err']['pass_err'])) {
     <title>チャット</title>
     <link rel="stylesheet" href="mob_css/passedit-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/passedit.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <div class="form">
     <form action="passedit_output.php" method="post" onsubmit="return confirm('本当に変更しますか？');">

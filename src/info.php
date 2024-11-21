@@ -348,6 +348,11 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
+ <!-- font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 <div class="center">
     <h1>お知らせ</h1>
     <?php

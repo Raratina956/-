@@ -84,6 +84,11 @@ if ($update_id == 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 1280px)">
     <link rel="stylesheet" href="mob_css/room_mob.css" media="screen and (max-width: 480px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
     <title><?php echo htmlspecialchars($room_name); ?> - 位置登録</title>
 </head>
 

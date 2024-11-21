@@ -109,6 +109,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="mob_css/login-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/login.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 
