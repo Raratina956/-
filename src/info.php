@@ -376,7 +376,7 @@ require 'header.php';
                     </select>
 
                     <label for="n_user">ユーザー別</label>
-                    
+
                     <select name="n_user" class="dropdown" id="n_user">
                         <option value=0 selected>全て</option>
                         <?php
@@ -406,6 +406,8 @@ require 'header.php';
                                     $n_message_r = $n_message_s->fetch();
                                     $n_send_person_id = $n_message_r['send_id'];
                                     $n_users[] = $n_send_person_id;
+                                default:
+                                    # code...	}
                                     break;
                             }
                         }
@@ -425,6 +427,18 @@ require 'header.php';
 
             <div class="action-buttons">
                 <form action="info.php" method="post" class="inline-form">
+                    <?php
+                    if (isset($_POST['narrow'])) {
+                        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+                    } else {
+                        echo '<input type="hidden" name="narrow" value=0>';
+                    }
+                    if (isset($_POST['n_user'])) {
+                        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+                    } else {
+                        echo '<input type="hidden" name="n_user" value=0>';
+                    }
+                    ?>
                     <input type="hidden" name="all_read">
                     <input type="submit" value="一括既読" class="read">
                 </form>
@@ -444,9 +458,6 @@ require 'header.php';
         } else {
             $narrow = 0;
         }
-
-
-
 
         foreach ($list_raw as $row) {
             switch ($row['type']) {
