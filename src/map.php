@@ -134,7 +134,7 @@ unset($_SESSION['floor']['kai']);
                         $favorite_sql->execute([$_SESSION['user']['user_id'], $user_id]);
                         $favorite_row = $favorite_sql->fetch();
                         if (!($favorite_row)) {
-                            return;
+                            continue;
                         }
                         if (isset($_POST['tag_list'])) {
                             if ($_POST['tag_list'] != 0) {
@@ -143,7 +143,7 @@ unset($_SESSION['floor']['kai']);
                                 $tag_sql->execute([$p_tag_id, $user_id]);
                                 $tag_row = $tag_sql->fetch();
                                 if (!($tag_row)) {
-                                    return;
+                                    continue;
                                 }
                             }
                         }
@@ -155,7 +155,7 @@ unset($_SESSION['floor']['kai']);
                                 $tag_sql->execute([$p_tag_id, $user_id]);
                                 $tag_row = $tag_sql->fetch();
                                 if (!($tag_row)) {
-                                    return;
+                                    continue;
                                 }
                             }
                         }
