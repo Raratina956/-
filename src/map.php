@@ -127,7 +127,7 @@ unset($_SESSION['floor']['kai']);
                 // if (isset($p_tag_id)) {
                 //     unset($p_tag_id);
                 // }
-                if (isset($_POST['favorite'])) {
+                if (isset($_POST['favorite']) && !empty($_POST['favorite'])) {
                     if ($_POST['favorite'] == "yes") {
                         $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
                         $favorite_sql->execute([$_SESSION['user']['user_id'], $user_id]);
@@ -199,11 +199,6 @@ unset($_SESSION['floor']['kai']);
         echo '</form>';
     }
     echo '</table>';
-    if (isset($_POST['favorite']) && !empty($_POST['favorite'])) {
-        echo $_POST['favorite'];
-    } else {
-        echo "No value provided";
-    }
     ?>
 
     </div>
