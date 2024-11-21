@@ -54,7 +54,7 @@ if ($list_raw) {
     if($favorite['s_or_t'] == 0){
         echo '<td></td>';
     }else{
-        echo '<td><img src="img/kakubo.jpg"></td>';
+        echo '<td><img src="img/kakubo.jpeg"></td>';
     }
     echo '<td><a href="user.php?user_id=', $follower_id, '"><img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'"></a></td>';
     echo '<td><a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</a></td>';
