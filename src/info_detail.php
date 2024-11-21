@@ -68,6 +68,11 @@ switch ($type) {
 require 'header.php';
 ?>
 <link rel="stylesheet" href="css/info_detail.css">
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 <?php
 switch ($type) {
     case 1:

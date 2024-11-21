@@ -16,6 +16,11 @@ require 'header.php';
     <title><?php echo htmlspecialchars($_SESSION['floor']['kai']); ?>階</title>
     <link rel="stylesheet" href="mob_css/floor-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/floor.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- メイン(マップ)に戻る -->

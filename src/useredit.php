@@ -35,6 +35,11 @@
             }
 ?>
             <head>
+            <!-- font -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
             <link rel="stylesheet" type="text/css" href="mob_css/useredit-mob.css" media="screen and (max-width: 480px)">
             <link rel="stylesheet" type="text/css" href="css/useredit.css" media="screen and (min-width: 1280px)">
             <input type="file" id="fileInput" name="icon_file" accept=".jpg, .png"><br>

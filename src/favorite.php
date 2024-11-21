@@ -22,6 +22,11 @@ if (isset($_POST['delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="mob_css/favorite-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/fetch_favorites.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <h1 class="okini">お気に入り</h1>
 <table border="0" style="font-size: 15pt;">

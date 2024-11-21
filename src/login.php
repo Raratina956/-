@@ -109,6 +109,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="mob_css/login-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" type="text/css" href="css/login.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 
@@ -120,12 +125,10 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
             <label for="mail_address">メールアドレス：</label>
             <input type="email" name="mail_address" id="mail_address" required>
         </div>
-        <br>
         <div class="form-group">
             <label for="password">パスワード：</label>
             <input type="password" name="pass" id="password" required>
         </div>
-        <br>
         <?php
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
@@ -134,13 +137,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         <div class="error">
             <span><?php echo $error ?></span>
         </div>
-        <br>
         <div class="next">
             <span>次回からログインを省略する</span>
             <br>
-            <input type="checkbox" name="remember_me" value="1">
+            <input type="checkbox" name="remember_me" class="list" value="1">
         </div>
-        <br>
         <input type="submit" value="ログイン">
     </form>
     <a href="Sign-up-input.php">新規会員登録</a>

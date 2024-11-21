@@ -5,9 +5,14 @@ unset($_SESSION['floor']['kai']);
 ?>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="mob_css/map-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/map.css" media="screen and (min-width: 1280px)">
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 <title>MAP</title>
 <style>

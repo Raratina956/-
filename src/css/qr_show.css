@@ -2,6 +2,10 @@ body {
   padding-top: 120px;
   background-image: url(../img/SpotLinkbg.png);
   text-align: center; /* 親要素の中央揃え */
+  font-family: "Zen Maru Gothic", serif;
+  font-weight: 400;
+  font-style: normal;
+
 }
 
 #qrcode {

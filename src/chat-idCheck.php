@@ -33,6 +33,11 @@ function searchUsers($pdo, $search_keyword) {
     <title>ユーザー検索</title>
     <link rel="stylesheet" href="mob_css/chat-idCheck-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/chat-idCheck.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <?php require 'header.php'; ?>
