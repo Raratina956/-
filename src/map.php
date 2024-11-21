@@ -199,8 +199,11 @@ unset($_SESSION['floor']['kai']);
         echo '</form>';
     }
     echo '</table>';
-    
-
+    if (isset($_POST['favorite']) && !empty($_POST['favorite'])) {
+        echo $_POST['favorite'];
+    } else {
+        echo "No value provided";
+    }
     ?>
 
     </div>
