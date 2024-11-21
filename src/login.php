@@ -138,7 +138,6 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
             <br>
             <input type="checkbox" name="remember_me" class="list" value="1">
         </div>
-        <br>
         <input type="submit" value="ログイン">
     </form>
     <a href="Sign-up-input.php">新規会員登録</a>
