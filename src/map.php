@@ -124,10 +124,10 @@ unset($_SESSION['floor']['kai']);
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if (isset($p_tag_id)) {
-                    unset($p_tag_id);
-                }
-                if (isset($_POST['favorite'])) {
+                // if (isset($p_tag_id)) {
+                //     unset($p_tag_id);
+                // }
+                if (isset($_POST['favorite']) && !empty($_POST['favorite'])) {
                     if ($_POST['favorite'] == "yes") {
                         $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
                         $favorite_sql->execute([$_SESSION['user']['user_id'], $user_id]);
@@ -157,6 +157,17 @@ unset($_SESSION['floor']['kai']);
                                     continue;
                                 }
                             }
+                        }
+                    }
+                }
+                if (isset($_POST['tag_list'])) {
+                    if ($_POST['tag_list'] != 0) {
+                        $p_tag_id = intval($_POST['tag_list']);
+                        $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                        $tag_sql->execute([$p_tag_id, $user_id]);
+                        $tag_row = $tag_sql->fetch();
+                        if (!($tag_row)) {
+                            continue;
                         }
                     }
                 }
@@ -199,13 +210,6 @@ unset($_SESSION['floor']['kai']);
         echo '</form>';
     }
     echo '</table>';
-    if (isset($_POST['tag_list']) && !empty($_POST['tag_list'])) {
-        echo $_POST['tag_list'];
-    } else {
-        echo '値が空です。';
-    }
-    
-
     ?>
 
     </div>

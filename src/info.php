@@ -647,7 +647,7 @@ require 'header.php';
         echo 'お知らせがありません';
     }
     ?>
-    <a href="map.php" class="back-link">マップへ</a>
+    <a href="map.php" class="back-link">戻る</a>
 </div>
 <script>
     function confirmDelete() {
