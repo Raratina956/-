@@ -369,10 +369,10 @@ require 'header.php';
                 <div class="form-row">
                     <label for="narrow">種別</label>
                     <select name="narrow" class="dropdown" id="narrow">
-                        <option value="0" selected>全て</option>
-                        <option value="1">アナウンス</option>
-                        <option value="2">位置情報</option>
-                        <option value="3">チャット</option>
+                        <option value=0 selected>全て</option>
+                        <option value=1>アナウンス</option>
+                        <option value=2>位置情報</option>
+                        <option value=3>チャット</option>
                     </select>
 
                     <label for="n_user">ユーザー別</label>
