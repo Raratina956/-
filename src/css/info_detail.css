@@ -9,6 +9,10 @@ body {
     align-items: center;
     text-align:center;
     height: 100vh; /* 画面全体の高さ */
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+
 }
 .content {
     background-color: white;
