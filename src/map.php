@@ -199,6 +199,12 @@ unset($_SESSION['floor']['kai']);
         echo '</form>';
     }
     echo '</table>';
+    if (isset($_POST['tag_list']) && !empty($_POST['tag_list'])) {
+        echo $_POST['tag_list'];
+    } else {
+        echo '値が空です。';
+    }
+    
 
     ?>
 
