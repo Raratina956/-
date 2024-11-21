@@ -160,6 +160,17 @@ unset($_SESSION['floor']['kai']);
                         }
                     }
                 }
+                if (isset($_POST['tag_list'])) {
+                    if ($_POST['tag_list'] != 0) {
+                        $p_tag_id = intval($_POST['tag_list']);
+                        $tag_sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                        $tag_sql->execute([$p_tag_id, $user_id]);
+                        $tag_row = $tag_sql->fetch();
+                        if (!($tag_row)) {
+                            continue;
+                        }
+                    }
+                }
 
                 if ($j > 6) {
                     // 7以上は表示しない
