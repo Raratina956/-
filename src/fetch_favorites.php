@@ -64,7 +64,7 @@ if ($list_raw) {
         <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)" class="button_del">削除</button>
     </td>
     <?php
-    echo '</tr><th>';
+    echo '</tr><hr>';
 }
 
     echo '</table>';
