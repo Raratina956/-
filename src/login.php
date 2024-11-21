@@ -127,18 +127,18 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         <?php
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
+        
+            echo '<div class="error">
+            <span><?php echo $error ?></span>
+            </div>';
         }
         ?>
-        <div class="error">
-            <span><?php echo $error ?></span>
-        </div>
         <br>
         <div class="next">
             <span>次回からログインを省略する</span>
             <br>
             <input type="checkbox" name="remember_me" class="list" value="1">
         </div>
-        <br>
         <input type="submit" value="ログイン">
     </form>
     <a href="Sign-up-input.php">新規会員登録</a>
