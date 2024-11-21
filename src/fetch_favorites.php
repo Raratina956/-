@@ -51,6 +51,11 @@ if ($list_raw) {
     $icon_sql ->execute([$follower_id]);
     $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
     $icon_name = $icon_row['icon_name'];
+    if($favorite['s_or_t'] == 0){
+        echo '<td></td>';
+    }else{
+        echo '<td>教師</td>';
+    }
     echo '<td><a href="user.php?user_id=', $follower_id, '"><img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'"></a></td>';
     echo '<td><a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], ($favorite['s_or_t'] === 0 ? '' : '　先生'), '</a></td>';
     ?>
