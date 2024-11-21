@@ -444,6 +444,18 @@ require 'header.php';
                 </form>
                 <form action="info.php" method="post" onsubmit="return confirmDelete()" class="inline-form">
                     <input type="hidden" name="all_delete">
+                    <?php
+                    if (isset($_POST['narrow'])) {
+                        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+                    } else {
+                        echo '<input type="hidden" name="narrow" value=0>';
+                    }
+                    if (isset($_POST['n_user'])) {
+                        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+                    } else {
+                        echo '<input type="hidden" name="n_user" value=0>';
+                    }
+                    ?>
                     <input type="submit" value="一括削除" class="delete">
                 </form>
             </div>
