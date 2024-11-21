@@ -124,9 +124,10 @@ unset($_SESSION['floor']['kai']);
             // アイコン表示
             foreach ($icon as $ic) {
                 $user_id = $ic['icon_user_id'];
-                if (isset($p_tag_id)) {
-                    unset($p_tag_id);
-                }
+                // if (isset($p_tag_id)) {
+                //     unset($p_tag_id);
+                // }
+                unset($p_tag_id);
                 if (isset($_POST['favorite'])) {
                     if ($_POST['favorite'] == "yes") {
                         $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
@@ -199,11 +200,6 @@ unset($_SESSION['floor']['kai']);
         echo '</form>';
     }
     echo '</table>';
-    if (isset($_POST['tag_list']) && !empty($_POST['tag_list'])) {
-        echo $_POST['tag_list'];
-    } else {
-        echo '値が空です。';
-    }
     
 
     ?>
