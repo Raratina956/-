@@ -127,13 +127,11 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         <?php
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
-        
-            echo '<div class="error">
-            <span><?php echo $error ?></span>
-            </div>';
         }
         ?>
-        <br>
+        <div class="error">
+            <span><?php echo $error ?></span>
+        </div>
         <div class="next">
             <span>次回からログインを省略する</span>
             <br>
