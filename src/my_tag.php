@@ -124,4 +124,4 @@ if ($list_raw) {
     echo '</div>';
 }
 ?>
-<a href="map.php" class="back-link">マップへ</a>
+<a href="map.php" class="back-link">戻る</a>

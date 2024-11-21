@@ -147,7 +147,7 @@ require 'header.php';
                 preg_match('/(\d+)分前/', $timeAgoText, $matches);
                 if (isset($matches[1]) && (int) $matches[1] <= 5) {
                     // 5分以内の場合は「オンライン中」と表示
-                    echo 'オンライン中';
+                    echo '<font color="#228b22">オンライン中</font>';
                 } else {
                     // 通常の出力
                     echo $timeAgoText . 'にオンライン';
@@ -254,7 +254,7 @@ require 'header.php';
                 echo '名前：', $user['user_name'], "先生<br>";
                 echo $user['mail_address'], "<br>";
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-                $current_sql->execute($_SESSION['user']['user_id']);
+                $current_sql->execute([$_SESSION['user']['user_id']]);
                 $current_row = $current_sql->fetch();
                 if ($current_row) {
                     $room_id = $current_row['classroom_id'];

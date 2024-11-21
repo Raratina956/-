@@ -120,12 +120,10 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
             <label for="mail_address">メールアドレス：</label>
             <input type="email" name="mail_address" id="mail_address" required>
         </div>
-        <br>
         <div class="form-group">
             <label for="password">パスワード：</label>
             <input type="password" name="pass" id="password" required>
         </div>
-        <br>
         <?php
         if (isset($_SESSION['login']['error'])) {
             $error = $_SESSION['login']['error'];
@@ -138,7 +136,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
         <div class="next">
             <span>次回からログインを省略する</span>
             <br>
-            <input type="checkbox" name="remember_me" value="1">
+            <input type="checkbox" name="remember_me" class="list" value="1">
         </div>
         <br>
         <input type="submit" value="ログイン">
