@@ -476,14 +476,14 @@ require 'header.php';
             $narrow = 0;
         }
         // 既存のリスト取得コード（例: $list_raw = 既存のデータ取得部分）
-        $list_raw = $pdo->query('SELECT * FROM Notification')->fetchAll(PDO::FETCH_ASSOC);
+        // $list_raw = $pdo->query('SELECT * FROM Notification')->fetchAll(PDO::FETCH_ASSOC);
         // PHPで受信時間順に並べ替え（降順）
-        usort($list_raw, function ($a, $b) {
-            // `sending_time`を日時として比較
-            $time_a = strtotime($a['sending_time']);
-            $time_b = strtotime($b['sending_time']);
-            return $time_b - $time_a; // 降順でソート（新しいものを先に）
-        });
+        // usort($list_raw, function ($a, $b) {
+        //     // `sending_time`を日時として比較
+        //     $time_a = strtotime($a['sending_time']);
+        //     $time_b = strtotime($b['sending_time']);
+        //     return $time_b - $time_a; // 降順でソート（新しいものを先に）
+        // });
         
 
         foreach ($list_raw as $row) {
