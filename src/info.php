@@ -487,6 +487,7 @@ require 'header.php';
         
 
         foreach ($list_raw as $row) {
+            var_dump($row['type']);
             switch ($row['type']) {
                 case 1:
                     if ($narrow == 0 or $narrow == 1) {
