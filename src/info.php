@@ -484,6 +484,7 @@ require 'header.php';
             $time_b = strtotime($b['sending_time']);
             return $time_b - $time_a; // 降順でソート（新しいものを先に）
         });
+        
 
         foreach ($list_raw as $row) {
             switch ($row['type']) {
