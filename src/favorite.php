@@ -34,7 +34,7 @@ if (isset($_POST['delete'])) {
     </tr>
 </table>
 
-<div id="favorite-list"></div>
+<div class="favorite_list" id="favorite-list"></div>
 
 <!-- メイン(マップ)に戻る -->
 <button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>

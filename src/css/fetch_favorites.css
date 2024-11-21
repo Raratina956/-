@@ -96,3 +96,16 @@ table {
 .non{
     text-align: center;
 }
+
+.favorite_list{
+    background-color: white;
+    /* margin: 15px; */
+    width: fit-content;
+    padding-inline: 3%;
+    /* margin: 15px; */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* position: relative; */
+    /* text-align: center; */
+}
