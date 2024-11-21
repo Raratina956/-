@@ -127,7 +127,6 @@ unset($_SESSION['floor']['kai']);
                 // if (isset($p_tag_id)) {
                 //     unset($p_tag_id);
                 // }
-                unset($p_tag_id);
                 if (isset($_POST['favorite'])) {
                     if ($_POST['favorite'] == "yes") {
                         $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=? AND follower_id=?');
