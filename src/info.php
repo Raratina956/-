@@ -348,6 +348,11 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
+ <!-- font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 <div class="center">
     <h1>お知らせ</h1>
     <?php
@@ -444,6 +449,18 @@ require 'header.php';
                 </form>
                 <form action="info.php" method="post" onsubmit="return confirmDelete()" class="inline-form">
                     <input type="hidden" name="all_delete">
+                    <?php
+                    if (isset($_POST['narrow'])) {
+                        echo '<input type="hidden" name="narrow" value=', $_POST['narrow'], '>';
+                    } else {
+                        echo '<input type="hidden" name="narrow" value=0>';
+                    }
+                    if (isset($_POST['n_user'])) {
+                        echo '<input type="hidden" name="n_user" value=', $_POST['n_user'], '>';
+                    } else {
+                        echo '<input type="hidden" name="n_user" value=0>';
+                    }
+                    ?>
                     <input type="submit" value="一括削除" class="delete">
                 </form>
             </div>
