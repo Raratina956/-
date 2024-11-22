@@ -114,6 +114,6 @@ table {
     /* text-align: center; */
     border-radius: 40px;
 }
-.facorite_table{
+.facorite_table td{
     border-bottom: 1px solid #333;
 }
