@@ -87,6 +87,8 @@ td:nth-child(2) {
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    position: absolute;
+    margin-top: 20px;
 }
 
 .dropdown {
@@ -126,7 +128,7 @@ td:nth-child(2) {
 .form-row {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
     width: 100%;
     max-width: 800px;
 }
