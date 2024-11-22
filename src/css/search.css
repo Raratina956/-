@@ -212,8 +212,5 @@ form {
 }
 
 .hat{
-    position: absolute;
-    width: 50px;
-    top: -10px;
-    right: -10px;
+    width: 10px;
 }

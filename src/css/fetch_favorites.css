@@ -113,8 +113,19 @@ table {
     /* position: relative; */
     /* text-align: center; */
     border-radius: 40px;
-
+    padding-top: 0.1%;
+    margin-top: 1%;
+    padding-bottom: 2%;
 }
-.facorite_table tr{
+.favorite_table {
+    border-collapse: collapse;
+}
+
+.favorite_table tr {
     border-bottom: 1px solid #333;
 }
+.favorite_table td{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
