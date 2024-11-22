@@ -123,5 +123,7 @@ table {
 
 .favorite_table tr {
     border-bottom: 1px solid #333;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
