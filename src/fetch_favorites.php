@@ -40,7 +40,7 @@ switch ($type) {
         echo '不正なリクエスト';
         exit;
 }
-
+echo '<style> table tr { border-bottom: 1px solid #000; /* 下線を追加 */ } table tr:last-child { border-bottom: none; /* 最後の行の下線を除去 */ } </style>';
 // 取得したデータを表示
 if ($list_raw) {
     echo '<table border="0" style="font-size: 16pt;">';
@@ -64,7 +64,7 @@ if ($list_raw) {
         <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>)" class="button_del">削除</button>
     </td>
     <?php
-    echo '</tr><hr>';
+    echo '</tr>';
 }
 
     echo '</table>';
