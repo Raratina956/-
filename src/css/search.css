@@ -71,6 +71,7 @@ th {
 .user-table td, .tag-table td {
     width: 33%; /* 列幅を揃える */
     border-bottom: 1px solid #333;
+    height: 25px;
     
 }
 
