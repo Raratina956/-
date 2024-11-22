@@ -117,7 +117,7 @@ if ($kinds == "a" || $kinds == "t") {
                         ?>
                         <tr>
                             <td class="tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"><img
-                                        src="<?php echo $icon['icon_name']; ?>" class="usericon"><img src="img/kakubo.jpg" class="hat"></a></td>
+                                        src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
                             <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
                             <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
                          
