@@ -1,4 +1,4 @@
-body{
+body {
     /* text-align: center; */
     padding-top: 130px;
     background-image: url(../img/SpotLinkbg.png);
@@ -14,7 +14,7 @@ body{
 
 }
 
-h1{
+h1 {
     margin-top: auto;
 }
 
@@ -22,13 +22,15 @@ table {
     margin: auto;
     border-collapse: collapse;
 
-    border-spacing: 6px 10px; /* Reduces row and column space */
+    border-spacing: 6px 10px;
+    /* Reduces row and column space */
     font-size: 18pt;
     width: 60%;
 }
 
 td {
-    padding: 6px 2px; /* Reduces space inside cells */
+    padding: 6px 2px;
+    /* Reduces space inside cells */
     text-align: center;
     border-bottom: 1px solid #333;
 }
@@ -36,7 +38,8 @@ td {
 th {
     font-weight: bold;
     border-bottom: 2px solid #333;
-    padding: 6px 2px; /* Matches td padding */
+    padding: 6px 2px;
+    /* Matches td padding */
 }
 
 .join_tag {
@@ -48,37 +51,39 @@ th {
     border-radius: 5px;
 }
 
-.join_tag:hover{
+.join_tag:hover {
     background-color: rgb(54, 98, 216);
     color: white;
 }
 
-.textbox{
+.textbox {
     margin-top: 25px;
     width: 30%;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
-    line-height: 36px; /*ここの数値を変更*/
+    line-height: 36px;
+    /*ここの数値を変更*/
     border: none;
-    border-radius: 5px; /* 角を丸く */
+    border-radius: 5px;
+    /* 角を丸く */
     border-color: white;
 }
 
-.search{
+.search {
     width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     background-color: rgb(192, 191, 191);
-    color:black;
+    color: black;
     border-radius: 5px;
 }
 
-.search:hover{
+.search:hover {
     background-color: black;
     color: white;
 }
@@ -87,56 +92,74 @@ th {
     position: fixed;
     bottom: 20px;
     left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    font-size: 16px;
+    /* フォントサイズ */
     text-decoration: none;
     background-color: #5240f8;
     color: white;
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    padding: 8px 15px;
+    /* 内側の余白 */
+    border-radius: 5px;
+    /* 角を丸く */
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: #2112af;
     color: white;
 }
 
-.join{
+.join {
     min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     border-color: rgb(230, 183, 64);
     background-color: white;
-    color:rgb(230, 183, 64);
+    color: rgb(230, 183, 64);
     border-radius: 5px;
 }
 
-.join:hover{
+.join:hover {
     background-color: rgb(230, 153, 64);
     color: white;
 }
 
-.joined{
+.joined {
     min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     background-color: rgb(179, 247, 91);
-    color:black;
+    color: black;
     border-radius: 5px;
 }
 
-.joined:hover{
+.joined:hover {
     background-color: rgb(63, 225, 95);
     color: black;
 }
 
-.center{
+.center {
     text-align: center;
+}
+
+.tag_list_table {
+    background-color: white;
+    /* margin: 15px; */
+    width: fit-content;
+    padding-inline: 3%;
+    /* margin: 15px; */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* position: relative; */
+    /* text-align: center; */
+    padding-bottom: 3%;
+    padding-top: 1%;
 }
