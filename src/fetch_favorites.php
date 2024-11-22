@@ -43,7 +43,7 @@ switch ($type) {
 echo '<style> table tr { border-bottom: 1px solid #000; /* 下線を追加 */ } table tr:last-child { border-bottom: none; /* 最後の行の下線を除去 */ } </style>';
 // 取得したデータを表示
 if ($list_raw) {
-    echo '<table class="facorite_table" style="font-size: 16pt;">';
+    echo '<table class="favorite_table" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
     $follower_id =  $favorite['follower_id'];
