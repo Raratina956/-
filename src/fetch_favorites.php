@@ -53,7 +53,7 @@ if ($list_raw) {
     $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
     $icon_name = $icon_row['icon_name'];
     if($favorite['s_or_t'] == 0){
-        echo '<td>　　　　</td>';
+        echo '<td>　　　  </td>';
     }else{
         echo '<td><img src="img/kakubo.jpg" style="margin-inline-end: 25px;"></td>';
     }
