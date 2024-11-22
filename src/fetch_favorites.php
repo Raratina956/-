@@ -46,6 +46,7 @@ if ($list_raw) {
     echo '<table class="facorite_table" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
+    echo '<div class="favorite_td">';
     $follower_id =  $favorite['follower_id'];
     $icon_sql = $pdo->prepare('SELECT * FROM Icon WHERE user_id=?');
     $icon_sql ->execute([$follower_id]);
@@ -64,6 +65,7 @@ if ($list_raw) {
         <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>); location.reload();" class="button_del">削除</button>
     </td>
     <?php
+    echo '</div>';
     echo '</tr>';
 }
 
