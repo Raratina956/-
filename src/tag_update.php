@@ -47,7 +47,7 @@ require 'header.php';
                 <form action="tag_update.php" method="post">
                     
                     <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
-                    <td><input class="text" type="text" name="up_tag_name" value="<?php echo $tag_name; ?>"></td>
+                    <td><input class="text" type="text" name="up_tag_name" value="<?php echo $tag_name; ?>" maxlength="15"></td>
                     <td><input type="submit" class="button_up" value="更新"></td>
                 </form>
             </tr>
