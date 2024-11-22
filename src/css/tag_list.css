@@ -27,6 +27,7 @@ table {
     font-size: 18pt;
     /* width: 60%; */
     max-width: 100%;
+    border-radius: 40px;
 }
 
 td {

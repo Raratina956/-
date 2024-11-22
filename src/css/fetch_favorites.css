@@ -112,6 +112,7 @@ table {
     margin-right: auto;
     /* position: relative; */
     /* text-align: center; */
+    border-radius: 40px;
 }
 
 .widthclass{
