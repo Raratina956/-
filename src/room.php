@@ -143,12 +143,12 @@ if ($update_id == 1) {
             
             echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=0" method="post">
                     <select name="target">
-                        <option value="all"' . ($target === 'all' ? ' selected' : '') . '>すべて</option>
+                        <option value="all"' . ($target === 'all' ? ' selected' : '') . '>全て</option>
                         <option value="teacher"' . ($target === 'teacher' ? ' selected' : '') . '>教師</option>
                         <option value="student"' . ($target === 'student' ? ' selected' : '') . '>生徒</option>
                     </select>
                     <select name="favorite">
-                        <option value="0"' . ($favorite == 0 ? ' selected' : '') . '></option>
+                        <option value="0"' . ($favorite == 0 ? ' selected' : '') . '>全てのユーザー</option>
                         <option value="1"' . ($favorite == 1 ? ' selected' : '') . '>お気に入り登録中</option>
                         </select>
                         <button type="submit">検索</button>
@@ -388,8 +388,8 @@ if ($update_id == 1) {
                 }
             }
         }
-            echo '</div>';
             echo '</ul>';
+            echo '</div>';
         ?>
     <!-- メイン(マップ)に戻る -->
     

@@ -40,6 +40,19 @@ main {
     width: 100%;
     max-width: 1200px; /* コンテナの最大幅を設定 */
     margin-top: 20px;
+    background-color: white;
+    /* margin: 15px; */
+    width: fit-content;
+    padding-inline: 3%;
+    /* margin: 15px; */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* position: relative; */
+    /* text-align: center; */
+    padding-bottom: 3%;
+    /* padding-top: 1%; */
+    border-radius: 40px;
 }
 .user-table td, .user-table th,
 .tag-table td, .tag-table th {
@@ -71,7 +84,11 @@ th {
 .user-table td, .tag-table td {
     width: 33%; /* 列幅を揃える */
     border-bottom: 1px solid #333;
-    
+    height: 55px;
+}
+
+.icon{
+    text-align: center;
 }
 
 /* アイコン画像のスタイル */

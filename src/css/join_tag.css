@@ -1,4 +1,4 @@
-body { 
+body {
     background-image: url(../img/SpotLinkbg.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,7 +18,8 @@ main {
     margin-bottom: 100px;
     width: 100%;
     max-width: 600px;
-    padding: 100px 20px 20px; /* Added top padding to create space for h1 */
+    padding: 100px 20px 20px;
+    /* Added top padding to create space for h1 */
     border-radius: 8px;
     text-align: center;
     display: flex;
@@ -29,12 +30,14 @@ main {
 
 h1 {
     position: absolute;
-    top: 20px; /* Adjusted for spacing from the top */
+    top: 20px;
+    /* Adjusted for spacing from the top */
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
     z-index: 1;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
+    /* Prevent text wrapping */
 }
 
 h3 {
@@ -46,16 +49,18 @@ table {
     margin: auto;
     white-space: nowrap;
     border-collapse: collapse;
-    margin-top: 20px; /* Reduced top margin to balance spacing */
-    width: 100%;
+    margin-top: 20px;
+    /* Reduced top margin to balance spacing */
+    max-width: 100%;
 }
 
-td { 
+td {
     padding: 8px;
     white-space: nowrap;
     border-bottom: 1px solid #333;
 }
- th { 
+
+th {
     padding: 8px;
     white-space: nowrap;
     border-bottom: 2px solid #333;
@@ -66,15 +71,18 @@ td {
     position: fixed;
     bottom: 20px;
     left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    font-size: 16px;
+    /* フォントサイズ */
     text-decoration: none;
     background-color: #5240f8;
     color: white;
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    padding: 8px 15px;
+    /* 内側の余白 */
+    border-radius: 5px;
+    /* 角を丸く */
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: #2112af;
     color: white;
 }
@@ -104,4 +112,20 @@ td {
 
 .unselected {
     color: gray;
+}
+
+.tag_list_table {
+    background-color: white;
+    /* margin: 15px; */
+    width: fit-content;
+    padding-inline: 3%;
+    /* margin: 15px; */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* position: relative; */
+    /* text-align: center; */
+    padding-bottom: 3%;
+    padding-top: 1%;
+    border-radius: 40px;
 }
