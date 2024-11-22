@@ -20,7 +20,8 @@ table {
 
     border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
-    width: 60%;
+    /* width: 60%; */
+    max-width: 100%;
 }
 
 td {
@@ -181,4 +182,19 @@ span{
 
 .center{
     text-align: center;
+}
+
+.tag_list_table{
+    background-color: white;
+        /* margin: 15px; */
+        width: fit-content;
+        padding-inline: 3%;
+        /* margin: 15px; */
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        /* position: relative; */
+        /* text-align: center; */
+        padding-bottom: 3%;
+        padding-top: 1%;
 }
