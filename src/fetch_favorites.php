@@ -43,7 +43,7 @@ switch ($type) {
 echo '<style> table tr { border-bottom: 1px solid #000; /* 下線を追加 */ } table tr:last-child { border-bottom: none; /* 最後の行の下線を除去 */ } </style>';
 // 取得したデータを表示
 if ($list_raw) {
-    echo '<table border="1" style="font-size: 16pt;">';
+    echo '<table class="facorite_table" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
     echo '<tr>';
     $follower_id =  $favorite['follower_id'];
@@ -52,7 +52,7 @@ if ($list_raw) {
     $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
     $icon_name = $icon_row['icon_name'];
     if($favorite['s_or_t'] == 0){
-        echo '<td>　　　　</td>';
+        echo '<td>　　　 </td>';
     }else{
         echo '<td><img src="img/kakubo.jpg" style="margin-inline-end: 25px;"></td>';
     }
