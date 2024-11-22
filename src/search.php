@@ -116,17 +116,18 @@ if ($kinds == "a" || $kinds == "t") {
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                            <td class="tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
-                                <!-- <?php
-                                    if($data['s_or_t'] == 1){
+                        <td class="icon tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                                    <!-- <?php
+                                    if ($data['s_or_t'] == 1) {
                                         echo '<img src="kakubo.jpg" class="hat">';
                                     }
-                                ?> -->
-                                <img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
+                                    ?> -->
+                                    <img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
                             <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
                             <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
-                         
-<h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
+
+                                    <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
+                                    </h3>
 
 
                                 </a></td>
@@ -148,7 +149,7 @@ if ($kinds == "a" || $kinds == "t") {
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
                         <td>
-                        <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
+                            <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
                         </td>
                         <form action="search.php" method="post">
                             <input type="hidden" name="join_tag_id" value=<?php echo $data['id']; ?>>
@@ -178,4 +179,3 @@ if ($kinds == "a" || $kinds == "t") {
 </main>
 
 <a href="map.php" class="back-link">戻る</a>
-
