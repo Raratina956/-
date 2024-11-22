@@ -116,6 +116,7 @@ form {
 .li{
     list-style-type: none;
     padding: 10px 0px;
+    text-align: center;
 }
 
 .ul{
