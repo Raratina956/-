@@ -138,17 +138,6 @@ td:nth-child(2) {
     font-size: 16px;
     line-height: 36px;
 }
-
-.dropdown {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    height: 36px;
-    max-width: 200px;
-}
-
 /* Search button */
 .sort {
     height: 36px;
