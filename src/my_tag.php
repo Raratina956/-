@@ -63,7 +63,8 @@ require 'header.php';
     </form>
 </div>
 <?php
-function limitDisplay($text, $limit) {
+function limitDisplay($text, $limit)
+{
     // Check if the text exceeds the limit
     if (mb_strlen($text) > $limit) {
         // Return the limited text with ellipsis
@@ -83,49 +84,50 @@ $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
 if ($list_raw) {
     ?>
     <br><br>
-    <table id="table"  style="font-size: 18pt;">
-        <th>タグ名</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <?php
-        foreach ($list_raw as $row) {
-            echo '<tr>';
-            echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
-
-
-
-            ?>
-            <form action="my_tag.php" method="post">
-            <input type="hidden" name="join_tag_id" value=<?php echo $row['tag_id']; ?>>
+    <div class="tag_list_table">
+        <table id="table" style="font-size: 18pt;">
+            <th>タグ名</th>
+            <th></th>
+            <th></th>
+            <th></th>
             <?php
-            $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
-            $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
-            $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
-            if (!$row_tag) {
-                echo '<td><input type="submit" value="参加" class="join"></td>';
-            } else {
-                echo '<td><input type="submit" value="参加済" class="joined"></td>';
+            foreach ($list_raw as $row) {
+                echo '<tr>';
+                echo '<td>', limitDisplay($row['tag_name'], 10), '</td>';
+                ?>
+                <form action="my_tag.php" method="post">
+                    <input type="hidden" name="join_tag_id" value=<?php echo $row['tag_id']; ?>>
+                    <?php
+                    $sql_tag = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
+                    $sql_tag->execute([$row['tag_id'], $_SESSION['user']['user_id']]);
+                    $row_tag = $sql_tag->fetch(PDO::FETCH_ASSOC);
+                    if (!$row_tag) {
+                        echo '<td><input type="submit" value="参加" class="join"></td>';
+                    } else {
+                        echo '<td><input type="submit" value="参加済" class="joined"></td>';
+                    }
+                    ?>
+                </form>
+                <form action="tag_update.php" method="post">
+                    <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
+                    <td><input type="submit" value="更新" class="button_up"></td>
+                </form>
+                <form action="delete_tag.php" method="post">
+                    <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
+                    <td><input type="submit" value="削除" class="button_del"></td>
+                </form>
+                <?php
+                echo '</tr>';
             }
             ?>
-            </form>
-            <form action="tag_update.php" method="post">
-                <input type="hidden" name="tag_id" value=<?php echo $row['tag_id']; ?>>
-                <td><input type="submit" value="更新" class="button_up"></td>
-            </form>
-            <form action="delete_tag.php" method="post">
-                <input type="hidden" name="delete_tag_id" value=<?php echo $row['tag_id']; ?>>
-                <td><input type="submit" value="削除" class="button_del"></td>
-            </form>
-            <?php
-            echo '</tr>';
-        }
-        ?>
-    </table>
+        </table>
+    </div>
     <?php
 } else {
+    echo '<div class="tag_list_table">';
     echo '<div class="text">';
     echo '作成されたタグがありません';
+    echo '</div>';
     echo '</div>';
 }
 ?>
