@@ -84,7 +84,7 @@ if (isset($_POST['logout'])) {
             $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id');
             $class_sql ->execute([$class_id]);
             $class_row = $class_sql->fetch();
-            $class_name = $class_row['classroom_name'];
+            $class_name = $class_row('classroom_name');
         }else{
             $class_name = '設定なし';
         }
