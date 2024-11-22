@@ -1,4 +1,3 @@
-
 body {
     /* text-align: center; */
     background-image: url(../img/SpotLinkbg.png);
@@ -16,12 +15,13 @@ main {
     width: 80%;
     max-width: 500px;
     border-radius: 8px;
- 
+
 }
 
 h1 {
     text-align: center;
-    font-size: 60px; /* フォントサイズ */
+    font-size: 60px;
+    /* フォントサイズ */
     color: #333;
 }
 
@@ -32,19 +32,23 @@ span {
 }
 
 form {
-    text-align: center; /* フォーム全体を中央揃え */
+    text-align: center;
+    /* フォーム全体を中央揃え */
     /* padding: 100px; */
     /* size: 60px; */
 }
 
 .button-container {
     display: flex;
-    justify-content: center; /* 中央揃え */
-    align-items: center;     /* 縦中央揃え */
-    margin: 10px 0;          /* 上下に少し余白 */
+    justify-content: center;
+    /* 中央揃え */
+    align-items: center;
+    /* 縦中央揃え */
+    margin: 10px 0;
+    /* 上下に少し余白 */
 }
 
-.Current_container{
+.Current_container {
     display: inline-flex;
     position: relative;
     left: 145px;
@@ -72,32 +76,37 @@ form {
 
 
 .room:hover {
-    background-color: #ffffff; /* ホバー時の色変更 */
+    background-color: #ffffff;
+    /* ホバー時の色変更 */
 }
 
 .back-link {
-    position: fixed; 
-     bottom: 20px;
+    position: fixed;
+    bottom: 20px;
     left: 10px;
-    font-size: 16px; /* フォントサイズ */
+    font-size: 16px;
+    /* フォントサイズ */
     text-decoration: none;
-    background-color: #5240f8; /* 背景色 */
-    padding: 8px 15px; /* 内側の余白 */
-    border-radius: 5px; /* 角を丸く */
+    background-color: #5240f8;
+    /* 背景色 */
+    padding: 8px 15px;
+    /* 内側の余白 */
+    border-radius: 5px;
+    /* 角を丸く */
     border-color: #5240f8;
     color: white;
 }
 
-.back-link:hover{
+.back-link:hover {
     background-color: #2112af;
     color: white;
 }
 
-.heya{
+.heya {
     font-size: 30px;
 }
 
-.flex_item{
+.flex_item {
     display: flex;
     padding: 45px 0px 0px 0px;
     margin: 0px 0px 0px 15px;
@@ -107,22 +116,37 @@ form {
     justify-content: space-evenly;
 }
 
-.usericon{
+.usericon {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-  }
-.li{
+}
+
+.li {
     list-style-type: none;
     padding: 10px 0px;
     text-align: center;
 }
 
-.ul{
+.ul {
     display: flex;
     text-align: center;
     list-style-type: none;
 }
 
-
+.icon_container {
+    background-color: white;
+    /* margin: 15px; */
+    width: fit-content;
+    padding-inline: 3%;
+    /* margin: 15px; */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* position: relative; */
+    /* text-align: center; */
+    padding-bottom: 3%;
+    padding-top: 1%;
+    border-radius: 40px;
+}
