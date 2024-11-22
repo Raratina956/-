@@ -58,7 +58,7 @@ require 'header.php';
     <h2>タグ作成</h2>
     <form action="my_tag.php" method="post">
         <span>タグ名：</span>
-        <input type="name" name="tag_name" class="textbox">
+        <input type="name" name="tag_name" class="textbox" maxlength="15">
         <input type="submit" value="作成" class="button_in">
     </form>
 </div>
