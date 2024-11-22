@@ -2,6 +2,10 @@ body {
     padding-top: 120px;
     background-image: url(../img/SpotLinkbg.png);
     text-align:center;
+
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 table {
     border-collapse: separate;
