@@ -11,7 +11,7 @@ if (isset($_POST['logout'])) {
         $sql_delete_token = $pdo->prepare('DELETE FROM Login_tokens WHERE token = ?');
         $sql_delete_token->execute([$token]);
     }
-    if(isset(($_SESSION['room']['uri']))){
+    if (isset(($_SESSION['room']['uri']))) {
         unset($_SESSION['room']['uri']);
     }
     // クッキーを削除
@@ -66,56 +66,67 @@ if (isset($_POST['logout'])) {
     <!-- スライドメニュー -->
     <div class="slide-menu">
         <!-- メニューリスト -->
-            <?php
-                //ユーザー情報を持ってくる
-                    $users=$pdo->prepare('select * from Users where user_id=?');
-                    // $users->execute([$_SESSION['user']['user_id']]);
-                    $users->execute([$_SESSION['user']['user_id']]);
-                    
-                    //アイコン情報を持ってくる
-                    $iconStmt=$pdo->prepare('select icon_name from Icon where user_id=?');
-                    $iconStmt->execute([$_SESSION['user']['user_id']]);
-                    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+        <?php
+        //ユーザー情報を持ってくる
+        $users = $pdo->prepare('select * from Users where user_id=?');
+        // $users->execute([$_SESSION['user']['user_id']]);
+        $users->execute([$_SESSION['user']['user_id']]);
 
-                    echo '<ul>';
-                    //DBから持ってきたユーザー情報を「$user」に入れる
-                        foreach($users as $user){
-                            echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '"><img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon2"></a></li>';
-                            echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">',$user['user_name'],'</a></li>';
-                        }
+        //アイコン情報を持ってくる
+        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+        $iconStmt->execute([$_SESSION['user']['user_id']]);
+        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+        $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+        $current_sql ->execute([$_SESSION['user']['user_id']]);
+        $current_row = $current_sql->fetch();
+        if($current_row){
+            $class_id = $current_row['classroom_id'];
+            $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id');
+            $class_sql ->execute([$class_id]);
+            $class_row = $class_sql->fetch();
+            $class_name = $class_row['classroom_name'];
+        }else{
+            $class_name = '設定なし';
+        }
+        echo '<ul>';
+        //DBから持ってきたユーザー情報を「$user」に入れる
+        foreach ($users as $user) {
+            echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '"><img src="', $icon['icon_name'], '" width="50%" height="50%" class="usericon2"></a></li>';
+            echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
+        }
+        ?>
+        <li><?php echo $class_name; ?></li>
+        <form action="search.php" method="post">
+            <input type="text" name="search" class="tbox"><br>
+            <input type="submit" class="search1" value="検索">
+        </form>
 
-                ?>
-                <form action="search.php" method="post">
-                    <input type="text" name="search" class="tbox"><br>
-                    <input type="submit" class="search1" value="検索">
-                </form>
+        <li><a href="map.php">MAP</a></li>
+        <li><a href="favorite.php">お気に入り</a></li>
+        <li><a href="qr_read.php">QRカメラ</a></li>
+        <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
+        <li><a href="tag_list.php">みんなのタグ</a></li>
+        <li><a href="my_tag.php">MYタグ</a></li>
+        <li><a href="announce.php">アナウンス</a></li>
+        <!-- 以下ログアウト -->
+        <form id="myForm" action="" method="post">
+            <input type="hidden" name="logout" value="1">
+        </form>
+        <li class="logout"><a href="#" id="submitLink">ログアウト</a></li>
 
-            <li><a href="map.php">MAP</a></li>
-            <li><a href="favorite.php">お気に入り</a></li>
-            <li><a href="qr_read.php">QRカメラ</a></li>
-            <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-            <li><a href="tag_list.php">みんなのタグ</a></li>
-            <li><a href="my_tag.php">MYタグ</a></li>
-            <li><a href="announce.php">アナウンス</a></li>
-            <!-- 以下ログアウト -->
-            <form id="myForm" action="" method="post">
-                <input type="hidden" name="logout" value="1">
-            </form>
-            <li class="logout"><a href="#" id="submitLink">ログアウト</a></li>
-          
-            <script>
-                document.getElementById('submitLink').addEventListener('click', function (event) {
-                    event.preventDefault(); // リンクのデフォルトの動作を防止
-                    // 現在のURLを取得
-                    var currentUrl = window.location.href;
-                    // フォームのactionに現在のURLを設定
-                    document.getElementById('myForm').action = currentUrl;
-                    // フォームを送信
-                    document.getElementById('myForm').submit();
-                });
-            </script>
+        <script>
+            document.getElementById('submitLink').addEventListener('click', function (event) {
+                event.preventDefault(); // リンクのデフォルトの動作を防止
+                // 現在のURLを取得
+                var currentUrl = window.location.href;
+                // フォームのactionに現在のURLを設定
+                document.getElementById('myForm').action = currentUrl;
+                // フォームを送信
+                document.getElementById('myForm').submit();
+            });
+        </script>
 
-            <!-- 以上ログアウト -->
+        <!-- 以上ログアウト -->
         </ul>
     </div>
     <script>
