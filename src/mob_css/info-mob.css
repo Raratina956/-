@@ -70,7 +70,7 @@ td:nth-child(2) {
 .edit{
     background-color: #4CAF50; /* ボタンの背景色 */
     color: white; /* ボタンの文字色 */
-    padding: 8px 16px; /* ボタンのパディング */
+    padding: 8px 10px; /* ボタンのパディング */
     margin: 4px 2px;
     border: none; /* ボーダーを削除 */
     border-radius: 8px; /* ボタンを丸くする */
@@ -81,8 +81,8 @@ td:nth-child(2) {
 .read_one {
     background-color:rgb(93, 134, 246) ;
     color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
+    padding: 8px 10px;
+    margin: 4px 2px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -92,8 +92,8 @@ td:nth-child(2) {
 .delete_one {
     background-color: rgb(248, 88, 88);
     color: white;
-    padding: 10px 20px;
-    margin: 6px 3px;
+    padding: 8px 10px;
+    margin: 4px 2px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
