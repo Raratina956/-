@@ -34,6 +34,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" type="text/css" href="css/header.css" media="screen and (min-width: 1280px)">
     <link rel="stylesheet" href="mob_css/humberger-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
+    <title>SpotLink</title>
 </head>
 <header>
     <div class="header-container">
