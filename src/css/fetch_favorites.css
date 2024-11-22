@@ -112,4 +112,9 @@ table {
     margin-right: auto;
     /* position: relative; */
     /* text-align: center; */
+    border-radius: 40px;
+
+}
+.facorite_table tr{
+    border-bottom: 1px solid #333;
 }
