@@ -96,7 +96,7 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-const selfIcon = 'path/to/self-icon.png'; // 自分のアイコンURL
+const selfIcon = 'img/7.png'; // 自分のアイコンURL
 
 // 位置情報を更新ボタンがクリックされたとき
 document.getElementById('update-location-btn').addEventListener('click', function() {
