@@ -150,11 +150,11 @@ require 'header.php';
                     echo '<span class="time_dis"><font color="#228b22">オンライン中</font></span>';
                 } else {
                     // 通常の出力
-                    echo '<span class="time_dis">'.$timeAgoText . 'にオンライン</span>';
+                    echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
                 }
             } else {
                 // 他の場合はそのまま出力
-                echo '<span class="time_dis">'.$timeAgoText . 'にオンライン</span>';
+                echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
             }
             echo '</span>';
             //チャットボタン表示
