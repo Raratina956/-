@@ -202,7 +202,7 @@ unset($_SESSION['floor']['kai']);
 
         }
         if ($j == 1) {
-            echo '<span>ユーザーがいません</span>';
+            echo '<span class="not_user">ユーザーがいません</span>';
         }
 
         echo '</td>';
