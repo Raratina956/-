@@ -21,6 +21,7 @@ table {
     border-spacing: 6px 10px; /* Reduces row and column space */
     font-size: 18pt;
     /* width: 60%; */
+    max-width: 100%;
 }
 
 td {
