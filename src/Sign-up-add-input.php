@@ -21,7 +21,7 @@ try {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
-
+    <title>SpotLink</title>
     <script>
         function validateForm() {
             var studentNumber = document.getElementById("student_number").value;
