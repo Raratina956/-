@@ -76,18 +76,24 @@ if (isset($_POST['logout'])) {
         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
         $iconStmt->execute([$_SESSION['user']['user_id']]);
         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-        $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-        $current_sql ->execute([$_SESSION['user']['user_id']]);
-        $current_row = $current_sql->fetch();
-        if($current_row){
+        $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
+        $current_sql->execute([$_SESSION['user']['user_id']]);
+        $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+
+        if ($current_row) {
             $class_id = $current_row['classroom_id'];
-            $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id');
-            $class_sql ->execute([$class_id]);
-            $class_row = $class_sql->fetch();
-            $class_name = $class_row('classroom_name');
-        }else{
+            $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
+            $class_sql->execute([$class_id]);
+            $class_row = $class_sql->fetch(PDO::FETCH_ASSOC);
+            if ($class_row) {
+                $class_name = $class_row['classroom_name'];
+            } else {
+                $class_name = 'クラス情報が見つかりません';
+            }
+        } else {
             $class_name = '設定なし';
         }
+
         echo '<ul>';
         //DBから持ってきたユーザー情報を「$user」に入れる
         foreach ($users as $user) {
