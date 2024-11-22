@@ -388,8 +388,8 @@ if ($update_id == 1) {
                 }
             }
         }
-            echo '</div>';
             echo '</ul>';
+            echo '</div>';
         ?>
     <!-- メイン(マップ)に戻る -->
     
