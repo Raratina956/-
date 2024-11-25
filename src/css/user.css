@@ -68,9 +68,9 @@ button:hover {
 
 
 .confirmbutton {
-    margin-left: 1300px;
-    background-color: #f9f9f9;
-    border: #17A7E9;
+    /* margin-left: 1300px; */
+    background-color: #17A7E9;
+    border:#f9f9f9;
     color: black;
     padding: 15px 32px;
     text-align: center;
@@ -113,6 +113,7 @@ button:hover {
     height: 210px;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: -22%;
 }
 .time_dis{
     font-size: 125%;

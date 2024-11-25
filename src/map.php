@@ -23,7 +23,7 @@ unset($_SESSION['floor']['kai']);
         left: 10px;
         width: 100%;
         height: 100%;
-        background-color: transparent; /* 透明背景に変更 */
+        background-color: rgba(255, 255, 255, 0.8); /* 少し透明な白に設定 */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,6 +34,7 @@ unset($_SESSION['floor']['kai']);
         width: 700px; /* アイコンのサイズを調整 */
         opacity: 1; /* 初期透明度 */
         transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
+        clip-path: inset(0 50px 0 0); /* 右端を50pxカット */
     }
 
 </style>
@@ -234,7 +235,7 @@ unset($_SESSION['floor']['kai']);
             iconModal.style.display = 'flex';// モーダルを表示
             setTimeout(function() {
                 icon.style.opacity = '0'; // フェードアウト開始
-            }, 1000); // 1秒間表示してからフェードアウトを開始
+            }, 800); // 1秒間表示してからフェードアウトを開始
             setTimeout(function() {
                 iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
             }, 2000); // フェードアウトが完了するまで待つ

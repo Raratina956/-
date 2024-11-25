@@ -101,19 +101,21 @@ if (isset($_POST['logout'])) {
             echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
         }
         ?>
-        <li><?php echo $class_name; ?></li>
+        <li style="border-bottom: outset;">現在地：　<?php echo $class_name; ?></li>
+        <li style="border-bottom: outset;">
         <form action="search.php" method="post">
-            <input type="text" name="search" class="tbox"><br>
-            <input type="submit" class="search1" value="検索">
+            <input type="text" name="search" class="tbox" style="margin-top: 5%;width: 85%;text-align: center;" placeholder="ユーザー名 or タグ名"><br>
+            <input type="submit" class="search1" value="検索" style="margin-bottom: 5%;margin-top: -5%;">
         </form>
+        </li>
 
-        <li><a href="map.php">MAP</a></li>
-        <li><a href="favorite.php">お気に入り</a></li>
-        <li><a href="qr_read.php">QRカメラ</a></li>
-        <?php echo '<li><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-        <li><a href="tag_list.php">みんなのタグ</a></li>
-        <li><a href="my_tag.php">MYタグ</a></li>
-        <li><a href="announce.php">アナウンス</a></li>
+        <li style="border-bottom: outset;"><a href="map.php">MAP</a></li>
+        <li style="border-bottom: outset;"><a href="favorite.php">お気に入り</a></li>
+        <li style="border-bottom: outset;"><a href="qr_read.php">QRカメラ</a></li>
+        <?php echo '<li style="border-bottom: outset;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
+        <li style="border-bottom: outset;"><a href="tag_list.php">みんなのタグ</a></li>
+        <li style="border-bottom: outset;"><a href="my_tag.php">MYタグ</a></li>
+        <li style="border-bottom: outset;"><a href="announce.php">アナウンス</a></li>
         <!-- 以下ログアウト -->
         <form id="myForm" action="" method="post">
             <input type="hidden" name="logout" value="1">

@@ -61,8 +61,6 @@ require 'header.php';
         //自分か相手側かで表示する内容を変更
         if ($_SESSION['user']['user_id'] == ($user['user_id'])) {
             //自分のプロフィール
-            //編集ボタン
-            echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
             //アイコン表示
             echo '<div class="profile-container">';
             echo '<div class="user-container">';
@@ -101,12 +99,16 @@ require 'header.php';
                 } else {
                     echo '現在地：設定なし';
                 }
+                //編集ボタン
+                echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
                 echo '</div>';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile"><br>';
                 echo '名前：', $user['user_name'], "先生<br>";
                 echo $user['mail_address'];
+                //編集ボタン
+                echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
                 echo '</div>';
             }
             echo '</div>';
