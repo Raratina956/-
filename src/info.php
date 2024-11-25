@@ -579,6 +579,7 @@ require 'header.php';
                         echo '<td><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
+                        echo '<td><img src="img/map_info.png" width="40%" height="100%"></td>';
                         echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
@@ -639,6 +640,7 @@ require 'header.php';
                         echo '<td><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
+                        echo '<td><img src="img/chat_info.png" width="40%" height="100%"></td>';
                         echo '<td colspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
