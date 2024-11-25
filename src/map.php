@@ -34,6 +34,7 @@ unset($_SESSION['floor']['kai']);
         width: 700px; /* アイコンのサイズを調整 */
         opacity: 1; /* 初期透明度 */
         transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
+        clip-path: inset(0 50px 0 0); /* 右端を50pxカット */
     }
 
 </style>
