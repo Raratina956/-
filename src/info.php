@@ -515,11 +515,11 @@ require 'header.php';
                         echo '<td><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
-                        echo '<td><img src="img/announce_info.png" width="10%" height="25%"></td>';
                         echo '<td colspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
                         }
+                        echo '<td><img src="img/announce_info.png" width="10%" height="25%"></td>';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
