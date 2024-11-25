@@ -101,11 +101,12 @@ if (isset($_POST['logout'])) {
             echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
         }
         ?>
-        <li style="border-bottom: outset;">現在地：　<?php echo $class_name; ?></li>
+        <li style="border-bottom: outset;">現在地：　<?php echo $class_name; ?><br>
         <form action="search.php" method="post">
             <input type="text" name="search" class="tbox"><br>
             <input type="submit" class="search1" value="検索">
         </form>
+        </li>
 
         <li style="border-bottom: outset;"><a href="map.php">MAP</a></li>
         <li style="border-bottom: outset;"><a href="favorite.php">お気に入り</a></li>
