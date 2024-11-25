@@ -518,7 +518,10 @@ require 'header.php';
                         echo '<td colspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
+                        }else{
+                            echo '<td></td>';
                         }
+                        echo '<td><img src="img/announce_info.png" width="10%" height="25%"></td>';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
@@ -578,6 +581,8 @@ require 'header.php';
                         echo '<td colspan="2">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
+                        }else{
+                            echo '<td></td>';
                         }
                         echo '</tr>';
                         echo '<tr>';
@@ -636,6 +641,8 @@ require 'header.php';
                         echo '<td colspan="2">', $sent_name, 'さんからチャットが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
+                        }else{
+                            echo '<td></td>';
                         }
                         echo '</tr>';
                         echo '<tr>';
