@@ -147,14 +147,14 @@ require 'header.php';
                 preg_match('/(\d+)分前/', $timeAgoText, $matches);
                 if (isset($matches[1]) && (int) $matches[1] <= 5) {
                     // 5分以内の場合は「オンライン中」と表示
-                    echo '<font color="#228b22">オンライン中</font>';
+                    echo '<span class="time_dis"><font color="#228b22">オンライン中</font></span>';
                 } else {
                     // 通常の出力
-                    echo $timeAgoText . 'にオンライン';
+                    echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
                 }
             } else {
                 // 他の場合はそのまま出力
-                echo $timeAgoText . 'にオンライン';
+                echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
             }
             echo '</span>';
             //チャットボタン表示
@@ -264,10 +264,10 @@ require 'header.php';
                     $room_row = $room_sql->fetch();
                     $room_name = $room_row['classroom_name'];
                     echo '現在地：' . $room_name . '<br>';
-                    echo $logtime . '<br>';
-                } else {
-                    echo '現在地：設定なし';
-                }
+                        echo timeAgo($logtime) . 'に登録<br>';
+                    } else {
+                        echo '現在地：設定なし';
+                    }
                 echo '</div>';
             }
 

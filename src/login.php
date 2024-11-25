@@ -113,7 +113,7 @@ if (isset($_POST['mail_address'], $_POST['pass'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
-
+    <link rel="icon" href="img/pin.png" sizes="32x32" type="image/png">
     <title>SpotLink</title>
 </head>
 

@@ -66,7 +66,7 @@ body{
  .block {
     margin: 0 auto;
     padding: 0px;
-    height: 85px;
+    height: 100px;
     width: 71%;
     background-color: #ffffff;
     border: 1px solid #ccc;
@@ -109,12 +109,13 @@ button {
     border: none; /* 枠線をなくす */
     border-radius: 5px; /* 角丸をつける */
     padding: 10px 15px; /* ボタンの内側の余白 */
-    margin: 5px; /* ボタン同士の余白 */
+    margin-left: -5%;
+    margin-top: 5%;/* ボタン同士の余白 */
     background-color: #17A7E9; /* ボタンの背景色 */
     color: white; /* ボタンの文字色 */
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
-    font-size: 15px; /* テキストのフォントサイズ */
+    font-size: 25px; /* テキストのフォントサイズ */
     cursor: pointer; /* マウスポインタを変更する */
   }
 
@@ -176,4 +177,51 @@ input[type="checkbox"]{
 .kensaku-user{
     font-size: 120%;
     text-align: center;
+}
+.not_user{
+    font-size: 150%;
+}
+
+.selectbox-5 {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.selectbox-5::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: #535353;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox-5 select {
+    appearance: none;
+    min-width: 80%;
+    height: 100%;
+    padding: .4em calc(.8em + 30px) .4em .8em;
+    border: none;
+    border-bottom: 2px solid #d0d0d0;
+    background-color: #fff;
+    color: #333333;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.selectbox-5 select:focus {
+    outline: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* 縦方向に配置 */
+    align-items: center;    /* 中央寄せ */
+    text-align: left;       /* テキストを左揃え */
+}
+.text {
+    width: 200px; /* 固定幅で揃える */
 }

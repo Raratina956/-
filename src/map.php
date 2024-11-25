@@ -67,15 +67,15 @@ unset($_SESSION['floor']['kai']);
     $selected_tag = $_POST['favorite'] ?? 'no'; ?>
     
     <p class="kensaku-user">ユーザー絞り込み</p>
-    ◯お気に入り<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>>
+    <div class="container">
+    <div class="text">◯お気に入りユーザー<input type="checkbox" name="favorite" class="list"value="yes" <?php echo ($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : ''; ?>></div>
     <?php
     // echo 'ユーザー絞り込み<br>お気に入り<select name="favorite" class="list">';
     // // echo '<option value="">ユーザー</option>';
     // echo '<option value="yes"', ($selected_tag === 'yes' ? ' selected' : ''), '>お気に入り登録済み</option>';
     // echo '<option value="no"', ($selected_tag === 'no' ? ' selected' : ''), '>全ユーザー</option>';
     // echo '</select>';
-    echo '<br>◯タグ<select name="tag_list" class="list">';
-
+    echo '<div class="text">◯タグ<label class="selectbox-5"><select name="tag_list" class="list">';
     // POSTデータから選択されたタグの値を取得
     $selected_tag = $_POST['tag_list'] ?? '0'; // デフォルトで「全て」を選択
     
@@ -98,7 +98,8 @@ unset($_SESSION['floor']['kai']);
     } else {
         echo '<option value=0>-</option>';
     }
-    echo '</select><br>';
+    echo '</select></label></div>';
+    echo '</div>';
     echo '<input type="submit" class="abst" value="絞込">';
     echo '</form></div>';
     
@@ -209,7 +210,7 @@ unset($_SESSION['floor']['kai']);
 
         }
         if ($j == 1) {
-            echo '<span>ユーザーがいません</span>';
+            echo '<span class="not_user">ユーザーがいません</span>';
         }
 
         echo '</td>';

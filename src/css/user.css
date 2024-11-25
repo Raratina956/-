@@ -114,3 +114,6 @@ button:hover {
     border-radius: 50%;
     object-fit: cover;
 }
+.time_dis{
+    font-size: 125%;
+}

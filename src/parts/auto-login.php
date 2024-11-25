@@ -43,12 +43,6 @@ if (isset($_COOKIE['remember_me_token'])) {
                 'user_id' => $user_row['user_id'],
                 'user_name' => $user_row['user_name']
             ];
-            $now_time = date("Y/m/d H:i:s");
-            $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
-            $sql_update->execute([
-                $now_time,
-                $_SESSION['user']['user_id']
-            ]);
         }
     }
 }
@@ -63,5 +57,12 @@ if (!(isset($_SESSION['user']))) {
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/login.php';
     header("Location: $redirect_url");
     exit();
+} else {
+    $now_time = date("Y/m/d H:i:s");
+    $sql_update = $pdo->prepare('UPDATE Users SET last_login = ? WHERE user_id = ?');
+    $sql_update->execute([
+        $now_time,
+        $_SESSION['user']['user_id']
+    ]);
 }
 ?>
