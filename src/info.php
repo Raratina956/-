@@ -522,7 +522,7 @@ require 'header.php';
                         }else{
                             echo '<td></td>';
                         }
-                        echo '<td><img src="img/announce_info.png" width="10%" height="25%"></td>';
+                        echo '<td><img src="img/announce_info.png" width="40%" height="100%"></td>';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
