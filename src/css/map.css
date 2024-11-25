@@ -1,18 +1,18 @@
-body{
+body {
     background-image: url(../img/SpotLinkbg.png);
-    
+
     /* 画像を常に天地左右の中央に配置 */
     background-position: center center;
-              
+
     /* 画像をタイル状に繰り返し表示しない */
     background-repeat: no-repeat;
-              
+
     /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
     background-attachment: fixed;
-              
+
     /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
     background-size: cover;
-              
+
     /* 背景画像が読み込まれる前に表示される背景のカラー */
     background-color: #464646;
     height: 100%;
@@ -23,17 +23,17 @@ body{
 
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.title{
+.title {
     text-align: center;
 
 }
 
-.textA{
+.textA {
     text-align: center;
 }
 
@@ -63,7 +63,7 @@ body{
     margin: auto 20%;
 }
 
- .block {
+.block {
     margin: 0 auto;
     padding: 0px;
     height: 100px;
@@ -71,13 +71,13 @@ body{
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.7), 
-                inset -1px -1px 5px rgba(0, 0, 0, 0.2), 
-                2px 2px 5px rgba(0, 0, 0, 0.3);
- } 
+    box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.7),
+        inset -1px -1px 5px rgba(0, 0, 0, 0.2),
+        2px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
 
-.number{
+.number {
     display: flex;
     flex-wrap: wrap;
     margin-left: 10%;
@@ -100,26 +100,38 @@ body{
 }
 
 .gakugai-container:hover {
-    background-color: #0056b3;       /* ホバー時の青色（少し濃くする） */
-  }
+    background-color: #0056b3;
+    /* ホバー時の青色（少し濃くする） */
+}
 
 
 button {
-    display: inline-block; /* ボタンを横並びにする */
-    border: none; /* 枠線をなくす */
-    border-radius: 5px; /* 角丸をつける */
-    padding: 10px 15px; /* ボタンの内側の余白 */
+    display: inline-block;
+    /* ボタンを横並びにする */
+    border: none;
+    /* 枠線をなくす */
+    border-radius: 5px;
+    /* 角丸をつける */
+    padding: 10px 15px;
+    /* ボタンの内側の余白 */
     margin-left: -5%;
-    margin-top: 5%;/* ボタン同士の余白 */
-    background-color: #17A7E9; /* ボタンの背景色 */
-    color: white; /* ボタンの文字色 */
-    text-align: center; /* ボタンのテキストを中央揃えにする */
-    text-decoration: none; /* テキストに下線をつけない */
-    font-size: 25px; /* テキストのフォントサイズ */
-    cursor: pointer; /* マウスポインタを変更する */
-  }
+    margin-top: 5%;
+    /* ボタン同士の余白 */
+    background-color: #17A7E9;
+    /* ボタンの背景色 */
+    color: white;
+    /* ボタンの文字色 */
+    text-align: center;
+    /* ボタンのテキストを中央揃えにする */
+    text-decoration: none;
+    /* テキストに下線をつけない */
+    font-size: 25px;
+    /* テキストのフォントサイズ */
+    cursor: pointer;
+    /* マウスポインタを変更する */
+}
 
-.list{
+.list {
     /* width: 15%; */
     margin-inline-start: 15px;
     font-size: 20px;
@@ -128,36 +140,42 @@ button {
     max-width: 150px;
 }
 
-.usericon{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
+.usericon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.abst{
+.abst {
     margin: auto -20%;
     background-color: rgb(48 212 197);
     color: black;
-    border-radius: 5px; /* 角丸をつける */
+    border-radius: 5px;
+    /* 角丸をつける */
     padding-block: 3px;
     padding-inline: 10px;
-    text-align: center; /* ボタンのテキストを中央揃えにする */
-    text-decoration: none; /* テキストに下線をつけない */
+    text-align: center;
+    /* ボタンのテキストを中央揃えにする */
+    text-decoration: none;
+    /* テキストに下線をつけない */
     /* margin-left: 40px; */
-    cursor: pointer; /* マウスポインタを変更する */
-    
+    cursor: pointer;
+    /* マウスポインタを変更する */
+    font-size: 100%;
+    margin-top: 2%;
+    margin-bottom: -1%;
 }
 
-.abst:hover{
+.abst:hover {
     background-color: rgb(135 206 250);
 }
 
-select{
+select {
     max-width: fit-content;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     position: relative;
     accent-color: rgb(0, 4, 255);
     transform: scale(1.5);
@@ -165,7 +183,7 @@ input[type="checkbox"]{
     margin-inline-start: 15px;
 }
 
-.user-kensaku{
+.user-kensaku {
     text-align: center;
     background-color: lightskyblue;
     border: 5px solid #30d4c5;
@@ -174,11 +192,14 @@ input[type="checkbox"]{
     line-height: 33px;
 }
 
-.kensaku-user{
-    font-size: 120%;
+.kensaku-user {
+    font-size: 190%;
     text-align: center;
+    margin-top: -2%;
+    margin-bottom: 2%;
 }
-.not_user{
+
+.not_user {
     font-size: 150%;
 }
 
@@ -218,10 +239,15 @@ input[type="checkbox"]{
 
 .container {
     display: flex;
-    flex-direction: column; /* 縦方向に配置 */
-    align-items: center;    /* 中央寄せ */
-    text-align: left;       /* テキストを左揃え */
+    flex-direction: column;
+    /* 縦方向に配置 */
+    align-items: center;
+    /* 中央寄せ */
+    text-align: left;
+    /* テキストを左揃え */
 }
+
 .text {
-    width: 230px; /* 固定幅で揃える */
+    width: 250px;
+    font-size: 115%;
 }
