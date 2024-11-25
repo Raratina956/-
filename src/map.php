@@ -23,28 +23,35 @@ unset($_SESSION['floor']['kai']);
         left: 10px;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+        background-color: transparent; /* 透明背景に変更 */
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 1001; /* モーダルが最前面に来るようにZインデックスを調整 */
     }
 
-    .icon-modal img {
+    .icon-modal img, .icon-modal video {
         width: 700px; /* アイコンのサイズを調整 */
         opacity: 1; /* 初期透明度 */
         transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
     }
+
 </style>
 <body>
 
 
     <?php
-        if(!isset($_COOKIE['img_displayed'])) {
-            echo '<div class="icon-modal" id="icon-modal"> <img src="img/icon-copy.png" alt="アイコン" id="icon"> </div>';
-            setcookie('img_displayed', 'true', time() + (86400 * 30), "/");
-            // Cookie valid for 30 days
-        }
+    if (!isset($_COOKIE['img_displayed'])) {
+        echo '<div class="icon-modal" id="icon-modal">
+                <video id="icon" autoplay loop muted>
+                    <source src="img/icon_move.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>';
+        setcookie('img_displayed', 'true', time() + (86400 * 30), "/");
+        // Cookie valid for 30 days
+    }
+
     
 
     echo '<div class="map">';
