@@ -515,6 +515,7 @@ require 'header.php';
                         echo '<td><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
+                        echo '<td><img src="img/announce_info.png" width="20%" height="50%"></td>';
                         echo '<td colspan="2">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td>未読</td>';
