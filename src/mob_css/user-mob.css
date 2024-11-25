@@ -71,7 +71,7 @@ font-size: 15px;
 cursor: pointer;
 border-radius: 50px; /* 50pxの角丸 */
 transition: background-color 0.3s ease;
-margin-left: 50%;
+margin-left: 70%;
 }
 
 /* button:hover {
