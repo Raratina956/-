@@ -64,7 +64,7 @@ require 'header.php';
             //アイコン表示
             echo '<div class="profile-container">';
             echo '<div class="user-container">';
-            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon" style="margin-right: -22%;">';
+            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
             //ユーザー情報
             if ($user['s_or_t'] == 0) {
 

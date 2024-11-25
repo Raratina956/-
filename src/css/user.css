@@ -35,6 +35,7 @@ body {
 
 .user-container {
     display: flex;
+    margin-right: -22%;
     align-items: center;
 }
 
