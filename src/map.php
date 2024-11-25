@@ -235,7 +235,7 @@ unset($_SESSION['floor']['kai']);
             iconModal.style.display = 'flex';// モーダルを表示
             setTimeout(function() {
                 icon.style.opacity = '0'; // フェードアウト開始
-            }, 1000); // 1秒間表示してからフェードアウトを開始
+            }, 2000); // 1秒間表示してからフェードアウトを開始
             setTimeout(function() {
                 iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
             }, 2000); // フェードアウトが完了するまで待つ
