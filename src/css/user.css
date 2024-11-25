@@ -81,11 +81,14 @@ button:hover {
     border-radius: 50px;
     /* 50pxの角丸 */
     transition: background-color 0.3s ease;
+    margin-left: 140%;
+
 }
 
 .profile {
     align-items: center;
     padding-left: 270px;
+    margin-top: 5%;
 }
 
 .tag {
