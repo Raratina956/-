@@ -215,3 +215,13 @@ input[type="checkbox"]{
 .selectbox-5 select:focus {
     outline: none;
 }
+
+.container {
+    display: flex;
+    flex-direction: column; /* 縦方向に配置 */
+    align-items: center;    /* 中央寄せ */
+    text-align: left;       /* テキストを左揃え */
+}
+.text {
+    width: 200px; /* 固定幅で揃える */
+}
