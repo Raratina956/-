@@ -59,9 +59,9 @@ button:hover {
 
 
 .confirmbutton{
-margin-left: 290px;
-background-color: #f9f9f9;
-border:#17A7E9;
+/* margin-left: 290px; */
+background-color: #17A7E9;
+border:#f9f9f9;
 color: black;
 padding: -10px 37px;
 text-align: center;
