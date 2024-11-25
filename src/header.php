@@ -112,7 +112,7 @@ if (isset($_POST['logout'])) {
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php">MAP</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="favorite.php">お気に入り</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php">QRカメラ</a></li>
-        <?php echo '<li style="border-bottom: outset; border-color: #a9a9a9;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
+        <?php echo '<li style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="tag_list.php">みんなのタグ</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php">MYタグ</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="announce.php">アナウンス</a></li>
