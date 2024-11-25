@@ -223,5 +223,5 @@ input[type="checkbox"]{
     text-align: left;       /* テキストを左揃え */
 }
 .text {
-    width: 200px; /* 固定幅で揃える */
+    width: 230px; /* 固定幅で揃える */
 }
