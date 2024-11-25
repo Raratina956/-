@@ -23,7 +23,7 @@ unset($_SESSION['floor']['kai']);
         left: 10px;
         width: 100%;
         height: 100%;
-        background-color: white; /* 透明背景に変更 */
+        background-color: rgba(255, 255, 255, 0.8); /* 少し透明な白に設定 */
         display: flex;
         justify-content: center;
         align-items: center;
