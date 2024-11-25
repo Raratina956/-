@@ -23,7 +23,7 @@ unset($_SESSION['floor']['kai']);
         left: 10px;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+        background-color: transparent; /* 透明背景に変更 */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,8 +34,8 @@ unset($_SESSION['floor']['kai']);
         width: 700px; /* アイコンのサイズを調整 */
         opacity: 1; /* 初期透明度 */
         transition: opacity 1s ease-out; /* フェードアウトのアニメーション */
-        border-radius: 50%; /* 円形にする */
     }
+
 </style>
 <body>
 
