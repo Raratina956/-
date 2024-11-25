@@ -35,7 +35,6 @@ body {
 
 .user-container {
     display: flex;
-    margin-right: -22%;
     align-items: center;
 }
 
@@ -114,6 +113,7 @@ button:hover {
     height: 210px;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: -22%;
 }
 .time_dis{
     font-size: 125%;
