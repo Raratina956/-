@@ -470,6 +470,7 @@ require 'header.php';
 
         <?php
         echo '<table>';
+        echo '<th width="10%"></th><th width="35%"></th><th width="35%"></th><th width="10%"></th><th width="10%"></th>';
         if (isset($_POST['narrow'])) {
             $narrow = $_POST['narrow'];
         } else {
@@ -521,7 +522,7 @@ require 'header.php';
                         }else{
                             echo '<td></td>';
                         }
-                        echo '<td><img src="img/announce_info.png" width="10%" height="25%"></td>';
+                        echo '<td><img src="img/announce_info.png" width="40%" height="100%"></td>';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day">', timeAgo($logtime), '</td>';
