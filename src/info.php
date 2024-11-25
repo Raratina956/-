@@ -470,7 +470,7 @@ require 'header.php';
 
         <?php
         echo '<table>';
-        echo '<th></th><th></th><th></th><th></th><th></th>';
+        echo '<th width="10%"></th><th width="35%"></th><th width="35%"></th><th width="10%"></th><th width="10%"></th>';
         if (isset($_POST['narrow'])) {
             $narrow = $_POST['narrow'];
         } else {
