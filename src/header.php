@@ -101,7 +101,7 @@ if (isset($_POST['logout'])) {
             echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
         }
         ?>
-        <li><?php echo $class_name; ?></li>
+        <li>現在地：　<?php echo $class_name; ?></li>
         <form action="search.php" method="post">
             <input type="text" name="search" class="tbox"><br>
             <input type="submit" class="search1" value="検索">
