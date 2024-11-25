@@ -101,21 +101,21 @@ if (isset($_POST['logout'])) {
             echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
         }
         ?>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;">現在地：　<?php echo $class_name; ?></li>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;">
+        <li style="border-bottom: outset; border-color: #a9a9a9;">現在地：　<?php echo $class_name; ?></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;">
         <form action="search.php" method="post">
             <input type="text" name="search" class="tbox" style="margin-top: 5%;width: 85%;text-align: center;" placeholder="ユーザー名 or タグ名"><br>
             <input type="submit" class="search1" value="検索" style="margin-bottom: 5%;margin-top: -5%;">
         </form>
         </li>
 
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="map.php">MAP</a></li>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="favorite.php">お気に入り</a></li>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="qr_read.php">QRカメラ</a></li>
-        <?php echo '<li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="tag_list.php">みんなのタグ</a></li>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="my_tag.php">MYタグ</a></li>
-        <li style="border-bottom: outset; bottom-color: #a9a9a9;"><a href="announce.php">アナウンス</a></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="map.php">MAP</a></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="favorite.php">お気に入り</a></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="qr_read.php">QRカメラ</a></li>
+        <?php echo '<li style="border-bottom: outset; border-color: #a9a9a9;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="tag_list.php">みんなのタグ</a></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="my_tag.php">MYタグ</a></li>
+        <li style="border-bottom: outset; border-color: #a9a9a9;"><a href="announce.php">アナウンス</a></li>
         <!-- 以下ログアウト -->
         <form id="myForm" action="" method="post">
             <input type="hidden" name="logout" value="1">
