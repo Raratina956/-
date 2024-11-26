@@ -394,7 +394,7 @@ if ($update_id == 1) {
         ?>
     <!-- メイン(マップ)に戻る -->
     
-         <?php echo //'<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
+         <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
         <!--<button type="submit" class="back-link">戻る</button> 
     </form> -->
     </main>
