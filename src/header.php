@@ -35,6 +35,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="mob_css/humberger-mob.css" media="screen and (max-width: 480px)">
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
     <link rel="icon" href="img/pin.png" sizes="32x32" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title>SpotLink</title>
 </head>
 <header>
