@@ -1,6 +1,17 @@
 <?php
 session_start();
-require 'db-connect.php';
+
+// データベース接続設定
+require 'db-connect.php'; // db-connect.php で PDO の接続設定を行っている前提
+
+// 接続を確認し、PDOのインスタンスを作成
+try {
+    $pdo = new PDO($connect, USER, PASS); // $connect, USER, PASS は db-connect.php で設定されているはず
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'データベース接続エラー: ' . $e->getMessage();
+    exit();
+}
 
 $partner_id = $_SESSION['user']['user_id'];
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');

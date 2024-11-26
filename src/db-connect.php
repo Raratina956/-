@@ -16,6 +16,7 @@ if (!defined('PASS')) {
 }
 
 // PDO接続文字列を返す
-$connect = "mysql:host=" . SERVER . ";dbname=" . DBNAME . ";charset=utf8mb4";
-
+$connect = "mysql:host=$host;dbname=$dbname;charset=utf8";
+define('USER', $user);
+define('PASS', $pass);
 ?>
