@@ -520,7 +520,7 @@ require 'header.php';
                         echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td style="width: 15%;">未読</td>';
-                        }else{
+                        } else {
                             echo '<td style="width: 15%;"></td>';
                         }
                         echo '</tr>';
@@ -583,7 +583,7 @@ require 'header.php';
                         echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
                             echo '<td style="width: 15%;">未読</td>';
-                        }else{
+                        } else {
                             echo '<td style="width: 15%;"></td>';
                         }
                         echo '</tr>';
@@ -645,7 +645,7 @@ require 'header.php';
                         echo '<td colspan="3" style="width: 55%;">', $sent_name, 'さんからチャットが届きました</td>';
                         if ($read_check == 0) {
                             echo '<td style="width: 15%;">未読</td>';
-                        }else{
+                        } else {
                             echo '<td style="width: 55%;"></td>';
                         }
                         echo '</tr>';
@@ -694,4 +694,10 @@ require 'header.php';
     function confirmDelete() {
         return confirm("本当に削除しますか？");
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.transform = "scale(0.99)"; // 50%に縮小
+        document.body.style.transformOrigin = "0 0";  // 左上を基準にズーム
+    });
+
 </script>

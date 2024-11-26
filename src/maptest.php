@@ -17,6 +17,11 @@ try {
     ");
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // 自分のアイコンと位置情報を取得
+    $selfStmt = $pdo->prepare("SELECT icon_name, latitude, longitude FROM locations WHERE user_id = ?");
+    $selfStmt->execute([$selfUserId]);
+    $selfLocation = $selfStmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo 'データベースエラー: ' . $e->getMessage();
     exit();
@@ -123,38 +128,15 @@ const selfIcon = 'img/self-icon.png'; // 自分のアイコンURL
 
 // PHPから友達情報をJSON形式でJavaScriptに渡す
 const friends = <?php echo json_encode($friends); ?>;
+const selfLocation = <?php echo json_encode($selfLocation); ?>;
 
-// 自分の位置情報を取得・更新
-document.getElementById('update-location-btn').addEventListener('click', function() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const userLocation = [position.coords.longitude, position.coords.latitude];
-
-            map.flyTo({ center: userLocation, zoom: 14 });
-
-            new mapboxgl.Marker()
-                .setLngLat(userLocation)
-                .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
-                .addTo(map);
-
-            // データベースに送信
-            fetch('update_location.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: selfUserId,
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-        });
-    } else {
-        alert('位置情報が取得できません。');
-    }
-});
+// 自分の位置情報をマップに表示
+if (selfLocation.latitude && selfLocation.longitude) {
+    const selfMarker = new mapboxgl.Marker({ element: createCustomMarker(selfLocation.icon_name || selfIcon) })
+        .setLngLat([selfLocation.longitude, selfLocation.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
+        .addTo(map);
+}
 
 // 友達の位置情報をマップに表示
 friends.forEach(friend => {
@@ -197,6 +179,38 @@ document.querySelectorAll('.friend-item img').forEach(item => {
 // モーダルを閉じる
 document.getElementById('icon-modal').addEventListener('click', () => {
     document.getElementById('icon-modal').style.display = 'none';
+});
+
+// 位置情報を更新
+document.getElementById('update-location-btn').addEventListener('click', function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const userLocation = [position.coords.longitude, position.coords.latitude];
+
+            map.flyTo({ center: userLocation, zoom: 14 });
+
+            new mapboxgl.Marker()
+                .setLngLat(userLocation)
+                .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
+                .addTo(map);
+
+            // データベースに送信
+            fetch('update_location.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: selfUserId,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        });
+    } else {
+        alert('位置情報が取得できません。');
+    }
 });
 </script>
 
