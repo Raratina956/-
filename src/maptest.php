@@ -9,11 +9,12 @@ try {
     // 自分のID (例: セッションから取得する場合)
     $selfUserId = 7;
 
-    // 他のユーザーの情報を取得
+    // ユーザーの位置情報とアイコン情報を取得
     $friendStmt = $pdo->prepare("
-        SELECT user_id, latitude, longitude, updated_at 
-        FROM locations 
-        WHERE user_id != ?
+        SELECT l.user_id, l.latitude, l.longitude, l.updated_at, i.icon_name
+        FROM locations l
+        LEFT JOIN Icon i ON l.user_id = i.user_id
+        WHERE l.user_id != ?
     ");
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +28,7 @@ try {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友達リストとピン表示</title>
+    <title>友達リストとカスタムピン表示</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet" />
     <style>
@@ -68,7 +69,7 @@ try {
             </li>
         <?php endforeach; ?>
     </ul>
-    <button id="update-location-btn">位置情報を更新2</button>
+    <button id="update-location-btn">位置情報を更新kai</button>
 </div>
 
 <div id="map"></div>
@@ -121,7 +122,14 @@ document.getElementById('update-location-btn').addEventListener('click', functio
 // 友達の位置情報をマップに表示
 const friends = <?= json_encode($friends); ?>;
 friends.forEach(friend => {
-    new mapboxgl.Marker()
+    const markerElement = document.createElement('div');
+    markerElement.style.backgroundImage = `url('img/${friend.icon_name || 'default-icon.png'}')`;
+    markerElement.style.width = '30px';
+    markerElement.style.height = '30px';
+    markerElement.style.backgroundSize = 'cover';
+    markerElement.style.borderRadius = '50%';
+
+    new mapboxgl.Marker(markerElement)
         .setLngLat([friend.longitude, friend.latitude])
         .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
         .addTo(map);
