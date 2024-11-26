@@ -6,14 +6,14 @@ try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 自分のID (例: セッションから取得する場合)
-    $selfUserId = 7;
+    $selfUserId = 7; // 自分のID
 
-    // 他のユーザーの情報を取得
+    // 他のユーザーの情報を取得（アイコンURLを含む）
     $friendStmt = $pdo->prepare("
-        SELECT user_id, latitude, longitude, updated_at 
+        SELECT user_id, latitude, longitude, updated_at, icon_name 
         FROM locations 
-        WHERE user_id != ?
+        LEFT JOIN Icon ON locations.user_id = Icon.user_id
+        WHERE locations.user_id != ?
     ");
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,6 +22,7 @@ try {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -54,6 +55,25 @@ try {
         .friend-item span {
             margin-left: 10px;
         }
+        .icon-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.icon-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
     </style>
 </head>
 <body>
@@ -63,13 +83,19 @@ try {
     <ul id="friend-list">
         <?php foreach ($friends as $friend): ?>
             <li class="friend-item" data-lat="<?= $friend['latitude'] ?>" data-lng="<?= $friend['longitude'] ?>">
+                <img src="<?= htmlspecialchars($friend['icon_name']) ?>" alt="アイコン" width="30" height="30">
                 <span>ユーザーID: <?= htmlspecialchars($friend['user_id']) ?></span>
                 <span>(更新: <?= $friend['updated_at'] ?>)</span>
             </li>
         <?php endforeach; ?>
     </ul>
-    <button id="update-location-btn">位置情報を更新</button>
 </div>
+
+<!-- モーダル -->
+<div class="icon-modal" id="icon-modal">
+    <img id="modal-icon" src="" alt="拡大アイコン">
+</div>
+
 
 <div id="map"></div>
 
@@ -119,22 +145,48 @@ document.getElementById('update-location-btn').addEventListener('click', functio
 });
 
 // 友達の位置情報をマップに表示
-const friends = <?= json_encode($friends); ?>;
 friends.forEach(friend => {
-    new mapboxgl.Marker()
+    const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
         .setLngLat([friend.longitude, friend.latitude])
         .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
         .addTo(map);
 });
 
+// カスタムマーカー作成関数
+function createCustomMarker(iconUrl) {
+    const img = document.createElement('img');
+    img.src = iconUrl;
+    img.alt = 'アイコン';
+    img.style.width = '30px';
+    img.style.height = '30px';
+    img.style.borderRadius = '50%'; // 丸型にする
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+        const modal = document.getElementById('icon-modal');
+        const modalIcon = document.getElementById('modal-icon');
+        modalIcon.src = iconUrl;
+        modal.style.display = 'flex';
+    });
+    return img;
+}
+
+
 // 友達リストをクリックしたとき
-document.querySelectorAll('.friend-item').forEach(item => {
+// 友達リストのクリックイベント
+document.querySelectorAll('.friend-item img').forEach(item => {
     item.addEventListener('click', () => {
-        const lat = parseFloat(item.getAttribute('data-lat'));
-        const lng = parseFloat(item.getAttribute('data-lng'));
-        map.flyTo({ center: [lng, lat], zoom: 14 });
+        const modal = document.getElementById('icon-modal');
+        const modalIcon = document.getElementById('modal-icon');
+        modalIcon.src = item.src; // クリックされたアイコンをモーダルに表示
+        modal.style.display = 'flex';
     });
 });
+
+// モーダルを閉じる
+document.getElementById('icon-modal').addEventListener('click', () => {
+    document.getElementById('icon-modal').style.display = 'none';
+});
+
 </script>
 
 </body>
