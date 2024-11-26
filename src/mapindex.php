@@ -5,50 +5,108 @@ require 'db-connect.php';
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $selfUserId = 7; // 自分のID
+
+    // 他のユーザーの情報を取得（アイコンURLを含む）
+    $friendStmt = $pdo->prepare("
+        SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
+        FROM locations 
+        LEFT JOIN Icon ON locations.user_id = Icon.user_id
+        WHERE locations.user_id != ?
+    ");
+    $friendStmt->execute([$selfUserId]);
+    $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo 'データベース接続エラー: ' . $e->getMessage();
+    echo 'データベースエラー: ' . $e->getMessage();
     exit();
 }
-
-$partner_id = $_SESSION['user']['user_id'];
-
-// アイコン情報を取得
-$iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$partner_id]);
-$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-$iconUrl = isset($icon['icon_name']) ? $icon['icon_name'] : 'default-icon.png'; // アイコンがない場合のデフォルト
-
-// 他のユーザーの情報と位置情報を取得する
-$allLocationsStmt = $pdo->query('
-    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
-    FROM Icon
-    LEFT JOIN Users ON Icon.user_id = Users.user_id
-    LEFT JOIN locations ON Icon.user_id = locations.user_id
-');
-$allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>現在地にピンを立てる</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="css/mapindex.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>友達リストとピン表示</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 300px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        #map {
+            flex: 1;
+        }
+        .friend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .friend-item span {
+            margin-left: 10px;
+        }
+        .icon-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .icon-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
 <div id="sidebar">
-    <h2>友達一覧</h2>
+    <h2>友達リスト</h2>
     <ul id="friend-list">
-        <!-- 友達リストはここに追加される -->
+        <?php foreach ($friends as $friend): ?>
+            <li class="friend-item" data-lat="<?= $friend['latitude'] ?>" data-lng="<?= $friend['longitude'] ?>">
+                <img src="<?= htmlspecialchars($friend['icon_name']) ?>" alt="アイコン" width="30" height="30">
+                <span>ユーザーID: <?= htmlspecialchars($friend['user_id']) ?></span>
+                <span>(更新: <?= $friend['updated_at'] ?>)</span>
+            </li>
+        <?php endforeach; ?>
     </ul>
+    <button id="update-location-btn">位置情報を更新</button>
 </div>
-<div id='map'></div>
+
+<!-- モーダル -->
+<div class="icon-modal" id="icon-modal">
+    <img id="modal-icon" src="" alt="拡大アイコン">
+</div>
+
+<div id="map"></div>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
@@ -56,103 +114,90 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],
+    center: [139.6917, 35.6895], // 初期位置（東京）
     zoom: 10
 });
 
-// 他のユーザーの位置情報を取得
-const otherUsers = <?php echo json_encode($allLocations); ?>;
+const selfUserId = 7; // 自分のID
+const selfIcon = 'img/self-icon.png'; // 自分のアイコンURL
 
-// 友達一覧を作成
-const friendList = document.getElementById('friend-list');
-otherUsers.forEach(user => {
-    const listItem = document.createElement('li');
-    listItem.className = 'friend-item';
-    
-    // アイコンと名前を表示
-    const userIcon = document.createElement('img');
-    userIcon.src = user.icon_name; // アイコン画像
-    const userName = document.createElement('span');
-    userName.textContent = user.user_name; // ユーザー名を修正
+// PHPから友達情報をJSON形式でJavaScriptに渡す
+const friends = <?php echo json_encode($friends); ?>;
 
-    listItem.appendChild(userIcon);
-    listItem.appendChild(userName);
+// 自分の位置情報を取得・更新
+document.getElementById('update-location-btn').addEventListener('click', function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const userLocation = [position.coords.longitude, position.coords.latitude];
 
-    // 友達リスト項目にクリックイベントを追加
-    listItem.addEventListener('click', () => {
-        const userPosition = [user.longitude, user.latitude];
-        map.flyTo({ center: userPosition, zoom: 15 });
+            map.flyTo({ center: userLocation, zoom: 14 });
 
-        // クリック時にポップアップ表示
-        new mapboxgl.Popup()
-            .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`) // ここも修正
-            .addTo(map);
-    });
+            new mapboxgl.Marker()
+                .setLngLat(userLocation)
+                .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
+                .addTo(map);
 
-    friendList.appendChild(listItem);
+            // データベースに送信
+            fetch('update_location.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: selfUserId,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        });
+    } else {
+        alert('位置情報が取得できません。');
+    }
 });
 
-
-// 現在地を取得し、自分のマーカーを表示
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-        const userLocation = [position.coords.longitude, position.coords.latitude];
-
-        map.setCenter(userLocation);
-
-        const myMarkerElement = document.createElement('div');
-        myMarkerElement.className = 'marker';
-        myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
-
-        new mapboxgl.Marker(myMarkerElement)
-            .setLngLat(userLocation)
-            .setPopup(new mapboxgl.Popup({ offset: 25 })
-                .setHTML('<div>あなたの現在地です</div>'))
+// 友達の位置情報をマップに表示
+friends.forEach(friend => {
+    if (friend.latitude && friend.longitude) {
+        const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
+            .setLngLat([friend.longitude, friend.latitude])
+            .setPopup(new mapboxgl.Popup().setHTML(<div>ユーザーID: ${friend.user_id}</div>))
             .addTo(map);
+    }
+});
 
-        // 現在地をサーバーに送信
-        fetch('save-location.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: "<?php echo $partner_id; ?>",
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('位置情報が保存されました:', data);
-        })
-        .catch(error => {
-            console.error('位置情報の保存に失敗しました:', error);
-        });
-
-        // 他のユーザーのマーカーを表示
-        otherUsers.forEach(user => {
-            const markerElement = document.createElement('div');
-            markerElement.className = 'marker';
-            markerElement.style.backgroundImage = `url(${user.icon_name})`;
-
-            const userPosition = [user.longitude, user.latitude];
-            
-            new mapboxgl.Marker(markerElement)
-                .setLngLat(userPosition)
-                .setPopup(new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<div>ユーザー名: ${user.name}</div>`))
-                .addTo(map);
-        });
-
-    }, error => {
-        console.error('現在地を取得できませんでした:', error);
+// カスタムマーカー作成関数
+function createCustomMarker(iconUrl) {
+    const img = document.createElement('img');
+    img.src = iconUrl;
+    img.alt = 'アイコン';
+    img.style.width = '30px';
+    img.style.height = '30px';
+    img.style.borderRadius = '50%'; // 丸型にする
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+        const modal = document.getElementById('icon-modal');
+        const modalIcon = document.getElementById('modal-icon');
+        modalIcon.src = iconUrl;
+        modal.style.display = 'flex';
     });
-} else {
-    alert("Geolocationがサポートされていません");
+    return img;
 }
 
+// 友達リストをクリックしたとき
+document.querySelectorAll('.friend-item img').forEach(item => {
+    item.addEventListener('click', () => {
+        const modal = document.getElementById('icon-modal');
+        const modalIcon = document.getElementById('modal-icon');
+        modalIcon.src = item.src; // クリックされたアイコンをモーダルに表示
+        modal.style.display = 'flex';
+    });
+});
+
+// モーダルを閉じる
+document.getElementById('icon-modal').addEventListener('click', () => {
+    document.getElementById('icon-modal').style.display = 'none';
+});
 </script>
 
 </body>
