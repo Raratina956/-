@@ -44,6 +44,14 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <div id="search-container" style="display: none;">
         <input type="text" id="friend-search" placeholder="名前で検索">
     </div>
+    
+    <!-- 友達申請フォーム -->
+    <div id="add-friend-form" style="display: none;">
+        <input type="text" id="friend-name" placeholder="友達の名前を入力">
+        <button id="submit-friend-request">申請</button>
+        <button id="cancel-friend-request">キャンセル</button>
+    </div>
+    
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
     </ul>
@@ -106,17 +114,48 @@ displayFriends(otherUsers);
 
 // 友達追加ボタンのクリックイベント
 document.getElementById('add-friend-btn').addEventListener('click', () => {
-    searchContainer.style.display = 'block'; // 検索バーを表示
-    friendSearchInput.focus(); // 検索バーにフォーカス
+    searchContainer.style.display = 'none'; // 検索バーを非表示
+    document.getElementById('add-friend-form').style.display = 'block'; // フォームを表示
+    document.getElementById('friend-name').focus(); // 入力フィールドにフォーカスを当てる
 });
 
-// 検索バーの入力イベント
-friendSearchInput.addEventListener('input', () => {
-    const searchQuery = friendSearchInput.value.toLowerCase();
-    const filteredUsers = otherUsers.filter(user => 
-        user.user_name.toLowerCase().includes(searchQuery)
-    );
-    displayFriends(filteredUsers); // 検索結果を表示
+// キャンセルボタンのクリックイベント
+document.getElementById('cancel-friend-request').addEventListener('click', () => {
+    document.getElementById('add-friend-form').style.display = 'none'; // フォームを非表示
+});
+
+// 友達申請の送信イベント
+document.getElementById('submit-friend-request').addEventListener('click', () => {
+    const friendName = document.getElementById('friend-name').value.trim();
+
+    if (friendName) {
+        // サーバーに友達申請を送信（例: save-friend-request.php などにPOST）
+        fetch('save-friend-request.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: "<?php echo $partner_id; ?>",
+                friend_name: friendName
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('友達申請が送信されました');
+                document.getElementById('add-friend-form').style.display = 'none'; // フォームを非表示
+            } else {
+                alert('友達申請に失敗しました');
+            }
+        })
+        .catch(error => {
+            console.error('友達申請の送信に失敗しました:', error);
+            alert('友達申請の送信に失敗しました');
+        });
+    } else {
+        alert('名前を入力してください');
+    }
 });
 
 // 現在地を取得し、自分のマーカーを表示
