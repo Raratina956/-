@@ -525,7 +525,8 @@ require 'header.php';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td>';
-                        echo '<td colspan="2" style="width: 60%;"> 件名：', $title, '</td>';
+                        echo '<td colspan="2"></td>';
+                        echo '<td colspan="2" class="title" style="width: 60%;"> 件名：', $title, '</td>';
                         ?>
                         <?php
                         if ($read_check == 0) {
