@@ -31,8 +31,10 @@ if (isset($_POST['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="mob_css/header-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/header.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" type="text/css" href="css/header.css" media="screen and (min-width: 1280px)">
     <link rel="stylesheet" href="mob_css/humberger-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
     <link rel="icon" href="img/pin.png" sizes="32x32" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=0.1">
