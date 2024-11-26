@@ -9,6 +9,7 @@ require 'parts/db-connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規会員登録</title>
     <link rel="stylesheet" href="mob_css/sign-up-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/sign-up-input.css" media="screen and (min-width: 1280px)">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
