@@ -10,12 +10,11 @@ try {
 
     // 他のユーザーの情報を取得（アイコンURLを含む）
     $friendStmt = $pdo->prepare("
-    SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
-    FROM locations 
-    LEFT JOIN Icon ON locations.user_id = Icon.user_id
-    WHERE locations.user_id != ?
-");
-
+        SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
+        FROM locations 
+        LEFT JOIN Icon ON locations.user_id = Icon.user_id
+        WHERE locations.user_id != ?
+    ");
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -57,24 +56,33 @@ try {
             margin-left: 10px;
         }
         .icon-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.icon-modal img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-}
-
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .icon-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -90,13 +98,13 @@ try {
             </li>
         <?php endforeach; ?>
     </ul>
+    <button id="update-location-btn">位置情報を更新</button>
 </div>
 
 <!-- モーダル -->
 <div class="icon-modal" id="icon-modal">
     <img id="modal-icon" src="" alt="拡大アイコン">
 </div>
-
 
 <div id="map"></div>
 
@@ -171,9 +179,7 @@ function createCustomMarker(iconUrl) {
     return img;
 }
 
-
 // 友達リストをクリックしたとき
-// 友達リストのクリックイベント
 document.querySelectorAll('.friend-item img').forEach(item => {
     item.addEventListener('click', () => {
         const modal = document.getElementById('icon-modal');
@@ -187,7 +193,6 @@ document.querySelectorAll('.friend-item img').forEach(item => {
 document.getElementById('icon-modal').addEventListener('click', () => {
     document.getElementById('icon-modal').style.display = 'none';
 });
-
 </script>
 
 </body>
