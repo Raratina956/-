@@ -42,6 +42,20 @@ body {
     flex-direction: column;
 }
 
+/* Responsive height adjustment */
+@media screen and (max-width: 480px) {
+    .chat-area {
+        height: 70%; /* Adjust height for mobile devices */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chat-area {
+        height: 80%; /* Adjust height for tablets */
+    }
+}
+
+
 .chat-area::-webkit-scrollbar {
     width: 6px;
     background: transparent;
