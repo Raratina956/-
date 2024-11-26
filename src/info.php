@@ -347,6 +347,7 @@ if (isset($_POST['all_delete'])) {
 require 'header.php';
 ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/info.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
