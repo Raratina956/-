@@ -36,9 +36,7 @@ body {
     top: 100px;
     height: 67%;
     overflow-y: auto;
-    padding-top: 0.5%;
-    padding-inline: 1%;
-    padding-bottom: 1.5%;
+    padding: 10px; /* ここを20pxから10pxに変更 */
     background-color: #afe7ffe8;
     box-sizing: border-box; /* パディングも含めた幅管理 */
     display: flex;
