@@ -10,11 +10,12 @@ try {
 
     // 他のユーザーの情報を取得（アイコンURLを含む）
     $friendStmt = $pdo->prepare("
-        SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
-        FROM locations 
-        LEFT JOIN Icon ON locations.user_id = Icon.user_id
-        WHERE locations.user_id != ?
-    ");
+    SELECT locations.user_id, latitude, longitude, updated_at, Icon.icon_name 
+    FROM locations 
+    LEFT JOIN Icon ON locations.user_id = Icon.user_id
+    WHERE locations.user_id != ?
+");
+
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
 
