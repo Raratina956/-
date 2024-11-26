@@ -37,6 +37,12 @@ unset($_SESSION['floor']['kai']);
         clip-path: inset(0 50px 0 0); /* 右端を50pxカット */
     }
 
+    /* Add media query for mobile devices */
+    @media screen and (max-width: 480px) {
+        .icon-modal img, .icon-modal video {
+            width: 300px; /* Smaller size for mobile */
+        }
+    }
 </style>
 <body>
 
