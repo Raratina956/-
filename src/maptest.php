@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
     $rejectStmt->execute([$request_id]);
     echo "友達申請が拒否されました。";
 }
-
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
