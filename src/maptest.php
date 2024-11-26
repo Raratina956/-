@@ -68,7 +68,7 @@ try {
             </li>
         <?php endforeach; ?>
     </ul>
-    <button id="update-location-btn">位置情報を更新</button>
+    <button id="update-location-btn">位置情報を更新2</button>
 </div>
 
 <div id="map"></div>

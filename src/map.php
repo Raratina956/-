@@ -37,6 +37,12 @@ unset($_SESSION['floor']['kai']);
         clip-path: inset(0 50px 0 0); /* 右端を50pxカット */
     }
 
+    /* Add media query for mobile devices */
+    @media screen and (max-width: 480px) {
+        .icon-modal img, .icon-modal video {
+            width: 300px; /* Smaller size for mobile */
+        }
+    }
 </style>
 <body>
 
@@ -235,7 +241,7 @@ unset($_SESSION['floor']['kai']);
             iconModal.style.display = 'flex';// モーダルを表示
             setTimeout(function() {
                 icon.style.opacity = '0'; // フェードアウト開始
-            }, 800); // 1秒間表示してからフェードアウトを開始
+            }, 1500); // 1秒間表示してからフェードアウトを開始
             setTimeout(function() {
                 iconModal.style.display = 'none'; // フェードアウト後にモーダルを非表示
             }, 2000); // フェードアウトが完了するまで待つ
