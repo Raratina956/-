@@ -270,7 +270,7 @@ unset($_SESSION['floor']['kai']);
         
         function handleFormSubmit() {
             // ここで特定の処理を行う（例: ログ出力やバリデーションなど）
-            unset($_SESSION['floor']['kai']);
+            // unset($_SESSION['floor']['kai']);
 
             // 必要な処理が完了したらフォーム送信を許可する
             return true; // フォームの送信を続行
