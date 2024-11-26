@@ -53,9 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
 
 // 承認待ちの友達申請を取得
 $pendingRequestsStmt = $pdo->prepare('
-    SELECT fr.request_id, u.user_name, u.icon_name 
+    SELECT fr.request_id, u.user_name, i.icon_name 
     FROM friend_requests fr
     INNER JOIN Users u ON fr.sender_id = u.user_id
+    INNER JOIN Icon i ON u.user_id = i.user_id
     WHERE fr.receiver_id = ? AND fr.status = "pending"
 ');
 $pendingRequestsStmt->execute([$partner_id]);
@@ -76,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
     $rejectStmt->execute([$request_id]);
     echo "友達申請が拒否されました。";
 }
+
 ?>
 
 <!DOCTYPE html>
