@@ -238,6 +238,7 @@ unset($_SESSION['floor']['kai']);
             echo '</div>';
             echo '<form name="floor" action="floor.php" method="post" onsubmit="return handleFormSubmit();">';
             echo '<input type="hidden" name="floor" value=', $i, '>';
+            // $_SESSION['floor']['kai'] = $i;
             echo '<td class="number"><button type="submit" class="floor" value="', $i, '" name="floor">', $i, '階</button></td>'; // 修正: buttonタグを閉じる位置
             // echo '<td class="number">test</td>'; // 修正: buttonタグを閉じる位置
             echo '</tr>';
@@ -269,7 +270,7 @@ unset($_SESSION['floor']['kai']);
         
         function handleFormSubmit() {
             // ここで特定の処理を行う（例: ログ出力やバリデーションなど）
-            unset($_SESSION['floor']['kai']);
+            // unset($_SESSION['floor']['kai']);
 
             // 必要な処理が完了したらフォーム送信を許可する
             return true; // フォームの送信を続行
