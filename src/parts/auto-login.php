@@ -19,6 +19,30 @@ if ($fileName === 'room.php' && !(isset($_COOKIE['remember_me_token']))) {
 }
 
 
+// ユーザーエージェントを取得
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+// スマートフォンの判定用正規表現
+$mobileAgents = [
+    'iPhone',        // iPhone
+    'iPod',          // iPod
+    'Android.*Mobile', // Android (モバイル)
+    'Windows Phone', // Windows Phone
+    'BlackBerry',    // BlackBerry
+    'Opera Mini',    // Opera Mini
+    'Mobile Safari'  // Safari モバイル
+];
+
+// スマートフォンかどうか判定
+$isMobile = false;
+foreach ($mobileAgents as $agent) {
+    if (preg_match("/$agent/i", $userAgent)) {
+        $isMobile = true;
+        break;
+    }
+}
+
+
 
 require 'parts/db-connect.php';
 
