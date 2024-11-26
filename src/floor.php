@@ -57,7 +57,6 @@ require 'header.php';
         echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
         if (!$isMobile) {
             $icon['icon_name'] = 'img/icon/default.jpg';
-            echo '<br>';
             echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
         }
         echo '</li>';
