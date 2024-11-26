@@ -33,7 +33,7 @@ body {
 
 .chat-area {
     position: relative;
-    top: 100px;
+    top: 13%;
     height: 67%;
     overflow-y: auto;
     padding: 10px; /* ここを20pxから10pxに変更 */
