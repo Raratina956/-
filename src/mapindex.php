@@ -77,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
     $rejectStmt->execute([$request_id]);
     echo "友達申請が拒否されました。";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -196,14 +195,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
         <div id="pending-requests">
             <?php foreach ($pendingRequests as $request): ?>
                 <div class="pending-request">
-                    <img src="<?php echo $request['icon_name']; ?>" alt="User Icon">
+                    <img src="<?php echo !empty($request['icon_name']) ? $request['icon_name'] : 'default_icon.png'; ?>" alt="User Icon">
                     <span><?php echo $request['user_name']; ?></span>
                     <form method="POST" style="display:inline;">
-                        <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                        <input type="hidden" name="request_id" value="<?php echo $request['request_id']; ?>">
                         <button type="submit" name="approve_request" class="approve-btn">承認</button>
                     </form>
                     <form method="POST" style="display:inline;">
-                        <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                        <input type="hidden" name="request_id" value="<?php echo $request['request_id']; ?>">
                         <button type="submit" name="reject_request" class="reject-btn">拒否</button>
                     </form>
                 </div>
@@ -231,51 +230,33 @@ const friendSearchInput = document.getElementById('friend-search');
 const searchResultsContainer = document.getElementById('search-results');
 
 // 検索結果の表示関数
-function displaySearchResults(users) {
-    searchResultsContainer.innerHTML = ''; // 一度リセットしてから表示
-    users.forEach(user => {
+function displaySearchResults(filteredUsers) {
+    searchResultsContainer.innerHTML = '';
+    filteredUsers.forEach(user => {
         const resultItem = document.createElement('div');
-        resultItem.className = 'search-result-item';
-
-        // アイコンと名前
-        const userIcon = document.createElement('img');
-        userIcon.src = user.icon_name;
+        resultItem.classList.add('search-result-item');
+        
+        const iconImage = document.createElement('img');
+        iconImage.src = user.icon_name ? user.icon_name : 'default_icon.png';
+        resultItem.appendChild(iconImage);
+        
         const userName = document.createElement('span');
         userName.textContent = user.user_name;
+        resultItem.appendChild(userName);
 
-        // 友達申請ボタン
-        const requestButton = document.createElement('button');
-        requestButton.className = 'send-request-btn';
-        requestButton.textContent = '友達申請';
-        requestButton.onclick = function() {
+        const sendRequestButton = document.createElement('button');
+        sendRequestButton.textContent = '友達申請';
+        sendRequestButton.classList.add('send-request-btn');
+        sendRequestButton.onclick = function() {
             sendFriendRequest(user.user_id);
         };
+        resultItem.appendChild(sendRequestButton);
 
-        resultItem.appendChild(userIcon);
-        resultItem.appendChild(userName);
-        resultItem.appendChild(requestButton);
         searchResultsContainer.appendChild(resultItem);
     });
 }
 
-// 友達申請を送信する関数
-function sendFriendRequest(receiverId) {
-    const formData = new FormData();
-    formData.append('send_friend_request', true);
-    formData.append('receiver_id', receiverId);
-
-    fetch('maptest.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert(data);  // 申請が送信されたことを通知
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// 検索バーで入力されたテキストに基づいてユーザーをフィルタリング
+// 検索処理
 friendSearchInput.addEventListener('input', function() {
     const searchTerm = friendSearchInput.value.toLowerCase();
     const filteredUsers = allLocations.filter(user =>
@@ -283,8 +264,19 @@ friendSearchInput.addEventListener('input', function() {
     );
     displaySearchResults(filteredUsers);
 });
+
+// 友達申請の送信
+function sendFriendRequest(receiver_id) {
+    const form = new FormData();
+    form.append('receiver_id', receiver_id);
+    form.append('send_friend_request', true);
+    fetch('', { method: 'POST', body: form })
+        .then(response => response.text())
+        .then(responseText => {
+            alert(responseText);
+        });
+}
 </script>
 
 </body>
 </html>
-
