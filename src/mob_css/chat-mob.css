@@ -53,7 +53,8 @@ body {
 
 @media screen and (max-width: 768px) {
     .chat-area {
-        height: 82%; /* Adjust height for tablets */
+        top: 12%;
+        height: 69%;
     }
 }
 
