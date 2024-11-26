@@ -58,6 +58,8 @@ require 'header.php';
         if (!$isMobile) {
             $icon['icon_name'] = 'img/icon/default.jpg';
             echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
         }
         echo '</li>';
     }
