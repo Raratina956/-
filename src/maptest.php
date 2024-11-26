@@ -9,7 +9,7 @@ try {
     exit();
 }
 
-$partner_id = $_SESSION['user']['user_id'];
+$partner_id = 7;
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
@@ -102,20 +102,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
         .send-request-btn:hover {
             background-color: #45a049;
         }
+
+        /* 検索結果のスタイル */
+        #search-results {
+            margin-top: 10px;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .search-result-item button {
+            margin-left: auto;
+        }
     </style>
 </head>
 <body>
 
 <div id="sidebar">
-    <h2>友達一覧</h2>
-    <button id="add-friend-btn">友達追加</button>
-    <div id="search-container" style="display: none;">
+    <h2>友達申請</h2>
+    <div>
         <input type="text" id="friend-search" placeholder="名前で検索">
+        <div id="search-results">
+            <!-- 検索結果がここに表示される -->
+        </div>
     </div>
-    <ul id="friend-list">
-        <!-- 友達リストはここに追加される -->
-    </ul>
-    <button id="update-location-btn">位置情報を更新</button>
 </div>
 <div id='map'></div>
 
@@ -129,41 +149,38 @@ const map = new mapboxgl.Map({
     zoom: 12  // ズームレベルを調整
 });
 
-// 他のユーザーの位置情報を取得
-const otherUsers = <?php echo json_encode($allLocations); ?>;
+// 他のユーザーの情報を取得
+const allLocations = <?php echo json_encode($allLocations); ?>;
 
-// 友達一覧を作成
-const friendList = document.getElementById('friend-list');
-const searchContainer = document.getElementById('search-container');
+// 友達検索機能
 const friendSearchInput = document.getElementById('friend-search');
+const searchResultsContainer = document.getElementById('search-results');
 
-// 友達一覧を表示する関数
-function displayFriends(users) {
-    friendList.innerHTML = ''; // 一度リセットしてから追加
+// 検索結果の表示関数
+function displaySearchResults(users) {
+    searchResultsContainer.innerHTML = ''; // 一度リセットしてから表示
     users.forEach(user => {
-        const listItem = document.createElement('li');
-        listItem.className = 'friend-item';
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
 
-        // アイコンと名前を表示
+        // アイコンと名前
         const userIcon = document.createElement('img');
-        userIcon.src = user.icon_name; // アイコン画像
+        userIcon.src = user.icon_name;
         const userName = document.createElement('span');
-        userName.textContent = user.user_name; // ユーザー名
-
-        listItem.appendChild(userIcon);
-        listItem.appendChild(userName);
+        userName.textContent = user.user_name;
 
         // 友達申請ボタン
         const requestButton = document.createElement('button');
-        requestButton.textContent = '友達申請';
         requestButton.className = 'send-request-btn';
-        requestButton.addEventListener('click', () => {
-            sendFriendRequest(user.user_id); // 友達申請送信
-        });
+        requestButton.textContent = '友達申請';
+        requestButton.onclick = function() {
+            sendFriendRequest(user.user_id);
+        };
 
-        listItem.appendChild(requestButton);
-
-        friendList.appendChild(listItem);
+        resultItem.appendChild(userIcon);
+        resultItem.appendChild(userName);
+        resultItem.appendChild(requestButton);
+        searchResultsContainer.appendChild(resultItem);
     });
 }
 
@@ -179,22 +196,19 @@ function sendFriendRequest(receiverId) {
     })
     .then(response => response.text())
     .then(data => {
-        alert(data);
+        alert(data);  // 申請が送信されたことを通知
     })
     .catch(error => console.error('Error:', error));
 }
 
-// 友達検索機能
+// 検索バーで入力されたテキストに基づいてユーザーをフィルタリング
 friendSearchInput.addEventListener('input', function() {
     const searchTerm = friendSearchInput.value.toLowerCase();
-    const filteredUsers = otherUsers.filter(user =>
+    const filteredUsers = allLocations.filter(user =>
         user.user_name.toLowerCase().includes(searchTerm)
     );
-    displayFriends(filteredUsers);
+    displaySearchResults(filteredUsers);
 });
-
-// 初期友達一覧を表示
-displayFriends(otherUsers);
 </script>
 
 </body>
