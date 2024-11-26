@@ -576,41 +576,42 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
-                        echo '<td width="10%"><img src="img/map_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3">', $send_name, 'さんが位置情報を更新しました</td>';
+                        echo '<td width="15%"><img src="img/map_info.png" width="40%" height="100%"></td>';
+                        echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんが位置情報を更新しました</td>';
                         if ($read_check == 0) {
-                            echo '<td>未読</td>';
+                            echo '<td style="width: 15%;">未読</td>';
                         }else{
-                            echo '<td></td>';
+                            echo '<td style="width: 15%;"></td>';
                         }
                         echo '</tr>';
                         echo '<tr>';
-                        echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
+                        echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
+                        <td colspan="2" style="width: 60%;"></td>
                         <?php
                         if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=2>
                                 <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
-                                <td><input type="submit" value="既読" class="read_one"></td>
+                                <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
                         } else {
-                            echo '<td></td>';
+                            echo '<td style="width: 10%;"></td>';
                         }
                         ?>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                            <td><input type="submit" value="詳細" class="edit"></td>
+                            <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
                         </form>
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
                             <input type="hidden" name="delete_type" value=2>
                             <input type="hidden" name="delete_id" value=<?php echo $current_location_id; ?>>
-                            <td><input type="submit" value="削除" class="delete_one"></td>
+                            <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
                         </form>
                         <?php
                     }
@@ -637,27 +638,28 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
-                        echo '<td width="10%"><img src="img/chat_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3">', $sent_name, 'さんからチャットが届きました</td>';
+                        echo '<tdstyle="width: 15%;"><img src="img/chat_info.png" width="40%" height="100%"></td>';
+                        echo '<td colspan="3" style="width: 55%;">', $sent_name, 'さんからチャットが届きました</td>';
                         if ($read_check == 0) {
-                            echo '<td>未読</td>';
+                            echo '<td style="width: 15%;">未読</td>';
                         }else{
-                            echo '<td></td>';
+                            echo '<td style="width: 55%;"></td>';
                         }
                         echo '</tr>';
                         echo '<tr>';
-                        echo '<td class="day">', timeAgo($logtime), '</td><td colspan="2"></td>';
+                        echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td><td colspan="2"></td>';
                         ?>
+                        <td colspan="2" style="width: 60%;"></td>
                         <?php
                         if ($read_check == 0) {
                             ?>
                             <form action="info.php" method="post">
                                 <input type="hidden" name="read_type" value=3>
                                 <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
-                                <td><input type="submit" value="既読" class="read_one"></td>
+                                <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
                             </form>
                             <?php
                         } else {
@@ -666,12 +668,12 @@ require 'header.php';
                         ?>
                         <form action="info_detail.php" method="post">
                             <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
-                            <td><input type="submit" value="詳細" class="edit"></td>
+                            <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
                         </form>
                         <form action="info.php" method="post" onsubmit="return confirmDelete()">
                             <input type="hidden" name="delete_type" value=3>
                             <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
-                            <td><input type="submit" value="削除" class="delete_one"></td>
+                            <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
                         </form>
                         <?php
                     }
