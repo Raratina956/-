@@ -53,9 +53,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],  // 初期位置は東京に設定
-    zoom: 10
+    center: [130.4017, 33.5902],  // 初期位置を福岡市博多区に設定
+    zoom: 12  // ズームレベルを調整
 });
+
 
 // 他のユーザーの位置情報を取得
 const otherUsers = <?php echo json_encode($allLocations); ?>;
