@@ -694,12 +694,4 @@ require 'header.php';
     function confirmDelete() {
         return confirm("本当に削除しますか？");
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        document.body.style.transform = "scale(1)"; // 50%に縮小
-        document.body.style.transformOrigin = "0 0";  // 左上を基準にズーム
-    });
-    document.addEventListener("DOMContentLoaded", () => {
-        document.body.style.overflowX = "hidden"; // 横スクロールを無効化
-    });
 </script>
