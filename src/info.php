@@ -513,15 +513,15 @@ require 'header.php';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td><a href="user.php?user_id=' . $send_id . '">';
+                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                         echo '</a></td>';
-                        echo '<td width="10%"><img src="img/announce_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3">', $send_name, 'さんから、アナウンスが届きました</td>';
+                        echo '<td width="15%"><img src="img/announce_info.png" width="40%" height="100%"></td>';
+                        echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
-                            echo '<td>未読</td>';
+                            echo '<td style="width: 15%;">未読</td>';
                         }else{
-                            echo '<td></td>';
+                            echo '<td style="width: 15%;"></td>';
                         }
                         echo '</tr>';
                         echo '<tr>';
