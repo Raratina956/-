@@ -57,7 +57,7 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
 // JavaScript: 他のユーザーの位置情報や友達リストを表示する処理
 
-mapboxgl.accessToken = 'your_mapbox_token';
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
 const map = new mapboxgl.Map({
     container: 'map',

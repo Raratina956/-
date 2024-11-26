@@ -1,5 +1,8 @@
 
 
+
+
+
 <?php
 // db-connect.php
 $host = 'mysql310.phy.lolipop.lan';  // データベースのホスト名（例: localhost）
