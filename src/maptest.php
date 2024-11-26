@@ -40,6 +40,10 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div id="sidebar">
     <h2>友達一覧</h2>
+    <button id="add-friend-btn">友達追加</button>
+    <div id="search-container" style="display: none;">
+        <input type="text" id="friend-search" placeholder="名前で検索">
+    </div>
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
     </ul>
@@ -57,38 +61,62 @@ const map = new mapboxgl.Map({
     zoom: 12  // ズームレベルを調整
 });
 
-
 // 他のユーザーの位置情報を取得
 const otherUsers = <?php echo json_encode($allLocations); ?>;
 
 // 友達一覧を作成
 const friendList = document.getElementById('friend-list');
-otherUsers.forEach(user => {
-    const listItem = document.createElement('li');
-    listItem.className = 'friend-item';
+const searchContainer = document.getElementById('search-container');
+const friendSearchInput = document.getElementById('friend-search');
 
-    // アイコンと名前を表示
-    const userIcon = document.createElement('img');
-    userIcon.src = user.icon_name; // アイコン画像
-    const userName = document.createElement('span');
-    userName.textContent = user.user_name; // ユーザー名
+// 友達一覧を表示する関数
+function displayFriends(users) {
+    friendList.innerHTML = ''; // 一度リセットしてから追加
+    users.forEach(user => {
+        const listItem = document.createElement('li');
+        listItem.className = 'friend-item';
 
-    listItem.appendChild(userIcon);
-    listItem.appendChild(userName);
+        // アイコンと名前を表示
+        const userIcon = document.createElement('img');
+        userIcon.src = user.icon_name; // アイコン画像
+        const userName = document.createElement('span');
+        userName.textContent = user.user_name; // ユーザー名
 
-    // 友達リスト項目にクリックイベントを追加
-    listItem.addEventListener('click', () => {
-        const userPosition = [user.longitude, user.latitude];
-        map.flyTo({ center: userPosition, zoom: 15 });
+        listItem.appendChild(userIcon);
+        listItem.appendChild(userName);
 
-        // クリック時にポップアップ表示
-        new mapboxgl.Popup()
-            .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-            .addTo(map);
+        // 友達リスト項目にクリックイベントを追加
+        listItem.addEventListener('click', () => {
+            const userPosition = [user.longitude, user.latitude];
+            map.flyTo({ center: userPosition, zoom: 15 });
+
+            // クリック時にポップアップ表示
+            new mapboxgl.Popup()
+                .setLngLat(userPosition)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                .addTo(map);
+        });
+
+        friendList.appendChild(listItem);
     });
+}
 
-    friendList.appendChild(listItem);
+// 初期表示
+displayFriends(otherUsers);
+
+// 友達追加ボタンのクリックイベント
+document.getElementById('add-friend-btn').addEventListener('click', () => {
+    searchContainer.style.display = 'block'; // 検索バーを表示
+    friendSearchInput.focus(); // 検索バーにフォーカス
+});
+
+// 検索バーの入力イベント
+friendSearchInput.addEventListener('input', () => {
+    const searchQuery = friendSearchInput.value.toLowerCase();
+    const filteredUsers = otherUsers.filter(user => 
+        user.user_name.toLowerCase().includes(searchQuery)
+    );
+    displayFriends(filteredUsers); // 検索結果を表示
 });
 
 // 現在地を取得し、自分のマーカーを表示
