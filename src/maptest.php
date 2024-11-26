@@ -10,11 +10,12 @@ try {
 
     // 他のユーザーの情報を取得（アイコンURLを含む）
     $friendStmt = $pdo->prepare("
-        SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
-        FROM locations 
-        LEFT JOIN Icon ON locations.user_id = Icon.user_id
-        WHERE locations.user_id != ?
-    ");
+    SELECT locations.user_id, latitude, longitude, updated_at, icon_name 
+    FROM locations 
+    LEFT JOIN Icon ON locations.user_id = Icon.user_id
+    WHERE locations.user_id != ?
+");
+
     $friendStmt->execute([$selfUserId]);
     $friends = $friendStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -67,22 +68,13 @@ try {
             align-items: center;
             z-index: 1000;
         }
+
         .icon-modal img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
         }
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+
     </style>
 </head>
 <body>
@@ -98,7 +90,6 @@ try {
             </li>
         <?php endforeach; ?>
     </ul>
-    <button id="update-location-btn">位置情報を更新</button>
 </div>
 
 <!-- モーダル -->
@@ -114,15 +105,12 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期位置（東京）
+    center: [139.6917, 35.6895],
     zoom: 10
 });
 
 const selfUserId = 7; // 自分のID
 const selfIcon = 'img/self-icon.png'; // 自分のアイコンURL
-
-// PHPから友達情報をJSON形式でJavaScriptに渡す
-const friends = <?php echo json_encode($friends); ?>;
 
 // 自分の位置情報を取得・更新
 document.getElementById('update-location-btn').addEventListener('click', function() {
@@ -132,7 +120,8 @@ document.getElementById('update-location-btn').addEventListener('click', functio
 
             map.flyTo({ center: userLocation, zoom: 14 });
 
-            new mapboxgl.Marker()
+            // 自分の位置にアイコンを使ったカスタムピンを表示
+            new mapboxgl.Marker({ element: createCustomMarker(selfIcon) }) // 自分のアイコン
                 .setLngLat(userLocation)
                 .setPopup(new mapboxgl.Popup().setHTML('<div>あなたの現在地</div>'))
                 .addTo(map);
@@ -158,12 +147,10 @@ document.getElementById('update-location-btn').addEventListener('click', functio
 
 // 友達の位置情報をマップに表示
 friends.forEach(friend => {
-    if (friend.latitude && friend.longitude) {
-        const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
-            .setLngLat([friend.longitude, friend.latitude])
-            .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
-            .addTo(map);
-    }
+    const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
+        .setLngLat([friend.longitude, friend.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
+        .addTo(map);
 });
 
 // カスタムマーカー作成関数
@@ -185,6 +172,7 @@ function createCustomMarker(iconUrl) {
 }
 
 // 友達リストをクリックしたとき
+// 友達リストのクリックイベント
 document.querySelectorAll('.friend-item img').forEach(item => {
     item.addEventListener('click', () => {
         const modal = document.getElementById('icon-modal');
@@ -198,6 +186,7 @@ document.querySelectorAll('.friend-item img').forEach(item => {
 document.getElementById('icon-modal').addEventListener('click', () => {
     document.getElementById('icon-modal').style.display = 'none';
 });
+
 </script>
 
 </body>
