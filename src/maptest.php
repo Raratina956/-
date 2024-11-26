@@ -114,9 +114,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期位置（東京）
-    zoom: 10
+    center: [130.4017, 33.5904], // 初期位置（福岡市）
+    zoom: 12 // 福岡市内をしっかり表示するズームレベル
 });
+
 
 const selfUserId = 7; // 自分のID
 const selfIcon = 'img/self-icon.png'; // 自分のアイコンURL
