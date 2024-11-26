@@ -114,12 +114,15 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],
+    center: [139.6917, 35.6895], // 初期位置（東京）
     zoom: 10
 });
 
 const selfUserId = 7; // 自分のID
 const selfIcon = 'img/self-icon.png'; // 自分のアイコンURL
+
+// PHPから友達情報をJSON形式でJavaScriptに渡す
+const friends = <?php echo json_encode($friends); ?>;
 
 // 自分の位置情報を取得・更新
 document.getElementById('update-location-btn').addEventListener('click', function() {
@@ -155,10 +158,12 @@ document.getElementById('update-location-btn').addEventListener('click', functio
 
 // 友達の位置情報をマップに表示
 friends.forEach(friend => {
-    const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
-        .setLngLat([friend.longitude, friend.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
-        .addTo(map);
+    if (friend.latitude && friend.longitude) {
+        const marker = new mapboxgl.Marker({ element: createCustomMarker(friend.icon_name) })
+            .setLngLat([friend.longitude, friend.latitude])
+            .setPopup(new mapboxgl.Popup().setHTML(`<div>ユーザーID: ${friend.user_id}</div>`))
+            .addTo(map);
+    }
 });
 
 // カスタムマーカー作成関数
