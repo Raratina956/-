@@ -20,6 +20,7 @@ if (isset($_POST['tag_id'])) {
 ?>
 
 <link rel="stylesheet" href="mob_css/tag_list-mob.css" media="screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
 <link rel="stylesheet" href="css/tag_list.css" media="screen and (min-width: 1280px)">
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
