@@ -146,11 +146,5 @@ if (isset($_POST['logout'])) {
             this.classList.toggle('active');
             document.querySelector('.slide-menu').classList.toggle('active');
         });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.style.transform = "scale(0.5)"; // 50%に縮小
-            document.body.style.transformOrigin = "0 0";  // 左上を基準にズーム
-        });
-
     </script>
 </header>
