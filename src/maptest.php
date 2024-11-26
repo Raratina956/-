@@ -40,7 +40,45 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div id="sidebar">
     <h2>友達一覧</h2>
-    <button id="add-friend-btn">友達追加</button>
+    <!-- <button id="add-friend-btn">友達追加</button> -->
+    <!-- ポップアップの表示・非表示を切り替えるボタン -->
+<button id="show-popup">ポップアップを表示</button>
+
+<!-- ポップアップ本体（最初はdisplay: noneなので見えていない。） -->
+<div id="popup-a" class="popup-a">
+  <div>ここに文字列を挿入できます。</div>
+  <textarea id="popup-textarea" rows="4" cols="50">テキストエリアの初期テキスト</textarea>
+  <!-- ポップアップ内に非表示ボタンを設置 -->
+  <button id="hide-popup">ポップアップを非表示</button>
+</div>
+
+
+
+<!-- ポップアップのスタイル -->
+<style>
+  .popup-a {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 200px;
+	padding: 20px;
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	text-align: center;
+  }
+  #popup-textarea {
+	width: 90%; /* ポップアップの幅に応じて調整 */
+	margin-top: 10px; /* 上部のテキストからの間隔 */
+	border: 1px solid;
+　}
+</style>
+ 
+
+
     <div id="search-container" style="display: none;">
         <input type="text" id="friend-search" placeholder="名前で検索">
     </div>
@@ -52,6 +90,18 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 <div id='map'></div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // 'show-popup' IDを持つ要素（表示ボタン）がクリックされたときに関数を実行
+    document.getElementById('show-popup').addEventListener('click', function() {
+        // 'popup-a' IDを持つ要素（ポップアップ）のスタイルをdisplay: blockに設定(元々はnoneだった。それを見えるようにした。)
+        document.getElementById('popup-a').style.display = 'block';
+    });
+    // 'hide-popup' IDを持つ要素（非表示ボタン）がクリックされたときに関数を実行。
+    document.getElementById('hide-popup').addEventListener('click', function() {
+        // 'popup-a' IDを持つ要素（ポップアップ）のスタイルをdisplay: none'に設定(blockになっていたものを見えないように)
+        document.getElementById('popup-a').style.display = 'none';
+    });
+});
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
 const map = new mapboxgl.Map({
