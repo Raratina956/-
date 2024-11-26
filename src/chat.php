@@ -1,5 +1,6 @@
 <?php
 require 'parts/auto-login.php';
+require 'header.php';
 
 try {
     $pdo = new PDO("mysql:host=" . SERVER . ";dbname=" . DBNAME, USER, PASS);
@@ -146,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php require 'header.php'; ?>
     <div class="chat-system">
     <div class="chat-box">
         <!-- 相手のアイコンと名前表示部分 -->
