@@ -83,6 +83,7 @@ if ($update_id == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" href="css/room.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="mob_css/room_mob.css" media="screen and (max-width: 480px)">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -37,7 +37,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
     <link rel="icon" href="img/pin.png" sizes="32x32" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=0.8"> -->
     <title>SpotLink</title>
 </head>
 <header>
@@ -106,10 +106,11 @@ if (isset($_POST['logout'])) {
         ?>
         <li style="border-bottom: outset; border-color: #007bff5e;">現在地：　<?php echo $class_name; ?></li>
         <li style="border-bottom: outset; border-color: #007bff5e;">
-        <form action="search.php" method="post">
-            <input type="text" name="search" class="tbox" style="margin-top: 5%;width: 85%;text-align: center;" placeholder="ユーザー名 or タグ名"><br>
-            <input type="submit" class="search1" value="検索" style="margin-bottom: 5%;margin-top: -5%;">
-        </form>
+            <form action="search.php" method="post">
+                <input type="text" name="search" class="tbox" style="margin-top: 5%;width: 85%;text-align: center;"
+                    placeholder="ユーザー名 or タグ名"><br>
+                <input type="submit" class="search1" value="検索" style="margin-bottom: 5%;margin-top: -5%;">
+            </form>
         </li>
 
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php">MAP</a></li>
@@ -145,5 +146,11 @@ if (isset($_POST['logout'])) {
             this.classList.toggle('active');
             document.querySelector('.slide-menu').classList.toggle('active');
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.style.transform = "scale(0.5)"; // 50%に縮小
+            document.body.style.transformOrigin = "0 0";  // 左上を基準にズーム
+        });
+
     </script>
 </header>
