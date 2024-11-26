@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'db-connect.php';
+
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -10,21 +11,23 @@ try {
 }
 
 $partner_id = $_SESSION['user']['user_id'];
+
+// アイコン情報を取得
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-$iconUrl = $icon['icon_name'];
+$iconUrl = isset($icon['icon_name']) ? $icon['icon_name'] : 'default-icon.png'; // アイコンがない場合のデフォルト
 
 // 他のユーザーの情報と位置情報を取得する
 $allLocationsStmt = $pdo->query('
     SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
     FROM Icon
-    INNER JOIN Users ON Icon.user_id = Users.user_id
-    INNER JOIN locations ON Icon.user_id = locations.user_id
+    LEFT JOIN Users ON Icon.user_id = Users.user_id
+    LEFT JOIN locations ON Icon.user_id = locations.user_id
 ');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
