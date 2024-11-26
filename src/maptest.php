@@ -10,19 +10,18 @@ try {
 }
 
 $partner_id = $_SESSION['user']['user_id'];
-$iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$partner_id]);
-$icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-$iconUrl = $icon['icon_name'];
 
-// 他のユーザーの情報と位置情報を取得する
-$allLocationsStmt = $pdo->query('
-    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
-    FROM Icon
+// 自分が送った友達申請を取得
+$stmt = $pdo->prepare('
+    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude
+    FROM FriendRequests
+    INNER JOIN Icon ON FriendRequests.friend_id = Icon.user_id
     INNER JOIN Users ON Icon.user_id = Users.user_id
     INNER JOIN locations ON Icon.user_id = locations.user_id
+    WHERE FriendRequests.user_id = ?
 ');
-$allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([$partner_id]);
+$friendRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -31,7 +30,7 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>現在地にピンを立てる</title>
+    <title>友達申請リスト</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="css/mapindex.css">
@@ -39,24 +38,24 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div id="sidebar">
-    <h2>友達一覧</h2>
+    <h2>友達申請リスト</h2>
     <button id="add-friend-btn">友達追加</button>
     <div id="search-container" style="display: none;">
         <input type="text" id="friend-search" placeholder="名前で検索">
     </div>
-    
-    <!-- 友達申請フォーム -->
+
     <div id="add-friend-form" style="display: none;">
         <input type="text" id="friend-name" placeholder="友達の名前を入力">
         <button id="submit-friend-request">申請</button>
         <button id="cancel-friend-request">キャンセル</button>
     </div>
-    
+
     <ul id="friend-list">
         <!-- 友達リストはここに追加される -->
     </ul>
     <button id="update-location-btn">位置情報を更新</button>
 </div>
+
 <div id='map'></div>
 
 <script>
@@ -69,16 +68,12 @@ const map = new mapboxgl.Map({
     zoom: 12  // ズームレベルを調整
 });
 
-// 他のユーザーの位置情報を取得
-const otherUsers = <?php echo json_encode($allLocations); ?>;
+// PHPで取得した友達申請中のユーザー情報を表示
+const friendRequests = <?php echo json_encode($friendRequests); ?>;
 
-// 友達一覧を作成
-const friendList = document.getElementById('friend-list');
-const searchContainer = document.getElementById('search-container');
-const friendSearchInput = document.getElementById('friend-search');
-
-// 友達一覧を表示する関数
-function displayFriends(users) {
+// 友達申請リストを表示する関数
+function displayFriendRequests(users) {
+    const friendList = document.getElementById('friend-list');
     friendList.innerHTML = ''; // 一度リセットしてから追加
     users.forEach(user => {
         const listItem = document.createElement('li');
@@ -110,11 +105,11 @@ function displayFriends(users) {
 }
 
 // 初期表示
-displayFriends(otherUsers);
+displayFriendRequests(friendRequests);
 
 // 友達追加ボタンのクリックイベント
 document.getElementById('add-friend-btn').addEventListener('click', () => {
-    searchContainer.style.display = 'none'; // 検索バーを非表示
+    document.getElementById('search-container').style.display = 'none'; // 検索バーを非表示
     document.getElementById('add-friend-form').style.display = 'block'; // フォームを表示
     document.getElementById('friend-name').focus(); // 入力フィールドにフォーカスを当てる
 });
@@ -168,7 +163,7 @@ function updateLocation() {
 
             const myMarkerElement = document.createElement('div');
             myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+            myMarkerElement.style.backgroundImage = `url(<?php echo json_encode($iconUrl); ?>)`;
 
             new mapboxgl.Marker(myMarkerElement)
                 .setLngLat(userLocation)
@@ -210,20 +205,6 @@ function updateLocation() {
 // 位置情報更新ボタンのクリックイベント
 document.getElementById('update-location-btn').addEventListener('click', updateLocation);
 
-// 他のユーザーのマーカーを表示
-otherUsers.forEach(user => {
-    const markerElement = document.createElement('div');
-    markerElement.className = 'marker';
-    markerElement.style.backgroundImage = `url(${user.icon_name})`;
-
-    const userPosition = [user.longitude, user.latitude];
-
-    new mapboxgl.Marker(markerElement)
-        .setLngLat(userPosition)
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
-        .addTo(map);
-});
 </script>
 
 </body>
