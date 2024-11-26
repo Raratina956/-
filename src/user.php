@@ -15,6 +15,7 @@ require 'header.php';
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 1280px)">
+    <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" type="text/css" href="mob_css/user-mob.css" media="screen and (max-width: 480px)">
 
     <title>Document</title>
