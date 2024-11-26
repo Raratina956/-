@@ -190,6 +190,7 @@ input[type="checkbox"] {
     padding: 20px;
     margin-top: 8px;
     line-height: 33px;
+    width: 100%;
 }
 
 .kensaku-user {
