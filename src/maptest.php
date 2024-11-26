@@ -53,7 +53,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],
+    center: [139.6917, 35.6895],  // 初期位置は東京に設定
     zoom: 10
 });
 
@@ -129,6 +129,10 @@ function updateLocation() {
             });
         }, error => {
             console.error('現在地を取得できませんでした:', error);
+        }, {
+            enableHighAccuracy: true,  // 高精度を要求
+            timeout: 10000,            // タイムアウト時間を指定（例：10秒）
+            maximumAge: 0              // 以前の位置情報を再利用しない
         });
     } else {
         alert("Geolocationがサポートされていません");
