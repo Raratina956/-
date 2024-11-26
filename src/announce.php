@@ -8,6 +8,7 @@ require 'header.php';
     <meta charset="UTF-8">
     <title>アナウンス</title>
     <link rel="stylesheet" href="mob_css/announce-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/announce.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/announce.css" media="screen and (min-width: 1280px)">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
