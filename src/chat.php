@@ -139,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャット</title>
     <link rel="stylesheet" href="mob_css/chat-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/chat2.css" media="screen and (min-width: 1280px)">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
