@@ -537,7 +537,7 @@ require 'header.php';
                             </form>
                             <?php
                         } else {
-                            echo '<td></td>';
+                            echo '<td style="width: 10%;"></td>';
                         }
                         ?>
                         <form action="info_detail.php" method="post">
