@@ -41,6 +41,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
             <link rel="stylesheet" type="text/css" href="mob_css/useredit-mob.css" media="screen and (max-width: 480px)">
+            <link rel="stylesheet" href="css/useredit.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
             <link rel="stylesheet" type="text/css" href="css/useredit.css" media="screen and (min-width: 1280px)">
             <input type="file" id="fileInput" name="icon_file" accept=".jpg, .png"><br>
             <img id="preview" src="#" alt="Preview" style="display:none;"><br>
