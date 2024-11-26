@@ -37,7 +37,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" href="css/test.css" media="screen and (min-width: 1280px)">
     <link rel="icon" href="img/pin.png" sizes="32x32" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
     <title>SpotLink</title>
 </head>
 <header>
