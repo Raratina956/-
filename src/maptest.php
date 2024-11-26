@@ -24,6 +24,31 @@ $allLocationsStmt = $pdo->query('
 ');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
 
+// 友達申請の送信処理
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request'])) {
+    $receiver_id = $_POST['receiver_id'];
+
+    // すでに友達申請が送られていないかチェック
+    $checkStmt = $pdo->prepare('
+        SELECT COUNT(*) FROM friend_requests
+        WHERE sender_id = ? AND receiver_id = ? AND status = "pending"
+    ');
+    $checkStmt->execute([$partner_id, $receiver_id]);
+    $existingRequest = $checkStmt->fetchColumn();
+
+    if ($existingRequest == 0) {
+        // 友達申請を送信
+        $insertStmt = $pdo->prepare('
+            INSERT INTO friend_requests (sender_id, receiver_id, status) 
+            VALUES (?, ?, "pending")
+        ');
+        $insertStmt->execute([$partner_id, $receiver_id]);
+
+        echo "友達申請が送信されました。";
+    } else {
+        echo "すでに友達申請を送っています。";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +88,19 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
             background-size: cover;
             border-radius: 50%;
             cursor: pointer;
+        }
+
+        /* 友達申請ボタン */
+        .send-request-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .send-request-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -115,106 +153,48 @@ function displayFriends(users) {
         listItem.appendChild(userIcon);
         listItem.appendChild(userName);
 
-        // 友達リスト項目にクリックイベントを追加
-        listItem.addEventListener('click', () => {
-            const userPosition = [user.longitude, user.latitude];
-            map.flyTo({ center: userPosition, zoom: 15 });
-
-            // クリック時にポップアップ表示
-            new mapboxgl.Popup()
-                .setLngLat(userPosition)
-                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-                .addTo(map);
+        // 友達申請ボタン
+        const requestButton = document.createElement('button');
+        requestButton.textContent = '友達申請';
+        requestButton.className = 'send-request-btn';
+        requestButton.addEventListener('click', () => {
+            sendFriendRequest(user.user_id); // 友達申請送信
         });
+
+        listItem.appendChild(requestButton);
 
         friendList.appendChild(listItem);
     });
 }
 
-// 初期表示
-displayFriends(otherUsers);
+// 友達申請を送信する関数
+function sendFriendRequest(receiverId) {
+    const formData = new FormData();
+    formData.append('send_friend_request', true);
+    formData.append('receiver_id', receiverId);
 
-// 友達追加ボタンのクリックイベント
-document.getElementById('add-friend-btn').addEventListener('click', () => {
-    searchContainer.style.display = 'block'; // 検索バーを表示
-    friendSearchInput.focus(); // 検索バーにフォーカス
-});
-
-// 検索バーの入力イベント
-friendSearchInput.addEventListener('input', () => {
-    const searchQuery = friendSearchInput.value.toLowerCase();
-    const filteredUsers = otherUsers.filter(user => 
-        user.user_name.toLowerCase().includes(searchQuery)
-    );
-    displayFriends(filteredUsers); // 検索結果を表示
-});
-
-// 現在地を取得し、自分のマーカーを表示
-function updateLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const userLocation = [position.coords.longitude, position.coords.latitude];
-
-            map.setCenter(userLocation);
-
-            const myMarkerElement = document.createElement('div');
-            myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
-
-            new mapboxgl.Marker(myMarkerElement)
-                .setLngLat(userLocation)
-                .setPopup(new mapboxgl.Popup({ offset: 25 })
-                    .setHTML('<div>あなたの現在地です</div>'))
-                .addTo(map);
-
-            // 現在地をサーバーに送信
-            fetch('save-location.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user_id: "<?php echo $partner_id; ?>",
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('位置情報が保存されました:', data);
-            })
-            .catch(error => {
-                console.error('位置情報の保存に失敗しました:', error);
-            });
-        }, error => {
-            console.error('現在地を取得できませんでした:', error);
-        }, {
-            enableHighAccuracy: true,  // 高精度を要求
-            timeout: 10000,            // タイムアウト時間を指定（例：10秒）
-            maximumAge: 0              // 以前の位置情報を再利用しない
-        });
-    } else {
-        alert("Geolocationがサポートされていません");
-    }
+    fetch('maptest.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    })
+    .catch(error => console.error('Error:', error));
 }
 
-// 位置情報更新ボタンのクリックイベント
-document.getElementById('update-location-btn').addEventListener('click', updateLocation);
-
-// 他のユーザーのマーカーを表示
-otherUsers.forEach(user => {
-    const markerElement = document.createElement('div');
-    markerElement.className = 'marker';
-    markerElement.style.backgroundImage = `url(${user.icon_name})`;
-
-    const userPosition = [user.longitude, user.latitude];
-
-    new mapboxgl.Marker(markerElement)
-        .setLngLat(userPosition)
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
-        .addTo(map);
+// 友達検索機能
+friendSearchInput.addEventListener('input', function() {
+    const searchTerm = friendSearchInput.value.toLowerCase();
+    const filteredUsers = otherUsers.filter(user =>
+        user.user_name.toLowerCase().includes(searchTerm)
+    );
+    displayFriends(filteredUsers);
 });
+
+// 初期友達一覧を表示
+displayFriends(otherUsers);
 </script>
 
 </body>
