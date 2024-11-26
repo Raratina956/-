@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
 
 // 承認待ちの友達申請を取得
 $pendingRequestsStmt = $pdo->prepare('
-    SELECT fr.id, u.user_name, u.icon_name 
+    SELECT fr.request_id, u.user_name, u.icon_name 
     FROM friend_requests fr
     INNER JOIN Users u ON fr.sender_id = u.user_id
     WHERE fr.receiver_id = ? AND fr.status = "pending"
@@ -64,7 +64,7 @@ $pendingRequests = $pendingRequestsStmt->fetchAll(PDO::FETCH_ASSOC);
 // 申請の承認処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_request'])) {
     $request_id = $_POST['request_id'];
-    $approveStmt = $pdo->prepare('UPDATE friend_requests SET status = "accepted" WHERE id = ?');
+    $approveStmt = $pdo->prepare('UPDATE friend_requests SET status = "accepted" WHERE request_id = ?');
     $approveStmt->execute([$request_id]);
     echo "友達申請が承認されました。";
 }
@@ -72,11 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_request'])) {
 // 申請の拒否処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
     $request_id = $_POST['request_id'];
-    $rejectStmt = $pdo->prepare('UPDATE friend_requests SET status = "rejected" WHERE id = ?');
+    $rejectStmt = $pdo->prepare('UPDATE friend_requests SET status = "rejected" WHERE request_id = ?');
     $rejectStmt->execute([$request_id]);
     echo "友達申請が拒否されました。";
 }
-?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
