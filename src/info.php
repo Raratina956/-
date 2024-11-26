@@ -470,7 +470,6 @@ require 'header.php';
 
         <?php
         echo '<table>';
-        echo '<th></th><th></th><th></th><th></th><th></th><th></th>';
         if (isset($_POST['narrow'])) {
             $narrow = $_POST['narrow'];
         } else {
@@ -526,7 +525,7 @@ require 'header.php';
                         echo '</tr>';
                         echo '<tr>';
                         echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td>';
-                        echo '<td colspan="2"class="title" style="width: 60%;"> 件名：', $title, '</td>';
+                        echo '<td colspan="2" style="width: 60%;"> 件名：', $title, '</td>';
                         ?>
                         <?php
                         if ($read_check == 0) {
@@ -538,7 +537,7 @@ require 'header.php';
                             </form>
                             <?php
                         } else {
-                            echo '<td></td>';
+                            echo '<td style="width: 10%;"></td>';
                         }
                         ?>
                         <form action="info_detail.php" method="post">
