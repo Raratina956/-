@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'db-connect.php';
+
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -49,6 +50,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
         echo "すでに友達申請を送っています。";
     }
 }
+
+// 承認待ちの友達申請を取得
+$pendingRequestsStmt = $pdo->prepare('
+    SELECT fr.request_id, u.user_name, i.icon_name 
+    FROM friend_requests fr
+    INNER JOIN Users u ON fr.sender_id = u.user_id
+    INNER JOIN Icon i ON u.user_id = i.user_id
+    WHERE fr.receiver_id = ? AND fr.status = "pending"
+');
+$pendingRequestsStmt->execute([$partner_id]);
+$pendingRequests = $pendingRequestsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+// 申請の承認処理
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_request'])) {
+    $request_id = $_POST['request_id'];
+    $approveStmt = $pdo->prepare('UPDATE friend_requests SET status = "accepted" WHERE request_id = ?');
+    $approveStmt->execute([$request_id]);
+    echo "友達申請が承認されました。";
+}
+
+// 申請の拒否処理
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_request'])) {
+    $request_id = $_POST['request_id'];
+    $rejectStmt = $pdo->prepare('UPDATE friend_requests SET status = "rejected" WHERE request_id = ?');
+    $rejectStmt->execute([$request_id]);
+    echo "友達申請が拒否されました。";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -103,6 +132,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
             background-color: #45a049;
         }
 
+        /* 友達申請の承認ボタン */
+        .approve-btn, .reject-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .approve-btn:hover, .reject-btn:hover {
+            background-color: #45a049;
+        }
+
         /* 検索結果のスタイル */
         #search-results {
             margin-top: 10px;
@@ -124,6 +166,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
         .search-result-item button {
             margin-left: auto;
         }
+
+        /* 承認待ちリストのスタイル */
+        .pending-request {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pending-request img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +190,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_friend_request']
         <input type="text" id="friend-search" placeholder="名前で検索">
         <div id="search-results">
             <!-- 検索結果がここに表示される -->
+        </div>
+
+        <h3>承認待ちの申請</h3>
+        <div id="pending-requests">
+            <?php foreach ($pendingRequests as $request): ?>
+                <div class="pending-request">
+                    <img src="<?php echo $request['icon_name']; ?>" alt="User Icon">
+                    <span><?php echo $request['user_name']; ?></span>
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                        <button type="submit" name="approve_request" class="approve-btn">承認</button>
+                    </form>
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                        <button type="submit" name="reject_request" class="reject-btn">拒否</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
@@ -213,3 +287,4 @@ friendSearchInput.addEventListener('input', function() {
 
 </body>
 </html>
+
