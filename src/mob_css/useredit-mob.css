@@ -1,7 +1,12 @@
 body {
     text-align: center;
     padding-top: 110px;
-    background-color: #a0eefc;
+    background-image: url(../img/SpotLinkbg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
     display: flex; /* Flexboxを使用して垂直方向も中央寄せ */
     justify-content: center;
     align-items: center;
