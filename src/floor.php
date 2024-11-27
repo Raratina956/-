@@ -56,10 +56,27 @@ require 'header.php';
         echo '<li class="li1">';
         echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
         if (!$isMobile) {
-            // $icon['icon_name'] = 'img/icon/default.jpg';
-            // echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
-            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
-            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+            $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+            $current_sql->execute([$classroom_id]);
+            $current_row = $current_sql->fetchAll();
+            $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=?');
+            $favorite_sql->execute([$_SESSION['user']['user_id']]);
+            $favorite_row = $favorite_sql->fetchAll();
+            if ($current_row) {
+                $icon_count = 0;
+                foreach ($current_row as $current_list) {
+                    if ($icon_count < 3) {
+                        $icon_user_id = $current_list['user_id'];
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$icon_user_id]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+                        $icon_count++;
+                    }else{
+                        break;
+                    }
+                }
+            }
         }
         echo '</li>';
     }
