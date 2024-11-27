@@ -89,6 +89,7 @@ require 'header.php';
                                         }
                                     }
                                 }
+                                continue;
                             }
                             echo '<a href="user.php?user_id=' . $icon_user_id . '">';
                             echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
