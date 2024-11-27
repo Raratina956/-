@@ -55,7 +55,7 @@ header {
   justify-content: flex-end;
   position: relative;
   top: -18px;
-  text-align: right;
+  /* text-align: right; */
   right: -70px;
   margin-left: 860px;
   width: auto;
