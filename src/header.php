@@ -40,16 +40,6 @@ if (isset($_POST['logout'])) {
     <!-- <meta name="viewport" content="width=device-width, initial-scale=0.8"> -->
     <title>SpotLink</title>
 </head>
-<style>
-  .hover-effect {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .hover-effect:hover {
-    transform: scale(1.1);
-  }
-</style>
-
 <header>
     <div class="header-container">
         <a href="map.php" class="icon">
@@ -123,19 +113,30 @@ if (isset($_POST['logout'])) {
             </form>
         </li>
 
+        <style>
+            .hover-effect {
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .hover-effect:hover {
+                transform: scale(1.1);
+            }
+        </style>
+
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php" class="hover-effect">MAP</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="favorite.php" class="hover-effect">お気に入り</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php" class="hover-effect">QRカメラ</a></li>
-        <?php echo '<li style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '" class="hover-effect">チャット</a></li>'; ?>
+        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>" class="hover-effect">チャット</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="tag_list.php" class="hover-effect">みんなのタグ</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php" class="hover-effect">MYタグ</a></li>
         <li style="border-bottom: outset; border-color: #007bff5e;"><a href="announce.php" class="hover-effect">アナウンス</a></li>
+
 
         <!-- 以下ログアウト -->
         <form id="myForm" action="" method="post">
             <input type="hidden" name="logout" value="1">
         </form>
-        <li class="logout"><a href="#" id="submitLink">ログアウト</a></li>
+        <li class="logout"><a href="#" id="submitLink" class="hover-effect">ログアウト</a></li>
 
         <script>
             document.getElementById('submitLink').addEventListener('click', function (event) {
