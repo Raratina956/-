@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'db-connect.php';
+
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -10,10 +11,12 @@ try {
 }
 
 $partner_id = $_SESSION['user']['user_id'];
+
+// ユーザーのアイコンを取得
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-$iconUrl = $icon['icon_name'];
+$iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
 // 他のユーザーの情報と位置情報を取得する
 $allLocationsStmt = $pdo->query('
@@ -23,7 +26,6 @@ $allLocationsStmt = $pdo->query('
     INNER JOIN locations ON Icon.user_id = locations.user_id
 ');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +39,10 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/mapindex.css">
 </head>
 <body>
-
 <div id="sidebar">
     <h2>友達一覧</h2>
     <ul id="friend-list">
-        <!-- 友達リストはここに追加される -->
+        <!-- 友達リストはJavaScriptで生成 -->
     </ul>
     <button id="update-location-btn">位置情報を更新</button>
 </div>
@@ -53,41 +54,49 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895],  // 初期位置は東京に設定
+    center: [139.6917, 35.6895], // 初期位置：東京
     zoom: 10
 });
 
 // 他のユーザーの位置情報を取得
 const otherUsers = <?php echo json_encode($allLocations); ?>;
+console.log('他のユーザーのデータ:', otherUsers);
 
-// 友達一覧を作成
+// 友達リストを作成
 const friendList = document.getElementById('friend-list');
 otherUsers.forEach(user => {
-    const listItem = document.createElement('li');
-    listItem.className = 'friend-item';
+    if (user.icon_name && user.user_name) {
+        const listItem = document.createElement('li');
+        listItem.className = 'friend-item';
 
-    // アイコンと名前を表示
-    const userIcon = document.createElement('img');
-    userIcon.src = user.icon_name; // アイコン画像
-    const userName = document.createElement('span');
-    userName.textContent = user.user_name; // ユーザー名
+        // アイコンと名前を表示
+        const userIcon = document.createElement('img');
+        userIcon.src = user.icon_name; // アイコン画像のURL
+        userIcon.alt = `${user.user_name}のアイコン`;
+        userIcon.style.width = '32px'; // アイコンのサイズ調整
 
-    listItem.appendChild(userIcon);
-    listItem.appendChild(userName);
+        const userName = document.createElement('span');
+        userName.textContent = user.user_name;
 
-    // 友達リスト項目にクリックイベントを追加
-    listItem.addEventListener('click', () => {
-        const userPosition = [user.longitude, user.latitude];
-        map.flyTo({ center: userPosition, zoom: 15 });
+        listItem.appendChild(userIcon);
+        listItem.appendChild(userName);
 
-        // クリック時にポップアップ表示
-        new mapboxgl.Popup()
-            .setLngLat(userPosition)
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-            .addTo(map);
-    });
+        // 友達リスト項目にクリックイベントを追加
+        listItem.addEventListener('click', () => {
+            const userPosition = [user.longitude, user.latitude];
+            map.flyTo({ center: userPosition, zoom: 15 });
 
-    friendList.appendChild(listItem);
+            // クリック時にポップアップ表示
+            new mapboxgl.Popup()
+                .setLngLat(userPosition)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                .addTo(map);
+        });
+
+        friendList.appendChild(listItem);
+    } else {
+        console.warn('不完全なデータ:', user);
+    }
 });
 
 // 現在地を取得し、自分のマーカーを表示
@@ -95,12 +104,13 @@ function updateLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             const userLocation = [position.coords.longitude, position.coords.latitude];
-
             map.setCenter(userLocation);
 
             const myMarkerElement = document.createElement('div');
             myMarkerElement.className = 'marker';
             myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+            myMarkerElement.style.width = '40px';
+            myMarkerElement.style.height = '40px';
 
             new mapboxgl.Marker(myMarkerElement)
                 .setLngLat(userLocation)
@@ -130,9 +140,9 @@ function updateLocation() {
         }, error => {
             console.error('現在地を取得できませんでした:', error);
         }, {
-            enableHighAccuracy: true,  // 高精度を要求
-            timeout: 10000,            // タイムアウト時間を指定（例：10秒）
-            maximumAge: 0              // 以前の位置情報を再利用しない
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
         });
     } else {
         alert("Geolocationがサポートされていません");
@@ -144,17 +154,21 @@ document.getElementById('update-location-btn').addEventListener('click', updateL
 
 // 他のユーザーのマーカーを表示
 otherUsers.forEach(user => {
-    const markerElement = document.createElement('div');
-    markerElement.className = 'marker';
-    markerElement.style.backgroundImage = `url(${user.icon_name})`;
+    if (user.icon_name && user.latitude && user.longitude) {
+        const markerElement = document.createElement('div');
+        markerElement.className = 'marker';
+        markerElement.style.backgroundImage = `url(${user.icon_name})`;
+        markerElement.style.width = '32px';
+        markerElement.style.height = '32px';
 
-    const userPosition = [user.longitude, user.latitude];
+        const userPosition = [user.longitude, user.latitude];
 
-    new mapboxgl.Marker(markerElement)
-        .setLngLat(userPosition)
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
-        .addTo(map);
+        new mapboxgl.Marker(markerElement)
+            .setLngLat(userPosition)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
+            .addTo(map);
+    }
 });
 </script>
 
