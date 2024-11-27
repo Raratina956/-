@@ -119,7 +119,7 @@ if (isset($_POST['logout'])) {
             }
             
             .hover-effect:hover {
-                transform: scale(1.5);
+                transform: scale(1.3);
             }
         </style>
 
