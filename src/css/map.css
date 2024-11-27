@@ -103,7 +103,6 @@ body {
     position: absolute; /* 左上に固定するためにabsoluteを使用 */
     top: 110px; /* 上からの位置を調整 */
     left: 20px; /* 左からの位置を調整 */
-    background-image: url(../img/gakugai.png);
     /* background: linear-gradient(135deg, #42a5f5, #478ed1); グラデーション */
     color: white; /* テキスト色 */
     font-size: 20px; /* フォントサイズを大きめに */
