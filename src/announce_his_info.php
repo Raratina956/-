@@ -22,7 +22,12 @@ $tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
 $tag_sql->execute([$sent_tag_id]);
 $tag_row = $tag_sql->fetch(PDO::FETCH_ASSOC);
 $send_user_name = $user_row['user_name'];
-$sent_tag_name = $tag_row['tag_name'];
+if($tag_row){
+    $sent_tag_name = $tag_row['tag_name'];
+}else{
+    $sent_tag_name = "削除されたタグです";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

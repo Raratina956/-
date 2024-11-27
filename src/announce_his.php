@@ -37,15 +37,21 @@ if ($ann_send_list_row || $ann_sent_list_row) {
             $tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
             $tag_sql->execute([$sent_tag_id]);
             $tag_row = $tag_sql->fetch(PDO::FETCH_ASSOC);
+            if ($tag_row) {
+                $sent_tag_name = $tag_row['tag_name'];
+            } else {
+                $sent_tag_name = '削除されたタグです';
+            }   
             $announcements[] = [
                 'announcement_id' => $ann_row['announcement_id'],
                 'title' => $ann_row['title'],
                 'content' => $ann_row['content'],
                 'send_user_name' => $user_row['user_name'],
-                'sent_tag_name' => $tag_row['tag_name'],
+                'sent_tag_name' => $sent_tag_name,
                 'send_time' => $ann_row['sending_time'],
                 'ann_type' => 1,
             ];
+            
         }
     }
     if ($ann_sent_list_row) {

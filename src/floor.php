@@ -58,8 +58,14 @@ require 'header.php';
         if (!$isMobile) {
             // $icon['icon_name'] = 'img/icon/default.jpg';
             // echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
-            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
-            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+            $favorite_sql = $pdo->prepare('SELECT * FROM Favorite WHERE follow_id=?');
+            $favorite_sql ->execute([$_SESSION['user']['user_id']]);
+            $favorite_row = $favorite_sql->fetchAll();
+            if($favorite_row){
+                foreach($favorite_row as $favorite_list){
+                    $follower_id = $favorite_list['follower_id'];
+                }
+            }
         }
         echo '</li>';
     }
