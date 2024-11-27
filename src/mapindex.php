@@ -47,8 +47,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期位置：東京
-    zoom: 10
+    // 初期位置：福岡市博多区麻生情報ビジネス専門学校
+    center: [130.4021, 33.5948], 
+    zoom: 15
 });
 
 // 他のユーザーの位置情報を取得
@@ -104,9 +105,6 @@ function updateLocation() {
         alert("Geolocationがサポートされていません");
     }
 }
-
-// 位置情報更新ボタンのクリックイベントを削除
-// document.getElementById('update-location-btn').addEventListener('click', updateLocation);
 
 // 他のユーザーのマーカーを表示
 otherUsers.forEach(user => {
