@@ -28,8 +28,15 @@ require 'header.php';
 <body>
     <!-- メイン(マップ)に戻る -->
     <button type="button" class="back-link" onclick="location.href='map.php'">戻る</button>
+    <main>
     <?php
-    echo '<main><h1>', htmlspecialchars($_SESSION['floor']['kai']), '階</h1>';
+    echo '<h1>', htmlspecialchars($_SESSION['floor']['kai']), '階</h1>';
+    if(!$isMobile){
+        echo '<form action="floor.php" metod="post">';
+        echo '<input type="hidden" name="floor" value=', $_SESSION['floor']['kai'], '>';
+        echo 'お気に入りユーザー<input type="checkbox" name="favorite" value="1">';
+        echo '<input type="submit" value="絞込"';
+    }
     $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
     $sql->execute([$_SESSION['floor']['kai']]);
     $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -65,12 +72,15 @@ require 'header.php';
             if ($current_row) {
                 $icon_count = 0;
                 foreach ($current_row as $current_list) {
+                    $icon_user_id = $current_list['user_id'];
+                    
                     if ($icon_count < 3) {
-                        $icon_user_id = $current_list['user_id'];
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$icon_user_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        echo '<a href="user.php?user_id=' . $icon_user_id . '">';
                         echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+                        echo '</a>';
                         $icon_count++;
                     }else{
                         break;
@@ -80,8 +90,10 @@ require 'header.php';
         }
         echo '</li>';
     }
-    echo '</ul></main>';
+    echo '</ul>';
     ?>
+    </main>
 </body>
+
 
 </html>
