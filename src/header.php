@@ -42,20 +42,18 @@ if (isset($_POST['logout'])) {
 </head>
 <header>
     <div class="header-container">
-        <a href="map.php" class="icon">
-            <img src="img/icon.png" class="spot">
-        </a>
-
+    <a href="map.php" class="icon hover-effect">
+        <img src="img/icon.png" class="spot">
+    </a>
         <div class="right-elements">
             <?php
             $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
             $list_sql->execute([$_SESSION['user']['user_id'], 0]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <a href="info.php" class="bell-icon">
-                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
-            </a>
-
+        <a href="info.php" class="bell-icon hover-effect">
+        <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
+        </a>
             <div class="header-area">
                 <div class="hamburger">
                     <span></span>
