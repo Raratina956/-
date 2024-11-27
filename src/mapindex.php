@@ -39,6 +39,13 @@ $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/mapindex.css">
 </head>
 <body>
+<div id="sidebar">
+    <h2>友達一覧</h2>
+    <ul id="friend-list">
+        <!-- 友達リストはJavaScriptで生成 -->
+    </ul>
+    <button id="update-location-btn">位置情報を更新</button>
+</div>
 <div id='map'></div>
 
 <script>
@@ -47,14 +54,50 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    // 初期位置：福岡市博多区麻生情報ビジネス専門学校
-    center: [130.4021, 33.5948], 
-    zoom: 15
+    center: [139.6917, 35.6895], // 初期位置：東京
+    zoom: 10
 });
 
 // 他のユーザーの位置情報を取得
 const otherUsers = <?php echo json_encode($allLocations); ?>;
 console.log('他のユーザーのデータ:', otherUsers);
+
+// 友達リストを作成
+const friendList = document.getElementById('friend-list');
+otherUsers.forEach(user => {
+    if (user.icon_name && user.user_name) {
+        const listItem = document.createElement('li');
+        listItem.className = 'friend-item';
+
+        // アイコンと名前を表示
+        const userIcon = document.createElement('img');
+        userIcon.src = user.icon_name; // アイコン画像のURL
+        userIcon.alt = `${user.user_name}のアイコン`;
+        userIcon.style.width = '32px'; // アイコンのサイズ調整
+
+        const userName = document.createElement('span');
+        userName.textContent = user.user_name;
+
+        listItem.appendChild(userIcon);
+        listItem.appendChild(userName);
+
+        // 友達リスト項目にクリックイベントを追加
+        listItem.addEventListener('click', () => {
+            const userPosition = [user.longitude, user.latitude];
+            map.flyTo({ center: userPosition, zoom: 15 });
+
+            // クリック時にポップアップ表示
+            new mapboxgl.Popup()
+                .setLngLat(userPosition)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                .addTo(map);
+        });
+
+        friendList.appendChild(listItem);
+    } else {
+        console.warn('不完全なデータ:', user);
+    }
+});
 
 // 現在地を取得し、自分のマーカーを表示
 function updateLocation() {
@@ -105,6 +148,9 @@ function updateLocation() {
         alert("Geolocationがサポートされていません");
     }
 }
+
+// 位置情報更新ボタンのクリックイベント
+document.getElementById('update-location-btn').addEventListener('click', updateLocation);
 
 // 他のユーザーのマーカーを表示
 otherUsers.forEach(user => {
