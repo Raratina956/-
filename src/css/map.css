@@ -271,3 +271,7 @@ input[type="checkbox"] {
     width: 250px;
     font-size: 115%;
 }
+
+li{
+    list-style:none;
+}
