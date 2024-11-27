@@ -32,7 +32,7 @@ require 'header.php';
         <?php
         echo '<h1>', htmlspecialchars($_SESSION['floor']['kai']), '階</h1>';
         if (!$isMobile) {
-            echo '<form action="floor.php" metod="post">';
+            echo '<form action="floor.php" method="post">';
             echo '<input type="hidden" name="floor" value=', $_SESSION['floor']['kai'], '>';
             echo 'お気に入りユーザー<input type="checkbox" name="favorite" value="yes">';
             echo '<input type="submit" value="絞込">';
