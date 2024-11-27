@@ -42,20 +42,18 @@ if (isset($_POST['logout'])) {
 </head>
 <header>
     <div class="header-container">
-        <a href="map.php" class="icon">
-            <img src="img/icon.png" class="spot">
-        </a>
-
+    <a href="map.php" class="icon hover-effect">
+        <img src="img/icon.png" class="spot">
+    </a>
         <div class="right-elements">
             <?php
             $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
             $list_sql->execute([$_SESSION['user']['user_id'], 0]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <a href="info.php" class="bell-icon">
-                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
-            </a>
-
+        <a href="info.php" class="bell-icon hover-effect">
+        <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
+        </a>
             <div class="header-area">
                 <div class="hamburger">
                     <span></span>
@@ -113,18 +111,29 @@ if (isset($_POST['logout'])) {
             </form>
         </li>
 
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php">MAP</a></li>
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="favorite.php">お気に入り</a></li>
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php">QRカメラ</a></li>
-        <?php echo '<li style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=', $_SESSION['user']['user_id'], '">チャット</a></li>'; ?>
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="tag_list.php">みんなのタグ</a></li>
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php">MYタグ</a></li>
-        <li style="border-bottom: outset; border-color: #007bff5e;"><a href="announce.php">アナウンス</a></li>
+        <style>
+            .hover-effect {
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .hover-effect:hover {
+                transform: scale(1.3);
+            }
+        </style>
+
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php">MAP</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="favorite.php">お気に入り</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php">QRカメラ</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>">チャット</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="tag_list.php">みんなのタグ</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php">MYタグ</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="announce.php">アナウンス</a></li>
+
         <!-- 以下ログアウト -->
         <form id="myForm" action="" method="post">
             <input type="hidden" name="logout" value="1">
         </form>
-        <li class="logout"><a href="#" id="submitLink">ログアウト</a></li>
+        <li class="logout hover-effect"><a href="#" id="submitLink">ログアウト</a></li>
 
         <script>
             document.getElementById('submitLink').addEventListener('click', function (event) {
