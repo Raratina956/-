@@ -63,6 +63,11 @@ require 'header.php';
             echo '<li class="li1">';
             echo '<a class="a1" href="room.php?id=', htmlspecialchars($classroom_id), '&update=0">', '<span class="san">‣</span>', htmlspecialchars($classroom_name), '　', $user_count, '人</a>'; // htmlspecialcharsでXSS対策
             if (!$isMobile) {
+                if (!empty($_POST['favorite'])) {
+                    echo 'a';
+                }else{
+                    echo 'b';
+                }
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
                 $current_sql->execute([$classroom_id]);
                 $current_row = $current_sql->fetchAll();
