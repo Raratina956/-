@@ -2,6 +2,10 @@ body {
     text-align: center;
     padding-top: 110px;
     background-image: url(../img/SpotLinkbg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 
     font-family: "Zen Maru Gothic", serif;
     font-weight: 400;
