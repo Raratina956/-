@@ -35,6 +35,10 @@ $allLocationsStmt = $pdo->prepare('
 );
 $allLocationsStmt->execute($followedUserIds);
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo '<pre>';
+print_r($allLocations); // デバッグ用：取得したデータを確認
+echo '</pre>';
 ?>
 
 <!DOCTYPE html>
