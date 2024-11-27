@@ -105,9 +105,6 @@ body {
     left: 20px; /* 左からの位置を調整 */
     background: linear-gradient(135deg, #42a5f5, #478ed1);
     color: white; /* テキスト色 */
-    font-size: 20px; /* フォントサイズを大きめに */
-    font-weight: bold; /* 太字 */
-    padding: 55px 90px; /* ボタンサイズを大きめに調整 */
     border: none; /* 枠線を消す */
     border-radius: 30px; /* 丸みのある角 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 影 */

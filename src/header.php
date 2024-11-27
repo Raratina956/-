@@ -130,11 +130,10 @@ if (isset($_POST['logout'])) {
 
             .hover-effect-info {
                 transition: transform 0.3s ease-in-out;
-                display: inline-block;
             }
 
             .hover-effect-info:hover {
-                transform: scale(1.05) translateY(-2px);
+                transform: scale(1.05);
             }
 
         </style>
