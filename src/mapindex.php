@@ -71,29 +71,27 @@ const friendSearchInput = document.getElementById('friend-search');
 
 // 友達一覧を表示する関数
 function displayFriends(users) {
+    if (friendList.children.length > 0) return; // 既にリストがある場合は処理をスキップ
     friendList.innerHTML = ''; // 一度リセットしてから追加
     users.forEach(user => {
         const listItem = document.createElement('li');
         listItem.className = 'friend-item';
 
-        // アイコンと名前を表示
         const userIcon = document.createElement('img');
-        userIcon.src = user.icon_name; // アイコン画像
+        userIcon.src = user.icon_name;
         const userName = document.createElement('span');
-        userName.textContent = user.user_name; // ユーザー名
+        userName.textContent = user.user_name;
 
         listItem.appendChild(userIcon);
         listItem.appendChild(userName);
 
-        // 友達リスト項目にクリックイベントを追加
         listItem.addEventListener('click', () => {
             const userPosition = [user.longitude, user.latitude];
             map.flyTo({ center: userPosition, zoom: 15 });
 
-            // クリック時にポップアップ表示
             new mapboxgl.Popup()
                 .setLngLat(userPosition)
-                .setHTML(<div>ユーザー名: ${user.user_name}</div>)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
                 .addTo(map);
         });
 
@@ -129,7 +127,7 @@ function updateLocation() {
 
             const myMarkerElement = document.createElement('div');
             myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = url(${<?php echo json_encode($iconUrl); ?>});
+            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
 
             new mapboxgl.Marker(myMarkerElement)
                 .setLngLat(userLocation)
@@ -175,14 +173,14 @@ document.getElementById('update-location-btn').addEventListener('click', updateL
 otherUsers.forEach(user => {
     const markerElement = document.createElement('div');
     markerElement.className = 'marker';
-    markerElement.style.backgroundImage = url(${user.icon_name});
+    markerElement.style.backgroundImage = `url(${user.icon_name})`;
 
     const userPosition = [user.longitude, user.latitude];
 
     new mapboxgl.Marker(markerElement)
         .setLngLat(userPosition)
         .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML(<div>ユーザー名: ${user.user_name}</div>))
+            .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
         .addTo(map);
 });
 </script>

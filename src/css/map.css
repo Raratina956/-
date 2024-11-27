@@ -84,7 +84,7 @@ body {
 }
 
 
-.gakugai-container {
+/* .gakugai-container {
     display: inline-block;
     background-color: #007bff;
     color: white;
@@ -97,13 +97,34 @@ body {
     position: absolute;
     right: 260px;
     top: 160px;
+} */
+
+.gakugai-container{
+    position: absolute; /* 左上に固定するためにabsoluteを使用 */
+    top: 110px; /* 上からの位置を調整 */
+    left: 20px; /* 左からの位置を調整 */
+    background: linear-gradient(135deg, #42a5f5, #478ed1); /* グラデーション */
+    color: white; /* テキスト色 */
+    font-size: 20px; /* フォントサイズを大きめに */
+    font-weight: bold; /* 太字 */
+    padding: 55px 90px; /* ボタンサイズを大きめに調整 */
+    border: none; /* 枠線を消す */
+    border-radius: 30px; /* 丸みのある角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 影 */
+    transition: all 0.3s ease; /* アニメーションのスムーズな変化 */
+    cursor: pointer; /* ポインタ表示 */
+    z-index: 1000; /* 他の要素より前面に表示 */
 }
 
 .gakugai-container:hover {
-    background-color: #0056b3;
-    /* ホバー時の青色（少し濃くする） */
+    background: linear-gradient(135deg, #478ed1, #5c6bc0); /* 色を少し変化 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* 影を強調 */
+    transform: translateY(-2px); /* 少し浮く */
 }
-
+.gakugai-container:active {
+transform: translateY(2px); /* 押し込まれる感覚 */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さく */
+}
 
 button {
     display: inline-block;
