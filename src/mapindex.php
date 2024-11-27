@@ -18,27 +18,14 @@ $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
-// ログインユーザーがフォローしているユーザーのIDを取得
-$followStmt = $pdo->prepare('
-    SELECT follow_id FROM Favorite WHERE follower_id = ?
-');
-$followStmt->execute([$partner_id]);
-$followedUserIds = $followStmt->fetchAll(PDO::FETCH_COLUMN);
-
-// フォローしているユーザーの情報と位置情報を取得
-$allLocationsStmt = $pdo->prepare('
+// 他のユーザーの情報と位置情報を取得する
+$allLocationsStmt = $pdo->query('
     SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
     FROM Icon
     INNER JOIN Users ON Icon.user_id = Users.user_id
     INNER JOIN locations ON Icon.user_id = locations.user_id
-    WHERE Icon.user_id IN (' . implode(',', array_fill(0, count($followedUserIds), '?')) . ')'
-);
-$allLocationsStmt->execute($followedUserIds);
+');
 $allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
-
-echo '<pre>';
-print_r($allLocations); // デバッグ用：取得したデータを確認
-echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +60,7 @@ const map = new mapboxgl.Map({
 
 // 他のユーザーの位置情報を取得
 const otherUsers = <?php echo json_encode($allLocations); ?>;
-console.log('フォローしているユーザーのデータ:', otherUsers);
+console.log('他のユーザーのデータ:', otherUsers);
 
 // 友達リストを作成
 const friendList = document.getElementById('friend-list');
