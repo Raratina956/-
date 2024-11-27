@@ -32,9 +32,9 @@ require 'header.php';
         <?php
         echo '<h1>', htmlspecialchars($_SESSION['floor']['kai']), '階</h1>';
         if (!$isMobile) {
-            echo '<form action="floor.php" metod="post">';
+            echo '<form action="floor.php" method="post">';
             echo '<input type="hidden" name="floor" value=', $_SESSION['floor']['kai'], '>';
-            echo 'お気に入りユーザー<input type="checkbox" name="favorite" value="1">';
+            echo 'お気に入りユーザー<input type="checkbox" name="favorite" value="yes">';
             echo '<input type="submit" value="絞込">';
         }
         $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
@@ -77,19 +77,21 @@ require 'header.php';
                         $iconStmt->execute([$icon_user_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                         if ($icon_count < 3) {
-                            if (!empty($_POST['favorite'])) {
-                                if ($favorite_row) {
-                                    foreach ($favorite_row as $favorite_list) {
-                                        $follower_id = $favorite_list['follower_id'];
-                                        if ($icon_user_id == $follower_id) {
-                                            echo '<a href="user.php?user_id=' . $icon_user_id . '">';
-                                            echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
-                                            echo '</a>';
-                                            $icon_count++;
+                            if (isset($_POST['favorite']) && !empty($_POST['favorite'])) {
+                                if ($_POST['favorite'] == "yes") {
+                                    if ($favorite_row) {
+                                        foreach ($favorite_row as $favorite_list) {
+                                            $follower_id = $favorite_list['follower_id'];
+                                            if ($icon_user_id == $follower_id) {
+                                                echo '<a href="user.php?user_id=' . $icon_user_id . '">';
+                                                echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
+                                                echo '</a>';
+                                                $icon_count++;
+                                            }
                                         }
                                     }
+                                    continue;
                                 }
-                                continue;
                             }
                             echo '<a href="user.php?user_id=' . $icon_user_id . '">';
                             echo '<img src="', $icon['icon_name'], '" width="12%" height="95%" class="usericon">';
