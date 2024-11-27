@@ -235,47 +235,44 @@ function displaySearchResults(filteredUsers) {
     filteredUsers.forEach(user => {
         const resultItem = document.createElement('div');
         resultItem.classList.add('search-result-item');
-        
-        const iconImage = document.createElement('img');
-        iconImage.src = user.icon_name ? user.icon_name : 'default_icon.png';
-        resultItem.appendChild(iconImage);
-        
-        const userName = document.createElement('span');
-        userName.textContent = user.user_name;
-        resultItem.appendChild(userName);
 
-        const sendRequestButton = document.createElement('button');
-        sendRequestButton.textContent = '友達申請';
-        sendRequestButton.classList.add('send-request-btn');
-        sendRequestButton.onclick = function() {
-            sendFriendRequest(user.user_id);
-        };
-        resultItem.appendChild(sendRequestButton);
-
+        const icon = user.icon_name ? user.icon_name : 'default_icon.png';
+        resultItem.innerHTML = `
+            <img src="${icon}" alt="User Icon">
+            <span>${user.user_name}</span>
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="receiver_id" value="${user.user_id}">
+                <button type="submit" name="send_friend_request" class="send-request-btn">申請</button>
+            </form>
+        `;
         searchResultsContainer.appendChild(resultItem);
     });
 }
 
-// 検索処理
+// ユーザー名でフィルタリング
 friendSearchInput.addEventListener('input', function() {
     const searchTerm = friendSearchInput.value.toLowerCase();
-    const filteredUsers = allLocations.filter(user =>
-        user.user_name.toLowerCase().includes(searchTerm)
-    );
+    const filteredUsers = allLocations.filter(user => user.user_name.toLowerCase().includes(searchTerm));
     displaySearchResults(filteredUsers);
 });
 
-// 友達申請の送信
-function sendFriendRequest(receiver_id) {
-    const form = new FormData();
-    form.append('receiver_id', receiver_id);
-    form.append('send_friend_request', true);
-    fetch('', { method: 'POST', body: form })
-        .then(response => response.text())
-        .then(responseText => {
-            alert(responseText);
-        });
-}
+// 位置情報を地図に表示
+allLocations.forEach(user => {
+    const marker = new mapboxgl.Marker({
+        element: document.createElement('div'),
+        anchor: 'bottom'
+    })
+    .setLngLat([user.longitude, user.latitude])
+    .addTo(map)
+    .getElement()
+    .classList.add('marker')
+    .style.backgroundImage = `url('<?php echo $iconUrl; ?>')`;
+
+    const popup = new mapboxgl.Popup()
+        .setHTML(`<h3>${user.user_name}</h3><p>位置情報: ${user.latitude}, ${user.longitude}</p>`);
+    
+    marker.setPopup(popup);
+});
 </script>
 
 </body>
