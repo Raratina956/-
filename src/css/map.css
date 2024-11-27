@@ -117,15 +117,16 @@ body {
     z-index: 1000; /* 他の要素より前面に表示 */
 }
 
-.gakugai-container:hover {
+/* .gakugai-container:hover {
     background: linear-gradient(135deg, #478ed1, #5c6bc0); /* 色を少し変化 */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* 影を強調 */
-    transform: translateY(-2px); /* 少し浮く */
-}
-.gakugai-container:active {
+    /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 影を強調 */
+    /* transform: translateY(-2px); 少し浮く */
+/* }  */
+
+/* .gakugai-container:active {
 transform: translateY(2px); /* 押し込まれる感覚 */
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さく */
-}
+/* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 影を小さく */
+/* } */ 
 
 button {
     display: inline-block;
