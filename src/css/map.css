@@ -121,7 +121,7 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* 影を強調 */
     transform: translateY(-2px); /* 少し浮く */
 }
-.gakugai-container:hover {
+.gakugai-container:active {
 transform: translateY(2px); /* 押し込まれる感覚 */
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さく */
 }
