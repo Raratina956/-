@@ -42,7 +42,7 @@ if (isset($_POST['logout'])) {
 </head>
 <header>
     <div class="header-container">
-    <a href="map.php" class="icon hover-effect">
+    <a href="map.php" class="icon hover-effectimg">
         <img src="img/icon.png" class="spot">
     </a>
         <div class="right-elements">
@@ -51,7 +51,7 @@ if (isset($_POST['logout'])) {
             $list_sql->execute([$_SESSION['user']['user_id'], 0]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
-        <a href="info.php" class="bell-icon hover-effect">
+        <a href="info.php" class="bell-icon hover-effectimg">
         <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
         </a>
             <div class="header-area">
@@ -118,6 +118,14 @@ if (isset($_POST['logout'])) {
             
             .hover-effect:hover {
                 transform: scale(1.3);
+            }
+
+            .hover-effectimg {
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .hover-effectimg:hover {
+                transform: scale(1.1);
             }
         </style>
 
