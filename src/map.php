@@ -56,6 +56,13 @@ unset($_SESSION['floor']['kai']);
             /* Smaller size for mobile */
         }
     }
+
+    .usericon {
+        transition: transform 0.3s ease-in-out;
+    }
+    .usericon:hover {
+        transform: scale(1.1);
+    }
 </style>
 
 <body>
