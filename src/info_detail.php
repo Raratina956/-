@@ -48,24 +48,45 @@ if ($type == 1) {
     $tag_sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
     $tag_sql->execute([$info_row['sent_tag']]);
     $tag_row = $tag_sql->fetch();
-    if($user_row){
+    if ($user_row) {
         $send_user_name = $user_row['user_name'];
-    }else{
+    } else {
         $send_user_name = '対象のユーザーが見つかりません';
     }
-    if($tag_row){
+    if ($tag_row) {
         $sent_tag_name = $tag_row['tag_name'];
-    }else{
+    } else {
         $sent_tag_name = '対象のタグが見つかりません';
     }
     $title = $info_row['title'];
-    $content = $info_row['content'];
+    if (isset($content)) {
+        $content = $info_row['content'];
+    } else {
+        $content = '';
+    }
     $sendtime = $info_row['sending_time'];
     $time = timeAgo($sendtime);
-
 }
 ?>
 
+<div class="content">
+    <table>
+        <td colspan="2">タイトル</td>
+        <td colspan="2"><?php echo $title; ?></td>
+        <td colspan="2">本文</td>
+        <td colspan="2"><?php echo $content; ?></td>
+        <td>送信者</td>
+        <td>受信タグ</td>
+        <td><?php echo $send_user_name; ?></td>
+        <td><?php echo $sent_tag_name; ?></td>
+        <td><?php echo $time; ?></td>
+        <td>
+            <form action="info_detail.php" method="post">
+                <input type="submit" name="削除">
+            </form>
+        </td>
+    </table>
+</div>
 </body>
 <?php
 function timeAgo($logtime)
