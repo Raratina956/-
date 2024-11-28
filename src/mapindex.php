@@ -20,18 +20,16 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
 // フォローしているユーザーの情報と位置情報を取得する
-// フォローしているユーザーの情報と位置情報を取得する
 $followStmt = $pdo->prepare('
     SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
     FROM Icon
     INNER JOIN Users ON Icon.user_id = Users.user_id
     INNER JOIN locations ON Icon.user_id = locations.user_id
     INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
-    WHERE Favorite.follow_id = ? AND Favorite.follow_id != ?
+    WHERE Favorite.follow_id = ?
 ');
-$followStmt->execute([$user_id, $user_id]); // 自分自身のIDを除外する
+$followStmt->execute([$user_id]);  // partner_id を user_id に変更
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
