@@ -139,13 +139,14 @@ th:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
-.usericon,
-.atag {
+.favorite-item {
+    display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.usericon:hover,
-.atag:hover {
+.favorite-item:hover .usericon,
+.favorite-item:hover .atag {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
