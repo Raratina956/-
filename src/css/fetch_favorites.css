@@ -138,3 +138,14 @@ th:hover {
     transform: translateY(-2px); /* 少し浮き上がる */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
+
+.usericon,
+.atag {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.usericon:hover,
+.atag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
