@@ -40,7 +40,7 @@ if (isset($_POST['tag_id'])) {
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 <div class="center">
-<h1 class="title okini" id="okini" style="font-size: 2.5em; color: #333;">ｍｙタグ一覧</h1>
+    <h1 class="title okini" id="okini">みんなのタグ</h1>
     <a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
     <form action="tag_list" method="post">
         <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
