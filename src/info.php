@@ -750,7 +750,7 @@ if (isset($_POST['all_delete'])) {
                                         </a>
                                     </td>
                                     <td colspan="2">
-                                        <?php echo $send_name; ?>さんから、チャットが届きました
+                                        <?php echo $sent_name; ?>さんから、チャットが届きました
                                     </td>
                                 </tr>
                                 <tr>
