@@ -31,3 +31,7 @@ body {
     border-radius: 5%;
     border-color: rgb(247, 98, 71);
 }
+
+h1{
+    text-align: center;
+}
