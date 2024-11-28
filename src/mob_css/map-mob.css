@@ -153,3 +153,9 @@ object-fit: cover;
   width: 150px;
   height: 150px;
 }
+
+.g-text{
+  position: absolute;
+  top: 117px;
+  left: 30px;
+}
