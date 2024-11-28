@@ -45,7 +45,7 @@ if ($type == 1) {
     $user_sql = $pdo->prepare('SELECT * FROM Users WHERE user_id=?');
     $user_sql->execute([$info_row['send_person']]);
     $user_row = $user_sql->fetch();
-    $tag_sql = $pdo->prepare('SELECT * FROM tag_list WHERE tag_id');
+    $tag_sql = $pdo->prepare('SELECT * FROM tag_list WHERE tag_id=?');
     $tag_sql->execute([$info_row['sent_tag']]);
     $tag_row = $tag_sql->fetch();
     if($user_row){
