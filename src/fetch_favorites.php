@@ -56,7 +56,11 @@ if ($list_raw) {
         }else{
             echo '<td><img src="img/kakubo.jpg" style="margin-inline-end: 25px;"></td>';
         }
-        echo '<td><a href="user.php?user_id=', $follower_id, '"><img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'"></a><a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], '</a></td>';
+        echo '<td><a href="user.php?user_id=', $follower_id, '">
+                    <img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'">
+                  </a>
+                  <a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], '</a>
+              </td>';
         ?>
         
         <td>
