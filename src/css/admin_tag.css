@@ -1,11 +1,12 @@
 body {
     background-image: url(../img/SpotLinkbg.png);
-    padding-top: 145px;
+    padding-top: 100px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 70vh;
     margin: 0;
+    margin-bottom:50px;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -17,3 +18,26 @@ body {
     font-style: normal;
 }
 
+table{
+    text-align:center;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 7px 15px; /* 内側の余白 */
+    text-align: center; /* テキストの中央揃え */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px; /* フォントサイズ */
+    margin: 4px 2px; /* 外側の余白 */
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
