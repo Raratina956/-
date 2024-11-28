@@ -31,9 +31,9 @@ body{
 }
 
 
-/* .map{
-} */
-
+li {
+  list-style: none;
+}
 
 a{
   display: block;
@@ -147,4 +147,15 @@ object-fit: cover;
 
 .kensaku-user{
   margin: auto 46px;
+}
+
+.g-img{
+  width: 150px;
+  height: 150px;
+}
+
+.g-text{
+  position: absolute;
+  top: 117px;
+  left: 30px;
 }
