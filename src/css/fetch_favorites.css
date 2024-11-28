@@ -141,12 +141,47 @@ th:hover {
 
 .favorite-item {
     display: inline-block;
+    vertical-align: middle; /* アイコンと名前を中央に揃えるために追加 */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.favorite-item:hover .usericon,
-.favorite-item:hover .atag {
+.usericon {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* .atag {
+    transition: transform 0.2s, box-shadow 0.2s;
+} */
+
+.favorite-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* .atag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+.okini {
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* 文字の間隔 */
+}
+
+.okini span {
+    display: inline-block;
+    opacity: 0; /* 初期状態で見えないようにする */
+    animation: floatUp 1s forwards; /* アニメーションを適用 */
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
