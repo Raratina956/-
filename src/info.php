@@ -648,6 +648,33 @@ if (isset($_POST['all_delete'])) {
                             </form>
                             </tr>
                             <?php
+                        } else { {
+                                ?>
+                                <tr>
+                                    <td><a href="user.php?user_id='<?php echo $send_id; ?>'">
+                                            <img src="<?php echo $icon['icon_name']; ?>" width="20%" height="50%" class="usericon">
+                                        </a>
+                                    </td>
+                                    <td colspan="2">
+                                        <?php echo $send_name; ?>さんから、位置情報を更新しました
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo timeAgo($logtime) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $read_dis ?>
+                                    </td>
+                                    <td>
+                                        <form action="info_detail.php" method="post">
+                                            <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
+                                            <input type="submit" value="詳細" class="edit">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                         }
                     }
                     break;
@@ -715,6 +742,33 @@ if (isset($_POST['all_delete'])) {
                             </form>
                             </tr>
                             <?php
+                        } else { {
+                                ?>
+                                <tr>
+                                    <td><a href="user.php?user_id='<?php echo $send_id; ?>'">
+                                            <img src="<?php echo $icon['icon_name']; ?>" width="20%" height="50%" class="usericon">
+                                        </a>
+                                    </td>
+                                    <td colspan="2">
+                                        <?php echo $send_name; ?>さんから、チャットが届きました
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo timeAgo($logtime) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $read_dis ?>
+                                    </td>
+                                    <td>
+                                        <form action="info_detail.php" method="post">
+                                            <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
+                                            <input type="submit" value="詳細" class="edit">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                         }
                     }
                     break;
