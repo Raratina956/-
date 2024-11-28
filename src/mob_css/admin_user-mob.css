@@ -41,4 +41,6 @@ table {
     font-size: 14px;
     margin-top: 26px;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
