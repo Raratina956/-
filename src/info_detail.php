@@ -71,20 +71,34 @@ if ($type == 1) {
 
 <div class="content">
     <table>
-        <td colspan="2">タイトル</td>
-        <td colspan="2"><?php echo $title; ?></td>
-        <td colspan="2">本文</td>
-        <td colspan="2"><?php echo $content; ?></td>
-        <td>送信者</td>
-        <td>受信タグ</td>
-        <td><?php echo $send_user_name; ?></td>
-        <td><?php echo $sent_tag_name; ?></td>
-        <td><?php echo $time; ?></td>
-        <td>
-            <form action="info_detail.php" method="post">
-                <input type="submit" name="削除">
-            </form>
-        </td>
+        <tr>
+            <td colspan="2">タイトル</td>
+        </tr>
+        <tr>
+            <td colspan="2"><?php echo $title; ?></td>
+        </tr>
+        <tr>
+            <td colspan="2">本文</td>
+        </tr>
+        <tr>
+            <td colspan="2"><?php echo $content; ?></td>
+        </tr>
+        <tr>
+            <td>送信者</td>
+            <td>受信タグ</td>
+        </tr>
+        <tr>
+            <td><?php echo $send_user_name; ?></td>
+            <td><?php echo $sent_tag_name; ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $time; ?></td>
+            <td>
+                <form action="info_detail.php" method="post">
+                    <input type="submit" name="削除">
+                </form>
+            </td>
+        </tr>
     </table>
 </div>
 </body>
