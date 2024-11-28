@@ -5,12 +5,18 @@ if (isset($_POST['announcement_id'])) {
     $type = 1;
 } elseif (isset($_POST['current_location_id'])) {
     $current_location_id = $_POST['current_location_id'];
-    $type = 2;
+    $ann_delete = $pdo->prepare('DELETE FROM Announce_check WHERE user_id = ? AND current_location_id = ?');
+    $ann_delete->execute([$_SESSION['user']['user_id'], $current_location_id]);
+    $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
+    $current_sql->execute([$current_location_id]);
+    $current_row = $current_sql->fetch();
+    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/room.php?id='.$current_row['classroom_id'].'&update=0';
+    header("Location: $redirect_url");
+    exit();
 } elseif (isset($_POST['message_id'])) {
     $message_id = $_POST['message_id'];
     $ann_delete = $pdo->prepare('DELETE FROM Announce_check WHERE user_id = ? AND message_id = ?');
     $ann_delete->execute([$_SESSION['user']['user_id'], $message_id]);
-
     $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE message_id=?');
     $mess_sql->execute([$message_id]);
     $mess_row = $mess_sql->fetch();
