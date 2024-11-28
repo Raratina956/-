@@ -62,7 +62,7 @@ if ($type == 1) {
     if (isset($content)) {
         $content = $info_row['content'];
     } else {
-        $content = '';
+        $content = '　';
     }
     $sendtime = $info_row['sending_time'];
     $time = timeAgo($sendtime);
