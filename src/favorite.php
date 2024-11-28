@@ -29,7 +29,7 @@ if (isset($_POST['delete'])) {
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 </head>
-<h1 class="okini">お気に入り</h1>
+<h1 id="okini" class="okini">お気に入り</h1>
 <table border="0" style="font-size: 15pt;">
     <tr>
         <th id="allTab" class="selected" onclick="fetchData('all'); selectTab(this)">全て</th>
@@ -127,6 +127,18 @@ if (isset($_POST['delete'])) {
         teacherTab.className = 'unselected';
         studentTab.className = 'unselected';
     };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const okiniElement = document.getElementById('okini');
+        const text = okiniElement.textContent;
+        okiniElement.innerHTML = '';
+
+        for (let char of text) {
+            const span = document.createElement('span');
+            span.textContent = char;
+            okiniElement.appendChild(span);
+        }
+    });
 </script>
 
 
