@@ -52,7 +52,7 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin_user.css">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,12 +87,12 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($user['s_or_t'] === 7): ?>
                     <form method="post" action="">
                         <input type="hidden" name="restore_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <button type="submit">アカウント復帰</button>
+                        <button type="submit" class="revival">アカウント復帰</button>
                     </form>
                 <?php else: ?>
                     <form method="post" action="">
                         <input type="hidden" name="ban_user_id" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <button type="submit">アカウント停止</button>
+                        <button type="submit" class="stop">アカウント停止</button>
                     </form>
                 <?php endif; ?>
             </td>
