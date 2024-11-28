@@ -18,23 +18,17 @@ $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
-// ログインユーザーがフォローしているユーザーのIDを取得
+// フォローしているユーザーの情報と位置情報を取得する
 $followStmt = $pdo->prepare('
-    SELECT follow_id FROM Favorite WHERE follower_id = ?
-');
-$followStmt->execute([$partner_id]);
-$followedUserIds = $followStmt->fetchAll(PDO::FETCH_COLUMN);
-
-// フォローしているユーザーの情報と位置情報を取得
-$allLocationsStmt = $pdo->prepare('
     SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
     FROM Icon
     INNER JOIN Users ON Icon.user_id = Users.user_id
     INNER JOIN locations ON Icon.user_id = locations.user_id
-    WHERE Icon.user_id IN (' . implode(',', array_fill(0, count($followedUserIds), '?')) . ')'
-);
-$allLocationsStmt->execute($followedUserIds);
-$allLocations = $allLocationsStmt->fetchAll(PDO::FETCH_ASSOC);
+    INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
+    WHERE Favorite.follower_id = ?
+');
+$followStmt->execute([$partner_id]);
+$followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -67,13 +61,13 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-// 他のユーザーの位置情報を取得
-const otherUsers = <?php echo json_encode($allLocations); ?>;
-console.log('フォローしているユーザーのデータ:', otherUsers);
+// フォローしているユーザーの位置情報を取得
+const followedUsers = <?php echo json_encode($followedUsers); ?>;
+console.log('フォローしているユーザーのデータ:', followedUsers);
 
 // 友達リストを作成
 const friendList = document.getElementById('friend-list');
-otherUsers.forEach(user => {
+followedUsers.forEach(user => {
     if (user.icon_name && user.user_name) {
         const listItem = document.createElement('li');
         listItem.className = 'friend-item';
@@ -161,8 +155,8 @@ function updateLocation() {
 // 位置情報更新ボタンのクリックイベント
 document.getElementById('update-location-btn').addEventListener('click', updateLocation);
 
-// 他のユーザーのマーカーを表示
-otherUsers.forEach(user => {
+// フォローしているユーザーのマーカーを表示
+followedUsers.forEach(user => {
     if (user.icon_name && user.latitude && user.longitude) {
         const markerElement = document.createElement('div');
         markerElement.className = 'marker';
