@@ -40,13 +40,14 @@ if (isset($_POST['tag_id'])) {
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 <div class="center">
-    <h1 class="title" id="okini">みんなのタグ</h1>
+    <h1 class="title okini" id="okini">みんなのタグ</h1>
     <a href="join_tag.php" class="join_tag"><span>参加しているタグはこちら</span></a>
     <form action="tag_list" method="post">
         <input type="text" name="tag_search" class="textbox" placeholder="検索したい内容を入力してください">
         <input type="submit" value="検索" class="search">
     </form>
 </div>
+
 
 <?php
 function limitDisplay($text, $limit) {
@@ -99,16 +100,17 @@ if ($results) {
 ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const okiniElement = document.getElementById('okini');
-        const text = okiniElement.textContent;
-        okiniElement.innerHTML = '';
+document.addEventListener('DOMContentLoaded', () => {
+    const okiniElement = document.querySelector('.okini');
+    const text = okiniElement.textContent;
+    okiniElement.innerHTML = '';
 
-        for (let i = 0; i < text.length; i++) {
-            const span = document.createElement('span');
-            span.textContent = text[i];
-            span.style.animationDelay = `${i * 0.5}s`;
-            okiniElement.appendChild(span);
-        }
-    });
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
+        okiniElement.appendChild(span);
+    }
+});
+
 </script>
