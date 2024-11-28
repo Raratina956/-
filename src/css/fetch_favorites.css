@@ -149,16 +149,16 @@ th:hover {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.atag {
+/* .atag {
     transition: transform 0.2s, box-shadow 0.2s;
-}
+} */
 
 .favorite-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.atag:hover {
+/* .atag:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+} */
