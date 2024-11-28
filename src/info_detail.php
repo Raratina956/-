@@ -84,16 +84,16 @@ if ($type == 1) {
             <td colspan="2"><?php echo $content; ?></td>
         </tr>
         <tr>
-            <td>送信者</td>
-            <td>受信タグ</td>
+            <td width="50%">送信者</td>
+            <td width="50%">受信タグ</td>
         </tr>
         <tr>
-            <td><?php echo $send_user_name; ?></td>
-            <td><?php echo $sent_tag_name; ?></td>
+            <td width="50%"><?php echo $send_user_name; ?></td>
+            <td width="50%"><?php echo $sent_tag_name; ?></td>
         </tr>
         <tr>
-            <td><?php echo $time; ?></td>
-            <td>
+            <td width="50%"><?php echo $time; ?></td>
+            <td width="50%">
                 <form action="info_detail.php" method="post">
                     <input type="submit" name="削除">
                 </form>
