@@ -602,11 +602,16 @@ if (isset($_POST['all_delete'])) {
                                 continue 2; // 選択されたユーザー以外の通知はスキップ
                             }
                         }
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$send_id]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        if ($read_check == 0) {
+                            $read_dis = '未読';
+                        } else {
+                            $read_dis = '';
+                        }
                         if (!$isMobile) {
                             echo '<tr>';
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$send_id]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                             echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
                             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                             echo '</a></td>';
@@ -696,11 +701,16 @@ if (isset($_POST['all_delete'])) {
                                 continue 2; // 選択されたユーザー以外の通知はスキップ
                             }
                         }
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$send_id]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                        if ($read_check == 0) {
+                            $read_dis = '未読';
+                        } else {
+                            $read_dis = '';
+                        }
                         if (!$isMobile) {
                             echo '<tr>';
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$send_id]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                             echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
                             echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
                             echo '</a></td>';

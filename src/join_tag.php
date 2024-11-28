@@ -21,7 +21,7 @@ require 'header.php';
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 <main>
-    <h1>参加タグ一覧</h1>
+    <h1 class="title okini" id="okini">参加タグ一覧</h1>
     <?php
     $search_sql = $pdo->prepare("SELECT * FROM Tag_attribute WHERE user_id=?");
     $search_sql->execute([$_SESSION['user']['user_id']]);
@@ -36,12 +36,9 @@ require 'header.php';
                 <?php
                 function limitDisplay($text, $limit)
                 {
-                    // Check if the text exceeds the limit
                     if (mb_strlen($text) > $limit) {
-                        // Return the limited text with ellipsis
                         return mb_substr($text, 0, $limit) . '...';
                     } else {
-                        // Return the original text if within the limit
                         return $text;
                     }
                 }
@@ -72,7 +69,20 @@ require 'header.php';
     } else {
         echo '<h3>参加済みのタグがありません</h3>';
     }
-
     ?>
     <a href="tag_list.php" class="back-link">戻る</a>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const okiniElement = document.querySelector('.okini');
+        const text = okiniElement.textContent;
+        okiniElement.innerHTML = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = text[i];
+            span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
+            okiniElement.appendChild(span);
+        }
+    });
+</script>
