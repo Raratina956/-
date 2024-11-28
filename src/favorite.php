@@ -33,9 +33,9 @@ if (isset($_POST['delete'])) {
 <table border="0" style="font-size: 15pt;">
     <tr>
         <th id="allTab" class="selected" onclick="fetchData('all'); selectTab(this)">全て</th>
-        <th></th>
+        <th>/</th>
         <th id="teacherTab" class="unselected" onclick="fetchData('teacher'); selectTab(this)">先生</th>
-        <th></th>
+        <th>/</th>
         <th id="studentTab" class="unselected" onclick="fetchData('student'); selectTab(this)">生徒</th>
     </tr>
 </table>
