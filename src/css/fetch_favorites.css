@@ -142,6 +142,7 @@ th:hover {
 .favorite-item {
     display: inline-block;
     vertical-align: middle; /* アイコンと名前を中央に揃えるために追加 */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .usericon {
@@ -152,7 +153,12 @@ th:hover {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.favorite-item:hover .atag {
+.favorite-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.atag:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
