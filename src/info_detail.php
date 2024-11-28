@@ -47,6 +47,7 @@ if ($type == 1) {
     $user_row = $user_sql->fetch();
     $tag_sql = $pdo->prepare('SELECT * FROM tag_list WHERE tag_id');
     $tag_sql->execute([$info_row['sent_tag']]);
+    $tag_row = $tag_sql->fetch();
     if($user_row){
         $send_user_name = $user_row['user_name'];
     }else{
