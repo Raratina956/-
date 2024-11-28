@@ -133,9 +133,10 @@ if (isset($_POST['delete'])) {
         const text = okiniElement.textContent;
         okiniElement.innerHTML = '';
 
-        for (let char of text) {
+        for (let i = 0; i < text.length; i++) {
             const span = document.createElement('span');
-            span.textContent = char;
+            span.textContent = text[i];
+            span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
             okiniElement.appendChild(span);
         }
     });
