@@ -92,7 +92,7 @@ if (empty($_POST['title'])) {
                 ?>
             </select>
             <br>
-            <input type="text" name="title" class="title" placeholder="タイトル">
+            <input type="text" name="title" class="title-textbox" placeholder="タイトル">
             <?php
             if (isset($error)) {
                 echo '<span style="display: block; text-align: center; color: red;">' . $error . '</span>';

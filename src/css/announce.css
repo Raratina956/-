@@ -117,7 +117,12 @@ h3 {
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
 
-.title{
+.title {
+    margin-bottom: 1%;
+    font-size: 2em !important; /* フォントサイズを大きく */
+}
+
+.title-textbox{
     height: 35px;
     width: 70%;
 }
