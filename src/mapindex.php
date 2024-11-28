@@ -19,17 +19,42 @@ $iconStmt->execute([$user_id]);  // partner_id を user_id に変更
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
-// フォローしているユーザーの情報と位置情報を取得する
-$followStmt = $pdo->prepare('
-    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
-    FROM Icon
-    INNER JOIN Users ON Icon.user_id = Users.user_id
-    INNER JOIN locations ON Icon.user_id = locations.user_id
-    INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
-    WHERE Favorite.follow_id = ?
-');
+// フォローしているユーザーのIDを取得
+$followStmt = $pdo->prepare('SELECT follow_id FROM Favorite WHERE user_id = ?');
 $followStmt->execute([$user_id]);  // partner_id を user_id に変更
-$followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
+$followedUserIds = $followStmt->fetchAll(PDO::FETCH_COLUMN);
+
+// フォローしているユーザーのアイコン、名前、位置情報をそれぞれ取得
+$followedUsers = [];
+foreach ($followedUserIds as $followedUserId) {
+    // ユーザーのアイコンを取得
+    $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
+    $iconStmt->execute([$followedUserId]);
+    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+    $iconName = $icon ? $icon['icon_name'] : 'default-icon.png';
+
+    // ユーザー名を取得
+    $userStmt = $pdo->prepare('SELECT user_name FROM Users WHERE user_id = ?');
+    $userStmt->execute([$followedUserId]);
+    $user = $userStmt->fetch(PDO::FETCH_ASSOC);
+    $userName = $user ? $user['user_name'] : '名前なし';
+
+    // 位置情報を取得
+    $locationStmt = $pdo->prepare('SELECT latitude, longitude FROM locations WHERE user_id = ?');
+    $locationStmt->execute([$followedUserId]);
+    $location = $locationStmt->fetch(PDO::FETCH_ASSOC);
+    $latitude = $location ? $location['latitude'] : null;
+    $longitude = $location ? $location['longitude'] : null;
+
+    // フォローしているユーザーの情報をまとめる
+    $followedUsers[] = [
+        'user_id' => $followedUserId,
+        'icon_name' => $iconName,
+        'user_name' => $userName,
+        'latitude' => $latitude,
+        'longitude' => $longitude
+    ];
+}
 ?>
 
 <!DOCTYPE html>
