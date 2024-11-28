@@ -132,7 +132,7 @@ unset($_SESSION['floor']['kai']);
         echo '</form></div>';
 
         // 学外
-        echo '<div class="gakugai-container"><li><a  href="mapindex.php"><img src="img/gakugai.png" width="150px" height="150px"></a></li><li>学外はこちら</li></h2></div>';
+        echo '<div class="gakugai-container"><li><a  href="mapindex.php"><img src="img/gakugai.png" width="150px" height="150px"></a></li><li><a>学外はこちら</a></li></div>';
 
         //  map
         echo '<table class="table">';
