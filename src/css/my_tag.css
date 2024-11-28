@@ -200,6 +200,10 @@ span{
         border-radius: 40px;
 }
 
+.title {
+    margin-bottom: 1%;
+    font-size: 2em; /* フォントサイズを大きく */
+}
 .okini {
     display: flex;
     justify-content: center;
