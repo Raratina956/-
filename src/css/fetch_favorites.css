@@ -142,6 +142,7 @@ th:hover {
 .favorite-item {
     display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
+    vertical-align: middle;
 }
 
 .favorite-item:hover .usericon,
