@@ -117,7 +117,7 @@ h3 {
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
 
-.title{
+.title-textbox{
     height: 35px;
     width: 70%;
 }
