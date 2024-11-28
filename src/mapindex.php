@@ -10,11 +10,12 @@ try {
     exit();
 }
 
-$partner_id = $_SESSION['user']['user_id'];
+// 自分のユーザーIDを取得
+$user_id = $_SESSION['user']['user_id'];  // partner_id を user_id に変更
 
 // ユーザーのアイコンを取得
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$partner_id]);
+$iconStmt->execute([$user_id]);  // partner_id を user_id に変更
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
@@ -27,7 +28,7 @@ $followStmt = $pdo->prepare('
     INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
     WHERE Favorite.follow_id = ?
 ');
-$followStmt->execute([$partner_id]);
+$followStmt->execute([$user_id]);  // partner_id を user_id に変更
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -128,7 +129,7 @@ function updateLocation() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: "<?php echo $partner_id; ?>",
+                    user_id: "<?php echo $user_id; ?>",  // partner_id を user_id に変更
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 })
