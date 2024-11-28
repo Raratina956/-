@@ -148,3 +148,8 @@ object-fit: cover;
 .kensaku-user{
   margin: auto 46px;
 }
+
+.g-img{
+  width: 150px;
+  height: 150px;
+}
