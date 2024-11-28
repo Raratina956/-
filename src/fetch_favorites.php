@@ -45,27 +45,28 @@ echo '<style> table tr { border-bottom: 1px solid #000; /* 下線を追加 */ } 
 if ($list_raw) {
     echo '<table class="favorite_table" style="font-size: 16pt;">';
     foreach ($list_raw as $favorite) {
-    echo '<tr>';
-    $follower_id =  $favorite['follower_id'];
-    $icon_sql = $pdo->prepare('SELECT * FROM Icon WHERE user_id=?');
-    $icon_sql ->execute([$follower_id]);
-    $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
-    $icon_name = $icon_row['icon_name'];
-    if($favorite['s_or_t'] == 0){
-        echo '<td>　　　  </td>';
-    }else{
-        echo '<td><img src="img/kakubo.jpg" style="margin-inline-end: 25px;"></td>';
+        echo '<tr>';
+        $follower_id =  $favorite['follower_id'];
+        $icon_sql = $pdo->prepare('SELECT * FROM Icon WHERE user_id=?');
+        $icon_sql ->execute([$follower_id]);
+        $icon_row = $icon_sql->fetch(PDO::FETCH_ASSOC);
+        $icon_name = $icon_row['icon_name'];
+        if($favorite['s_or_t'] == 0){
+            echo '<td>　　　  </td>';
+        }else{
+            echo '<td><img src="img/kakubo.jpg" style="margin-inline-end: 25px;"></td>';
+        }
+        echo '<td><div class="favorite-item"><a href="user.php?user_id=', $follower_id, '"><img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'"></a><a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], '</a></div></td>';
+        ?>
+        
+        <td>
+            <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>); location.reload();" class="button_del">削除</button>
+        </td>
+        <?php
+        echo '</tr>';
     }
-    echo '<td><a href="user.php?user_id=', $follower_id, '"><img src="'.$icon_name.'" width="100" height="100" class="usericon" title="'.$favorite['user_name'].'"></a></td>';
-    echo '<td><a href="user.php?user_id=', $follower_id, '" class="atag">', $favorite['user_name'], '</a></td>';
-    ?>
     
-    <td>
-        <button onclick="deleteFavorite(<?php echo $favorite['favorite_id']; ?>); location.reload();" class="button_del">削除</button>
-    </td>
-    <?php
-    echo '</tr>';
-}
+    
 
     echo '</table>';
 } else {

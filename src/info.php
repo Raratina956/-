@@ -343,9 +343,7 @@ if (isset($_POST['all_delete'])) {
     }
 }
 ?>
-<?php
-require 'header.php';
-?>
+<?php require 'header.php'; ?>
 <link rel="stylesheet" href="mob_css/info-mob.css" media="screen and (max-width: 480px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
 <link rel="stylesheet" href="css/info.css" media="screen and (min-width: 1280px)">
@@ -509,48 +507,80 @@ require 'header.php';
                                 continue 2; // 選択されたユーザー以外の通知はスキップ
                             }
                         }
-                        echo '<tr>';
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$send_id]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
-                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
-                        echo '</a></td>';
-                        echo '<td width="15%"><img src="img/announce_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんから、アナウンスが届きました</td>';
                         if ($read_check == 0) {
-                            echo '<td style="width: 15%;">未読</td>';
+                            $read_dis = '未読';
                         } else {
-                            echo '<td style="width: 15%;"></td>';
+                            $read_dis = '';
                         }
-                        echo '</tr>';
-                        echo '<tr>';
-                        echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td>';
                         if (!$isMobile) {
+                            echo '<tr>';
+                            echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
+                            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                            echo '</a></td>';
+                            echo '<td width="15%"><img src="img/announce_info.png" width="40%" height="100%"></td>';
+                            echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんから、アナウンスが届きました</td>';
+                            if ($read_check == 0) {
+                                echo '<td style="width: 15%;">未読</td>';
+                            } else {
+                                echo '<td style="width: 15%;"></td>';
+                            }
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<td class="day" style="width: 10%;">', timeAgo($logtime), '</td>';
                             echo '<td colspan="2" class="title" style="width: 60%;"> 件名：', $title, '</td>';
-                        }
-                        if ($read_check == 0) {
+                            if ($read_check == 0) {
+                                ?>
+                                <form action="info.php" method="post">
+                                    <input type="hidden" name="read_type" value=1>
+                                    <input type="hidden" name="read_id" value=<?php echo $announcement_id; ?>>
+                                    <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                                </form>
+                                <?php
+                            } else {
+                                echo '<td style="width: 10%;"></td>';
+                            }
                             ?>
-                            <form action="info.php" method="post">
-                                <input type="hidden" name="read_type" value=1>
-                                <input type="hidden" name="read_id" value=<?php echo $announcement_id; ?>>
-                                <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                            <form action="info_detail.php" method="post">
+                                <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
                             </form>
+                            <form action="info.php" method="post" onsubmit="return confirmDelete()">
+                                <input type="hidden" name="delete_type" value=1>
+                                <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
+                            </form>
+                            </tr>
                             <?php
                         } else {
-                            echo '<td style="width: 10%;"></td>';
+                            ?>
+                            <tr>
+                                <td><a href="user.php?user_id='<?php echo $send_id; ?>'">
+                                        <img src="<?php echo $icon['icon_name']; ?>" width="20%" height="50%" class="usericon">
+                                    </a>
+                                </td>
+                                <td colspan="2">
+                                    <?php echo $send_name; ?>さんから、アナウンスが届きました
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?php echo timeAgo($logtime) ?>
+                                </td>
+                                <td>
+                                    <?php echo $read_dis ?>
+                                </td>
+                                <td>
+                                    <form action="info_detail.php" method="post">
+                                        <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
+                                        <input type="submit" value="詳細" class="edit">
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php
                         }
-                        ?>
-                        <form action="info_detail.php" method="post">
-                            <input type="hidden" name="announcement_id" value=<?php echo $announcement_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
-                        </form>
-                        <form action="info.php" method="post" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="delete_type" value=1>
-                            <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
-                        </form>
-                        <?php
                     }
                     break;
                 case 2:
@@ -572,50 +602,53 @@ require 'header.php';
                                 continue 2; // 選択されたユーザー以外の通知はスキップ
                             }
                         }
-                        echo '<tr>';
-                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                        $iconStmt->execute([$send_id]);
-                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
-                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
-                        echo '</a></td>';
-                        echo '<td width="15%"><img src="img/map_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんが位置情報を更新しました</td>';
-                        if ($read_check == 0) {
-                            echo '<td style="width: 15%;">未読</td>';
-                        } else {
-                            echo '<td style="width: 15%;"></td>';
-                        }
-                        echo '</tr>';
-                        echo '<tr>';
-                        echo '<td class="day" style="width: 10%;">', timeAgo($logtime);
                         if (!$isMobile) {
+                            echo '<tr>';
+                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                            $iconStmt->execute([$send_id]);
+                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                            echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
+                            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                            echo '</a></td>';
+                            echo '<td width="15%"><img src="img/map_info.png" width="40%" height="100%"></td>';
+                            echo '<td colspan="3" style="width: 55%;">', $send_name, 'さんが位置情報を更新しました</td>';
+                            if ($read_check == 0) {
+                                echo '<td style="width: 15%;">未読</td>';
+                            } else {
+                                echo '<td style="width: 15%;"></td>';
+                            }
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<td class="day" style="width: 10%;">', timeAgo($logtime);
+                            if (!$isMobile) {
+                                ?>
+                                <td colspan="2" style="width: 60%;"></td>
+                                <?php
+                            }
+                            if ($read_check == 0) {
+                                ?>
+                                <form action="info.php" method="post">
+                                    <input type="hidden" name="read_type" value=2>
+                                    <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
+                                    <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                                </form>
+                                <?php
+                            } else {
+                                echo '<td style="width: 10%;"></td>';
+                            }
                             ?>
-                            <td colspan="2" style="width: 60%;"></td>
-                            <?php
-                        }
-                        if ($read_check == 0) {
-                            ?>
-                            <form action="info.php" method="post">
-                                <input type="hidden" name="read_type" value=2>
-                                <input type="hidden" name="read_id" value=<?php echo $current_location_id; ?>>
-                                <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                            <form action="info_detail.php" method="post">
+                                <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
                             </form>
+                            <form action="info.php" method="post" onsubmit="return confirmDelete()">
+                                <input type="hidden" name="delete_type" value=2>
+                                <input type="hidden" name="delete_id" value=<?php echo $current_location_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
+                            </form>
+                            </tr>
                             <?php
-                        } else {
-                            echo '<td style="width: 10%;"></td>';
                         }
-                        ?>
-                        <form action="info_detail.php" method="post">
-                            <input type="hidden" name="current_location_id" value=<?php echo $current_location_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
-                        </form>
-                        <form action="info.php" method="post" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="delete_type" value=2>
-                            <input type="hidden" name="delete_id" value=<?php echo $current_location_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
-                        </form>
-                        <?php
                     }
                     break;
                 case 3:
@@ -636,50 +669,53 @@ require 'header.php';
                                 continue 2; // 選択されたユーザー以外の通知はスキップ
                             }
                         }
-                        echo '<tr>';
-                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                        $iconStmt->execute([$send_id]);
-                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                        echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
-                        echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
-                        echo '</a></td>';
-                        echo '<td style="width: 15%;"><img src="img/chat_info.png" width="40%" height="100%"></td>';
-                        echo '<td colspan="3" style="width: 55%;">', $sent_name, 'さんからチャットが届きました</td>';
-                        if ($read_check == 0) {
-                            echo '<td style="width: 15%;">未読</td>';
-                        } else {
-                            echo '<td style="width: 55%;"></td>';
-                        }
-                        echo '</tr>';
-                        echo '<tr>';
-                        echo '<td class="day" style="width: 10%;">', timeAgo($logtime);
                         if (!$isMobile) {
+                            echo '<tr>';
+                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                            $iconStmt->execute([$send_id]);
+                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+                            echo '<td style="width: 15%;"><a href="user.php?user_id=' . $send_id . '">';
+                            echo '<img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">';
+                            echo '</a></td>';
+                            echo '<td style="width: 15%;"><img src="img/chat_info.png" width="40%" height="100%"></td>';
+                            echo '<td colspan="3" style="width: 55%;">', $sent_name, 'さんからチャットが届きました</td>';
+                            if ($read_check == 0) {
+                                echo '<td style="width: 15%;">未読</td>';
+                            } else {
+                                echo '<td style="width: 55%;"></td>';
+                            }
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<td class="day" style="width: 10%;">', timeAgo($logtime);
+                            if (!$isMobile) {
+                                ?>
+                                <td colspan="2" style="width: 60%;"></td>
+                                <?php
+                            }
+                            if ($read_check == 0) {
+                                ?>
+                                <form action="info.php" method="post">
+                                    <input type="hidden" name="read_type" value=3>
+                                    <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
+                                    <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                                </form>
+                                <?php
+                            } else {
+                                echo '<td></td>';
+                            }
                             ?>
-                            <td colspan="2" style="width: 60%;"></td>
-                            <?php
-                        }
-                        if ($read_check == 0) {
-                            ?>
-                            <form action="info.php" method="post">
-                                <input type="hidden" name="read_type" value=3>
-                                <input type="hidden" name="read_id" value=<?php echo $message_id; ?>>
-                                <td style="width: 10%;"><input type="submit" value="既読" class="read_one"></td>
+                            <form action="info_detail.php" method="post">
+                                <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
                             </form>
+                            <form action="info.php" method="post" onsubmit="return confirmDelete()">
+                                <input type="hidden" name="delete_type" value=3>
+                                <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
+                                <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
+                            </form>
+                            </tr>
                             <?php
-                        } else {
-                            echo '<td></td>';
                         }
-                        ?>
-                        <form action="info_detail.php" method="post">
-                            <input type="hidden" name="message_id" value=<?php echo $message_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="詳細" class="edit"></td>
-                        </form>
-                        <form action="info.php" method="post" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="delete_type" value=3>
-                            <input type="hidden" name="delete_id" value=<?php echo $message_id; ?>>
-                            <td style="width: 10%;"><input type="submit" value="削除" class="delete_one"></td>
-                        </form>
-                        <?php
                     }
                     break;
                 default:
