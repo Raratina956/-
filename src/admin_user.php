@@ -52,7 +52,9 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/admin_user.css">
+    <link rel="stylesheet" href="mob_css/admin_user-mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/admin_user.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
+    <link rel="stylesheet" href="css/admin_user.css" media="screen and (min-width: 1280px)">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
