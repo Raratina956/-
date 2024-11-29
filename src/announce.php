@@ -73,7 +73,7 @@ if (isset($_POST['title'])) {
 if (empty($_POST['title'])) {
     // 下記アナウンス発信前
     ?>
-    <h1>アナウンス</h1>
+    <h1 class="okini">アナウンス</h1>
     <?php
     $join_sql = $pdo->prepare("SELECT * FROM Tag_attribute WHERE user_id=?");
     $join_sql->execute([$_SESSION['user']['user_id']]);
@@ -125,5 +125,21 @@ if (empty($_POST['title'])) {
 }
 ?>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const okiniElement = document.querySelector('.okini');
+    const text = okiniElement.textContent.trim(); // 空白を削除
+    okiniElement.innerHTML = '';
+
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
+        okiniElement.appendChild(span);
+    }
+});
+</script>
+
 </body>
 </html>
