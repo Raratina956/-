@@ -63,6 +63,10 @@ unset($_SESSION['floor']['kai']);
     .usericon:hover {
         transform: scale(1.1);
     }
+
+    .floor:hover {
+        background-color: #0000ff; /* Dark blue */
+    }
 </style>
 
 <body>
