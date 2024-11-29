@@ -29,6 +29,13 @@ if (isset($_POST['announcement_id'])) {
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/chat.php?user_id=' . $mess_row['send_id'];
     header("Location: $redirect_url");
     exit();
+} elseif (isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $deltee_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id = ? AND user_id=?');
+    $deltee_sql->execute([$delete_id,$_SESSION['user']['user_id']]);
+    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
+    header("Location: $redirect_url");
+    exit();
 } else {
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
     header("Location: $redirect_url");
@@ -78,13 +85,17 @@ if ($type == 1) {
 <div class="content">
     <table>
         <tr>
-            <td colspan="2"><h3>タイトル</h3></td>
+            <td colspan="2">
+                <h3>タイトル</h3>
+            </td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $title; ?></td>
         </tr>
         <tr>
-            <td colspan="2"><h3>本文</h3></td>
+            <td colspan="2">
+                <h3>本文</h3>
+            </td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $content; ?></td>
@@ -101,6 +112,7 @@ if ($type == 1) {
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
+                    <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
                     <input type="submit" value="削除">
                 </form>
             </td>
