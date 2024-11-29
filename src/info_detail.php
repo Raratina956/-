@@ -112,8 +112,9 @@ if ($type == 1) {
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
+                  
                     <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
-                    <input type="submit" value="削除">
+                    <input type="submit" value="削除"class="delete">
                 </form>
             </td>
         </tr>
