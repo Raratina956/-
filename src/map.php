@@ -64,16 +64,11 @@ unset($_SESSION['floor']['kai']);
         transform: scale(1.1);
     }
 
-    .button-hover {
-        background-color: #add8e6; /* Light blue */
-    }
-    
-    td.number:hover {
-        background-color: #add8e6; /* Light blue */
-    }
-
     .floor:hover {
         background-color: #0000ff; /* Dark blue */
+        .blook{
+            background-color: #add8e6; /* Light blue */
+        }
     }
 </style>
 
