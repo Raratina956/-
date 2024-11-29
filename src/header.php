@@ -77,12 +77,12 @@ if (isset($_POST['logout'])) {
         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
         $iconStmt->execute([$_SESSION['user']['user_id']]);
         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-        $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
-        $current_sql->execute([$_SESSION['user']['user_id']]);
-        $current_row = $current_sql->fetch(PDO::FETCH_ASSOC);
+        $current_slq_h = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
+        $current_slq_h->execute([$_SESSION['user']['user_id']]);
+        $current_row_h = $current_sql_h->fetch(PDO::FETCH_ASSOC);
 
-        if ($current_row) {
-            $class_id = $current_row['classroom_id'];
+        if ($current_row_h) {
+            $class_id = $current_row_h['classroom_id'];
             $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
             $class_sql->execute([$class_id]);
             $class_row = $class_sql->fetch(PDO::FETCH_ASSOC);
