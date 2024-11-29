@@ -25,7 +25,7 @@ $followStmt = $pdo->prepare('
     INNER JOIN Users ON Icon.user_id = Users.user_id
     INNER JOIN locations ON Icon.user_id = locations.user_id
     INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
-    WHERE Favorite.followed_id = ?
+    WHERE Favorite.follower_id = ?
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
