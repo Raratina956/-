@@ -28,11 +28,10 @@ table {
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    text-align: center;
 }
 
-tr {
-    border-bottom: 1px solid #aaa;
-}
+
 
 
 
