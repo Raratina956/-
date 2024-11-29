@@ -1,5 +1,8 @@
 <?php
 require 'parts/auto-login.php';
+if (isset($error)) {
+    unset($error);
+}
 $tag_id = $_POST['tag_id'];
 $sql = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_id=?');
 $sql->execute([$tag_id]);
