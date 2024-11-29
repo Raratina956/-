@@ -4,7 +4,7 @@ ob_start();
 // セッションの開始
 session_start();
 
-require 'db-connect.php';
+require 'parts/db-connect.php';
 
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -51,8 +51,12 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo htmlspecialchars($user['classroom_id'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['classroom_name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo htmlspecialchars($user['classroom_floor'], ENT_QUOTES, 'UTF-8'); ?></td>
-         
-            
+            <td>
+                <form action="admin_room_edit.php" method="post">
+                    <input type="hidden" name="classroom_id" value=<?php echo $user['classroom_id'];?>>
+                    <input type="submit" value="編集">
+                </form>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
