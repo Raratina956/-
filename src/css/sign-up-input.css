@@ -102,3 +102,15 @@ input[type="submit"]:hover {
     text-align: center;
     color: red;
 }
+
+.upload{
+    background-color: #6fcdb6;
+    border: none;
+    border-radius: 21px;
+    font-size: 25px;
+    margin-block: -30px;
+}
+
+.upload:hover{
+    background-color: #65fcb5;
+}
