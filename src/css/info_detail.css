@@ -14,10 +14,12 @@ body {
     font-style: normal;
 
 }
+
+
 .content {
     background-color: white;
     padding: 15px;
-    margin: 0 auto;
+    margin: 20px auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 600px;
@@ -97,16 +99,11 @@ a:hover {
 }
 
 
-.content {
-    /* margin: 20px auto; */
-    max-width: 800px; /* 中央寄せのための幅設定 */
-    font-family: 'Verdana', sans-serif;
-    color: #333; /* テキストカラーを落ち着いたトーンに */
-}
+
 
 table {
     width: 100%;
-    margin: 20px auto;
+  
     border-collapse: collapse;
     background-color: #f9f9f9; /* テーブル背景色に柔らかなトーンを採用 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* テーブル全体に軽い影を追加 */
