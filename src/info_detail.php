@@ -119,7 +119,7 @@ if ($type == 1) {
             </td>
         </tr>
     </table>
-    <a href="info.php">戻る</a>
+   <center> <a href="info.php">戻る</a></center>
 </div>
 </body>
 <?php
