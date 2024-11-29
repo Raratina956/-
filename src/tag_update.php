@@ -6,15 +6,32 @@ $sql->execute([$tag_id]);
 $row = $sql->fetch(PDO::FETCH_ASSOC);
 $tag_name = $row['tag_name'];
 if (isset($_POST['up_tag_name'])) {
-    $up_tag_name = $_POST['up_tag_name'];
-    $sql_update = $pdo->prepare('UPDATE Tag_list SET tag_name = ? WHERE tag_id = ?');
-    $sql_update->execute([
-        $up_tag_name,
-        $tag_id
-    ]);
-    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
-    header("Location: $redirect_url");
-    exit();
+    if (!(empty($_POST['UP_tag_name']))) {
+        $tag_name = $_POST['up_tag_name'];
+            
+        // タグが既に存在するか確認
+        $sql_check = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=?');
+        $sql_check->execute([
+            $tag_name
+        ]);
+        $existing_tag = $sql_check->fetch(PDO::FETCH_ASSOC);
+        
+        if ($existing_tag) {
+            $error = 'タグは既に存在します';
+        }else{
+            $up_tag_name = $_POST['up_tag_name'];
+            $sql_update = $pdo->prepare('UPDATE Tag_list SET tag_name = ? WHERE tag_id = ?');
+            $sql_update->execute([
+                $up_tag_name,
+                $tag_id
+            ]);
+            $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/my_tag.php';
+            header("Location: $redirect_url");
+            exit();
+        }
+    }else{
+        $error = '文字を入力してください';
+    }
 }
 ?>
 
@@ -52,6 +69,11 @@ require 'header.php';
                 </form>
             </tr>
         </table>
+        <?php
+            if (isset($error)) {
+                echo '<span style="display: block; text-align: center; color: red;">' . $error . '</span>';
+            }
+        ?>
         <a href="my_tag.php"class="back-link">戻る</a>
     </main>
 </body>
