@@ -90,7 +90,7 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2"><?php echo $title; ?></td>
+            <td colspan="2" class="border"><?php echo $title; ?></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -98,7 +98,7 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2"><?php echo $content; ?></td>
+            <td colspan="2"class="border"><?php echo $content; ?></td>
         </tr>
         <tr>
             <td width="50%">送信者</td>
@@ -112,13 +112,14 @@ if ($type == 1) {
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
+                  
                     <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
-                    <input type="submit" value="削除">
+                    <input type="submit" value="削除"class="delete">
                 </form>
             </td>
         </tr>
     </table>
-    <a href="info.php">戻る</a>
+   <center> <a href="info.php">戻る</a></center>
 </div>
 </body>
 <?php

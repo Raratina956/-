@@ -114,3 +114,11 @@ input[type="submit"]:hover {
 .upload:hover{
     background-color: #65fcb5;
 }
+
+.icon {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -22%;
+}
