@@ -59,7 +59,7 @@ if ($type == 1) {
         $sent_tag_name = '対象のタグが見つかりません';
     }
     $title = $info_row['title'];
-    if (isset($content)) {
+    if (isset($info_row['content'])) {
         $content = $info_row['content'];
     } else {
         $content = '　';
