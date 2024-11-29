@@ -83,16 +83,16 @@ if (isset($_POST['logout'])) {
 
         if ($current_row_h) {
             $class_id = $current_row_h['classroom_id'];
-            $class_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
-            $class_sql->execute([$class_id]);
-            $class_row = $class_sql->fetch(PDO::FETCH_ASSOC);
-            if ($class_row) {
-                $class_name = $class_row['classroom_name'];
+            $class_sql_h = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
+            $class_sql_h->execute([$class_id]);
+            $class_row_h = $class_sql_h->fetch(PDO::FETCH_ASSOC);
+            if ($class_row_h) {
+                $class_name_h = $class_row_h['classroom_name'];
             } else {
-                $class_name = 'クラス情報が見つかりません';
+                $class_name_h = 'クラス情報が見つかりません';
             }
         } else {
-            $class_name = '設定なし';
+            $class_name_h = '設定なし';
         }
 
         echo '<ul>';
@@ -102,7 +102,7 @@ if (isset($_POST['logout'])) {
             echo '<li><a href="user.php?user_id=', $_SESSION['user']['user_id'], '">', $user['user_name'], '</a></li>';
         }
         ?>
-        <li style="border-bottom: outset; border-color: #007bff5e;">現在地：　<?php echo $class_name; ?></li>
+        <li style="border-bottom: outset; border-color: #007bff5e;">現在地：　<?php echo $class_name_h; ?></li>
         <li style="border-bottom: outset; border-color: #007bff5e;">
             <form action="search.php" method="post">
                 <input type="text" name="search" class="tbox" style="margin-top: 5%;width: 85%;text-align: center;"
