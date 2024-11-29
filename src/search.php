@@ -105,10 +105,6 @@ if ($kinds == "a" || $kinds == "t") {
                 <tr>
                     <th colspan="2">ユーザー</th>
                 </tr>
-                <tr class="h">
-                    <th></th>
-                    <th>名前</th>
-                </tr>
                 <?php foreach ($user_data as $data): ?>
                     <form name="form<?php echo $data['id']; ?>" action="user.php" method="get">
                         <?php
@@ -142,10 +138,6 @@ if ($kinds == "a" || $kinds == "t") {
             <table class="tag-table">
                 <tr>
                     <th colspan="2">タグ</th>
-                </tr>
-                <tr class="h">
-                    <th>タグ名</th>
-                    <th></th>
                 </tr>
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
