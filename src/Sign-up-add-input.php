@@ -77,7 +77,7 @@ try {
         }
         ?>
         <input type="file" class="file" id="fileInput" name="icon_file" accept=".jpg, .png"><br>
-        <img id="preview" src="#" alt="Preview" style="display:none;"><br>
+        <img id="preview" src="#" alt="Preview" style="display:none;" class="icon"><br>
         <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
         <?php
         if (isset($_SESSION['login']['number_error'])) {
