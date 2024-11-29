@@ -73,9 +73,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期位置：東京
-    zoom: 10
+    center: [130.4208, 33.5902], // 初期位置：麻生情報ビジネス専門学校
+    zoom: 15 
 });
+
 
 // フォローしているユーザーの位置情報を取得
 const followedUsers = <?php echo json_encode($followedUsers); ?>;
