@@ -19,30 +19,30 @@ $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
 
-$followList = $pdo->prepare('
-     SELECT follower_id
-     FROM Favorite
-     WHERE follow_id = ?
-');
-$followList->execute([$partner_id]);
-$followedUsers = $followList->fetchAll(PDO::FETCH_ASSOC); // $followListの結果を取得
-
-// 結果を確認
-echo '<pre>';
-print_r($followedUsers); // 結果を表示
-echo '</pre>';
-
-// フォローしているユーザーの情報と位置情報を取得する
-// $followStmt = $pdo->prepare('
-//     SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
-//     FROM Icon
-//     INNER JOIN Users ON Icon.user_id = Users.user_id
-//     INNER JOIN locations ON Icon.user_id = locations.user_id
-//     INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
-//     WHERE Favorite.follow_id = ?
+// $followList = $pdo->prepare('
+//      SELECT follower_id
+//      FROM Favorite
+//      WHERE follow_id = ?
 // ');
-// $followStmt->execute([$partner_id]);
-// $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
+// $followList->execute([$partner_id]);
+// $followedUsers = $followList->fetchAll(PDO::FETCH_ASSOC); // $followListの結果を取得
+
+$followStmt = $pdo->prepare('
+    SELECT 
+        Icon.user_id, 
+        Icon.icon_name, 
+        Users.user_name, 
+        locations.latitude, 
+        locations.longitude 
+    FROM Favorite
+    INNER JOIN Icon ON Favorite.follower_id = Icon.user_id
+    INNER JOIN Users ON Favorite.follower_id = Users.user_id
+    INNER JOIN locations ON Favorite.follower_id = locations.user_id
+    WHERE Favorite.follow_id = ?
+');
+$followStmt->execute([$partner_id]);
+$followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
