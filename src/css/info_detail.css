@@ -106,6 +106,7 @@ a:hover {
 
 table {
     width: 100%;
+    margin: 20px auto;
     border-collapse: collapse;
     background-color: #f9f9f9; /* テーブル背景色に柔らかなトーンを採用 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* テーブル全体に軽い影を追加 */
@@ -113,8 +114,7 @@ table {
 
 td {
     padding: 12px 15px; /* テキストに余白を設ける */
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0; /* 横罫線を柔らかな色に */
+    text-align: center;
     font-size: 14px;
 }
 
@@ -124,7 +124,6 @@ tr:last-child td {
 
 td[colspan="2"] {
     font-weight: bold; /* 見出しの行を強調 */
-    background-color: #e8f4fd; /* 見出し行の背景色に薄い青を採用 */
 }
 
 input[type="submit"] {

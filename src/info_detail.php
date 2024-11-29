@@ -2,6 +2,12 @@
 require 'parts/auto-login.php';
 if (isset($_POST['announcement_id'])) {
     $announcement_id = $_POST['announcement_id'];
+    $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
+    $sql_update->execute([
+        1,
+        $announcement_id,
+        $_SESSION['user']['user_id']
+    ]);
     $type = 1;
 } elseif (isset($_POST['current_location_id'])) {
     $current_location_id = $_POST['current_location_id'];
@@ -59,7 +65,7 @@ if ($type == 1) {
         $sent_tag_name = '対象のタグが見つかりません';
     }
     $title = $info_row['title'];
-    if (isset($content)) {
+    if (isset($info_row['content'])) {
         $content = $info_row['content'];
     } else {
         $content = '　';
@@ -72,13 +78,13 @@ if ($type == 1) {
 <div class="content">
     <table>
         <tr>
-            <td colspan="2">タイトル</td>
+            <td colspan="2"><h3>タイトル</h3></td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $title; ?></td>
         </tr>
         <tr>
-            <td colspan="2">本文</td>
+            <td colspan="2"><h3>本文</h3></td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $content; ?></td>
@@ -95,11 +101,12 @@ if ($type == 1) {
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
-                    <input type="submit" name="削除">
+                    <input type="submit" value="削除">
                 </form>
             </td>
         </tr>
     </table>
+    <a href="info.php">戻る</a>
 </div>
 </body>
 <?php
