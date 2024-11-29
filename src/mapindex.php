@@ -20,7 +20,7 @@ $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルト�
 
 
 $followList = $pdo->prepare('
-     SELECT followed_id
+     SELECT follower_id
      FROM Favorite
      WHERE follow_id = ?
 ');
