@@ -31,12 +31,12 @@ h1 {
     color: #333;
 }
 
-span {
+/* span {
     display: block;
     margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
-}
+} */
 
 form {
     text-align: center;
@@ -117,7 +117,12 @@ h3 {
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
 }
 
-.title{
+.title {
+    height: 35px;
+    width: 70%;
+}
+
+.title-textbox{
     height: 35px;
     width: 70%;
 }

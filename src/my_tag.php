@@ -55,7 +55,7 @@ require 'header.php';
 
 </head>
 <div class="center">
-    <h1 class="title okini" id="okini">ｍｙタグ一覧</h1>
+    <h1 class="okini">ｍｙタグ一覧</h1>
     <h2>タグ作成</h2>
     <form action="my_tag.php" method="post">
         <span>タグ名：</span>
@@ -63,7 +63,6 @@ require 'header.php';
         <input type="submit" value="作成" class="button_in">
     </form>
 </div>
-
 <?php
 function limitDisplay($text, $limit)
 {
@@ -135,16 +134,16 @@ if ($list_raw) {
 ?>
 <a href="map.php" class="back-link">戻る</a>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const okiniElement = document.querySelector('.okini');
-        const text = okiniElement.textContent;
-        okiniElement.innerHTML = '';
+document.addEventListener('DOMContentLoaded', () => {
+    const okiniElement = document.querySelector('.okini');
+    const text = okiniElement.textContent.trim(); // 空白を削除
+    okiniElement.innerHTML = '';
 
-        for (let i = 0; i < text.length; i++) {
-            const span = document.createElement('span');
-            span.textContent = text[i];
-            span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
-            okiniElement.appendChild(span);
-        }
-    });
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
+        okiniElement.appendChild(span);
+    }
+});
 </script>
