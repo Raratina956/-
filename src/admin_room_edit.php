@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db-connect.php';
+require 'parts/db-connect.php';
 if (isset($_POST['classroom_id'])) {
     $class_id = $_POST['classroom_id'];
     if (isset($_POST['class_name']) && isset($_POST['class_floor'])) {
