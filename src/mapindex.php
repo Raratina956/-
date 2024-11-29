@@ -29,19 +29,21 @@ $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルト�
 
 $followStmt = $pdo->prepare('
     SELECT 
-        Icon.user_id, 
+        Favorite.follower_id, 
         Icon.icon_name, 
         Users.user_name, 
         locations.latitude, 
         locations.longitude 
     FROM Favorite
-    INNER JOIN Icon ON Favorite.follower_id = Icon.user_id
-    INNER JOIN Users ON Favorite.follower_id = Users.user_id
-    INNER JOIN locations ON Favorite.follower_id = locations.user_id
+    LEFT JOIN Icon ON Favorite.follower_id = Icon.user_id
+    LEFT JOIN Users ON Favorite.follower_id = Users.user_id
+    LEFT JOIN locations ON Favorite.follower_id = locations.user_id
     WHERE Favorite.follow_id = ?
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 ?>
 
@@ -71,9 +73,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2Iyc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [139.6917, 35.6895], // 初期位置：東京
-    zoom: 10
+    center: [130.4017, 33.5902], // 初期位置：福岡市の中心
+    zoom: 12 // 適切なズームレベルに調整（市全体を表示）
 });
+
+
 
 // フォローしているユーザーの位置情報を取得
 const followedUsers = <?php echo json_encode($followedUsers); ?>;
