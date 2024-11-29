@@ -72,7 +72,7 @@ if ($type == 1) {
 <div class="content">
     <table>
         <tr>
-            <td colspan="2">タイトル</td>
+            <td colspan="2"<h3>タイトル</h3></td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $title; ?></td>
