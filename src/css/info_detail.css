@@ -114,7 +114,6 @@ table {
 td {
     padding: 12px 15px; /* テキストに余白を設ける */
     text-align: left;
-    border-bottom: 1px solid #e0e0e0; /* 横罫線を柔らかな色に */
     font-size: 14px;
 }
 
@@ -124,7 +123,6 @@ tr:last-child td {
 
 td[colspan="2"] {
     font-weight: bold; /* 見出しの行を強調 */
-    background-color: #e8f4fd; /* 見出し行の背景色に薄い青を採用 */
 }
 
 input[type="submit"] {

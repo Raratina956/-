@@ -10,51 +10,25 @@ try {
     exit();
 }
 
-// 自分のユーザーIDを取得
-$user_id = $_SESSION['user']['user_id'];  // partner_id を user_id に変更
+$partner_id = $_SESSION['user']['user_id'];
 
 // ユーザーのアイコンを取得
 $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-$iconStmt->execute([$user_id]);  // partner_id を user_id に変更
+$iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
-// フォローしているユーザーのIDを取得
-$followStmt = $pdo->prepare('SELECT follow_id FROM Favorite WHERE user_id = ?');
-$followStmt->execute([$user_id]);  // partner_id を user_id に変更
-$followedUserIds = $followStmt->fetchAll(PDO::FETCH_COLUMN);
-
-// フォローしているユーザーのアイコン、名前、位置情報をそれぞれ取得
-$followedUsers = [];
-foreach ($followedUserIds as $followedUserId) {
-    // ユーザーのアイコンを取得
-    $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
-    $iconStmt->execute([$followedUserId]);
-    $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-    $iconName = $icon ? $icon['icon_name'] : 'default-icon.png';
-
-    // ユーザー名を取得
-    $userStmt = $pdo->prepare('SELECT user_name FROM Users WHERE user_id = ?');
-    $userStmt->execute([$followedUserId]);
-    $user = $userStmt->fetch(PDO::FETCH_ASSOC);
-    $userName = $user ? $user['user_name'] : '名前なし';
-
-    // 位置情報を取得
-    $locationStmt = $pdo->prepare('SELECT latitude, longitude FROM locations WHERE user_id = ?');
-    $locationStmt->execute([$followedUserId]);
-    $location = $locationStmt->fetch(PDO::FETCH_ASSOC);
-    $latitude = $location ? $location['latitude'] : null;
-    $longitude = $location ? $location['longitude'] : null;
-
-    // フォローしているユーザーの情報をまとめる
-    $followedUsers[] = [
-        'user_id' => $followedUserId,
-        'icon_name' => $iconName,
-        'user_name' => $userName,
-        'latitude' => $latitude,
-        'longitude' => $longitude
-    ];
-}
+// フォローしているユーザーの情報と位置情報を取得する
+$followStmt = $pdo->prepare('
+    SELECT Icon.user_id, Icon.icon_name, Users.user_name, locations.latitude, locations.longitude 
+    FROM Icon
+    INNER JOIN Users ON Icon.user_id = Users.user_id
+    INNER JOIN locations ON Icon.user_id = locations.user_id
+    INNER JOIN Favorite ON Icon.user_id = Favorite.follow_id
+    WHERE Favorite.follower_id = ?
+');
+$followStmt->execute([$partner_id]);
+$followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +128,7 @@ function updateLocation() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: "<?php echo $user_id; ?>",  // partner_id を user_id に変更
+                    user_id: "<?php echo $partner_id; ?>",
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 })

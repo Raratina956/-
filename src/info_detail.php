@@ -2,6 +2,12 @@
 require 'parts/auto-login.php';
 if (isset($_POST['announcement_id'])) {
     $announcement_id = $_POST['announcement_id'];
+    $sql_update = $pdo->prepare('UPDATE Announce_check SET read_check = ? WHERE announcement_id = ? AND user_id = ?');
+    $sql_update->execute([
+        1,
+        $announcement_id,
+        $_SESSION['user']['user_id']
+    ]);
     $type = 1;
 } elseif (isset($_POST['current_location_id'])) {
     $current_location_id = $_POST['current_location_id'];
@@ -59,7 +65,7 @@ if ($type == 1) {
         $sent_tag_name = '対象のタグが見つかりません';
     }
     $title = $info_row['title'];
-    if (isset($content)) {
+    if (isset($info_row['content'])) {
         $content = $info_row['content'];
     } else {
         $content = '　';

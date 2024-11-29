@@ -4,7 +4,7 @@ ob_start();
 // セッションの開始
 session_start();
 
-require 'db-connect.php';
+require 'parts/db-connect.php';
 
 try {
     $pdo = new PDO($connect, USER, PASS);
