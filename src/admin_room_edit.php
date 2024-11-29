@@ -34,7 +34,7 @@ $class_floor = $class_row['classroom_floor'];
     <p><span>教室編集</span></p>
     <form action="admin_room_edit.php" method="post">
         <input type="hidden" name="classroom_id" value=<?php echo $class_id; ?>>
-        <input type="text" name="class_name" value="<?php echo $class_name; ?>" placeholder="教室名"><br>
+        <input type="text" name="class_name" value="<?php echo $class_name; ?>" placeholder="教室名" required><br>
         <label for="class_floor">階数</label>
         <select id="class_floor" name="class_floor">
             <?php for ($i = 1; $i <= 7; $i++): ?>
