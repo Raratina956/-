@@ -78,7 +78,7 @@ if ($type == 1) {
 <div class="content">
     <table>
         <tr>
-            <td colspan="2"<h3>タイトル</h3></td>
+            <td colspan="2"><h3>タイトル</h3></td>
         </tr>
         <tr>
             <td colspan="2"><?php echo $title; ?></td>
@@ -101,7 +101,7 @@ if ($type == 1) {
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
-                    <input type="submit" name="削除">
+                    <input type="submit" value="削除">
                 </form>
             </td>
         </tr>
