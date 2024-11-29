@@ -34,9 +34,7 @@ tr {
     border-bottom: 1px solid #aaa;
 }
 
-tr:nth-child(2n) {
-    border-bottom: 2px solid #333;
-}
+
 
 tr:last-child{
     border-bottom: none;
@@ -46,6 +44,9 @@ td {
     padding: 12px 20px;
     text-align: left;
     font-size: 16px;
+}
+.border{
+    border-bottom: 2px solid #333;
 }
 
 .delete {
