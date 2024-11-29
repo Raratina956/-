@@ -6,7 +6,7 @@ $sql->execute([$tag_id]);
 $row = $sql->fetch(PDO::FETCH_ASSOC);
 $tag_name = $row['tag_name'];
 if (isset($_POST['up_tag_name'])) {
-    if (!(empty($_POST['UP_tag_name']))) {
+    if (!empty($_POST['UP_tag_name'])) {
         $tag_name = $_POST['up_tag_name'];
             
         // タグが既に存在するか確認
