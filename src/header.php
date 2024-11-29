@@ -79,7 +79,7 @@ if (isset($_POST['logout'])) {
         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
         $current_slq_h = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
         $current_slq_h->execute([$_SESSION['user']['user_id']]);
-        $current_row_h = $current_sql_h->fetch(PDO::FETCH_ASSOC);
+        $current_row_h = $current_slq_h->fetch(PDO::FETCH_ASSOC);
 
         if ($current_row_h) {
             $class_id = $current_row_h['classroom_id'];
