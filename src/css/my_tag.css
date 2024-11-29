@@ -210,13 +210,15 @@ span{
     margin-bottom: 1%;
     font-size: 2em !important; /* フォントサイズを大きく */
 }
-.okini {
+h1.okini {
     display: flex;
     justify-content: center;
     gap: 5px; /* 文字の間隔 */
+    font-size: 35px; /* ここで文字サイズを設定 */
+    color: #333;
 }
 
-.okini span {
+h1.okini span {
     display: inline-block;
     opacity: 0; /* 初期状態で見えないようにする */
     animation: floatUp 1s forwards; /* アニメーションを適用 */
@@ -232,4 +234,3 @@ span{
         transform: translateY(0);
     }
 }
-
