@@ -174,7 +174,7 @@ if (isset($_POST['logout'])) {
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-            document.body.style.transform = "scale(1)"; // ヘッダースクロール
+            // document.body.style.transform = "scale(1)"; // ヘッダースクロール
             document.body.style.transformOrigin = "0 0";  // 左上を基準にズーム
         });
         document.addEventListener("DOMContentLoaded", () => {
