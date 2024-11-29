@@ -5,7 +5,7 @@ ob_start();
 session_start();
 
 require 'header.php';
-require 'db-connect.php';
+require 'parts/db-connect.php';
 
 // 管理者権限チェック
 if (!isset($_SESSION['User']['user_id']) || $_SESSION['User']['user_id'] != 5) {
