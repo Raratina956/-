@@ -65,11 +65,9 @@ unset($_SESSION['floor']['kai']);
     }
 
     .floor:hover {
-        background-color: #0000ff; /* Dark blue */
-        .blook{
-            background-color: #add8e6; /* Light blue */
-        }
+        background-color: #0000ff; /* 濃い青 */
     }
+
 </style>
 
 <body>
