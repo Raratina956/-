@@ -55,7 +55,7 @@ try {
     <form id="uploadForm" action="Sign-up-add-output.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
         <div class="form-group">
             <label for="student_number">学籍番号：</label>
-            <input type="number" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" pattern="\d{7}" required>
+            <input type="number" name="student_number" id="student_number" maxlength="7" placeholder="学籍番号は7桁で入力してください" pattern="\d{7}" required style="font-size: 15px;">
         </div>
         <div class="form-group">
             <label for="class">クラス：</label>
