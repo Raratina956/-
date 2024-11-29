@@ -10,10 +10,9 @@ if (isset($_POST['tag_name'])) {
         $tag_name = $_POST['tag_name'];
         
         // タグが既に存在するか確認
-        $sql_check = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=? AND user_id=?');
+        $sql_check = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=?');
         $sql_check->execute([
-            $tag_name,
-            $_SESSION['user']['user_id']
+            $tag_name
         ]);
         $existing_tag = $sql_check->fetch(PDO::FETCH_ASSOC);
         
