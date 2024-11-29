@@ -68,7 +68,7 @@ unset($_SESSION['floor']['kai']);
         background-color: #0000ff; /* 濃い青 */
     }
 
-    .floor:hover ~ .blook {
+    .floor:hover ~ td.blook {
         background-color: #add8e6; /* 薄い青 */
     }
 
