@@ -208,7 +208,7 @@ span{
 
 .title {
     margin-bottom: 1%;
-    font-size: 2em; /* フォントサイズを大きく */
+    font-size: 2em !important; /* フォントサイズを大きく */
 }
 .okini {
     display: flex;
