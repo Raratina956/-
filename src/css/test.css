@@ -56,6 +56,7 @@
       transform: translateX(100%);
       transition: transform 0.5s ease;
       margin-top: 35px;
+      height: 850px;
     }
 
     /* ユーザー情報セクション */
@@ -121,6 +122,7 @@
     .slide-menu.active {
       transform: translateX(0);
       margin-top: 35px;
+      height: 850px;
     }
     
   /* } */
