@@ -121,6 +121,7 @@
     .slide-menu.active {
       transform: translateX(0);
       margin-top: 35px;
+      height: 850px;
     }
     
   /* } */
