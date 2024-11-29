@@ -31,12 +31,12 @@ h1 {
     color: #333;
 }
 
-span {
+/* span {
     display: block;
     margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
-}
+} */
 
 form {
     text-align: center;
@@ -115,11 +115,6 @@ h3 {
     font-size: 18px;
     color: #444;
     white-space: pre-wrap; /* Ensures that any extra spaces or newlines are respected */
-}
-
-.title {
-    margin-bottom: 1%;
-    font-size: 2em !important; /* フォントサイズを大きく */
 }
 
 .title-textbox{
