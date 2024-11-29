@@ -106,6 +106,7 @@ if ($type == 1) {
             </td>
         </tr>
     </table>
+    <a href="info.php">戻る</a>
 </div>
 </body>
 <?php
