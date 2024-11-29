@@ -29,19 +29,21 @@ $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルト�
 
 $followStmt = $pdo->prepare('
     SELECT 
-        Icon.user_id, 
+        Favorite.follower_id, 
         Icon.icon_name, 
         Users.user_name, 
         locations.latitude, 
         locations.longitude 
     FROM Favorite
-    INNER JOIN Icon ON Favorite.follower_id = Icon.user_id
-    INNER JOIN Users ON Favorite.follower_id = Users.user_id
-    INNER JOIN locations ON Favorite.follower_id = locations.user_id
+    LEFT JOIN Icon ON Favorite.follower_id = Icon.user_id
+    LEFT JOIN Users ON Favorite.follower_id = Users.user_id
+    LEFT JOIN locations ON Favorite.follower_id = locations.user_id
     WHERE Favorite.follow_id = ?
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 ?>
 
