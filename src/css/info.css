@@ -4,6 +4,11 @@ body {
     background-size: cover;
     font-family: Arial, sans-serif;
     color: #333;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
     font-family: "Zen Maru Gothic", serif;
     font-weight: 400;
     font-style: normal;
