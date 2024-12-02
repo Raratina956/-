@@ -146,7 +146,7 @@ function updateLocation() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: "<?php echo $partner_id; ?>",
+                    user_id: "<?php echo $partner_id; ?>",  // ここでpartner_idが正しく設定されていることを確認
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 })
@@ -169,6 +169,7 @@ function updateLocation() {
         alert("Geolocationがサポートされていません");
     }
 }
+
 
 // 位置情報更新ボタンのクリックイベント
 document.getElementById('update-location-btn').addEventListener('click', updateLocation);
