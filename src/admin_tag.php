@@ -56,7 +56,7 @@ $data = $query->fetchAll(PDO::FETCH_ASSOC);
          
             <td>
                 <form method="post" action="admin_tag_edit.php">
-                    <input type="hidden" name="edit" value="<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="edit" value="<?php echo htmlspecialchars($user['tag_id'], ENT_QUOTES, 'UTF-8'); ?>">
                     <button type="submit">編集</button>
                 </form>
             </td>
