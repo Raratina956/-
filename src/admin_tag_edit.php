@@ -57,7 +57,4 @@ if (isset($_POST['edit'])) {
 </body>
 </html>
 
-<?php
-// 出力バッファリングを終了してバッファの内容を出力
-ob_end_flush();
-?>
+
