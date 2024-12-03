@@ -102,7 +102,14 @@ ul{
 }
 
   
-  
+  .check{
+     /* width: 15%; */
+     margin-inline-start: 15px;
+     font-size: 20px;
+     text-align: center;
+     /* align-items: center; */
+     max-width: 150px;
+  }
  
   
   /* 絞込ボタンのスタイル */
