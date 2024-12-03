@@ -25,8 +25,8 @@
             // QRコードを生成
             new QRCode(document.getElementById("qrcode"), {
                 text: "<?php echo $customUrl; ?>",
-                width: 128,
-                height: 128
+                width: 256,
+                height: 256
             });
         </script>
     <?php
