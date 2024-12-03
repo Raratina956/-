@@ -19,7 +19,7 @@ main {
     margin-top: 100px;
     margin-bottom: 100px;
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px; /* 横幅の最大幅を1000pxに変更 */
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -37,14 +37,9 @@ main {
     width: 100%;
     max-width: 1200px;
     margin-top: 20px;
-    background-color: white;
-    width: fit-content;
-    padding-inline: 3%;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 3%;
-    border-radius: 40px;
 }
 
 .user-table, .tag-table {
@@ -52,6 +47,9 @@ main {
     border-collapse: collapse;
     font-size: 22px;
     margin: 0;
+    background-color: white; /* 背景色を白に設定 */
+    border-radius: 10px; /* 角を丸める */
+    overflow: hidden; /* 角丸のために必要 */
 }
 
 .user-table td, .user-table th,
