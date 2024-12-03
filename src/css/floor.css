@@ -117,3 +117,52 @@ ul{
     background-color:  #a0eefc;
     color: #333;
 }
+/* リストのスタイル */
+.list {
+    list-style: none; /* デフォルトのリストマーカーを削除 */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* チェックボックスのデフォルトの外見を隠す */
+  .custom-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* チェックボックスのカスタムデザイン */
+  .custom-checkbox .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  /* チェックが入っていない場合 */
+  .custom-checkbox input[type="checkbox"]:not(:checked) + .checkbox {
+    background-color: white;
+    border-color: #ccc;
+  }
+  
+  /* チェックが入った場合 */
+  .custom-checkbox input[type="checkbox"]:checked + .checkbox {
+    background-color: #4caf50; /* 緑色 */
+    border-color: #4caf50;
+  }
+  
+  /* チェックマークを表示 */
+  .custom-checkbox input[type="checkbox"]:checked + .checkbox::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  }
+  
