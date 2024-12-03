@@ -39,6 +39,8 @@ $followStmt = $pdo->prepare('
     LEFT JOIN Users ON Favorite.follower_id = Users.user_id
     LEFT JOIN locations ON Favorite.follower_id = locations.user_id
     WHERE Favorite.follow_id = ?
+    AND locations.latitude IS NOT NULL
+    AND locations.longitude IS NOT NULL
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,6 +61,8 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div id="sidebar">
+<button id="back-btn">前のページに戻る</button>
+
     <h2>友達一覧</h2>
     <ul id="friend-list">
         <!-- 友達リストはJavaScriptで生成 -->
@@ -77,6 +81,11 @@ const map = new mapboxgl.Map({
     zoom: 12 // 適切なズームレベルに調整（市全体を表示）
 });
 
+
+
+document.getElementById('back-btn').addEventListener('click', () => {
+    window.history.back();
+});
 
 
 // フォローしているユーザーの位置情報を取得

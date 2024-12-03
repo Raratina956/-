@@ -101,19 +101,26 @@ ul{
     transform: scale(1.1);
 }
 
-.sort{
+  
+  
+ 
+  
+  /* 絞込ボタンのスタイル */
+  .sort {
     width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     background-color: rgb(192, 191, 191);
-    color:black;
+    color: black;
     border-radius: 5px;
-}
-.sort:hover{
-    background-color:  #a0eefc;
+  }
+  
+  .sort:hover {
+    background-color: #a0eefc;
     color: #333;
 }
+  
