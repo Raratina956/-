@@ -117,12 +117,7 @@ ul{
     background-color:  #a0eefc;
     color: #333;
 }
-/* リストのスタイル */
-.list {
-    list-style: none; /* デフォルトのリストマーカーを削除 */
-    padding: 0;
-    margin: 0;
-  }
+
   
   /* チェックボックスのデフォルトの外見を隠す */
   .custom-checkbox input[type="checkbox"] {
