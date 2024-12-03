@@ -353,7 +353,7 @@ if (isset($_POST['all_delete'])) {
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 <div class="center">
-    <h1>お知らせ</h1>
+    <h1 class="okini">お知らせ</h1>
     <?php
     // Announce_check参照
     $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=?');
@@ -798,4 +798,17 @@ if (isset($_POST['all_delete'])) {
     function confirmDelete() {
         return confirm("本当に削除しますか？");
     }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const okiniElement = document.querySelector('.okini');
+    const text = okiniElement.textContent.trim(); // 空白を削除
+    okiniElement.innerHTML = '';
+
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.animationDelay = `${i * 0.5}s`; // 0.5秒ごとに遅延を設定
+        okiniElement.appendChild(span);
+    }
+});
 </script>
