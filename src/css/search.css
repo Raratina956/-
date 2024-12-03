@@ -47,18 +47,17 @@ main {
     border-radius: 40px;
 }
 
-.user-table td, .user-table th,
-.tag-table td, .tag-table th {
-    padding: 8px;
-    white-space: nowrap; /* 改行を無効化 */
-}
-
-/* 各テーブルのスタイル */
 .user-table, .tag-table {
     width: 100%; /* 同じ幅に設定 */
     border-collapse: collapse;
     font-size: 22px;
     margin: 0;
+}
+
+.user-table td, .user-table th,
+.tag-table td, .tag-table th {
+    padding: 8px;
+    white-space: nowrap; /* 改行を無効化 */
 }
 
 th, td {
@@ -235,4 +234,22 @@ form {
 .name:hover h3 {
     transform: scale(1.1);
     transition: transform 0.2s;
+}
+
+/* リンクの文字色を常に黒に固定 */
+.user-serch {
+    color: black;
+    text-decoration: none;
+}
+
+.user-serch:visited {
+    color: black;
+}
+
+.user-serch:hover {
+    color: black;
+}
+
+.user-serch:active {
+    color: black;
 }

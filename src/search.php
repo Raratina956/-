@@ -8,7 +8,10 @@ if (isset($_POST['join_tag_id'])) {
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     if (!$row) {
         $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
-        $sql_insert->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
+        $sql_insert->execute([
+            $regi_tag_id,
+            $_SESSION['user']['user_id']
+        ]);
     } else {
         $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
         $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
@@ -118,7 +121,8 @@ if ($kinds == "a" || $kinds == "t") {
                                     ?> -->
                                     <img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
                             <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
-                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"
+                                    class="user-serch">
 
                                     <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
                                     </h3>

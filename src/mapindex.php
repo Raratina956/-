@@ -39,6 +39,8 @@ $followStmt = $pdo->prepare('
     LEFT JOIN Users ON Favorite.follower_id = Users.user_id
     LEFT JOIN locations ON Favorite.follower_id = locations.user_id
     WHERE Favorite.follow_id = ?
+    AND locations.latitude IS NOT NULL
+    AND locations.longitude IS NOT NULL
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
