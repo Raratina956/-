@@ -18,7 +18,7 @@
         echo '<img src="img/icon.png"><br>';
         echo '<div class="room">', $_POST['room'], '教室</div>';
         echo '<div id="qrcode-container"><div id="qrcode"></div></div>';
-        echo '送信されたURL: ' . $customUrl;
+        // echo '送信されたURL: ' . $customUrl;
     ?>
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
         <script>
