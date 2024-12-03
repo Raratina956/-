@@ -101,62 +101,16 @@ ul{
     transform: scale(1.1);
 }
 
-/* チェックボックスを非表示にしてカスタマイズ */
-.check {
-    display: none; /* デフォルトのチェックボックスを隠す */
-  }
   
-  /* ラベルのスタイル */
-  .favorite-label {
-    font-size: 20px; /* フォントサイズを大きく */
-    color: #333;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    margin-right: 20px;
-    padding: 8px 15px; /* パディングを大きく */
+  .check{
+     /* width: 15%; */
+     margin-inline-start: 15px;
+     font-size: 20px;
+     text-align: center;
+     /* align-items: center; */
+     max-width: 150px;
   }
-  
-  /* カスタムチェックボックス */
-  .check + .favorite-label::before {
-    content: '';
-    width: 30px; /* チェックボックスの幅を大きく */
-    height: 30px; /* チェックボックスの高さを大きく */
-    border: 3px solid #4caf50; /* 境界線を太く */
-    border-radius: 5px; /* 角を丸く */
-    background-color: #fff;
-    margin-right: 15px;
-    transition: all 0.3s ease;
-    display: inline-block;
-    position: relative;
-  }
-  
-  /* チェックが入ったとき */
-  .check:checked + .favorite-label::before {
-    background-color: #4caf50;
-    border-color: #4caf50;
-  }
-  
-  /* チェックマークを表示 */
-  .check:checked + .favorite-label::after {
-    content: '\2713'; /* Unicodeのチェックマーク */
-    position: absolute;
-    left: 10px; /* チェックマークの位置を調整 */
-    top: 4px;
-    font-size: 20px; /* チェックマークを大きく */
-    color: white;
-  }
-  
-  /* ホバー時のスタイル */
-  .check + .favorite-label:hover::before {
-    border-color: #45a049;
-  }
-  
-  /* フォーカス時のスタイル */
-  .check:focus + .favorite-label::before {
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
-  }
+ 
   
   /* 絞込ボタンのスタイル */
   .sort {
