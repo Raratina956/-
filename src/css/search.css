@@ -214,7 +214,7 @@ form {
     border-radius: 5px;
 }
 
-.joined:hover {
+joined:hover {
     background-color: rgb(63, 225, 95);
     color: black;
 }
@@ -223,19 +223,20 @@ form {
     width: 10px;
 }
 
-/* 全角で10文字分の幅を持ち、10文字以上を...で表示 */
-.name h3 {
+/* 名前の省略表示 */
+.name h3, .tag-table td h3 {
     display: inline-block;
-    max-width: 20em; /* 全角で10文字分の幅に設定 (1em = 1文字幅) */
+    max-width: 100%; /* 親要素の幅に合わせる */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* ホバー時にユーザー名が浮き出るエフェクト */
-.name:hover h3 {
-    transform: scale(1.1);
-    transition: transform 0.2s;
+/* ホバー時に省略表示を解除 */
+.name h3:hover, .tag-table td h3:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 /* リンクの文字色を常に黒に固定 */
