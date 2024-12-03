@@ -117,47 +117,51 @@ ul{
     background-color:  #a0eefc;
     color: #333;
 }
-
+/* チェックボックスをカスタマイズ */
+.check {
+    display: none; /* デフォルトのチェックボックスを非表示に */
+  }
   
-  /* チェックボックスのデフォルトの外見を隠す */
-  .custom-checkbox input[type="checkbox"] {
-    display: none;
+  .check + label {
+    position: relative;
+    padding-left: 30px; /* チェックボックスの左側にスペースを追加 */
+    cursor: pointer; /* ユーザーがクリックできることを示す */
+    font-size: 16px;
+    user-select: none; /* テキスト選択を無効化 */
   }
   
   /* チェックボックスのカスタムデザイン */
-  .custom-checkbox .checkbox {
+  .check + label::before {
+    content: ''; /* チェックボックスのカスタム外見 */
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 20px;
     height: 20px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    display: inline-block;
-    position: relative;
-    margin-right: 10px;
     background-color: white;
     transition: background-color 0.3s, border-color 0.3s;
   }
   
-  /* チェックが入っていない場合 */
-  .custom-checkbox input[type="checkbox"]:not(:checked) + .checkbox {
-    background-color: white;
-    border-color: #ccc;
-  }
-  
-  /* チェックが入った場合 */
-  .custom-checkbox input[type="checkbox"]:checked + .checkbox {
-    background-color: #4caf50; /* 緑色 */
-    border-color: #4caf50;
+  /* チェックが入ったときのスタイル */
+  .check:checked + label::before {
+    background-color: #4caf50; /* チェックが入ったときに背景色を変更 */
+    border-color: #4caf50; /* 境界線の色を変更 */
   }
   
   /* チェックマークを表示 */
-  .custom-checkbox input[type="checkbox"]:checked + .checkbox::after {
-    content: "";
+  .check:checked + label::after {
+    content: '\2713'; /* チェックマークのUnicode */
     position: absolute;
-    top: 4px;
     left: 4px;
-    width: 8px;
-    height: 8px;
-    background-color: white;
-    clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+    top: 0px;
+    font-size: 16px;
+    color: white;
+  }
+  
+  /* ホバー時のスタイル */
+  .check + label:hover::before {
+    border-color: #4caf50; /* ホバー時に境界線の色を変更 */
   }
   
