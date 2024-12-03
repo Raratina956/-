@@ -71,14 +71,18 @@ th {
 }
 
 .user-table td, .tag-table td {
-    width: 33%;
     border-bottom: 1px solid #333;
     height: 55px;
 }
 
-.icon-serch {
+.user-table .icon-serch, .tag-table .icon-serch {
+    width: 30%; /* アイコンの横幅を30％に設定 */
     text-align: center;
     padding-right: 10px; /* アイコンと名前の間に余白を追加 */
+}
+
+.user-table .name, .tag-table .name {
+    width: 70%; /* 名前の横幅を70％に設定 */
 }
 
 /* ユーザーアイコンのスタイル */
