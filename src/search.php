@@ -113,7 +113,7 @@ if ($kinds == "a" || $kinds == "t") {
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                        <td class="icon tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                        <td class="icon-serch"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
                                     <!-- <?php
                                     if ($data['s_or_t'] == 1) {
                                         echo '<img src="kakubo.jpg" class="hat">';
@@ -121,7 +121,8 @@ if ($kinds == "a" || $kinds == "t") {
                                     ?> -->
                                     <img src="<?php echo $icon['icon_name']; ?>" class="usericon"></a></td>
                             <input type="hidden" name="user_id" value="<?php echo $data['id']; ?>">
-                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                            <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"
+                                    class="user-serch">
 
                                     <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
                                     </h3>

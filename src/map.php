@@ -60,14 +60,15 @@ unset($_SESSION['floor']['kai']);
     .usericon {
         transition: transform 0.3s ease-in-out;
     }
+
     .usericon:hover {
         transform: scale(1.1);
     }
 
     .floor:hover {
-        background-color: #0000ff; /* 濃い青 */
+        background-color: #0000ff;
+        /* 濃い青 */
     }
-
 </style>
 
 <body>
@@ -137,7 +138,11 @@ unset($_SESSION['floor']['kai']);
         echo '</form></div>';
 
         // 学外
-        echo '<div class="gakugai-container"><li><a  href="mapindex.php"><img class="g-img" src="img/gakugai.png" width="150px" height="150px"></a></li><li><a class="g-text">学外はこちら</a></li></div>';
+        echo '<div class="gakugai-container"><li><a  href="mapindex.php">';
+        if (!$isMobile) {
+            echo '<img class="g-img" src="img/gakugai.png" width="150px" height="150px">';
+        }
+        echo '</a></li><li><a class="g-text">学外はこちら</a></li></div>';
 
         //  map
         echo '<br><table class="table">';
@@ -279,7 +284,7 @@ unset($_SESSION['floor']['kai']);
                 // Show the modal document.querySelector('#icon-modal').style.display = 'block';
             }
         });
-        
+
         function handleFormSubmit() {
             // ここで特定の処理を行う（例: ログ出力やバリデーションなど）
             // unset($_SESSION['floor']['kai']);
