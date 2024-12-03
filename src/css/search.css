@@ -1,19 +1,19 @@
 /* General Styles */
 body {
     background-image: url(../img/SpotLinkbg.png);
-    background-size: cover; /* 全体を覆う */
-    background-repeat: no-repeat; /* 繰り返さない */
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensures the body takes the full height of the viewport */
+    min-height: 100vh;
     font-family: "Zen Maru Gothic", serif;
     font-weight: 400;
     font-style: normal;
-
 }
+
 /* Main Styles */
 main {
     margin-top: 100px;
@@ -29,71 +29,63 @@ main {
 }
 
 /* Table Styles */
-/* Styles for the container of the tables */
-/* Table Styles */
 .table-container {
-    display: flex; /* 横並び配置 */
-    /* justify-content: space-between; テーブル間のスペースを均等に */
+    display: flex;
     justify-content: center;
-    align-items: flex-start; /* 上揃え */
-    gap: 30px; /* テーブル間の間隔 */
+    align-items: flex-start;
+    gap: 30px; /* ユーザーテーブルとタグテーブルの間の隙間 */
     width: 100%;
-    max-width: 1200px; /* コンテナの最大幅を設定 */
+    max-width: 1200px;
     margin-top: 20px;
     background-color: white;
-    /* margin: 15px; */
     width: fit-content;
     padding-inline: 3%;
-    /* margin: 15px; */
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    /* position: relative; */
-    /* text-align: center; */
     padding-bottom: 3%;
-    /* padding-top: 1%; */
     border-radius: 40px;
 }
+
 .user-table td, .user-table th,
 .tag-table td, .tag-table th {
     padding: 8px;
-   
-white-space: nowrap; /* 改行を無効化 */
+    white-space: nowrap; /* 改行を無効化 */
 }
 
 /* 各テーブルのスタイル */
 .user-table, .tag-table {
-    width: 48%; /* コンテナの48%程度の幅に設定して大きく表示 */
+    width: 48%;
     border-collapse: collapse;
-    font-size: 22px; /* 文字サイズをさらに拡大して見やすく */
+    font-size: 22px;
     margin: 0;
 }
 
 th, td {
-    padding: 20px; /* 各セルにさらに余白を追加 */
+    padding: 20px;
     text-align: center;
-    width: 33%; /* 3列テーブルなら33%に設定 */
+    width: 33%;
 }
 
 th {
-    height: 70px; /* ヘッダーの高さを調整して揃え */
+    height: 70px;
     font-weight: bold;
     border-bottom: 2px solid #333;
 }
 
 .user-table td, .tag-table td {
-    width: 33%; /* 列幅を揃える */
+    width: 33%;
     border-bottom: 1px solid #333;
     height: 55px;
 }
 
-.icon{
+.icon {
     text-align: center;
 }
 
-/* アイコン画像のスタイル */
+/* ユーザーアイコンのスタイル */
 .usericon {
-    width: 60px; /* 幅を60pxに調整 */
+    width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
@@ -114,43 +106,43 @@ h1, h2 {
     border-radius: 5px;
 }
 
-
 /* Form Styles */
 form {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.search-text{
+.search-text {
     margin-top: 25px;
     width: 300px;
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    line-height: 36px; /*ここの数値を変更*/
+    line-height: 36px;
     border: none;
-    border-radius: 5px; /* 角を丸く */
+    border-radius: 5px;
     border-color: white;
 }
 
-.search{
+.search {
     width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     background-color: rgb(192, 191, 191);
-    color:black;
+    color: black;
     border-radius: 5px;
 }
 
-.search:hover{
-    background-color:  #a0eefc;
+.search:hover {
+    background-color: #a0eefc;
     color: #333;
 }
-.sort-tag{
+
+.sort-tag {
     margin-top: 30px;
     width: 40%;
     height: 45px;
@@ -158,12 +150,11 @@ form {
     align-items: center;
     text-align: center;
     cursor: pointer;
-    line-height: 36px; /*ここの数値を変更*/
+    line-height: 36px;
     border: none;
-    border-radius: 5px; /* 角を丸く */
+    border-radius: 5px;
     border-color: white;
 }
-
 
 .back-link {
     position: fixed;
@@ -182,52 +173,65 @@ form {
     color: white;
 }
 
-.usericon{
+.usericon {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-  }
+}
 
-
-
-  .join{
+.join {
     min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     border-color: rgb(230, 183, 64);
     background-color: white;
-    color:rgb(230, 183, 64);
+    color: rgb(230, 183, 64);
     border-radius: 5px;
 }
 
-.join:hover{
+.join:hover {
     background-color: rgb(230, 153, 64);
     color: white;
 }
 
-.joined{
+.joined {
     min-width: 100px;
     height: 36px;
     padding: 0 16px;
     font-size: 18px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     background-color: rgb(179, 247, 91);
-    color:black;
+    color: black;
     border-radius: 5px;
 }
 
-.joined:hover{
+.joined:hover {
     background-color: rgb(63, 225, 95);
     color: black;
 }
 
-.hat{
+.hat {
     width: 10px;
+}
+
+/* 10文字以上を...で表示 */
+.name h3 {
+    display: inline-block;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ホバー時にユーザー名が浮き出るエフェクト */
+.name:hover h3 {
+    transform: scale(1.1);
+    transition: transform 0.2s;
 }
