@@ -61,6 +61,8 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div id="sidebar">
+<button id="back-btn">前のページに戻る</button>
+
     <h2>友達一覧</h2>
     <ul id="friend-list">
         <!-- 友達リストはJavaScriptで生成 -->
@@ -79,6 +81,11 @@ const map = new mapboxgl.Map({
     zoom: 12 // 適切なズームレベルに調整（市全体を表示）
 });
 
+
+
+document.getElementById('back-btn').addEventListener('click', () => {
+    window.history.back();
+});
 
 
 // フォローしているユーザーの位置情報を取得
