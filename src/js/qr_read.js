@@ -54,10 +54,17 @@ const checkImage = () => {
     const code = jsQR(imageData.data, contentWidth, contentHeight);
 
     if (code) {
-        console.log("QRcodeが見つかりました", code);
+        console.log("QRコードが見つかりました", code);
         drawRect(code.location);
         const qrCodeUrl = code.data;
-        document.getElementById('qr-msg').textContent = `QRコード：${qrCodeUrl}`;
+        const qrMsg = document.getElementById('qr-msg');
+
+        // URLを条件に応じて表示
+        if (qrCodeUrl.startsWith("https://aso2201203.babyblue.jp/Nomodon/src")) {
+            qrMsg.innerHTML = `QRコード：<a href="${qrCodeUrl}" target="_blank">${qrCodeUrl}</a>`;
+        } else {
+            qrMsg.textContent = "外部のQRコードです";
+        }
 
         // URLを一度だけ新規タブで開く
         if (qrCodeUrl !== lastScannedUrl) {
@@ -65,14 +72,13 @@ const checkImage = () => {
                 window.open(qrCodeUrl, '_blank');
             } else {
                 alert("外部のQRコードです");
-                document.getElementById('qr-msg').textContent = "外部のQRコードです";
                 stopCamera();
                 window.location.reload(); // ページをリロード
             }
             lastScannedUrl = qrCodeUrl; // 最後にスキャンされたURLを更新
         }
     } else {
-        console.log("QRcodeが見つかりません…", code);
+        console.log("QRコードが見つかりません…", code);
         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
         document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
     }
@@ -80,7 +86,8 @@ const checkImage = () => {
     if (!stream.getTracks().every(track => track.readyState === 'ended')) {
         setTimeout(() => { checkImage() }, 500);
     }
-}
+};
+
 
 // カメラの停止
 function stopCamera() {
