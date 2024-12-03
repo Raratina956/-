@@ -35,8 +35,9 @@ require 'header.php';
             echo '<form action="floor.php" method="post">';
             echo '<input type="hidden" name="floor" value=', $_SESSION['floor']['kai'], '>';
             echo '<label for="favorite">お気に入りユーザー</label>';
-            echo '<input type="checkbox" id="favorite" name="favorite" class="check" value="yes" ' . (($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : '') . '>';
-            
+echo '<input type="checkbox" id="favorite" name="favorite" class="check" value="yes" ' . (($_POST['favorite'] ?? 'no') === 'yes' ? 'checked' : '') . '>';
+
+     
             echo '<input type="submit" value="絞込"class="sort">';
         }
         $sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_floor = ?');
