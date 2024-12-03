@@ -1,26 +1,41 @@
 <?php
 require 'parts/auto-login.php';
+
 if (isset($error)) {
     unset($error);
 }
+
 if (isset($_POST['tag_name'])) {
     if (!(empty($_POST['tag_name']))) {
         $tag_name = $_POST['tag_name'];
-        $sql_insert = $pdo->prepare('INSERT INTO Tag_list (tag_name,user_id) VALUES (?,?)');
-        $sql_insert->execute([
-            $tag_name,
-            $_SESSION['user']['user_id']
+        
+        // タグが既に存在するか確認
+        $sql_check = $pdo->prepare('SELECT * FROM Tag_list WHERE tag_name=?');
+        $sql_check->execute([
+            $tag_name
         ]);
-        $lastInsertId = $pdo->lastInsertId();
-        $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
-        $sql_insert->execute([
-            $lastInsertId,
-            $_SESSION['user']['user_id']
-        ]);
+        $existing_tag = $sql_check->fetch(PDO::FETCH_ASSOC);
+        
+        if ($existing_tag) {
+            $error = 'タグは既に存在します';
+        } else {
+            $sql_insert = $pdo->prepare('INSERT INTO Tag_list (tag_name,user_id) VALUES (?,?)');
+            $sql_insert->execute([
+                $tag_name,
+                $_SESSION['user']['user_id']
+            ]);
+            $lastInsertId = $pdo->lastInsertId();
+            $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
+            $sql_insert->execute([
+                $lastInsertId,
+                $_SESSION['user']['user_id']
+            ]);
+        }
     } else {
         $error = '文字を入力してください';
     }
 }
+
 if (isset($_POST['join_tag_id'])) {
     $regi_tag_id = $_POST['join_tag_id'];
     $sql = $pdo->prepare('SELECT * FROM Tag_attribute WHERE tag_id=? AND user_id=?');
@@ -38,6 +53,7 @@ if (isset($_POST['join_tag_id'])) {
     }
 }
 ?>
+
 <?php
 require 'header.php';
 ?>

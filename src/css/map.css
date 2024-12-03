@@ -110,7 +110,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 影 */
     transition: all 0.3s ease; /* アニメーションのスムーズな変化 */
     cursor: pointer; /* ポインタ表示 */
-    z-index: 1000; /* 他の要素より前面に表示 */
+    z-index: -1200; /* 他の要素より前面に表示 */
 }
 
 /* .gakugai-container:hover {

@@ -8,10 +8,7 @@ if (isset($_POST['join_tag_id'])) {
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     if (!$row) {
         $sql_insert = $pdo->prepare('INSERT INTO Tag_attribute (tag_id,user_id) VALUES (?,?)');
-        $sql_insert->execute([
-            $regi_tag_id,
-            $_SESSION['user']['user_id']
-        ]);
+        $sql_insert->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
     } else {
         $sql_delete = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=? AND user_id=?');
         $sql_delete->execute([$regi_tag_id, $_SESSION['user']['user_id']]);
@@ -105,10 +102,6 @@ if ($kinds == "a" || $kinds == "t") {
                 <tr>
                     <th colspan="2">ユーザー</th>
                 </tr>
-                <tr class="h">
-                    <th></th>
-                    <th>名前</th>
-                </tr>
                 <?php foreach ($user_data as $data): ?>
                     <form name="form<?php echo $data['id']; ?>" action="user.php" method="get">
                         <?php
@@ -117,7 +110,7 @@ if ($kinds == "a" || $kinds == "t") {
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                        <td class="icon tag"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
+                        <td class="icon-serch"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()">
                                     <!-- <?php
                                     if ($data['s_or_t'] == 1) {
                                         echo '<img src="kakubo.jpg" class="hat">';
@@ -142,10 +135,6 @@ if ($kinds == "a" || $kinds == "t") {
             <table class="tag-table">
                 <tr>
                     <th colspan="2">タグ</th>
-                </tr>
-                <tr class="h">
-                    <th>タグ名</th>
-                    <th></th>
                 </tr>
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
