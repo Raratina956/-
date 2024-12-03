@@ -81,6 +81,7 @@ th {
 
 .icon {
     text-align: center;
+    padding-right: 10px; /* アイコンと名前の間に余白を追加 */
 }
 
 /* ユーザーアイコンのスタイル */
