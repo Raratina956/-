@@ -139,11 +139,11 @@ unset($_SESSION['floor']['kai']);
 
         // 学外
         // echo '<div class="gakugai-container"><li><a  href="mapindex.php"><img class="g-img" src="img/gakugai.png" width="150px" height="150px"></a></li><li><a class="g-text">学外はこちら</a></li></div>';
-        echo '<div class="gakugai-container"><li><a  href="mapindex.php">';
+        echo '<div class="gakugai-container"><li><a href="mapindex.php">';
         if (!$isMobile) {
             echo '<img class="g-img" src="img/gakugai.png" width="150px" height="150px">';
         }
-        echo '</a></li><li><a class="g-text">学外はこちら</a></li></div>';
+        echo '</a></li><li><a class="g-text" href="mapindex.php">学外はこちら</a></li></div>';
 
         //  map
         echo '<br><table class="table">';
