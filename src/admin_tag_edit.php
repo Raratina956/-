@@ -50,6 +50,8 @@ if (isset($_POST['delete'])) {
         $delete_query = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id = :tag_id');
         $delete_query->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
         $delete_query->execute();
+        $delete_tag = $pdo->prepare('DELETE FROM Tag_attribute WHERE tag_id=?');
+        $delete_tag ->execute([$tag_id]);
 
         // 削除が成功した場合のリダイレクト
         header('Location: admin_tag.php');
