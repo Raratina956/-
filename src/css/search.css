@@ -55,7 +55,7 @@ main {
 
 /* 各テーブルのスタイル */
 .user-table, .tag-table {
-    width: 48%;
+    width: 100%; /* 同じ幅に設定 */
     border-collapse: collapse;
     font-size: 22px;
     margin: 0;
@@ -79,7 +79,7 @@ th {
     height: 55px;
 }
 
-.icon {
+.icon-serch {
     text-align: center;
     padding-right: 10px; /* アイコンと名前の間に余白を追加 */
 }
@@ -222,10 +222,10 @@ form {
     width: 10px;
 }
 
-/* 10文字以上を...で表示 */
+/* 全角で10文字分の幅を持ち、10文字以上を...で表示 */
 .name h3 {
     display: inline-block;
-    max-width: 100px;
+    max-width: 20em; /* 全角で10文字分の幅に設定 (1em = 1文字幅) */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
