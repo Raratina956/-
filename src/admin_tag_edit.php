@@ -1,6 +1,10 @@
 <?php
-
 require 'parts/db-connect.php';
+
+// 初期化
+$tag = null;
+$tag_id = null;
+
 // 編集フォームのデータを取得
 if (isset($_POST['edit'])) {
     $tag_id = htmlspecialchars($_POST['edit'], ENT_QUOTES, 'UTF-8');
@@ -17,8 +21,45 @@ if (isset($_POST['edit'])) {
         exit();
     }
 }
-?>
 
+// 更新処理
+if (isset($_POST['update'])) {
+    $tag_id = htmlspecialchars($_POST['tag_id'], ENT_QUOTES, 'UTF-8');
+    $tag_name = htmlspecialchars($_POST['tag_name'], ENT_QUOTES, 'UTF-8');
+
+    try {
+        $update_query = $pdo->prepare('UPDATE Tag_list SET tag_name = :tag_name WHERE tag_id = :tag_id');
+        $update_query->bindParam(':tag_name', $tag_name, PDO::PARAM_STR);
+        $update_query->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
+        $update_query->execute();
+
+        // 更新が成功した場合のリダイレクト
+        header('Location: admin_tag_list.php');
+        exit();
+    } catch (PDOException $e) {
+        echo '更新中にエラーが発生しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+        exit();
+    }
+}
+
+// 削除処理
+if (isset($_POST['delete'])) {
+    $tag_id = htmlspecialchars($_POST['tag_id'], ENT_QUOTES, 'UTF-8');
+
+    try {
+        $delete_query = $pdo->prepare('DELETE FROM Tag_list WHERE tag_id = :tag_id');
+        $delete_query->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
+        $delete_query->execute();
+
+        // 削除が成功した場合のリダイレクト
+        header('Location: admin_tag_list.php');
+        exit();
+    } catch (PDOException $e) {
+        echo '削除中にエラーが発生しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -33,10 +74,7 @@ if (isset($_POST['edit'])) {
     <title>タグ編集</title>
 </head>
 <body>
-
 <h1>タグ編集ページ</h1>
-
-<?php echo $tag_id ?>
 
 <?php if ($tag): ?>
     <form method="post" action="admin_tag_edit.php">
@@ -56,8 +94,3 @@ if (isset($_POST['edit'])) {
 
 </body>
 </html>
-
-<?php
-// 出力バッファリングを終了してバッファの内容を出力
-ob_end_flush();
-?>
