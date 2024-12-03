@@ -124,7 +124,7 @@ if ($kinds == "a" || $kinds == "t") {
                             <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"
                                     class="user-serch">
 
-                                    <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
+                                    <h3 title="<?php echo htmlspecialchars($data['name']); ?>"><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
                                     </h3>
 
 
