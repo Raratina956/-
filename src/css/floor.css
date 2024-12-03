@@ -117,10 +117,7 @@ ul{
     background-color:  #a0eefc;
     color: #333;
 }
-/* チェックボックスをカスタマイズ */
-.check {
-    display: none; /* デフォルトのチェックボックスを非表示に */
-  }
+
   
   .check + label {
     position: relative;
