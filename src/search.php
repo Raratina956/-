@@ -143,7 +143,7 @@ if ($kinds == "a" || $kinds == "t") {
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
                         <td>
-                            <h3 class="tag-name" data-fullname="<?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <h3 class="tag-name" data-fullname="<?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?>">
                                 <?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
                         </td>
 
