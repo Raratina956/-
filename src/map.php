@@ -142,7 +142,7 @@ unset($_SESSION['floor']['kai']);
         if (!$isMobile) {
             echo '<img class="g-img" src="img/gakugai.png" width="150px" height="150px">';
         }
-        echo '</a></li><li><a href="mapindex.php>学外はこちら</a></li></div>';
+        echo '</a></li><li><a class="g-text" href="mapindex.php>学外はこちら</a></li></div>';
 
         //  map
         echo '<br><table class="table">';
