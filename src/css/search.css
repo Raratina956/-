@@ -222,10 +222,10 @@ form {
     width: 10px;
 }
 
-/* 10文字以上を...で表示 */
+/* 固定で10文字の幅を持ち、10文字以上を...で表示 */
 .name h3 {
     display: inline-block;
-    max-width: 100px;
+    max-width: 10ch; /* 10文字分の幅に設定 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
