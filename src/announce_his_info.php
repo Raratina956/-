@@ -47,7 +47,7 @@ if($tag_row){
     <?php
         require 'header.php';
     ?>
-    <h1><sapn>アナウンス詳細</sapn></h1><br>
+    <h1 style="text-align: center;"><sapn>アナウンス詳細</sapn></h1><br>
     <div class="container">
         <div class="announcement-item">
             <span class="label">タイトル：</span>
