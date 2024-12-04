@@ -50,7 +50,7 @@ $class_floor = $class_row['classroom_floor'];
                 <option value="<?= $i ?>" <?= $i == $class_floor ? 'selected' : '' ?>><?= $i ?>階</option>
             <?php endfor; ?>
         </select>
-        <input type="submit" value="変更">
+        <input type="submit" class="edit" value="変更">
     </form>
     <form action="admin_room.php" method="post">
         <input type="submit" value="戻る">
