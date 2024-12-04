@@ -43,3 +43,23 @@ td{
     color: white;
     transform: scale(1.05);
 }
+
+.back{
+    background-color: rgb(48 212 197);
+    color: white;
+    border: none;
+    padding: 7px 15px; /* 内側の余白 */
+    text-align: center; /* テキストの中央揃え */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px; /* フォントサイズ */
+    margin: 4px 2px; /* 外側の余白 */
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+
+}
+
+.back:hover {
+    background-color: rgb(135 206 250);
+}

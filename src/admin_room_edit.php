@@ -53,7 +53,7 @@ $class_floor = $class_row['classroom_floor'];
         <input type="submit" class="edit" value="変更">
     </form>
     <form action="admin_room.php" method="post">
-        <input type="submit" value="戻る">
+        <input type="submit" class="back" value="戻る">
     </form>
 </body>
 
