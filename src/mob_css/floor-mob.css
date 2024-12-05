@@ -3,6 +3,10 @@ body {
     margin: 0;
     padding: 0;
     color: #000; /* テキストカラーを黒に設定 */
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+
 }
 
 /* Main Content Styles */
