@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db-connect.php';
+
 require 'parts/auto-login.php';
 
 try {
