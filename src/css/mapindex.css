@@ -86,3 +86,129 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+/* スマホ版のスタイル */
+@media screen and (max-width: 768px) {
+    /* サイドバー */
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-sizing: border-box;
+        border-right: none;
+    }
+
+    /* 地図 */
+    #map {
+        margin-left: 0;
+        height: 60vh; /* 地図の高さを調整 */
+    }
+
+    /* モバイル用メニュー */
+    #mobile-header {
+        background-color: #f8f8f8;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #mobile-header h1 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    /* メニューのボタン */
+    #menu-btn, #close-menu-btn {
+        font-size: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* モバイルサイドバー */
+    #mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        height: 100%;
+        background-color: #f8f8f8;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        display: none;
+    }
+
+    #mobile-sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    /* 友達リスト */
+    #mobile-friend-list .friend-item {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        background-color: #fff;
+    }
+
+    #mobile-friend-list .friend-item:hover {
+        background-color: #e0e0e0;
+    }
+
+    #mobile-friend-list .friend-item img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    #mobile-friend-list .friend-item span {
+        flex-grow: 1;
+    }
+
+    /* 位置情報更新ボタン */
+    #mobile-update-location-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    #mobile-update-location-btn:hover {
+        background-color: #45a049;
+    }
+}
+
+/* 現在地マーカー */
+.marker {
+    background-color: #ff5722;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* モバイル版の地図 */
+#mobile-map {
+    height: 60vh;
+}
+
+/* メニューアイコン */
+#menu-btn {
+    font-size: 24px;
+    cursor: pointer;
+}
