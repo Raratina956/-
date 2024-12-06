@@ -1,88 +1,54 @@
-/* 全体のレイアウト */
-body {
-    display: flex;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/* ハンバーガーメニュー */
+.hamburger {
+    display: none; /* デフォルトでは非表示 */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hamburger:hover {
+    background-color: #555;
 }
 
 #sidebar {
-    width: 300px;
-    background-color: #f8f8f8;
-    padding: 20px;
-    box-sizing: border-box;
-    border-right: 1px solid #ddd;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow-y: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%); /* 初期状態で隠す */
+}
+
+#sidebar.open {
+    transform: translateX(0); /* ハンバーガーメニューで表示 */
 }
 
 #map {
-    flex-grow: 1;
-    height: 100vh;
-    margin-left: 300px; /* サイドバーの幅分だけマップを右に寄せる */
-    background-color: #f0f0f0;
+    margin-left: 0; /* スマホ版ではサイドバーを考慮しない */
 }
 
-/* 友達リスト */
-#friend-list {
-    list-style-type: none;
-    padding: 0;
-}
+/* スマホ向けメディアクエリ */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block; /* スマホでは表示 */
+    }
 
-.friend-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    #sidebar {
+        width: 100%; /* サイドバーを全画面幅に拡大 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 999; /* マップの上に表示 */
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-.friend-item:hover {
-    background-color: #e0e0e0;
-}
-
-.friend-item img {
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.friend-item span {
-    font-size: 14px;
-    color: #333;
-}
-
-/* 現在地マーカー */
-.marker {
-    background-color: #ff5722;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    cursor: pointer;
-}
-
-/* 地図のカスタマイズ */
-.mapboxgl-popup {
-    max-width: 200px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
+    #map {
+        height: 100vh;
+    }
 }
