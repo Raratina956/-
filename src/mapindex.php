@@ -50,7 +50,7 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php if (!$isMobile) ?>
+<?php if (!$isMobile): ?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -212,7 +212,7 @@ followedUsers.forEach(user => {
 
 
 //スマホ版
-<?php else ?>
+<?php else: ?>
 
 <!DOCTYPE html>
 <html lang="ja">
