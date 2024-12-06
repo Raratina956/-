@@ -224,16 +224,19 @@ followedUsers.forEach(user => {
     <link rel="stylesheet" href="css/mapindex.css">
 </head>
 <body>
-<div id="sidebar">
-<button id="back-btn">前のページに戻る</button>
-
-    <h2>友達一覧sumaho</h2>
-    <ul id="friend-list">
-        <!-- 友達リストはJavaScriptで生成 -->
-    </ul>
-    <button id="update-location-btn">位置情報を更新</button>
+<div id="hamburger-menu">
+    <button id="hamburger-btn">&#9776;</button> <!-- ハンバーガーアイコン -->
+    <div id="sidebar">
+        <button id="back-btn">前のページに戻る</button>
+        <h2>友達一覧sumaho</h2>
+        <ul id="friend-list">
+            <!-- 友達リストはJavaScriptで生成 -->
+        </ul>
+        <button id="update-location-btn">位置情報を更新</button>
+    </div>
 </div>
-<div id='map'></div>
+<div id="map"></div>
+
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
