@@ -4,7 +4,7 @@ session_start();
 require 'parts/auto-login.php';
 
 try {
-    $pdo = new PDO($connect, USER, PASS);
+   
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'データベース接続エラー: ' . $e->getMessage();
