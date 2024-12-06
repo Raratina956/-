@@ -121,3 +121,11 @@ button:hover {
 #map.open {
     margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
 }
+
+#sidebar.open {
+    display: block; /* サイドバーが開いたときに表示 */
+}
+
+#map.open {
+    margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
+}

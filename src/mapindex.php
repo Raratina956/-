@@ -296,6 +296,17 @@ followedUsers.forEach(user => {
     }
 });
 
+// ハンバーガーメニューをクリックしたときの処理
+document.getElementById('hamburger-btn').addEventListener('click', () => {
+    const sidebar = document.getElementById('sidebar');
+    const map = document.getElementById('map');
+
+    // サイドバーを開閉
+    sidebar.classList.toggle('open');
+    map.classList.toggle('open');
+});
+
+
 // 現在地を取得し、自分のマーカーを表示
 function updateLocation() {
     if (navigator.geolocation) {
