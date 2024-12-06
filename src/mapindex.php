@@ -365,3 +365,6 @@ followedUsers.forEach(user => {
 
 </body>
 </html>
+
+
+<?php endif; ?>
