@@ -243,7 +243,7 @@ followedUsers.forEach(user => {
 
 <script>
 // Mapboxの設定
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
 // 地図の初期化
 const mobileMap = new mapboxgl.Map({
