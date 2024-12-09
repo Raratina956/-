@@ -1,3 +1,4 @@
+
 /* 全体のレイアウト */
 body {
     display: flex;
@@ -85,4 +86,47 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+#sidebar {
+    display: none; /* 初めは非表示 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+#hamburger-btn {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#hamburger-menu {
+    position: relative;
+}
+
+#map {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+}
+
+/* ハンバーガーメニューを開いた時のスタイル */
+#sidebar.open {
+    display: block;
+}
+
+#map.open {
+    margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
+}
+
+#sidebar.open {
+    display: block; /* サイドバーが開いたときに表示 */
+}
+
+#map.open {
+    margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
 }
