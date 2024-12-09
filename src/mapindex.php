@@ -220,7 +220,7 @@ followedUsers.forEach(user => {
     <title>現在地にピンを立てる</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="css/mapindex.css">
+    <link rel="stylesheet" href="css/mapindexmobile.css">
 </head>
 <body>
 <div id="sidebar">
