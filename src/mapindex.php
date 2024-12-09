@@ -247,12 +247,14 @@ followedUsers.forEach(user => {
         });
 
         // ハンバーガーメニューの表示/非表示を切り替える
+       // サイドバーを閉じる処理を追加
         document.getElementById('hamburger-btn').addEventListener('click', () => {
             const sidebar = document.getElementById('sidebar');
             const map = document.getElementById('map');
             sidebar.classList.toggle('open');
             map.classList.toggle('open');
         });
+
 
         document.getElementById('back-btn').addEventListener('click', () => {
             window.history.back();

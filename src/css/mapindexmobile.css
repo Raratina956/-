@@ -16,9 +16,9 @@ body {
     height: 100%;
     top: 0;
     left: -300px; /* サイドバーが初期状態で隠れるように */
+    visibility: hidden; /* サイドバーが表示されていない状態にする */
     overflow-y: auto;
-    display: none;
-    transition: left 0.3s ease; /* サイドバーのスライドアニメーション */
+    transition: left 0.3s ease, visibility 0s 0.3s; /* サイドバーのスライドアニメーション */
     z-index: 5; /* メニューの背面に配置 */
 }
 
@@ -94,17 +94,18 @@ button:hover {
 /* ハンバーガーメニュー */
 #hamburger-btn {
     position: fixed;
-    top: 2px; /* 上からの距離 */
-    left: 2px; /* 左からの距離 */
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
     font-size: 20px; /* フォントサイズを小さくする */
     cursor: pointer;
     z-index: 10; /* ボタンが他の要素よりも前に表示されるようにする */
-    padding: 10px; /* ボタン内の余白を小さく調整 */
+    padding: 10px; /* ボタン内の余白を調整 */
 }
 
 #sidebar.open {
     left: 0; /* サイドバーを表示位置にスライド */
-    display: block; /* 表示状態にする */
+    visibility: visible; /* サイドバーを表示する */
+    transition: left 0.3s ease, visibility 0s; /* アニメーションの遅延を解除 */
 }
 
 #map.open {
