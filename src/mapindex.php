@@ -248,12 +248,21 @@ followedUsers.forEach(user => {
 
         // ハンバーガーメニューの表示/非表示を切り替える
        // サイドバーを閉じる処理を追加
-        document.getElementById('hamburger-btn').addEventListener('click', () => {
-            const sidebar = document.getElementById('sidebar');
-            const map = document.getElementById('map');
-            sidebar.classList.toggle('open');
-            map.classList.toggle('open');
-        });
+       document.getElementById('hamburger-btn').addEventListener('click', function() {
+        var sidebar = document.getElementById('sidebar');
+        var map = document.getElementById('map');
+
+        if (sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+            sidebar.classList.add('closed');
+            map.classList.remove('open');
+        } else {
+            sidebar.classList.remove('closed');
+            sidebar.classList.add('open');
+            map.classList.add('open');
+        }
+});
+
 
 
         document.getElementById('back-btn').addEventListener('click', () => {
