@@ -1,4 +1,3 @@
-
 /* 全体のレイアウト */
 body {
     display: flex;
@@ -18,13 +17,16 @@ body {
     top: 0;
     left: 0;
     overflow-y: auto;
+    display: none; /* 初期状態は非表示 */
+    transition: transform 0.3s ease; /* サイドバーのスライドアニメーション */
 }
 
 #map {
     flex-grow: 1;
     height: 100vh;
-    margin-left: 300px; /* サイドバーの幅分だけマップを右に寄せる */
+    margin-left: 0; /* 初期状態では地図がサイドバーにかぶらない */
     background-color: #f0f0f0;
+    transition: margin-left 0.3s ease; /* 地図のスライドアニメーション */
 }
 
 /* 友達リスト */
@@ -88,45 +90,18 @@ button:hover {
     background-color: #45a049;
 }
 
-#sidebar {
-    display: none; /* 初めは非表示 */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
-
+/* ハンバーガーメニュー */
 #hamburger-btn {
     font-size: 30px;
     cursor: pointer;
-}
-
-#hamburger-menu {
-    position: relative;
-}
-
-#map {
-    margin-left: 0;
-    transition: margin-left 0.3s;
-}
-
-/* ハンバーガーメニューを開いた時のスタイル */
-#sidebar.open {
-    display: block;
-}
-
-#map.open {
-    margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
+    z-index: 10; /* ボタンが他の要素よりも前に表示されるようにする */
 }
 
 #sidebar.open {
     display: block; /* サイドバーが開いたときに表示 */
+    transform: translateX(0); /* サイドバーを表示位置にスライド */
 }
 
 #map.open {
-    margin-left: 250px; /* サイドバーが開いたときに地図をずらす */
+    margin-left: 300px; /* サイドバーが開いたときに地図をスライド */
 }
