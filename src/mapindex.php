@@ -50,8 +50,6 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php if (!$isMobile): ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
