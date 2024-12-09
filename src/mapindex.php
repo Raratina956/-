@@ -247,93 +247,107 @@ followedUsers.forEach(user => {
         });
 
         // ハンバーガーメニューの表示/非表示を切り替える
-        // ハンバーガーメニューの表示/非表示を切り替える
-document.getElementById('hamburger-btn').addEventListener('click', () => {
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
-    sidebar.classList.toggle('open');
-    map.classList.toggle('open');
-
-    // メニューが開いているか閉じているかの状態をボタンに反映
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    if (sidebar.classList.contains('open')) {
-        hamburgerBtn.textContent = '×'; // メニューを閉じる
-    } else {
-        hamburgerBtn.textContent = '☰'; // メニューを開く
-    }
-});
-
-// 位置情報更新ボタンがクリックされたときにメニューを閉じる
-document.getElementById('update-location-btn').addEventListener('click', () => {
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
-    sidebar.classList.remove('open'); // サイドバーを閉じる
-    map.classList.remove('open'); // 地図の位置を元に戻す
-
-    // 位置情報更新処理を呼び出す
-    updateLocation(); // 位置情報更新の関数を呼び出す
-});
-
-// 友達リストのアイコンがクリックされたときにメニューを閉じる
-document.querySelectorAll('.friend-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const sidebar = document.getElementById('sidebar');
-        const map = document.getElementById('map');
-        sidebar.classList.remove('open'); // サイドバーを閉じる
-        map.classList.remove('open'); // 地図の位置を元に戻す
-    });
-});
-
-// 現在地を取得し、自分のマーカーを表示
-function updateLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const userLocation = [position.coords.longitude, position.coords.latitude];
-            map.setCenter(userLocation);
-
-            const myMarkerElement = document.createElement('div');
-            myMarkerElement.className = 'marker';
-            myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
-            myMarkerElement.style.width = '40px';
-            myMarkerElement.style.height = '40px';
-
-            new mapboxgl.Marker(myMarkerElement)
-                .setLngLat(userLocation)
-                .setPopup(new mapboxgl.Popup({ offset: 25 })
-                    .setHTML('<div>あなたの現在地です</div>'))
-                .addTo(map);
-
-            // 現在地をサーバーに送信
-            fetch('save-location.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user_id: "<?php echo $partner_id; ?>",  // ここでpartner_idが正しく設定されていることを確認
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('位置情報が保存されました:', data);
-            })
-            .catch(error => {
-                console.error('位置情報の保存に失敗しました:', error);
-            });
-        }, error => {
-            console.error('現在地を取得できませんでした:', error);
-        }, {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
+        document.getElementById('hamburger-btn').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            const map = document.getElementById('map');
+            sidebar.classList.toggle('open');
+            map.classList.toggle('open');
         });
-    } else {
-        alert("Geolocationがサポートされていません");
-    }
-}
 
+        document.getElementById('back-btn').addEventListener('click', () => {
+            window.history.back();
+        });
+
+        // フォローしているユーザーの位置情報を取得
+        const followedUsers = <?php echo json_encode($followedUsers); ?>;
+        console.log('フォローしているユーザーのデータ:', followedUsers);
+
+        // 友達リストを作成
+        const friendList = document.getElementById('friend-list');
+        followedUsers.forEach(user => {
+            if (user.icon_name && user.user_name) {
+                const listItem = document.createElement('li');
+                listItem.className = 'friend-item';
+
+                // アイコンと名前を表示
+                const userIcon = document.createElement('img');
+                userIcon.src = user.icon_name; // アイコン画像のURL
+                userIcon.alt = `${user.user_name}のアイコン`;
+                userIcon.style.width = '32px'; // アイコンのサイズ調整
+
+                const userName = document.createElement('span');
+                userName.textContent = user.user_name;
+
+                listItem.appendChild(userIcon);
+                listItem.appendChild(userName);
+
+                // 友達リスト項目にクリックイベントを追加
+                listItem.addEventListener('click', () => {
+                    const userPosition = [user.longitude, user.latitude];
+                    map.flyTo({ center: userPosition, zoom: 15 });
+
+                    // クリック時にポップアップ表示
+                    new mapboxgl.Popup()
+                        .setLngLat(userPosition)
+                        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                        .addTo(map);
+                });
+
+                friendList.appendChild(listItem);
+            } else {
+                console.warn('不完全なデータ:', user);
+            }
+        });
+
+        // 現在地を取得し、自分のマーカーを表示
+        function updateLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userLocation = [position.coords.longitude, position.coords.latitude];
+                    map.setCenter(userLocation);
+
+                    const myMarkerElement = document.createElement('div');
+                    myMarkerElement.className = 'marker';
+                    myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+                    myMarkerElement.style.width = '40px';
+                    myMarkerElement.style.height = '40px';
+
+                    new mapboxgl.Marker(myMarkerElement)
+                        .setLngLat(userLocation)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 })
+                            .setHTML('<div>あなたの現在地です</div>'))
+                        .addTo(map);
+
+                    // 現在地をサーバーに送信
+                    fetch('save-location.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            user_id: "<?php echo $partner_id; ?>",  // ここでpartner_idが正しく設定されていることを確認
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('位置情報が保存されました:', data);
+                    })
+                    .catch(error => {
+                        console.error('位置情報の保存に失敗しました:', error);
+                    });
+                }, error => {
+                    console.error('現在地を取得できませんでした:', error);
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                });
+            } else {
+                alert("Geolocationがサポートされていません");
+            }
+        }
 
         // 位置情報更新ボタンのクリックイベント
         document.getElementById('update-location-btn').addEventListener('click', updateLocation);
