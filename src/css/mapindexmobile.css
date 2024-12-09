@@ -18,10 +18,9 @@ body {
     left: -300px; /* サイドバーが初期状態で隠れるように */
     visibility: hidden; /* サイドバーが表示されていない状態 */
     overflow-y: auto;
-    transition: left 0.3s ease, visibility 0s; /* visibilityの遅延解除を削除 */
+    transition: left 0.3s ease, visibility 0s 0.3s; /* visibilityの遅延解除 */
     z-index: 10; /* サイドバーが最前面に来る */
 }
-
 
 #map {
     flex-grow: 1;
