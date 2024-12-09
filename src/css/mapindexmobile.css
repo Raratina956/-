@@ -94,8 +94,8 @@ button:hover {
 /* ハンバーガーメニュー */
 #hamburger-btn {
     position: fixed;
-    top: 20px; /* 上からの距離 */
-    left: 20px; /* 左からの距離 */
+    top: 2px; /* 上からの距離 */
+    left: 2px; /* 左からの距離 */
     font-size: 20px; /* フォントサイズを小さくする */
     cursor: pointer;
     z-index: 10; /* ボタンが他の要素よりも前に表示されるようにする */
