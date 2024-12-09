@@ -283,6 +283,10 @@ followedUsers.forEach(user => {
 
                 // 友達リスト項目にクリックイベントを追加
                 listItem.addEventListener('click', () => {
+                    // メニューを閉じる
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.remove('open');
+
                     const userPosition = [user.longitude, user.latitude];
                     map.flyTo({ center: userPosition, zoom: 15 });
 
@@ -350,7 +354,14 @@ followedUsers.forEach(user => {
         }
 
         // 位置情報更新ボタンのクリックイベント
-        document.getElementById('update-location-btn').addEventListener('click', updateLocation);
+        document.getElementById('update-location-btn').addEventListener('click', () => {
+            // メニューを閉じる
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            
+            // 現在地を更新
+            updateLocation();
+        });
 
         // フォローしているユーザーのマーカーを表示
         followedUsers.forEach(user => {
@@ -373,6 +384,7 @@ followedUsers.forEach(user => {
     </script>
 </body>
 </html>
+
 
 
 <?php endif; ?>
