@@ -90,12 +90,15 @@ button:hover {
     background-color: #45a049;
 }
 
+
 /* ハンバーガーメニュー */
 #hamburger-btn {
-    font-size: 30px;
+    font-size: 20px; /* フォントサイズを小さくする */
     cursor: pointer;
     z-index: 10; /* ボタンが他の要素よりも前に表示されるようにする */
+    padding: 10px; /* ボタン内の余白を小さく調整 */
 }
+
 
 #sidebar.open {
     display: block; /* サイドバーが開いたときに表示 */
