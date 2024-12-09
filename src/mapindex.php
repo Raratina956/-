@@ -211,7 +211,7 @@ followedUsers.forEach(user => {
 
 
 
-//スマホ版
+<!-- スマホ版 -->
 <?php else: ?>
     <!DOCTYPE html>
 <html lang="ja">
@@ -224,18 +224,18 @@ followedUsers.forEach(user => {
     <link rel="stylesheet" href="css/mapindex.css">
 </head>
 <body>
-<div id="hamburger-menu">
-    <button id="hamburger-btn">&#9776;</button> <!-- ハンバーガーアイコン -->
-    <div id="sidebar">
-        <button id="back-btn">前のページに戻る</button>
-        <h2>友達一覧sumaho</h2>
-        <ul id="friend-list">
-            <!-- 友達リストはJavaScriptで生成 -->
-        </ul>
-        <button id="update-location-btn">位置情報を更新</button>
-    </div>
+<div id="sidebar">
+<button id="back-btn">前のページに戻る</button>
+
+    <h2>友達一覧sumaho</h2>
+    <ul id="friend-list">
+        <!-- 友達リストはJavaScriptで生成 -->
+    </ul>
+    <button id="update-location-btn">位置情報を更新</button>
 </div>
-<div id="map"></div>
+<div id='map'></div>
+
+
 
 
 <script>
@@ -295,17 +295,6 @@ followedUsers.forEach(user => {
         console.warn('不完全なデータ:', user);
     }
 });
-
-// ハンバーガーメニューをクリックしたときの処理
-document.getElementById('hamburger-btn').addEventListener('click', () => {
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
-
-    // サイドバーを開閉
-    sidebar.classList.toggle('open');
-    map.classList.toggle('open');
-});
-
 
 // 現在地を取得し、自分のマーカーを表示
 function updateLocation() {
