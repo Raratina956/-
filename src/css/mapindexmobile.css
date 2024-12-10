@@ -1,75 +1,130 @@
-/* mapindexmobile.cssの例 */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
 /* ハンバーガーメニュー */
 #hamburger-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 10;
-    font-size: 30px;
-    background: none;
-    border: none;
-    color: #000;
+    position: fixed;
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 20px; /* フォントサイズを小さくする */
+    cursor: pointer;
+    z-index: 15; /* メニューボタンを最前面に表示 */
+    padding: 10px; /* ボタン内の余白を調整 */
 }
 
 /* 戻るボタン */
 #back-btn {
-    position: absolute;
-    top: 10px;
-    left: 60px; /* ハンバーガーメニューの横に配置 */
-    z-index: 10;
+    position: fixed;
+    top: 20px; /* 上からの距離 */
+    left: 80px; /* メニューボタンの隣に配置 */
+    font-size: 16px; /* フォントサイズ */
     background-color: #f1f1f1;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
+    z-index: 14; /* メニューボタンの下に表示 */
 }
 
 /* サイドバー */
 #sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
+    width: 300px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+    position: fixed;
     height: 100%;
-    background-color: #fff;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 9;
+    top: 0;
+    left: -300px; /* サイドバーが初期状態で隠れる */
+    visibility: hidden; /* サイドバーが表示されていない状態 */
+    overflow-y: auto;
+    transition: left 0.3s ease, visibility 0s 0.3s; /* visibilityの遅延解除 */
+    z-index: 10; /* サイドバーが最前面に来る */
 }
 
-#sidebar.open {
-    transform: translateX(0);
-}
-
-/* マップ */
+/* 地図 */
 #map {
-    position: absolute;
-    top: 0;
+    flex-grow: 1;
+    height: 100vh;
+    margin-left: 0;
+    background-color: #f0f0f0;
+    transition: margin-left 0.3s ease;
+}
+
+/* サイドバーオープン時 */
+#sidebar.open {
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    visibility: visible;
+    transition: left 0.3s ease, visibility 0s;
+}
+
+/* 地図オープン時 */
+#map.open {
+    margin-left: 300px;
+}
+
+/* サイドバーが閉じたとき */
+#sidebar.closed {
+    visibility: hidden;
+    left: -300px;
+    transition: left 0.3s ease, visibility 0s;
 }
 
 /* 友達リスト */
 #friend-list {
+    list-style-type: none;
     padding: 0;
-    list-style: none;
 }
 
 .friend-item {
     display: flex;
     align-items: center;
     padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.friend-item:hover {
+    background-color: #e0e0e0;
 }
 
 .friend-item img {
+    border-radius: 50%;
     margin-right: 10px;
+}
+
+.friend-item span {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 現在地マーカー */
+.marker {
+    background-color: #ff5722;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* 地図のポップアップ */
+.mapboxgl-popup {
+    max-width: 200px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
 }
