@@ -239,7 +239,8 @@ followedUsers.forEach(user => {
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoia2F3YW1vdG9kZXN1IiwiYSI6ImNtMTc2OHBwcTBqY2IycG43cGpiN2VnZXAifQ.60SZqVIysOhn7YhEjRWVCQ';
 
-        const map = new mapboxgl.Map({
+        // mapの初期化
+        const mapInstance = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [130.4017, 33.5902], // 初期位置：福岡市の中心
@@ -249,17 +250,16 @@ followedUsers.forEach(user => {
         // ハンバーガーメニューの表示/非表示を切り替える
         document.getElementById('hamburger-btn').addEventListener('click', () => {
             const sidebar = document.getElementById('sidebar');
-            const map = document.getElementById('map');
             sidebar.classList.toggle('open');
-            map.classList.toggle('open');
         });
 
+        // 戻るボタン
         document.getElementById('back-btn').addEventListener('click', () => {
             window.history.back();
         });
 
         // フォローしているユーザーの位置情報を取得
-        const followedUsers = <?php echo json_encode($followedUsers); ?>;
+        const followedUsers = <?php echo json_encode($followedUsers, JSON_HEX_TAG | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_HEX_APOS); ?>;
         console.log('フォローしているユーザーのデータ:', followedUsers);
 
         // 友達リストを作成
@@ -283,28 +283,18 @@ followedUsers.forEach(user => {
 
                 // 友達リスト項目にクリックイベントを追加
                 listItem.addEventListener('click', () => {
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.remove('open');
 
-    // クラスの状態を確認して、openクラスを切り替え
-    sidebar.classList.remove('open');
-    map.classList.remove('open');
+                    const userPosition = [user.longitude, user.latitude];
+                    mapInstance.flyTo({ center: userPosition, zoom: 15 });
 
-    // mapboxgl-map-openクラスを削除
-    const mapContainer = document.querySelector('.mapboxgl-map');
-    if (mapContainer) {
-        mapContainer.classList.remove('mapboxgl-map-open');
-    }
-
-    const userPosition = [user.longitude, user.latitude];
-    map.flyTo({ center: userPosition, zoom: 15 });
-
-    // ポップアップを表示
-    new mapboxgl.Popup()
-        .setLngLat(userPosition)
-        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-        .addTo(map);
-});
+                    // ポップアップを表示
+                    new mapboxgl.Popup()
+                        .setLngLat(userPosition)
+                        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                        .addTo(mapInstance);
+                });
 
                 friendList.appendChild(listItem);
             } else {
@@ -317,11 +307,11 @@ followedUsers.forEach(user => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
                     const userLocation = [position.coords.longitude, position.coords.latitude];
-                    map.setCenter(userLocation);
+                    mapInstance.setCenter(userLocation);
 
                     const myMarkerElement = document.createElement('div');
                     myMarkerElement.className = 'marker';
-                    myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl); ?>})`;
+                    myMarkerElement.style.backgroundImage = `url(${<?php echo json_encode($iconUrl, JSON_HEX_TAG | JSON_HEX_QUOT); ?>})`;
                     myMarkerElement.style.width = '40px';
                     myMarkerElement.style.height = '40px';
 
@@ -329,7 +319,7 @@ followedUsers.forEach(user => {
                         .setLngLat(userLocation)
                         .setPopup(new mapboxgl.Popup({ offset: 25 })
                             .setHTML('<div>あなたの現在地です</div>'))
-                        .addTo(map);
+                        .addTo(mapInstance);
 
                     // 現在地をサーバーに送信
                     fetch('save-location.php', {
@@ -338,7 +328,7 @@ followedUsers.forEach(user => {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            user_id: "<?php echo $partner_id; ?>",  // ここでpartner_idが正しく設定されていることを確認
+                            user_id: "<?php echo addslashes($partner_id); ?>",  // ここでpartner_idが正しく設定されていることを確認
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         })
@@ -364,23 +354,13 @@ followedUsers.forEach(user => {
 
         // 位置情報更新ボタンのクリックイベント
         document.getElementById('update-location-btn').addEventListener('click', () => {
-    // メニューを閉じる
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
+            // メニューを閉じる
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
 
-    // クラスの状態を確認して、openクラスを切り替え
-    sidebar.classList.toggle('open');
-    map.classList.toggle('open');
-
-    // mapboxgl-map-openクラスを追加・削除
-    const mapContainer = document.querySelector('.mapboxgl-map');
-    if (mapContainer) {
-        mapContainer.classList.toggle('mapboxgl-map-open');
-    }
-
-    // 現在地を更新
-    updateLocation();
-});
+            // 現在地を更新
+            updateLocation();
+        });
 
         // フォローしているユーザーのマーカーを表示
         followedUsers.forEach(user => {
@@ -397,7 +377,7 @@ followedUsers.forEach(user => {
                     .setLngLat(userPosition)
                     .setPopup(new mapboxgl.Popup({ offset: 25 })
                         .setHTML(`<div>ユーザー名: ${user.user_name}</div>`))
-                    .addTo(map);
+                    .addTo(mapInstance);
             }
         });
     </script>
