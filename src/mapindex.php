@@ -227,7 +227,7 @@ followedUsers.forEach(user => {
     
     <div id="sidebar">
         <button id="back-btn">前のページに戻る</button>
-        <h2>友達一覧sumaa</h2>
+        <h2>友達一覧sumas</h2>
         <ul id="friend-list">
             <!-- 友達リストはJavaScriptで生成 -->
         </ul>
