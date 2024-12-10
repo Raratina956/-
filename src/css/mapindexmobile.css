@@ -6,7 +6,8 @@ body {
     padding: 0;
 }
 
-#sidebar {
+
+#side {
     width: 300px;
     background-color: #f8f8f8;
     padding: 20px;
@@ -15,6 +16,23 @@ body {
     position: fixed;
     height: 100%;
     top: 0;
+    left: -300px; /* サイドバーが初期状態で隠れるように */
+    visibility: hidden; /* サイドバーが表示されていない状態 */
+    overflow-y: auto;
+    transition: left 0.3s ease, visibility 0s 0.3s; /* visibilityの遅延解除 */
+    z-index: 10; /* サイドバーが最前面に来る */
+}
+
+
+#sidebar {
+    width: 300px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+    position: fixed;
+    height: 100%;
+    top: 70;
     left: -300px; /* サイドバーが初期状態で隠れるように */
     visibility: hidden; /* サイドバーが表示されていない状態 */
     overflow-y: auto;

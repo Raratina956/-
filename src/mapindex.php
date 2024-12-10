@@ -225,6 +225,7 @@ followedUsers.forEach(user => {
 <body>
     <button id="hamburger-btn">☰</button> <!-- ハンバーガーメニューのボタン -->
     
+    <div id="side">
     <div id="sidebar">
         <button id="back-btn">前のページに戻る</button>
         <h2>友達一覧mobileVar</h2>
@@ -232,6 +233,7 @@ followedUsers.forEach(user => {
             <!-- 友達リストはJavaScriptで生成 -->
         </ul>
         <button id="update-location-btn">位置情報を更新</button>
+    </div>
     </div>
 
     <div id='map'></div>
