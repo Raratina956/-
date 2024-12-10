@@ -286,6 +286,7 @@ followedUsers.forEach(user => {
                     // メニューを閉じる
                     const sidebar = document.getElementById('sidebar');
                     sidebar.classList.remove('open');
+                    map.classList.remove('open');
 
                     const userPosition = [user.longitude, user.latitude];
                     map.flyTo({ center: userPosition, zoom: 15 });
@@ -358,6 +359,7 @@ followedUsers.forEach(user => {
             // メニューを閉じる
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.remove('open');
+            map.classList.remove('open');
             
             // 現在地を更新
             updateLocation();
