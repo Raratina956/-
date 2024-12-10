@@ -1,29 +1,11 @@
-/* ハンバーガーメニュー */
-#hamburger-btn {
-    position: fixed;
-    top: 20px; /* 上からの距離 */
-    left: 20px; /* 左からの距離 */
-    font-size: 20px; /* フォントサイズを小さくする */
-    cursor: pointer;
-    z-index: 15; /* メニューボタンを最前面に表示 */
-    padding: 10px; /* ボタン内の余白を調整 */
+/* 全体のレイアウト */
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* 戻るボタン */
-#back-btn {
-    position: fixed;
-    top: 20px; /* 上からの距離 */
-    left: 80px; /* メニューボタンの隣に配置 */
-    font-size: 16px; /* フォントサイズ */
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 14; /* メニューボタンの下に表示 */
-}
-
-/* サイドバー */
 #sidebar {
     width: 300px;
     background-color: #f8f8f8;
@@ -33,39 +15,19 @@
     position: fixed;
     height: 100%;
     top: 0;
-    left: -300px; /* サイドバーが初期状態で隠れる */
+    left: -300px; /* サイドバーが初期状態で隠れるように */
     visibility: hidden; /* サイドバーが表示されていない状態 */
     overflow-y: auto;
     transition: left 0.3s ease, visibility 0s 0.3s; /* visibilityの遅延解除 */
     z-index: 10; /* サイドバーが最前面に来る */
 }
 
-/* 地図 */
 #map {
     flex-grow: 1;
     height: 100vh;
     margin-left: 0;
     background-color: #f0f0f0;
     transition: margin-left 0.3s ease;
-}
-
-/* サイドバーオープン時 */
-#sidebar.open {
-    left: 0;
-    visibility: visible;
-    transition: left 0.3s ease, visibility 0s;
-}
-
-/* 地図オープン時 */
-#map.open {
-    margin-left: 300px;
-}
-
-/* サイドバーが閉じたとき */
-#sidebar.closed {
-    visibility: hidden;
-    left: -300px;
-    transition: left 0.3s ease, visibility 0s;
 }
 
 /* 友達リスト */
@@ -109,7 +71,7 @@
     cursor: pointer;
 }
 
-/* 地図のポップアップ */
+/* 地図のカスタマイズ */
 .mapboxgl-popup {
     max-width: 200px;
 }
@@ -127,4 +89,32 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+/* ハンバーガーメニュー */
+#hamburger-btn {
+    position: fixed;
+    top: 20px; /* 上からの距離 */
+    left: 20px; /* 左からの距離 */
+    font-size: 20px; /* フォントサイズを小さくする */
+    cursor: pointer;
+    z-index: 15; /* ハンバーガーメニューが最前面に表示されるようにする */
+    padding: 10px; /* ボタン内の余白を調整 */
+}
+
+#sidebar.open {
+    left: 0; /* サイドバーを表示位置にスライド */
+    visibility: visible; /* サイドバーを表示 */
+    transition: left 0.3s ease, visibility 0s; /* visibilityの遅延解除 */
+}
+
+#map.open {
+    margin-left: 300px; /* サイドバーが開いたときに地図をスライド */
+}
+
+/* サイドバーが閉じたときに表示されないようにする */
+#sidebar.closed {
+    visibility: hidden; /* サイドバーが閉じたときに非表示 */
+    left: -300px; /* サイドバーが閉じる */
+    transition: left 0.3s ease, visibility 0s; /* アニメーション後に非表示に */
 }
