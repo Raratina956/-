@@ -227,7 +227,7 @@ followedUsers.forEach(user => {
     
     <div id="sidebar">
         <button id="back-btn">前のページに戻る</button>
-        <h2>友達一覧suma</h2>
+        <h2>友達一覧sumas</h2>
         <ul id="friend-list">
             <!-- 友達リストはJavaScriptで生成 -->
         </ul>
@@ -285,8 +285,8 @@ followedUsers.forEach(user => {
                 listItem.addEventListener('click', () => {
                     // メニューを閉じる
                     const sidebar = document.getElementById('sidebar');
-                    sidebar.classList.remove('open');
-                    map.classList.remove('open');
+                    sidebar.classList.toggle('open');
+                    map.classList.toggle('open');
 
                     const userPosition = [user.longitude, user.latitude];
                     map.flyTo({ center: userPosition, zoom: 15 });
@@ -358,8 +358,8 @@ followedUsers.forEach(user => {
         document.getElementById('update-location-btn').addEventListener('click', () => {
             // メニューを閉じる
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.remove('open');
-            map.classList.remove('open');
+            sidebar.classList.toggle('open');
+            map.classList.toggle('open');
             
             // 現在地を更新
             updateLocation();
