@@ -113,30 +113,17 @@ followedUsers.forEach(user => {
         listItem.appendChild(userIcon);
         listItem.appendChild(userName);
 
-        // 友達リストのアイテムクリックイベントに追加
-listItem.addEventListener('click', () => {
-    const sidebar = document.getElementById('sidebar');
-    const map = document.getElementById('map');
+        // 友達リスト項目にクリックイベントを追加
+        listItem.addEventListener('click', () => {
+            const userPosition = [user.longitude, user.latitude];
+            map.flyTo({ center: userPosition, zoom: 15 });
 
-    // クラスの状態を確認して、openクラスを切り替え
-    sidebar.classList.remove('open');
-    map.classList.remove('open');
-
-    // mapboxgl-map-openクラスを削除
-    const mapContainer = document.querySelector('.mapboxgl-map');
-    if (mapContainer) {
-        mapContainer.classList.remove('mapboxgl-map-open');
-    }
-
-    const userPosition = [user.longitude, user.latitude];
-    map.flyTo({ center: userPosition, zoom: 15 });
-
-    // ポップアップを表示
-    new mapboxgl.Popup()
-        .setLngLat(userPosition)
-        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-        .addTo(map);
-});
+            // クリック時にポップアップ表示
+            new mapboxgl.Popup()
+                .setLngLat(userPosition)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+                .addTo(map);
+        });
 
         friendList.appendChild(listItem);
     } else {
@@ -240,7 +227,7 @@ followedUsers.forEach(user => {
     
     <div id="sidebar">
         <button id="back-btn">前のページに戻る</button>
-        <h2>友達一覧sumas</h2>
+        <h2>友達一覧suma</h2>
         <ul id="friend-list">
             <!-- 友達リストはJavaScriptで生成 -->
         </ul>
@@ -296,20 +283,28 @@ followedUsers.forEach(user => {
 
                 // 友達リスト項目にクリックイベントを追加
                 listItem.addEventListener('click', () => {
-                    // メニューを閉じる
-                    const sidebar = document.getElementById('sidebar');
-                    sidebar.classList.toggle('open');
-                    map.classList.toggle('open');
+    const sidebar = document.getElementById('sidebar');
+    const map = document.getElementById('map');
 
-                    const userPosition = [user.longitude, user.latitude];
-                    map.flyTo({ center: userPosition, zoom: 15 });
+    // クラスの状態を確認して、openクラスを切り替え
+    sidebar.classList.remove('open');
+    map.classList.remove('open');
 
-                    // クリック時にポップアップ表示
-                    new mapboxgl.Popup()
-                        .setLngLat(userPosition)
-                        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-                        .addTo(map);
-                });
+    // mapboxgl-map-openクラスを削除
+    const mapContainer = document.querySelector('.mapboxgl-map');
+    if (mapContainer) {
+        mapContainer.classList.remove('mapboxgl-map-open');
+    }
+
+    const userPosition = [user.longitude, user.latitude];
+    map.flyTo({ center: userPosition, zoom: 15 });
+
+    // ポップアップを表示
+    new mapboxgl.Popup()
+        .setLngLat(userPosition)
+        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+        .addTo(map);
+});
 
                 friendList.appendChild(listItem);
             } else {
