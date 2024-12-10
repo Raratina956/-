@@ -113,17 +113,30 @@ followedUsers.forEach(user => {
         listItem.appendChild(userIcon);
         listItem.appendChild(userName);
 
-        // 友達リスト項目にクリックイベントを追加
-        listItem.addEventListener('click', () => {
-            const userPosition = [user.longitude, user.latitude];
-            map.flyTo({ center: userPosition, zoom: 15 });
+        // 友達リストのアイテムクリックイベントに追加
+listItem.addEventListener('click', () => {
+    const sidebar = document.getElementById('sidebar');
+    const map = document.getElementById('map');
 
-            // クリック時にポップアップ表示
-            new mapboxgl.Popup()
-                .setLngLat(userPosition)
-                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
-                .addTo(map);
-        });
+    // クラスの状態を確認して、openクラスを切り替え
+    sidebar.classList.remove('open');
+    map.classList.remove('open');
+
+    // mapboxgl-map-openクラスを削除
+    const mapContainer = document.querySelector('.mapboxgl-map');
+    if (mapContainer) {
+        mapContainer.classList.remove('mapboxgl-map-open');
+    }
+
+    const userPosition = [user.longitude, user.latitude];
+    map.flyTo({ center: userPosition, zoom: 15 });
+
+    // ポップアップを表示
+    new mapboxgl.Popup()
+        .setLngLat(userPosition)
+        .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
+        .addTo(map);
+});
 
         friendList.appendChild(listItem);
     } else {
@@ -356,14 +369,23 @@ followedUsers.forEach(user => {
 
         // 位置情報更新ボタンのクリックイベント
         document.getElementById('update-location-btn').addEventListener('click', () => {
-            // メニューを閉じる
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-            map.classList.toggle('open');
-            
-            // 現在地を更新
-            updateLocation();
-        });
+    // メニューを閉じる
+    const sidebar = document.getElementById('sidebar');
+    const map = document.getElementById('map');
+
+    // クラスの状態を確認して、openクラスを切り替え
+    sidebar.classList.toggle('open');
+    map.classList.toggle('open');
+
+    // mapboxgl-map-openクラスを追加・削除
+    const mapContainer = document.querySelector('.mapboxgl-map');
+    if (mapContainer) {
+        mapContainer.classList.toggle('mapboxgl-map-open');
+    }
+
+    // 現在地を更新
+    updateLocation();
+});
 
         // フォローしているユーザーのマーカーを表示
         followedUsers.forEach(user => {
