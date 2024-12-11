@@ -174,7 +174,7 @@ function updateLocation() {
             timeout: 10000,
             maximumAge: 0
         });
-    echo "<script>alert('これはアラートメッセージです');</script>";
+        alert("abcd");
     } else {
         alert("Geolocationがサポートされていません");
     }
