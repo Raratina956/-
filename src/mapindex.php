@@ -162,7 +162,7 @@ function updateLocation() {
                     longitude: position.coords.longitude
                 })
             })
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            // echo "<script type='text/javascript'>alert('$message');</script>";
             .then(response => response.json())
             .then(data => {
                 console.log('位置情報が保存されました:', data);
