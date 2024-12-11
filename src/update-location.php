@@ -32,6 +32,27 @@ if ($info_search_row) {
     $info_insert->execute([$user_id, 1, $current_datetime]);
 }
 
+$favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
+    $favorite_user->execute([$_SESSION['user']['user_id']]);
+    $favorite_results = $favorite_user->fetchAll(PDO::FETCH_ASSOC);
+    if ($favorite_results) {
+        foreach ($favorite_results as $favorite_row) {
+            $announce_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND type=?');
+            $announce_sql->execute([
+                $favorite_row['follow_id'],
+                2
+            ]);
+            if ($announce_sql->rowCount() == 0) {
+                $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
+                $new_announce->execute([$current_location_id, $favorite_row['follow_id'], 0, 2]);
+            } else {
+                $update_announce = $pdo->prepare('UPDATE Announce_check SET current_location_id=?, read_check=? WHERE user_id=? AND type=?');
+                $update_announce->execute([$current_location_id, 0, $favorite_row['follow_id'], 2]);
+            }
+        }
+    }
+
+
 // 成功レスポンスを返す
 echo json_encode(['success' => true, 'message' => '位置情報が更新されました']);
 ?>
