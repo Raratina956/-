@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'db-connect.php';
+require 'parts/auto-login.php';
 
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -174,7 +173,22 @@ function updateLocation() {
             timeout: 10000,
             maximumAge: 0
         });
-        alert("abcd");
+        
+        // infoに追加
+        <?php
+            $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+            $info_search_sql->execute([$_SESSION['user']['user_id']]);
+            $info_search_row = $info_search_sql->fetch();
+            $current_datetime = date('Y-m-d H:i:s');
+            if($info_search_row){
+                $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id=?,position_info_id=? logtime=? WHERE user_id=?');
+                $info_update ->execute([null,1,$current_datetime,$_SESSION['user']['user_id']]);
+            }else{
+                $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id,position_info_id,logtime) VALUES (?,?,?)');
+                $info_insert ->execute([$_SESSION['user']['user_id'],1,$current_datetime]);
+            }
+        ?>
+
     } else {
         alert("Geolocationがサポートされていません");
     }
