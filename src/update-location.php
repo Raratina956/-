@@ -47,8 +47,6 @@ if ($favorite_results) {
             $favorite_row['follow_id'],
             2
         ]);
-        echo "<script>alert('$current_location_id');</script>";
-        echo "<script>alert('テスト');</script>";
         if ($announce_sql->rowCount() == 0) {
             $new_announce = $pdo->prepare('INSERT INTO Announce_check(current_location_id, user_id, read_check, type) VALUES (?, ?, ?, ?)');
             $new_announce->execute([$current_location_id, $favorite_row['follow_id'], 0, 2]);
