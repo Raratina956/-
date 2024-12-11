@@ -174,7 +174,7 @@ function updateLocation() {
             timeout: 10000,
             maximumAge: 0
         });
-        echo "<script type='text/javascript'>alert('$message');</script>";
+    echo "<script>alert('これはアラートメッセージです');</script>";
     } else {
         alert("Geolocationがサポートされていません");
     }
