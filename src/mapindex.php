@@ -17,15 +17,6 @@ $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
 
-
-// $followList = $pdo->prepare('
-//      SELECT follower_id
-//      FROM Favorite
-//      WHERE follow_id = ?
-// ');
-// $followList->execute([$partner_id]);
-// $followedUsers = $followList->fetchAll(PDO::FETCH_ASSOC); // $followListの結果を取得
-
 $followStmt = $pdo->prepare('
     SELECT 
         Favorite.follower_id, 
@@ -43,9 +34,6 @@ $followStmt = $pdo->prepare('
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +48,7 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div id="sidebar">
-<button id="back-btn">前のページに戻る</button>
+    <button id="back-btn">前のページに戻る</button>
 
     <h2>友達一覧</h2>
     <ul id="friend-list">
@@ -80,12 +68,9 @@ const map = new mapboxgl.Map({
     zoom: 12 // 適切なズームレベルに調整（市全体を表示）
 });
 
-
-
 document.getElementById('back-btn').addEventListener('click', () => {
     window.history.back();
 });
-
 
 // フォローしているユーザーの位置情報を取得
 const followedUsers = <?php echo json_encode($followedUsers); ?>;
@@ -173,30 +158,38 @@ function updateLocation() {
             timeout: 10000,
             maximumAge: 0
         });
-        
-        // infoに追加
-        <?php
-            $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-            $info_search_sql->execute([$_SESSION['user']['user_id']]);
-            $info_search_row = $info_search_sql->fetch();
-            $current_datetime = date('Y-m-d H:i:s');
-            if($info_search_row){
-                $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id=?,position_info_id=?,logtime=? WHERE user_id=?');
-                $info_update ->execute([null,1,$current_datetime,$_SESSION['user']['user_id']]);
-            }else{
-                $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id,position_info_id,logtime) VALUES (?,?,?)');
-                $info_insert ->execute([$_SESSION['user']['user_id'],1,$current_datetime]);
-            }
-        ?>
-
     } else {
         alert("Geolocationがサポートされていません");
     }
 }
 
-
 // 位置情報更新ボタンのクリックイベント
-document.getElementById('update-location-btn').addEventListener('click', updateLocation);
+document.getElementById('update-location-btn').addEventListener('click', () => {
+    // 位置情報更新処理
+    updateLocation();
+
+    // AJAXリクエストを送信
+    fetch('update-location.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_id: "<?php echo $partner_id; ?>" // 現在のユーザーIDを渡す
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('位置情報が更新されました');
+        } else {
+            console.error('位置情報の更新に失敗しました');
+        }
+    })
+    .catch(error => {
+        console.error('エラー:', error);
+    });
+});
 
 // フォローしているユーザーのマーカーを表示
 followedUsers.forEach(user => {
