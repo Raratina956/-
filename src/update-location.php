@@ -26,10 +26,12 @@ if ($info_search_row) {
     // 既存のデータがあれば更新
     $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
     $info_update->execute([null, 1, $current_datetime, $user_id]);
+    
 } else {
     // データがなければ挿入
     $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
     $info_insert->execute([$user_id, 1, $current_datetime]);
+    $current_location_id = $pdo->lastInsertId();
 }
 
 $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
