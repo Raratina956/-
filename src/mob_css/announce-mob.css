@@ -37,7 +37,7 @@ h1 {
 }
 
 span {
-    display: block;
+    /* display: block; */
     margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
