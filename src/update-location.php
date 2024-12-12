@@ -55,10 +55,7 @@ if ($favorite_results) {
             $update_announce->execute([$current_location_id, 0, $favorite_row['follow_id'], 2]);
         }
     }
-}else{
-    echo "<script>alert('アラート');</script>";
 }
-
 
 // 成功レスポンスを返す
 echo json_encode(['success' => true, 'message' => '位置情報が更新されました']);
