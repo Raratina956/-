@@ -42,9 +42,9 @@ try {
 
     if ($info_search_row) {
         // 既存のデータがあれば更新
-        // $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
-        // $get_primary_key->execute([$user_id]);
-        // $current_location_id = $get_primary_key->fetchColumn();
+        $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
+        $get_primary_key->execute([$user_id]);
+        $current_location_id = $get_primary_key->fetchColumn();
         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
         $info_update->execute([null, 1, $current_datetime, $user_id]);
 
