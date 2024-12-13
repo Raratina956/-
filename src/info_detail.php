@@ -105,8 +105,8 @@ if ($type == 1) {
             <td width="50%">受信タグ</td>
         </tr>
         <tr>
-            <td width="50%"><?php echo $send_user_name; ?></td>
-            <td width="50%"><?php echo $sent_tag_name; ?></td>
+            <td width="50%"><?php echo mb_substr($send_user_name,0,10; ?></td>
+            <td width="50%"><?php echo mb_substr($sent_tag_name,0,15); ?></td>
         </tr>
         <tr>
             <td width="50%"><?php echo $time; ?></td>
