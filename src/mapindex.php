@@ -73,7 +73,7 @@ document.getElementById('back-btn').addEventListener('click', () => {
 });
 
 // フォローしているユーザーの位置情報を取得
-const followedUsers = <?php echo json_encode($followedUsers); ?>;
+const followedUsers = <?php echo json_encode($followedUsers, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK); ?>;
 console.log('フォローしているユーザーのデータ:', followedUsers);
 
 // 友達リストを作成
