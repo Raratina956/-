@@ -90,7 +90,7 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="border"><?php echo $title; ?></td>
+            <td colspan="2" class="border"><?php echo mb_substr($title,0,18); ?></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -98,7 +98,7 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2"class="border"><?php echo $content; ?></td>
+            <td colspan="2"class="border"><?php echo mb_substr($content,0,25); ?></td>
         </tr>
         <tr>
             <td width="50%">送信者</td>
