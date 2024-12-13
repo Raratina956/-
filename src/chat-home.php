@@ -136,7 +136,7 @@ function getUnreadMessageCount($pdo, $user_id, $partner_id) {
             <img src="<?php echo $icon['icon_name'] ?>" alt="User Image" class="avatar">
             <div class="chat-info">
                 <a href="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>">
-                    <?php echo  mb_substr(htmlspecialchars(getUserName($pdo, $partner_id)) 0, 10); ?>
+                    <?php echo  mb_substr(htmlspecialchars(getUserName($pdo, $partner_id)), 0, 10); ?>
                 </a>
 
                 <!-- 未読メッセージ数を赤丸で表示 -->
