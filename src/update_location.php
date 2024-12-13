@@ -28,7 +28,6 @@ try {
     ");
     $stmt->execute([$user_id, $latitude, $longitude, $updated_at]);
 
-    echo "<script>alert('テストA');</script>";
 
     // 以下通知処理
     $current_datetime = date('Y-m-d H:i:s');
@@ -37,15 +36,11 @@ try {
     $info_search_row = $info_search_sql->fetch();
 
     if ($info_search_row) {
-        echo "<script>alert('テストB');</script>";
         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
         $info_update->execute([null, 1, $current_datetime, $user_id]);
-        echo "<script>alert('テストC');</script>";
     } else {
-        echo "<script>alert('テストD');</script>";
         $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
         $info_insert->execute([$user_id, 1, $current_datetime]);
-        echo "<script>alert('テストE');</script>";
     }
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
