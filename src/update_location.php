@@ -30,7 +30,7 @@ try {
 
     echo json_encode(['success' => true, 'message' => '位置情報が保存']);
 
-    echo json_encode(['success' => true, 'message' => 'テストA']);
+    
     // 以下通知処理
     // 現在時刻を取得
     $current_datetime = date('Y-m-d H:i:s');
@@ -39,23 +39,44 @@ try {
     $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
     $info_search_sql->execute([$user_id]);
     $info_search_row = $info_search_sql->fetch();
-    echo json_encode(['success' => true, 'message' => 'テストB']);
+    ?>
+    <script>
+        alert('テストA');
+    </script>
+    <?php
     if ($info_search_row) {
+        ?>
+    <script>
+        alert('テストB');
+    </script>
+    <?php
         // 既存のデータがあれば更新
-        $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
+        $get_primary_key = $pdo->prepare('SELECT user_id FROM Current_location WHERE user_id = ?');
         $get_primary_key->execute([$user_id]);
         $current_location_id = $get_primary_key->fetchColumn();
         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
         $info_update->execute([null, 1, $current_datetime, $user_id]);
-        echo json_encode(['success' => true, 'message' => 'テストC']);
+        ?>
+    <script>
+        alert('テストC');
+    </script>
+    <?php
     } else {
+        ?>
+    <script>
+        alert('テストD');
+    </script>
+    <?php
         // データがなければ挿入
         $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
         $info_insert->execute([$user_id, 1, $current_datetime]);
         $current_location_id = $pdo->lastInsertId();
-        echo json_encode(['success' => true, 'message' => 'テストD']);
     }
-
+    ?>
+    <script>
+        alert('テストE');
+    </script>
+    <?php
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
     $favorite_results = $favorite_user->fetchAll(PDO::FETCH_ASSOC);
