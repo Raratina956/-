@@ -103,7 +103,7 @@ followedUsers.forEach(user => {
             // クリック時にポップアップ表示
             new mapboxgl.Popup()
                 .setLngLat(userPosition)
-                .setHTML(`<div>ユーザー名: mb_substr(${user.user_name},0,10)</div>`)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
                 .addTo(map);
         });
 
