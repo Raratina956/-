@@ -187,7 +187,7 @@ document.getElementById('update-location-btn').addEventListener('click', () => {
         }
     })
     .catch(error => {
-        console.error('エラー:', error);
+        // console.error('エラー:', error);
     });
 });
 
