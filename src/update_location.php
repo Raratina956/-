@@ -28,9 +28,9 @@ try {
     ");
     $stmt->execute([$user_id, $latitude, $longitude, $updated_at]);
 
-    echo json_encode(['success' => true, 'message' => '位置情報が保存']);
+    echo json_encode(['success' => true, 'message' => '位置情報が保存されました']);
 
-    echo json_encode(['success' => true, 'message' => 'テストA']);
+
     // 以下通知処理
     // 現在時刻を取得
     $current_datetime = date('Y-m-d H:i:s');
@@ -39,7 +39,7 @@ try {
     $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
     $info_search_sql->execute([$user_id]);
     $info_search_row = $info_search_sql->fetch();
-    echo json_encode(['success' => true, 'message' => 'テストB']);
+
     if ($info_search_row) {
         // 既存のデータがあれば更新
         $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
@@ -47,13 +47,12 @@ try {
         $current_location_id = $get_primary_key->fetchColumn();
         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
         $info_update->execute([null, 1, $current_datetime, $user_id]);
-        echo json_encode(['success' => true, 'message' => 'テストC']);
+
     } else {
         // データがなければ挿入
         $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
         $info_insert->execute([$user_id, 1, $current_datetime]);
         $current_location_id = $pdo->lastInsertId();
-        echo json_encode(['success' => true, 'message' => 'テストD']);
     }
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
