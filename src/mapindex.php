@@ -93,7 +93,7 @@ followedUsers.forEach(user => {
         userName.textContent = user.user_name;
 
         listItem.appendChild(userIcon);
-        listItem.mb_substr(appendChild(userName),0,10);
+        listItem.appendChild(userName);
 
         // 友達リスト項目にクリックイベントを追加
         listItem.addEventListener('click', () => {
