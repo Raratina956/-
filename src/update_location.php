@@ -40,20 +40,50 @@ try {
     $info_search_sql->execute([$user_id]);
     $info_search_row = $info_search_sql->fetch();
 
-    if ($info_search_row) {
-        // 既存のデータがあれば更新
-        $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
-        $get_primary_key->execute([$user_id]);
-        $current_location_id = $get_primary_key->fetchColumn();
-        $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
-        $info_update->execute([null, 1, $current_datetime, $user_id]);
-
-    } else {
-        // データがなければ挿入
-        $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
-        $info_insert->execute([$user_id, 1, $current_datetime]);
-        $current_location_id = $pdo->lastInsertId();
+    try {
+        if ($info_search_row) {
+            // 既存のデータがあれば更新
+            $get_primary_key = $pdo->prepare('SELECT id FROM Current_location WHERE user_id = ?');
+            $get_primary_key->execute([$user_id]);
+            $current_location_id = $get_primary_key->fetchColumn();
+    
+            if (!$current_location_id) {
+                throw new Exception("Current_location テーブルから主キーが取得できませんでした (user_id: $user_id)");
+            }
+    
+            $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
+            $info_update->execute([null, 1, $current_datetime, $user_id]);
+    
+            if ($info_update->rowCount() == 0) {
+                throw new Exception("Current_location テーブルのデータ更新に失敗しました (user_id: $user_id)");
+            }
+    
+            error_log("Current_location テーブル更新成功: user_id=$user_id");
+    
+        } else {
+            // データがなければ挿入
+            $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
+            $info_insert->execute([$user_id, 1, $current_datetime]);
+            $current_location_id = $pdo->lastInsertId();
+    
+            if (!$current_location_id) {
+                throw new Exception("Current_location テーブルへのデータ挿入に失敗しました (user_id: $user_id)");
+            }
+    
+            error_log("Current_location テーブル挿入成功: user_id=$user_id, lastInsertId=$current_location_id");
+        }
+    } catch (PDOException $e) {
+        // データベースエラーの処理
+        error_log("PDOException: " . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'DBエラー: ' . $e->getMessage()]);
+        exit();
+    } catch (Exception $e) {
+        // その他のエラー処理
+        error_log("Exception: " . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        exit();
     }
+    
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
