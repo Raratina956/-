@@ -214,7 +214,7 @@ form {
     border-radius: 5px;
 }
 
-joined:hover {
+.joined:hover {
     background-color: rgb(63, 225, 95);
     color: black;
 }
@@ -224,7 +224,7 @@ joined:hover {
 }
 
 /* 名前の省略表示 */
-.name h3, .tag-table td h3 {
+.name h3 {
     display: inline-block;
     max-width: 100%; /* 親要素の幅に合わせる */
     white-space: nowrap;
@@ -232,11 +232,28 @@ joined:hover {
     text-overflow: ellipsis;
 }
 
-/* ホバー時に省略表示を解除 */
-.name h3:hover, .tag-table td h3:hover {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
+/* タグ名の省略表示 */
+.tag-name {
+    display: inline-block;
+    max-width: 100%; /* 親要素の幅に合わせる */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+/* ホバー時に省略表示を解除（タグ名） */
+.tag-name:hover::after {
+    content: attr(data-fullname);
+    white-space: nowrap;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    left: 100%; /* 右に表示 */
+    top: 0;
+    transform: translateX(10px); /* 少し離して表示 */
 }
 
 /* リンクの文字色を常に黒に固定 */

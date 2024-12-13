@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'db-connect.php';
+require 'parts/auto-login.php';
 
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -17,15 +16,6 @@ $iconStmt = $pdo->prepare('SELECT icon_name FROM Icon WHERE user_id = ?');
 $iconStmt->execute([$partner_id]);
 $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
 $iconUrl = $icon ? $icon['icon_name'] : 'default-icon.png'; // デフォルトアイコンを設定
-
-
-// $followList = $pdo->prepare('
-//      SELECT follower_id
-//      FROM Favorite
-//      WHERE follow_id = ?
-// ');
-// $followList->execute([$partner_id]);
-// $followedUsers = $followList->fetchAll(PDO::FETCH_ASSOC); // $followListの結果を取得
 
 $followStmt = $pdo->prepare('
     SELECT 
@@ -44,9 +34,6 @@ $followStmt = $pdo->prepare('
 ');
 $followStmt->execute([$partner_id]);
 $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +48,7 @@ $followedUsers = $followStmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div id="sidebar">
-<button id="back-btn">前のページに戻る</button>
+    <button id="back-btn">前のページに戻る</button>
 
     <h2>友達一覧</h2>
     <ul id="friend-list">
@@ -81,12 +68,9 @@ const map = new mapboxgl.Map({
     zoom: 12 // 適切なズームレベルに調整（市全体を表示）
 });
 
-
-
 document.getElementById('back-btn').addEventListener('click', () => {
     window.history.back();
 });
-
 
 // フォローしているユーザーの位置情報を取得
 const followedUsers = <?php echo json_encode($followedUsers); ?>;
@@ -179,9 +163,33 @@ function updateLocation() {
     }
 }
 
-
 // 位置情報更新ボタンのクリックイベント
-document.getElementById('update-location-btn').addEventListener('click', updateLocation);
+document.getElementById('update-location-btn').addEventListener('click', () => {
+    // 位置情報更新処理
+    updateLocation();
+
+    // AJAXリクエストを送信
+    fetch('update-location.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_id: "<?php echo $partner_id; ?>" // 現在のユーザーIDを渡す
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('位置情報が更新されました');
+        } else {
+            console.error('位置情報の更新に失敗しました');
+        }
+    })
+    .catch(error => {
+        console.error('エラー:', error);
+    });
+});
 
 // フォローしているユーザーのマーカーを表示
 followedUsers.forEach(user => {

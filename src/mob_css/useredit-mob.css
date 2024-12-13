@@ -12,6 +12,10 @@ body {
     align-items: center;
     min-height: 100vh; /* 画面全体の高さに対応 */
     margin: 0;
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+
 }
 
 /* 全体を中央寄せするためのレイアウト */

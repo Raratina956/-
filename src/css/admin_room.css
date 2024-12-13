@@ -1,0 +1,45 @@
+body {
+    background-image: url(../img/SpotLinkbg.png);
+    padding-top: 145px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    min-height: 70vh;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    display: grid;
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+td{
+    width: 70px;
+}
+
+.edit {
+    background-color: rgb(248, 88, 88);
+    color: white;
+    border: none;
+    padding: 7px 15px; /* 内側の余白 */
+    text-align: center; /* テキストの中央揃え */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px; /* フォントサイズ */
+    margin: 4px 2px; /* 外側の余白 */
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit:hover {
+    background-color: rgb(207, 40, 40);
+    color: white;
+    transform: scale(1.05);
+}

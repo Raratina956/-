@@ -120,5 +120,5 @@ input[type="submit"]:hover {
     height: 210px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: -22%;
+    margin-left: 23%;
 }

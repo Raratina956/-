@@ -47,8 +47,8 @@ if ($update_id == 1) {
         $current_location_id = $pdo->lastInsertId();
     } else {
         // 位置情報が登録済の場合の処理　→　更新
-        $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=? WHERE user_id=?');
-        $updatepoint->execute([$room_id, $now_time, $_SESSION['user']['user_id']]);
+        $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=?, position_info_id=? WHERE user_id=?');
+        $updatepoint->execute([$room_id, $now_time,null, $_SESSION['user']['user_id']]);
         $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
         $current_sql->execute([$room_id, $_SESSION['user']['user_id']]);
         $current_row = $current_sql->fetch();

@@ -27,6 +27,15 @@ $class_floor = $class_row['classroom_floor'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="mob_css/admin_room_edit_mob.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="css/admin_room_edit.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
+    <link rel="stylesheet" type="text/css" href="css/admin_room_edit.css" media="screen and (min-width: 1280px)">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+    
     <title>管理者ページ</title>
 </head>
 
@@ -41,10 +50,10 @@ $class_floor = $class_row['classroom_floor'];
                 <option value="<?= $i ?>" <?= $i == $class_floor ? 'selected' : '' ?>><?= $i ?>階</option>
             <?php endfor; ?>
         </select>
-        <input type="submit" value="変更">
+        <input type="submit" class="edit" value="変更">
     </form>
     <form action="admin_room.php" method="post">
-        <input type="submit" value="戻る">
+        <input type="submit" class="back" value="戻る">
     </form>
 </body>
 

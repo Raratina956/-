@@ -124,7 +124,7 @@ if ($kinds == "a" || $kinds == "t") {
                             <td class="name"><a href="javascript:document.form<?php echo $data['id']; ?>.submit()"
                                     class="user-serch">
 
-                                    <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
+                                    <h3 title="<?php echo htmlspecialchars($data['name']); ?>"><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?>
                                     </h3>
 
 
@@ -143,8 +143,10 @@ if ($kinds == "a" || $kinds == "t") {
                 <?php foreach ($tag_data as $data): ?>
                     <tr>
                         <td>
-                            <h3><?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
+                            <h3 class="tag-name" data-fullname="<?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars($data['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <?php echo htmlspecialchars(limitDisplay($data['name'], 10), ENT_QUOTES, 'UTF-8'); ?></h3>
                         </td>
+
                         <form action="search.php" method="post">
                             <input type="hidden" name="join_tag_id" value=<?php echo $data['id']; ?>>
                             <?php
