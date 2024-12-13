@@ -75,7 +75,7 @@ require 'header.php';
                 $classtag = $classtagStmt->fetch();
                 echo '<div class="profile">';
                 // 生徒(名前、クラス、メールアドレス)
-                echo '名前：', $user['user_name'], "<br>";
+                echo '名前：', mb_substr($user['user_name'], 0, 10), "<br>";
                 if ($classtag) {
                     $classtagnameStmt = $pdo->prepare('select * from Classtag_list where classtag_id=?');
                     $classtagnameStmt->execute([$classtag['classtag_id']]);
@@ -106,7 +106,7 @@ require 'header.php';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile"><br>';
-                echo '名前：', $user['user_name'], "先生<br>";
+                echo '名前：', mb_substr($user['user_name'], 0, 10), "先生<br>";
                 echo $user['mail_address'];
                 //編集ボタン
                 echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
@@ -231,7 +231,7 @@ require 'header.php';
                 } else {
                     // クラス情報がなかった場合の処理
                     echo '<div class="profile">';
-                    echo '名前：', $user['user_name'], "<br>";
+                    echo '名前：', mb_substr($user['user_name'], 0, 10), "<br>";
                     echo 'クラス：クラスが設定されていません', '<br>';
                     echo $user['mail_address'], "<br>";
                     $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
@@ -254,7 +254,7 @@ require 'header.php';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo '名前：', $user['user_name'], "先生<br>";
+                echo '名前：', mb_substr($user['user_name'], 0, 10), "先生<br>";
                 echo $user['mail_address'], "<br>";
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                 $current_sql->execute([$_GET['user_id']]);
