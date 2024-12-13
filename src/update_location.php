@@ -38,9 +38,13 @@ try {
     if ($info_search_row) {
         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
         $info_update->execute([null, 1, $current_datetime, $user_id]);
+        $select_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
+        $select_query->execute([$user_id]);
+        $current_location_id = $select_query->fetchColumn();
     } else {
         $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
         $info_insert->execute([$user_id, 1, $current_datetime]);
+        $current_location_id = $pdo->lastInsertId();
     }
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
