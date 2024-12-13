@@ -36,3 +36,4 @@ try {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     exit();
 }
+echo json_encode("テスト");
