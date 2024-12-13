@@ -130,9 +130,9 @@ if ($ann_send_list_row || $ann_sent_list_row) {
                         echo '<td data-label="種別">エラー</td>';
                         break;
                 }
-                echo '<td data-label="タイトル">' . $announcement['title'] . '</td>';
-                echo '<td data-label="投稿者">' . $announcement['send_user_name'] . '</td>';
-                echo '<td data-label="投稿先">' . $announcement['sent_tag_name'] . '</td>';
+                echo '<td data-label="タイトル">' . mb_substr($announcement['title'],0,15) . '</td>';
+                echo '<td data-label="投稿者">' . mb_substr($announcement['send_user_name'],0,10) . '</td>';
+                echo '<td data-label="投稿先">' . mb_substr($announcement['sent_tag_name'],0,10) . '</td>';
                 echo '<td data-label="投稿日時">' . $announcement['send_time'] . '</td>';
                 echo '<form action="announce_his_info.php" method ="post">';
                 echo '<input type="hidden" name="announcement_id" value=' . $announcement['announcement_id'] . '>';

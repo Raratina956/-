@@ -51,19 +51,19 @@ if($tag_row){
     <div class="container">
         <div class="announcement-item">
             <span class="label">タイトル：</span>
-            <span class="content"><?php echo htmlspecialchars($title); ?></span>
+            <span class="content"><?php echo mb_substr(htmlspecialchars($title),0,18); ?></span>
         </div>
         <div class="announcement-item">
             <span class="label">内容：</span>
-            <span class="content"><?php echo nl2br(htmlspecialchars($content)); ?></span>
+            <span class="content"><?php echo mb_substr(nl2br(htmlspecialchars($content)),0,30); ?></span>
         </div>
         <div class="announcement-item">
             <span class="label">投稿主：</span>
-            <span class="content"><?php echo htmlspecialchars($send_user_name); ?></span>
+            <span class="content"><?php echo hmb_substr(tmlspecialchars($send_user_name),0,10); ?></span>
         </div>
         <div class="announcement-item">
             <span class="label">宛先タグ：</span>
-            <span class="content"><?php echo htmlspecialchars($sent_tag_name); ?></span>
+            <span class="content"><?php echo mb_substr(htmlspecialchars($sent_tag_name),0,10); ?></span>
         </div>
         <div class="announcement-item">
             <span class="label">日時：</span>
