@@ -93,7 +93,7 @@ followedUsers.forEach(user => {
         userName.textContent = user.user_name;
 
         listItem.appendChild(userIcon);
-        listItem.mb_substr(appendChild(userName),0,10);
+        listItem.appendChild(userName);
 
         // 友達リスト項目にクリックイベントを追加
         listItem.addEventListener('click', () => {
@@ -103,7 +103,7 @@ followedUsers.forEach(user => {
             // クリック時にポップアップ表示
             new mapboxgl.Popup()
                 .setLngLat(userPosition)
-                .setHTML(`<div>ユーザー名: mb_substr(${user.user_name},0,10)</div>`)
+                .setHTML(`<div>ユーザー名: ${user.user_name}</div>`)
                 .addTo(map);
         });
 
