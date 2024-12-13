@@ -146,7 +146,7 @@ function updateLocation() {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('位置情報が保存されました:', data);
+                console.log('位置情報が保存されたよ:', data);
             })
             .catch(error => {
                 console.error('位置情報の保存に失敗しました:', error);

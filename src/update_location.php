@@ -28,7 +28,7 @@ try {
     ");
     $stmt->execute([$user_id, $latitude, $longitude, $updated_at]);
 
-    echo json_encode(['success' => true, 'message' => '位置情報が保存されました']);
+    echo json_encode(['success' => true, 'message' => '位置情報が保存']);
 
     echo json_encode(['success' => true, 'message' => 'テストA']);
     // 以下通知処理
