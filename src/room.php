@@ -225,7 +225,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . $user['user_id'] . '">', $member['user_name'] ,'</a>
+                                    <a href="user.php?user_id=' . $user['user_id'] . '">', mb_substr($member['user_name'],0,10) ,'</a>
                                 </li>';
                         }
                     }
@@ -267,7 +267,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
-                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
+                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
                                   </li>';
                         }
                     } else {
@@ -304,7 +304,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
+                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
                                 </li>';
                         }
                     } else {
@@ -342,7 +342,7 @@ if ($update_id == 1) {
                             echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
-                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) .'</a></span>
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
                                   </li>';
                         }
                     } else {
@@ -380,7 +380,7 @@ if ($update_id == 1) {
                         echo '<li style="list-style: none; padding-left: 0;">
                                 <div class="profile-container"><div class="user-container">
                                 <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', htmlspecialchars($member['user_name']) ,'</a></span>
+                                <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) ,'</a></span>
                               </li>';
                     }
                 } else {
