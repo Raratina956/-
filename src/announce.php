@@ -115,10 +115,10 @@ if (empty($_POST['title'])) {
     ?>
     <h2>アナウンス発信しました。</h2>
     <p>
-    <h2>宛先：<?php echo $tag_name; ?></h2>
+    <h2>宛先：<?php echo mb_substr($tag_name,0,10); ?></h2>
     <p>
-    <h2><?php echo $title; ?></h2>
-    <h3><?php echo $content; ?></h3>
+    <h2><?php echo mb_substr($title,0,18); ?></h2>
+    <h3><?php echo mb_substr($content,0,30); ?></h3>
     <a class="back-link" href="map.php">戻る</a>
     <?php
     // 上記アナウンス発信後
