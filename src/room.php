@@ -55,9 +55,8 @@ if ($update_id == 1) {
         $current_location_id = $current_row['current_location_id'];
     }
     $location_delete = $pdo->prepare('DELETE FROM locations WHERE user_id = ?');
-    $location_delete->execute([$_SESSION['user_id']]);
-
-
+    $location_delete->execute([$_SESSION['user']['user_id']]);
+    
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
     $favorite_results = $favorite_user->fetchAll(PDO::FETCH_ASSOC);
