@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     parse_str(parse_url($fixed_url, PHP_URL_QUERY), $queryParams);
     $room_id = htmlspecialchars($queryParams['id']);
     $update_id = htmlspecialchars($queryParams['update']);
-    $room=$pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
+    $room = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id=?');
     $room->execute([$room_id]);
-    $room_row=$room->fetch();
+    $room_row = $room->fetch();
 
-    if(!isset($_SESSION['floor']['kai'])){
+    if (!isset($_SESSION['floor']['kai'])) {
         $_SESSION['floor'] = [
             'kai' => $room_row['classroom_floor']
-        ];    
+        ];
     }
 } else {
     $room_id = $_GET['id'];
@@ -48,12 +48,15 @@ if ($update_id == 1) {
     } else {
         // 位置情報が登録済の場合の処理　→　更新
         $updatepoint = $pdo->prepare('UPDATE Current_location SET classroom_id=?, logtime=?, position_info_id=? WHERE user_id=?');
-        $updatepoint->execute([$room_id, $now_time,null, $_SESSION['user']['user_id']]);
+        $updatepoint->execute([$room_id, $now_time, null, $_SESSION['user']['user_id']]);
         $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
         $current_sql->execute([$room_id, $_SESSION['user']['user_id']]);
         $current_row = $current_sql->fetch();
         $current_location_id = $current_row['current_location_id'];
     }
+    $location_delete = $pdo->prepare('DELETE FROM locations WHERE user_id = ?');
+    $location_delete->execute([$_SESSION['user_id']]);
+
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
@@ -97,52 +100,52 @@ if ($update_id == 1) {
     <main>
         <h1><?php echo htmlspecialchars($floor); ?>階</h1>
         <span><?php echo '<div class="heya">', htmlspecialchars($room_name), '</div>'; ?></span>
-        <div  class="Current_container">
-        <ul class="ul">
-        <?php
-        // 現在の位置情報を取得するクエリ
-        $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
-        $point->execute([$_SESSION['user']['user_id']]);
-        $current_location = $point->fetch();
-        if ($current_location && $current_location['classroom_id'] == $room_id) {
-            echo '<div class="button-container"><button class="room" disabled><img  src="img/pin2.png" width="65px" height="60px" ><li>登録済み</li></button></div>';
-        } else {
-            if ($current_location) {
-                echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
+        <div class="Current_container">
+            <ul class="ul">
+                <?php
+                // 現在の位置情報を取得するクエリ
+                $point = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $point->execute([$_SESSION['user']['user_id']]);
+                $current_location = $point->fetch();
+                if ($current_location && $current_location['classroom_id'] == $room_id) {
+                    echo '<div class="button-container"><button class="room" disabled><img  src="img/pin2.png" width="65px" height="60px" ><li>登録済み</li></button></div>';
+                } else {
+                    if ($current_location) {
+                        echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="1">  <!-- 更新のためのフラグ -->
                         <li><input class="room" type="image" src="img/pin.png" width="65px" height="60px" value="位置情報を更新"></li>
                         <li>更新</li>
                       </form></div>';
-            } else {
-                echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
+                    } else {
+                        echo '<div class="button-container"><form action="room.php?id=' . htmlspecialchars($room_id) . '&update=1" method="post">
                         <input type="hidden" name="judge" value="0">
                         <li><input class="room" type="submit" value="位置登録"></li>
                         
                       </form></div>';
-            }
-        }
-        ?>
-      
-        <!-- QR表示 -->
-        <form id="qr-form" action="qr_show.php" method="post" target="_blank">
-            <?php    
-                echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
-                echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
-            ?>
-             <li><input class="room" type="image" src="img/QR.png" width="70px" height="70px" value="QR"></li>
-             <li>QR</li>
-        </form>
-        </ul>
-    </div>
-    
+                    }
+                }
+                ?>
+
+                <!-- QR表示 -->
+                <form id="qr-form" action="qr_show.php" method="post" target="_blank">
+                    <?php
+                    echo '<input type="hidden" name="room" value="', htmlspecialchars($room_name), '">';
+                    echo '<input type="hidden" name="custom_url" value="https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . htmlspecialchars($room_id) . '&update=1">';
+                    ?>
+                    <li><input class="room" type="image" src="img/QR.png" width="70px" height="70px" value="QR"></li>
+                    <li>QR</li>
+                </form>
+            </ul>
+        </div>
+
 
         <!-- 教室にいるユーザーを表示 -->
         <?php
-            // 表示するユーザーの絞り込み
-            $target = isset($_POST['target']) ? $_POST['target'] : 'all';
-            $favorite = isset($_POST['favorite']) ? $_POST['favorite'] : 0;
-            
-            echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=0" method="post">
+        // 表示するユーザーの絞り込み
+        $target = isset($_POST['target']) ? $_POST['target'] : 'all';
+        $favorite = isset($_POST['favorite']) ? $_POST['favorite'] : 0;
+
+        echo '<form action="room.php?id=' . htmlspecialchars($room_id) . '&update=0" method="post">
                     <select name="target">
                         <option value="all"' . ($target === 'all' ? ' selected' : '') . '>全て</option>
                         <option value="teacher"' . ($target === 'teacher' ? ' selected' : '') . '>教師</option>
@@ -154,205 +157,205 @@ if ($update_id == 1) {
                         </select>
                         <button type="submit">検索</button>
                   </form>';
-            
-            echo '<form action="floor.php" method="post">';
-                echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">';
-                echo '<button type="submit" class="back-link">戻る</button>';
-            echo '</form>'; 
 
-            echo '<div class="icon_container">';
-            echo '<ul class="flex_item">';
+        echo '<form action="floor.php" method="post">';
+        echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">';
+        echo '<button type="submit" class="back-link">戻る</button>';
+        echo '</form>';
 
-            // 初期分岐と「すべて」選択時
-            if(empty($_POST['target']) || $_POST['target'] == "all"){
+        echo '<div class="icon_container">';
+        echo '<ul class="flex_item">';
 
-                // 初期分岐と未選択時
-                if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
-                    // 教室にいるメンバーを持ってくる(全件表示)
-                    $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
-                    $users->execute([$room_id]);
-                    $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-                
-                    // ユーザーがいるかどうか
-                    if ($usersList) {
-                        // 初期表示、全件表示
-                        foreach($usersList as $user) {
-                            // ユーザー情報を持ってくる
-                            $members = $pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
-                
-                            // アイコン情報を持ってくる
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                
-                            echo '<li class="li" style="list-style: none; padding-left: 0;">
+        // 初期分岐と「すべて」選択時
+        if (empty($_POST['target']) || $_POST['target'] == "all") {
+
+            // 初期分岐と未選択時
+            if (empty($_POST['favorite']) || $_POST['favorite'] == 0) {
+                // 教室にいるメンバーを持ってくる(全件表示)
+                $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=?');
+                $users->execute([$room_id]);
+                $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
+
+                // ユーザーがいるかどうか
+                if ($usersList) {
+                    // 初期表示、全件表示
+                    foreach ($usersList as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                        // アイコン情報を持ってくる
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                        echo '<li class="li" style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '"  class="usericon">
-                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) ,'</a></span>
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']), 0, 10), '</a></span>
                                   </li>';
-                        }
-                    } else {
-                        echo '<p>ユーザーが見つかりませんでした。</p>';
                     }
+                } else {
+                    echo '<p>ユーザーが見つかりませんでした。</p>';
+                }
 
                 // お気に入り選択時
-                }else if($_POST['favorite'] == 1) {
-                    // お気に入り登録しているユーザーのidを持ってくる
-                    $favorites = $pdo->prepare('SELECT * FROM Favorite where follow_id=?');
-                    $favorites->execute([$_SESSION['user']['user_id']]);
-                    $found = false; // ユーザーが見つかったかどうかを示すフラグ
-            
-                    foreach($favorites as $favorite) {
-                        // 教室にいるメンバーを持ってくる(全件表示)
-                        $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
-                        $users->execute([$room_id, $favorite['follower_id']]);
-                        
-                        foreach($users as $user) {
-                            $found = true; // ユーザーが見つかった場合にフラグを設定
-                
-                            // ユーザー情報を持ってくる
-                            $members = $pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
-                
-                            // アイコン情報を持ってくる
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                
-                            echo '<li style="list-style: none; padding-left: 0;">
+            } else if ($_POST['favorite'] == 1) {
+                // お気に入り登録しているユーザーのidを持ってくる
+                $favorites = $pdo->prepare('SELECT * FROM Favorite where follow_id=?');
+                $favorites->execute([$_SESSION['user']['user_id']]);
+                $found = false; // ユーザーが見つかったかどうかを示すフラグ
+        
+                foreach ($favorites as $favorite) {
+                    // 教室にいるメンバーを持ってくる(全件表示)
+                    $users = $pdo->prepare('SELECT * FROM Current_location WHERE classroom_id=? AND user_id=?');
+                    $users->execute([$room_id, $favorite['follower_id']]);
+
+                    foreach ($users as $user) {
+                        $found = true; // ユーザーが見つかった場合にフラグを設定
+        
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                        // アイコン情報を持ってくる
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                        echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', $icon['icon_name'], '" width="20%" height="50%" class="usericon">
-                                    <a href="user.php?user_id=' . $user['user_id'] . '">', mb_substr($member['user_name'],0,10) ,'</a>
+                                    <a href="user.php?user_id=' . $user['user_id'] . '">', mb_substr($member['user_name'], 0, 10), '</a>
                                 </li>';
-                        }
-                    }
-                    
-                    if (!$found) {
-                        // 条件に合うユーザーが見つからなかった場合のメッセージ
-                        echo "ユーザーが見つかりませんでした。";
                     }
                 }
 
+                if (!$found) {
+                    // 条件に合うユーザーが見つからなかった場合のメッセージ
+                    echo "ユーザーが見つかりませんでした。";
+                }
+            }
+
             //教師選択時
-            }else if($_POST['target'] == "teacher") {
-                // 初期分岐と未選択時
-                if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
-                    // 教室にいるメンバーを持ってくる(全件表示)
-                    $users = $pdo->prepare('
+        } else if ($_POST['target'] == "teacher") {
+            // 初期分岐と未選択時
+            if (empty($_POST['favorite']) || $_POST['favorite'] == 0) {
+                // 教室にいるメンバーを持ってくる(全件表示)
+                $users = $pdo->prepare('
                         SELECT Users.* FROM Users
                         JOIN Current_location ON Users.user_id = Current_location.user_id
                         WHERE Current_location.classroom_id = ? AND Users.s_or_t = 1
                     ');
-                    $users->execute([$room_id]);
-                    $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-            
-                    // ユーザーがいるかどうか
-                    if ($usersList) {
-                        // 初期表示、全件表示
-                        foreach($usersList as $user) {
+                $users->execute([$room_id]);
+                $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
 
-                            // ユーザー情報を持ってくる
-                            $members = $pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                // ユーザーがいるかどうか
+                if ($usersList) {
+                    // 初期表示、全件表示
+                    foreach ($usersList as $user) {
 
-                            // アイコン情報を持ってくる
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-            
-                            echo '<li style="list-style: none; padding-left: 0;">
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                        // アイコン情報を持ってくる
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                        echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
-                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
+                                    <img src="' . htmlspecialchars($icon['icon_name']) . '" width="20%" height="50%" class="usericon">
+                                   <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']), 0, 10) . '</a></span>
                                   </li>';
-                        }
-                    } else {
-                        // 条件に合うユーザーが見つからなかった場合のメッセージ
-                        echo '<p>ユーザーが見つかりませんでした。</p>';
                     }
-            
+                } else {
+                    // 条件に合うユーザーが見つからなかった場合のメッセージ
+                    echo '<p>ユーザーが見つかりませんでした。</p>';
+                }
+
                 // お気に入り選択時
-                } else if($_POST['favorite'] == 1) {
-                    // 教室にいるメンバーを持ってくる(お気に入りに登録している場合)
-                    $users = $pdo->prepare('
+            } else if ($_POST['favorite'] == 1) {
+                // 教室にいるメンバーを持ってくる(お気に入りに登録している場合)
+                $users = $pdo->prepare('
                         SELECT Users.* FROM Users
                         JOIN Current_location ON Users.user_id = Current_location.user_id
                         JOIN Favorite ON Users.user_id = Favorite.follower_id
                         WHERE Current_location.classroom_id = ? AND Users.s_or_t = 1 AND Favorite.follow_id = ?
                     ');
-                    $users->execute([$room_id, $_SESSION['user']['user_id']]);
-                    $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-                
-                    // ユーザーがいるかどうか
-                    if ($usersList) {
-                        // 初期表示、全件表示
-                        foreach($usersList as $user) {
-                            // ユーザー情報を持ってくる
-                            $members = $pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                $users->execute([$room_id, $_SESSION['user']['user_id']]);
+                $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
 
-                            // アイコン情報を持ってくる
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                
-                            echo '<li style="list-style: none; padding-left: 0;">
+                // ユーザーがいるかどうか
+                if ($usersList) {
+                    // 初期表示、全件表示
+                    foreach ($usersList as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                        // アイコン情報を持ってくる
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                        echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
                                     <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
+                                      <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']), 0, 10) . '</a></span>
                                 </li>';
-                        }
-                    } else {
-                        // 条件に合うユーザーが見つからなかった場合のメッセージ
-                        echo '<p>ユーザーが見つかりませんでした。</p>';
                     }
+                } else {
+                    // 条件に合うユーザーが見つからなかった場合のメッセージ
+                    echo '<p>ユーザーが見つかりませんでした。</p>';
                 }
+            }
 
-            }else if($_POST['target'] == "student"){
-                // 初期分岐と未選択時
-                if(empty($_POST['favorite']) || $_POST['favorite'] == 0) {
-                    // 教室にいるメンバーを持ってくる(全件表示)
-                    $users = $pdo->prepare('
+        } else if ($_POST['target'] == "student") {
+            // 初期分岐と未選択時
+            if (empty($_POST['favorite']) || $_POST['favorite'] == 0) {
+                // 教室にいるメンバーを持ってくる(全件表示)
+                $users = $pdo->prepare('
                         SELECT Users.* FROM Users
                         JOIN Current_location ON Users.user_id = Current_location.user_id
                         WHERE Current_location.classroom_id = ? AND Users.s_or_t = 0
                     ');
-                    $users->execute([$room_id]);
-                    $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-                
-                    // ユーザーがいるかどうか
-                    if ($usersList) {
-                        // 初期表示、全件表示
-                        foreach($usersList as $user) {
-                            // ユーザー情報を持ってくる
-                            $members = $pdo->prepare('select * from Users where user_id=?');
-                            $members->execute([$user['user_id']]);
-                            $member = $members->fetch(PDO::FETCH_ASSOC);
+                $users->execute([$room_id]);
+                $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
 
-                            // アイコン情報を持ってくる
-                            $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
-                            $iconStmt->execute([$user['user_id']]);
-                            $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-                
-                            echo '<li style="list-style: none; padding-left: 0;">
+                // ユーザーがいるかどうか
+                if ($usersList) {
+                    // 初期表示、全件表示
+                    foreach ($usersList as $user) {
+                        // ユーザー情報を持ってくる
+                        $members = $pdo->prepare('select * from Users where user_id=?');
+                        $members->execute([$user['user_id']]);
+                        $member = $members->fetch(PDO::FETCH_ASSOC);
+
+                        // アイコン情報を持ってくる
+                        $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
+                        $iconStmt->execute([$user['user_id']]);
+                        $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
+
+                        echo '<li style="list-style: none; padding-left: 0;">
                                     <div class="profile-container"><div class="user-container">
-                                    <img src="'. htmlspecialchars($icon['icon_name']). '" width="20%" height="50%" class="usericon">
-                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) .'</a></span>
+                                    <img src="' . htmlspecialchars($icon['icon_name']) . '" width="20%" height="50%" class="usericon">
+                                    <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']), 0, 10) . '</a></span>
                                   </li>';
-                        }
-                    } else {
-                        // 条件に合うユーザーが見つからなかった場合のメッセージ
-                        echo '<p>ユーザーが見つかりませんでした。</p>';
                     }
-                
+                } else {
+                    // 条件に合うユーザーが見つからなかった場合のメッセージ
+                    echo '<p>ユーザーが見つかりませんでした。</p>';
+                }
+
 
                 // お気に入り選択時
-            }else if($_POST['favorite'] == 1) {
+            } else if ($_POST['favorite'] == 1) {
                 // 教室にいるメンバーを持ってくる(お気に入りに登録している場合)
                 $users = $pdo->prepare('
                     SELECT Users.* FROM Users
@@ -362,25 +365,25 @@ if ($update_id == 1) {
                 ');
                 $users->execute([$room_id, $_SESSION['user']['user_id']]);
                 $usersList = $users->fetchAll(PDO::FETCH_ASSOC);
-            
+
                 // ユーザーがいるかどうか
                 if ($usersList) {
                     // 初期表示、全件表示
-                    foreach($usersList as $user) {
+                    foreach ($usersList as $user) {
                         // ユーザー情報を持ってくる
                         $members = $pdo->prepare('select * from Users where user_id=?');
                         $members->execute([$user['user_id']]);
                         $member = $members->fetch(PDO::FETCH_ASSOC);
-                    
+
                         // アイコン情報を持ってくる
                         $iconStmt = $pdo->prepare('select icon_name from Icon where user_id=?');
                         $iconStmt->execute([$user['user_id']]);
                         $icon = $iconStmt->fetch(PDO::FETCH_ASSOC);
-            
+
                         echo '<li style="list-style: none; padding-left: 0;">
                                 <div class="profile-container"><div class="user-container">
                                 <img src="', htmlspecialchars($icon['icon_name']), '" width="20%" height="50%" class="usericon">
-                                <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']),0,10) ,'</a></span>
+                                <span><a href="user.php?user_id=' . htmlspecialchars($user['user_id']) . '">', mb_substr(htmlspecialchars($member['user_name']), 0, 10), '</a></span>
                               </li>';
                     }
                 } else {
@@ -389,12 +392,12 @@ if ($update_id == 1) {
                 }
             }
         }
-            echo '</ul>';
-            echo '</div>';
+        echo '</ul>';
+        echo '</div>';
         ?>
-    <!-- メイン(マップ)に戻る -->
-    
-         <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
+        <!-- メイン(マップ)に戻る -->
+
+        <?php echo '<input type="hidden" name="floor" value="', $_SESSION['floor']['kai'], '">' ?>
         <!--<button type="submit" class="back-link">戻る</button> 
     </form> -->
     </main>
