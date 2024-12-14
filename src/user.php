@@ -15,8 +15,7 @@ require 'header.php';
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 1280px)">
-    <link rel="stylesheet" type="text/css" href="css/user.css"
-        media="screen and (min-width: 481px) and (max-width: 1279px)">
+    <link rel="stylesheet" type="text/css" href="css/user.css" media="screen and (min-width: 481px) and (max-width: 1279px)">
     <link rel="stylesheet" type="text/css" href="mob_css/user-mob.css" media="screen and (max-width: 480px)">
 
     <title>Document</title>
@@ -154,11 +153,11 @@ require 'header.php';
                     echo '<span class="time_dis"><font color="#228b22">オンライン中</font></span>';
                 } else {
                     // 通常の出力
-                    echo '<span class="time_dis"><font color="#ff0000">' . $timeAgoText . 'にオンライン</font></span>';
+                    echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
                 }
             } else {
                 // 他の場合はそのまま出力
-                echo '<span class="time_dis"><font color="#ff0000">' . $timeAgoText . 'にオンライン</font></span>';
+                echo '<span class="time_dis"><font color="#ff0000">'.$timeAgoText . 'にオンライン</font></span>';
             }
             echo '</span>';
             //チャットボタン表示
@@ -217,19 +216,14 @@ require 'header.php';
                     $current_sql->execute([$_GET['user_id']]);
                     $current_row = $current_sql->fetch();
                     if ($current_row) {
-                        if ($current_row['classroom_id']) {
-                            $room_id = $current_row['classroom_id'];
-                            $logtime = $current_row['logtime'];
-                            $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                            $room_sql->execute([$room_id]);
-                            $room_row = $room_sql->fetch();
-                            $room_name = $room_row['classroom_name'];
-                            echo '現在地：' . $room_name . '　';
-                            echo timeAgo($logtime) . '登録<br>';
-                        } else if ($current_row['position_info_id']) {
-                            echo '現在地：学外　';
-                            echo timeAgo($logtime) . '登録<br>';
-                        }
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                        echo '現在地：' . $room_name . '　';
+                        echo timeAgo($logtime) . '登録<br>';
                     } else {
                         echo '現在地：設定なし';
                     }
@@ -244,19 +238,14 @@ require 'header.php';
                     $current_sql->execute([$_GET['user_id']]);
                     $current_row = $current_sql->fetch();
                     if ($current_row) {
-                        if ($current_row['classroom_id']) {
-                            $room_id = $current_row['classroom_id'];
-                            $logtime = $current_row['logtime'];
-                            $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                            $room_sql->execute([$room_id]);
-                            $room_row = $room_sql->fetch();
-                            $room_name = $room_row['classroom_name'];
-                            echo '現在地：' . $room_name . '　';
-                            echo timeAgo($logtime) . '登録<br>';
-                        } else if ($current_row['position_info_id']) {
-                            echo '現在地：学外　';
-                            echo timeAgo($logtime) . '登録<br>';
-                        }
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                        echo '現在地：' . $room_name . '<br>';
+                        echo timeAgo($logtime) . 'に登録<br>';
                     } else {
                         echo '現在地：設定なし';
                     }
@@ -271,22 +260,17 @@ require 'header.php';
                 $current_sql->execute([$_GET['user_id']]);
                 $current_row = $current_sql->fetch();
                 if ($current_row) {
-                    if ($current_row['classroom_id']) {
-                        $room_id = $current_row['classroom_id'];
-                        $logtime = $current_row['logtime'];
-                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
-                        $room_sql->execute([$room_id]);
-                        $room_row = $room_sql->fetch();
-                        $room_name = $room_row['classroom_name'];
-                        echo '現在地：' . $room_name . '　';
-                        echo timeAgo($logtime) . '登録<br>';
-                    } else if ($current_row['position_info_id']) {
-                        echo '現在地：学外　';
-                        echo timeAgo($logtime) . '登録<br>';
+                    $room_id = $current_row['classroom_id'];
+                    $logtime = $current_row['logtime'];
+                    $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                    $room_sql->execute([$room_id]);
+                    $room_row = $room_sql->fetch();
+                    $room_name = $room_row['classroom_name'];
+                    echo '現在地：' . $room_name . '<br>';
+                        echo timeAgo($logtime) . 'に登録<br>';
+                    } else {
+                        echo '現在地：設定なし';
                     }
-                } else {
-                    echo '現在地：設定なし';
-                }
                 echo '</div>';
             }
 
