@@ -115,6 +115,27 @@ require 'header.php';
                 echo '<div class="profile"><br>';
                 echo '名前：', mb_substr($user['user_name'], 0, 10), "先生<br>";
                 echo $user['mail_address'];
+                $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
+                $current_sql->execute([$_SESSION['user']['user_id']]);
+                $current_row = $current_sql->fetch();
+                if ($current_row) {
+                    if ($current_row['classroom_id']) {
+                        $room_id = $current_row['classroom_id'];
+                        $logtime = $current_row['logtime'];
+                        $room_sql = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id =?');
+                        $room_sql->execute([$room_id]);
+                        $room_row = $room_sql->fetch();
+                        $room_name = $room_row['classroom_name'];
+                    } else if ($current_row['position_info_id']) {
+                        $logtime = $current_row['logtime'];
+                        $room_name = '学外';
+                    }
+                    echo '現在地：' . $room_name . '<br>';
+                    echo timeAgo($logtime) . 'に登録<br>';
+
+                } else {
+                    echo '現在地：設定なし';
+                }
                 //編集ボタン
                 echo '<button class="confirmbutton" onclick="location.href=\'useredit.php\'">編集</button>';
                 echo '</div>';
