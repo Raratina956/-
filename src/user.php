@@ -98,6 +98,7 @@ require 'header.php';
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
                     } else if ($current_row['position_info_id']) {
+                        $logtime = $current_row['logtime'];
                         $room_name = '学外';
                     }
                     echo '現在地：' . $room_name . '<br>';
@@ -230,6 +231,7 @@ require 'header.php';
                             $room_row = $room_sql->fetch();
                             $room_name = $room_row['classroom_name'];
                         } else if ($current_row['position_info_id']) {
+                            $logtime = $current_row['logtime'];
                             $room_name = '学外';
                         }
                         echo '現在地：' . $room_name . '<br>';
@@ -257,6 +259,7 @@ require 'header.php';
                             $room_row = $room_sql->fetch();
                             $room_name = $room_row['classroom_name'];
                         } else if ($current_row['position_info_id']) {
+                            $logtime = $current_row['logtime'];
                             $room_name = '学外';
                         }
                         echo '現在地：' . $room_name . '<br>';
@@ -284,6 +287,7 @@ require 'header.php';
                         $room_row = $room_sql->fetch();
                         $room_name = $room_row['classroom_name'];
                     } else if ($current_row['position_info_id']) {
+                        $logtime = $current_row['logtime'];
                         $room_name = '学外';
                     }
                     echo '現在地：' . $room_name . '<br>';
