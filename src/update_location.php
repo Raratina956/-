@@ -35,46 +35,19 @@ try {
     $info_search_sql->execute([$user_id]);
     $info_search_row = $info_search_sql->fetch();
 
-    try {
-        if ($info_search_row) {
-            try {
-                // データベース操作
-                $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
-                $info_update->execute([null, 1, $current_datetime, $user_id]);
-            } catch (PDOException $e) {
-                echo 'データベースエラー: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-                exit;
-            } catch (Exception $e) {
-                echo 'エラー: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
-                exit;
-            }
-    
-            // 更新後にcurrent_location_idを取得
-            $select_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
-            $select_query->execute([$user_id]);
-            $current_location_id = $select_query->fetchColumn();
-        } else {
-            $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
-            $info_insert->execute([$user_id, 1, $current_datetime]);
-            $current_location_id = $pdo->lastInsertId();
-        }
-    
-        // current_location_idの確認
-        if ($current_location_id === false) {
-            throw new Exception("current_location_idを取得できませんでした");
-        }
-    
-        }catch (PDOException $e) {
-            error_log('データベースエラー: ' . $e->getMessage());
-            echo json_encode(['success' => false, 'message' => 'データベースエラーが発生しました: ' . $e->getMessage()]);
-            exit;
-        } catch (Exception $e) {
-            error_log('エラー: ' . $e->getMessage());
-            echo json_encode(['success' => false, 'message' => 'エラーが発生しました: ' . $e->getMessage()]);
-            exit;
-        }
-        
-    
+    if ($info_search_row) {
+        // データベース操作
+        $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
+        $info_update->execute([null, 1, $current_datetime, $user_id]);
+        // 更新後にcurrent_location_idを取得
+        $select_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
+        $select_query->execute([$user_id]);
+        $current_location_id = $select_query->fetchColumn();
+    } else {
+        $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
+        $info_insert->execute([$user_id, 1, $current_datetime]);
+        $current_location_id = $pdo->lastInsertId();
+    }
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
