@@ -37,8 +37,8 @@ try {
 
     try {
         if ($info_search_row) {
-            $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
-            $info_update->execute([null, 1, $current_datetime, $user_id]);
+            $info_update = $pdo->prepare('UPDATE Current_location SET position_info_id = ?, logtime = ? WHERE user_id = ?');
+            $info_update->execute([ 1, $current_datetime, $user_id]);
     
             // 更新後にcurrent_location_idを取得
             $select_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
