@@ -1,35 +1,6 @@
 <?php
-require 'db-connect.php';
-header('Content-Type: text/html; charset=UTF-8');
-
-try {
-    $pdo = new PDO($connect, USER, PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // JSONデータを受け取る
-    $input = json_decode(file_get_contents('php://input'), true);
-    if (!$input || !isset($input['user_id'], $input['latitude'], $input['longitude'])) {
-        throw new Exception("無効なリクエストデータ");
-    }
-
-    $user_id = $input['user_id'];
-    $latitude = $input['latitude'];
-    $longitude = $input['longitude'];
-    $updated_at = date('Y-m-d H:i:s');
-
-    // データベースに位置情報を保存
-    $stmt = $pdo->prepare("
-        INSERT INTO locations (user_id, latitude, longitude, updated_at) 
-        VALUES (?, ?, ?, ?) 
-        ON DUPLICATE KEY UPDATE 
-            latitude = VALUES(latitude), 
-            longitude = VALUES(longitude), 
-            updated_at = VALUES(updated_at)
-    ");
-    $stmt->execute([$user_id, $latitude, $longitude, $updated_at]);
-
-
-    // 以下通知処理
+if (isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
     $current_datetime = date('Y-m-d H:i:s');
     $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
     $info_search_sql->execute([$user_id]);
@@ -65,8 +36,23 @@ try {
             }
         }
     }
-} catch (PDOException $e) {
-    echo "<script>alert('データベースエラー: " . addslashes($e->getMessage()) . "');</script>";
-} catch (Exception $e) {
-    echo "<script>alert('エラー: " . addslashes($e->getMessage()) . "');</script>";
 }
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="test.php" method="post">
+        <input type="hidden" name="user_id" value=4>
+        <input type="submit" value="位置情報">
+    </form>
+</body>
+
+</html>
