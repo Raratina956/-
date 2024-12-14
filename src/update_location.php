@@ -37,7 +37,7 @@ try {
 
     try {
         if ($info_search_row) {
-            $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = "?" WHERE user_id = ?');
+            $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
             $info_update->execute([null, 1, $current_datetime, $user_id]);
     
             // 更新後にcurrent_location_idを取得
@@ -55,13 +55,16 @@ try {
             throw new Exception("current_location_idを取得できませんでした");
         }
     
-    } catch (PDOException $e) {
-        error_log('データベースエラー: ' . $e->getMessage());
-        echo json_encode(['success' => false, 'message' => 'データベースエラーが発生しました']);
-    } catch (Exception $e) {
-        error_log('エラー: ' . $e->getMessage());
-        echo json_encode(['success' => false, 'message' => 'エラーが発生しました: ' . $e->getMessage()]);
-    }
+        }catch (PDOException $e) {
+            error_log('データベースエラー: ' . $e->getMessage());
+            echo json_encode(['success' => false, 'message' => 'データベースエラーが発生しました: ' . $e->getMessage()]);
+            exit;
+        } catch (Exception $e) {
+            error_log('エラー: ' . $e->getMessage());
+            echo json_encode(['success' => false, 'message' => 'エラーが発生しました: ' . $e->getMessage()]);
+            exit;
+        }
+        
     
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
