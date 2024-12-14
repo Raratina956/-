@@ -42,18 +42,18 @@ if (isset($_POST['logout'])) {
 </head>
 <header>
     <div class="header-container">
-    <a href="map.php" class="icon hover-effect-img">
-        <img src="img/icon.png" class="spot">
-    </a>
+        <a href="map.php" class="icon hover-effect-img">
+            <img src="img/icon.png" class="spot">
+        </a>
         <div class="right-elements">
             <?php
             $list_sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id=? AND read_check=?');
             $list_sql->execute([$_SESSION['user']['user_id'], 0]);
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
-        <a href="info.php" class="bell-icon hover-effect-info">
-        <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
-        </a>
+            <a href="info.php" class="bell-icon hover-effect-info">
+                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
+            </a>
             <div class="header-area">
                 <div class="hamburger">
                     <span></span>
@@ -82,15 +82,20 @@ if (isset($_POST['logout'])) {
         $current_row_h = $current_slq_h->fetch(PDO::FETCH_ASSOC);
 
         if ($current_row_h) {
-            $class_id = $current_row_h['classroom_id'];
-            $class_sql_h = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
-            $class_sql_h->execute([$class_id]);
-            $class_row_h = $class_sql_h->fetch(PDO::FETCH_ASSOC);
-            if ($class_row_h) {
-                $class_name_h = $class_row_h['classroom_name'];
-            } else {
-                $class_name_h = 'クラス情報が見つかりません';
+            if ($current_row_h['classroom_id']) {
+                $class_id = $current_row_h['classroom_id'];
+                $class_sql_h = $pdo->prepare('SELECT * FROM Classroom WHERE classroom_id = ?');
+                $class_sql_h->execute([$class_id]);
+                $class_row_h = $class_sql_h->fetch(PDO::FETCH_ASSOC);
+                if ($class_row_h) {
+                    $class_name_h = $class_row_h['classroom_name'];
+                } else {
+                    $class_name_h = '滞在情報が見つかりません';
+                }
+            }else if($current_row_h['classroom_id']){
+                $class_name_h = '学外';
             }
+
         } else {
             $class_name_h = '設定なし';
         }
@@ -115,7 +120,7 @@ if (isset($_POST['logout'])) {
             .hover-effect {
                 transition: transform 0.3s ease-in-out;
             }
-            
+
             .hover-effect:hover {
                 transform: scale(1.3);
             }
@@ -123,7 +128,7 @@ if (isset($_POST['logout'])) {
             .hover-effect-img {
                 transition: transform 0.3s ease-in-out;
             }
-            
+
             .hover-effect-img:hover {
                 transform: scale(1.05);
             }
@@ -135,16 +140,21 @@ if (isset($_POST['logout'])) {
             .hover-effect-info:hover {
                 transform: scale(1.01);
             }
-
         </style>
 
         <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="map.php">MAP</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="favorite.php">お気に入り</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php">QRカメラ</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>">チャット</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="tag_list.php">みんなのタグ</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php">MYタグ</a></li>
-        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="announce.php">アナウンス</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a
+                href="favorite.php">お気に入り</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="qr_read.php">QRカメラ</a>
+        </li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a
+                href="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>">チャット</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a
+                href="tag_list.php">みんなのタグ</a></li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a href="my_tag.php">MYタグ</a>
+        </li>
+        <li class="hover-effect" style="border-bottom: outset; border-color: #007bff5e;"><a
+                href="announce.php">アナウンス</a></li>
 
         <!-- 以下ログアウト -->
         <form id="myForm" action="" method="post">
