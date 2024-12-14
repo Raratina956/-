@@ -31,23 +31,28 @@ try {
 
     // 以下通知処理
     $current_datetime = date('Y-m-d H:i:s');
-    $info_search_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id = ?');
-    $info_search_sql->execute([$user_id]);
-    $info_search_row = $info_search_sql->fetch();
 
-    if (!($info_search_row)) {
-        $info_insert = $pdo->prepare('INSERT INTO Current_location (user_id, position_info_id, logtime) VALUES (?, ?, ?)');
-        $info_insert->execute([$user_id, 1, $current_datetime]);
-        $current_location_id = $pdo->lastInsertId();
-    } else {
-         // データベース操作
-         $info_update = $pdo->prepare('UPDATE Current_location SET classroom_id = ?, position_info_id = ?, logtime = ? WHERE user_id = ?');
-         $info_update->execute([null, 1, $current_datetime, $user_id]);
-         // 更新後にcurrent_location_idを取得
-         $select_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
-         $select_query->execute([$user_id]);
-         $current_location_id = $select_query->fetchColumn();
+    // ON DUPLICATE KEYを使用してデータを挿入または更新
+    $info_query = $pdo->prepare('
+    INSERT INTO Current_location (user_id, position_info_id, logtime) 
+    VALUES (?, ?, ?)
+    ON DUPLICATE KEY UPDATE 
+        classroom_id = NULL,
+        position_info_id = VALUES(position_info_id),
+        logtime = VALUES(logtime)'
+    );
+    $info_query->execute([$user_id, 1, $current_datetime]);
+
+    // 主キーcurrent_location_idを取得
+    $current_location_id = $pdo->lastInsertId();
+
+    // 重複があった場合、lastInsertId()は0になるので、主キーを取得し直す
+    if ($current_location_id == 0) {
+        $current_location_id_query = $pdo->prepare('SELECT current_location_id FROM Current_location WHERE user_id = ?');
+        $current_location_id_query->execute([$user_id]);
+        $current_location_id = $current_location_id_query->fetchColumn();
     }
+
 
     $favorite_user = $pdo->prepare('SELECT * FROM Favorite WHERE follower_id=?');
     $favorite_user->execute([$_SESSION['user']['user_id']]);
