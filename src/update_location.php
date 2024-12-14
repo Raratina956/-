@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL); // すべてのエラーを表示
-ini_set('display_errors', 1); // エラーを画面に表示
 require 'db-connect.php';
 header('Content-Type: text/html; charset=UTF-8');
 
