@@ -16,7 +16,13 @@ if (isset($_POST['announcement_id'])) {
     $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE current_location_id=?');
     $current_sql->execute([$current_location_id]);
     $current_row = $current_sql->fetch();
-    $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . $current_row['classroom_id'] . '&update=0';
+    if ($current_row['classroom_id']) {
+        $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/room.php?id=' . $current_row['classroom_id'] . '&update=0';
+    }elseif ($current_row['position_info_id']) {
+        $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/mapindex.php';
+    }else{
+        $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
+    }
     header("Location: $redirect_url");
     exit();
 } elseif (isset($_POST['message_id'])) {
@@ -32,7 +38,7 @@ if (isset($_POST['announcement_id'])) {
 } elseif (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     $deltee_sql = $pdo->prepare('DELETE FROM Announce_check WHERE announcement_id = ? AND user_id=?');
-    $deltee_sql->execute([$delete_id,$_SESSION['user']['user_id']]);
+    $deltee_sql->execute([$delete_id, $_SESSION['user']['user_id']]);
     $redirect_url = 'https://aso2201203.babyblue.jp/Nomodon/src/info.php';
     header("Location: $redirect_url");
     exit();
@@ -90,7 +96,7 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="border"><?php echo mb_substr($title,0,18); ?></td>
+            <td colspan="2" class="border"><?php echo mb_substr($title, 0, 18); ?></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -98,28 +104,28 @@ if ($type == 1) {
             </td>
         </tr>
         <tr>
-            <td colspan="2"class="border"><?php echo mb_substr($content,0,50); ?></td>
+            <td colspan="2" class="border"><?php echo mb_substr($content, 0, 50); ?></td>
         </tr>
         <tr>
             <td width="50%">送信者</td>
             <td width="50%">受信タグ</td>
         </tr>
         <tr>
-            <td width="50%"><?php echo mb_substr($send_user_name,0,10); ?></td>
-            <td width="50%"><?php echo mb_substr($sent_tag_name,0,15); ?></td>
+            <td width="50%"><?php echo mb_substr($send_user_name, 0, 10); ?></td>
+            <td width="50%"><?php echo mb_substr($sent_tag_name, 0, 15); ?></td>
         </tr>
         <tr>
             <td width="50%"><?php echo $time; ?></td>
             <td width="50%">
                 <form action="info_detail.php" method="post">
-                  
+
                     <input type="hidden" name="delete_id" value=<?php echo $announcement_id; ?>>
-                    <input type="submit" value="削除"class="delete">
+                    <input type="submit" value="削除" class="delete">
                 </form>
             </td>
         </tr>
     </table>
-   <center> <a href="info.php">戻る</a></center>
+    <center> <a href="info.php">戻る</a></center>
 </div>
 </body>
 <?php
