@@ -1,4 +1,5 @@
 <?php
+require 'parts/auto-login.php';
 if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     $current_datetime = date('Y-m-d H:i:s');
