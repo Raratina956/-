@@ -92,7 +92,7 @@ if (isset($_POST['logout'])) {
                 } else {
                     $class_name_h = '滞在情報が見つかりません';
                 }
-            }else if($current_row_h['classroom_id']){
+            }else if($current_row_h['position_info_id']){
                 $class_name_h = '学外';
             }
 
