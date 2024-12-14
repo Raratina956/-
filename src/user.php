@@ -255,7 +255,7 @@ require 'header.php';
             } else {
                 //先生(名前、メールアドレス)
                 echo '<div class="profile">';
-                echo '名前：', mb_substr($user['user_name'], 0, 10), "先生<br>";
+                echo '：', mb_substr($user['user_name'], 0, 10), "先生<br>";
                 echo $user['mail_address'], "<br>";
                 $current_sql = $pdo->prepare('SELECT * FROM Current_location WHERE user_id=?');
                 $current_sql->execute([$_GET['user_id']]);
