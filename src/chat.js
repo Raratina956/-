@@ -7,22 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // メッセージ送信
     sendButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const text = messageInput.value;
-        if (text.trim() === '') return;
-
+    
+        const text = messageInput.value.trim();
+        if (text === '') return;
+    
+        const formData = new FormData();
+        formData.append('text', text); // 必須パラメータ
+        formData.append('partner_id', partnerId); // 必須パラメータ
+    
         fetch('send-message.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text, partner_id: partnerId })
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 messageInput.value = '';
-                loadMessages(); // 再読み込み
+                loadMessages();
+            } else {
+                console.error(data.error);
             }
-        });
+        })
+        .catch(error => console.error('通信エラー:', error));
     });
+    
 
     // メッセージをロード
     function loadMessages() {

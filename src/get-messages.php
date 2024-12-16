@@ -1,5 +1,5 @@
 <?php
-require 'database.php'; // DB接続ファイル
+require 'parts/db-connect.php'; // DB接続ファイル
 
 $partner_id = $_GET['partner_id'];
 $logged_in_user_id = $_SESSION['user']['user_id'];
