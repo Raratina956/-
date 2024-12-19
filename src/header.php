@@ -52,8 +52,9 @@ if (isset($_POST['logout'])) {
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <a href="info.php" class="bell-icon hover-effect-info">
-                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
+                <img src="img/bell.png" class="bell">
             </a>
+
             <div class="header-area">
                 <div class="hamburger">
                     <span></span>
@@ -92,7 +93,7 @@ if (isset($_POST['logout'])) {
                 } else {
                     $class_name_h = '滞在情報が見つかりません';
                 }
-            }else if($current_row_h['position_info_id']){
+            } else if ($current_row_h['position_info_id']) {
                 $class_name_h = '学外';
             }
 
@@ -189,6 +190,34 @@ if (isset($_POST['logout'])) {
         });
         document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflowX = "hidden"; // 横スクロールを無効化
+        });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const bellIcon = document.querySelector(".bell-icon img");
+
+            async function checkNotifications() {
+                try {
+                    const response = await fetch("parts/check_notifications.php");
+                    const data = await response.json();
+
+                    if (data.status === "success") {
+                        // 未読があれば newinfo.png に切り替え
+                        bellIcon.src = data.unread_count > 0 ? "img/newinfo.png" : "img/bell.png";
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error("Error fetching notification status:", error);
+                }
+            }
+
+            // 5秒ごとに状態をチェック
+            setInterval(checkNotifications, 5000);
+
+            // 初回のチェック
+            checkNotifications();
         });
     </script>
 </header>
