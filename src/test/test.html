@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announce Check Viewer</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Announce Check Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Message ID</th>
+                <th>Announcement ID</th>
+                <th>Location ID</th>
+                <th>User ID</th>
+                <th>Read Check</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="data-container">
+        </tbody>
+    </table>
+
+    <script>
+        // データを取得して表示する関数
+        async function fetchAnnounceCheckData() {
+            try {
+                const response = await fetch('get_announce_check.php'); // PHP APIを呼び出す
+                const data = await response.json();
+
+                // HTMLテーブルにデータを表示
+                const container = document.getElementById('data-container');
+                container.innerHTML = data.map(item => `
+                    <tr>
+                        <td>${item.announce_check_id}</td>
+                        <td>${item.message_id || 'N/A'}</td>
+                        <td>${item.announcement_id || 'N/A'}</td>
+                        <td>${item.current_location_id || 'N/A'}</td>
+                        <td>${item.user_id}</td>
+                        <td>${item.read_check === 1 ? 'Read' : 'Unread'}</td>
+                        <td>${item.type}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('データ取得エラー:', error);
+            }
+        }
+
+        // ページ読み込み時と5秒ごとにデータを更新
+        fetchAnnounceCheckData();
+        setInterval(fetchAnnounceCheckData, 5000);
+    </script>
+</body>
+</html>
