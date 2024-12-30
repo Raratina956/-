@@ -52,8 +52,9 @@ if (isset($_POST['logout'])) {
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <a href="info.php" class="bell-icon hover-effect-info">
-                <img src="<?= $list_raw ? 'img/newinfo.png' : 'img/bell.png'; ?>" class="bell">
+                <img src="img/bell.png" class="bell">
             </a>
+
             <div class="header-area">
                 <div class="hamburger">
                     <span></span>
@@ -92,7 +93,7 @@ if (isset($_POST['logout'])) {
                 } else {
                     $class_name_h = '滞在情報が見つかりません';
                 }
-            }else if($current_row_h['position_info_id']){
+            } else if ($current_row_h['position_info_id']) {
                 $class_name_h = '学外';
             }
 
@@ -190,5 +191,26 @@ if (isset($_POST['logout'])) {
         document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflowX = "hidden"; // 横スクロールを無効化
         });
+
+        // 通知アイコン自動変更
+        function checkAnnounceStatus() {
+            fetch('get_announce_status.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bellIcon = document.querySelector('.bell');
+                    if (data.has_new_info) {
+                        bellIcon.src = 'img/newinfo.png'; // 新しいお知らせがあればnewinfo.pngを表示
+                    } else {
+                        bellIcon.src = 'img/bell.png'; // お知らせがなければbell.pngを表示
+                    }
+                })
+                .catch(error => console.error('Error fetching announcement status:', error));
+        }
+
+        // 5秒ごとにAPIを呼び出す
+        setInterval(checkAnnounceStatus, 5000);
+
+        // ページロード時にも一度実行
+        checkAnnounceStatus();
     </script>
 </header>
