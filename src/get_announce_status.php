@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'parts/db-connection.php';// 必要に応じてDB接続コードをインクルード
+require 'parts/db-connect.php';// 必要に応じてDB接続コードをインクルード
 $user_id = $_SESSION['user']['user_id'];
 
 $sql = $pdo->prepare('SELECT * FROM Announce_check WHERE user_id = ? AND read_check = 0');
