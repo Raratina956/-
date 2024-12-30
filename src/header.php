@@ -52,7 +52,7 @@ if (isset($_POST['logout'])) {
             $list_raw = $list_sql->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <a href="info.php" class="bell-icon hover-effect-info">
-                <img src="img/bell.png" class="bell">
+                <img src="img/newinfo.png.png" class="bell">
             </a>
 
             <div class="header-area">
