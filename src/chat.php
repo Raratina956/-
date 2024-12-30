@@ -66,13 +66,13 @@ $sent_id_che = $logged_in_user_id;
 $mess_sql = $pdo->prepare('SELECT * FROM Message WHERE send_id = ? AND sent_id=?');
 $mess_sql->execute([$send_id_che, $sent_id_che]);
 $mess_row = $mess_sql->fetchAll(PDO::FETCH_ASSOC);
-if($mess_row){
-    foreach($mess_row as $mess_list){
+if ($mess_row) {
+    foreach ($mess_row as $mess_list) {
         $message_id_check = $mess_list['message_id'];
         $mess_check = $pdo->prepare('SELECT * FROM Announce_check WHERE message_id=?');
         $mess_check->execute([$message_id_check]);
         $mess_check_row = $mess_check->fetch();
-        if($mess_check_row){
+        if ($mess_check_row) {
             $info_up = $pdo->prepare('UPDATE Announce_check SET read_check=? WHERE message_id=?');
             $info_up->execute([1, $message_id_check]);
         }
@@ -135,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,22 +147,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="chat-system">
-    <div class="chat-box">
-        <!-- 相手のアイコンと名前表示部分 -->
-        <div class="chat-header">
-            <form action="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>" method="post" class="backform">
-                <input type="submit" name="back-btn" class="back-btn" value="戻る">
-            </form>
-            <div class="center-content">
-                <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
-                <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+        <div class="chat-box">
+            <!-- 相手のアイコンと名前表示部分 -->
+            <div class="chat-header">
+                <form action="chat-home.php?user_id=<?php echo $_SESSION['user']['user_id']; ?>" method="post"
+                    class="backform">
+                    <input type="submit" name="back-btn" class="back-btn" value="戻る">
+                </form>
+                <div class="center-content">
+                    <img src="<?php echo htmlspecialchars($iconchat['icon_name']); ?>" alt="Partner Icon">
+                    <span class="partner-name"><?php echo htmlspecialchars($partner['user_name']); ?></span>
+                </div>
             </div>
-        </div>
 
-        <!-- 広告バナー -->
-        <!--
+            <!-- 広告バナー -->
+            <!--
         <div class="ad-banner" id="ad-banner">
             <a href="https://aso2201195.boo.jp/zonotown/top.php" target="_blank">
                 <img src="image/banner.png" alt="広告バナー" class="ad-image">
@@ -186,24 +189,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="send-container">
                 <!-- メッセージ送信フォーム -->
-                <form class="send-box flex-box" action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#latest-message" method="post">
+                <form class="send-box flex-box"
+                    action="chat.php?user_id=<?php echo htmlspecialchars($partner_id); ?>#latest-message" method="post">
                     <textarea id="textarea" name="text" rows="1" required placeholder="message.."></textarea>
                     <input type="submit" name="sub" class="send" value="送信" id="send-btn">
                 </form>
             </div>
         </div>
-</div>
-
+    </div>
 
     <script>
-        function scrollToLatestMessage() {
-            const latestMessage = document.getElementById('latest-message');
-            latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
-            }
-        document.getElementById('send-btn').addEventListener('click', function (e) {
-            // e.preventDefault(); // この行を削除
-            scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
-        });
+        let lastMessageTime = "<?php echo end($messages)['message_time'] ?? '1970-01-01 00:00:00'; ?>";
+
+        function fetchNewMessages() {
+            const partnerId = "<?php echo htmlspecialchars($partner_id); ?>";
+
+            fetch(`fetch_new_messages.php?user_id=${partnerId}&last_message_time=${encodeURIComponent(lastMessageTime)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        data.forEach(message => {
+                            const className = message.send_id === "<?php echo $logged_in_user_id; ?>" ? 'person1' : 'person2';
+                            const chatArea = document.getElementById('chat-area');
+                            const newMessage = document.createElement('div');
+                            newMessage.className = className;
+                            newMessage.innerHTML = `
+                            <div class="chat">
+                                <small class="chat-time">${message.message_time}</small>
+                                <span>${message.message_detail}</span>
+                            </div>
+                        `;
+                            chatArea.appendChild(newMessage);
+                            lastMessageTime = message.message_time; // 最新のメッセージ時間を更新
+                        });
+                        scrollToLatestMessage();
+                    }
+                })
+                .catch(error => console.error('エラー:', error));
+        }
+
+        setInterval(fetchNewMessages, 5000); // 5秒ごとに新しいメッセージを取得
+    </script>
+
+    <script>
+        // function scrollToLatestMessage() {
+        //     const latestMessage = document.getElementById('latest-message');
+        //     latestMessage.scrollIntoView({ behavior: 'smooth', block: 'end' }); // オプションに 'block: end' を追加
+        //     }
+        // document.getElementById('send-btn').addEventListener('click', function (e) {
+        //     // e.preventDefault(); // この行を削除
+        //     scrollToLatestMessage(); // クリック時に最新メッセージへスクロール
+        // });
 
 
         // function adjustChatAreaHeight() {
@@ -223,8 +259,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // // ページロード時とリサイズ時にチャットエリアの高さを調整
         // window.onload = adjustChatAreaHeight;
         // window.onresize = adjustChatAreaHeight;
-        
+
     </script>
     <script type="text/javascript" src="js/chat.js" async></script>
 </body>
+
 </html>
